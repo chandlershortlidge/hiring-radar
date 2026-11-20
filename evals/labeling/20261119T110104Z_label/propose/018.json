@@ -1,0 +1,14 @@
+{
+  "item": 18,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "343ec40d54a30d02af761d739adca9b8a32756ec0f4f722588861368202c888b",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3 only a verifiable required mention would override, and the only agents-related text visible is \\\"LLM/agentic automation\\\" under the Preferred Qualifications heading, so nice_to_have fits; B's quote \\\"spin up LLM based agents\\\" does not appear in the visible excerpt, which is cut off at \\\"acting...\\\", so it cannot be confirmed as a required mention.\"}",
+  "decision": "A",
+  "why": "Under rule 3 only a verifiable required mention would override, and the only agents-related text visible is \"LLM/agentic automation\" under the Preferred Qualifications heading, so nice_to_have fits; B's quote \"spin up LLM based agents\" does not appear in the visible excerpt, which is cut off at \"acting...\", so it cannot be confirmed as a required mention.",
+  "error": null
+}

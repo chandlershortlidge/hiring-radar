@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "a-b-testing",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "22291549cc8105f9878f010e0f7e08ea8d5fe1ca99042bdd31fc6b6777cb1161",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'online experimentation' in a preferred qualification bullet counts as a direct synonym for A/B testing, so the agreed nice_to_have label stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'online experimentation' in a preferred qualification bullet counts as a direct synonym for A/B testing, so the agreed nice_to_have label stands.",
+  "error": null
+}

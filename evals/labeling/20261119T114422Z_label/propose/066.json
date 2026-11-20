@@ -1,0 +1,14 @@
+{
+  "item": 66,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8c121532541b3ba6748384fb15178edd9cc586f3af465c61ce0d11364dfcef50",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What You Bring' bullet names cloud-native services as a requirement, and the quoted raw_text 'cloud-native services' appears verbatim, so the agreed required 'cloud' label stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What You Bring' bullet names cloud-native services as a requirement, and the quoted raw_text 'cloud-native services' appears verbatim, so the agreed required 'cloud' label stands (rule 3).",
+  "error": null
+}

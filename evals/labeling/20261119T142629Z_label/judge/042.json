@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "nlp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"multilingual NLP\", \"requirement\": \"nice_to_have\"}",
+  "key_sha256": "0f71976b750a221592cbad93ca47f636c5b204c2b3ae2276963381677b2a8be3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a specific skill like 'Natural Language Processing (NLP)' counts even if it includes a years-of-experience requirement, as Rule 1 only excludes generic job-title experience lines.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a specific skill like 'Natural Language Processing (NLP)' counts even if it includes a years-of-experience requirement, as Rule 1 only excludes generic job-title experience lines.",
+  "error": null
+}

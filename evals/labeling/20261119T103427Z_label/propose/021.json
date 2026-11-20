@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ml-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "59fb14432749607413f3ebb3996dd2811c4730ee85c62efa6a846d154c7b5b37",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention, \\\"7+ years of experience in AI/ML engineering\\\", is a years-of-experience line, which does not name a skill, and the visible qualifications don't otherwise name ML engineering as a skill.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention, \"7+ years of experience in AI/ML engineering\", is a years-of-experience line, which does not name a skill, and the visible qualifications don't otherwise name ML engineering as a skill.",
+  "error": null
+}

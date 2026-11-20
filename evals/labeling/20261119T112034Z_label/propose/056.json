@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "782c8e39642faa8c2d1b4134885390581943e25159284559d02aa6541a1e6a17",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asks for \\\"significant experience operationalising models\\\" (the verbatim raw_text), which is required and names the MLOps skill, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asks for \"significant experience operationalising models\" (the verbatim raw_text), which is required and names the MLOps skill, so the agreed label stands.",
+  "error": null
+}

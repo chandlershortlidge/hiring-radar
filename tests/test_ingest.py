@@ -2,7 +2,7 @@ import pytest
 
 from app import db, geo
 from app.ingest import (FAMILIES, SCREENED_SOURCES, Stored, agency_name_word, check_timestamp,
-                        family_of, in_scope_title, ingest, ingest_one, now_iso)
+                        family_of, in_scope_title, ingest, ingest_one, now_iso, sales_title)
 from app.sources import Posting, registry
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
@@ -126,6 +126,46 @@ LEAKED_TITLES = [
 ])
 def test_in_scope_title_rejects_without_both_halves(title):
     assert in_scope_title(title) is False
+
+
+# Sales roles under an engineering-looking title (HIR-246). Reused by tests/test_queries.py
+# to check that the chart's SQL hides exactly the titles ingest refuses.
+SALES_TITLES = [
+    "PreSales Engineer Data & AI (m/w/d),Bielefeld,Berlin",   # OEDIV, the ticket's Berlin posting
+    "Pre-Sales Engineer, Generative AI",
+    "AI Solutions Engineer - Pre Sales",
+    "AI Sales Engineer",
+    "Senior Technical SALES ENGINEER, Machine Learning",
+    "Sales Architect AI & Data",
+]
+# The same words where they do not name a seller: these stay in.
+NOT_SALES_TITLES = [
+    "Machine Learning Engineer, Sales Forecasting",   # builds for a sales team
+    "AI Engineer (Salesforce)",
+    "AI Solutions Engineer",   # known limit: Ramp's is a sales job, but the title cannot say so
+]
+
+
+@pytest.mark.parametrize("title", SALES_TITLES)
+def test_sales_titles_are_out_of_scope(title):
+    assert sales_title(title) is True
+    assert in_scope_title(title) is False
+
+
+@pytest.mark.parametrize("title", NOT_SALES_TITLES)
+def test_sales_words_that_do_not_name_a_seller_stay_in_scope(title):
+    assert sales_title(title) is False
+    assert in_scope_title(title) is True
+
+
+def test_sales_title_of_nothing_is_false():
+    assert sales_title(None) is False and sales_title("") is False
+
+
+def test_a_feed_posting_with_a_sales_title_is_counted_not_stored(conn):
+    r = ingest(conn, [posting(sid="s1", title="PreSales Engineer Data & AI"), posting(sid="s2")])
+    assert (r.skipped_title, r.new) == (1, 1)
+    assert [row["title"] for row in conn.execute("SELECT title FROM job")] == [posting().title]
 
 
 @pytest.mark.parametrize("title", [

@@ -1,0 +1,122 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automotive Cybersecurity\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI toolchains\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization and orchestration technologies\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD and Infrastructure-as-Code tools\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code tools\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform, Ansible, GitHub Actions/GitLab CI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ansible, GitHub Actions/GitLab CI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions/GitLab CI\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions/GitLab CI\",\n      \"alternative_group\": 3\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Static code analysis\",\n      \"raw_text\": \"static and dynamic code analysis\"\n    },\n    {\n      \"label\": \"Dynamic code analysis\",\n      \"raw_text\": \"dynamic code analysis\"\n    },\n    {\n      \"label\": \"Fuzzing\",\n      \"raw_text\": \"fuzzing\"\n    },\n    {\n      \"label\": \"Penetration testing\",\n      \"raw_text\": \"penetration testing tools\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience in Automotive Cybersecurity.\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Business-fluent German and English language skills.\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"University degree in Computer Science or a comparable IT-related field.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Only the qualifications under “What should you bring along?” supply candidate skill requirements; no optional section is present.\\n“Several years” is interpreted as mid-level experience, but does not specify an exact range.\\nAWS/Azure is interpreted as platform alternatives. Docker/Kubernetes names complementary containerization and orchestration technologies, not alternatives.\\nThe combined CI/CD and Infrastructure-as-Code examples are grouped by their respective asks: Terraform/Ansible and GitHub Actions/GitLab CI. Longer quotes distinguish these required mentions from their responsibility-only occurrences.\\nStatic and dynamic code analysis, fuzzing, and penetration testing have no exact taxonomy entries; they are not broadened to generic software testing.\\n“Comparable IT-related field” widens the degree field, not the accepted qualification. Generic open-source technologies do not specifically ask for open-source LLMs.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Automotive Cybersecurity"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI toolchains"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD and Infrastructure-as-Code tools"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code tools"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform, Ansible, GitHub Actions/GitLab CI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible, GitHub Actions/GitLab CI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI",
+        "alternative_group": 3
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Static code analysis",
+        "raw_text": "static and dynamic code analysis"
+      },
+      {
+        "label": "Dynamic code analysis",
+        "raw_text": "dynamic code analysis"
+      },
+      {
+        "label": "Fuzzing",
+        "raw_text": "fuzzing"
+      },
+      {
+        "label": "Penetration testing",
+        "raw_text": "penetration testing tools"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience in Automotive Cybersecurity.",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Business-fluent German and English language skills.",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "University degree in Computer Science or a comparable IT-related field.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Only the qualifications under “What should you bring along?” supply candidate skill requirements; no optional section is present.\n“Several years” is interpreted as mid-level experience, but does not specify an exact range.\nAWS/Azure is interpreted as platform alternatives. Docker/Kubernetes names complementary containerization and orchestration technologies, not alternatives.\nThe combined CI/CD and Infrastructure-as-Code examples are grouped by their respective asks: Terraform/Ansible and GitHub Actions/GitLab CI. Longer quotes distinguish these required mentions from their responsibility-only occurrences.\nStatic and dynamic code analysis, fuzzing, and penetration testing have no exact taxonomy entries; they are not broadened to generic software testing.\n“Comparable IT-related field” widens the degree field, not the accepted qualification. Generic open-source technologies do not specifically ask for open-source LLMs."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "cb7a81c798305bf8aa5d44a28e1dbb66efd12521229a4a2f7675d28ef4de16c4",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

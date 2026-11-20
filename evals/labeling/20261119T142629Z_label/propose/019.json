@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f6d0f74bea7393b8da172aa9415fd06d24024fc54c394b8b52d0834f8df8144e",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 4, the \\\"Lead hardware engineering use case projects\\\" bullet is a responsibility the candidate is not asked to have, so it cannot support senior; the only requirement-side signal is \\\"1 to 3 years of related experience,\\\" which supports junior as labeler A said.\"}",
+  "decision": "A",
+  "why": "Under rule 4, the \"Lead hardware engineering use case projects\" bullet is a responsibility the candidate is not asked to have, so it cannot support senior; the only requirement-side signal is \"1 to 3 years of related experience,\" which supports junior as labeler A said.",
+  "error": null
+}

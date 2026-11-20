@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "6d639666d7f6fa342a60d130ed3ce1baacc40d6842ec9201003317ffc3a96be9",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, 'AI & LLM Engineering' is explicitly named as a required skill under the 'Specific Knowledge and Skills' qualification section.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, 'AI & LLM Engineering' is explicitly named as a required skill under the 'Specific Knowledge and Skills' qualification section.",
+  "error": null
+}

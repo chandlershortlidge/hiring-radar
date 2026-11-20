@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "03f4e1eb45374ba4fd0ad0693c158a87fd596552f05b55a8e79584719b394e26",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention of software engineering is the years-of-experience bullet \\\"12+ years of professional software engineering experience,\\\" which does not count as a skill, and no other required mention names it.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention of software engineering is the years-of-experience bullet \"12+ years of professional software engineering experience,\" which does not count as a skill, and no other required mention names it.",
+  "error": null
+}

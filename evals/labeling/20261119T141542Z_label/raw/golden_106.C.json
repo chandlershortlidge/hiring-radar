@@ -1,0 +1,25 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Short summary posting containing only a role overview and responsibilities; no requirements, qualifications, or tech-stack section asking the candidate for specific skills.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Short summary posting containing only a role overview and responsibilities; no requirements, qualifications, or tech-stack section asking the candidate for specific skills."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3c633c205ff269d7ff8dac88e6d5321d2b5dea4fa9622c32272e9a1002a063f6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

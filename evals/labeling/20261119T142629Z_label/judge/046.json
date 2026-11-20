@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "go",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4ffd29ea9254dc140e29628dc5056bad7ac760466d252b938402d95aa503a063",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Minimum Qualifications bullet explicitly names Golang, making the agreed required label for `go` correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Minimum Qualifications bullet explicitly names Golang, making the agreed required label for `go` correct.",
+  "error": null
+}

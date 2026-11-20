@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "github-copilot",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ef5ac7c8c9820f10f8a497e1ad5d3cbd0c5a0aebc049d4f9c295463d5ad523f6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'Copilot' is explicitly named as an AI coding tool in a required qualification bullet under 'WHAT YOU’LL NEED', clearly referring to GitHub Copilot alongside Cursor, Claude Code, and Codex.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'Copilot' is explicitly named as an AI coding tool in a required qualification bullet under 'WHAT YOU’LL NEED', clearly referring to GitHub Copilot alongside Cursor, Claude Code, and Codex.",
+  "error": null
+}

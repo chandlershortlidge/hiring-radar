@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "docker",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a31bf47d55d8f83ca269cb1abb1a401f1479dcd5300be3d8c5d0a7a442cf8b2a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under Preferred/Bonus Qualifications explicitly names 'Docker', making it a valid nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under Preferred/Bonus Qualifications explicitly names 'Docker', making it a valid nice_to_have skill.",
+  "error": null
+}

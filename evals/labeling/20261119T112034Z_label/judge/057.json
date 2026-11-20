@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Experience supporting both long-running training jobs and high-availability inference services\", \"requirement\": \"required\"}",
+  "key_sha256": "d8122c3487d056f7046d37124f4ebe2091de37920380182e525732f813dd1c99",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet naming a specific skill ('ML systems deployment') counts even if it includes a years-of-experience qualifier, unlike a generic job-title years line.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet naming a specific skill ('ML systems deployment') counts even if it includes a years-of-experience qualifier, unlike a generic job-title years line.",
+  "error": null
+}

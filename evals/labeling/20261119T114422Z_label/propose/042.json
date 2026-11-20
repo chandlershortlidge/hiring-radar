@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "cursor",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "167e5c493937414b1b03d35cd3a16c76a40a67da0ae26222bf96ee2426a26cee",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'WHAT YOU'LL NEED' bullet names Cursor as a daily tool the candidate must use, so it is a qualification, and rule 3 makes that required mention win; the agreed required label and raw_text 'Cursor' are accurate.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'WHAT YOU'LL NEED' bullet names Cursor as a daily tool the candidate must use, so it is a qualification, and rule 3 makes that required mention win; the agreed required label and raw_text 'Cursor' are accurate.",
+  "error": null
+}

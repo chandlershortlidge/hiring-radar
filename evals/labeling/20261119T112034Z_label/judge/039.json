@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "baa36d12913b8dfc5d9b4004864709d554c8af3ca7e5bb581d2a08683ebf7003",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the phrase 'High-load web applications' does not specifically name full-stack development.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the phrase 'High-load web applications' does not specifically name full-stack development.",
+  "error": null
+}

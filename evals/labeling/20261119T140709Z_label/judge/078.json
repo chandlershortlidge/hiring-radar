@@ -1,0 +1,15 @@
+{
+  "item": 78,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "36c1088e75a8793511a8f27d7aa76ed938c8316c1b8e7dc0c475260a070e7989",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the job summary sentence stating they are seeking a candidate with 'strong Full Stack development expertise' counts as a qualification naming the skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the job summary sentence stating they are seeking a candidate with 'strong Full Stack development expertise' counts as a qualification naming the skill.",
+  "error": null
+}

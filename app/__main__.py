@@ -1,6 +1,8 @@
 """Command line: `uv run python -m app <command>`.
 
-  poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed.
+  poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed;
+                    --launch CITY (a launch's first collection) reads only CITY's new jobs, after pricing them;
+                    --region europe|us polls only that region's feeds (the VM's two daily runs, HIR-369).
                     Readings run as one Anthropic Message Batch — half price, waits for it to finish (HIR-222)
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump); batches, as poll does
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
@@ -15,7 +17,11 @@
                     --since/--until YYYY-MM-DD pick the range (HIR-290)
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
-                    --launch CITY applies the written board policy itself and adds what passes
+                    --launch CITY applies the written board policy itself and adds what passes,
+                    then runs backfill-places for that city
+  backfill-places   credit stored jobs, open and closed, with every tracked city their location names
+                    (a "Berlin, London" job stored before London was a city gains London). Only adds;
+                    --city CITY limits it to one, --dry-run writes nothing. No model call (HIR-331)
   repair-companies  fill in companies on jobs stored without one and merge the duplicates
                     that appear; a dry run by default, --apply writes (HIR-198)
   reread-cost       what a change to the extractor or the skill list would cost to merge:
@@ -65,13 +71,13 @@ load_dotenv(ROOT / ".env")
 if (_shared_env := main_checkout_env(ROOT)):
     load_dotenv(_shared_env)
 
-from app import add, db, langsmith_live, send_checks  # noqa: E402
+from app import add, db, geo, langsmith_live, send_checks  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
 from app.labels import import_answers  # noqa: E402
 from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
-from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
+from app.poll import FEEDS_PATH, load_feeds, poll_feeds, region_line, select_feeds, select_region  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
@@ -130,15 +136,35 @@ def cmd_poll(args):
     if not args.no_extract:
         require_anthropic_key()  # before the fetch, so no job is stored that cannot then be read
     try:
-        feeds = select_feeds(load_feeds(), args.only)
+        feeds = select_feeds(select_region(load_feeds(), args.region), args.only)
     except ValueError as e:
         sys.exit(str(e))
+    if args.region:
+        print(region_line(args.region, feeds))
+    if args.launch and args.launch not in geo.ACTIVE_CITIES:
+        sys.exit(f"{args.launch!r} is not collected; add it to geo.ACTIVE_CITIES first")
     conn = open_db()
     r = poll_feeds(conn, feeds)
     print(f"TOTAL {r.line()}")
     if args.no_extract:
         return
+    if args.launch:   # a launch's first collection reads only the city's new jobs (HIR-380)
+        launch_first_reading(conn, r.new_job_ids, args.launch)
+        return
     run_extraction(conn, run_kind=langsmith_live.POLL, batch=True)
+
+
+def launch_first_reading(conn, new_job_ids, city):
+    from app import launch_read
+    from app.extract import DEFAULT_MODEL, extractor_version
+    plan = launch_read.plan(conn, new_job_ids, city, extractor_version(Taxonomy.load(), DEFAULT_MODEL))
+    print()
+    for line in plan.lines():
+        print(line)
+    if plan.over_cap:
+        sys.exit(2)
+    if plan.to_read:
+        run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.POLL, batch=True)
 
 
 def cmd_extract(args):
@@ -299,6 +325,8 @@ def cmd_discover_boards(args):
     from app.geo import ACTIVE_CITIES
     if args.launch not in ACTIVE_CITIES:
         sys.exit(f"{args.launch!r} is not collected; add it to geo.ACTIVE_CITIES first")
+    if args.launch not in geo.REGION_OF:
+        sys.exit(f"{args.launch!r} has no region, so neither daily poll covers it; add it to geo.REGION_OF first")
     decisions = discover.launch_decisions(r.candidates)
     cost, daily, breach = discover.launch_caps(decisions)
     applied = not breach and not args.dry_run
@@ -311,6 +339,22 @@ def cmd_discover_boards(args):
         print(line)
     if breach:
         sys.exit(2)
+    from app.geo import CITIES
+    if args.launch in CITIES:   # the stored jobs whose posting already named it (HIR-331)
+        from app.backfill_places import backfill, report_lines
+        print()
+        for line in report_lines(backfill(open_db(), city=args.launch, apply=applied), args.launch):
+            print(line)
+
+
+def cmd_backfill_places(args):
+    from app.backfill_places import backfill, report_lines
+    try:
+        b = backfill(open_db(), city=args.city, apply=not args.dry_run)
+    except ValueError as e:
+        sys.exit(str(e))
+    for line in report_lines(b, args.city):
+        print(line)
 
 
 def cmd_repair_companies(args):
@@ -429,6 +473,11 @@ def main(argv=None):
     p = sub.add_parser("poll"); p.add_argument("--no-extract", action="store_true")
     p.add_argument("--only", action="append", default=[], metavar="LABEL",
                    help="poll just this feed, by its log label (e.g. ashby:jupus); repeatable")
+    p.add_argument("--region", choices=geo.REGIONS, default=None,
+                   help="poll only this region's feeds (the VM's two daily runs); default all feeds")
+    p.add_argument("--launch", metavar="CITY", default=None,
+                   help="a city launch's first collection: read only the new jobs placed in CITY, "
+                        "priced first and stopped above the launch cap; older jobs are left unread")
     p.set_defaults(fn=cmd_poll)
     p = sub.add_parser("extract"); p.add_argument("--limit", type=int); p.set_defaults(fn=cmd_extract)
     p = sub.add_parser("add-text")
@@ -466,6 +515,11 @@ def main(argv=None):
                         "(5+ roles there, employers only), then report; stops on a spending cap")
     p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
     p.set_defaults(fn=cmd_discover_boards)
+    p = sub.add_parser("backfill-places",
+                       help="credit stored jobs, open and closed, with every tracked city their location names")
+    p.add_argument("--city", default=None, help="only this tracked city (default: all of them)")
+    p.add_argument("--dry-run", action="store_true", help="count and show, write nothing")
+    p.set_defaults(fn=cmd_backfill_places)
     p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
     p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
     p.set_defaults(fn=cmd_repair_companies)

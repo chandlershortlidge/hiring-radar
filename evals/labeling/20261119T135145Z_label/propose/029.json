@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b96868acdf60d98c899fec26cf72dc7a331d6e1573d6b4dd192f9e34c9a785d5",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, the required bullets name ML work (\\\"Deep understanding of modern AI/ML models\\\" and \\\"hardware implementation of ML optimization techniques\\\"), and B's quoted raw_text \\\"ML optimization techniques\\\" is a verbatim required mention, so B's label stands (rule 1 is also met since this is a qualification bullet).\"}",
+  "decision": "B",
+  "why": "Under rule 3, the required bullets name ML work (\"Deep understanding of modern AI/ML models\" and \"hardware implementation of ML optimization techniques\"), and B's quoted raw_text \"ML optimization techniques\" is a verbatim required mention, so B's label stands (rule 1 is also met since this is a qualification bullet).",
+  "error": null
+}

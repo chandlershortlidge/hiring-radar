@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e2e9af4992d91c17a09a41bd6a34847dfd79f661e60c1c472f44201cdc0132bd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet asks for an understanding of 'safeguards informed by OWASP Top 10 for LLMs', which directly supports the `llm-guardrails` skill as required.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet asks for an understanding of 'safeguards informed by OWASP Top 10 for LLMs', which directly supports the `llm-guardrails` skill as required.",
+  "error": null
+}

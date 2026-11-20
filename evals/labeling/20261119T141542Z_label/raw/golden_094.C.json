@@ -1,0 +1,127 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Databricks\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MS SQL\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-visualization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"visualization tools\"\n    },\n    {\n      \"skill_id\": \"power-bi\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Power BI\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"predictive modeling/ML\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"knowledge graphs\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"conceptual modeling\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"MS SQL Server\",\n      \"raw_text\": \"MS SQL\"\n    },\n    {\n      \"label\": \"SAS\",\n      \"raw_text\": \"SAS\"\n    },\n    {\n      \"label\": \"Ontology development\",\n      \"raw_text\": \"ontology development and management\"\n    },\n    {\n      \"label\": \"RDF\",\n      \"raw_text\": \"RDF\"\n    },\n    {\n      \"label\": \"OWL\",\n      \"raw_text\": \"OWL\"\n    },\n    {\n      \"label\": \"SPARQL\",\n      \"raw_text\": \"SPARQL\"\n    },\n    {\n      \"label\": \"Semantic layer\",\n      \"raw_text\": \"semantic layer creation\"\n    },\n    {\n      \"label\": \"Query optimization\",\n      \"raw_text\": \"query optimization\"\n    },\n    {\n      \"label\": \"Master Data Management\",\n      \"raw_text\": \"master data management\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least 4 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"At least a Bachelor's degree\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"'What Sets You Apart' is a PwC optional/preferred qualifications heading, so all items under it are marked nice_to_have. Seniority is ambiguous: 'At least 4 years of experience' falls into mid (3-5 years), while the 'Manager' title and coaching/leading duties in responsibilities/What Sets You Apart could point to senior; flagged seniority as uncertain. Mapped 'MS SQL' to sql (with unmapped MS SQL Server) and 'conceptual modeling' to data-modeling, both flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "MS SQL",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "nice_to_have",
+        "raw_text": "visualization tools"
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "nice_to_have",
+        "raw_text": "Power BI"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "predictive modeling/ML"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "nice_to_have",
+        "raw_text": "knowledge graphs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "conceptual modeling",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "MS SQL Server",
+        "raw_text": "MS SQL"
+      },
+      {
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "label": "Ontology development",
+        "raw_text": "ontology development and management"
+      },
+      {
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "label": "Semantic layer",
+        "raw_text": "semantic layer creation"
+      },
+      {
+        "label": "Query optimization",
+        "raw_text": "query optimization"
+      },
+      {
+        "label": "Master Data Management",
+        "raw_text": "master data management"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least 4 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "At least a Bachelor's degree",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'What Sets You Apart' is a PwC optional/preferred qualifications heading, so all items under it are marked nice_to_have. Seniority is ambiguous: 'At least 4 years of experience' falls into mid (3-5 years), while the 'Manager' title and coaching/leading duties in responsibilities/What Sets You Apart could point to senior; flagged seniority as uncertain. Mapped 'MS SQL' to sql (with unmapped MS SQL Server) and 'conceptual modeling' to data-modeling, both flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3523482233eb1a40a002932f8b7c7e0f68e2968436b4457603c3d8b39c6c80a7",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

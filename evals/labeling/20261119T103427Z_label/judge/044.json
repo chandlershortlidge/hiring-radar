@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "knowledge-distillation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3cf9fc33ec7ebd2a39a1b5d15909a898941fe5b2d330561cd37ec75c7004f2d6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly lists 'distillation' among model optimization techniques, which supports the `knowledge-distillation` skill as a nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly lists 'distillation' among model optimization techniques, which supports the `knowledge-distillation` skill as a nice_to_have.",
+  "error": null
+}

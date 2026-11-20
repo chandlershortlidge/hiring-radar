@@ -1,0 +1,25 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"lead prompt engineering to improve model performance\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The posting contains a title and responsibilities, but no candidate qualifications or dedicated tech-stack section. Technologies described only as work to perform are excluded; the title is not treated as a qualification list.\\nSeniority is inferred from the explicit duty to lead prompt engineering, following the guide's lead-duty rule.\\nNo German-language or degree requirement is mentioned.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "lead prompt engineering to improve model performance",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The posting contains a title and responsibilities, but no candidate qualifications or dedicated tech-stack section. Technologies described only as work to perform are excluded; the title is not treated as a qualification list.\nSeniority is inferred from the explicit duty to lead prompt engineering, following the guide's lead-duty rule.\nNo German-language or degree requirement is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "35e5a4bee0735d03a36b5eadcb9bd136f3cc428e5367aefd4a62491cfe244ecf",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

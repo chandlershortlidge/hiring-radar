@@ -1,0 +1,89 @@
+{
+  "id": "golden_122",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI Voicebot & Automation Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutschkenntnisse",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "821202d339d781af3646016be1c0a8a8105de069d1ce0734309f4a9084f1d978",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:cloud"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior AI Voicebot & Automation Engineer (all gender)\n\n### #weareALTEN – the home of forward thinkers\n\n**Wir sind die Gestalter von heute für die Welt von morgen.**\n\nAls einer der weltweit führenden Entwicklungsdienstleister setzen wir uns bei ALTEN dafür ein, die Zukunft unserer Partnerunternehmen, die Karrieren unserer Mitarbeiter und Mitarbeiterinnen sowie die Herausforderungen für unsere Gesellschaft und Umwelt positiv zu gestalten.\n\nKnapp 60.000 Angestellte in 30 Ländern arbeiten schon heute an innovativen Lösungen in verschiedenen Ingenieur- und IT-Branchen wie Luft- und Raumfahrt, erneuerbare Energien, Medizintechnik, Bahntechnik und Automobil.\n\n### Senior AI Voicebot & Automation Engineer (all gender)\n\n### A home where people learn and thrive\n\n- **Talent Management** – wir entwickeln deine Karriere\n- **Work Life Balance** – flexible Arbeitszeiten und mobiles Arbeiten möglich\n- **Fit and relaxed –** mit EGYM Wellpass\n- **Enjoy biking** – immer on tour mit Dienstradleasing\n- **Green Mobility** – mit uns bist du vergünstigt unterwegs\n\n…zudem bieten wir einen unbefristeten Arbeitsvertrag, Corporate Benefits und Teamevents.\n\n### Make it happen\n\n**DU…**\n\n- entwickelst und implementierst KI-basierte Voicebot-Lösungen für den Customer Service im Pharmaumfeld\n- gestaltest Conversational Flows, Dialogdesigns und Prompts für LLM-basierte Anwendungen\n- konfigurierst Intent Recognition, Routing- und Antwortlogiken\n- integrierst REST APIs, Webhooks und Schnittstellen zur Anbindung von Backend-Systemen\n- baust automatisierte Workflows mit n8n auf und pflegst diese\n- implementierst Monitoring- und Fehlerbehandlungsmechanismen\n- arbeitest mit Fachbereichen und Technologiepartnern zusammen\n\n### Be our forward thinker\n\n**DU…**\n\n- verfügst über umfassende Berufserfahrung in Conversational AI oder Voicebots\n- hast praktische Erfahrung im Prompt Engineering und mit LLMs\n- beherrschst Python, JavaScript oder TypeScript und REST APIs/JSON\n- verfügst über Erfahrung mit n8n (Must-have) und Workflow-Automatisierung\n- hast Kenntnisse in Microsoft Azure und cloud-nativen Architekturen\n- bringst idealerweise Erfahrung mit TTS/STT oder Voice-AI-Plattformen (z. B. Famulor, Amazon Lex) mit\n- verfügst über sehr gute Deutschkenntnisse und gute Englischkenntnisse\n\nWir wertschätzen Vielfalt und begrüßen daher alle Bewerbungen – unabhängig von Geschlecht, Nationalität, ethnischer und sozialer Herkunft, Religion / Weltanschauung, Behinderung, Alter sowie sexueller Orientierung und Identität.\n\nSchwerbehinderte werden bei gleicher Eignung bevorzugt berücksichtigt.\n\nBewirb dich jetzt über unser Online-Bewerbungsformular.",
+  "expected": [
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST APIs/JSON"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Microsoft Azure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud-nativen Architekturen"
+    },
+    {
+      "skill_id": "conversational-ai",
+      "requirement": "required",
+      "raw_text": "Conversational AI"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "required",
+      "raw_text": "JavaScript"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "mit LLMs"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit n8n (Must-have)"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "speech-recognition",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Erfahrung mit TTS/STT"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Workflow-Automatisierung"
+    }
+  ]
+}

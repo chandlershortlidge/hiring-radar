@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0ab8461aa7caa914fe7c53b0bf565b04aa8b45118d38b359b148f9accc921ceb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Required Qualifications, the posting names \\\"Experience deploying ML on a major cloud\\\" (rule 1), and the required mention is quoted verbatim (rule 3), so the agreed required ai-deployment label stands.\"}",
+  "decision": "ok",
+  "why": "Under Required Qualifications, the posting names \"Experience deploying ML on a major cloud\" (rule 1), and the required mention is quoted verbatim (rule 3), so the agreed required ai-deployment label stands.",
+  "error": null
+}

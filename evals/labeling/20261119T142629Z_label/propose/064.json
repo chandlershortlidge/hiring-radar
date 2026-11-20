@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0f75ae0ab37cf887523ae4acf9f4c7eb750b5e9f64acbf3a1328e05a3bcce50c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification sentence \\\"Experience guiding ML systems from feature engineering to production deployment and monitoring\\\" names the deployment skill, and the agreed raw_text is quoted verbatim from it, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification sentence \"Experience guiding ML systems from feature engineering to production deployment and monitoring\" names the deployment skill, and the agreed raw_text is quoted verbatim from it, so the agreed required label stands.",
+  "error": null
+}

@@ -1,0 +1,218 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CUDA\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement or imitation learning\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Contact solver implementation\",\n      \"raw_text\": \"written contact and constraint solvers yourself\"\n    },\n    {\n      \"label\": \"Constraint solver implementation\",\n      \"raw_text\": \"written contact and constraint solvers yourself\"\n    },\n    {\n      \"label\": \"Physics simulation instability diagnosis and remediation\",\n      \"raw_text\": \"diagnosing and fixing simulation instability (jitter, penetration, energy drift, divergence)\"\n    },\n    {\n      \"label\": \"Simulation validation against real robot recordings\",\n      \"raw_text\": \"validating the result quantitatively against real-world recordings\"\n    },\n    {\n      \"label\": \"Simulation parameter fitting\",\n      \"raw_text\": \"fitting simulation parameters to measured data\"\n    },\n    {\n      \"label\": \"Articulated multibody simulation\",\n      \"raw_text\": \"articulations (reduced and maximal coordinates)\"\n    },\n    {\n      \"label\": \"Contact modelling\",\n      \"raw_text\": \"contact and friction modelling\"\n    },\n    {\n      \"label\": \"Friction modelling\",\n      \"raw_text\": \"contact and friction modelling\"\n    },\n    {\n      \"label\": \"Numerical integration of stiff systems\",\n      \"raw_text\": \"numerical integration of stiff systems\"\n    },\n    {\n      \"label\": \"Physics-engine implementation\",\n      \"raw_text\": \"Solver or physics-engine code you wrote yourself\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Newton/Warp\",\n      \"raw_text\": \"Newton/Warp\"\n    },\n    {\n      \"label\": \"PhysX\",\n      \"raw_text\": \"PhysX\"\n    },\n    {\n      \"label\": \"Drake\",\n      \"raw_text\": \"Drake\"\n    },\n    {\n      \"label\": \"Bullet\",\n      \"raw_text\": \"Bullet\"\n    },\n    {\n      \"label\": \"Genesis\",\n      \"raw_text\": \"Genesis\"\n    },\n    {\n      \"label\": \"Robot description formats\",\n      \"raw_text\": \"robot description formats\"\n    },\n    {\n      \"label\": \"URDF\",\n      \"raw_text\": \"URDF\"\n    },\n    {\n      \"label\": \"MJCF\",\n      \"raw_text\": \"MJCF\"\n    },\n    {\n      \"label\": \"OpenUSD\",\n      \"raw_text\": \"OpenUSD\"\n    },\n    {\n      \"label\": \"Source-level simulation stack knowledge\",\n      \"raw_text\": \"knowledge of at least one major simulation stack at source level\"\n    },\n    {\n      \"label\": \"GPU programming for physics\",\n      \"raw_text\": \"GPU programming for physics\"\n    },\n    {\n      \"label\": \"NVIDIA Warp\",\n      \"raw_text\": \"NVIDIA Warp\"\n    },\n    {\n      \"label\": \"Scaling simulation for policy learning\",\n      \"raw_text\": \"scaling simulation for reinforcement or imitation learning\"\n    },\n    {\n      \"label\": \"Imitation learning\",\n      \"raw_text\": \"imitation learning\"\n    },\n    {\n      \"label\": \"Deformable simulation\",\n      \"raw_text\": \"deformable, cable or FEM simulation\"\n    },\n    {\n      \"label\": \"Cable simulation\",\n      \"raw_text\": \"deformable, cable or FEM simulation\"\n    },\n    {\n      \"label\": \"Finite element simulation\",\n      \"raw_text\": \"FEM simulation\"\n    },\n    {\n      \"label\": \"XPBD\",\n      \"raw_text\": \"XPBD\"\n    },\n    {\n      \"label\": \"VBD\",\n      \"raw_text\": \"VBD\"\n    },\n    {\n      \"label\": \"Corotational FEM\",\n      \"raw_text\": \"corotational or hyperelastic FEM\"\n    },\n    {\n      \"label\": \"Hyperelastic FEM\",\n      \"raw_text\": \"hyperelastic FEM\"\n    },\n    {\n      \"label\": \"Cosserat rods\",\n      \"raw_text\": \"Cosserat rods\"\n    },\n    {\n      \"label\": \"Coupling deformable and rigid-body simulations\",\n      \"raw_text\": \"Experience with deformable, cable or FEM simulation (XPBD, VBD, corotational or hyperelastic FEM, Cosserat rods) and its coupling with rigid bodies\"\n    },\n    {\n      \"label\": \"Differentiable simulation\",\n      \"raw_text\": \"differentiable simulation\"\n    },\n    {\n      \"label\": \"Bayesian parameter estimation\",\n      \"raw_text\": \"Bayesian or gradient-based parameter estimation\"\n    },\n    {\n      \"label\": \"Gradient-based parameter estimation\",\n      \"raw_text\": \"gradient-based parameter estimation\"\n    },\n    {\n      \"label\": \"Learned residual dynamics\",\n      \"raw_text\": \"learned residual dynamics\"\n    },\n    {\n      \"label\": \"Robot manipulation\",\n      \"raw_text\": \"robot manipulation\"\n    },\n    {\n      \"label\": \"Robotic grasping\",\n      \"raw_text\": \"grasping\"\n    },\n    {\n      \"label\": \"Contact-rich robotic tasks\",\n      \"raw_text\": \"contact-rich tasks\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Masters + 3 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply.\",\n  \"notes\": \"Who You Are and Minimum Qualifications supply required candidate skills; Preferred Qualifications supplies optional skills. Your Next Challenge is a responsibilities section, not a dedicated tech-stack section, so technologies and practices appearing only there are excluded.\\nRigid-body dynamics and constrained multibody systems are treated as domain knowledge, while explicitly named implementation, modelling, integration and simulation techniques are included as unmapped skills.\\nThe taxonomy lacks most robotics simulation tools and techniques. MuJoCo, Newton/Warp, PhysX, Drake, Bullet and Genesis are examples for a single implementation-experience ask, constituting alternative set 1; these cannot be encoded as expected criteria without inventing taxonomy IDs. CUDA, NVIDIA Warp and JAX form set 2; NVIDIA Warp is unmapped. Other alternatives involving unmapped skills likewise cannot be fully represented in expected.\\nNewton/Warp is retained literally rather than silently resolving the slash into separate products. NVIDIA Warp is separately named in the preferred section; its overlap with Newton/Warp requires taxonomy resolution.\\nThe generic word reinforcement in 'reinforcement or imitation learning' is read as reinforcement learning. Its alternative, imitation learning, is unmapped; no singleton alternative_group is emitted.\\nThe mapped CUDA and JAX skills and all unmapped skills beginning with GPU programming for physics through contact-rich robotic tasks are preferred, except source-level simulation stack knowledge, which is required. NVIDIA Warp's optional mention may overlap the required Newton/Warp example.\\nThe highest named degree is PhD despite the accepted master's and bachelor's routes. Every route still requires a degree, so degree_or_equivalent is false.\\nSeniority is inferred from the explicit three-year experience route, not from technical depth. No German-language requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "JAX",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement or imitation learning"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Contact solver implementation",
+        "raw_text": "written contact and constraint solvers yourself"
+      },
+      {
+        "label": "Constraint solver implementation",
+        "raw_text": "written contact and constraint solvers yourself"
+      },
+      {
+        "label": "Physics simulation instability diagnosis and remediation",
+        "raw_text": "diagnosing and fixing simulation instability (jitter, penetration, energy drift, divergence)"
+      },
+      {
+        "label": "Simulation validation against real robot recordings",
+        "raw_text": "validating the result quantitatively against real-world recordings"
+      },
+      {
+        "label": "Simulation parameter fitting",
+        "raw_text": "fitting simulation parameters to measured data"
+      },
+      {
+        "label": "Articulated multibody simulation",
+        "raw_text": "articulations (reduced and maximal coordinates)"
+      },
+      {
+        "label": "Contact modelling",
+        "raw_text": "contact and friction modelling"
+      },
+      {
+        "label": "Friction modelling",
+        "raw_text": "contact and friction modelling"
+      },
+      {
+        "label": "Numerical integration of stiff systems",
+        "raw_text": "numerical integration of stiff systems"
+      },
+      {
+        "label": "Physics-engine implementation",
+        "raw_text": "Solver or physics-engine code you wrote yourself"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Newton/Warp",
+        "raw_text": "Newton/Warp"
+      },
+      {
+        "label": "PhysX",
+        "raw_text": "PhysX"
+      },
+      {
+        "label": "Drake",
+        "raw_text": "Drake"
+      },
+      {
+        "label": "Bullet",
+        "raw_text": "Bullet"
+      },
+      {
+        "label": "Genesis",
+        "raw_text": "Genesis"
+      },
+      {
+        "label": "Robot description formats",
+        "raw_text": "robot description formats"
+      },
+      {
+        "label": "URDF",
+        "raw_text": "URDF"
+      },
+      {
+        "label": "MJCF",
+        "raw_text": "MJCF"
+      },
+      {
+        "label": "OpenUSD",
+        "raw_text": "OpenUSD"
+      },
+      {
+        "label": "Source-level simulation stack knowledge",
+        "raw_text": "knowledge of at least one major simulation stack at source level"
+      },
+      {
+        "label": "GPU programming for physics",
+        "raw_text": "GPU programming for physics"
+      },
+      {
+        "label": "NVIDIA Warp",
+        "raw_text": "NVIDIA Warp"
+      },
+      {
+        "label": "Scaling simulation for policy learning",
+        "raw_text": "scaling simulation for reinforcement or imitation learning"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Deformable simulation",
+        "raw_text": "deformable, cable or FEM simulation"
+      },
+      {
+        "label": "Cable simulation",
+        "raw_text": "deformable, cable or FEM simulation"
+      },
+      {
+        "label": "Finite element simulation",
+        "raw_text": "FEM simulation"
+      },
+      {
+        "label": "XPBD",
+        "raw_text": "XPBD"
+      },
+      {
+        "label": "VBD",
+        "raw_text": "VBD"
+      },
+      {
+        "label": "Corotational FEM",
+        "raw_text": "corotational or hyperelastic FEM"
+      },
+      {
+        "label": "Hyperelastic FEM",
+        "raw_text": "hyperelastic FEM"
+      },
+      {
+        "label": "Cosserat rods",
+        "raw_text": "Cosserat rods"
+      },
+      {
+        "label": "Coupling deformable and rigid-body simulations",
+        "raw_text": "Experience with deformable, cable or FEM simulation (XPBD, VBD, corotational or hyperelastic FEM, Cosserat rods) and its coupling with rigid bodies"
+      },
+      {
+        "label": "Differentiable simulation",
+        "raw_text": "differentiable simulation"
+      },
+      {
+        "label": "Bayesian parameter estimation",
+        "raw_text": "Bayesian or gradient-based parameter estimation"
+      },
+      {
+        "label": "Gradient-based parameter estimation",
+        "raw_text": "gradient-based parameter estimation"
+      },
+      {
+        "label": "Learned residual dynamics",
+        "raw_text": "learned residual dynamics"
+      },
+      {
+        "label": "Robot manipulation",
+        "raw_text": "robot manipulation"
+      },
+      {
+        "label": "Robotic grasping",
+        "raw_text": "grasping"
+      },
+      {
+        "label": "Contact-rich robotic tasks",
+        "raw_text": "contact-rich tasks"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Masters + 3 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply.",
+    "notes": "Who You Are and Minimum Qualifications supply required candidate skills; Preferred Qualifications supplies optional skills. Your Next Challenge is a responsibilities section, not a dedicated tech-stack section, so technologies and practices appearing only there are excluded.\nRigid-body dynamics and constrained multibody systems are treated as domain knowledge, while explicitly named implementation, modelling, integration and simulation techniques are included as unmapped skills.\nThe taxonomy lacks most robotics simulation tools and techniques. MuJoCo, Newton/Warp, PhysX, Drake, Bullet and Genesis are examples for a single implementation-experience ask, constituting alternative set 1; these cannot be encoded as expected criteria without inventing taxonomy IDs. CUDA, NVIDIA Warp and JAX form set 2; NVIDIA Warp is unmapped. Other alternatives involving unmapped skills likewise cannot be fully represented in expected.\nNewton/Warp is retained literally rather than silently resolving the slash into separate products. NVIDIA Warp is separately named in the preferred section; its overlap with Newton/Warp requires taxonomy resolution.\nThe generic word reinforcement in 'reinforcement or imitation learning' is read as reinforcement learning. Its alternative, imitation learning, is unmapped; no singleton alternative_group is emitted.\nThe mapped CUDA and JAX skills and all unmapped skills beginning with GPU programming for physics through contact-rich robotic tasks are preferred, except source-level simulation stack knowledge, which is required. NVIDIA Warp's optional mention may overlap the required Newton/Warp example.\nThe highest named degree is PhD despite the accepted master's and bachelor's routes. Every route still requires a degree, so degree_or_equivalent is false.\nSeniority is inferred from the explicit three-year experience route, not from technical depth. No German-language requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "95822a15115bc5dca14b0f797804072d475b9f74c1b7d76ed6d472c27f8e8fef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "05d7d1f9b804ed0f71b67db423f05eb154e07d19f335b4ec780746f7c321d530",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for expertise in 'ML systems', which directly names machine learning as a required skill.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for expertise in 'ML systems', which directly names machine learning as a required skill.",
+  "error": null
+}

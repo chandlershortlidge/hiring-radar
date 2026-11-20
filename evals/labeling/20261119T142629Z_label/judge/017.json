@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "b9c6c3a65859489e49a824f0ebd1a517783216aa1f32bc55a5882e0269363640",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the Minimum Qualifications bullet requiring \\\"Experience with AI tools\\\" counts as a required mention of the `ai-ml` skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the Minimum Qualifications bullet requiring \"Experience with AI tools\" counts as a required mention of the `ai-ml` skill.",
+  "error": null
+}

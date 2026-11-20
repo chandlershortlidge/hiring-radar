@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM architectures\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformer internals\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Quantization\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML model deployment\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Compilers\",\n      \"raw_text\": \"building compilers\"\n    },\n    {\n      \"label\": \"Kernel optimization\",\n      \"raw_text\": \"optimizing kernels\"\n    },\n    {\n      \"label\": \"MLIR\",\n      \"raw_text\": \"MLIR\"\n    },\n    {\n      \"label\": \"LLVM\",\n      \"raw_text\": \"LLVM\"\n    },\n    {\n      \"label\": \"XLA\",\n      \"raw_text\": \"XLA\"\n    },\n    {\n      \"label\": \"TVM\",\n      \"raw_text\": \"TVM\"\n    },\n    {\n      \"label\": \"Triton (compiler/DSL)\",\n      \"raw_text\": \"Triton\"\n    },\n    {\n      \"label\": \"Sparsity\",\n      \"raw_text\": \"sparsity\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS/MS/PhD in Computer Science, Software Engineering, or a related field.\",\n  \"uncertain\": [],\n  \"notes\": \"Triton in 'MLIR, LLVM, XLA, TVM, Triton, or similar compiler infrastructures' refers to the Triton compiler/DSL, not Triton Inference Server, so placed in unmapped. 'BS/MS/PhD' in required qualifications takes the highest level named (phd) with requirement 'required' per golden_040 rule.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM architectures"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer internals"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "Quantization"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "ML model deployment"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Compilers",
+        "raw_text": "building compilers"
+      },
+      {
+        "label": "Kernel optimization",
+        "raw_text": "optimizing kernels"
+      },
+      {
+        "label": "MLIR",
+        "raw_text": "MLIR"
+      },
+      {
+        "label": "LLVM",
+        "raw_text": "LLVM"
+      },
+      {
+        "label": "XLA",
+        "raw_text": "XLA"
+      },
+      {
+        "label": "TVM",
+        "raw_text": "TVM"
+      },
+      {
+        "label": "Triton (compiler/DSL)",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "Sparsity",
+        "raw_text": "sparsity"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Software Engineering, or a related field.",
+    "uncertain": [],
+    "notes": "Triton in 'MLIR, LLVM, XLA, TVM, Triton, or similar compiler infrastructures' refers to the Triton compiler/DSL, not Triton Inference Server, so placed in unmapped. 'BS/MS/PhD' in required qualifications takes the highest level named (phd) with requirement 'required' per golden_040 rule."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "b91c19981444eed15842533d1b99ce61c64aff0a7b1dc600d460ee521ed29248",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

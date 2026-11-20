@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "google-adk",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "70d5ba18a14821b57b92a719cbc0d3f12cf0d9b899e760e00d931f20b121f51e",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, Agent Development Kit is explicitly named in a preferred qualifications sentence, so it counts as a nice_to_have skill.\"}",
+  "decision": "A",
+  "why": "Under rule 1, Agent Development Kit is explicitly named in a preferred qualifications sentence, so it counts as a nice_to_have skill.",
+  "error": null
+}

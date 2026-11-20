@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"You are a blend of a pragmatic operator and a software engineer\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"You specialize in systems (operating systems, storage subsystems, networking)\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"with varied interests in algorithms and distributed systems\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Expert knowledge of Ansible (roles, playbooks)\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring and observability practices\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud services\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SRE\",\n      \"raw_text\": \"7+ years of professional SRE or related experience\"\n    },\n    {\n      \"label\": \"operating systems\",\n      \"raw_text\": \"operating systems\"\n    },\n    {\n      \"label\": \"storage subsystems\",\n      \"raw_text\": \"storage subsystems\"\n    },\n    {\n      \"label\": \"algorithms\",\n      \"raw_text\": \"with varied interests in algorithms\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead/Manager AI Infra Systems Engineering Team\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science or a related field or equivalent work experience\",\n  \"uncertain\": [],\n  \"notes\": \"In 'About the Role', the candidate profile paragraph asks for specialization in systems/networking and 'varied interests in algorithms and distributed systems' (labeled distributed-systems as nice_to_have per appetite rule). Flagged software-engineering as uncertain from 'You are a blend of a pragmatic operator and a software engineer'. PagerDuty appears only in Responsibilities so it is excluded. 'Proficiency in programming/scripting languages' names no specific language.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "You are a blend of a pragmatic operator and a software engineer",
+        "uncertain": true
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "You specialize in systems (operating systems, storage subsystems, networking)"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "with varied interests in algorithms and distributed systems"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Expert knowledge of Ansible (roles, playbooks)"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and observability practices"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SRE",
+        "raw_text": "7+ years of professional SRE or related experience"
+      },
+      {
+        "label": "operating systems",
+        "raw_text": "operating systems"
+      },
+      {
+        "label": "storage subsystems",
+        "raw_text": "storage subsystems"
+      },
+      {
+        "label": "algorithms",
+        "raw_text": "with varied interests in algorithms"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead/Manager AI Infra Systems Engineering Team",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science or a related field or equivalent work experience",
+    "uncertain": [],
+    "notes": "In 'About the Role', the candidate profile paragraph asks for specialization in systems/networking and 'varied interests in algorithms and distributed systems' (labeled distributed-systems as nice_to_have per appetite rule). Flagged software-engineering as uncertain from 'You are a blend of a pragmatic operator and a software engineer'. PagerDuty appears only in Responsibilities so it is excluded. 'Proficiency in programming/scripting languages' names no specific language."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "a837b9b7eea46ff8dbfb979b7d3257d059abdc88c20e2fe382f7b2822c9ec8e5",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

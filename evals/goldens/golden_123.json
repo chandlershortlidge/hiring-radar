@@ -1,0 +1,138 @@
+{
+  "id": "golden_123",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "mehrjährigen Berufserfahrung",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Du beherrschst Deutsch auf mind. C1 Niveau",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen",
+  "attrs_reviewed": true,
+  "source_sha256": "e022b9762189c901c99a865123c4fa3afc6c2e48843599db6692333219f6ae90",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:ai-ml",
+    "skill:llm-guardrails",
+    "skill:nlp",
+    "skill:python"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Engineer (w|m|d)\n\nStandort(e): Frankfurt am Main, Mannheim, München, Stuttgart\nArt: Festanstellung, Vollzeit, Teilzeit und mobiles Arbeiten\n\nAuf der Suche nach einem Job, der dir echte Flexibilität ermög­licht und deine fachliche Excellence zu schätzen weiß, stellen wir dir folgende Stelle vor.\nBei bridgingIT steht der Mensch im Mittelpunkt und jetzt geht's um dich!\n\nDEINE Rolle\n\n- Du berätst und unterstützt bei der Umsetzung von Artificial Intelligence Projekten.\n- Du konzipierst und entwickelst maßgeschneiderte Lösungen unter Einsatz von LLMs, OCR-Technologien und Automatisierung.\n- Du evaluierst je nach Problemstellung die passenden Machine Learning Methoden und implementierst diese in die IT-Architektur des Kunden.\n- Du konsolidierst und strukturierst Daten aus unterschiedlichen Quellen und Formaten in geeignete Zielsysteme.\n- Du interpretierst und validierst deine Ergebnisse und bereitest diese visuell auf.\n- Die Präsentation und Diskussion deiner Resultate runden deine Aufgabe ab.\n\nDEINE Skills\n\n- Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen und es bildet die Basis deiner mehrjährigen Berufserfahrung.\n- Du bringst praxiserprobte Programmierkenntnisse in Python und/oder R sowie SQL mit.\n- Du hast einschlägige Erfahrung im Umgang mit technologierelevanten Tools und Frameworks wie z.B. Tensorflow, Pytorch, Keras, LangChain, LlamaIndex, OpenAI, Spark und Scala.\n- Du hast Kenntnisse in LLMs, Embeddings, Retrieval Augmented Generation, Re-ranking, Guardrails, Clustering, Classification Models und Entity Extraction.\n- Mit KI-Konzepten und/oder Verfahren des maschinellen Lernens kennst du dich sehr gut aus.\n- Erfahrungen mit relevanten Cloud-Services wie Azure, AWS oder Google sind Teil deines Profils.\n- Du beherrschst Deutsch auf mind. C1 Niveau und kannst es erfolgreich im Berufsalltag einsetzen - Your German language proficiency is at least C1 level, and you are able to use it successfully in your daily work.\n\nDEINE Zukunft bei uns - mehr als nur Business!\n\nDie BridgingIT GmbH besteht seit 2008 und ist heute Teil der bridgingIT-Gruppe. An einem unserer 9 kunden­nahen Standorte in Deutschland bist du Teil einer herstellerunabhängigen und produktneutralen Technologie- und Unternehmensberatung. Gemeinsam setzen wir Digitalisierungsstrategien für Start-ups, den Mittelstand und Konzerne um. Unsere wertebasierte Organisation legt großen Wert auf menschliche Nähe, Vielfalt und Vertrauen. Bei uns findest du nicht nur Karriere- und Weiterbildungs­möglich­keiten, sondern auch Flexibilität und Familienfreundlichkeit. Werde Teil unserer 700-köpfigen Familie und gestalte deine Zukunft mit uns.\n\nDEINE Ansprechpartnerinnen\n\nHi, ich bin Annekatrin.\nAls Senior Recruiterin übernehme ich die Erstprüfung deiner Bewerbung.\nBei bridgingIT duzen wir uns. Darf dir also direkt das \"DU\" anbieten und freue mich auf deine Bewerbungs­unter­lagen oder deine Kontakt­auf­nahme. Schreib mir gerne an annekatrin.kempf@bridging-it.de\n\nHi, ich bin Luisa.\nBei Fragen rund um den Bewer­bungs­prozess bin ich für dich da.\nUnsere Unternehmenskultur ist von einem respektvollen Miteinander geprägt, sodass wir uns alle auf Augenhöhe begegnen. Freue mich schon dich kennenzulernen. Schreib mir gerne an luisa.schuhmacher@bridging-it.de\n\nDas bieten wir dir\n\n- 30 Tage Urlaub + die Option auf 10 weitere Urlaubstage im Jahr\n- Bis zu 183 Tage aus dem europäischen Ausland arbeiten\n- Mobility Package – (elektrischer) Firmenwagen, BahnCard oder Fahrrad Leasing\n- Mobiles Arbeiten\n- Flexible Arbeitszeiten\n- Vergünstigungen, wie Kindergartenzuschuss, Fitnesscenter, etc.\n- Professionelles Onboarding durch persönliches Mentoring\n- Lebensarbeitszeitkonto – Möglichkeit Urlaub oder Bonus anzusparen\n- Externe und interne Weiterbildungsmöglichkeiten und individuelle Coachings\n- Verschiedene Werteinitiativen, wie green&social, in denen du dich einbringen kannst\n\nWeitere Informationen zu den Benefits und zum Bewerbungsprozess findest du auf unserer [Karriereseite](https://www.bridging-it.de/karriere/das-bietet-bridgingit/?utm_campaign=rec-stepstone-stellenanzeigen&utm_source=stepstone.de&utm_medium=referral&utm_term=karriere-das-bietet-bridgingit&utm_creative_format=textlink&marketing_tactic=karriere)und in unseren [FAQs](https://www.bridging-it.de/karriere/faqs/?utm_campaign=rec-stepstone-stellenanzeigen&utm_source=stepstone.de&utm_medium=referral&utm_term=karriere-faqs&utm_creative_format=textlink&marketing_tactic=karriere).",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "KI-Konzepten"
+    },
+    {
+      "skill_id": "apache-spark",
+      "requirement": "required",
+      "raw_text": "Spark"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Services"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "Embeddings"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "Google"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llm-guardrails",
+      "requirement": "required",
+      "raw_text": "Guardrails"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Kenntnisse in LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Verfahren des maschinellen Lernens"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "Entity Extraction"
+    },
+    {
+      "skill_id": "openai-api",
+      "requirement": "required",
+      "raw_text": "OpenAI"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "Pytorch"
+    },
+    {
+      "skill_id": "r-lang",
+      "requirement": "required",
+      "raw_text": "Python und/oder R"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "Retrieval Augmented Generation"
+    },
+    {
+      "skill_id": "scala",
+      "requirement": "required",
+      "raw_text": "Scala"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "sowie SQL"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "Tensorflow"
+    }
+  ]
+}

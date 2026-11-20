@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "agent-state-management",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "27aabc5daa8deefcb3908e51f9e1e85f245bf40ccc683da41a6e0d17047414d0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'What you have done' that explicitly names 'state management' in the context of building agent systems counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'What you have done' that explicitly names 'state management' in the context of building agent systems counts as a required skill.",
+  "error": null
+}

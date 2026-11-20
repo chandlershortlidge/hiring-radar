@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d6bd9a84cca83816beddd55be03976d559255bd5848a6f6dd88d873986487739",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"Demonstrated, heavy AI-native delivery... consistent use of AI across the SDLC\\\" names AI use in the development workflow, and rule 3 makes that required mention decisive, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"Demonstrated, heavy AI-native delivery... consistent use of AI across the SDLC\" names AI use in the development workflow, and rule 3 makes that required mention decisive, so the agreed required label stands.",
+  "error": null
+}

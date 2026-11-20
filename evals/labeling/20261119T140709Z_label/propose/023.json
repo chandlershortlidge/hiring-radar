@@ -1,0 +1,17 @@
+{
+  "item": 23,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d8f0dc6b852079f996859869353495b74c87cf60647958008f818718c178d058",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"AI and data strategy\"}, \"why\": \"Under rule 1 the AI content sits in the 'What Sets You Apart' qualification list, so ai-ml counts, but under rule 3 it is preferred rather than required, since no required-section mention of AI appears in the excerpt.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "AI and data strategy"
+  },
+  "why": "Under rule 1 the AI content sits in the 'What Sets You Apart' qualification list, so ai-ml counts, but under rule 3 it is preferred rather than required, since no required-section mention of AI appears in the excerpt.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2aac7e62c5d66f2242bc945132fdd0c893cd44c6ee203581e8b08b057dc93c74",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention, \\\"6+ years of backend software engineering experience,\\\" is a years-of-experience line, which does not count as naming a skill, and the excerpt shows no other mention of software engineering as a skill.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention, \"6+ years of backend software engineering experience,\" is a years-of-experience line, which does not count as naming a skill, and the excerpt shows no other mention of software engineering as a skill.",
+  "error": null
+}

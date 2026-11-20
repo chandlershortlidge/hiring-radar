@@ -1,0 +1,18 @@
+{
+  "item": 64,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"reliable production software development\", \"requirement\": \"required\"}",
+  "key_sha256": "45ee7294fb8b2aa673a69376685b515f260e11c637949780eeb7245935d89e6a",
+  "raw": "{\"decision\": {\"raw_text\": \"reliable production software development\", \"requirement\": \"required\"}, \"why\": \"Per Rule 1, a years-of-experience line does not count, so the skill is re-anchored to the valid qualification bullet 'reliable production software development' per Rule 3.\"}",
+  "decision": {
+    "raw_text": "reliable production software development",
+    "requirement": "required"
+  },
+  "why": "Per Rule 1, a years-of-experience line does not count, so the skill is re-anchored to the valid qualification bullet 'reliable production software development' per Rule 3.",
+  "error": null
+}

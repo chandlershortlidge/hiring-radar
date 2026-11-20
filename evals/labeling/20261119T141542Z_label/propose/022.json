@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ed5e7f1dfe4b356e7cc441465cd4ce86d17c5e708b268ec56a3eec2c4aaea283",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the only GCP mention sits in the \\\"What Sets You Apart\\\" section as one option among alternative cloud certifications (AWS, Azure, GCP), not in \\\"What You Must Have,\\\" so nice_to_have is correct (rule 1 applies since it names a skill in a qualification line).\"}",
+  "decision": "A",
+  "why": "Under rule 3, the only GCP mention sits in the \"What Sets You Apart\" section as one option among alternative cloud certifications (AWS, Azure, GCP), not in \"What You Must Have,\" so nice_to_have is correct (rule 1 applies since it names a skill in a qualification line).",
+  "error": null
+}

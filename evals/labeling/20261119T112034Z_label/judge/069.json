@@ -1,0 +1,15 @@
+{
+  "item": 69,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b13085a2b52fa7854f10377d148af657ae4069718513e618b4ed6919cf08465d",
+  "raw": "{\"decision\": \"drop\", \"why\": \"The text asks for people who have 'built generative AI products' and does not specifically name LLMs, so under Rule 5 we do not add a skill the text does not name.\"}",
+  "decision": "drop",
+  "why": "The text asks for people who have 'built generative AI products' and does not specifically name LLMs, so under Rule 5 we do not add a skill the text does not name.",
+  "error": null
+}

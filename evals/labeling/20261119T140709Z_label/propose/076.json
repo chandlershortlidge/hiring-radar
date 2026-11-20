@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "conversational-ai",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6da6b3f413699cc513b70816cd68d4f86454e56d39227cb6744fc9249a3a4780",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet \\\"Experience implementing conversational assistants\\\" names the skill and falls within the Required Skills block, so the agreed required label with raw_text \\\"conversational assistants\\\" stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet \"Experience implementing conversational assistants\" names the skill and falls within the Required Skills block, so the agreed required label with raw_text \"conversational assistants\" stands (rule 3).",
+  "error": null
+}

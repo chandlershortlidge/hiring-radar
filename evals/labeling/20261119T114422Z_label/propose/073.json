@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0ab5ed4b05c1f77129ac954b0cc8401cc7efa5ffe75d5cc2f3fbfa9b44b18f0d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence \\\"You specialize in systems (... networking)\\\" describes the candidate the role is seeking rather than a responsibility, so it names a skill in a qualification-style sentence and the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence \"You specialize in systems (... networking)\" describes the candidate the role is seeking rather than a responsibility, so it names a skill in a qualification-style sentence and the agreed required label stands.",
+  "error": null
+}

@@ -1,0 +1,123 @@
+{
+  "id": "golden_133",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutschkenntnisse (C1 oder höher)",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "c603d01a03723a3b30a02c1a66fe533a7f418d0e404cacf5720ce246eecda83f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:aws-bedrock",
+    "skill:azure-ai-foundry",
+    "skill:hallucination-detection",
+    "skill:llm-orchestration"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Für den Standort Frankfurt am Main suchen wir:\n\n# Plattform AI Engineer (m/w/d)\n\nIhre Aufgaben:\n\n- Aufbau und Weiterentwicklung eines Frameworks für KI-gestützte Automatisierungen sowie Konzeption, Umsetzung, Test und Dokumentation wiederverwendbarer Framework-Bausteine.\n- Entwicklung von Schema, Contracts, Tests und Dokumentation sowie Erstellung von Architecture Decision Records und arc42-Dokumentation.\n- Entwicklung eines Verfahrens zur messbaren Bewertung der Ergebnisgüte agentischer Abläufe inklusive Testfällen, Bewertungsmaßen und Wiederholungsprüfung bei Modellwechseln.\n- Aufbau und Pflege von GitLab-CI/CD-Pipelines mit blockierenden Qualitätsprüfungen sowie einer versionierten Registry der Framework-Bausteine.\n- Befähigung und Beratung nutzender Teams durch Schulungen, Workshops, Hackathons, Sprechstunden und begleitete Anwendung.\n- Vermittlung der Arbeitsweise mit KI-Werkzeugen, insbesondere Umgang mit Kontext, agentischen Abläufen sowie Prüfung und Abnahme KI-generierter Ergebnisse.\n- Aufnahme und Weitergabe von Bedarfen, Hindernissen und Fehlerbildern an Product Owner und Entwicklung.\n- Bewertung neuer Werkzeuge, Modelle und Verfahren sowie Durchführung dokumentierter Erprobungen.\n- Abstimmung mit Architektur, Security, Datenschutz, Compliance und Betrieb.\n- Mitwirkung an Backlog Refinements und Planungsformaten des ART.\n- Sicherstellung der Betriebssystem-Neutralität auf macOS, Linux und Windows sowie Berücksichtigung von Kosten und Laufzeiten.\n- Mitgestaltung von Architekturentscheidungen, Qualitätsstandards und der agentischen Arbeitsweise im Team.\n\nIhre Qualifikationen:\n\n- Sehr gutes Verständnis agiler Arbeitsweisen und des end-to-end SDLC.\n- Praktische Erfahrung mit MCP-Servern und agentischen Skills.\n- Mindestens 12 Monate kontinuierliche praktische Erfahrung mit KI-Werkzeugen in der Softwareentwicklung, z. B. Kiro CLI, GitHub Copilot, Claude Code oder Cursor.\n- Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld.\n- Sicheres Verständnis von LLM, Context Window, Embeddings, RAG, Tool Calling, Agenten, Orchestrierung, Guardrails, Prompt Injection, Evaluation, Halluzinationen und Kosten je Token.\n- Erfahrung darin, Grenzen und Fehlerbilder von KI-Systemen zu bewerten und daraus Einsatzentscheidungen abzuleiten.\n- Erfahrung mit Scrum, Backlog-Arbeit, vertikalem Aufgabenschnitt und Definition of Done.\n- Gute Kenntnisse in Jira.\n- Erfahrung mit Evals zur Verbesserung agentischer Systeme sowie mit der messbaren Bewertung der Ergebnisgüte.\n- Erfahrung mit Cloud-Umgebungen und großen bzw. regulierten IT-Organisationen, idealerweise im SAFe-Umfeld.\n- Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil.\n- Erfahrung im Bahn- oder vergleichbaren komplexen Konzernumfeld mit Anforderungen an Security, Datenschutz und Compliance von Vorteil.\n- Sehr gute Deutschkenntnisse (C1 oder höher).\n- Ausgeprägte Abstraktionsfähigkeit, analytisches Denken sowie starke Kommunikations- und Moderationsfähigkeiten.\n- Eigenständige, verlässliche und lösungsorientierte Arbeitsweise sowie Bereitschaft, neue Ansätze zu erproben und kritisch zu bewerten.\n\nWir bieten:\n\n- Karrierechancen\n- Individuelles angepasstes Schulungsprogramm\n- Faires, vertrauensvolles Arbeitsklima\n- Regelmäßige Networking Events\n- Vorteile bei unseren Partnern in den Bereichen Gesundheit, Versicherung und Shopping\n- Betriebliche Altersvorsorge\n\nAnforderungen an Mitarbeiter sind vielfältig. Unsere Jobangebote auch. Guldberg steht für \"Goldrichtiges Matching\" und ist spezialisiert auf die Branchen Automotive, Schienenfahrzeugtechnik, Anlagenbau, Telekommunikation sowie Banken und Versicherungen und bietet Ihnen spannende Aufgaben in den Bereichen Maschinenbau, Elektronik und Informatik. Bei uns steht der Mitarbeiter stets an erster Stelle. Neben einer attraktiven Bezahlung, bieten wir Ihnen eine langfristige berufliche Perspektive. Ergänzt werden Ihre Karrierechancen durch ein individuell angepasstes Schulungsprogramm, angefangen von der persönlichen Entwicklung, bis hin zu fachlichen Qualifikationen. Zudem haben wir uns zur Aufgabe gemacht, ein faires, vertrauensvolles und persönliches Arbeitsklima zu schaffen. Neben regelmäßigen Networking Events, erhalten Sie durch uns Vorteile bei unseren Partnern in den Bereichen Fitness, Gesundheit, Versicherung und Shopping.​​​​​",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Agenten"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "KI-Werkzeugen in der Softwareentwicklung"
+    },
+    {
+      "skill_id": "aws-bedrock",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS Bedrock AgentCore"
+    },
+    {
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "Microsoft Foundry Agents Service"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Umgebungen"
+    },
+    {
+      "skill_id": "context-engineering",
+      "requirement": "required",
+      "raw_text": "Context Window"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "Embeddings"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Evaluation"
+    },
+    {
+      "skill_id": "github-copilot",
+      "requirement": "required",
+      "raw_text": "GitHub Copilot"
+    },
+    {
+      "skill_id": "hallucination-detection",
+      "requirement": "required",
+      "raw_text": "Halluzinationen"
+    },
+    {
+      "skill_id": "llm-guardrails",
+      "requirement": "required",
+      "raw_text": "Guardrails"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "Orchestrierung"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "MCP-Servern"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "Tool Calling"
+    }
+  ]
+}

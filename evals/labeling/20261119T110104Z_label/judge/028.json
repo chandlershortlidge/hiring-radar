@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "causal-inference",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d274667f6d4f5eceeed39db5b1b37262a50d2755633c50dda3f9f8d9f6067f62",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Qualifications bullet explicitly requires expertise in 'advanced Bayesian causal modeling', which maps to causal-inference.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Qualifications bullet explicitly requires expertise in 'advanced Bayesian causal modeling', which maps to causal-inference.",
+  "error": null
+}

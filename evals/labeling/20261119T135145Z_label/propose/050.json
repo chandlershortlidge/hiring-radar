@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "reinforcement-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b8d7e925f6bdc80f9059d26c4847e84a8695791ea5848ddab4794c51b79fb2c1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications bullet names RL as one of the accepted forms of trained learned policies, and rule 3 makes that required mention control, so the agreed required label and quote stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications bullet names RL as one of the accepted forms of trained learned policies, and rule 3 makes that required mention control, so the agreed required label and quote stand.",
+  "error": null
+}

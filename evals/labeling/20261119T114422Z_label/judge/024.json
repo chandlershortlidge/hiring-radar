@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "fine-tuning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "dde8937e689e342b99530625c48dc7665e6dfa8b79238edde30cca2588153abe",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 and rule 5, the posting names 'post-training' (which includes RLHF, DPO, etc.) rather than specifically naming 'fine-tuning', so a specific skill not named in the text should not be inferred.\"}",
+  "decision": "drop",
+  "why": "Under rule 1 and rule 5, the posting names 'post-training' (which includes RLHF, DPO, etc.) rather than specifically naming 'fine-tuning', so a specific skill not named in the text should not be inferred.",
+  "error": null
+}

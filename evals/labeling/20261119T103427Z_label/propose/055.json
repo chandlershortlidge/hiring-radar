@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c73961222f5be26d04ee26a94207420028f39d9832e365cda450057d3e030d43",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Preferred Skills bullet \\\"Experience with cloud computing services (AWS, Azure, GCP)\\\" names Azure as a qualification, so the agreed nice_to_have label with raw_text \\\"Azure\\\" is correct and Rule 5 does not apply because Azure is named explicitly.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Preferred Skills bullet \"Experience with cloud computing services (AWS, Azure, GCP)\" names Azure as a qualification, so the agreed nice_to_have label with raw_text \"Azure\" is correct and Rule 5 does not apply because Azure is named explicitly.",
+  "error": null
+}

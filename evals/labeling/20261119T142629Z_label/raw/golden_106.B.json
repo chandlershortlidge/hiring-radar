@@ -1,0 +1,144 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Solid ML background\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and operating production ML systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"feature-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"feature engineering\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software/data engineering\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience building with LLMs\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI agents\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Human-in-the-loop or AI-assisted evaluation systems\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Distributed systems\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"high-scale data pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"software/data engineering\"\n    },\n    {\n      \"label\": \"Data infrastructure\",\n      \"raw_text\": \"data infrastructure\"\n    },\n    {\n      \"label\": \"Device fingerprinting\",\n      \"raw_text\": \"Device fingerprinting\"\n    },\n    {\n      \"label\": \"Identity verification\",\n      \"raw_text\": \"identity verification\"\n    },\n    {\n      \"label\": \"Behavioral signals\",\n      \"raw_text\": \"behavioral signals\"\n    },\n    {\n      \"label\": \"Network intelligence\",\n      \"raw_text\": \"network intelligence\"\n    },\n    {\n      \"label\": \"VPN/proxy detection\",\n      \"raw_text\": \"VPN/proxy detection\"\n    },\n    {\n      \"label\": \"Real-time risk evaluation\",\n      \"raw_text\": \"Real-time risk evaluation\"\n    },\n    {\n      \"label\": \"Automated control systems\",\n      \"raw_text\": \"automated control systems\"\n    },\n    {\n      \"label\": \"Human-in-the-loop\",\n      \"raw_text\": \"Human-in-the-loop\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus.\",\n  \"notes\": \"The requirements section is required by default; Preferred Attributes makes its items nice_to_have.\\nLLMs and AI agents are alternatives under the explicit and/or wording; responsibility-only mentions do not create independent requirements.\\nOperating production ML systems is mapped literally to MLOps; data infrastructure is not assumed to mean AI infrastructure.\\nConcrete detection and evaluation techniques in Preferred Attributes are retained as unmapped where no taxonomy entry fits; fraud and adversarial-domain knowledge and soft skills are excluded.\\nThe optional advanced degree names no specific higher level, so the degree label remains bachelor rather than inferring master or PhD.\\nNo German-language requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Solid ML background"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "building and operating production ML systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "feature engineering"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "production deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software/data engineering"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience building with LLMs",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI agents",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "Human-in-the-loop or AI-assisted evaluation systems"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "high-scale data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "software/data engineering"
+      },
+      {
+        "label": "Data infrastructure",
+        "raw_text": "data infrastructure"
+      },
+      {
+        "label": "Device fingerprinting",
+        "raw_text": "Device fingerprinting"
+      },
+      {
+        "label": "Identity verification",
+        "raw_text": "identity verification"
+      },
+      {
+        "label": "Behavioral signals",
+        "raw_text": "behavioral signals"
+      },
+      {
+        "label": "Network intelligence",
+        "raw_text": "network intelligence"
+      },
+      {
+        "label": "VPN/proxy detection",
+        "raw_text": "VPN/proxy detection"
+      },
+      {
+        "label": "Real-time risk evaluation",
+        "raw_text": "Real-time risk evaluation"
+      },
+      {
+        "label": "Automated control systems",
+        "raw_text": "automated control systems"
+      },
+      {
+        "label": "Human-in-the-loop",
+        "raw_text": "Human-in-the-loop"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus.",
+    "notes": "The requirements section is required by default; Preferred Attributes makes its items nice_to_have.\nLLMs and AI agents are alternatives under the explicit and/or wording; responsibility-only mentions do not create independent requirements.\nOperating production ML systems is mapped literally to MLOps; data infrastructure is not assumed to mean AI infrastructure.\nConcrete detection and evaluation techniques in Preferred Attributes are retained as unmapped where no taxonomy entry fits; fraud and adversarial-domain knowledge and soft skills are excluded.\nThe optional advanced degree names no specific higher level, so the degree label remains bachelor rather than inferring master or PhD.\nNo German-language requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "191114ad3d116574f63b44fb2ccccc78133c033644a878ab9f6a84f8a04fc942",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"cloud security fundamentals\", \"requirement\": \"required\"}",
+  "key_sha256": "b963b15f10dcf8addc1bc32af83adb7ee38379bebcf83eb52c36691bbd773157",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a skill ('cloud engineering') counts, while 'cloud security fundamentals' names a security skill rather than the parent 'cloud' skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a skill ('cloud engineering') counts, while 'cloud security fundamentals' names a security skill rather than the parent 'cloud' skill.",
+  "error": null
+}

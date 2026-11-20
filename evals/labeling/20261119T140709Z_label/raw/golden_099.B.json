@@ -1,0 +1,197 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hands-on Snowflake experience\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM evaluation\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML delivery\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability practices\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus.\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus.\"\n    },\n    {\n      \"skill_id\": \"streamlit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks is a plus.\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Snowflake Cortex\",\n      \"raw_text\": \"Snowflake Cortex\"\n    },\n    {\n      \"label\": \"Cortex Agents\",\n      \"raw_text\": \"Cortex Agents\"\n    },\n    {\n      \"label\": \"Cortex Analyst\",\n      \"raw_text\": \"Cortex Analyst\"\n    },\n    {\n      \"label\": \"Cortex Search\",\n      \"raw_text\": \"Cortex Search\"\n    },\n    {\n      \"label\": \"Cortex AI Functions (AISQL)\",\n      \"raw_text\": \"Cortex AI Functions (AISQL)\"\n    },\n    {\n      \"label\": \"Semantic Views\",\n      \"raw_text\": \"Semantic Views\"\n    },\n    {\n      \"label\": \"Document AI\",\n      \"raw_text\": \"Document AI\"\n    },\n    {\n      \"label\": \"Snowpark\",\n      \"raw_text\": \"Snowpark\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Analytics engineering\",\n      \"raw_text\": \"analytics engineering\"\n    },\n    {\n      \"label\": \"Data architecture\",\n      \"raw_text\": \"data architecture\"\n    },\n    {\n      \"label\": \"Snowflake Semantic Models\",\n      \"raw_text\": \"Semantic Models\"\n    },\n    {\n      \"label\": \"AI_COMPLETE\",\n      \"raw_text\": \"AI_COMPLETE\"\n    },\n    {\n      \"label\": \"AI_CLASSIFY\",\n      \"raw_text\": \"AI_CLASSIFY\"\n    },\n    {\n      \"label\": \"AI_EXTRACT\",\n      \"raw_text\": \"AI_EXTRACT\"\n    },\n    {\n      \"label\": \"AI_AGG\",\n      \"raw_text\": \"AI_AGG\"\n    },\n    {\n      \"label\": \"AI_EMBED\",\n      \"raw_text\": \"AI_EMBED\"\n    },\n    {\n      \"label\": \"Snowflake CoWork / Snowflake Intelligence\",\n      \"raw_text\": \"Snowflake CoWork (Snowflake Intelligence)\"\n    },\n    {\n      \"label\": \"Performance tuning\",\n      \"raw_text\": \"performance tuning\"\n    },\n    {\n      \"label\": \"Data governance\",\n      \"raw_text\": \"governance\"\n    },\n    {\n      \"label\": \"Cost and latency tuning\",\n      \"raw_text\": \"cost and latency tuning\"\n    },\n    {\n      \"label\": \"Multi-user concurrency\",\n      \"raw_text\": \"multi-user concurrency\"\n    },\n    {\n      \"label\": \"Snowflake Native Apps\",\n      \"raw_text\": \"Snowflake Native Apps\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"support junior team members\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A BS in Computer Science, Engineering or a related field, or equivalent practical experience.\",\n  \"groups_reviewed\": true,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"The core-skills list is treated as a required tech-stack section; the qualifications section defaults to required except for bullets explicitly marked as a plus.\\nSeniority treats supporting junior team members as mentoring duty; flagged because support need not necessarily mean mentoring, and the stated 3-to-6-year range also spans levels.\\nSnowflake security is provisionally mapped to Data Privacy & Security; flagged because the taxonomy entry is broader than the wording.\\nThe at-least-two Cortex alternatives are independently required in the core-skills list except Snowflake CoWork, so no alternative group survives among those entries. Their product-specific skills are unmapped.\\nThe data-engineering/analytics-engineering/data-architecture/AI-ML alternatives and the Streamlit/Native Apps/agent-framework alternatives each have only one mapped member; no mapped alternative group can be formed.\\nUnmapped entries are required except cost and latency tuning, multi-user concurrency, and Snowflake Native Apps, which occur only in plus-marked qualifications; Snowflake CoWork is a required-section alternative.\\nSnowPro certification is a credential rather than a taxonomy skill. Industry knowledge, communication, work authorization, and degrees are not skill criteria.\\nTechnologies and practices appearing only in responsibilities, including orchestration, RBAC, masking, and audit trails, are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Hands-on Snowflake experience"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM evaluation"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML delivery"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability practices"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "security",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus."
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus."
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks is a plus."
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Snowflake Cortex",
+        "raw_text": "Snowflake Cortex"
+      },
+      {
+        "label": "Cortex Agents",
+        "raw_text": "Cortex Agents"
+      },
+      {
+        "label": "Cortex Analyst",
+        "raw_text": "Cortex Analyst"
+      },
+      {
+        "label": "Cortex Search",
+        "raw_text": "Cortex Search"
+      },
+      {
+        "label": "Cortex AI Functions (AISQL)",
+        "raw_text": "Cortex AI Functions (AISQL)"
+      },
+      {
+        "label": "Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "label": "Document AI",
+        "raw_text": "Document AI"
+      },
+      {
+        "label": "Snowpark",
+        "raw_text": "Snowpark"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Analytics engineering",
+        "raw_text": "analytics engineering"
+      },
+      {
+        "label": "Data architecture",
+        "raw_text": "data architecture"
+      },
+      {
+        "label": "Snowflake Semantic Models",
+        "raw_text": "Semantic Models"
+      },
+      {
+        "label": "AI_COMPLETE",
+        "raw_text": "AI_COMPLETE"
+      },
+      {
+        "label": "AI_CLASSIFY",
+        "raw_text": "AI_CLASSIFY"
+      },
+      {
+        "label": "AI_EXTRACT",
+        "raw_text": "AI_EXTRACT"
+      },
+      {
+        "label": "AI_AGG",
+        "raw_text": "AI_AGG"
+      },
+      {
+        "label": "AI_EMBED",
+        "raw_text": "AI_EMBED"
+      },
+      {
+        "label": "Snowflake CoWork / Snowflake Intelligence",
+        "raw_text": "Snowflake CoWork (Snowflake Intelligence)"
+      },
+      {
+        "label": "Performance tuning",
+        "raw_text": "performance tuning"
+      },
+      {
+        "label": "Data governance",
+        "raw_text": "governance"
+      },
+      {
+        "label": "Cost and latency tuning",
+        "raw_text": "cost and latency tuning"
+      },
+      {
+        "label": "Multi-user concurrency",
+        "raw_text": "multi-user concurrency"
+      },
+      {
+        "label": "Snowflake Native Apps",
+        "raw_text": "Snowflake Native Apps"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "support junior team members",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A BS in Computer Science, Engineering or a related field, or equivalent practical experience.",
+    "groups_reviewed": true,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The core-skills list is treated as a required tech-stack section; the qualifications section defaults to required except for bullets explicitly marked as a plus.\nSeniority treats supporting junior team members as mentoring duty; flagged because support need not necessarily mean mentoring, and the stated 3-to-6-year range also spans levels.\nSnowflake security is provisionally mapped to Data Privacy & Security; flagged because the taxonomy entry is broader than the wording.\nThe at-least-two Cortex alternatives are independently required in the core-skills list except Snowflake CoWork, so no alternative group survives among those entries. Their product-specific skills are unmapped.\nThe data-engineering/analytics-engineering/data-architecture/AI-ML alternatives and the Streamlit/Native Apps/agent-framework alternatives each have only one mapped member; no mapped alternative group can be formed.\nUnmapped entries are required except cost and latency tuning, multi-user concurrency, and Snowflake Native Apps, which occur only in plus-marked qualifications; Snowflake CoWork is a required-section alternative.\nSnowPro certification is a credential rather than a taxonomy skill. Industry knowledge, communication, work authorization, and degrees are not skill criteria.\nTechnologies and practices appearing only in responsibilities, including orchestration, RBAC, masking, and audit trails, are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "be016fb4aa674895669dbfa2e9d51c845f14ac8fef245405d840ad88e04e3d26",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

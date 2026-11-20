@@ -1,0 +1,199 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software/Data Engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API design\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML/AI libraries\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"xgboost\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"XGBoost\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging Face Transformers\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging Face Transformers\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM orchestration\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use/function calling\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMOps\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud services\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS Bedrock\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure AI\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP Vertex AI\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP Vertex AI\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data governance, privacy, and compliance\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"statistical analysis\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"forecasting\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"Software/Data Engineering\"\n    },\n    {\n      \"label\": \"Data Integration\",\n      \"raw_text\": \"data integration\"\n    },\n    {\n      \"label\": \"Azure AI\",\n      \"raw_text\": \"Azure AI\"\n    },\n    {\n      \"label\": \"Identity and Access Management (IAM)\",\n      \"raw_text\": \"identity and access\"\n    },\n    {\n      \"label\": \"Data Governance\",\n      \"raw_text\": \"data governance\"\n    },\n    {\n      \"label\": \"Linear/Nonlinear Optimization\",\n      \"raw_text\": \"linear/nonlinear optimization\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Executive-Facing Presales & Value Engineering (2+ years): Demonstrated experience supporting the technical close and driving compelling AI transformation narratives. Requires a proven background in accountable PoV execution\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Seniority marked uncertain: '2+ years' sits on the boundary between junior (0-2) and mid (3-5), while 'Requires a proven background' aligns with 'proven experience' (mid). 'Hugging Face Transformers' mapped to both hugging-face and transformers. 'GCP Vertex AI' mapped to both gcp and vertex-ai. 'Azure AI' mapped to azure and included in unmapped as a specific service umbrella. 'LLM guardrails' appears only in responsibilities ('The work you'll do'), so it is excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software/Data Engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "ML/AI libraries"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "xgboost",
+        "requirement": "required",
+        "raw_text": "XGBoost"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging Face Transformers"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Hugging Face Transformers"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use/function calling"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "AWS Bedrock"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure AI"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP Vertex AI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "GCP Vertex AI"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "data governance, privacy, and compliance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "nice_to_have",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "forecasting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Software/Data Engineering"
+      },
+      {
+        "label": "Data Integration",
+        "raw_text": "data integration"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      },
+      {
+        "label": "Identity and Access Management (IAM)",
+        "raw_text": "identity and access"
+      },
+      {
+        "label": "Data Governance",
+        "raw_text": "data governance"
+      },
+      {
+        "label": "Linear/Nonlinear Optimization",
+        "raw_text": "linear/nonlinear optimization"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Executive-Facing Presales & Value Engineering (2+ years): Demonstrated experience supporting the technical close and driving compelling AI transformation narratives. Requires a proven background in accountable PoV execution",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority marked uncertain: '2+ years' sits on the boundary between junior (0-2) and mid (3-5), while 'Requires a proven background' aligns with 'proven experience' (mid). 'Hugging Face Transformers' mapped to both hugging-face and transformers. 'GCP Vertex AI' mapped to both gcp and vertex-ai. 'Azure AI' mapped to azure and included in unmapped as a specific service umbrella. 'LLM guardrails' appears only in responsibilities ('The work you'll do'), so it is excluded."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "b75c104acdfc5f12964c92d5006ba70313fde2355c2863a0752aa43cf3e1acb8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

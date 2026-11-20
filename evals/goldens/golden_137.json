@@ -1,0 +1,181 @@
+{
+  "id": "golden_137",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mentoring innerhalb des Teams",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung",
+  "attrs_reviewed": true,
+  "source_sha256": "148cbd4f0e17d48ec069996473282d3d8fba75cdfac62fd099085e7c144c4f08",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "seniority",
+    "skill:ai-deployment",
+    "skill:azure",
+    "skill:inference-optimization",
+    "skill:pytorch",
+    "skill:tensorflow",
+    "skill:transformers"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Machine Learning Innovation Engineer (m/w/d)\n\nMachine Learning Innovation Engineer Automatisiertes Fahren (m/w/d)\n\nWAS SIE ERWARTET\n\nSie nutzen Sensor-, Fahrzeug- und Flottendaten, um ML-/KI-Lösungen für automatisiertes Fahren zu entwickeln, validieren und zu optimieren. In einer fachverantwortlichen Rolle konzipieren, entwickeln und verbessern Sie datengetriebene Software entlang des ML-Lebenszyklus – von Datenaufbereitung über Training, Evaluation und Deployment bis zum Betrieb auf Edge, Cloud und On-Premise. Sie bringen Expertenwissen in ML, Deep Learning, Computer Vision und Generative AI ein, bewerten neue Technologien und übertragen diese in robuste, skalierbare Lösungen. Durch Ihre Expertise, Eigenverantwortung und Mentoring stärken Sie KI-Kompetenzen im Team und tragen zum Erfolg strategischer Entwicklungsprojekte bei. \nIHRE AUFGABEN\n\n• Konzeption und Entwicklung anspruchsvoller Lösungen in den Bereichen Machine Learning, Deep Learning, Computer Vision, Edge AI und Generative AI \n• Technische Verantwortung entlang des gesamten ML Lifecycles – von der Analyse und Konzeption über Training und Evaluation bis hin zu Deployment und Betrieb \n• Überführung von Research-, Prototyping- und PoC-Ansätzen in robuste, skalierbare und produktions- bzw. serienfähige Lösungen \n• Entwicklung, Optimierung und Deployment von AI-Lösungen für Cloud-, On-Premise- und Edge-Plattformen \n• Analyse komplexer technischer Problemstellungen sowie Auswahl und Bewertung geeigneter Modelle, Architekturen, Technologien und Lösungsansätze \n• Eigenständiges Identifizieren neuer technologischer Potenziale sowie Initiieren und aktives Vorantreiben neuer AI-, Research- und Innovationsthemen \n• Beobachtung und Bewertung aktueller Entwicklungen aus Forschung und Industrie sowie Übertragung relevanter Ansätze auf konkrete Anwendungsfälle \n• Aktive Mitgestaltung unserer technologischen Ausrichtung und Entwicklung neuer Use Cases gemeinsam mit unseren Teams und Kunden \n• Fachliche Begleitung und Mentoring innerhalb des Teams sowie aktive Weitergabe von Wissen und Best Practices. \n• Hybrides Arbeiten im Home Office oder unserem Büro am Standort Unterschleißheim möglich\n•  \n\nIHR PROFIL\n\n• Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht\n• Mehrjährige Erfahrung in Machine Learning und Deep Learning, idealerweise in produktiven Projekten  \n• Fundierte Kenntnisse in Computer Vision, z. B. Object Detection, Segmentation, Tracking, Vision Transformer und multimodale Modelle  \n• Know how der Generative AI, z. B. LLMs, Vision-Language Models, RAG, Embeddings und Fine-Tuning  \n• Erfahrung mit Edge AI und Model Optimization, z. B. Quantization, Pruning, ONNX, CUDA/TensorRT oder vergleichbaren Technologien  \n• Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD \n• Azure oder AWS sowie On-Premise- und hybrides Infrastrukturen Wissen\n• Sehr gute Python, PyTorch/TensorFlow und OpenCV  Kenntnisse\n• Sehr gutes Software-Engineering Know how mit Git, Linux und Testing; C++\n• Idealerweise Erfahrung im wissenschaftlichen Arbeiten belegt durch Publikationen, Patente, Open-Source-Beiträge oder vergleichbare Forschungsaktivitäten  \n• Starkes analytisches und strukturiertes Denkvermögen sowie die Fähigkeit, komplexe Problemstellungen eigenständig zu durchdringen und geeignete Lösungen abzuleiten  \n• Hohe Eigenverantwortung und Gestaltungswille – Erkennung von Potenzialen, Ableitung und Entwicklung von Ideen und aktives Vorantreiben deren Umsetzung \n• Fähigkeit, komplexe technische Zusammenhänge einfach, verständlich und mit Begeisterung zu vermitteln  \n• Erste Erfahrungen in der fachlichen Betreuung von Projekten und/oder Teams \n• Sehr gute Deutsch- und Englischkenntnisse \nKONTAKT\n\nPetra Wichmann\n\ncareer@arrk-engineering.com\n+ 49 (0)89 / 31857-0\nDatenschutzhinweise\nARRK Engineering ist Teil des internationalen ARRK Firmenverbundes undspezialisiert auf die Produktentwicklung. Innerhalb der ARRK-Firmengruppesetzen wir Produktentwicklungen von der virtuellen Entwicklung bis hin zumPrototypen und der Produktion in Kleinserien um.\nAus Gründen der Vereinfachung wird in dieser Stellenausschreibung ausschließlich die männliche Form verwendet. Es sind jedoch stets Personen jeden Geschlechts und jeglicher Orientierung gleichermaßen gemeint.\n\nUnser Stellenangebot richtet sich gleichermaßen an Schwerbehinderte Menschen und ihnen Gleichgestellte.",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "MLOps und Deployment"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "Azure oder AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "computer-vision",
+      "requirement": "required",
+      "raw_text": "Fundierte Kenntnisse in Computer Vision"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    {
+      "skill_id": "cuda",
+      "requirement": "required",
+      "raw_text": "CUDA"
+    },
+    {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "Machine Learning und Deep Learning"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "Embeddings"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "Fine-Tuning"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    {
+      "skill_id": "inference-optimization",
+      "requirement": "required",
+      "raw_text": "Model Optimization"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "linux",
+      "requirement": "required",
+      "raw_text": "Linux"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Know how der Generative AI, z. B. LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Mehrjährige Erfahrung in Machine Learning"
+    },
+    {
+      "skill_id": "mlflow",
+      "requirement": "required",
+      "raw_text": "MLflow"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "Kenntnisse der MLOps"
+    },
+    {
+      "skill_id": "onnx",
+      "requirement": "required",
+      "raw_text": "ONNX"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "quantization",
+      "requirement": "required",
+      "raw_text": "Quantization"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Sehr gutes Software-Engineering Know how"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    {
+      "skill_id": "tensorrt",
+      "requirement": "required",
+      "raw_text": "TensorRT"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Testing"
+    },
+    {
+      "skill_id": "transformers",
+      "requirement": "required",
+      "raw_text": "Vision Transformer"
+    }
+  ]
+}

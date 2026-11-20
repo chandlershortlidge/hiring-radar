@@ -1,0 +1,63 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI evaluation\", \"uncertain\": true},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"nice_to_have\", \"raw_text\": \"hallucinations\", \"uncertain\": true},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"explainability\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"nice_to_have\", \"raw_text\": \"guardrails\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"nice_to_have\", \"raw_text\": \"enterprise architecture\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Model drift\", \"raw_text\": \"drift\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Director\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"At least a Bachelor's degree\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"I treated the 'What Sets You Apart' heading as an optional (preferred-qualifications) heading, so every item under it is nice_to_have. The guide's heading list does not name it; this is the most literal reading of 'sets you apart' as a differentiator rather than a requirement.\\nThe 'What You Must Have' section asks only for a degree and years of experience, so there are no required skills.\\nThe skills named in Responsibilities (data pipelines, ML model deployment, automated testing, monitoring, explainability) are not labeled from there, because the guide excludes responsibilities-only mentions.\\n'AI evaluation' maps to the evaluation alias 'ai evaluation'. The quote 'AI evaluation' appears verbatim inside 'AI evaluation standards'.\\n'hallucinations' maps to hallucination-detection, and a bare 'guardrails' maps to llm-guardrails. Both are flagged because the posting asks to set standards covering them rather than naming the technique or alias exactly.\\n'explainability' also appears in Responsibilities; the quote is taken from the 'What Sets You Apart' bullet.\\n'enterprise architecture' maps to software-architecture through its alias. I flagged it because the phrase is 'Setting enterprise architecture trade-offs', which reads closer to a leadership duty.\\n'drift' has no taxonomy entry. It is not mapped to the parent observability, since the posting does not name observability or monitoring in the qualifications.\\nThe fields of study (Data Science, AI/Robotics, Computer Science, Engineering) are degree fields, not skills. AI/data strategy, thought leadership and the client-relationship items are domain or soft skills.\\nThe 'At least one of' fields-of-study list does not form an alternative_group because it contains no skills.\\nSeniority is stated from the title 'Director', read as head-level. 'At least 8 years of experience' would also infer senior, so either basis gives senior. I flagged it because 'director' is not literally in the guide's stated list.\\nThe degree is a bare mention under 'What You Must Have', so it is required. The fields-of-study preference only affects the field, not the degree requirement.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "AI evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "nice_to_have",
+        "raw_text": "hallucinations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "explainability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "enterprise architecture",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Model drift",
+        "raw_text": "drift"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Director",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "At least a Bachelor's degree",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "I treated the 'What Sets You Apart' heading as an optional (preferred-qualifications) heading, so every item under it is nice_to_have. The guide's heading list does not name it; this is the most literal reading of 'sets you apart' as a differentiator rather than a requirement.\nThe 'What You Must Have' section asks only for a degree and years of experience, so there are no required skills.\nThe skills named in Responsibilities (data pipelines, ML model deployment, automated testing, monitoring, explainability) are not labeled from there, because the guide excludes responsibilities-only mentions.\n'AI evaluation' maps to the evaluation alias 'ai evaluation'. The quote 'AI evaluation' appears verbatim inside 'AI evaluation standards'.\n'hallucinations' maps to hallucination-detection, and a bare 'guardrails' maps to llm-guardrails. Both are flagged because the posting asks to set standards covering them rather than naming the technique or alias exactly.\n'explainability' also appears in Responsibilities; the quote is taken from the 'What Sets You Apart' bullet.\n'enterprise architecture' maps to software-architecture through its alias. I flagged it because the phrase is 'Setting enterprise architecture trade-offs', which reads closer to a leadership duty.\n'drift' has no taxonomy entry. It is not mapped to the parent observability, since the posting does not name observability or monitoring in the qualifications.\nThe fields of study (Data Science, AI/Robotics, Computer Science, Engineering) are degree fields, not skills. AI/data strategy, thought leadership and the client-relationship items are domain or soft skills.\nThe 'At least one of' fields-of-study list does not form an alternative_group because it contains no skills.\nSeniority is stated from the title 'Director', read as head-level. 'At least 8 years of experience' would also infer senior, so either basis gives senior. I flagged it because 'director' is not literally in the guide's stated list.\nThe degree is a bare mention under 'What You Must Have', so it is required. The fields-of-study preference only affects the field, not the degree requirement."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "24ca77587fe185aa4babc1257e21a86e0749ac76f745833f181558ac1d3af6e0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

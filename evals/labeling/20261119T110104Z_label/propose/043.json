@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d4674e620a5a22d0a06c5101e8c4e7b37cae1e206b4a4d88416fc2e8c9c0b44b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet names 'benchmarking' as a required ML skill, and benchmarking is the same skill as the agreed 'evaluation' label, so this is a near-synonym mapping rather than a broader parent skill under rule 5.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet names 'benchmarking' as a required ML skill, and benchmarking is the same skill as the agreed 'evaluation' label, so this is a near-synonym mapping rather than a broader parent skill under rule 5.",
+  "error": null
+}

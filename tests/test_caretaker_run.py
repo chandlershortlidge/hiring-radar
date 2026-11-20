@@ -130,6 +130,20 @@ def test_both_fixes_appear_in_the_next_weekly_summary(conn):
     assert "Spent" not in text                                 # bookkeeping is not a finding
 
 
+def test_a_us_search_is_judged_on_yesterdays_run_and_a_europe_one_on_todays(conn):
+    """The US collection runs at 07:00 New York, after this check (HIR-369): a feed only the
+    US run fetches is judged on yesterday's record; a Europe feed's yesterday is not re-judged."""
+    us = {"type": "jsearch", "enabled": True, "search": "AI engineer in Seattle", "country": "us"}
+    eu = {"type": "jsearch", "enabled": True, "search": "AI engineer in Berlin", "country": "de"}
+    poll.record_run(conn, us, None, "HTTPError: 500", day="2026-11-15")
+    poll.record_run(conn, eu, None, "HTTPError: 500", day="2026-11-15")
+    poll_today(conn, feeds_doc()["feeds"])
+    found = morning(conn, doc={"feeds": feeds_doc()["feeds"] + [us, eu]})
+    errors = {f.subject for f in found if f.finding == "feed_error"}
+    assert "jsearch:AI engineer in Seattle" in errors
+    assert "jsearch:AI engineer in Berlin" not in errors
+
+
 def test_report_only_never_writes_the_feeds_file(conn, tmp_path, monkeypatch):
     from app import caretaker
     monkeypatch.setattr(caretaker, "write_feeds", lambda *a, **k: pytest.fail("wrote feeds.json"))
@@ -237,3 +251,20 @@ def test_collection_down_two_days_is_sent_at_once_and_only_once(conn):
 def test_never_calls_a_model_in_the_morning_run():
     src = (run.ct.ROOT / "app" / "caretaker_run.py").read_text()
     assert "anthropic" not in src.lower() and "extract_pending" not in src and "make_client" not in src
+
+
+def test_monday_summary_reports_jsearch_use_against_the_cap(conn):
+    """HIR-352: the plan bills past its limit, so Chandler sees the month's use weekly."""
+    for d in ("2026-11-03", "2026-11-04"):
+        poll.record_run(conn, {"type": "jsearch", "search": "AI engineer in Boston"}, [], day=d)
+    posted = []
+    run.report(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None)
+    assert "Google for Jobs searches in 2026-11: 2 of our cap of 5,000." in posted[0]
+    assert "cap is reached" not in posted[0]
+
+
+def test_jsearch_usage_line_says_when_the_cap_is_reached(conn, monkeypatch):
+    from app.sources import jsearch
+    monkeypatch.setattr(jsearch, "MONTHLY_CAP", 1)
+    poll.record_run(conn, {"type": "jsearch", "search": "x"}, [], day="2026-11-03")
+    assert "stopped until the month turns" in run.jsearch_usage_text(conn, "2026-11-15")

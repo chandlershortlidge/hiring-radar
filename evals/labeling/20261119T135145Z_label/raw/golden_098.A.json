@@ -1,0 +1,203 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"solid real-time C++\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"comfortable with PyTorch\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"learned policies (imitation learning, RL or VLA)\", \"uncertain\": true},\n    {\"skill_id\": \"ros\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ROS 2\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"nice_to_have\", \"raw_text\": \"real-time Linux\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerization\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Real-time control (joint, impedance, operational-space, torque control)\", \"raw_text\": \"implemented and tuned real-time controllers (joint, impedance, operational-space or torque control)\"},\n    {\"label\": \"Control theory\", \"raw_text\": \"control theory\"},\n    {\"label\": \"Rigid-body dynamics\", \"raw_text\": \"rigid-body dynamics\"},\n    {\"label\": \"Stability analysis\", \"raw_text\": \"stability analysis\"},\n    {\"label\": \"System identification\", \"raw_text\": \"system identification\"},\n    {\"label\": \"Floating-base dynamics / inverse dynamics\", \"raw_text\": \"floating-base dynamics, contact constraints and inverse dynamics\"},\n    {\"label\": \"QP-based whole-body control\", \"raw_text\": \"QP-based whole-body control\"},\n    {\"label\": \"Model predictive control\", \"raw_text\": \"MPC\"},\n    {\"label\": \"Real-robot manipulation\", \"raw_text\": \"real-robot manipulation\"},\n    {\"label\": \"State estimation\", \"raw_text\": \"state estimation\"},\n    {\"label\": \"CAD\", \"raw_text\": \"CAD required\"},\n    {\"label\": \"SolidWorks\", \"raw_text\": \"SolidWorks\"},\n    {\"label\": \"Fusion 360\", \"raw_text\": \"Fusion 360\"},\n    {\"label\": \"Onshape\", \"raw_text\": \"Onshape\"},\n    {\"label\": \"Design for manufacturing (3D printing, machining)\", \"raw_text\": \"design-for-manufacturing experience for 3D printing or machining\"},\n    {\"label\": \"Imitation learning\", \"raw_text\": \"imitation learning\"},\n    {\"label\": \"Vision-language-action models\", \"raw_text\": \"VLA\"},\n    {\"label\": \"Isaac Lab\", \"raw_text\": \"Isaac Lab\"},\n    {\"label\": \"MuJoCo\", \"raw_text\": \"MuJoCo\"},\n    {\"label\": \"Humanoid whole-body control\", \"raw_text\": \"humanoid whole-body control on hardware\"},\n    {\"label\": \"Unitree platforms\", \"raw_text\": \"Unitree platforms (G1, H1 or similar)\"},\n    {\"label\": \"Lyapunov / passivity-based control\", \"raw_text\": \"Lyapunov and passivity-based methods\"},\n    {\"label\": \"Reduced-order models\", \"raw_text\": \"reduced-order models (centroidal dynamics, SRBD, LIPM)\"},\n    {\"label\": \"MuJoCo Warp\", \"raw_text\": \"MuJoCo Warp\"},\n    {\"label\": \"Domain randomization\", \"raw_text\": \"domain randomization\"},\n    {\"label\": \"Sensor fusion\", \"raw_text\": \"sensor fusion\"},\n    {\"label\": \"Kalman filtering\", \"raw_text\": \"Kalman filtering\"},\n    {\"label\": \"Tactile sensing\", \"raw_text\": \"tactile sensing\"},\n    {\"label\": \"Teleoperation systems\", \"raw_text\": \"Teleoperation systems\"},\n    {\"label\": \"DDS\", \"raw_text\": \"DDS\"},\n    {\"label\": \"Zenoh\", \"raw_text\": \"Zenoh\"},\n    {\"label\": \"Camera calibration\", \"raw_text\": \"Hand-eye and multi-camera calibration\"},\n    {\"label\": \"3D perception / depth sensing\", \"raw_text\": \"depth sensing and 3D perception\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s with 3+ years of experience, or PhD, in robotics, control or a related field\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Sections: 'Minimum Qualifications' is required; 'Preferred Qualifications' sets nice_to_have. The 'Who You Are' intro mentions a strong plus for Unitree and humanoid control, but neither has a taxonomy id. 'Your Next Challenge' lists responsibilities and is not labeled.\\nreinforcement-learning is required from the Minimum Qualifications line 'imitation learning, RL or VLA'. It gets no alternative_group because the other options (imitation learning, VLA) are unmapped, so the group would have fewer than two taxonomy skills. It is flagged uncertain because RL is offered as one option of three.\\nThe preferred line 'RL locomotion' collapses into the required reinforcement-learning criterion.\\n'ROS 2, DDS or Zenoh, real-time Linux, containerization, CI/CD' is read as a list of items asked together, so ros, linux, containerization and ci-cd are not grouped. Only DDS and Zenoh are alternatives to each other, and both are unmapped.\\nNot labeled because the posting does not name these taxonomy skills: '3D perception' (computer-vision), 'Debugging across the full stack' (testing), robot software 'System design' (software-architecture), and 'Robot learning' (machine-learning).\\nDegree is phd because the guide takes the highest level named in 'Master’s ... or PhD'.\\nThe bachelor's-plus-3-years alternative accepts a lower degree, not experience in place of a degree, so degree_or_equivalent is false. This is flagged for review.\\nSeniority is inferred mid from '3+ years'. 'Lead the setup, calibration...' appears only in responsibilities and is task lead, not people lead.\\nGerman is null because German is never mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "solid real-time C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "comfortable with PyTorch"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "learned policies (imitation learning, RL or VLA)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ros",
+        "requirement": "nice_to_have",
+        "raw_text": "ROS 2"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Real-time control (joint, impedance, operational-space, torque control)",
+        "raw_text": "implemented and tuned real-time controllers (joint, impedance, operational-space or torque control)"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Rigid-body dynamics",
+        "raw_text": "rigid-body dynamics"
+      },
+      {
+        "label": "Stability analysis",
+        "raw_text": "stability analysis"
+      },
+      {
+        "label": "System identification",
+        "raw_text": "system identification"
+      },
+      {
+        "label": "Floating-base dynamics / inverse dynamics",
+        "raw_text": "floating-base dynamics, contact constraints and inverse dynamics"
+      },
+      {
+        "label": "QP-based whole-body control",
+        "raw_text": "QP-based whole-body control"
+      },
+      {
+        "label": "Model predictive control",
+        "raw_text": "MPC"
+      },
+      {
+        "label": "Real-robot manipulation",
+        "raw_text": "real-robot manipulation"
+      },
+      {
+        "label": "State estimation",
+        "raw_text": "state estimation"
+      },
+      {
+        "label": "CAD",
+        "raw_text": "CAD required"
+      },
+      {
+        "label": "SolidWorks",
+        "raw_text": "SolidWorks"
+      },
+      {
+        "label": "Fusion 360",
+        "raw_text": "Fusion 360"
+      },
+      {
+        "label": "Onshape",
+        "raw_text": "Onshape"
+      },
+      {
+        "label": "Design for manufacturing (3D printing, machining)",
+        "raw_text": "design-for-manufacturing experience for 3D printing or machining"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Vision-language-action models",
+        "raw_text": "VLA"
+      },
+      {
+        "label": "Isaac Lab",
+        "raw_text": "Isaac Lab"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Humanoid whole-body control",
+        "raw_text": "humanoid whole-body control on hardware"
+      },
+      {
+        "label": "Unitree platforms",
+        "raw_text": "Unitree platforms (G1, H1 or similar)"
+      },
+      {
+        "label": "Lyapunov / passivity-based control",
+        "raw_text": "Lyapunov and passivity-based methods"
+      },
+      {
+        "label": "Reduced-order models",
+        "raw_text": "reduced-order models (centroidal dynamics, SRBD, LIPM)"
+      },
+      {
+        "label": "MuJoCo Warp",
+        "raw_text": "MuJoCo Warp"
+      },
+      {
+        "label": "Domain randomization",
+        "raw_text": "domain randomization"
+      },
+      {
+        "label": "Sensor fusion",
+        "raw_text": "sensor fusion"
+      },
+      {
+        "label": "Kalman filtering",
+        "raw_text": "Kalman filtering"
+      },
+      {
+        "label": "Tactile sensing",
+        "raw_text": "tactile sensing"
+      },
+      {
+        "label": "Teleoperation systems",
+        "raw_text": "Teleoperation systems"
+      },
+      {
+        "label": "DDS",
+        "raw_text": "DDS"
+      },
+      {
+        "label": "Zenoh",
+        "raw_text": "Zenoh"
+      },
+      {
+        "label": "Camera calibration",
+        "raw_text": "Hand-eye and multi-camera calibration"
+      },
+      {
+        "label": "3D perception / depth sensing",
+        "raw_text": "depth sensing and 3D perception"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s with 3+ years of experience, or PhD, in robotics, control or a related field",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Sections: 'Minimum Qualifications' is required; 'Preferred Qualifications' sets nice_to_have. The 'Who You Are' intro mentions a strong plus for Unitree and humanoid control, but neither has a taxonomy id. 'Your Next Challenge' lists responsibilities and is not labeled.\nreinforcement-learning is required from the Minimum Qualifications line 'imitation learning, RL or VLA'. It gets no alternative_group because the other options (imitation learning, VLA) are unmapped, so the group would have fewer than two taxonomy skills. It is flagged uncertain because RL is offered as one option of three.\nThe preferred line 'RL locomotion' collapses into the required reinforcement-learning criterion.\n'ROS 2, DDS or Zenoh, real-time Linux, containerization, CI/CD' is read as a list of items asked together, so ros, linux, containerization and ci-cd are not grouped. Only DDS and Zenoh are alternatives to each other, and both are unmapped.\nNot labeled because the posting does not name these taxonomy skills: '3D perception' (computer-vision), 'Debugging across the full stack' (testing), robot software 'System design' (software-architecture), and 'Robot learning' (machine-learning).\nDegree is phd because the guide takes the highest level named in 'Master’s ... or PhD'.\nThe bachelor's-plus-3-years alternative accepts a lower degree, not experience in place of a degree, so degree_or_equivalent is false. This is flagged for review.\nSeniority is inferred mid from '3+ years'. 'Lead the setup, calibration...' appears only in responsibilities and is task lead, not people lead.\nGerman is null because German is never mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "399c6a6eb32e09ff58f787318c561b5dcfe625381d97bab49f3c6702d2dcfc5d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

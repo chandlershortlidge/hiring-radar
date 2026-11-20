@@ -1,0 +1,99 @@
+{
+  "id": "golden_117",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI Data Engineer",
+  "seniority_reviewed": false,
+  "german": "nice_to_have",
+  "german_basis": "stated",
+  "german_signal": "Sehr gutes Deutsch",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "3230750ded75da38d79155ed47a055da5e8b70f105609bbdca1fc190889f82de",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "german",
+    "skill:ai-ml",
+    "skill:azure",
+    "skill:azure-data-factory",
+    "skill:azure-data-lake-storage",
+    "skill:azure-functions",
+    "skill:azure-sql-database",
+    "skill:cloud",
+    "skill:data-engineering",
+    "skill:databricks",
+    "skill:software-architecture"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Allgemein:Daten sind das Gold von morgen! Und Du suchst, förderst und veredelst das Wertvollste, was unsere Kundenbesitzen: Ihre Daten. Daher suchen wir Dich als Senior AI Data Engineer (all genders) für unsere Standorte in Stuttgart, Hamburg, Köln, München oder Karlsruhe.\n\nWenn Du Dich direkt bei uns bewirbst , d.h. ohne Personalvermittler oder Ansprache unserer Recruiterin auf uns aufmerksam wirst, erhältst Du bei Vertragsunterzeichnung erhältst Du eine Signing Fee von bis zu 10.000 Euro. Denn wir wissen: Ein Jobwechsel ist eine große Entscheidung – und wir schätzen es, wenn Du Dich für DYMATRIX entscheidest.\nDeine Aufgaben:\n• Du übernimmst die fachliche Führung des Projektteams und treibst den Einsatz von AI-gestützten Data Engineering Methoden aktiv voran\n• Unsere Kunden berätst Du methodisch und technisch in innovativen Datamanagement- und Integrationslösungen rund um die Azure Cloud\n• Du schaffst die technische Architektur für unsere Kunden, damit diese personalisierte und automatisierte Marketingkampagnen planen und optimieren können mittels moderner Echtzeit-Segmentierung und automatisierten Recommendations\n• Du arbeitest in allen Projektphasen mit – von der Anforderungsanalyse über die Implementierung bis zum Go-Live – unterstützt durch unsere interne DYMATRIX AI Platform und verschiedene externe AI Tools\n• Du setzt zukunftsweisende Data Engineering-Technologien rund um die Azure Cloud ein und sorgst für eine standardisierte Umsetzung über die Projekte hinweg\n• Dabei bleibst Du nicht stehen: Du beobachtest aktiv die Entwicklung von AI Trends im Data Engineering (z.B. Agenten-basierte Pipeline-Entwicklung, LLM-Integration in Datenplattformen) und bringst neue Impulse in Team und Kundenprojekte\n\nDas bringst du idealerweise mit:\n• Du hast eine Leidenschaft für Daten, Azure und AI – We love Data, we love Azure, we love AI – das solltest Du auch\n• Du möchtest etwas bewegen und siehst AI nicht als Buzzword, sondern als konkretes Werkzeug das Datenprojekte schneller und smarter macht\n• Mehrjährige Berufserfahrung in der Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen, vorzugsweise im Beratungsumfeld\n• Gute Kenntnisse rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry\n• Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\n• Idealerweise hast Du schon erste Erfahrungen mit AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence gesammelt – kein Muss, aber ein starkes Plus\n• Sehr gutes Deutsch, gutes Englisch und ein ordentliches Maß an Organisationstalent runden Dein Profil ab\n\nÜber unsIn der DYMATRIX-Gruppe entwickeln wir mit Leidenschaft innovative Softwarelösungen für datengetriebene, KI-gestützte Customer Experiences. Unsere SaaS-Plattform ermöglicht es Unternehmen, ihre Kontakte automatisiert und personalisiert über alle Kanäle hinweg anzusprechen. Doch wir liefern nicht nur die Technologie – unsere Expert:innen begleiten Kunden von Strategie und Implementierung bis hin zum laufenden Betrieb. Etwa 600 namhafte Unternehmen aus der DACH-Region, vom Mittelstand bis zum DAX-Konzern, aus Branchen wie Handel, Medien, Banken und Versicherungen vertrauen auf uns. Damit das gelingt, brauchen wir ein starkes Team – wir brauchen Dich!\n\nDeine Benefits:\n• Modernes Setup – Ergonomische Arbeitsplätze, aktuelle Hard- und Software, Cloudtechnologien und agile Methoden u. a. mit Partnern wie Microsoft und Databricks\n• Interne und externe Schulungen, transparente Karrierepfade (Fach-, Führungs- und Projektlaufbahn) und echte Entwicklungsperspektive\n• Legendäre Teamevents (Ischgl, Sommerfest, Weihnachtsfeier & mehr)\n• Zuschuss zum Wellpass und zum Deutschlandticket\n• Selbstverständlich für uns: Obst, Kaffee, Softdrinks: Vegan, vegetarisch, von Hafer bis Mandel – Alles gratis, alles lecker!\n• Möglichkeit zur Workation im europäischen Ausland\n• Spannende Projekte mit vielfältigen Kunden aus Fashion, E-Commerce, Telekommunikation und Touristik – vom Mittelstand bis zum DAX-Konzern\n• Zentrale Standorte in Stuttgart, München, Köln, Hamburg, Karlsruhe und Berlin",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "nice_to_have",
+      "raw_text": "Leidenschaft für Daten, Azure und AI"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Microsoft Foundry"
+    },
+    {
+      "skill_id": "azure-data-factory",
+      "requirement": "nice_to_have",
+      "raw_text": "Data Factory"
+    },
+    {
+      "skill_id": "azure-data-lake-storage",
+      "requirement": "nice_to_have",
+      "raw_text": "Data Lake Storage"
+    },
+    {
+      "skill_id": "azure-functions",
+      "requirement": "nice_to_have",
+      "raw_text": "Functions"
+    },
+    {
+      "skill_id": "azure-sql-database",
+      "requirement": "nice_to_have",
+      "raw_text": "SQL DB"
+    },
+    {
+      "skill_id": "business-intelligence",
+      "requirement": "nice_to_have",
+      "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+    },
+    {
+      "skill_id": "data-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Data-Engineering-Lösungen"
+    },
+    {
+      "skill_id": "data-warehousing",
+      "requirement": "nice_to_have",
+      "raw_text": "Starkes Interesse an der Entwicklung von DWH"
+    },
+    {
+      "skill_id": "databricks",
+      "requirement": "nice_to_have",
+      "raw_text": "Databricks"
+    }
+  ]
+}

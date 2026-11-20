@@ -1,0 +1,135 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"Proficient in C++\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"C++ and Python\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"required\", \"raw_text\": \"ML infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"LLM serving frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"vllm\", \"requirement\": \"required\", \"raw_text\": \"vLLM, SGLang, TensorRT-LLM, DeepSpeed-Inference\", \"alternative_group\": 1},\n    {\"skill_id\": \"sglang\", \"requirement\": \"required\", \"raw_text\": \"SGLang, TensorRT-LLM\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"required\", \"raw_text\": \"TensorRT-LLM, DeepSpeed-Inference\", \"alternative_group\": 1},\n    {\"skill_id\": \"deepspeed\", \"requirement\": \"required\", \"raw_text\": \"DeepSpeed-Inference\", \"alternative_group\": 1},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"model deployment internals\"},\n    {\"skill_id\": \"cuda\", \"requirement\": \"required\", \"raw_text\": \"CUDA\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerized deployments\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker/Kubernetes\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker/Kubernetes\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Exposure to distributed systems\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Systems programming\", \"raw_text\": \"systems programming\"},\n    {\"label\": \"KV caching / token scheduling / batching\", \"raw_text\": \"token scheduling, KV caching, batching, and pipelined inference\"},\n    {\"label\": \"PCIe / hardware abstraction layer\", \"raw_text\": \"PCIe\"},\n    {\"label\": \"Hardware-aware ML optimization\", \"raw_text\": \"hardware-aware ML optimization\"},\n    {\"label\": \"Compiler/runtime integration\", \"raw_text\": \"compiler/runtime integration\"},\n    {\"label\": \"GPU workload profiling\", \"raw_text\": \"profiling GPU/accelerator workloads\"},\n    {\"label\": \"Performance analysis\", \"raw_text\": \"performance analysis skills\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of professional experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\",\n  \"uncertain\": [],\n  \"notes\": \"I mapped 'LLM serving frameworks' to model-serving as the broad skill it names. I did not add llms, because the text asks for serving frameworks rather than LLMs as a skill.\\nvLLM, SGLang, TensorRT-LLM and DeepSpeed-Inference are introduced with 'one or more of', so they form alternative_group 1.\\nTensorRT-LLM maps to tensorrt through its alias. I mapped DeepSpeed-Inference to deepspeed.\\nCUDA is offered as an alternative to PCIe, memory management and runtime scheduling, none of which are in the taxonomy. A group needs at least two taxonomy skills, so CUDA has no group.\\nML infrastructure is one of three domains attached to a years-of-experience requirement. I labeled it ai-infrastructure, required, and flagged it uncertain. It is not grouped because the other two domains are unmapped.\\n'containerized deployments (Docker/Kubernetes)' names the broad skill and two examples, so I labeled all three. I grouped Docker and Kubernetes as examples for a single ask, but the slash is ambiguous between 'or' and 'and', so both are flagged uncertain.\\nvLLM, quantization, PyTorch and APIs also appear in the responsibilities. Quantization, PyTorch and APIs appear only there, so they are not labeled. vLLM is labeled from its qualifications mention.\\nThe 'PREFERRED / BONUS' heading makes every item under it nice_to_have.\\nDegree: 'BS/MS/PhD' takes the highest level named, so it is phd. The degree is required, and 'or related field' widens the field only, so degree_or_equivalent is false.\\nSeniority is mid, inferred from '3+ years'. The title 'Software Engineer' gives no stated level.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Proficient in C++"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "C++ and Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "LLM serving frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM, SGLang, TensorRT-LLM, DeepSpeed-Inference",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "SGLang, TensorRT-LLM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT-LLM, DeepSpeed-Inference",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "DeepSpeed-Inference",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment internals"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized deployments"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker/Kubernetes",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker/Kubernetes",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Exposure to distributed systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systems programming",
+        "raw_text": "systems programming"
+      },
+      {
+        "label": "KV caching / token scheduling / batching",
+        "raw_text": "token scheduling, KV caching, batching, and pipelined inference"
+      },
+      {
+        "label": "PCIe / hardware abstraction layer",
+        "raw_text": "PCIe"
+      },
+      {
+        "label": "Hardware-aware ML optimization",
+        "raw_text": "hardware-aware ML optimization"
+      },
+      {
+        "label": "Compiler/runtime integration",
+        "raw_text": "compiler/runtime integration"
+      },
+      {
+        "label": "GPU workload profiling",
+        "raw_text": "profiling GPU/accelerator workloads"
+      },
+      {
+        "label": "Performance analysis",
+        "raw_text": "performance analysis skills"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of professional experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field",
+    "uncertain": [],
+    "notes": "I mapped 'LLM serving frameworks' to model-serving as the broad skill it names. I did not add llms, because the text asks for serving frameworks rather than LLMs as a skill.\nvLLM, SGLang, TensorRT-LLM and DeepSpeed-Inference are introduced with 'one or more of', so they form alternative_group 1.\nTensorRT-LLM maps to tensorrt through its alias. I mapped DeepSpeed-Inference to deepspeed.\nCUDA is offered as an alternative to PCIe, memory management and runtime scheduling, none of which are in the taxonomy. A group needs at least two taxonomy skills, so CUDA has no group.\nML infrastructure is one of three domains attached to a years-of-experience requirement. I labeled it ai-infrastructure, required, and flagged it uncertain. It is not grouped because the other two domains are unmapped.\n'containerized deployments (Docker/Kubernetes)' names the broad skill and two examples, so I labeled all three. I grouped Docker and Kubernetes as examples for a single ask, but the slash is ambiguous between 'or' and 'and', so both are flagged uncertain.\nvLLM, quantization, PyTorch and APIs also appear in the responsibilities. Quantization, PyTorch and APIs appear only there, so they are not labeled. vLLM is labeled from its qualifications mention.\nThe 'PREFERRED / BONUS' heading makes every item under it nice_to_have.\nDegree: 'BS/MS/PhD' takes the highest level named, so it is phd. The degree is required, and 'or related field' widens the field only, so degree_or_equivalent is false.\nSeniority is mid, inferred from '3+ years'. The title 'Software Engineer' gives no stated level."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5f7af556156445fa1eda9bade660f60123caa255a3eaa24a5f04d6449ee24812",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

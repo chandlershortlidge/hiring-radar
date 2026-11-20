@@ -1,0 +1,124 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"modern AI/ML models\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"particularly LLMs\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"required\", \"raw_text\": \"quantization\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"distributed computing\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Understanding of cloud computing environments\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"High-speed inter-chip networking experience\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Hardware design\", \"raw_text\": \"hardware design\"},\n    {\"label\": \"AI/ML hardware acceleration\", \"raw_text\": \"designing/implementing hardware for AI/ML acceleration\"},\n    {\"label\": \"Sparsity\", \"raw_text\": \"sparsity\"},\n    {\"label\": \"Pruning\", \"raw_text\": \"pruning\"},\n    {\"label\": \"Verilog\", \"raw_text\": \"Verilog\"},\n    {\"label\": \"SystemVerilog\", \"raw_text\": \"SystemVerilog\"},\n    {\"label\": \"RTL design and simulation\", \"raw_text\": \"RTL design and simulation\"},\n    {\"label\": \"Memory system architecture\", \"raw_text\": \"memory system architecture\"},\n    {\"label\": \"On-chip interconnects\", \"raw_text\": \"on-chip interconnects\"},\n    {\"label\": \"Parallel processing\", \"raw_text\": \"parallel processing\"},\n    {\"label\": \"AI compiler technologies\", \"raw_text\": \"compiler technologies for AI models\"},\n    {\"label\": \"MLIR\", \"raw_text\": \"MLIR\"},\n    {\"label\": \"TVM\", \"raw_text\": \"TVM\"},\n    {\"label\": \"Performance modeling and analysis tools\", \"raw_text\": \"performance modeling and analysis tools\"},\n    {\"label\": \"System-level integration and debugging\", \"raw_text\": \"system-level integration and debugging\"},\n    {\"label\": \"Deploying hardware accelerators in the cloud\", \"raw_text\": \"deploying hardware accelerators in the cloud\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Proven experience (5+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.\",\n  \"uncertain\": [],\n  \"notes\": \"Heading 'Required Qualifications' makes its items required. Heading 'Preferred/Bonus Qualifications' makes its items nice_to_have.\\nai-ml is mapped from 'AI/ML models'. It is uncertain because the role is about hardware for AI rather than building AI/ML systems.\\n'distributed computing' is mapped to distributed-systems as the closest entry. Flagged uncertain.\\n'High-speed inter-chip networking' is mapped to networking. It is hardware interconnect networking, so it may not fit the taxonomy entry. Flagged uncertain.\\nVerilog or SystemVerilog would form an alternative group, but neither is in the taxonomy, so both are listed in unmapped and no group is assigned.\\n'ML optimization techniques' is not labeled as machine-learning. The text names specific techniques; only quantization is in the taxonomy, and sparsity and pruning are unmapped.\\nRTL design, simulation and verification in the responsibilities are not labeled separately. RTL design is already asked for in the qualifications.\\n'Contributions to relevant research publications or open-source projects' is not a skill.\\nDegree: 'BS, MS or PhD' takes the highest level named, phd. 'or a related field' widens the field only, so degree_or_equivalent is false.\\nSeniority is inferred from '5+ years'. No level is stated in the title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "modern AI/ML models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "particularly LLMs"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed computing",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Understanding of cloud computing environments"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "High-speed inter-chip networking experience",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Hardware design",
+        "raw_text": "hardware design"
+      },
+      {
+        "label": "AI/ML hardware acceleration",
+        "raw_text": "designing/implementing hardware for AI/ML acceleration"
+      },
+      {
+        "label": "Sparsity",
+        "raw_text": "sparsity"
+      },
+      {
+        "label": "Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Verilog",
+        "raw_text": "Verilog"
+      },
+      {
+        "label": "SystemVerilog",
+        "raw_text": "SystemVerilog"
+      },
+      {
+        "label": "RTL design and simulation",
+        "raw_text": "RTL design and simulation"
+      },
+      {
+        "label": "Memory system architecture",
+        "raw_text": "memory system architecture"
+      },
+      {
+        "label": "On-chip interconnects",
+        "raw_text": "on-chip interconnects"
+      },
+      {
+        "label": "Parallel processing",
+        "raw_text": "parallel processing"
+      },
+      {
+        "label": "AI compiler technologies",
+        "raw_text": "compiler technologies for AI models"
+      },
+      {
+        "label": "MLIR",
+        "raw_text": "MLIR"
+      },
+      {
+        "label": "TVM",
+        "raw_text": "TVM"
+      },
+      {
+        "label": "Performance modeling and analysis tools",
+        "raw_text": "performance modeling and analysis tools"
+      },
+      {
+        "label": "System-level integration and debugging",
+        "raw_text": "system-level integration and debugging"
+      },
+      {
+        "label": "Deploying hardware accelerators in the cloud",
+        "raw_text": "deploying hardware accelerators in the cloud"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Proven experience (5+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.",
+    "uncertain": [],
+    "notes": "Heading 'Required Qualifications' makes its items required. Heading 'Preferred/Bonus Qualifications' makes its items nice_to_have.\nai-ml is mapped from 'AI/ML models'. It is uncertain because the role is about hardware for AI rather than building AI/ML systems.\n'distributed computing' is mapped to distributed-systems as the closest entry. Flagged uncertain.\n'High-speed inter-chip networking' is mapped to networking. It is hardware interconnect networking, so it may not fit the taxonomy entry. Flagged uncertain.\nVerilog or SystemVerilog would form an alternative group, but neither is in the taxonomy, so both are listed in unmapped and no group is assigned.\n'ML optimization techniques' is not labeled as machine-learning. The text names specific techniques; only quantization is in the taxonomy, and sparsity and pruning are unmapped.\nRTL design, simulation and verification in the responsibilities are not labeled separately. RTL design is already asked for in the qualifications.\n'Contributions to relevant research publications or open-source projects' is not a skill.\nDegree: 'BS, MS or PhD' takes the highest level named, phd. 'or a related field' widens the field only, so degree_or_equivalent is false.\nSeniority is inferred from '5+ years'. No level is stated in the title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "943539f3d444ee482e7cda019406639fea245bf81c303a85810fbfa2b468b1c2",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

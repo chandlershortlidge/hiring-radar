@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e169465497a11e597c671da6f0ee7ee5bd495eea7459b9967b9b9d6e76cd5e70",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asking for experience 'deploying large-scale models' directly names a required AI deployment skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asking for experience 'deploying large-scale models' directly names a required AI deployment skill.",
+  "error": null
+}

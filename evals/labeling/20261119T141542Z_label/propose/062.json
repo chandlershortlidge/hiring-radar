@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7788f5db1dc91079a31de67912654ded1dcf1a058159e45d108d109937416e9c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the quoted phrase \\\"model training and deployment systems\\\" sits in the \\\"In This Role, You'll Get to:\\\" responsibilities list, and nothing shown asks the candidate for this skill, so it does not support a nice_to_have requirement.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the quoted phrase \"model training and deployment systems\" sits in the \"In This Role, You'll Get to:\" responsibilities list, and nothing shown asks the candidate for this skill, so it does not support a nice_to_have requirement.",
+  "error": null
+}

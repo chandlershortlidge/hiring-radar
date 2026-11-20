@@ -1,0 +1,14 @@
+{
+  "item": 14,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1d06adddcbce27bca4395b9899e3a59b100788eee1f3949fe09f5a79d15c976a",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, a required mention wins: the 'You'll need' list requires a background 'with a focus on AI (MSc or PhD)', which the quoted raw_text 'focus on AI' shows, so the nice-to-have reading in A is overridden.\"}",
+  "decision": "B",
+  "why": "Under rule 3, a required mention wins: the 'You'll need' list requires a background 'with a focus on AI (MSc or PhD)', which the quoted raw_text 'focus on AI' shows, so the nice-to-have reading in A is overridden.",
+  "error": null
+}

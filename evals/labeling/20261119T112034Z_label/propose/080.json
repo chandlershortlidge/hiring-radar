@@ -1,0 +1,14 @@
+{
+  "item": 80,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "tensorflow",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f3a03554f3784a8f5b8d90757b0872df4b0375529695ea4b9b83d64a82f54e4c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, TensorFlow is named in the \\\"qualifications you need\\\" section (the Software/Data Engineering bullet), and under rule 3 that required mention makes the agreed required label with raw_text \\\"TensorFlow\\\" correct as it stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, TensorFlow is named in the \"qualifications you need\" section (the Software/Data Engineering bullet), and under rule 3 that required mention makes the agreed required label with raw_text \"TensorFlow\" correct as it stands.",
+  "error": null
+}

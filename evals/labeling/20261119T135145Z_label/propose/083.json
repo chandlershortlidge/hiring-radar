@@ -1,0 +1,14 @@
+{
+  "item": 83,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "205408d985a90c386b38f3be1b6cf0facd0c34638b8a3147e23356146a0d80f7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required bullet '3+ years of experience leading Machine Learning research initiatives' names machine learning as a skill, not just a title or years line, and rule 3 makes that required mention decisive.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required bullet '3+ years of experience leading Machine Learning research initiatives' names machine learning as a skill, not just a title or years line, and rule 3 makes that required mention decisive.",
+  "error": null
+}

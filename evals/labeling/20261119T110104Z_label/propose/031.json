@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "cheminformatics",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "aed5d61fe99458f33383b1c13bf9ec727a97b614709b9104a8a79c4cb3c8a61b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the PREFERRED QUALIFICATIONS bullet names cheminformatics explicitly as a domain the candidate should have breadth in, and the agreed raw_text \\\"cheminformatics/docking/ADMET\\\" appears verbatim in the posting, so the nice_to_have label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the PREFERRED QUALIFICATIONS bullet names cheminformatics explicitly as a domain the candidate should have breadth in, and the agreed raw_text \"cheminformatics/docking/ADMET\" appears verbatim in the posting, so the nice_to_have label stands.",
+  "error": null
+}

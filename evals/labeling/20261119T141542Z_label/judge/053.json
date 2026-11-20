@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "api-design",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6068dc6fbf21695a77181ee80616fa3a2f8922901f70a215374b16ed54f094f2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'API Architecture' is explicitly named as a required knowledge and skill item in the qualification section.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'API Architecture' is explicitly named as a required knowledge and skill item in the qualification section.",
+  "error": null
+}

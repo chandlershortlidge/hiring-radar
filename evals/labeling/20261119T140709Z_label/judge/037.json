@@ -1,0 +1,15 @@
+{
+  "item": 37,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fe61322bcf32f87e4ceaff8ef605a3fe9ae02620aaacb4c71f3d94f8c8b8889b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for knowing how to build guardrails against LLM failure modes like hallucinations and agent loops.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for knowing how to build guardrails against LLM failure modes like hallucinations and agent loops.",
+  "error": null
+}

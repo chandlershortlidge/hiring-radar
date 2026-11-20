@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a31c363eb81b21449a2de6cae0b6c03fc67930d5e160384c6b18bb570333ba58",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 and rule 3, the required qualification bullet asks for proficiency in tools for 'standard evaluation protocols', supporting the required `evaluation` skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 and rule 3, the required qualification bullet asks for proficiency in tools for 'standard evaluation protocols', supporting the required `evaluation` skill.",
+  "error": null
+}

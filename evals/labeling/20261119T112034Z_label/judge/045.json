@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "1ef43c6f01a7f41be2c351d53ab3b678e9a55aef1cb302497a23076e01448627",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, a qualification bullet explicitly requires experience with cloud services including 'Azure AI', supporting the `azure` skill.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, a qualification bullet explicitly requires experience with cloud services including 'Azure AI', supporting the `azure` skill.",
+  "error": null
+}

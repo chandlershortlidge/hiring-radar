@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "statistics",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5d60adbb16a9e8b95fa4b0ae4eed948fc638b6f588fee0d86d4efe36f85a46c4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Minimum qualifications, the bullet asks for \\\"statistical judgment\\\", which is a direct qualification mention of statistics per rule 1 and required per rule 3.\"}",
+  "decision": "ok",
+  "why": "Under Minimum qualifications, the bullet asks for \"statistical judgment\", which is a direct qualification mention of statistics per rule 1 and required per rule 3.",
+  "error": null
+}

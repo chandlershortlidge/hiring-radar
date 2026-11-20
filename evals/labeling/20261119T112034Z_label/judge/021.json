@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "cybersecurity",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "6cec84180fa87d915382b32f7c66486a8a6353aaa8523ab26194592bd0256597",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 5, 'UK Security Clearance (SC)' is a background clearance requirement and does not name a cybersecurity skill.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 5, 'UK Security Clearance (SC)' is a background clearance requirement and does not name a cybersecurity skill.",
+  "error": null
+}

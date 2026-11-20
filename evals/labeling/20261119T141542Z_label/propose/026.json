@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "python",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a0fcea3fcd51004843f9e8b834f5857111479aee42ff8f8602a3291bfa7aef8a",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, Python appears only in the \\\"What Sets You Apart\\\" section as one option in a certification list for a stated preference, not in \\\"What You Must Have,\\\" so rule 3 does not make it required and nice_to_have (labeler A) is correct.\"}",
+  "decision": "A",
+  "why": "Under rule 1, Python appears only in the \"What Sets You Apart\" section as one option in a certification list for a stated preference, not in \"What You Must Have,\" so rule 3 does not make it required and nice_to_have (labeler A) is correct.",
+  "error": null
+}

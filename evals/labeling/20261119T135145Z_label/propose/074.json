@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "477dbef9bda0c167e1e7aed69884c8cd6d4d9d09619ed3814d322fc6101db5e5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Preferred Qualifications, the bullet 'Experience integrating AI/LLM capabilities into product experiences responsibly' names an AI/ML skill (rule 1), so nice_to_have and the verbatim raw_text 'AI/LLM capabilities' are correct as agreed.\"}",
+  "decision": "ok",
+  "why": "Under Preferred Qualifications, the bullet 'Experience integrating AI/LLM capabilities into product experiences responsibly' names an AI/ML skill (rule 1), so nice_to_have and the verbatim raw_text 'AI/LLM capabilities' are correct as agreed.",
+  "error": null
+}

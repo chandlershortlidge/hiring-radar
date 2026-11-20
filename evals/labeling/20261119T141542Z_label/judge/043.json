@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "bde6458bcdb0a28b7097bb06815bcc4beb1e9aeba08f9826335d1a59398152e4",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the posting explicitly names 'Artificial Intelligence (AI)' in the required Skills list.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the posting explicitly names 'Artificial Intelligence (AI)' in the required Skills list.",
+  "error": null
+}

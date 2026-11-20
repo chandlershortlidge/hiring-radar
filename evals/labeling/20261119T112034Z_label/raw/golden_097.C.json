@@ -1,0 +1,156 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes administration\"\n    },\n    {\n      \"skill_id\": \"slurm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Slurm workload management\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training systems\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM architecture\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML frameworks\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing APIs\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring skills with expertise in observability tools\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CUDA optimization\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"infrastructure as code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ansible\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GitOps\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideally, 3-5 years of relevant experience in ML systems deployment\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"YAML\",\n      \"raw_text\": \"YAML configuration management\"\n    },\n    {\n      \"label\": \"GPU cluster management\",\n      \"raw_text\": \"managing GPU clusters\"\n    },\n    {\n      \"label\": \"HPC\",\n      \"raw_text\": \"HPC environments\"\n    },\n    {\n      \"label\": \"Parallel computing\",\n      \"raw_text\": \"parallel computing\"\n    },\n    {\n      \"label\": \"SRE\",\n      \"raw_text\": \"SRE\"\n    },\n    {\n      \"label\": \"Platform Engineering\",\n      \"raw_text\": \"Platform Engineering\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Ideally, 3-5 years of relevant experience in ML systems deployment\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"AWS is only mentioned in the intro company/team description ('We work with ... and primarily on AWS'), not in qualifications/skills/experience sections, so it is omitted per guide. 'ML systems deployment' mapped to ai-deployment with uncertain=true (and nice_to_have due to inline marker 'Ideally').\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes administration"
+      },
+      {
+        "skill_id": "slurm",
+        "requirement": "required",
+        "raw_text": "Slurm workload management"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training systems"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM architecture"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "developing APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring skills with expertise in observability tools"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA optimization"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "nice_to_have",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally, 3-5 years of relevant experience in ML systems deployment",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "YAML",
+        "raw_text": "YAML configuration management"
+      },
+      {
+        "label": "GPU cluster management",
+        "raw_text": "managing GPU clusters"
+      },
+      {
+        "label": "HPC",
+        "raw_text": "HPC environments"
+      },
+      {
+        "label": "Parallel computing",
+        "raw_text": "parallel computing"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Ideally, 3-5 years of relevant experience in ML systems deployment",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "AWS is only mentioned in the intro company/team description ('We work with ... and primarily on AWS'), not in qualifications/skills/experience sections, so it is omitted per guide. 'ML systems deployment' mapped to ai-deployment with uncertain=true (and nice_to_have due to inline marker 'Ideally')."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "bac597b278ed7bbedf08f3db94bd949f38f00fc045dbc674acaf7dfc2a843692",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

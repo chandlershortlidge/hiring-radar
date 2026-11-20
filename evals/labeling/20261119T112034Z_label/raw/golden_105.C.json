@@ -1,0 +1,66 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend systems\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Rust\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"DBMS internals\",\n      \"raw_text\": \"DBMS internals\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Section 'Strong candidates may also have experience with:' treated as nice_to_have. C++ and Rust are offered as alternatives ('C++ or Rust').\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend systems"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "DBMS internals",
+        "raw_text": "DBMS internals"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Section 'Strong candidates may also have experience with:' treated as nice_to_have. C++ and Rust are offered as alternatives ('C++ or Rust')."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2f9f29752ed59c4b1cfb73bf37a92fae1829674f01cddb3321d0e4e784e83836",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

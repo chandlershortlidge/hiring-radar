@@ -23,8 +23,9 @@ import sqlite3
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
+from app.extract import SENIORITY_LEVELS
 from app.geo import ACTIVE_CITIES, CITIES, COLLECTING_SINCE, REMOTE_EU
-from app.ingest import FAMILIES as ingest_families
+from app.ingest import FAMILIES as ingest_families, SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
 from app.sources import registry
 
@@ -41,7 +42,9 @@ FEED_OPEN_DAYS = 3
 MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
-SENIORITIES = ("junior", "mid", "senior")
+# The seniority levels are the ones the model's form allows (HIR-311): one list, so a new
+# level cannot reach the model and be refused by the filter.
+SENIORITIES = SENIORITY_LEVELS
 # The five job families (HIR-186). Defined in ingest, which assigns one to every new job
 # from its title; re-exported here so the API validates against one list.
 FAMILIES = ingest_families
@@ -75,6 +78,12 @@ _NOT_LEGACY = "(j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
 # the job would only shrink every share on the chart. DECISIONS 2026-10-21.
 MIN_TEXT_CHARS = 400
 _LONG_ENOUGH = f"length(j.description_text) >= {MIN_TEXT_CHARS}"
+# Stored postings whose title names a sales role are out of the chart, like the two kinds
+# above; ingest no longer stores them, and nothing is deleted (DECISIONS 2026-11-16,
+# HIR-246). Built from ingest's own tuple so the two cannot drift; tests/test_queries.py
+# checks this SQL and ingest.sales_title agree title by title.
+_NOT_SALES = "(" + " AND ".join(
+    f"lower(coalesce(j.title, '')) NOT LIKE '%{p}%'" for p in SALES_TITLE_PHRASES) + ")"
 # related_skills: how many of the selected skill's jobs a skill must share before it is
 # worth showing (below that, one odd stack of skills reads as a 4x lift), and how many of
 # the ranked rows the panel gets. DECISIONS 2026-10-28.
@@ -160,10 +169,11 @@ def open_clause(now: str) -> tuple[str, list]:
 def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs the filters describe.
 
-    Unless include_legacy, two kinds of job are out of the chart (the job list shows them):
-    legacy imports, whose skills never came from the evaluated extractor, and jobs whose
-    text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting."""
-    parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH]), []
+    Unless include_legacy, three kinds of job are out of the chart (the job list shows them):
+    legacy imports, whose skills never came from the evaluated extractor, jobs whose
+    text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting, and jobs whose
+    title names a sales role, which are outside the market the chart measures (HIR-246)."""
+    parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH, _NOT_SALES]), []
     if f.cities:
         # Any of the job's places, not only its first: a Berlin + Munich job is in both (HIR-289).
         parts.append(f"EXISTS (SELECT 1 FROM job_place jpl WHERE jpl.job_id = j.id"
@@ -285,16 +295,23 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     jc, jp = job_set_clause(f, now)
     mc, mp = _mention_clause(f)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {jc}", jp).fetchone()[0]
+    # The jobs are picked first, once, and only their mentions are read (HIR-372). Joined
+    # the other way round, SQLite walked every stored mention and re-checked the whole job
+    # filter for each one, posting text included: many times the work, on the request
+    # every page makes. CROSS JOIN is SQLite's way of fixing the join order as written.
+    js = f"WITH js AS MATERIALIZED (SELECT j.id FROM job j WHERE {jc})"
     rows = conn.execute(
-        f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {jc} AND {mc} GROUP BY m.skill_id", jp + mp).fetchall()
+        f"{js} SELECT m.skill_id, count(DISTINCT m.job_id) n FROM js"
+        f" CROSS JOIN skill_mention m ON m.job_id = js.id"
+        f" WHERE {mc} GROUP BY m.skill_id", jp + mp).fetchall()
     # Per place on a query of its own: a job in two places counts once in `count` and once
     # in each place's `by_city` (HIR-289), so the two cannot come from one grouping.
     by_place: dict[str, dict] = {}
     for r in conn.execute(
-            f"SELECT m.skill_id, jpl.place, count(DISTINCT j.id) n FROM skill_mention m"
-            f" JOIN job j ON j.id = m.job_id JOIN job_place jpl ON jpl.job_id = j.id"
-            f" WHERE {jc} AND {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
+            f"{js} SELECT m.skill_id, jpl.place, count(DISTINCT m.job_id) n FROM js"
+            f" CROSS JOIN skill_mention m ON m.job_id = js.id"
+            f" CROSS JOIN job_place jpl ON jpl.job_id = js.id"
+            f" WHERE {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
         by_place.setdefault(r["skill_id"], {})[r["place"]] = r["n"]
     skills = _skill_rows(rows, total, with_cities=False)
     for s in skills:
@@ -481,6 +498,35 @@ def _status(row, now: str, sources: list[dict]) -> str:
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0) -> dict:
+    """Find the jobs that match a set of filters, one page at a time.
+
+    This is the dashboard's job list and the search_jobs tool's search: both call it,
+    so they always agree. Every filter must match (they combine with AND).
+
+    Example: open Berlin jobs that require RAG, newest first, the first 20:
+    list_jobs(conn, filters, now) with filters built from skill "rag" and city "Berlin".
+
+    Args:
+        conn: an open database connection.
+        f: the filters: which window of jobs, which skills, city, seniority and so
+            on, and any words to find in the company, title or posting text.
+        now: the current time, as an ISO string. A job is open or closed relative to it.
+        sort: "newest" (default), "oldest", "reposts" (most re-advertised first) or
+            "company". An unknown value falls back to "newest".
+        limit: how many jobs to return.
+        offset: how many matching jobs to skip, to reach the next page.
+
+    Returns:
+        A dict with:
+            total: how many jobs match in all, not just on this page.
+            jobs: this page's jobs, in the chosen order. Each has its id, company,
+                title, places, family, seniority, first_seen, last_seen, status
+                (open or closed), sources (where it was posted, with links),
+                required_skills and nice_skills (skill ids), skill_counts, and its
+                german, degree and production requirements.
+            limit, offset: as passed in.
+        When nothing matches, total is 0 and jobs is an empty list.
+    """
     jc, jp = job_set_clause(f, now, include_legacy=True)
     params = list(jp)
     where = [jc]

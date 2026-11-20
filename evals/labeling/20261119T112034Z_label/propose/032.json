@@ -1,0 +1,14 @@
+{
+  "item": 32,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "56027c71901a1e0ab580d01eb414e547e2ca808c2c4f59bf23c286fa003f9d62",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the signal \\\"Member of Technical Staff\\\" is a job title, which does not count, and \\\"experienced\\\" does not state a seniority level, so seniority should be null.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the signal \"Member of Technical Staff\" is a job title, which does not count, and \"experienced\" does not state a seniority level, so seniority should be null.",
+  "error": null
+}

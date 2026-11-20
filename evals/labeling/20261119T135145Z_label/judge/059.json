@@ -1,0 +1,15 @@
+{
+  "item": 59,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "bc274c4134ef59573ea92f78add21a462148a0c92fb199275fc0fee20d7a26f6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet directly asks for a deep understanding of 'modern AI/ML models', confirming the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet directly asks for a deep understanding of 'modern AI/ML models', confirming the agreed required label.",
+  "error": null
+}

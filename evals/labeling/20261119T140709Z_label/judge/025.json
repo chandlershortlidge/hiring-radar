@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "explainable-ai",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "badfb0e3f1393742f2252de574f263a4222532af3aed210c2599af4ff8cc24dd",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Per Rule 4, responsibilities do not count unless the candidate is also asked for the skill, and \\\"explainability\\\" is only mentioned under the Responsibilities section.\"}",
+  "decision": "drop",
+  "why": "Per Rule 4, responsibilities do not count unless the candidate is also asked for the skill, and \"explainability\" is only mentioned under the Responsibilities section.",
+  "error": null
+}

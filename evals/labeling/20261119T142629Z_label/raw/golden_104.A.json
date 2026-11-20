@@ -1,0 +1,121 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agentic AI\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"agent systems in production with orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool use\"},\n    {\"skill_id\": \"agent-state-management\", \"requirement\": \"required\", \"raw_text\": \"state management\", \"uncertain\": true},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"OpenCV\"},\n    {\"skill_id\": \"knowledge-graphs\", \"requirement\": \"required\", \"raw_text\": \"knowledge graph\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"model serving\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend services\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"backend services (Python, TypeScript)\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Tech stackTypeScript\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"frontend interfaces\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Strong background in AI/ML\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"React Native\", \"raw_text\": \"React Native\"},\n    {\"label\": \"ERP/CMMS/WMS/PLC integration\", \"raw_text\": \"Integrated AI systems with ERP, CMMS, WMS, historians or PLC layers\"},\n    {\"label\": \"IoT / sensor data\", \"raw_text\": \"physical-world data (video, IoT, sensor streams)\"},\n    {\"label\": \"Human-in-the-loop workflows\", \"raw_text\": \"human-in-the-loop workflows\"},\n    {\"label\": \"Ontology design\", \"raw_text\": \"ontology\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years experience (5+ preferred)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"There are no optional section headings, so 'What we're looking for', 'What you have done', 'Who you are' and 'Tech stack' all default to required.\\n'What you will build' is responsibilities only, so YOLO, tracing and FFT are not labeled.\\n'ideally agentic products' would make agents nice_to_have, but the unmarked tech-stack entry 'Agentic AI' is a separate required mention, and required wins.\\n'orchestration' and 'state management' appear only inside the agent-systems bullet, so I mapped them to llm-orchestration and agent-state-management; both are flagged uncertain.\\nComputer vision is quoted from the tech-stack 'OpenCV', which is an alias; the 'vision (detection, segmentation...)' bullet supports the same skill.\\nReact Native is not React, so it is unmapped.\\nSeniority: '3+ years (5+ preferred)' puts the required floor in the 3–5 range, so mid; flagged uncertain because 5+ is preferred.\\nNo alternative groups: Python and TypeScript are asked for together.\\nNo language requirement and no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agent systems in production with orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "state management",
+        "uncertain": true
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "OpenCV"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "knowledge graph"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "backend services (Python, TypeScript)"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Tech stackTypeScript"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend interfaces"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Strong background in AI/ML"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "React Native",
+        "raw_text": "React Native"
+      },
+      {
+        "label": "ERP/CMMS/WMS/PLC integration",
+        "raw_text": "Integrated AI systems with ERP, CMMS, WMS, historians or PLC layers"
+      },
+      {
+        "label": "IoT / sensor data",
+        "raw_text": "physical-world data (video, IoT, sensor streams)"
+      },
+      {
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "Ontology design",
+        "raw_text": "ontology"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years experience (5+ preferred)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "There are no optional section headings, so 'What we're looking for', 'What you have done', 'Who you are' and 'Tech stack' all default to required.\n'What you will build' is responsibilities only, so YOLO, tracing and FFT are not labeled.\n'ideally agentic products' would make agents nice_to_have, but the unmarked tech-stack entry 'Agentic AI' is a separate required mention, and required wins.\n'orchestration' and 'state management' appear only inside the agent-systems bullet, so I mapped them to llm-orchestration and agent-state-management; both are flagged uncertain.\nComputer vision is quoted from the tech-stack 'OpenCV', which is an alias; the 'vision (detection, segmentation...)' bullet supports the same skill.\nReact Native is not React, so it is unmapped.\nSeniority: '3+ years (5+ preferred)' puts the required floor in the 3–5 range, so mid; flagged uncertain because 5+ is preferred.\nNo alternative groups: Python and TypeScript are asked for together.\nNo language requirement and no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6c6a55674dcec9ad502860160b8686fdc84e4ea99587457a54f373312361c0d3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

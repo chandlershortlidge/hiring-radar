@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "98eb1e4610a2b551d071c9c11b1cdef805b94e7f1b8751882079ad4a34882a6c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the 'Experience Preferred' qualification bullet asking for experience with 'real-time and batch inference systems in production' directly names the model-serving skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the 'Experience Preferred' qualification bullet asking for experience with 'real-time and batch inference systems in production' directly names the model-serving skill as nice_to_have.",
+  "error": null
+}

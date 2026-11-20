@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ci-cd",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5345e813c7537fdfb1cd74468d5146db7af25f8dbacb3ac762c8a0521ae97897",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'manage CI pipelines' appears in a required 'Who You Are' qualification bullet, directly naming the ci-cd skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'manage CI pipelines' appears in a required 'Who You Are' qualification bullet, directly naming the ci-cd skill.",
+  "error": null
+}

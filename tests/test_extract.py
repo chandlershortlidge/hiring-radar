@@ -685,3 +685,18 @@ def test_prompt_says_grouping_never_drops_the_broad_skill(tax):
     (cloud beside its provider examples). The rule must say the broad skill is still reported."""
     assert "Grouping never removes a skill" in ex.PRINCIPLES
     assert "is still\n   reported, with alternative_group null" in ex.PRINCIPLES
+
+
+# --- the degree level (HIR-245, HIR-335) ---------------------------------------------
+
+def test_degree_rule_is_the_lowest_level_in_both_prompt_and_guide():
+    """The model and the answer keys must record the same level for "Bachelor's or
+    Master's", or every two-level posting is a miss (HIR-335)."""
+    flat = lambda s: " ".join(s.replace("*", "").split())
+    guide = flat((ROOT / "evals" / "LABELING.md").read_text())
+    prompt = flat(ex.PRINCIPLES)
+    assert "degree is the lowest level named" in prompt
+    assert "degree` is the lowest level named" in guide
+    assert "highest level named" not in prompt
+    for example in ("MS or PhD", "Master's degree (or above)"):
+        assert example in prompt and example in guide

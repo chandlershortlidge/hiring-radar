@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a1ed4968d2670a941c175829ba85ed5a2c5ed3e45fb2ac98af255be443e10ce6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a preferred qualification bullet explicitly asks for 'Experience evaluating models', which validly supports the `evaluation` skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a preferred qualification bullet explicitly asks for 'Experience evaluating models', which validly supports the `evaluation` skill as nice_to_have.",
+  "error": null
+}

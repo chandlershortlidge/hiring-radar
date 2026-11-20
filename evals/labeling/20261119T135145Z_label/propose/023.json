@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0548a4d66c900923bdd64a2782acdbf5c3a66d3a51019333c804b63778034b0f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, \\\"generative machine learning models\\\" is a broader category than LLMs and does not name LLMs, so adding `llms` would be inferring a specific skill the text does not state.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, \"generative machine learning models\" is a broader category than LLMs and does not name LLMs, so adding `llms` would be inferring a specific skill the text does not state.",
+  "error": null
+}

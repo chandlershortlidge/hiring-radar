@@ -1,0 +1,14 @@
+{
+  "item": 70,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "493ddeda84c87fd5180cd70091b5ec27e87d516dc7143e01ebd10febb51abb41",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the responsibilities describe senior-level ownership and leadership, and the quoted signal 'Mentor Principal and Senior Associates on scalable design' appears verbatim in the posting, so the agreed 'senior' value with basis 'inferred' is supported.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the responsibilities describe senior-level ownership and leadership, and the quoted signal 'Mentor Principal and Senior Associates on scalable design' appears verbatim in the posting, so the agreed 'senior' value with basis 'inferred' is supported.",
+  "error": null
+}

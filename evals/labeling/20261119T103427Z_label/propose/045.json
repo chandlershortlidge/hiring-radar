@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "quantization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1aed8fa4a5fe61b4cb74dce8c0f856d748c9f17d54aa89b07c2535d30a74ad26",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names quantization as a technique ('model optimization techniques (quantization, pruning, distillation)'), so it counts; it is correctly marked nice_to_have and the raw_text appears verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet names quantization as a technique ('model optimization techniques (quantization, pruning, distillation)'), so it counts; it is correctly marked nice_to_have and the raw_text appears verbatim.",
+  "error": null
+}

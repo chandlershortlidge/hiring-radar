@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "b1b4e0ebb52b65c4add1135ef3d52a88190ca248ecdeff97596e994d2d079d4e",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 4, a general overview sentence describing the team's tech stack ('We work with ... and primarily on AWS') is not a qualification asking the candidate for the skill, so it does not count.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 4, a general overview sentence describing the team's tech stack ('We work with ... and primarily on AWS') is not a qualification asking the candidate for the skill, so it does not count.",
+  "error": null
+}

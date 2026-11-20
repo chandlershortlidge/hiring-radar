@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1db5462e5baa8eaf2db9ecd583c52532ec9b04bfa31402eab8cc2462ec0f8898",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 3, the verbatim signal 'lead a team of expert engineers' supports the inferred senior level for this management role.\"}",
+  "decision": "ok",
+  "why": "Under Rule 3, the verbatim signal 'lead a team of expert engineers' supports the inferred senior level for this management role.",
+  "error": null
+}

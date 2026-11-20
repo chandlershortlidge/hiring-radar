@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fc7a15998803c46a6976d06cae4ce13ee80b06b85e55144b9b0771d2cbfc85c6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for practical experience with \\\"agentic patterns\\\" (including function calling, multi-step reasoning, and tool use), which supports the `agents` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for practical experience with \"agentic patterns\" (including function calling, multi-step reasoning, and tool use), which supports the `agents` skill.",
+  "error": null
+}

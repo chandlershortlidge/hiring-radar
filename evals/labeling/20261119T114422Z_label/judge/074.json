@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "knowledge-distillation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fc4e8ed16c59f5c040125cf2e30847beb2215542dd2415d1e445b49d723f1830",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence explicitly lists 'distillation' (knowledge distillation) as relevant experience.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence explicitly lists 'distillation' (knowledge distillation) as relevant experience.",
+  "error": null
+}

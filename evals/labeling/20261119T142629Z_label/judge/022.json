@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "recommender-systems",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "8d03e369fa0e2f464d7ecf1e9cce7647d83ef7e7d903232c29a23d5c898d9ffa",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the excerpt only describes the responsibilities and scope of the role ('to advance machine learning across recommendation... systems') rather than asking the candidate for recommender systems as a qualification.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the excerpt only describes the responsibilities and scope of the role ('to advance machine learning across recommendation... systems') rather than asking the candidate for recommender systems as a qualification.",
+  "error": null
+}

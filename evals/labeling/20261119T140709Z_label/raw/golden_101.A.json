@@ -1,0 +1,203 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"6+ years of software engineering experience\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM APIs\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"OpenAI\", \"alternative_group\": 1},\n    {\"skill_id\": \"anthropic-api\", \"requirement\": \"required\", \"raw_text\": \"Anthropic\", \"alternative_group\": 1},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt engineering\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic patterns\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool use\"},\n    {\"skill_id\": \"chain-of-thought\", \"requirement\": \"required\", \"raw_text\": \"multi-step reasoning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python skills\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"build APIs\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"data pipelines, and backend services\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend services\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"cloud data warehouses such as Snowflake\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"required\", \"raw_text\": \"Airflow\", \"alternative_group\": 2},\n    {\"skill_id\": \"prefect\", \"requirement\": \"required\", \"raw_text\": \"Prefect\", \"alternative_group\": 2},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure (AWS)\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Cloud: AWS\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector databases\", \"alternative_group\": 3},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"embeddings\", \"alternative_group\": 3},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"semantic search\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"React\"},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala (principally)\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java (limited)\"},\n    {\"skill_id\": \"mysql\", \"requirement\": \"required\", \"raw_text\": \"MySQL\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Version control: Git & GitHub\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"Copilot on GitHub\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Observability: Datadog\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Workflow orchestration\", \"raw_text\": \"workflow orchestration tools\"},\n    {\"label\": \"Data engineering / data transformation\", \"raw_text\": \"data engineering fundamentals including SQL, data transformation\"},\n    {\"label\": \"Cloud data warehouses\", \"raw_text\": \"cloud data warehouses\"},\n    {\"label\": \"Datadog\", \"raw_text\": \"Datadog\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'What we're looking for' is required. 'While not required, these are a plus' is nice_to_have. 'Our Stack' is a tech-stack list, so its unmarked entries are required.\\nRAG, monitoring and internal APIs appear only in responsibilities. They are not labeled from there.\\nSnowflake is named in the requirements ('such as Snowflake') and again in the stack. It is a single example rather than a set of alternatives, so it gets no group.\\nAWS is named in the requirements and again in the stack. It is a single item, so it gets no group. raw_text uses the stack entry.\\nGroup 1 is 'OpenAI, Anthropic, or similar'. 'or similar' adds no skill.\\nGroup 2 is 'Airflow, Prefect, or similar'. The broad 'workflow orchestration' has no taxonomy fit, so it is unmapped.\\nGroup 3 is 'vector databases, embeddings, or semantic search', a nice-to-have list of alternatives. 'semantic search' is mapped to vector-search, which is not a taxonomy alias, so it is flagged uncertain.\\n'function calling' and 'tool use' collapse into tool-calling. raw_text uses 'tool use', which is an alias.\\n'agentic patterns' is mapped to agents, flagged uncertain because it is not an exact alias.\\n'Observability' is used as a stack heading over Datadog. I labeled the broad skill on the same logic as 'cloud platforms (…)', and flagged it uncertain.\\nThe 'AI Tooling' stack heading is not an alias of ai-developer-tooling, so it is not labeled. Only github-copilot is labeled from that line.\\n'LLM-based or AI-powered applications' is covered by llms. The ai-ml aliases ('applied ai') do not match the requirement text, so ai-ml is not added.\\nSeniority is stated in the title. The 6+ years would also give senior.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "6+ years of software engineering experience"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM APIs"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "required",
+        "raw_text": "Anthropic",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic patterns",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "chain-of-thought",
+        "requirement": "required",
+        "raw_text": "multi-step reasoning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "build APIs"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines, and backend services"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "cloud data warehouses such as Snowflake"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "required",
+        "raw_text": "Prefect",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure (AWS)"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Cloud: AWS"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "semantic search",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala (principally)"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java (limited)"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Version control: Git & GitHub"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot on GitHub"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability: Datadog",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Workflow orchestration",
+        "raw_text": "workflow orchestration tools"
+      },
+      {
+        "label": "Data engineering / data transformation",
+        "raw_text": "data engineering fundamentals including SQL, data transformation"
+      },
+      {
+        "label": "Cloud data warehouses",
+        "raw_text": "cloud data warehouses"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Sections: 'What we're looking for' is required. 'While not required, these are a plus' is nice_to_have. 'Our Stack' is a tech-stack list, so its unmarked entries are required.\nRAG, monitoring and internal APIs appear only in responsibilities. They are not labeled from there.\nSnowflake is named in the requirements ('such as Snowflake') and again in the stack. It is a single example rather than a set of alternatives, so it gets no group.\nAWS is named in the requirements and again in the stack. It is a single item, so it gets no group. raw_text uses the stack entry.\nGroup 1 is 'OpenAI, Anthropic, or similar'. 'or similar' adds no skill.\nGroup 2 is 'Airflow, Prefect, or similar'. The broad 'workflow orchestration' has no taxonomy fit, so it is unmapped.\nGroup 3 is 'vector databases, embeddings, or semantic search', a nice-to-have list of alternatives. 'semantic search' is mapped to vector-search, which is not a taxonomy alias, so it is flagged uncertain.\n'function calling' and 'tool use' collapse into tool-calling. raw_text uses 'tool use', which is an alias.\n'agentic patterns' is mapped to agents, flagged uncertain because it is not an exact alias.\n'Observability' is used as a stack heading over Datadog. I labeled the broad skill on the same logic as 'cloud platforms (…)', and flagged it uncertain.\nThe 'AI Tooling' stack heading is not an alias of ai-developer-tooling, so it is not labeled. Only github-copilot is labeled from that line.\n'LLM-based or AI-powered applications' is covered by llms. The ai-ml aliases ('applied ai') do not match the requirement text, so ai-ml is not added.\nSeniority is stated in the title. The 6+ years would also give senior."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "fbe6fc8536f7ee7480f9362e9a8713659b8cd5de41439d060720ff5a41f59350",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

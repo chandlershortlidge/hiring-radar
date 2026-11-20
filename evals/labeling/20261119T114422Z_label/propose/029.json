@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e8cc75da34a44f32cf90f0e1392d512f88071e1d215982d3cc9e10b3de441131",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' sentence \\\"comfortable owning architectural decisions on novel infrastructure\\\" is a qualification that names the skill, and under rule 3 that required-style mention makes software-architecture belong in the key with B's raw_text.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' sentence \"comfortable owning architectural decisions on novel infrastructure\" is a qualification that names the skill, and under rule 3 that required-style mention makes software-architecture belong in the key with B's raw_text.",
+  "error": null
+}

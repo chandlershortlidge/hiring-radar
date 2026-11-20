@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "agent-state-management",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d7f21d484ea3204fa9b093a2c3321b5919b2421d0cb7b3ca69b5718f56717f02",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What you have done' list is candidate experience the posting asks for, so the bullet naming 'state management' counts, and the agreed required label with raw_text 'state management' is supported verbatim (rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What you have done' list is candidate experience the posting asks for, so the bullet naming 'state management' counts, and the agreed required label with raw_text 'state management' is supported verbatim (rules 1 and 3).",
+  "error": null
+}

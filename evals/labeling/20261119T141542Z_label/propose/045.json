@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cuda",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9dd1f3d9e41a559431aea98dcd687dfb23cb27db3603a1f0e70f6162be4ba914",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the quoted mention sits in the \\\"Nice to have\\\" section, so nice_to_have is correct, and B's raw_text \\\"CUDA (Compute Unified Device Architecture)\\\" does not appear in the posting; rule 5 rules out adding anything beyond what the text names.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the quoted mention sits in the \"Nice to have\" section, so nice_to_have is correct, and B's raw_text \"CUDA (Compute Unified Device Architecture)\" does not appear in the posting; rule 5 rules out adding anything beyond what the text names.",
+  "error": null
+}

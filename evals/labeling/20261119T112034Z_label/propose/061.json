@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "02b9a80205ae0e647b7f6be3858cdc9c4cf09fcda4bbee20dbb23caf7283e7c8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"You bring broad knowledge... including experience building Generative AI and agentic AI applications\\\" names agentic AI as a required skill, so the agreed `agents` label with raw_text \\\"agentic AI applications\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"You bring broad knowledge... including experience building Generative AI and agentic AI applications\" names agentic AI as a required skill, so the agreed `agents` label with raw_text \"agentic AI applications\" stands.",
+  "error": null
+}

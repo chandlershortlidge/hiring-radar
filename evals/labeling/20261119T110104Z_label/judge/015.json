@@ -1,0 +1,15 @@
+{
+  "item": 15,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "data-science",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "78b827a45616d716dcad5ebe33da4c0054d820fc1b5de60158c35fe5ba33efa7",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, 'translational data science' is explicitly named in a qualification bullet, directly supporting the data-science skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, 'translational data science' is explicitly named in a qualification bullet, directly supporting the data-science skill.",
+  "error": null
+}

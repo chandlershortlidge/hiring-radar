@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "94e3e70e2f0a42fdf138e502d57a8a175296fd95a3d708b1546d81507c3946fc",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who you are' qualification sentence names data ingestion ('the hardest problems are in data ingestion, normalization, temporal alignment'), which supports data-pipelines as required, and rule 3 keeps that required mention, so B's label stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who you are' qualification sentence names data ingestion ('the hardest problems are in data ingestion, normalization, temporal alignment'), which supports data-pipelines as required, and rule 3 keeps that required mention, so B's label stands.",
+  "error": null
+}

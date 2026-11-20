@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "testing",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9fb664ca62ad8bdfa33ac0f23bdfedbee4a0ee913dcaee0184beed67fbc09daa",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting never names testing; \\\"confident debugging\\\" is a different skill, and labeler A did not tag testing, so the testing label should not be in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the posting never names testing; \"confident debugging\" is a different skill, and labeler A did not tag testing, so the testing label should not be in the key.",
+  "error": null
+}

@@ -1,0 +1,132 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Experience building GenAI applications\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"multi-agent-systems\", \"requirement\": \"required\", \"raw_text\": \"multi-agent systems\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"required\", \"raw_text\": \"HuggingFace\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying production-grade GenAI applications\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"industry data science experience\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"common machine learning\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\", \"alternative_group\": 1},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"[Preferred] Experience using the Databricks Intelligence Platform\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Apache Spark™\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Text2SQL\", \"raw_text\": \"Text2SQL\"},\n    {\"label\": \"DSPy\", \"raw_text\": \"DSPy\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Min 4 years' experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"'What we look for' is a requirements heading, so items default to required. The '[Preferred]' inline marker makes Databricks and Spark nice_to_have.\\nGenAI, LLMOps and ML in the Mission paragraph are company description and are not labeled.\\n'GenAI applications' is mapped to llms via the 'generative ai applications' alias. The match is not literal, so it is flagged uncertain.\\n'Deploying production-grade GenAI applications' is mapped to ai-deployment and flagged uncertain. The 'production-grade machine learning deployments on AWS, Azure, or GCP' bullet supports the same id.\\nAWS, Azure and GCP are joined by 'or', so they form alternative_group 1. No broad 'cloud' skill is named, so none is added.\\nThe RAG/multi-agent/fine-tuning list ('including ... etc.') is not grouped: the items are joined by commas and asked for together. HuggingFace/LangChain/DSPy is joined by 'and' and is not grouped either. The pandas/scikit-learn/PyTorch list ('i.e. ... etc.') is not grouped for the same reason.\\nStatistics appears only as a degree field, which is domain knowledge, so it is not labeled as a skill.\\n'Graduate degree' is read as a postgraduate degree, so master. Flagged uncertain because some readers take 'graduate' to mean holding a bachelor's.\\nThe degree is accepted 'or equivalent practical experience', so degree_or_equivalent is true.\\n'Min 4 years' experience' gives mid, inferred. 'Extensive years' is not a numeric signal.\\nNo German language requirement is mentioned. Germany is given only as a location, and the guide forbids inferring German from location.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience building GenAI applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent systems"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying production-grade GenAI applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "industry data science experience"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "common machine learning"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Apache Spark™"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Text2SQL",
+        "raw_text": "Text2SQL"
+      },
+      {
+        "label": "DSPy",
+        "raw_text": "DSPy"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Min 4 years' experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "'What we look for' is a requirements heading, so items default to required. The '[Preferred]' inline marker makes Databricks and Spark nice_to_have.\nGenAI, LLMOps and ML in the Mission paragraph are company description and are not labeled.\n'GenAI applications' is mapped to llms via the 'generative ai applications' alias. The match is not literal, so it is flagged uncertain.\n'Deploying production-grade GenAI applications' is mapped to ai-deployment and flagged uncertain. The 'production-grade machine learning deployments on AWS, Azure, or GCP' bullet supports the same id.\nAWS, Azure and GCP are joined by 'or', so they form alternative_group 1. No broad 'cloud' skill is named, so none is added.\nThe RAG/multi-agent/fine-tuning list ('including ... etc.') is not grouped: the items are joined by commas and asked for together. HuggingFace/LangChain/DSPy is joined by 'and' and is not grouped either. The pandas/scikit-learn/PyTorch list ('i.e. ... etc.') is not grouped for the same reason.\nStatistics appears only as a degree field, which is domain knowledge, so it is not labeled as a skill.\n'Graduate degree' is read as a postgraduate degree, so master. Flagged uncertain because some readers take 'graduate' to mean holding a bachelor's.\nThe degree is accepted 'or equivalent practical experience', so degree_or_equivalent is true.\n'Min 4 years' experience' gives mid, inferred. 'Extensive years' is not a numeric signal.\nNo German language requirement is mentioned. Germany is given only as a location, and the guide forbids inferring German from location."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "827d98839840b1b68295991c4714631cef49d8220d3f91ed2d0620faa56becc9",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

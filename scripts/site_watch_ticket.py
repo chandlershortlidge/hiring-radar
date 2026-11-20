@@ -12,9 +12,13 @@ Kinds:
     deploy           the robot failed right after a deploy; the deploy was rolled back
     morning          the robot failed on the daily run; nothing was rolled back
     uptime           the site did not answer the outside check
-    rollback-failed  a deploy broke the site AND putting the previous version back did not
-                     fix it. Goes straight to Chandler: Urgent, assigned to him, and not
-                     labelled autopilot.
+    rollback-failed  the robot failed after a deploy AND again on the previous version once
+                     it was put back. What is filed depends on the second run (HIR-359):
+                     when no path passed on the rolled-back site, or its report cannot be
+                     read, "Site down and rollback failed" goes straight to Chandler: Urgent,
+                     assigned to him, not labelled autopilot. When some path passed, the
+                     site is up and the deploy is probably not the cause, so each path that
+                     still fails gets the ordinary autopilot ticket, which says so.
     rollback-not-done  the robot failed right after a deploy and the rollback job itself
                      failed, so the site is still on the new version (HIR-317). The ticket
                      says why: `--rollback-problem login` when the server refused the login
@@ -59,6 +63,12 @@ WHAT_HAPPENED = {
     "morning": "The robot visitor failed on its morning run, after the day's collection. Nothing was "
                "rolled back: the code did not change, so the cause is likely in the data "
                "(an odd posting, an empty city).",
+    "still-failing": "The robot visitor failed right after a deploy. **The deploy was rolled back** to "
+                     "the last version that had passed, and this path failed on that version too. Other "
+                     "paths passed there, so **the site is up**. A failure on both versions is probably not "
+                     "caused by the deploy: look at the data (an empty city, an odd posting), a slow "
+                     "server just after its restart, the check itself, or a database change the deploy "
+                     "made that a rollback does not undo.",
 }
 
 
@@ -94,6 +104,14 @@ def failures(report: dict) -> list[dict]:
     return list(by_title.values())
 
 
+def anything_passed(report: dict) -> bool:
+    """Whether any visitor path passed at any width; a pass on the retry counts."""
+    def walk(suite) -> bool:
+        return (any(t.get("status") in ("expected", "flaky") for spec in suite.get("specs", []) for t in spec.get("tests", []))
+                or any(walk(s) for s in suite.get("suites", [])))
+    return any(walk(s) for s in report.get("suites", []))
+
+
 def shot_url(path: str, results_root: str | None, base: str | None) -> str | None:
     if not (results_root and base):
         return None
@@ -104,15 +122,25 @@ def shot_url(path: str, results_root: str | None, base: str | None) -> str | Non
     return f"{base.rstrip('/')}/{rel.as_posix()}"
 
 
-def robot_ticket(kind: str, f: dict, args) -> dict:
+def robot_ticket(kind: str, f: dict, args, first: list[dict] | None = None) -> dict:
+    """The ticket for one failing path. `first`, for "still-failing" only: what failed on the
+    new version before the rollback, while `f` is from the rolled-back site."""
     widths = " and ".join(f["projects"])
-    lines = [WHAT_HAPPENED[kind], "",
-             f"**Failing path:** {f['test']} — at {widths} width.",
-             f"**Live version:** {args.change or 'unknown'}."]
-    if kind == "deploy" and args.rolled_back_to:
-        lines.append(f"**Rolled back to:** {args.rolled_back_to}.")
+    lines = [WHAT_HAPPENED[kind], "", f"**Failing path:** {f['test']} — at {widths} width."]
+    if kind == "still-failing":
+        # The error and the widths are the second run's, on the version that was put back.
+        lines += [f"**Deploy that was rolled back:** {args.change or 'unknown'}.",
+                  f"**Live version, put back by the rollback:** {args.rolled_back_to or 'unknown'}."]
+        if first:
+            lines += ["", "On the new version, before the rollback, the robot visitor had failed:", ""]
+            lines += [f"- {x['test']} ({' and '.join(x['projects'])})" for x in first]
+    else:
+        lines.append(f"**Live version:** {args.change or 'unknown'}.")
+        if kind == "deploy" and args.rolled_back_to:
+            lines.append(f"**Rolled back to:** {args.rolled_back_to}.")
     lines += ["", "**Error:**", "```", f["error"][:ERROR_CHARS] or "(no message)", "```"]
-    for p in f["screenshots"][:2]:
+    # Only the first run's screenshots are published, so a still-failing ticket links none.
+    for p in ([] if kind == "still-failing" else f["screenshots"][:2]):
         url = shot_url(p, args.results_root, args.evidence_base)
         if url:
             lines += ["", f"![screenshot]({url})"]
@@ -134,14 +162,26 @@ def uptime_ticket(args) -> dict:
             "comment_again": False}
 
 
-def rollback_failed_ticket(args, fails: list[dict]) -> dict:
-    paths = "\n".join(f"- {f['test']} ({' and '.join(f['projects'])}): {f['error'][:300]}" for f in fails) or "- (no report)"
+def _paths(fails: list[dict]) -> str:
+    return "\n".join(f"- {f['test']} ({' and '.join(f['projects'])}): {f['error'][:300]}" for f in fails) or "- (no report)"
+
+
+def rollback_failed_ticket(args, fails: list[dict], still: list[dict] | None = None) -> dict:
+    """`fails` is the first run, on the new version; `still` the second, on the rolled-back
+    site. The ticket says which is which: before HIR-359 it printed the first run's failures
+    as what "still fails"."""
+    if still:
+        after = f"No visitor path passed on the rolled-back site:\n\n{_paths(still)}"
+    else:
+        after = ("Its report from the rolled-back site could not be read or names no failing path; "
+                 "the \"Robot visitor on the rolled-back site\" job in the run below has the cause.")
     # Assigning it to Chandler is what notifies him; an "@name" typed into an API body is
     # plain text, not a mention.
     body = ("The site is broken and the automatic rollback did not fix it.\n\n"
             f"**Deploy that broke it:** {args.change or 'unknown'}\n"
-            f"**Rolled back to:** {args.rolled_back_to or 'unknown'}, and the robot visitor still fails:\n\n"
-            f"{paths}\n\nRun: {args.run_url or 'unknown'}")
+            f"**Rolled back to:** {args.rolled_back_to or 'unknown'}, and the robot visitor still fails. {after}\n\n"
+            f"What it found on the new version, before the rollback:\n\n{_paths(fails)}\n\n"
+            f"Run: {args.run_url or 'unknown'}")
     return {"title": "Site down and rollback failed", "body": body,
             "autopilot": False, "priority": 1, "assignee": CHANDLER_ID}
 
@@ -157,7 +197,7 @@ ROLLBACK_PROBLEM = {
 def rollback_not_done_ticket(args, fails: list[dict]) -> dict:
     """The robot failed after a deploy and the rollback never completed. Not "the site is
     down": the site is on the new version, with whatever the robot found on it."""
-    paths = "\n".join(f"- {f['test']} ({' and '.join(f['projects'])}): {f['error'][:300]}" for f in fails) or "- (no report)"
+    paths = _paths(fails)
     body = ("A deploy failed the robot visitor and the automatic rollback did not run.\n\n"
             f"{ROLLBACK_PROBLEM[args.rollback_problem]}\n\n"
             f"**The site is still on the new version:** {args.change or 'unknown'}\n"
@@ -246,13 +286,26 @@ class Linear:
         return filed
 
 
+def _read(path: str | None) -> dict:
+    """A robot report, or {} when it is missing or not JSON: no report must never mean no ticket."""
+    try:
+        return json.loads(Path(path).read_text()) if path else {}
+    except (OSError, ValueError):
+        return {}
+
+
 def tickets(args) -> list[dict]:
-    report = json.loads(Path(args.report).read_text()) if args.report and Path(args.report).exists() else {}
-    fails = failures(report)
+    fails = failures(_read(args.report))
     if args.kind == "uptime":
         return [uptime_ticket(args)]
     if args.kind == "rollback-failed":
-        return [rollback_failed_ticket(args, fails)]
+        after = _read(args.recheck_report)
+        still = failures(after)
+        # "Site down" only when nothing passed on the rolled-back site. Any doubt (no report,
+        # no failing path named) stays on the urgent side.
+        if still and anything_passed(after):
+            return [robot_ticket("still-failing", f, args, fails) for f in still]
+        return [rollback_failed_ticket(args, fails, still)]
     if args.kind == "rollback-not-done":
         return [rollback_not_done_ticket(args, fails)]
     if not fails:
@@ -267,6 +320,7 @@ def main(argv=None, linear=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--kind", required=True, choices=["deploy", "morning", "uptime", "rollback-failed", "rollback-not-done"])
     ap.add_argument("--report", help="the robot visitor's report.json")
+    ap.add_argument("--recheck-report", help="rollback-failed: the robot visitor's report.json from the rolled-back site")
     ap.add_argument("--results-root", help="the folder the report's screenshot paths sit under")
     ap.add_argument("--evidence-base", help="public URL the results folder was copied to")
     ap.add_argument("--run-url")

@@ -1,0 +1,278 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep understanding of distributed systems\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering experience\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training and deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on experience training language models at scale (from embedding models to specialized LLMs)\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on experience training language models at scale (from embedding models to specialized LLMs)\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"rigorous evaluation\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training frameworks\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production experience using training libraries (Transformers, DeepSpeed, Accelerate)\"\n    },\n    {\n      \"skill_id\": \"fsdp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FSDP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Megatron-LM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong software engineering practices\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"released models on Hugging Face\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning approaches\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimizing models for production inference\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"synthetic data generation pipelines\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-source LLM training projects or tools\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Encoder models\",\n      \"raw_text\": \"encoder models\"\n    },\n    {\n      \"label\": \"Pre-training\",\n      \"raw_text\": \"pre-training\"\n    },\n    {\n      \"label\": \"Continued pre-training\",\n      \"raw_text\": \"continued pre-training\"\n    },\n    {\n      \"label\": \"Large-scale training dataset preparation\",\n      \"raw_text\": \"preparing large-scale training datasets\"\n    },\n    {\n      \"label\": \"Data filtering\",\n      \"raw_text\": \"data filtering\"\n    },\n    {\n      \"label\": \"Training data quality assessment\",\n      \"raw_text\": \"quality assessment\"\n    },\n    {\n      \"label\": \"Data deduplication\",\n      \"raw_text\": \"deduplication strategies\"\n    },\n    {\n      \"label\": \"Data mixture design\",\n      \"raw_text\": \"data mixture design\"\n    },\n    {\n      \"label\": \"Axolotl\",\n      \"raw_text\": \"Axolotl\"\n    },\n    {\n      \"label\": \"Multi-node training job orchestration\",\n      \"raw_text\": \"orchestrating multi-node jobs\"\n    },\n    {\n      \"label\": \"Distributed training failure debugging\",\n      \"raw_text\": \"debugging failures\"\n    },\n    {\n      \"label\": \"Training throughput optimization\",\n      \"raw_text\": \"optimizing throughput\"\n    },\n    {\n      \"label\": \"Training dynamics and stability\",\n      \"raw_text\": \"Strong understanding of training dynamics at scale\"\n    },\n    {\n      \"label\": \"Training loss instability debugging\",\n      \"raw_text\": \"debugging loss instabilities\"\n    },\n    {\n      \"label\": \"Learning rate schedule tuning\",\n      \"raw_text\": \"tuning learning rate schedules\"\n    },\n    {\n      \"label\": \"Accelerate\",\n      \"raw_text\": \"Accelerate\"\n    },\n    {\n      \"label\": \"Code review\",\n      \"raw_text\": \"code review\"\n    },\n    {\n      \"label\": \"RLHF\",\n      \"raw_text\": \"RLHF\"\n    },\n    {\n      \"label\": \"DPO\",\n      \"raw_text\": \"DPO\"\n    },\n    {\n      \"label\": \"GRPO\",\n      \"raw_text\": \"GRPO\"\n    },\n    {\n      \"label\": \"Model compression\",\n      \"raw_text\": \"model compression\"\n    },\n    {\n      \"label\": \"Memory optimization\",\n      \"raw_text\": \"memory optimization\"\n    },\n    {\n      \"label\": \"Gradient checkpointing\",\n      \"raw_text\": \"gradient checkpointing\"\n    },\n    {\n      \"label\": \"Mixed precision training\",\n      \"raw_text\": \"mixed precision training (FP16, BF16, FP8)\"\n    },\n    {\n      \"label\": \"ZeRO optimization\",\n      \"raw_text\": \"ZeRO optimization\"\n    },\n    {\n      \"label\": \"Synthetic data generation\",\n      \"raw_text\": \"synthetic data generation pipelines\"\n    },\n    {\n      \"label\": \"Domain adaptation\",\n      \"raw_text\": \"domain adaptation\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of ML engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHO WE'RE LOOKING FOR and MINIMUM QUALIFICATIONS supply required skills; PREFERRED QUALIFICATIONS supplies optional skills. Technologies appearing only in responsibilities, company descriptions, or benefits are excluded.\\nGroup 1 contains the mapped alternatives remaining from the distributed-training framework list; Axolotl is unmapped. DeepSpeed leaves the group because the separate training-library qualification asks for it independently.\\nPre-training alternatives have no remaining multi-member mapped group: model training is independently required, while the other distinct training methods lack taxonomy entries.\\nTransformers is read literally as the training library named in the qualification, using the available transformers taxonomy entry.\\nThe open-source-llms mapping is flagged because contributing to open-source LLM training tools does not necessarily establish experience with open-source models themselves.\\nUnmapped entries include technical methods explicitly requested in qualifications; research venues, publication credentials, and domain knowledge are not treated as skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "deep understanding of distributed systems"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering experience"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models to production"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "hands-on experience training language models at scale (from embedding models to specialized LLMs)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "hands-on experience training language models at scale (from embedding models to specialized LLMs)"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "rigorous evaluation"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "production experience using training libraries (Transformers, DeepSpeed, Accelerate)"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering practices"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning approaches"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing models for production inference"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source LLM training projects or tools",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Encoder models",
+        "raw_text": "encoder models"
+      },
+      {
+        "label": "Pre-training",
+        "raw_text": "pre-training"
+      },
+      {
+        "label": "Continued pre-training",
+        "raw_text": "continued pre-training"
+      },
+      {
+        "label": "Large-scale training dataset preparation",
+        "raw_text": "preparing large-scale training datasets"
+      },
+      {
+        "label": "Data filtering",
+        "raw_text": "data filtering"
+      },
+      {
+        "label": "Training data quality assessment",
+        "raw_text": "quality assessment"
+      },
+      {
+        "label": "Data deduplication",
+        "raw_text": "deduplication strategies"
+      },
+      {
+        "label": "Data mixture design",
+        "raw_text": "data mixture design"
+      },
+      {
+        "label": "Axolotl",
+        "raw_text": "Axolotl"
+      },
+      {
+        "label": "Multi-node training job orchestration",
+        "raw_text": "orchestrating multi-node jobs"
+      },
+      {
+        "label": "Distributed training failure debugging",
+        "raw_text": "debugging failures"
+      },
+      {
+        "label": "Training throughput optimization",
+        "raw_text": "optimizing throughput"
+      },
+      {
+        "label": "Training dynamics and stability",
+        "raw_text": "Strong understanding of training dynamics at scale"
+      },
+      {
+        "label": "Training loss instability debugging",
+        "raw_text": "debugging loss instabilities"
+      },
+      {
+        "label": "Learning rate schedule tuning",
+        "raw_text": "tuning learning rate schedules"
+      },
+      {
+        "label": "Accelerate",
+        "raw_text": "Accelerate"
+      },
+      {
+        "label": "Code review",
+        "raw_text": "code review"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "DPO",
+        "raw_text": "DPO"
+      },
+      {
+        "label": "GRPO",
+        "raw_text": "GRPO"
+      },
+      {
+        "label": "Model compression",
+        "raw_text": "model compression"
+      },
+      {
+        "label": "Memory optimization",
+        "raw_text": "memory optimization"
+      },
+      {
+        "label": "Gradient checkpointing",
+        "raw_text": "gradient checkpointing"
+      },
+      {
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision training (FP16, BF16, FP8)"
+      },
+      {
+        "label": "ZeRO optimization",
+        "raw_text": "ZeRO optimization"
+      },
+      {
+        "label": "Synthetic data generation",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "label": "Domain adaptation",
+        "raw_text": "domain adaptation"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of ML engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHO WE'RE LOOKING FOR and MINIMUM QUALIFICATIONS supply required skills; PREFERRED QUALIFICATIONS supplies optional skills. Technologies appearing only in responsibilities, company descriptions, or benefits are excluded.\nGroup 1 contains the mapped alternatives remaining from the distributed-training framework list; Axolotl is unmapped. DeepSpeed leaves the group because the separate training-library qualification asks for it independently.\nPre-training alternatives have no remaining multi-member mapped group: model training is independently required, while the other distinct training methods lack taxonomy entries.\nTransformers is read literally as the training library named in the qualification, using the available transformers taxonomy entry.\nThe open-source-llms mapping is flagged because contributing to open-source LLM training tools does not necessarily establish experience with open-source models themselves.\nUnmapped entries include technical methods explicitly requested in qualifications; research venues, publication credentials, and domain knowledge are not treated as skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "591beea78f5bf5acff6dbb51443dd8a15ae812c874e33a6d244a661f171247fe",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

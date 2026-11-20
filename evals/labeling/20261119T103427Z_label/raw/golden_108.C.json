@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning/AI systems\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying and maintaining machine learning/AI systems in production\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying and maintaining machine learning/AI systems in production\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data pipelines\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps tooling\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"developing full stack applications\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Model inference\",\n      \"raw_text\": \"model inference\"\n    },\n    {\n      \"label\": \"Edge deployment\",\n      \"raw_text\": \"deploying models on edge devices or consumer hardware\"\n    },\n    {\n      \"label\": \"Privacy-preserving AI\",\n      \"raw_text\": \"privacy-preserving AI\"\n    },\n    {\n      \"label\": \"Performance tuning\",\n      \"raw_text\": \"performance tuning\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Forward Deployed AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s degree in a relevant technical discipline.\",\n  \"uncertain\": [],\n  \"notes\": \"Flagged mlops as uncertain for 'deploying and maintaining machine learning/AI systems in production' since ai-deployment covers deploying, while mlops has alias 'production operation of ai models'. Skipped skills mentioned only in Key Responsibilities (agentic workflows, multi-step reasoning, tool use).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "machine learning/AI systems"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying and maintaining machine learning/AI systems in production"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "deploying and maintaining machine learning/AI systems in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps tooling"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "developing full stack applications"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Model inference",
+        "raw_text": "model inference"
+      },
+      {
+        "label": "Edge deployment",
+        "raw_text": "deploying models on edge devices or consumer hardware"
+      },
+      {
+        "label": "Privacy-preserving AI",
+        "raw_text": "privacy-preserving AI"
+      },
+      {
+        "label": "Performance tuning",
+        "raw_text": "performance tuning"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Forward Deployed AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s degree in a relevant technical discipline.",
+    "uncertain": [],
+    "notes": "Flagged mlops as uncertain for 'deploying and maintaining machine learning/AI systems in production' since ai-deployment covers deploying, while mlops has alias 'production operation of ai models'. Skipped skills mentioned only in Key Responsibilities (agentic workflows, multi-step reasoning, tool use)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "66d4de774a0ba9753a1b197213da0cda912c2b60850f55a5c74d457a766ee89d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "apache-spark",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "24c3631c770d4ead6176c05c083b4e9cec69f4d291c897f4e553c6ce72220266",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet 'Experience with Big Data tools – Spark, S3, Hadoop' under 'It’s Great if you have:' explicitly names Spark as a nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet 'Experience with Big Data tools – Spark, S3, Hadoop' under 'It’s Great if you have:' explicitly names Spark as a nice-to-have skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "vector-search",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "72534f9f64b9ad70ccfccefc1a4a6239ac85a44a253ab9d3321487c31e80b28a",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the nice-to-have qualification bullet explicitly asks for experience with 'vector databases, embeddings, or semantic search', supporting the vector-search skill.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the nice-to-have qualification bullet explicitly asks for experience with 'vector databases, embeddings, or semantic search', supporting the vector-search skill.",
+  "error": null
+}

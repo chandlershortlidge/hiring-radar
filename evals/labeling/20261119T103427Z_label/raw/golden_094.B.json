@@ -1,0 +1,105 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed control systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ethernet-based control networks\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"real-time monitoring\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"make architecture decisions\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Industrial automation\",\n      \"raw_text\": \"industrial automation\"\n    },\n    {\n      \"label\": \"Thermal management systems\",\n      \"raw_text\": \"thermal management systems\"\n    },\n    {\n      \"label\": \"Hardware, firmware, and software subsystem integration\",\n      \"raw_text\": \"integrating multiple hardware, firmware, and software subsystems\"\n    },\n    {\n      \"label\": \"Control theory\",\n      \"raw_text\": \"control theory\"\n    },\n    {\n      \"label\": \"Feedback systems\",\n      \"raw_text\": \"feedback systems\"\n    },\n    {\n      \"label\": \"PID control\",\n      \"raw_text\": \"PID control\"\n    },\n    {\n      \"label\": \"System modeling\",\n      \"raw_text\": \"system modeling\"\n    },\n    {\n      \"label\": \"Dynamic thermal management\",\n      \"raw_text\": \"dynamic thermal management\"\n    },\n    {\n      \"label\": \"Industrial communication and management protocols\",\n      \"raw_text\": \"industrial communication and management protocols\"\n    },\n    {\n      \"label\": \"Modbus\",\n      \"raw_text\": \"Modbus\"\n    },\n    {\n      \"label\": \"BACnet\",\n      \"raw_text\": \"BACnet\"\n    },\n    {\n      \"label\": \"OPC UA\",\n      \"raw_text\": \"OPC UA\"\n    },\n    {\n      \"label\": \"MQTT\",\n      \"raw_text\": \"MQTT\"\n    },\n    {\n      \"label\": \"Fault detection\",\n      \"raw_text\": \"fault detection\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Staff / Principal Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline\",\n  \"notes\": \"Who You Are supplies candidate requirements; no optional qualification heading appears. What We Need describes responsibilities, and What You Will Learn describes future learning, so neither supplies additional skills.\\nThe distributed control systems mapping is flagged because a specialized control-system requirement may not match the taxonomy's general Distributed Systems entry. The software architecture mapping is flagged because the architecture requirement spans hardware and mechanical systems as well as software.\\nLiquid-cooling equipment knowledge and datacenter infrastructure knowledge are treated as excluded domain knowledge; control methods, protocols, automation, and subsystem integration are treated as technical practices.\\nTelemetry is covered by observability rather than assigned a separate invented taxonomy ID.\\nThe alternatives in 'distributed control systems, industrial automation, datacenter infrastructure, or thermal management systems' leave only one mapped taxonomy skill, so no alternative_group is emitted.\\nThe explicit Senior Staff / Principal title determines seniority despite the statements welcoming candidates at various levels.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed control systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Ethernet-based control networks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "real-time monitoring"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "make architecture decisions",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Industrial automation",
+        "raw_text": "industrial automation"
+      },
+      {
+        "label": "Thermal management systems",
+        "raw_text": "thermal management systems"
+      },
+      {
+        "label": "Hardware, firmware, and software subsystem integration",
+        "raw_text": "integrating multiple hardware, firmware, and software subsystems"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Feedback systems",
+        "raw_text": "feedback systems"
+      },
+      {
+        "label": "PID control",
+        "raw_text": "PID control"
+      },
+      {
+        "label": "System modeling",
+        "raw_text": "system modeling"
+      },
+      {
+        "label": "Dynamic thermal management",
+        "raw_text": "dynamic thermal management"
+      },
+      {
+        "label": "Industrial communication and management protocols",
+        "raw_text": "industrial communication and management protocols"
+      },
+      {
+        "label": "Modbus",
+        "raw_text": "Modbus"
+      },
+      {
+        "label": "BACnet",
+        "raw_text": "BACnet"
+      },
+      {
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      },
+      {
+        "label": "MQTT",
+        "raw_text": "MQTT"
+      },
+      {
+        "label": "Fault detection",
+        "raw_text": "fault detection"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Staff / Principal Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline",
+    "notes": "Who You Are supplies candidate requirements; no optional qualification heading appears. What We Need describes responsibilities, and What You Will Learn describes future learning, so neither supplies additional skills.\nThe distributed control systems mapping is flagged because a specialized control-system requirement may not match the taxonomy's general Distributed Systems entry. The software architecture mapping is flagged because the architecture requirement spans hardware and mechanical systems as well as software.\nLiquid-cooling equipment knowledge and datacenter infrastructure knowledge are treated as excluded domain knowledge; control methods, protocols, automation, and subsystem integration are treated as technical practices.\nTelemetry is covered by observability rather than assigned a separate invented taxonomy ID.\nThe alternatives in 'distributed control systems, industrial automation, datacenter infrastructure, or thermal management systems' leave only one mapped taxonomy skill, so no alternative_group is emitted.\nThe explicit Senior Staff / Principal title determines seniority despite the statements welcoming candidates at various levels."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5e3b357a9689adf9421c51a07edf3da208e61ee4af525330bfe91bcd4564bab0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

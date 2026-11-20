@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "computer-vision",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "9478d680d1cc1d416360d69b4092cbcf1d34f2ef84de6324692929eb53579b49",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 4 and 5, 'LiDAR/camera perception' appears only in the responsibilities section ('What You’ll Be Doing') and does not explicitly name the broader skill 'computer-vision'.\"}",
+  "decision": "drop",
+  "why": "Under rules 4 and 5, 'LiDAR/camera perception' appears only in the responsibilities section ('What You’ll Be Doing') and does not explicitly name the broader skill 'computer-vision'.",
+  "error": null
+}

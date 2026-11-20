@@ -1,0 +1,46 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied machine learning experience\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Statistical modeling\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Signal Processing\",\n      \"raw_text\": \"signal-processing\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD\",\n  \"uncertain\": [],\n  \"notes\": \"Skipped 'AI agents' as it appears only in company/role description and 'WHY FL127' section (with appetite wording 'someone who wants to work this way'), not in qualifications. Domain knowledge (human physiology, skin optics models, digital biomarkers) excluded per taxonomy rules. 'modern ML stack' collapses into machine-learning.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied machine learning experience"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical modeling"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Signal Processing",
+        "raw_text": "signal-processing"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD",
+    "uncertain": [],
+    "notes": "Skipped 'AI agents' as it appears only in company/role description and 'WHY FL127' section (with appetite wording 'someone who wants to work this way'), not in qualifications. Domain knowledge (human physiology, skin optics models, digital biomarkers) excluded per taxonomy rules. 'modern ML stack' collapses into machine-learning."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "7919368e18abc124b7e4bf6442aba57c93ca9766936dd9facad1429e277f0f74",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

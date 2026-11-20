@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "distributed-training",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9c412898cbc3a679f81d8f36aaa49a73f198694ea932393909ae086373b19a86",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, the Preferred Qualifications sentence \\\"Proficiency in designing distributed systems for model training, evaluation, and online inference\\\" names distributed model training as a skill, and Rule 3 doesn't apply because nothing in the posting makes it required, so A's nice_to_have label with that raw_text stands.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, the Preferred Qualifications sentence \"Proficiency in designing distributed systems for model training, evaluation, and online inference\" names distributed model training as a skill, and Rule 3 doesn't apply because nothing in the posting makes it required, so A's nice_to_have label with that raw_text stands.",
+  "error": null
+}

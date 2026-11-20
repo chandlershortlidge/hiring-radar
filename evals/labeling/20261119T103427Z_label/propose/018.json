@@ -1,0 +1,14 @@
+{
+  "item": 18,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bbbcf4a21b4344702f0534185a7f7717ef0f24b5bba6bbf0181d92c005a3cde3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Who You Are' qualification bullet 'make architecture decisions' names an architecture skill, and the 'What We Need' section asks the candidate to define and lead the control-plane architecture, which spans software subsystems, APIs, and protocols; rule 3 then makes the required mention stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Who You Are' qualification bullet 'make architecture decisions' names an architecture skill, and the 'What We Need' section asks the candidate to define and lead the control-plane architecture, which spans software subsystems, APIs, and protocols; rule 3 then makes the required mention stand.",
+  "error": null
+}

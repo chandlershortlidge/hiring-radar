@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4744850108728b66fe645c97e5ee0c9b3d1a4b663dc2c46ab321e6f080e13d6e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required 'What you'll need' Coding bullet names building pipelines ('ship analyses and pipelines end to end'), and rule 3 makes that required mention decisive, so the agreed required label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required 'What you'll need' Coding bullet names building pipelines ('ship analyses and pipelines end to end'), and rule 3 makes that required mention decisive, so the agreed required label and raw_text stand.",
+  "error": null
+}

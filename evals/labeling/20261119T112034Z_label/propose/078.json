@@ -1,0 +1,14 @@
+{
+  "item": 78,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "pytorch",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1b9fed6eea5d3ebc7f6ce8a1cbdfa226b6a0eb1d062b26662c84b0df578894b2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the heading \\\"The qualifications you need,\\\" the Software/Data Engineering bullet names PyTorch among the ML/AI libraries, so by rules 1 and 3 it is a required mention quoted verbatim as \\\"PyTorch\\\".\"}",
+  "decision": "ok",
+  "why": "Under the heading \"The qualifications you need,\" the Software/Data Engineering bullet names PyTorch among the ML/AI libraries, so by rules 1 and 3 it is a required mention quoted verbatim as \"PyTorch\".",
+  "error": null
+}

@@ -1,0 +1,123 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"causal-inference\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"causal inference\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"A/B testing\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning modeling\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"time series forecasting\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning models\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data pipeline development\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS data storage\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spark\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic AI solutions\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI coding tools\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Difference-in-Differences (DiD)\",\n      \"raw_text\": \"DiD\"\n    },\n    {\n      \"label\": \"Bandits\",\n      \"raw_text\": \"Bandits\"\n    },\n    {\n      \"label\": \"Uplift modeling\",\n      \"raw_text\": \"uplift modeling\"\n    },\n    {\n      \"label\": \"Probabilistic models\",\n      \"raw_text\": \"probabilistic models\"\n    },\n    {\n      \"label\": \"Optimization algorithms\",\n      \"raw_text\": \"optimization\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS with 8+ years experiences with equivalent publications.\",\n  \"notes\": \"Mapped 'agentic AI solutions' to agents and marked nice_to_have due to 'is highly desirable'. Mapped 'deploying models' to ai-deployment. Degree is PhD or MS, taking highest level named (phd).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "causal inference"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning modeling"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "required",
+        "raw_text": "time series forecasting"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning models"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipeline development"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS data storage"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding tools"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Difference-in-Differences (DiD)",
+        "raw_text": "DiD"
+      },
+      {
+        "label": "Bandits",
+        "raw_text": "Bandits"
+      },
+      {
+        "label": "Uplift modeling",
+        "raw_text": "uplift modeling"
+      },
+      {
+        "label": "Probabilistic models",
+        "raw_text": "probabilistic models"
+      },
+      {
+        "label": "Optimization algorithms",
+        "raw_text": "optimization"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS with 8+ years experiences with equivalent publications.",
+    "notes": "Mapped 'agentic AI solutions' to agents and marked nice_to_have due to 'is highly desirable'. Mapped 'deploying models' to ai-deployment. Degree is PhD or MS, taking highest level named (phd)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "8de1ca8dfdb16062ecbb8a7861ea25aa1584ac83d70a8e71b06ee457e6b0248b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

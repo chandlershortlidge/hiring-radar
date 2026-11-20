@@ -1,0 +1,54 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"RTL design\",\n      \"raw_text\": \"RTL design\"\n    },\n    {\n      \"label\": \"Microarchitecture\",\n      \"raw_text\": \"micro-architecture of caches and/or scratch-pad memories\"\n    },\n    {\n      \"label\": \"Performance modeling\",\n      \"raw_text\": \"performance models for architecture exploration\"\n    },\n    {\n      \"label\": \"Microprocessor architecture\",\n      \"raw_text\": \"microprocessor architecture\"\n    },\n    {\n      \"label\": \"Logic design\",\n      \"raw_text\": \"logic design principles\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Accelerator Architect\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred).\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Seniority is labeled senior (stated) based on 'Architect' in the title per the guide ('Lead, principal, staff, head, architect -> senior'), though the text also states 'looking for contributors of all seniorities' and 'We welcome candidates at various experience levels'; flagged seniority as uncertain.\\nDegree is labeled phd (highest level named) and required (since a Bachelor's degree is required and MS or PhD is preferred).\\n'What You’ll Learn' describes learning outcomes on the job rather than candidate requirements, so items only appearing there were excluded.\\nHardware engineering skills (RTL design, micro-architecture, performance models, microprocessor architecture, logic design) have no matching taxonomy entries and were placed in unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "RTL design",
+        "raw_text": "RTL design"
+      },
+      {
+        "label": "Microarchitecture",
+        "raw_text": "micro-architecture of caches and/or scratch-pad memories"
+      },
+      {
+        "label": "Performance modeling",
+        "raw_text": "performance models for architecture exploration"
+      },
+      {
+        "label": "Microprocessor architecture",
+        "raw_text": "microprocessor architecture"
+      },
+      {
+        "label": "Logic design",
+        "raw_text": "logic design principles"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Accelerator Architect",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred).",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority is labeled senior (stated) based on 'Architect' in the title per the guide ('Lead, principal, staff, head, architect -> senior'), though the text also states 'looking for contributors of all seniorities' and 'We welcome candidates at various experience levels'; flagged seniority as uncertain.\nDegree is labeled phd (highest level named) and required (since a Bachelor's degree is required and MS or PhD is preferred).\n'What You’ll Learn' describes learning outcomes on the job rather than candidate requirements, so items only appearing there were excluded.\nHardware engineering skills (RTL design, micro-architecture, performance models, microprocessor architecture, logic design) have no matching taxonomy entries and were placed in unmapped."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "8b02280c204ed9e48555795d85050ee4ed8789713e6f4d55489a46d00cdb80a2",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

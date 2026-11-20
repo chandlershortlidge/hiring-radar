@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f2ae3504eff3dc46e05c0b9b69b711d1f84dc53fc95a4e9927cd4ef722bc3939",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only devops mention is \\\"Previous roles in SRE, DevOps, or Platform Engineering,\\\" which names job titles rather than a skill, and rule 5 bars adding devops from the broader GitOps or infrastructure-as-code wording.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only devops mention is \"Previous roles in SRE, DevOps, or Platform Engineering,\" which names job titles rather than a skill, and rule 5 bars adding devops from the broader GitOps or infrastructure-as-code wording.",
+  "error": null
+}

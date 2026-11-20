@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0721835fafd02a203bf4c2039fad906fe1690d9dbd5bdae7b3a766d60d7ac759",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Who You Are' bullet 'You are experienced with ... telemetry, real-time monitoring, and fault detection' is a qualification that names monitoring and telemetry, so observability is a required skill and the agreed raw_text quotes that mention, per rule 3.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Who You Are' bullet 'You are experienced with ... telemetry, real-time monitoring, and fault detection' is a qualification that names monitoring and telemetry, so observability is a required skill and the agreed raw_text quotes that mention, per rule 3.",
+  "error": null
+}

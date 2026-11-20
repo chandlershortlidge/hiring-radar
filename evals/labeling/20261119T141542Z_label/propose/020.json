@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "data-visualization",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d6ca263dd001163cf54b83c25d1174e6cc2545819e4dbf91c74c3252b47551ed",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the visualization skill is named only in the 'What Sets You Apart' preference section, as one option among several credentials, and the 'What You Must Have' list does not mention it, so under rule 3 no required mention exists and nice_to_have with Labeler A's raw_text is correct.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the visualization skill is named only in the 'What Sets You Apart' preference section, as one option among several credentials, and the 'What You Must Have' list does not mention it, so under rule 3 no required mention exists and nice_to_have with Labeler A's raw_text is correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3b8cd81e9655495273ca4d0324fad32fa2e5e3ba1c152f128245bd846a382cf9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have bullet about hands-on fine-tuning with LoRA/QLoRA to adapt open-weight models is a qualification that names this skill, and the agreed raw_text is quoted word for word from it.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have bullet about hands-on fine-tuning with LoRA/QLoRA to adapt open-weight models is a qualification that names this skill, and the agreed raw_text is quoted word for word from it.",
+  "error": null
+}

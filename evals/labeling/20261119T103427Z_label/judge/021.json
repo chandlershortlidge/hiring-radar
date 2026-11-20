@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ml-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "98517b57fe4eb4bb72f6d3691ac2b014b30585f818d212f3afac1f847a6bebd4",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line referring to a broad role or field ('7+ years of experience in AI/ML engineering') does not count as a skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line referring to a broad role or field ('7+ years of experience in AI/ML engineering') does not count as a skill.",
+  "error": null
+}

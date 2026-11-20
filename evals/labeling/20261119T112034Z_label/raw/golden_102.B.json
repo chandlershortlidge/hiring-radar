@@ -1,0 +1,65 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kotlin\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kotlin\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Android architecture\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Native Android development\",\n      \"raw_text\": \"Strong native Android experience\"\n    },\n    {\n      \"label\": \"Android app shipping\",\n      \"raw_text\": \"Experience shipping Android apps used by real users.\"\n    },\n    {\n      \"label\": \"Jetpack\",\n      \"raw_text\": \"Jetpack\"\n    },\n    {\n      \"label\": \"Coroutines\",\n      \"raw_text\": \"Coroutines\"\n    },\n    {\n      \"label\": \"Flow\",\n      \"raw_text\": \"Flow\"\n    },\n    {\n      \"label\": \"Production debugging\",\n      \"raw_text\": \"debug production issues\"\n    },\n    {\n      \"label\": \"App performance optimization\",\n      \"raw_text\": \"improve performance\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"notes\": \"WHAT WE'RE LOOKING FOR contains required qualifications; no optional skills section appears.\\nAndroid architecture maps to Software Architecture; Android development, its named libraries/features, app shipping, debugging and performance optimization have no exact taxonomy entries.\\nDebugging alone is not treated as Software Testing; the posting does not ask for testing.\\nProduct sense and care for UX are treated literally as soft qualities, not a requirement for a named UX technique.\\nAPIs, authentication and secure data handling appear only in responsibilities and are excluded.\\nStrong experience, real-user shipping and career highlights do not establish seniority under the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kotlin",
+        "requirement": "required",
+        "raw_text": "Kotlin"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Android architecture"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Native Android development",
+        "raw_text": "Strong native Android experience"
+      },
+      {
+        "label": "Android app shipping",
+        "raw_text": "Experience shipping Android apps used by real users."
+      },
+      {
+        "label": "Jetpack",
+        "raw_text": "Jetpack"
+      },
+      {
+        "label": "Coroutines",
+        "raw_text": "Coroutines"
+      },
+      {
+        "label": "Flow",
+        "raw_text": "Flow"
+      },
+      {
+        "label": "Production debugging",
+        "raw_text": "debug production issues"
+      },
+      {
+        "label": "App performance optimization",
+        "raw_text": "improve performance"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "notes": "WHAT WE'RE LOOKING FOR contains required qualifications; no optional skills section appears.\nAndroid architecture maps to Software Architecture; Android development, its named libraries/features, app shipping, debugging and performance optimization have no exact taxonomy entries.\nDebugging alone is not treated as Software Testing; the posting does not ask for testing.\nProduct sense and care for UX are treated literally as soft qualities, not a requirement for a named UX technique.\nAPIs, authentication and secure data handling appear only in responsibilities and are excluded.\nStrong experience, real-user shipping and career highlights do not establish seniority under the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "74e0ba994fdf73f117d4a6dc000a49749082428d1da1d89d9ba25330356d449c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

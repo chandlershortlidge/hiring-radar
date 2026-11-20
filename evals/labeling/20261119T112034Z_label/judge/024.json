@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "eef28e2a3a4166c37c925063e530f1955ec559e1e71e083c90bb366f5cbda667",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rules 1 and 3, the required qualification bullet asking for a 'focus on ML infrastructure' directly names the ai-infrastructure skill.\"}",
+  "decision": "A",
+  "why": "Under rules 1 and 3, the required qualification bullet asking for a 'focus on ML infrastructure' directly names the ai-infrastructure skill.",
+  "error": null
+}

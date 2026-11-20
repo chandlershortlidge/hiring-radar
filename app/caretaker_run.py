@@ -32,9 +32,9 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import misses, poll
+from app import geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
-from app.sources import registry
+from app.sources import jsearch, registry
 
 MODE = "report"
 # The Hiring-radar team on Linear; LINEAR_TEAM_ID overrides it.
@@ -114,6 +114,9 @@ def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, 
     now = now or datetime.now(timezone.utc)
     runs = load_runs(conn, _day(day, ct.FEED_HISTORY_DAYS), day)
     today = latest_today(runs, day)
+    # The US collection runs at 07:00 New York, after this check (HIR-369): a feed only that
+    # run fetches is judged on its run from yesterday, so US searches are checked a day late.
+    yesterday = latest_today(runs, _day(day, 1))
     budget = Budget(spent=spent_on(conn, day))
     start_spent = budget.spent
     known = {(f["type"], f["token"].lower()) for f in feeds_doc["feeds"] if f.get("token")}
@@ -131,10 +134,10 @@ def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, 
                 except Exception as e:
                     found += ct.recheck_paused(feed, None, f"{type(e).__name__}: {str(e)[:120]}")
             continue
-        run = today.get(label)
+        run = yesterday.get(label) if poll.feed_regions(feed) == (geo.US,) else today.get(label)
         if run is None:
             continue
-        history = [r for r in runs if r.label == label and r.day < day]
+        history = [r for r in runs if r.label == label and r.day < run.day]
         source = registry.BY_NAME.get(feed["type"])
         if source and source.kind == "board":
             n, last_seen = poll.board_history(conn, feed)
@@ -185,6 +188,16 @@ def weekly_text(conn: sqlite3.Connection, start: str, end: str) -> str:
     return ct.weekly_summary(rows, start, end, acting=MODE == "act")
 
 
+def jsearch_usage_text(conn: sqlite3.Connection, end: str) -> str:
+    """One Monday line: Google for Jobs (JSearch) requests so far in the month of `end`,
+    against our own cap (HIR-352). Past the cap the searches stop until the month turns."""
+    used, cap = poll.jsearch_requests(conn, end[:7]), jsearch.MONTHLY_CAP
+    line = f"Google for Jobs searches in {end[:7]}: {used:,} of our cap of {cap:,}."
+    if used >= cap:
+        line += " The cap is reached: those searches are stopped until the month turns."
+    return line + "\n"
+
+
 def post_json(url: str, payload: dict, headers: dict) -> dict:
     req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -218,6 +231,7 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                 + (changes(start, end) + "\n" if changes else "")
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
+                + "\n" + jsearch_usage_text(conn, end)
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
                 + "\n" + misses.trend_section(misses.records(conn), end,
                                                poll.load_feeds() if feeds is None else feeds))

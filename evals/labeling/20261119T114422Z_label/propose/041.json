@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "codex",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "227822e00fd8e834e77b71e01e7f666e3435151be41b58d886106449facb6b68",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet \\\"You use AI coding tools (Cursor, Claude Code, Copilot, Codex) daily\\\" names Codex as a required tool, and the agreed required label with raw_text \\\"Codex\\\" matches the posting word for word.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet \"You use AI coding tools (Cursor, Claude Code, Copilot, Codex) daily\" names Codex as a required tool, and the agreed required label with raw_text \"Codex\" matches the posting word for word.",
+  "error": null
+}

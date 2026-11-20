@@ -14,7 +14,8 @@ the setup in the 2026-11-01 entry.
 |---|---|
 | `provision.sh` | Builds the VM's software side from nothing. Safe to re-run. |
 | `hiring-radar.service` | The API process (systemd unit, copied from the VM). |
-| `hiring-radar-poll.service` / `.timer` | The 07:00 Europe/Berlin poll. |
+| `hiring-radar-poll.service` / `.timer` | The Europe poll, 07:00 Europe/Berlin (`poll --region europe`). |
+| `hiring-radar-poll-us.service` / `.timer` | The US poll, 07:00 America/New_York (`poll --region us`, HIR-369). |
 | `hiring-radar-backup.service` / `.timer` | The 03:30 Europe/Berlin backup. |
 | `hiring-radar-caretaker.service` / `.timer` | The 10:00 Europe/Berlin caretaker. |
 | `install-units.sh` | Makes the unit files in `/etc/systemd/system` match the ones here. Run by every deploy and by `provision.sh`. |
@@ -56,7 +57,7 @@ on the VM unless it says otherwise.
 | Database | `/var/lib/hiring-radar/hiring-radar.db` |
 | Secrets (`ANTHROPIC_API_KEY`, `LANGSMITH_API_KEY`, `HIRING_RADAR_DB`, …) | `/etc/hiring-radar.env`, root-only, never in git |
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
-| Daily poll | `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin |
+| Daily polls | Europe: `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin. US: `hiring-radar-poll-us.timer` → `hiring-radar-poll-us.service`, 07:00 America/New_York (13:00 Berlin). Each fetches only its region's feeds; company boards are in both (HIR-369, DECISIONS 2026-11-19) |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
 | Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts the Monday summary to Linear when `LINEAR_API_KEY` is set (HIR-257). The same post starts with the week's pull requests (needs you, merged, sent back and fixed), read from GitHub's public API and the checkout's git history, with no token (HIR-264). Then the robot visitor's week (what broke on the live site, what was rolled back, what was fixed), read from its Linear tickets with the same `LINEAR_API_KEY`, one read-only request a week; a break that came back after two fixes is listed above everything else (HIR-260). Report-only: never edits `config/feeds.json` |
 
@@ -73,11 +74,14 @@ harmless. `HIRING_RADAR_SEND_CHECKS=0` on the Mac switches it off.
 ```
 curl -s localhost:8000/api/stats | grep -o '"last_updated":"[^"]*"'   # moves on every ingest
 systemctl list-timers --all | grep hiring                           # LAST / NEXT for poll + backup
-journalctl -u hiring-radar-poll --since today --no-pager            # today's poll log
+journalctl -u hiring-radar-poll --since today --no-pager            # today's Europe poll log
+journalctl -u hiring-radar-poll-us --since today --no-pager         # today's US poll log
 ```
 
 `last_updated` is `max(last_seen)` across jobs: it advances whenever the poll ingests anything,
-even with no new jobs. A healthy morning shows it at ~06:00Z. The poll log ends with a `TOTAL`
+even with no new jobs. A healthy day shows it at ~06:00Z after the Europe poll and again around
+11:00–12:00Z after the US one. Each poll log starts with a `region` line naming the cities it
+covers, and ends with a `TOTAL`
 line and an `extracted=` line; a feed line with `FAILED` or `WARNING seen=0` needs a look
 (the warning means a company board that used to return postings returned none — usually
 the board changed its page format, as JOIN did in October 2026). A `grounding:` line means
@@ -156,8 +160,11 @@ frontend build on every push and PR; on a push to `main` that passes both, the `
 job runs `.github/workflows/site-watch.yml`: deploy the commit (`deploy.yml`), then the
 robot visitor clicks through the live site (HIR-258). If the robot fails, the site is
 rolled back to the last commit it passed (the `site-good` git tag) by deploying that
-commit the same way, and a Linear ticket is filed; if the rolled-back site fails too, the
-ticket is Urgent and assigned to Chandler. The whole release is serialized
+commit the same way, and a Linear ticket is filed. If the rolled-back site fails too, the
+robot's second report picks the ticket (HIR-359): when no path passed on it, the ticket is
+"Site down and rollback failed", Urgent and assigned to Chandler; when some path passed,
+the site is up and the deploy is probably not the cause, so each path that still fails
+gets an ordinary autopilot ticket that says so. The whole release is serialized
 (`concurrency: release`, no cancel-in-progress), so a second merge waits until the first
 is deployed and watched.
 
@@ -165,7 +172,8 @@ A rollback puts the old code back but not the old database: a migration the brok
 commit applied stays applied. Most migrations only add, and old code runs on the newer
 schema; a migration that rebuilds, drops or renames something (007, 008, 015 and 016 did)
 can leave the old code unable to read it. Then the robot fails on the rolled-back site
-too, and that is the "rollback failed" ticket that goes straight to Chandler.
+too; when it fails every path there, that is the "rollback failed" ticket that goes
+straight to Chandler.
 
 The deploy job (`.github/workflows/deploy.yml`):
 
@@ -345,12 +353,12 @@ gcloud storage cp "gs://hiring-radar-512318-backups/db/$BK" /tmp/
 gunzip -f "/tmp/$BK"
 sqlite3 "/tmp/${BK%.gz}" 'PRAGMA integrity_check;'          # expect: ok
 
-sudo systemctl stop hiring-radar-poll.timer hiring-radar
+sudo systemctl stop hiring-radar-poll.timer hiring-radar-poll-us.timer hiring-radar
 sudo mv /var/lib/hiring-radar/hiring-radar.db /var/lib/hiring-radar/hiring-radar.db.before-restore
 sudo rm -f /var/lib/hiring-radar/hiring-radar.db-wal /var/lib/hiring-radar/hiring-radar.db-shm
 sudo install -o hiring-radar -g hiring-radar -m 644 "/tmp/${BK%.gz}" \
   /var/lib/hiring-radar/hiring-radar.db
-sudo systemctl start hiring-radar hiring-radar-poll.timer
+sudo systemctl start hiring-radar hiring-radar-poll.timer hiring-radar-poll-us.timer
 
 curl -s localhost:8000/api/stats | head -c 200
 ```

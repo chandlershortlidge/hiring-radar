@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Posting has no requirements, qualifications, nice-to-have or tech-stack section; it is a company description followed by responsibilities only.\\nNo concrete technology is named anywhere, so per the guide nothing is labeled.\\n'translate unclear problems into usable AI workflows' is the only line phrased as an ask of the candidate. It names a capability rather than a taxonomy skill. 'AI workflows' is not 'workflow automation', so workflow-automation is not labeled (most literal reading).\\n'write the integration code' and 'run evaluations with clients' are responsibilities only. They describe duties, not skills the candidate is asked to have, so apis and evaluation are not labeled.\\nSeniority: no title level, years, 'proven experience' or lead/mentoring duty, so none.\\nGerman: the posting is in English and the role is in Los Angeles, with no language mentioned, so none.\\nDegree: no degree is mentioned, so none.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Posting has no requirements, qualifications, nice-to-have or tech-stack section; it is a company description followed by responsibilities only.\nNo concrete technology is named anywhere, so per the guide nothing is labeled.\n'translate unclear problems into usable AI workflows' is the only line phrased as an ask of the candidate. It names a capability rather than a taxonomy skill. 'AI workflows' is not 'workflow automation', so workflow-automation is not labeled (most literal reading).\n'write the integration code' and 'run evaluations with clients' are responsibilities only. They describe duties, not skills the candidate is asked to have, so apis and evaluation are not labeled.\nSeniority: no title level, years, 'proven experience' or lead/mentoring duty, so none.\nGerman: the posting is in English and the role is in Los Angeles, with no language mentioned, so none.\nDegree: no degree is mentioned, so none."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e3357b248485adb0cba98f3c09713ffff68e7ae48fc2dccd153ec85504e8107f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

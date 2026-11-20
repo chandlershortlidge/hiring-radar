@@ -1,0 +1,17 @@
+{
+  "item": 63,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c5b057abe86e22eff0a4f434255f1099c25940bf8d8bf9e158b1b4758a5f99d3",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"experience building or deploying AI/ML solutions\"}, \"why\": \"Under rule 3, the required preamble ('must have... experience building or deploying AI/ML solutions') is the determining mention, and the agreed raw_text 'secure AI deployment' comes only from an 'one or more of these areas' list, so the quote should be the required phrase (rule 1 applies since it names the skill).\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "experience building or deploying AI/ML solutions"
+  },
+  "why": "Under rule 3, the required preamble ('must have... experience building or deploying AI/ML solutions') is the determining mention, and the agreed raw_text 'secure AI deployment' comes only from an 'one or more of these areas' list, so the quote should be the required phrase (rule 1 applies since it names the skill).",
+  "error": null
+}

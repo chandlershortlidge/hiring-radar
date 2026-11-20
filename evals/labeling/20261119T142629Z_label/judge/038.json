@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7304a39f516842da4a2bb697f7f3aa15514db308220023003e79f99daf9b8c34",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required minimum qualification bullet asks for experience engineering 'retrieval and context pipelines' alongside LLM-based systems, which maps to `rag`.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required minimum qualification bullet asks for experience engineering 'retrieval and context pipelines' alongside LLM-based systems, which maps to `rag`.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c70dd5b2d97866597418752d74567f9eb3c78ebd2d6c0da780109cdcc3533d58",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, GCP is named in the 'What We're Looking For' qualification bullet ('Experience with cloud environments (Azure, AWS, GCP)'), so it is a required mention and the agreed required label with raw_text 'GCP' stands (rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, GCP is named in the 'What We're Looking For' qualification bullet ('Experience with cloud environments (Azure, AWS, GCP)'), so it is a required mention and the agreed required label with raw_text 'GCP' stands (rules 1 and 3).",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6bf06592610b2c6f997b6071fc668496b2c4e06a7c42e15ee4f0d6f5d9053f39",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet ('Strong proficiency in Python, Microsoft Azure, and modern cloud data platforms') names cloud, and rule 3 says the required mention wins, so the agreed required `cloud` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet ('Strong proficiency in Python, Microsoft Azure, and modern cloud data platforms') names cloud, and rule 3 says the required mention wins, so the agreed required `cloud` label stands.",
+  "error": null
+}

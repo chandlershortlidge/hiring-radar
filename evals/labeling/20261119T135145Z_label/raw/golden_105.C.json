@@ -1,0 +1,65 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software development\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"consistent use of AI across the SDLC\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud-native systems\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability best practices\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"integrating AI/LLM capabilities\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM capabilities\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"architectural direction\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent experience\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'software development' to software-engineering (flagged uncertain as it borders on years-of-experience phrasing). Mapped 'consistent use of AI across the SDLC' to ai-developer-tooling (flagged uncertain). Mapped 'integrating AI/LLM capabilities' to ai-ml and llms. Mapped 'architectural direction' under Preferred Qualifications to software-architecture (flagged uncertain).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "consistent use of AI across the SDLC",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native systems"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability best practices"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating AI/LLM capabilities",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM capabilities"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectural direction",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent experience",
+    "uncertain": [],
+    "notes": "Mapped 'software development' to software-engineering (flagged uncertain as it borders on years-of-experience phrasing). Mapped 'consistent use of AI across the SDLC' to ai-developer-tooling (flagged uncertain). Mapped 'integrating AI/LLM capabilities' to ai-ml and llms. Mapped 'architectural direction' under Preferred Qualifications to software-architecture (flagged uncertain)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "d4cf4b57251c37a041997a676a4a09b95e9ae07166e899244c323182c5e6782f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

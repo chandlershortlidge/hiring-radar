@@ -6,6 +6,15 @@ name: Rules gate
 # live in the reviewer: it reads the PR's own file list and fails when a rule file changed and
 # the "Did you authorize these?" block is missing from the description.
 #
+# It runs on `pull_request_target`, from the BASE branch's copy of this file and of
+# scripts/rules_gate.py (HIR-332). On plain `pull_request`, GitHub runs the PR's own copy, so a
+# PR that rewrote the gate to always pass would be judged by its rewrite. Safe here because
+# nothing from the PR is checked out or run: the job reads the PR's file list and description
+# through the API, as data. Never add a checkout of the PR head to this workflow.
+#
+# It also stops a PR that deletes a test, or adds a skip/xfail, until it carries the same
+# block (HIR-332): making a failing test pass by removing it is the failure that catches.
+#
 # `edited` is in the trigger list on purpose: the reviewer adds the block to the description
 # after CI has already run, and this is what re-runs the check so it can go green.
 #
@@ -15,7 +24,7 @@ name: Rules gate
 # the gate: the required check would then never report at all.
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, reopened, synchronize, edited]
 
 permissions:
@@ -27,18 +36,23 @@ jobs:
     name: Rules gate
     runs-on: ubuntu-latest
     steps:
+      # The base branch, never the PR: see the note at the top.
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          persist-credentials: false
       # The API's file list, not `git diff`: it is the same list the reviewer reads, and it
       # needs no fetch depth or base-ref guessing.
-      - name: Collect the PR's changed files and its description
+      - name: Collect the PR's changed files (with their diffs) and its description
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
           PR: ${{ github.event.pull_request.number }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename' > changed.txt
+          gh api "repos/$REPO/pulls/$PR/files" --paginate \
+            --jq '.[] | {filename, status, previous_filename, patch} | tojson' > files.jsonl
           printf '%s' "$PR_BODY" > body.md
       # Standard library only, so no uv sync and no lockfile in the loop.
       - name: Is the authorization block there?
-        run: python3 scripts/rules_gate.py --paths-file changed.txt --body-file body.md
+        run: python3 scripts/rules_gate.py --files-jsonl files.jsonl --body-file body.md

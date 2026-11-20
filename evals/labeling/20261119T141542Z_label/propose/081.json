@@ -1,0 +1,14 @@
+{
+  "item": 81,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5c19dc39bdd4fa91bfc5d05ce5e6895ef4db6e2cd849dc9180d79f6c76a9d263",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet names LLM tooling (vLLM) as a skill, and it sits under the 'Nice to have' heading, so nice_to_have and the quoted raw_text 'LLM tooling' are supported as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet names LLM tooling (vLLM) as a skill, and it sits under the 'Nice to have' heading, so nice_to_have and the quoted raw_text 'LLM tooling' are supported as agreed.",
+  "error": null
+}

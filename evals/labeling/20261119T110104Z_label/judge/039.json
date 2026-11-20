@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "rdkit",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "37f853ae45c626abc47df8cd18bfd25c62beba9279b68818f318c9117b94d42f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly names RDKit in a phrase ending with 'is preferred', making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly names RDKit in a phrase ending with 'is preferred', making it a valid nice-to-have skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "embeddings",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9741fbb141f63b3f8ceea23484adf604da15aaddc69e25ebffa9c89f7f214534",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required sentence \\\"Hands-on experience with graph machine learning is required. This includes working on graph embeddings\\\" names embeddings as a required qualification, and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required sentence \"Hands-on experience with graph machine learning is required. This includes working on graph embeddings\" names embeddings as a required qualification, and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

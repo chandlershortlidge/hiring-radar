@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd0aadeee2f5bacba25136ce1cc245d1b7fc1514cd27243e48d062099f6357fb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have qualification bullet names experience with \\\"spreadsheet agents\\\", which is a skill mention, so the agreed `agents` label with nice_to_have and that raw_text stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have qualification bullet names experience with \"spreadsheet agents\", which is a skill mention, so the agreed `agents` label with nice_to_have and that raw_text stands.",
+  "error": null
+}

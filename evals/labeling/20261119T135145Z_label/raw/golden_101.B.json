@@ -1,0 +1,138 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML models\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML optimization techniques\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed computing\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud computing environments\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"High-speed inter-chip networking\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Hardware design\",\n      \"raw_text\": \"hardware design\"\n    },\n    {\n      \"label\": \"Hardware design and implementation for AI/ML acceleration\",\n      \"raw_text\": \"designing/implementing hardware for AI/ML acceleration\"\n    },\n    {\n      \"label\": \"Hardware implementation of ML optimizations\",\n      \"raw_text\": \"hardware implementation of ML optimization techniques\"\n    },\n    {\n      \"label\": \"Sparsity\",\n      \"raw_text\": \"sparsity\"\n    },\n    {\n      \"label\": \"Pruning\",\n      \"raw_text\": \"pruning\"\n    },\n    {\n      \"label\": \"Verilog\",\n      \"raw_text\": \"Verilog\"\n    },\n    {\n      \"label\": \"SystemVerilog\",\n      \"raw_text\": \"SystemVerilog\"\n    },\n    {\n      \"label\": \"RTL design\",\n      \"raw_text\": \"RTL design\"\n    },\n    {\n      \"label\": \"RTL simulation\",\n      \"raw_text\": \"RTL design and simulation\"\n    },\n    {\n      \"label\": \"Memory system architecture\",\n      \"raw_text\": \"memory system architecture\"\n    },\n    {\n      \"label\": \"On-chip interconnects\",\n      \"raw_text\": \"on-chip interconnects\"\n    },\n    {\n      \"label\": \"Parallel processing\",\n      \"raw_text\": \"parallel processing\"\n    },\n    {\n      \"label\": \"Compiler technologies for AI models\",\n      \"raw_text\": \"compiler technologies for AI models\"\n    },\n    {\n      \"label\": \"MLIR\",\n      \"raw_text\": \"MLIR\"\n    },\n    {\n      \"label\": \"TVM\",\n      \"raw_text\": \"TVM\"\n    },\n    {\n      \"label\": \"Performance modeling and analysis tools\",\n      \"raw_text\": \"performance modeling and analysis tools\"\n    },\n    {\n      \"label\": \"System-level integration\",\n      \"raw_text\": \"system-level integration\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging\"\n    },\n    {\n      \"label\": \"Cloud deployment of hardware accelerators\",\n      \"raw_text\": \"deploying hardware accelerators in the cloud\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Proven experience (5+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.\",\n  \"notes\": \"Required Qualifications sets required labels; Preferred/Bonus Qualifications sets nice_to_have labels, including its unmapped skills.\\nOnly candidate qualifications were labeled; technologies and practices appearing solely in responsibilities or company descriptions were excluded.\\nAI/ML models and ML optimization techniques explicitly name AI/ML and machine learning, respectively.\\nHardware-specific design, simulation, deployment, and debugging were left unmapped rather than treated as software architecture, software testing, or AI model deployment.\\nVerilog and SystemVerilog are alternatives, as are MLIR and TVM examples for compiler technologies; all are unmapped, so there are no mapped alternative groups.\\nResearch publications and open-source contributions were read literally as contribution credentials, not as named technical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML models"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML optimization techniques"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed computing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud computing environments"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "High-speed inter-chip networking"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Hardware design",
+        "raw_text": "hardware design"
+      },
+      {
+        "label": "Hardware design and implementation for AI/ML acceleration",
+        "raw_text": "designing/implementing hardware for AI/ML acceleration"
+      },
+      {
+        "label": "Hardware implementation of ML optimizations",
+        "raw_text": "hardware implementation of ML optimization techniques"
+      },
+      {
+        "label": "Sparsity",
+        "raw_text": "sparsity"
+      },
+      {
+        "label": "Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Verilog",
+        "raw_text": "Verilog"
+      },
+      {
+        "label": "SystemVerilog",
+        "raw_text": "SystemVerilog"
+      },
+      {
+        "label": "RTL design",
+        "raw_text": "RTL design"
+      },
+      {
+        "label": "RTL simulation",
+        "raw_text": "RTL design and simulation"
+      },
+      {
+        "label": "Memory system architecture",
+        "raw_text": "memory system architecture"
+      },
+      {
+        "label": "On-chip interconnects",
+        "raw_text": "on-chip interconnects"
+      },
+      {
+        "label": "Parallel processing",
+        "raw_text": "parallel processing"
+      },
+      {
+        "label": "Compiler technologies for AI models",
+        "raw_text": "compiler technologies for AI models"
+      },
+      {
+        "label": "MLIR",
+        "raw_text": "MLIR"
+      },
+      {
+        "label": "TVM",
+        "raw_text": "TVM"
+      },
+      {
+        "label": "Performance modeling and analysis tools",
+        "raw_text": "performance modeling and analysis tools"
+      },
+      {
+        "label": "System-level integration",
+        "raw_text": "system-level integration"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "Cloud deployment of hardware accelerators",
+        "raw_text": "deploying hardware accelerators in the cloud"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Proven experience (5+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.",
+    "notes": "Required Qualifications sets required labels; Preferred/Bonus Qualifications sets nice_to_have labels, including its unmapped skills.\nOnly candidate qualifications were labeled; technologies and practices appearing solely in responsibilities or company descriptions were excluded.\nAI/ML models and ML optimization techniques explicitly name AI/ML and machine learning, respectively.\nHardware-specific design, simulation, deployment, and debugging were left unmapped rather than treated as software architecture, software testing, or AI model deployment.\nVerilog and SystemVerilog are alternatives, as are MLIR and TVM examples for compiler technologies; all are unmapped, so there are no mapped alternative groups.\nResearch publications and open-source contributions were read literally as contribution credentials, not as named technical skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "943539f3d444ee482e7cda019406639fea245bf81c303a85810fbfa2b468b1c2",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

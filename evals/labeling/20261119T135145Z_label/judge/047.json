@@ -1,0 +1,15 @@
+{
+  "item": 47,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "1215aead72fc6542fb6ae6cbcd66504adf2833d5fd10f0a15426e928a2ca7bb4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a specific skill ('machine learning R&D and deployment experience') counts, unlike a generic role-tenure line.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a specific skill ('machine learning R&D and deployment experience') counts, unlike a generic role-tenure line.",
+  "error": null
+}

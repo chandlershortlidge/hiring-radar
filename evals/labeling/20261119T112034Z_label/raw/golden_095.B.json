@@ -1,0 +1,154 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"advanced Machine Learning models\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"development and deployment of advanced Machine Learning models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deployment of advanced Machine Learning models\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"keen to learn Go\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"thoughtful about responsible ML/AI\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommendation\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"forecasting\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GenAI, LLMs\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic workflows\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation frameworks\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"writing critical production code\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"working with microservices\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"A/B tests\"\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"explainability\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Responsible AI/ML\",\n      \"raw_text\": \"responsible ML/AI\"\n    },\n    {\n      \"label\": \"Personalisation\",\n      \"raw_text\": \"personalisation\"\n    },\n    {\n      \"label\": \"Ranking\",\n      \"raw_text\": \"ranking\"\n    },\n    {\n      \"label\": \"Classification\",\n      \"raw_text\": \"classification\"\n    },\n    {\n      \"label\": \"Decisioning\",\n      \"raw_text\": \"decisioning\"\n    },\n    {\n      \"label\": \"Retrieval\",\n      \"raw_text\": \"retrieval\"\n    },\n    {\n      \"label\": \"Human-in-the-loop product experiences\",\n      \"raw_text\": \"human-in-the-loop product experiences\"\n    },\n    {\n      \"label\": \"Experiment design\",\n      \"raw_text\": \"designing experiments\"\n    },\n    {\n      \"label\": \"Auditability\",\n      \"raw_text\": \"auditability\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Machine Learning Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The candidate requirements are under 'You should apply if'; 'Nice to haves' makes its items optional. Technologies appearing only in responsibilities or team descriptions are excluded.\\nThe required AI/ML mapping rests on the candidate being thoughtful about responsible ML/AI; flagged because this may describe an attitude rather than technical knowledge. Responsible AI itself has no dedicated taxonomy entry.\\nGeneric retrieval does not explicitly specify RAG or vector search, so it remains unmapped.\\nWriting production code is interpreted literally as software engineering. Microservices in the Go sentence describe the company's systems; the explicit candidate experience ask is optional.\\nAlternative group 1 is the optional list of application techniques; group 2 is the optional GenAI/LLM-related experience list. Unmapped alternatives are retained in unmapped.\\nExperiment design and A/B testing offer alternatives, but only A/B testing has a matching taxonomy entry, so no single-member group is created.\\nExplainability and auditability are treated as optional technical practices named in the requested product experience; financial-sector knowledge and customer trust are excluded as domain knowledge and nontechnical attributes.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "advanced Machine Learning models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "development and deployment of advanced Machine Learning models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment of advanced Machine Learning models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "keen to learn Go"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "thoughtful about responsible ML/AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "forecasting",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAI, LLMs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation frameworks",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "writing critical production code"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "nice_to_have",
+        "raw_text": "working with microservices"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B tests"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "explainability"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Responsible AI/ML",
+        "raw_text": "responsible ML/AI"
+      },
+      {
+        "label": "Personalisation",
+        "raw_text": "personalisation"
+      },
+      {
+        "label": "Ranking",
+        "raw_text": "ranking"
+      },
+      {
+        "label": "Classification",
+        "raw_text": "classification"
+      },
+      {
+        "label": "Decisioning",
+        "raw_text": "decisioning"
+      },
+      {
+        "label": "Retrieval",
+        "raw_text": "retrieval"
+      },
+      {
+        "label": "Human-in-the-loop product experiences",
+        "raw_text": "human-in-the-loop product experiences"
+      },
+      {
+        "label": "Experiment design",
+        "raw_text": "designing experiments"
+      },
+      {
+        "label": "Auditability",
+        "raw_text": "auditability"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Machine Learning Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The candidate requirements are under 'You should apply if'; 'Nice to haves' makes its items optional. Technologies appearing only in responsibilities or team descriptions are excluded.\nThe required AI/ML mapping rests on the candidate being thoughtful about responsible ML/AI; flagged because this may describe an attitude rather than technical knowledge. Responsible AI itself has no dedicated taxonomy entry.\nGeneric retrieval does not explicitly specify RAG or vector search, so it remains unmapped.\nWriting production code is interpreted literally as software engineering. Microservices in the Go sentence describe the company's systems; the explicit candidate experience ask is optional.\nAlternative group 1 is the optional list of application techniques; group 2 is the optional GenAI/LLM-related experience list. Unmapped alternatives are retained in unmapped.\nExperiment design and A/B testing offer alternatives, but only A/B testing has a matching taxonomy entry, so no single-member group is created.\nExplainability and auditability are treated as optional technical practices named in the requested product experience; financial-sector knowledge and customer trust are excluded as domain knowledge and nontechnical attributes."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c2b359b65273bf4a5c62cc9d9b5c58dcb16e154c499bff85f87de5497c171530",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

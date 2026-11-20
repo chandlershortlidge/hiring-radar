@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "29f0f9d7f0fbfd0936b721f2039f8ea114334a7e9e4f860895e3ae8b49b67f8e",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting asks for 'designing and building scalable, maintainable systems and services' (which corresponds to system design or software development), and we must not add a broad skill like software-architecture that the text does not name.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting asks for 'designing and building scalable, maintainable systems and services' (which corresponds to system design or software development), and we must not add a broad skill like software-architecture that the text does not name.",
+  "error": null
+}

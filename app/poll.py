@@ -5,7 +5,10 @@ extract_pending. Feeds that fail are logged and skipped so one bad source doesn'
 the rest. Each feed's result (worked or not, how many postings, which fields they carried)
 is also kept in `feed_run`, which the morning caretaker reads (HIR-257).
 
-Does NOT: schedule itself (the systemd timer on the VM / `python -m app poll` does), or
+With a region (`--region europe|us`, HIR-369) it fetches only that region's feeds
+(`feed_regions`): the VM runs Europe at 07:00 Berlin and the US at 07:00 New York.
+
+Does NOT: schedule itself (the systemd timers on the VM / `python -m app poll` do), or
 retry a failed feed within a run.
 
 Invariant: safe to run twice in a row — the second run finds everything still-listed and
@@ -17,8 +20,9 @@ import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
+from app import geo
 from app.ingest import Report, ingest
-from app.sources import registry
+from app.sources import jsearch, registry
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT / "config" / "feeds.json"
@@ -49,6 +53,46 @@ def select_feeds(feeds: list[dict], only: list[str]) -> list[dict]:
     if unknown:
         raise ValueError(f"no enabled feed labelled {sorted(unknown)}")
     return [f for f in feeds if feed_label(f) in only]
+
+
+# Sources that only ever list jobs in Germany, whatever their search says (HIR-369).
+GERMAN_SOURCES = ("arbeitsagentur", "arbeitnow")
+
+
+def feed_regions(feed: dict) -> tuple[str, ...]:
+    """Pure: which regional collections fetch this feed (HIR-369, DECISIONS 2026-11-19).
+
+    A search naming a tracked city belongs to that city's region; one naming no city goes
+    by its country (`us` → US, any other → Europe); the German sources are Europe. A
+    company board can list jobs anywhere, so it is in both, as is anything not otherwise
+    placed: a feed fetched twice costs a still-listed bump, a feed in neither is lost."""
+    if feed["type"] in registry.BOARD_SOURCES:
+        return geo.REGIONS
+    if feed["type"] in GERMAN_SOURCES:
+        return (geo.EUROPE,)
+    city = geo.city_of(" ".join(str(feed.get(k) or "") for k in ("search", "where")))
+    if city in geo.REGION_OF:
+        return (geo.REGION_OF[city],)
+    country = (feed.get("country") or "").lower()
+    if country:
+        return (geo.US,) if country == "us" else (geo.EUROPE,)
+    return geo.REGIONS
+
+
+def select_region(feeds: list[dict], region: str | None) -> list[dict]:
+    """Pure: the feeds `region`'s collection fetches (all of them when `region` is None)."""
+    if region is None:
+        return feeds
+    if region not in geo.REGIONS:
+        raise ValueError(f"unknown region {region!r}; one of {', '.join(geo.REGIONS)}")
+    return [f for f in feeds if region in feed_regions(f)]
+
+
+def region_line(region: str, feeds: list[dict]) -> str:
+    """The first line of a regional poll's log: the cities it covers and what it fetches."""
+    shared = sum(1 for f in feeds if len(feed_regions(f)) > 1)
+    return (f"region {region}: covers {', '.join(geo.region_places(region))}; "
+            f"{len(feeds)} feeds, {shared} of them also fetched by the other region's run (company boards)")
 
 
 # Posting fields an adapter fills when the source gives them. One that was there last week
@@ -92,10 +136,27 @@ def _known_postings(conn: sqlite3.Connection, feed: dict) -> int:
     return board_history(conn, feed)[0]
 
 
-def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print) -> Report:
+def jsearch_requests(conn: sqlite3.Connection, month: str) -> int:
+    """JSearch requests spent in `month` (YYYY-MM, UTC): one per recorded JSearch feed run,
+    failed runs included since a failed call may still have been billed. Every JSearch feed
+    asks for one page; a feed with `num_pages` above 1 would be undercounted (HIR-352)."""
+    row = conn.execute("SELECT count(*) FROM feed_run WHERE label LIKE 'jsearch:%' AND day LIKE ?",
+                       (f"{month}-%",)).fetchone()
+    return int(row[0])
+
+
+def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print,
+               jsearch_cap: int = jsearch.MONTHLY_CAP) -> Report:
+    """Fetch and ingest each feed. JSearch feeds are skipped, not fetched, once this month's
+    JSearch requests reach `jsearch_cap`: past the plan's limit every request is billed, so
+    the searches stop until the month turns while every other feed carries on (HIR-352)."""
     total = Report()
+    month = datetime.now(timezone.utc).strftime("%Y-%m")
     for feed in feeds:
         label = feed_label(feed)
+        if feed["type"] == jsearch.SOURCE and jsearch_requests(conn, month) >= jsearch_cap:
+            log(f"{label}: SKIPPED, this month's JSearch requests reached the cap of {jsearch_cap}")
+            continue
         try:
             postings = fetch(feed)
         except Exception as e:

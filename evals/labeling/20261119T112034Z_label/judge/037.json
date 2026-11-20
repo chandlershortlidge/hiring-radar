@@ -1,0 +1,15 @@
+{
+  "item": 37,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7581ebe8b8ea984ce8ef2092432c859290f25807fda3ff45c0967608312c47bb",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet asking for 'the ability to work across model training' is an explicit required mention of model development.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet asking for 'the ability to work across model training' is an explicit required mention of model development.",
+  "error": null
+}

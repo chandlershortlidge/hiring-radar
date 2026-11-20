@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "59c801571a68c68af0cd26f1b1a5655f53b18f282ac4b3af13c702718f251583",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 4, the 'Lead the setup, calibration, maintenance and tuning' signal is a responsibility rather than something the candidate is asked for, while the 'Minimum Qualifications' line requiring 3+ years of experience directly supports a mid-level reading.\"}",
+  "decision": "A",
+  "why": "Under rule 4, the 'Lead the setup, calibration, maintenance and tuning' signal is a responsibility rather than something the candidate is asked for, while the 'Minimum Qualifications' line requiring 3+ years of experience directly supports a mid-level reading.",
+  "error": null
+}

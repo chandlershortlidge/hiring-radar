@@ -1,0 +1,54 @@
+{
+  "model": "gemini-4-argon",
+  "provider": "google",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5",
+  "n_items": 71,
+  "agreed": 70,
+  "differed": 1,
+  "rate": 0.014084507042253521,
+  "wilson_95": [
+    0.002490603270544213,
+    0.07556050520249005
+  ],
+  "by_field": {
+    "german": {
+      "n": 9,
+      "agreed": 9,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "skill": {
+      "n": 58,
+      "agreed": 58,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "seniority": {
+      "n": 4,
+      "agreed": 3,
+      "differed": 1,
+      "rate": 0.25
+    }
+  },
+  "differences": [
+    {
+      "n": 144,
+      "golden_id": "golden_105",
+      "kind": "attribute",
+      "key": "seniority",
+      "agreed": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Evidence of staff-level impact"
+      },
+      "third": {
+        "seniority": "senior",
+        "seniority_basis": "inferred",
+        "seniority_signal": "5+ years building and shipping ML systems"
+      }
+    }
+  ],
+  "auto_check_problems": [],
+  "failed": [],
+  "not_compared": []
+}

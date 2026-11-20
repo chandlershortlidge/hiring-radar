@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9c18df8b2cbf1140959e4762c5d55e9f0d13a01de7a7a85e30fa17c6fe05c2b1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Skills bullet names cloud-native systems as a qualification, and the agreed raw_text \\\"operating cloud-native systems that scale\\\" appears verbatim, so the required `cloud` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Skills bullet names cloud-native systems as a qualification, and the agreed raw_text \"operating cloud-native systems that scale\" appears verbatim, so the required `cloud` label stands.",
+  "error": null
+}

@@ -60,11 +60,14 @@ const test = base.extend({
 test.skip(!URL_SET, "WATCH_URL not set");
 test.describe.configure({ mode: "serial" });
 
-// The busiest market, by clicking its row in the home page's table: that is the first one.
+// The busiest market, by clicking its row in the home page's table: that is the first one,
+// once the job counts have arrived. Its top skills having drawn is the sign they have: a
+// row clicked before then is first by name only, and may be a city with no jobs (HIR-356).
 async function openBusiestCity(page) {
   await page.goto("/");
   const card = page.locator("a.market-row").first();
   await expect(card).toBeVisible();
+  await expect(card.locator(".mk-skill").first()).toBeVisible();
   await card.click();
   await expect(page).not.toHaveURL(/\/$/);
   await expectChartAndJobs(page);

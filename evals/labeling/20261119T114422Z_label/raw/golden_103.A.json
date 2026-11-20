@@ -1,0 +1,141 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Strong Go programming skills\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"building and operating production backend services\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Hands-on AWS experience\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud-native services\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Experience integrating LLMs\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool-calling systems\"},\n    {\"skill_id\": \"agent-architecture\", \"requirement\": \"required\", \"raw_text\": \"Familiarity with agentic architectures\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"protocols such as MCP\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"Experience with CI/CD\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automated testing\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"production observability\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Regular, thoughtful use of AI coding tools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 1},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\", \"alternative_group\": 1},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\", \"alternative_group\": 1},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"OpenAI Codex\", \"alternative_group\": 1},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hands-on experience building agentic AI systems\"},\n    {\"skill_id\": \"event-driven-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience building or maintaining event-sourced systems\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Python programming skills\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with AI or ML infrastructure\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"A2A (Agent2Agent protocol)\", \"raw_text\": \"protocols such as MCP, A2A\"},\n    {\"label\": \"Developer productivity tooling\", \"raw_text\": \"developer productivity tooling\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Backend Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"There is no German or degree mention anywhere in the posting.\\n\\\"Who You Are\\\" has no optional marker, so it is treated as required. In it, \\\"whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex\\\" offers examples for one ask (AI coding tools in daily use), so those four form group 1, all required. ai-developer-tooling is the broad skill and stays out of the group.\\n\\\"Experience integrating LLMs, AI models or tool-calling systems\\\" reads as an X, Y or Z alternative set. But LLM integration is also asked on its own in Who You Are (\\\"already done hands-on integration work\\\"), so llms leaves the group. That leaves tool-calling alone, so no group is formed; worth a grouping review.\\n\\\"curious about the AI and LLM space\\\" is an appetite phrase, but the same sentence requires hands-on integration work already done. llms is therefore required, and its quote comes from the What You Bring bullet.\\n\\\"protocols such as MCP, A2A\\\": A2A is not in the taxonomy, so it goes to unmapped. With only one taxonomy member, mcp gets no group.\\ncloud is labeled from \\\"cloud-native services\\\" as the broad skill named next to AWS. That is a borderline reading, so it is flagged.\\nevent-sourced systems is mapped to event-driven-systems as the closest entry, which is an approximation and flagged. \\\"multi-step workflows\\\" is not mapped to llm-orchestration because the text does not name orchestration.\\n\\\"agentic AI systems that use tools\\\" also mentions tool use, but tool-calling is already required from What You Bring, so the required mention wins.\\nDistributed systems, async workflows and orchestration appear only in the Opportunity and Typical Day descriptions, so they are not labeled.\\n\\\"AI models\\\" in the LLM integration bullet is too generic to map, so it is not labeled.\\nThe reliability, scalability, performance and security \\\"systems mindset\\\" is treated as a soft or mindset trait, not a skill.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Strong Go programming skills"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "building and operating production backend services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Hands-on AWS experience"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience integrating LLMs"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling systems"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "Familiarity with agentic architectures"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "protocols such as MCP"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Experience with CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "production observability"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Regular, thoughtful use of AI coding tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "OpenAI Codex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience building agentic AI systems"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or maintaining event-sourced systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python programming skills"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with AI or ML infrastructure"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "A2A (Agent2Agent protocol)",
+        "raw_text": "protocols such as MCP, A2A"
+      },
+      {
+        "label": "Developer productivity tooling",
+        "raw_text": "developer productivity tooling"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Backend Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "There is no German or degree mention anywhere in the posting.\n\"Who You Are\" has no optional marker, so it is treated as required. In it, \"whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex\" offers examples for one ask (AI coding tools in daily use), so those four form group 1, all required. ai-developer-tooling is the broad skill and stays out of the group.\n\"Experience integrating LLMs, AI models or tool-calling systems\" reads as an X, Y or Z alternative set. But LLM integration is also asked on its own in Who You Are (\"already done hands-on integration work\"), so llms leaves the group. That leaves tool-calling alone, so no group is formed; worth a grouping review.\n\"curious about the AI and LLM space\" is an appetite phrase, but the same sentence requires hands-on integration work already done. llms is therefore required, and its quote comes from the What You Bring bullet.\n\"protocols such as MCP, A2A\": A2A is not in the taxonomy, so it goes to unmapped. With only one taxonomy member, mcp gets no group.\ncloud is labeled from \"cloud-native services\" as the broad skill named next to AWS. That is a borderline reading, so it is flagged.\nevent-sourced systems is mapped to event-driven-systems as the closest entry, which is an approximation and flagged. \"multi-step workflows\" is not mapped to llm-orchestration because the text does not name orchestration.\n\"agentic AI systems that use tools\" also mentions tool use, but tool-calling is already required from What You Bring, so the required mention wins.\nDistributed systems, async workflows and orchestration appear only in the Opportunity and Typical Day descriptions, so they are not labeled.\n\"AI models\" in the LLM integration bullet is too generic to map, so it is not labeled.\nThe reliability, scalability, performance and security \"systems mindset\" is treated as a soft or mindset trait, not a skill."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5cd0d4000bfde8de0ced6d925429283de97f4188b0411df3a93d5868af0faf49",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

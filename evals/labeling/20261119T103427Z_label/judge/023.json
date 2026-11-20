@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "8f84867c406e14c870d01022a35c0d7aec4afc1b7e0c71c472fe07e6cd7b5e8c",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the nice-to-have qualification bullet explicitly asks for knowledge of 'architectures and design patterns for client-server systems', which supports the `software-architecture` skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the nice-to-have qualification bullet explicitly asks for knowledge of 'architectures and design patterns for client-server systems', which supports the `software-architecture` skill.",
+  "error": null
+}

@@ -1,0 +1,18 @@
+{
+  "item": 20,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"agents that automate scientific workflows\", \"requirement\": \"nice_to_have\"}",
+  "key_sha256": "02189c9083f0b8a0b91c24e33dde706f8f845ab7a0394f9e1c1bbf5e848055d5",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"agents that automate scientific workflows\"}, \"why\": \"Under rule 1, a sentence describing the candidate's abilities ('someone who can... spin up LLM based agents that automate scientific workflows') counts as a qualification, and under rule 3 it is nice_to_have because it describes the 'ideal candidate'.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "agents that automate scientific workflows"
+  },
+  "why": "Under rule 1, a sentence describing the candidate's abilities ('someone who can... spin up LLM based agents that automate scientific workflows') counts as a qualification, and under rule 3 it is nice_to_have because it describes the 'ideal candidate'.",
+  "error": null
+}

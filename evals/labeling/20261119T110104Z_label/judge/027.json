@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9bac8e32e25d3253b0849ca42233a03c92ca96655f1c5795f0fae0bd6bc89cf0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the required qualification bullet asking for a proven ability to build 'observable' production systems directly names the observability skill.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the required qualification bullet asking for a proven ability to build 'observable' production systems directly names the observability skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9db89c2402e7d461f6801ef3b9fbe01ea0b8877d504085799592ae9d59ced01d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Security Mindset' bullet under 'What We're Looking For' is a required qualification that names a data-access and security skill, and rule 3 means that required mention wins, so labeler B's required tag with its verbatim raw_text stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Security Mindset' bullet under 'What We're Looking For' is a required qualification that names a data-access and security skill, and rule 3 means that required mention wins, so labeler B's required tag with its verbatim raw_text stands.",
+  "error": null
+}

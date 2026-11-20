@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "275870d63ce387855f55bd1e6995fc8e35bf46add78858afb6c7b3c6dacfa708",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification sentence explicitly requires a candidate with a track record of 'deploying advanced AI models', which validates B's required label under Rule 3.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification sentence explicitly requires a candidate with a track record of 'deploying advanced AI models', which validates B's required label under Rule 3.",
+  "error": null
+}

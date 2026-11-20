@@ -1,0 +1,15 @@
+{
+  "item": 84,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8f9c7bf9f70ebc6a65d194c4b2871ca14a32a3d130fab46d61b4508b439f4403",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the required qualification bullet directly names guardrails in the context of Bedrock agents and LLM solutions.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the required qualification bullet directly names guardrails in the context of Bedrock agents and LLM solutions.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "3ed0697ccf6425d648360d29dead60149497c3fb1feaabd51e783f2be9c79472",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, responsibilities do not count unless the candidate is also asked for the skill in the qualifications, and 'model evaluation' only appears under 'What You’ll Do'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, responsibilities do not count unless the candidate is also asked for the skill in the qualifications, and 'model evaluation' only appears under 'What You’ll Do'.",
+  "error": null
+}

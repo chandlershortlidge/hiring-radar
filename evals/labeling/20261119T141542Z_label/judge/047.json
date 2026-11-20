@@ -1,0 +1,15 @@
+{
+  "item": 47,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "163d81b2cc9849e8419ba5f8904cc898c421548fc1895498078eba4bc0b331e4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 3, the agreed label accurately captures the inferred senior seniority based on the explicit text stating the candidate will lead client workstreams.\"}",
+  "decision": "ok",
+  "why": "Under Rule 3, the agreed label accurately captures the inferred senior seniority based on the explicit text stating the candidate will lead client workstreams.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "58f2d1014ab6f6a00b81970972f65aedbe5494c6a6971f80c876673674786cbe",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification sentence explicitly requires the candidate to have 'already done hands-on integration work' in the AI and LLM space.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification sentence explicitly requires the candidate to have 'already done hands-on integration work' in the AI and LLM space.",
+  "error": null
+}

@@ -1,0 +1,162 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Development\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"node-js\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Node.js\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI & LLM Engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API Architecture\"\n    },\n    {\n      \"skill_id\": \"oauth\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OAuth2\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git workflows\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI coding assistants\"\n    },\n    {\n      \"skill_id\": \"gemini\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gemini\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Google Docs automation preferred\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"HTML5\",\n      \"raw_text\": \"HTML5\"\n    },\n    {\n      \"label\": \"CSS\",\n      \"raw_text\": \"CSS\"\n    },\n    {\n      \"label\": \"Database management\",\n      \"raw_text\": \"Database Management\"\n    },\n    {\n      \"label\": \"Agile methodologies\",\n      \"raw_text\": \"Agile methodologies\"\n    },\n    {\n      \"label\": \"Windsurf\",\n      \"raw_text\": \"Windsurf\"\n    },\n    {\n      \"label\": \"Google Docs\",\n      \"raw_text\": \"Google Docs automation preferred\"\n    },\n    {\n      \"label\": \"IDEs\",\n      \"raw_text\": \"Proficiency with IDEs such as VSCode, Microsoft Office, and Google Workspace preferred\"\n    },\n    {\n      \"label\": \"VSCode\",\n      \"raw_text\": \"VSCode\"\n    },\n    {\n      \"label\": \"Microsoft Office\",\n      \"raw_text\": \"Microsoft Office\"\n    },\n    {\n      \"label\": \"Google Workspace\",\n      \"raw_text\": \"Google Workspace\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of experience in software development\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's Degree\",\n  \"notes\": \"Specific Knowledge and Skills and Basic Requirements default to required; the two explicitly preferred items are optional. The closing encouragement to applicants does not make all skills optional.\\nGemini and Windsurf are alternatives, but Windsurf has no taxonomy entry, so no two-member taxonomy alternative group can be emitted. Their broad AI coding assistants criterion is not an alternative member.\\nJavaScript/Node.js and SQL/BigQuery are read literally as paired technologies, not explicit alternatives.\\nGoogle Docs automation is mapped to workflow-automation; Google Docs itself is unmapped. All entries in the IDEs sentence are preferred, including the named productivity suites.\\nDatabase Management is retained as unmapped rather than inferred to mean data modeling or another database skill.\\nSeniority is inferred from the two-year experience threshold; Experienced alone is not a level signal.\\nTechnical communication and translating business requirements are treated as soft skills, not taxonomy skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Development"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Node.js"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI & LLM Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API Architecture"
+      },
+      {
+        "skill_id": "oauth",
+        "requirement": "required",
+        "raw_text": "OAuth2"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git workflows"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding assistants"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Docs automation preferred"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "HTML5",
+        "raw_text": "HTML5"
+      },
+      {
+        "label": "CSS",
+        "raw_text": "CSS"
+      },
+      {
+        "label": "Database management",
+        "raw_text": "Database Management"
+      },
+      {
+        "label": "Agile methodologies",
+        "raw_text": "Agile methodologies"
+      },
+      {
+        "label": "Windsurf",
+        "raw_text": "Windsurf"
+      },
+      {
+        "label": "Google Docs",
+        "raw_text": "Google Docs automation preferred"
+      },
+      {
+        "label": "IDEs",
+        "raw_text": "Proficiency with IDEs such as VSCode, Microsoft Office, and Google Workspace preferred"
+      },
+      {
+        "label": "VSCode",
+        "raw_text": "VSCode"
+      },
+      {
+        "label": "Microsoft Office",
+        "raw_text": "Microsoft Office"
+      },
+      {
+        "label": "Google Workspace",
+        "raw_text": "Google Workspace"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of experience in software development",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's Degree",
+    "notes": "Specific Knowledge and Skills and Basic Requirements default to required; the two explicitly preferred items are optional. The closing encouragement to applicants does not make all skills optional.\nGemini and Windsurf are alternatives, but Windsurf has no taxonomy entry, so no two-member taxonomy alternative group can be emitted. Their broad AI coding assistants criterion is not an alternative member.\nJavaScript/Node.js and SQL/BigQuery are read literally as paired technologies, not explicit alternatives.\nGoogle Docs automation is mapped to workflow-automation; Google Docs itself is unmapped. All entries in the IDEs sentence are preferred, including the named productivity suites.\nDatabase Management is retained as unmapped rather than inferred to mean data modeling or another database skill.\nSeniority is inferred from the two-year experience threshold; Experienced alone is not a level signal.\nTechnical communication and translating business requirements are treated as soft skills, not taxonomy skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5acca53d6cf4d64b453b9c112f3d7ded6ebca51c3b1d853a46639e3fa3326dd1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

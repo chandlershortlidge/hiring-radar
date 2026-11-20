@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "71bc9bc94d51688e46a087a1f14d03950ec0178ab23310b1fcc4638b4bed26a1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the candidate-profile sentence ('The ideal candidate will have experience ... integrating AI/ML capabilities into enterprise solutions') names the skill as a qualification, and the agreed raw_text appears verbatim, so the required `ai-ml` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the candidate-profile sentence ('The ideal candidate will have experience ... integrating AI/ML capabilities into enterprise solutions') names the skill as a qualification, and the agreed raw_text appears verbatim, so the required `ai-ml` label stands.",
+  "error": null
+}

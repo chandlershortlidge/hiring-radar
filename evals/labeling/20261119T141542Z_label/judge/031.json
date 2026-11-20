@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "14d0940c66a7c476569d4ef35860ab1a5d429fd968705e642d8c8f37858911e2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, 'Focus will be on Python across backend services, data pipelines, and ML infrastructure' describes the role's responsibilities rather than a candidate qualification.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, 'Focus will be on Python across backend services, data pipelines, and ML infrastructure' describes the role's responsibilities rather than a candidate qualification.",
+  "error": null
+}

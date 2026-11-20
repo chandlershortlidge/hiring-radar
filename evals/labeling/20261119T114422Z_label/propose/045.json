@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "06f961c7541842e54a55fa665f79739b392a92597031883f9053b8fc5dfd3ce1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention of open-weight models is in the \\\"ABOUT TOQAN\\\" company description of the platform, not in a qualification bullet asking the candidate for that skill, and the visible excerpt shows no such requirement.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention of open-weight models is in the \"ABOUT TOQAN\" company description of the platform, not in a qualification bullet asking the candidate for that skill, and the visible excerpt shows no such requirement.",
+  "error": null
+}

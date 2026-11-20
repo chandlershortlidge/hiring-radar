@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "510261954a11c4a264d9965900d3b29f9870c07ef25513810893825923f2b173",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, the explicit required experience of '3 to 6 years of experience' determines the mid-level seniority and is directly verifiable in the excerpt.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, the explicit required experience of '3 to 6 years of experience' determines the mid-level seniority and is directly verifiable in the excerpt.",
+  "error": null
+}

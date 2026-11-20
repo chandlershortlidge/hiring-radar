@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d6e2737eaf78023004308ce7d2ee39e634d3a8b7fcf90dc966c60061f40edc41",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet 'Experience with training generative machine learning models' names the model development skill, and its placement under Preferred/Bonus Qualifications makes it nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet 'Experience with training generative machine learning models' names the model development skill, and its placement under Preferred/Bonus Qualifications makes it nice_to_have.",
+  "error": null
+}

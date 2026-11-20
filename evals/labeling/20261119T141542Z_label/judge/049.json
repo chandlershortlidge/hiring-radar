@@ -1,0 +1,15 @@
+{
+  "item": 49,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4fbdacd8cd5d6360bb58e3a30a33f7913f9907a98335eb97c78bf069185d82ba",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet 'building and operating machine learning solutions' explicitly names the skill, making the agreed label correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet 'building and operating machine learning solutions' explicitly names the skill, making the agreed label correct.",
+  "error": null
+}

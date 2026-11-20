@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "tool-calling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "42d1b353b10e768958cdbe12154f680b4fa9b141cfc17ebf179d8498cb617b2b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 and rule 3, the required qualification bullet 'Agentic systems knowledge — tools' directly identifies agent tool use (tool-calling) as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 and rule 3, the required qualification bullet 'Agentic systems knowledge — tools' directly identifies agent tool use (tool-calling) as a required skill.",
+  "error": null
+}

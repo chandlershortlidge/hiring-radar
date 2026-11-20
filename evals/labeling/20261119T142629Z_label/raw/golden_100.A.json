@@ -1,0 +1,69 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"experience in software engineering\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Golang\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"understanding of distributed computing\", \"uncertain\": true},\n    {\"skill_id\": \"hadoop\", \"requirement\": \"required\", \"raw_text\": \"Hadoop\", \"alternative_group\": 2},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\", \"alternative_group\": 2}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Large-scale data processing\", \"raw_text\": \"principles and technologies of large-scale data processing\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least 3 years of experience in software engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A bachelor's or above degree in computer science, software engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Only 'Minimum Qualifications' asks things of the candidate. It has no optional heading and no inline markers, so every skill there is required.\\nI did not label the skills named only under Responsibilities: deep learning, feature engineering, model deployment, distributed training and recommender systems.\\nI also did not label 'candidates interested in machine learning platform engineering'. It sits in the responsibilities intro, and the guide's rule 3 appetite wording would make it nice_to_have at most. It is not a listed requirement.\\nPython and Golang are given as examples for one ask: 'common programming languages (such as Python and Golang)'. I grouped them as alternatives under the examples-for-a-single-ask marker. This is uncertain because the conjunction is 'and', not 'or'.\\nHadoop and Spark are given as examples of open source tools ('such as Hadoop, Spark, etc.'), so I grouped them. 'etc.' adds nothing.\\nI mapped 'distributed computing' to distributed-systems as the closest entry.\\nI labeled 'software engineering' as a skill because it is a taxonomy entry and a technical practice. The years requirement itself is not a skill.\\nI left 'large-scale data processing' unmapped. data-pipelines (ETL) is narrower than what the posting names.\\nSoft skills (communication, teamwork, analytical, enthusiasm for learning) are excluded.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "experience in software engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Golang",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "understanding of distributed computing",
+        "uncertain": true
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "required",
+        "raw_text": "Hadoop",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale data processing",
+        "raw_text": "principles and technologies of large-scale data processing"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least 3 years of experience in software engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A bachelor's or above degree in computer science, software engineering, or a related field",
+    "uncertain": [],
+    "notes": "Only 'Minimum Qualifications' asks things of the candidate. It has no optional heading and no inline markers, so every skill there is required.\nI did not label the skills named only under Responsibilities: deep learning, feature engineering, model deployment, distributed training and recommender systems.\nI also did not label 'candidates interested in machine learning platform engineering'. It sits in the responsibilities intro, and the guide's rule 3 appetite wording would make it nice_to_have at most. It is not a listed requirement.\nPython and Golang are given as examples for one ask: 'common programming languages (such as Python and Golang)'. I grouped them as alternatives under the examples-for-a-single-ask marker. This is uncertain because the conjunction is 'and', not 'or'.\nHadoop and Spark are given as examples of open source tools ('such as Hadoop, Spark, etc.'), so I grouped them. 'etc.' adds nothing.\nI mapped 'distributed computing' to distributed-systems as the closest entry.\nI labeled 'software engineering' as a skill because it is a taxonomy entry and a technical practice. The years requirement itself is not a skill.\nI left 'large-scale data processing' unmapped. data-pipelines (ETL) is narrower than what the posting names.\nSoft skills (communication, teamwork, analytical, enthusiasm for learning) are excluded."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "166f67f86fd6515ebd91de813cad84e1521bb8d9f8e83ca4f98bcacda19a01b0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

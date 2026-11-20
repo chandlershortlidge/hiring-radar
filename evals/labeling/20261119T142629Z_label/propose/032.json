@@ -1,0 +1,14 @@
+{
+  "item": 32,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "84b135174cd94d63d9f1709e7ae55be3ae4784b79cb21a4281a8e505967b49b2",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the preferred-qualifications sentence names designing systems for online inference at petabyte scale, which supports a nice_to_have model-serving tag quoted as \\\"online inference\\\" (rule 5 is not violated because the serving context is named).\"}",
+  "decision": "B",
+  "why": "Under rule 1, the preferred-qualifications sentence names designing systems for online inference at petabyte scale, which supports a nice_to_have model-serving tag quoted as \"online inference\" (rule 5 is not violated because the serving context is named).",
+  "error": null
+}

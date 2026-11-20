@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting has no requirements, qualifications, nice-to-have or tech-stack section. It contains only a company/role description and responsibilities ('own the real-time voice pipeline', 'You'll build…', 'design guardrails…').\\nPer the guide, skills that appear only in responsibilities or the company description are not labeled. That excludes speech/speech-recognition, LLM orchestration (named only as 'model orchestration'), evaluation ('evals') and LLM guardrails ('guardrails for consent and compliance'). Expected is therefore empty. This is the literal reading; a reviewer may want to confirm that no implicit asks should be labeled.\\nTelephony has no taxonomy entry, and it is in any case only a responsibility, so it is not listed as unmapped.\\nSeniority: no level in the title, no years of experience, and no lead or mentoring duty. 'Own' is ownership language, which the guide says is not a level signal, so seniority is null.\\nGerman: the posting is in English with no language mention, so German is null.\\nDegree: no degree is mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting has no requirements, qualifications, nice-to-have or tech-stack section. It contains only a company/role description and responsibilities ('own the real-time voice pipeline', 'You'll build…', 'design guardrails…').\nPer the guide, skills that appear only in responsibilities or the company description are not labeled. That excludes speech/speech-recognition, LLM orchestration (named only as 'model orchestration'), evaluation ('evals') and LLM guardrails ('guardrails for consent and compliance'). Expected is therefore empty. This is the literal reading; a reviewer may want to confirm that no implicit asks should be labeled.\nTelephony has no taxonomy entry, and it is in any case only a responsibility, so it is not listed as unmapped.\nSeniority: no level in the title, no years of experience, and no lead or mentoring duty. 'Own' is ownership language, which the guide says is not a level signal, so seniority is null.\nGerman: the posting is in English with no language mention, so German is null.\nDegree: no degree is mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0e9245fc3ca0200dd5ef9ec8cea9461438fb87c8aced67c1895fa7c3a2dae779",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

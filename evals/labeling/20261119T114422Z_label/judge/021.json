@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "91fefd52621653f887418f149aa4e5dc8f108a5372c20eea470f586bea3829e4",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for experience transforming data models into scalable data products, supporting B's label.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for experience transforming data models into scalable data products, supporting B's label.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "0ff163875d98d6f6691a03ae45dd91bde616c1c24ad7af325790432bc56544d0",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, a required qualification bullet explicitly specifying '5+ years in Physical Design CAD methodology at advanced nodes' serves as the determining mention to infer seniority.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, a required qualification bullet explicitly specifying '5+ years in Physical Design CAD methodology at advanced nodes' serves as the determining mention to infer seniority.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "aws-s3",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5278c8f4626e3fb4905743ec572a67c28b04ca5695c79c64ad8a648c4b8effff",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have bullet 'Experience with Big Data tools – Spark, S3, Hadoop' names S3 as a tool the candidate should have, and 'S3' is the AWS S3 service, so the agreed aws-s3 tag, nice_to_have requirement, and raw_text 'S3' are supported as they stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have bullet 'Experience with Big Data tools – Spark, S3, Hadoop' names S3 as a tool the candidate should have, and 'S3' is the AWS S3 service, so the agreed aws-s3 tag, nice_to_have requirement, and raw_text 'S3' are supported as they stand.",
+  "error": null
+}

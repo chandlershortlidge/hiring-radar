@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import run_eval  # noqa: E402
 
+from app import extract  # noqa: E402
+
 
 def test_heldout_requires_explicit_flag(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
@@ -68,6 +70,53 @@ def test_full_run_writes_results_with_mocked_model(monkeypatch, tmp_path):
     assert summary["aggregate"]["recall"]["n"] == 2
     assert len((out / "predictions.jsonl").read_text().splitlines()) == 2
     assert "Most-missed skills" in (out / "summary.md").read_text()
+
+
+def _capture_cap(monkeypatch, tmp_path, argv):
+    """Run the eval against a mocked model: (kwargs it was sent, summary.json, summary.md).
+
+    HIR-223: a reading cut off at the output cap returns nothing and scores as a total miss,
+    so measuring a model that writes more than our cap allows measures the cap. --max-tokens
+    lifts it for one run; these tests pin that it reaches the request and nothing else does.
+    """
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(run_eval, "ROOT", tmp_path)
+    _one_golden(tmp_path)
+
+    seen = []
+    tool = SimpleNamespace(type="tool_use", name="record_skills",
+                           input={"skills": [{"skill_id": "python", "requirement": "required",
+                                              "raw_text": "Python"}]})
+    resp = SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)
+    client = SimpleNamespace(messages=SimpleNamespace(create=lambda **kw: (seen.append(kw), resp)[1]))
+    monkeypatch.setattr(run_eval, "make_client", lambda: client)
+
+    run_eval.main(argv)
+    [out] = list((tmp_path / "evals/results").iterdir())
+    return seen, json.loads((out / "summary.json").read_text()), (out / "summary.md").read_text()
+
+
+def test_max_tokens_flag_raises_the_cap_for_this_run(monkeypatch, tmp_path):
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path,
+                                    ["--repeats", "1", "--model", "m", "--max-tokens", "8192"])
+    assert seen[0]["max_tokens"] == 8192
+    assert summary["meta"]["max_tokens"] == 8192
+
+
+def test_without_the_flag_the_cap_is_the_extractors_own(monkeypatch, tmp_path):
+    """The default has to stay the live cap, or a trial run would silently measure
+    something the poll does not do."""
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path, ["--repeats", "1", "--model", "m"])
+    assert seen[0]["max_tokens"] == extract.MAX_TOKENS
+    assert summary["meta"]["max_tokens"] == extract.MAX_TOKENS
+
+
+def test_the_run_records_which_cap_it_used(monkeypatch, tmp_path):
+    """The run id and extractor_version do not encode the cap, so two runs of one model
+    under different caps would otherwise be indistinguishable afterwards."""
+    _, _, md = _capture_cap(monkeypatch, tmp_path,
+                            ["--repeats", "1", "--model", "m", "--max-tokens", "8192"])
+    assert "output cap 8192" in md
 
 
 def _goldens_and_client(tmp_path):
@@ -155,3 +204,31 @@ def test_langsmith_is_not_touched_without_a_key(monkeypatch, tmp_path):
     monkeypatch.setattr(run_eval.langsmith_eval, "enabled", lambda: False)
     run_eval.main(["--repeats", "1", "--model", "m", "--no-langsmith"])
     assert list((tmp_path / "evals/results").iterdir())
+
+
+def test_prompt_trial_reaches_the_request_and_only_this_run(monkeypatch, tmp_path):
+    """HIR-368: a trial instruction is measured without touching the live prompt. It sits
+    after the rules and before the skill list, the run is marked as a trial, and its
+    extractor version is not the live one, so it can never pass for the live extractor."""
+    from app.taxonomy import Taxonomy
+    trial = tmp_path / "trial.md"
+    trial.write_text("10. TRIAL RULE\n")
+    live = extract.system_prompt(Taxonomy.load())
+    seen, summary, md = _capture_cap(monkeypatch, tmp_path,
+                                     ["--repeats", "1", "--model", "m", "--prompt-trial", str(trial)])
+    sent = seen[0]["system"][0]["text"]
+    rules = extract.PRINCIPLES.rstrip("\n")
+    assert sent == rules + "\n\n10. TRIAL RULE\n" + live[len(extract.PRINCIPLES):]
+    assert sent.index("10. TRIAL RULE") < sent.index("TAXONOMY (version")
+    assert extract.system_prompt(Taxonomy.load()) == live
+    assert summary["meta"]["prompt_trial"] == {"file": "trial.md", "text": "10. TRIAL RULE\n"}
+    assert summary["meta"]["extractor_version"] != extract.extractor_version(Taxonomy.load(), "m")
+    assert "prompt trial `trial.md`" in md
+
+
+def test_without_a_trial_the_prompt_is_the_live_one(monkeypatch, tmp_path):
+    from app.taxonomy import Taxonomy
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path, ["--repeats", "1", "--model", "m"])
+    assert seen[0]["system"][0]["text"] == extract.system_prompt(Taxonomy.load())
+    assert "prompt_trial" not in summary["meta"]
+    assert summary["meta"]["extractor_version"] == extract.extractor_version(Taxonomy.load(), "m")

@@ -1,0 +1,126 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"causal-inference\", \"requirement\": \"required\", \"raw_text\": \"Solid understanding of causal inference\"},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"required\", \"raw_text\": \"A/B testing, DiD, Bandits\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Strong experience in machine learning modeling\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"machine learning modeling and statistics\"},\n    {\"skill_id\": \"forecasting\", \"requirement\": \"required\", \"raw_text\": \"time series forecasting\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning models\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"successfully deploying models\", \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"data pipeline development\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS data storage\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"distributed processing with Spark\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"required\", \"raw_text\": \"workflow orchestration via Airflow\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience building agentic AI solutions for pricing is highly desirable\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Power user of AI coding tools\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Difference-in-differences\", \"raw_text\": \"DiD\"},\n    {\"label\": \"Multi-armed bandits\", \"raw_text\": \"Bandits\"},\n    {\"label\": \"Uplift modeling\", \"raw_text\": \"uplift modeling\"},\n    {\"label\": \"Probabilistic models\", \"raw_text\": \"probabilistic models\"},\n    {\"label\": \"Mathematical optimization / decision-making algorithms\", \"raw_text\": \"forecasting, optimization, and decision-making algorithms\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"agents: 'highly desirable' is not one of the guide's listed inline markers. I labeled it nice_to_have because it reads as equivalent to 'preferred'. Flagged; the most literal reading of the marker list would make it required.\\nai-deployment: 'deploying models' sits in the requirements section and matches the 'model deployment' alias. Flagged because it is phrased as part of a project-ownership requirement.\\nDegree: PhD is the highest level named. 'or MS with 8+ years ... with equivalent publications' offers a lower degree plus experience, not experience in place of a degree, so degree_or_equivalent is false. Flagged.\\nNot labeled: mixed-integer programming, constrained/stochastic optimization and switchback appear only in the responsibilities.\\nNot labeled: 'distributed processing' (not mapped to distributed-systems), 'workflow orchestration' (not mapped to workflow-automation) and 'data transformation'. No exact taxonomy match; only the named tools Spark and Airflow are labeled.\\nNo alternative groups: the requirements list skills to be had together, with no 'one of' or 'or' choices.\\nSeniority: 'Staff' in the title is a stated senior signal. The 6+/8+ years and mentoring duty agree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "Solid understanding of causal inference"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "A/B testing, DiD, Bandits"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong experience in machine learning modeling"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "machine learning modeling and statistics"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "required",
+        "raw_text": "time series forecasting"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "successfully deploying models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipeline development"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS data storage"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "distributed processing with Spark"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "workflow orchestration via Airflow"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building agentic AI solutions for pricing is highly desirable",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Power user of AI coding tools"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Difference-in-differences",
+        "raw_text": "DiD"
+      },
+      {
+        "label": "Multi-armed bandits",
+        "raw_text": "Bandits"
+      },
+      {
+        "label": "Uplift modeling",
+        "raw_text": "uplift modeling"
+      },
+      {
+        "label": "Probabilistic models",
+        "raw_text": "probabilistic models"
+      },
+      {
+        "label": "Mathematical optimization / decision-making algorithms",
+        "raw_text": "forecasting, optimization, and decision-making algorithms"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "agents: 'highly desirable' is not one of the guide's listed inline markers. I labeled it nice_to_have because it reads as equivalent to 'preferred'. Flagged; the most literal reading of the marker list would make it required.\nai-deployment: 'deploying models' sits in the requirements section and matches the 'model deployment' alias. Flagged because it is phrased as part of a project-ownership requirement.\nDegree: PhD is the highest level named. 'or MS with 8+ years ... with equivalent publications' offers a lower degree plus experience, not experience in place of a degree, so degree_or_equivalent is false. Flagged.\nNot labeled: mixed-integer programming, constrained/stochastic optimization and switchback appear only in the responsibilities.\nNot labeled: 'distributed processing' (not mapped to distributed-systems), 'workflow orchestration' (not mapped to workflow-automation) and 'data transformation'. No exact taxonomy match; only the named tools Spark and Airflow are labeled.\nNo alternative groups: the requirements list skills to be had together, with no 'one of' or 'or' choices.\nSeniority: 'Staff' in the title is a stated senior signal. The 6+/8+ years and mentoring duty agree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8de1ca8dfdb16062ecbb8a7861ea25aa1584ac83d70a8e71b06ee457e6b0248b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

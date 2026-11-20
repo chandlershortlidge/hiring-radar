@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Python, Microsoft Azure\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"modern cloud data platforms\", \"uncertain\": true},\n    {\"skill_id\": \"microsoft-fabric\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Fabric\", \"alternative_group\": 1},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake\", \"alternative_group\": 1},\n    {\"skill_id\": \"databricks\", \"requirement\": \"required\", \"raw_text\": \"or Databricks\", \"alternative_group\": 1},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"supporting the data backend\", \"uncertain\": true},\n    {\"skill_id\": \"structured-data-extraction\", \"requirement\": \"required\", \"raw_text\": \"unstructured document parsing\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Proficiency with AI coding tools\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Bonus: Experience with MCP servers/connectors\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"streamlit\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Streamlit/React\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"react\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Streamlit/React\", \"alternative_group\": 2, \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"financial/tax automation (domain)\", \"raw_text\": \"financial/tax automation\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Guide offshore mid-level engineers through code reviews and architectural alignment\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"I labeled only the 'What You Bring' section. The responsibilities mention Claude, ChatGPT, Codex and Model Context Protocol (MCP) servers, but these are not labeled from there because they are never asked of the candidate. 'AI coding tools' in the requirements maps to ai-developer-tooling.\\n'modern cloud data platforms' is labeled as the broad skill cloud and marked uncertain. It is the taxonomy's broad skill at its closest, with Fabric, Snowflake and Databricks as its examples. Those three form alternative group 1, introduced by 'or'; cloud stays out of the group.\\nThe Bonus line 'MCP servers/connectors, Streamlit/React, financial/tax automation, or mentoring offshore teams' is read literally as an 'X, Y or Z' alternative list, which gives group 2 (mcp, streamlit, react). These are uncertain because the items are arguably separate asks.\\nStreamlit and React share the raw_text 'Streamlit/React'. That is the shortest verbatim fragment naming each of them.\\n'unstructured document parsing' is mapped to structured-data-extraction, and 'data backend' to backend-development. Both mappings are uncertain.\\n'production AI applications' is not given a broad AI id (llms or ai-ml). The posting names no specific AI technique.\\n'experience as a Data Engineer' is a job title or years of experience, not a skill.\\nSeniority conflicts: '3+ years' would infer mid, but the responsibilities give a lead/mentoring duty ('Guide offshore mid-level engineers'), which the guide maps to senior. I chose senior and flagged it uncertain.\\nNo German requirement and no degree is mentioned. The only language requirement is 'cross-cultural communication skills', which is a soft skill.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Python, Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "modern cloud data platforms",
+        "uncertain": true
+      },
+      {
+        "skill_id": "microsoft-fabric",
+        "requirement": "required",
+        "raw_text": "Microsoft Fabric",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "or Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "supporting the data backend",
+        "uncertain": true
+      },
+      {
+        "skill_id": "structured-data-extraction",
+        "requirement": "required",
+        "raw_text": "unstructured document parsing",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Proficiency with AI coding tools"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Bonus: Experience with MCP servers/connectors",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit/React",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit/React",
+        "alternative_group": 2,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "financial/tax automation (domain)",
+        "raw_text": "financial/tax automation"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Guide offshore mid-level engineers through code reviews and architectural alignment",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "I labeled only the 'What You Bring' section. The responsibilities mention Claude, ChatGPT, Codex and Model Context Protocol (MCP) servers, but these are not labeled from there because they are never asked of the candidate. 'AI coding tools' in the requirements maps to ai-developer-tooling.\n'modern cloud data platforms' is labeled as the broad skill cloud and marked uncertain. It is the taxonomy's broad skill at its closest, with Fabric, Snowflake and Databricks as its examples. Those three form alternative group 1, introduced by 'or'; cloud stays out of the group.\nThe Bonus line 'MCP servers/connectors, Streamlit/React, financial/tax automation, or mentoring offshore teams' is read literally as an 'X, Y or Z' alternative list, which gives group 2 (mcp, streamlit, react). These are uncertain because the items are arguably separate asks.\nStreamlit and React share the raw_text 'Streamlit/React'. That is the shortest verbatim fragment naming each of them.\n'unstructured document parsing' is mapped to structured-data-extraction, and 'data backend' to backend-development. Both mappings are uncertain.\n'production AI applications' is not given a broad AI id (llms or ai-ml). The posting names no specific AI technique.\n'experience as a Data Engineer' is a job title or years of experience, not a skill.\nSeniority conflicts: '3+ years' would infer mid, but the responsibilities give a lead/mentoring duty ('Guide offshore mid-level engineers'), which the guide maps to senior. I chose senior and flagged it uncertain.\nNo German requirement and no degree is mentioned. The only language requirement is 'cross-cultural communication skills', which is a soft skill."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "63069d848cab8c6028e4941070646a8155d28582cb3e1affda187909ee7aa01a",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

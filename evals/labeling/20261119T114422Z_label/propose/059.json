@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "413c8411a8b2a2f3b0919f0d9e0eb7848d1dea25bbbac07605c7d3e9b843dc4c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The agreed 'mid' rests on the explicit 'Around 5 years of backend engineering experience' line, which is the only seniority evidence in the excerpt and is reasonably read as mid-level; nothing names a senior or lead level, so under rules 1 and 5 I keep the agreed value.\"}",
+  "decision": "ok",
+  "why": "The agreed 'mid' rests on the explicit 'Around 5 years of backend engineering experience' line, which is the only seniority evidence in the excerpt and is reasonably read as mid-level; nothing names a senior or lead level, so under rules 1 and 5 I keep the agreed value.",
+  "error": null
+}

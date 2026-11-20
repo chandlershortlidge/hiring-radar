@@ -1,0 +1,260 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\":\"data-pipelines\",\"requirement\":\"required\",\"raw_text\":\"ETL pipelines\"},\n    {\"skill_id\":\"machine-learning\",\"requirement\":\"required\",\"raw_text\":\"ETL pipelines, machine learning\"},\n    {\"skill_id\":\"llms\",\"requirement\":\"required\",\"raw_text\":\"LLM-powered\"},\n    {\"skill_id\":\"agents\",\"requirement\":\"required\",\"raw_text\":\"agents and agentic workflows\"},\n    {\"skill_id\":\"ai-ml\",\"requirement\":\"required\",\"raw_text\":\"Experience integrating AI systems\"},\n    {\"skill_id\":\"apis\",\"requirement\":\"required\",\"raw_text\":\"APIs\"},\n    {\"skill_id\":\"mcp\",\"requirement\":\"required\",\"raw_text\":\"MCP servers\"},\n    {\"skill_id\":\"evaluation\",\"requirement\":\"required\",\"raw_text\":\"evaluation approaches and frameworks\"},\n    {\"skill_id\":\"rag\",\"requirement\":\"required\",\"raw_text\":\"retrieval-augmented generation (RAG)\"},\n    {\"skill_id\":\"tool-calling\",\"requirement\":\"required\",\"raw_text\":\"tool use\"},\n    {\"skill_id\":\"multi-agent-systems\",\"requirement\":\"required\",\"raw_text\":\"multi-agent architectures\"},\n    {\"skill_id\":\"python\",\"requirement\":\"required\",\"raw_text\":\"Python\"},\n    {\"skill_id\":\"tensorflow\",\"requirement\":\"required\",\"raw_text\":\"TensorFlow\",\"alternative_group\":1},\n    {\"skill_id\":\"pytorch\",\"requirement\":\"required\",\"raw_text\":\"PyTorch\",\"alternative_group\":1},\n    {\"skill_id\":\"scikit-learn\",\"requirement\":\"required\",\"raw_text\":\"scikit-learn\",\"alternative_group\":1},\n    {\"skill_id\":\"software-engineering\",\"requirement\":\"required\",\"raw_text\":\"Strong software engineering fundamentals\"},\n    {\"skill_id\":\"go\",\"requirement\":\"required\",\"raw_text\":\"Go\",\"alternative_group\":2},\n    {\"skill_id\":\"rust\",\"requirement\":\"required\",\"raw_text\":\"Rust\",\"alternative_group\":2},\n    {\"skill_id\":\"cpp\",\"requirement\":\"required\",\"raw_text\":\"C++\",\"alternative_group\":2},\n    {\"skill_id\":\"java\",\"requirement\":\"required\",\"raw_text\":\"Java\",\"alternative_group\":2},\n    {\"skill_id\":\"scala\",\"requirement\":\"required\",\"raw_text\":\"Scala\",\"alternative_group\":2},\n    {\"skill_id\":\"git\",\"requirement\":\"required\",\"raw_text\":\"version control\"},\n    {\"skill_id\":\"ci-cd\",\"requirement\":\"required\",\"raw_text\":\"CI/CD\"},\n    {\"skill_id\":\"software-architecture\",\"requirement\":\"nice_to_have\",\"raw_text\":\"architectures and design patterns for client-server systems\"},\n    {\"skill_id\":\"async-processing\",\"requirement\":\"nice_to_have\",\"raw_text\":\"asynchronous programming\"},\n    {\"skill_id\":\"graphql\",\"requirement\":\"nice_to_have\",\"raw_text\":\"GraphQL\"},\n    {\"skill_id\":\"react\",\"requirement\":\"nice_to_have\",\"raw_text\":\"React\"},\n    {\"skill_id\":\"vue\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Vue\"},\n    {\"skill_id\":\"angular\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Angular\"},\n    {\"skill_id\":\"containerization\",\"requirement\":\"nice_to_have\",\"raw_text\":\"containerized\"},\n    {\"skill_id\":\"cloud\",\"requirement\":\"nice_to_have\",\"raw_text\":\"major cloud architectures\"},\n    {\"skill_id\":\"docker\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Docker\"},\n    {\"skill_id\":\"kubernetes\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Kubernetes [K8s]\"},\n    {\"skill_id\":\"infrastructure-as-code\",\"requirement\":\"nice_to_have\",\"raw_text\":\"infrastructure as code\"}\n  ],\n  \"unmapped\": [\n    {\"label\":\"Data engineering\",\"raw_text\":\"data engineering\"},\n    {\"label\":\"Data cleaning\",\"raw_text\":\"data cleaning\"},\n    {\"label\":\"Production analytics\",\"raw_text\":\"production analytics\"},\n    {\"label\":\"Agent planning\",\"raw_text\":\"planning\"},\n    {\"label\":\"Algorithms\",\"raw_text\":\"algorithms\"},\n    {\"label\":\"Data structures\",\"raw_text\":\"data structures\"},\n    {\"label\":\"Design patterns\",\"raw_text\":\"design patterns\"},\n    {\"label\":\"Systems programming\",\"raw_text\":\"systems programming language\"},\n    {\"label\":\"Agile\",\"raw_text\":\"Agile\"},\n    {\"label\":\"Issue tracking\",\"raw_text\":\"issue tracking\"},\n    {\"label\":\"Debugging\",\"raw_text\":\"debugging\"},\n    {\"label\":\"Client-server systems\",\"raw_text\":\"client-server systems\"},\n    {\"label\":\"Experience with unstructured data\",\"raw_text\":\"Experience with a variety of unstructured data types\"}\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, or a related discipline\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The optional section begins with “The following isn’t required, but we’d love to see it:”.\\nThe optional advanced degree has no explicit level; applying the guide’s unspecified-degree rule literally leaves bachelor as the highest explicitly named level. Flagged for review because “advanced” could imply a higher level.\\nREST is covered by the APIs criterion, whose required mention wins over the optional REST mention.\\nDebugging is unmapped rather than silently equated with software testing; testing is not requested.\\nThe library alternatives form group 1; the examples satisfying the single systems-language ask form group 2. The heterogeneous architecture and deployment examples are not treated as interchangeable alternatives.\\nCloud has an independent mention in “major cloud architectures”, so the containerized-or-cloud wording does not produce a surviving two-member alternative group.\\nUnstructured data types are retained as one unmapped technical familiarity ask; individual modalities are not inferred to require computer vision, NLP, or speech recognition.\\nSecurity clearance, citizenship, domain experience, leadership, and general project-delivery abilities are not taxonomy skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL pipelines"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ETL pipelines, machine learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents and agentic workflows"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Experience integrating AI systems"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP servers"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation approaches and frameworks"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation (RAG)"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent architectures"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectures and design patterns for client-server systems"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "nice_to_have",
+        "raw_text": "asynchronous programming"
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "vue",
+        "requirement": "nice_to_have",
+        "raw_text": "Vue"
+      },
+      {
+        "skill_id": "angular",
+        "requirement": "nice_to_have",
+        "raw_text": "Angular"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "major cloud architectures"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes [K8s]"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Data cleaning",
+        "raw_text": "data cleaning"
+      },
+      {
+        "label": "Production analytics",
+        "raw_text": "production analytics"
+      },
+      {
+        "label": "Agent planning",
+        "raw_text": "planning"
+      },
+      {
+        "label": "Algorithms",
+        "raw_text": "algorithms"
+      },
+      {
+        "label": "Data structures",
+        "raw_text": "data structures"
+      },
+      {
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "label": "Systems programming",
+        "raw_text": "systems programming language"
+      },
+      {
+        "label": "Agile",
+        "raw_text": "Agile"
+      },
+      {
+        "label": "Issue tracking",
+        "raw_text": "issue tracking"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "Client-server systems",
+        "raw_text": "client-server systems"
+      },
+      {
+        "label": "Experience with unstructured data",
+        "raw_text": "Experience with a variety of unstructured data types"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, or a related discipline",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The optional section begins with “The following isn’t required, but we’d love to see it:”.\nThe optional advanced degree has no explicit level; applying the guide’s unspecified-degree rule literally leaves bachelor as the highest explicitly named level. Flagged for review because “advanced” could imply a higher level.\nREST is covered by the APIs criterion, whose required mention wins over the optional REST mention.\nDebugging is unmapped rather than silently equated with software testing; testing is not requested.\nThe library alternatives form group 1; the examples satisfying the single systems-language ask form group 2. The heterogeneous architecture and deployment examples are not treated as interchangeable alternatives.\nCloud has an independent mention in “major cloud architectures”, so the containerized-or-cloud wording does not produce a surviving two-member alternative group.\nUnstructured data types are retained as one unmapped technical familiarity ask; individual modalities are not inferred to require computer vision, NLP, or speech recognition.\nSecurity clearance, citizenship, domain experience, leadership, and general project-delivery abilities are not taxonomy skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2fbfbbcb4f6fe231f42ea7e4f283751ddef993c4e4d9afe6bc6eda412306424c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

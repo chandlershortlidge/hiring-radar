@@ -1,0 +1,140 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied science experience in machine learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model-training experiments\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Work on large language models\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical analysis\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distillation\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Megatron-LM\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DeepSpeed\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommender systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"pre-training\",\n      \"raw_text\": \"pre-training or mid-training of language models\"\n    },\n    {\n      \"label\": \"post-training\",\n      \"raw_text\": \"language-model post-training\"\n    },\n    {\n      \"label\": \"continual learning\",\n      \"raw_text\": \"continual learning\"\n    },\n    {\n      \"label\": \"reward modelling\",\n      \"raw_text\": \"reward modelling\"\n    },\n    {\n      \"label\": \"contextual bandits\",\n      \"raw_text\": \"offline RL and bandits\"\n    },\n    {\n      \"label\": \"TabPFN\",\n      \"raw_text\": \"TabPFN\"\n    },\n    {\n      \"label\": \"TabICL\",\n      \"raw_text\": \"TabICL\"\n    },\n    {\n      \"label\": \"NeMo RL\",\n      \"raw_text\": \"NeMo RL\"\n    },\n    {\n      \"label\": \"verl\",\n      \"raw_text\": \"verl\"\n    },\n    {\n      \"label\": \"OpenRLHF\",\n      \"raw_text\": \"OpenRLHF\"\n    },\n    {\n      \"label\": \"generative retrieval\",\n      \"raw_text\": \"generative retrieval\"\n    },\n    {\n      \"label\": \"synthetic data\",\n      \"raw_text\": \"synthetic data\"\n    },\n    {\n      \"label\": \"model compression\",\n      \"raw_text\": \"compression for production\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.\",\n  \"uncertain\": [],\n  \"notes\": \"knowledge-distillation appears both in Track 1 'Relevant experience includes ... distillation' (unmarked section -> required) and under 'Preferred qualifications' ('model distillation' -> nice_to_have). Per duplicate rule, required wins, flagged uncertain as Track 1/2 are track-specific asks.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied science experience in machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model-training experiments"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Work on large language models"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "distillation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "nice_to_have",
+        "raw_text": "Megatron-LM"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommender systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "pre-training",
+        "raw_text": "pre-training or mid-training of language models"
+      },
+      {
+        "label": "post-training",
+        "raw_text": "language-model post-training"
+      },
+      {
+        "label": "continual learning",
+        "raw_text": "continual learning"
+      },
+      {
+        "label": "reward modelling",
+        "raw_text": "reward modelling"
+      },
+      {
+        "label": "contextual bandits",
+        "raw_text": "offline RL and bandits"
+      },
+      {
+        "label": "TabPFN",
+        "raw_text": "TabPFN"
+      },
+      {
+        "label": "TabICL",
+        "raw_text": "TabICL"
+      },
+      {
+        "label": "NeMo RL",
+        "raw_text": "NeMo RL"
+      },
+      {
+        "label": "verl",
+        "raw_text": "verl"
+      },
+      {
+        "label": "OpenRLHF",
+        "raw_text": "OpenRLHF"
+      },
+      {
+        "label": "generative retrieval",
+        "raw_text": "generative retrieval"
+      },
+      {
+        "label": "synthetic data",
+        "raw_text": "synthetic data"
+      },
+      {
+        "label": "model compression",
+        "raw_text": "compression for production"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.",
+    "uncertain": [],
+    "notes": "knowledge-distillation appears both in Track 1 'Relevant experience includes ... distillation' (unmarked section -> required) and under 'Preferred qualifications' ('model distillation' -> nice_to_have). Per duplicate rule, required wins, flagged uncertain as Track 1/2 are track-specific asks."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "6c315c713c8cd8425ba13deb8cb3f21aedfb429a59696929b6361227a227dc9d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e4736c3e3682a4c135509334f8f3ad53d1583a0a6beb59de8ee8906aa86d51ab",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Minimum Qualifications bullet \\\"Experience with AI tools, with an understanding of practical use to improve testing efficiency\\\" names an AI skill as a required qualification, and rule 3 makes that required mention win, so labeler B's `ai-ml` tag stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Minimum Qualifications bullet \"Experience with AI tools, with an understanding of practical use to improve testing efficiency\" names an AI skill as a required qualification, and rule 3 makes that required mention win, so labeler B's `ai-ml` tag stands.",
+  "error": null
+}

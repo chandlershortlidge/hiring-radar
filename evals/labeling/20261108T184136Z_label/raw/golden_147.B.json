@@ -1,0 +1,106 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modernen Integrationsarchitekturen\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MS Azure\"\n    },\n    {\n      \"skill_id\": \"microsoft-entra-id\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Services\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend-Systemen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automatisierung\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"OpenAPI\",\n      \"raw_text\": \"OpenAPI\"\n    },\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"Microsoft 365\",\n      \"raw_text\": \"Microsoft 365\"\n    },\n    {\n      \"label\": \"Power Platform\",\n      \"raw_text\": \"Power Platform\"\n    },\n    {\n      \"label\": \"Enterprise application and systems integration\",\n      \"raw_text\": \"Integration von Enterprise-Applikationen sowie komplexen Systemlandschaften\"\n    },\n    {\n      \"label\": \"Data-driven applications\",\n      \"raw_text\": \"datengetriebenen Anwendungen\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior IT Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer Science)\",\n  \"notes\": \"Anforderungen is the requirements section; no optional qualification section appears. Technologies mentioned only under Aufgaben are excluded.\\nIntegrationsarchitekturen is mapped to software-architecture as an explicitly named architectural practice.\\nBackend-Systemen asks for backend-system knowledge rather than explicitly for development; the backend-development mapping is flagged for review.\\nAutomatisierung is mapped provisionally to workflow-automation; no workflow-specific wording appears.\\nThe final oder in the AI/GenAI/automation/data-driven-applications list is read literally as offering alternatives. The mapped members share group 1; data-driven applications has no fitting taxonomy entry.\\nStudium has no explicit degree level and therefore maps to bachelor. The explicit alternative of completed vocational IT training is treated as an equivalent qualification, not as making the qualification optional.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "modernen Integrationsarchitekturen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "MS Azure"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Services"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Systemen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierung",
+        "alternative_group": 1,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "label": "Power Platform",
+        "raw_text": "Power Platform"
+      },
+      {
+        "label": "Enterprise application and systems integration",
+        "raw_text": "Integration von Enterprise-Applikationen sowie komplexen Systemlandschaften"
+      },
+      {
+        "label": "Data-driven applications",
+        "raw_text": "datengetriebenen Anwendungen"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior IT Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer Science)",
+    "notes": "Anforderungen is the requirements section; no optional qualification section appears. Technologies mentioned only under Aufgaben are excluded.\nIntegrationsarchitekturen is mapped to software-architecture as an explicitly named architectural practice.\nBackend-Systemen asks for backend-system knowledge rather than explicitly for development; the backend-development mapping is flagged for review.\nAutomatisierung is mapped provisionally to workflow-automation; no workflow-specific wording appears.\nThe final oder in the AI/GenAI/automation/data-driven-applications list is read literally as offering alternatives. The mapped members share group 1; data-driven applications has no fitting taxonomy entry.\nStudium has no explicit degree level and therefore maps to bachelor. The explicit alternative of completed vocational IT training is treated as an equivalent qualification, not as making the qualification optional."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "33093755682123d0ed49a4ffc2183de6911b6f7103173de37c58571d90a92684",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

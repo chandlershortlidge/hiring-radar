@@ -1,0 +1,64 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern software engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and deploying a relevant ML application\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and deploying a relevant ML application\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing ML training code\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud computing environment\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JAX\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2-4 years of experience building and deploying a relevant ML application\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A B.Sc. in computer or computational science, atmospheric science or a related geophysical science, or applied mathematics/statistics.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Google Cloud, GitHub, and TPUs appear only in the responsibilities section ('You'll get to work on:') and not in the requirements, so they are omitted.\\n'deploying a relevant ML application' mapped to ai-deployment (flagged uncertain as it refers to an ML application rather than explicitly a model).\\nDegree requires a B.Sc. ('What You’ll Need') and lists a Ph. D. under 'It's A Bonus If You'; per guide ('degree is the highest level named', and requirement is required since a degree is required), labeled phd + required and flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "modern software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and deploying a relevant ML application"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "building and deploying a relevant ML application",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing ML training code"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud computing environment"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "JAX"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2-4 years of experience building and deploying a relevant ML application",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A B.Sc. in computer or computational science, atmospheric science or a related geophysical science, or applied mathematics/statistics.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Google Cloud, GitHub, and TPUs appear only in the responsibilities section ('You'll get to work on:') and not in the requirements, so they are omitted.\n'deploying a relevant ML application' mapped to ai-deployment (flagged uncertain as it refers to an ML application rather than explicitly a model).\nDegree requires a B.Sc. ('What You’ll Need') and lists a Ph. D. under 'It's A Bonus If You'; per guide ('degree is the highest level named', and requirement is required since a degree is required), labeled phd + required and flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "4536e5bb6f7ac9731a3675b482951b0bc97bb2ba22d8384080c597ce085cb778",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

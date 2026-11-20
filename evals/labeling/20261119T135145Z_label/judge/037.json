@@ -1,0 +1,18 @@
+{
+  "item": 37,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "da63f7eccd9440aaf4bbd31ba59b2b96ec26bfc0cdc11e0618ca5f60f97261ff",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"model development\"}, \"why\": \"Under Rule 1 and Rule 5, the explicit mention of 'model development' appears only in the bonus qualification section, whereas the required section names 'developing ML training code' rather than model development itself.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "model development"
+  },
+  "why": "Under Rule 1 and Rule 5, the explicit mention of 'model development' appears only in the bonus qualification section, whereas the required section names 'developing ML training code' rather than model development itself.",
+  "error": null
+}

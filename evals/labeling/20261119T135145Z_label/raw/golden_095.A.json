@@ -1,0 +1,256 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend software engineering\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"deep focus on distributed systems\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic AI systems\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"LLM orchestration frameworks\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java (limited)\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Languages + Frameworks: TypeScript\"},\n    {\"skill_id\": \"async-processing\", \"requirement\": \"required\", \"raw_text\": \"async concurrency\", \"uncertain\": true},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"API design\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\", \"alternative_group\": 1},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"Anthropic MCP\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"google-adk\", \"requirement\": \"required\", \"raw_text\": \"Google ADK\", \"alternative_group\": 1},\n    {\"skill_id\": \"autogen\", \"requirement\": \"required\", \"raw_text\": \"AutoGen\", \"alternative_group\": 1},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 1},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"microservices architecture\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"container orchestration\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms (AWS)\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Observability and LLMOps expertise\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"LLMOps expertise\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"kafka\", \"requirement\": \"required\", \"raw_text\": \"Kafka\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI-powered development tools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"such as Claude Code\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"React\"},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala (principally)\"},\n    {\"skill_id\": \"mysql\", \"requirement\": \"required\", \"raw_text\": \"MySQL\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Version control: Git & GitHub\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fine-tuning models\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data privacy\", \"uncertain\": true},\n    {\"skill_id\": \"secrets-management\", \"requirement\": \"nice_to_have\", \"raw_text\": \"secrets management\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"A2A protocol\", \"raw_text\": \"A2A\"},\n    {\"label\": \"AWS SQS\", \"raw_text\": \"SQS\"},\n    {\"label\": \"Relational databases\", \"raw_text\": \"relational databases\"},\n    {\"label\": \"Event streaming\", \"raw_text\": \"event streaming\"},\n    {\"label\": \"Caching patterns\", \"raw_text\": \"caching patterns\"},\n    {\"label\": \"Structured logging\", \"raw_text\": \"structured logging\"},\n    {\"label\": \"Datadog\", \"raw_text\": \"Datadog\"},\n    {\"label\": \"Context engineering\", \"raw_text\": \"context engineering\"},\n    {\"label\": \"AI platform tooling\", \"raw_text\": \"AI platform tooling\"},\n    {\"label\": \"RLHF/RLAIF\", \"raw_text\": \"RLHF/RLAIF optimization loops\"},\n    {\"label\": \"Prompt injection defenses\", \"raw_text\": \"prompt injection defenses\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree in Computer Science, Machine Learning, or related technical field\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"'What you'll do' is responsibilities only. Skills that appear only there (guardrails, semantic search, CI/CD, evaluation) are not labeled.\\n'Our Stack' is an unmarked tech-stack list, so its entries are required (rule 4). This includes 'Java (limited)'.\\nPython is offered as 'Python or Java/TypeScript'. Java and TypeScript are also asked for on their own in the stack, so they leave the group, which leaves Python alone and ungrouped.\\nClaude Code and GitHub Copilot are examples of AI dev tools but also appear in the stack, so they are not grouped.\\nThe agentic-systems / LLM-orchestration / AI-platform-tooling alternatives are not grouped. LLM orchestration is asked for again on its own ('agentic orchestration frameworks'), and 'AI platform tooling' has no clean taxonomy fit (ai-infrastructure was considered).\\nGroup 1 is LangGraph, MCP, Google ADK, AutoGen and LlamaIndex. A2A is unmapped.\\nMCP stays in group 1, flagged: its only other mention is the nice-to-have 'MCP servers' contributions line, which I did not read as a standalone ask.\\nKafka is not grouped, because SQS is unmapped and a group needs two skills.\\nAnthropic MCP is labeled mcp, not anthropic-api.\\nSoftware-engineering is not added separately; 'backend software engineering' is labeled backend-development.\\nRLHF/RLAIF is unmapped rather than given the parent reinforcement-learning, which the posting does not name.\\n'distributed tracing' collapses into observability.\\nThe 'Advanced degree' is under a 'not required, a plus' heading, so it is nice_to_have. I mapped 'advanced degree' to master, which is an interpretation, hence the flag.\\nGerman is not mentioned; the posting is English.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend software engineering"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "deep focus on distributed systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI systems"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java (limited)"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Languages + Frameworks: TypeScript"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "required",
+        "raw_text": "async concurrency",
+        "uncertain": true
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Anthropic MCP",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "required",
+        "raw_text": "Google ADK",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "required",
+        "raw_text": "AutoGen",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices architecture"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "cloud platforms (AWS)"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability and LLMOps expertise"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps expertise"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "required",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-powered development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "such as Claude Code"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala (principally)"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Version control: Git & GitHub"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "data privacy",
+        "uncertain": true
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "nice_to_have",
+        "raw_text": "secrets management"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "A2A protocol",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "AWS SQS",
+        "raw_text": "SQS"
+      },
+      {
+        "label": "Relational databases",
+        "raw_text": "relational databases"
+      },
+      {
+        "label": "Event streaming",
+        "raw_text": "event streaming"
+      },
+      {
+        "label": "Caching patterns",
+        "raw_text": "caching patterns"
+      },
+      {
+        "label": "Structured logging",
+        "raw_text": "structured logging"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "AI platform tooling",
+        "raw_text": "AI platform tooling"
+      },
+      {
+        "label": "RLHF/RLAIF",
+        "raw_text": "RLHF/RLAIF optimization loops"
+      },
+      {
+        "label": "Prompt injection defenses",
+        "raw_text": "prompt injection defenses"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree in Computer Science, Machine Learning, or related technical field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "'What you'll do' is responsibilities only. Skills that appear only there (guardrails, semantic search, CI/CD, evaluation) are not labeled.\n'Our Stack' is an unmarked tech-stack list, so its entries are required (rule 4). This includes 'Java (limited)'.\nPython is offered as 'Python or Java/TypeScript'. Java and TypeScript are also asked for on their own in the stack, so they leave the group, which leaves Python alone and ungrouped.\nClaude Code and GitHub Copilot are examples of AI dev tools but also appear in the stack, so they are not grouped.\nThe agentic-systems / LLM-orchestration / AI-platform-tooling alternatives are not grouped. LLM orchestration is asked for again on its own ('agentic orchestration frameworks'), and 'AI platform tooling' has no clean taxonomy fit (ai-infrastructure was considered).\nGroup 1 is LangGraph, MCP, Google ADK, AutoGen and LlamaIndex. A2A is unmapped.\nMCP stays in group 1, flagged: its only other mention is the nice-to-have 'MCP servers' contributions line, which I did not read as a standalone ask.\nKafka is not grouped, because SQS is unmapped and a group needs two skills.\nAnthropic MCP is labeled mcp, not anthropic-api.\nSoftware-engineering is not added separately; 'backend software engineering' is labeled backend-development.\nRLHF/RLAIF is unmapped rather than given the parent reinforcement-learning, which the posting does not name.\n'distributed tracing' collapses into observability.\nThe 'Advanced degree' is under a 'not required, a plus' heading, so it is nice_to_have. I mapped 'advanced degree' to master, which is an interpretation, hence the flag.\nGerman is not mentioned; the posting is English."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "475c3f6644064c1a708e2b613e1cedff26f3ed3dd5fba4acdcc6782105efe385",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

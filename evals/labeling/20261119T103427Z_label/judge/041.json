@@ -1,0 +1,15 @@
+{
+  "item": 41,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e9f75bc3b29a4d012d1bc08a091ae5834b12320adedcf7519e1fd7c30edc8aed",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the 'Who You Are' qualification bullet explicitly requires experience with 'telemetry, real-time monitoring, and fault detection,' which maps to the observability skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the 'Who You Are' qualification bullet explicitly requires experience with 'telemetry, real-time monitoring, and fault detection,' which maps to the observability skill.",
+  "error": null
+}

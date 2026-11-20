@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "caf8827c740ededce599d1cab2574c06d6587e662c07d616d4abc661edbecbbe",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence \"Backend or full-stack background both fine\" sits in the WHAT YOU'LL NEED qualifications and names full-stack development, so the agreed required label stands (rule 3 also favours a required mention).\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 56 (char 55)"
+}

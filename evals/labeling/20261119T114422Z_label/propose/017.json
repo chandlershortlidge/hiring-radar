@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "badc613688ae3ed99faa1553a1991e148206a644152986854b98729b3c63f4d5",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"Contributions to open-source LLM training projects or tools\\\" is a qualification that names the skill, and its nice_to_have requirement matches the section heading, so B's labeling stands over A's omission.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the preferred-qualifications bullet \"Contributions to open-source LLM training projects or tools\" is a qualification that names the skill, and its nice_to_have requirement matches the section heading, so B's labeling stands over A's omission.",
+  "error": null
+}

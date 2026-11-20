@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "a-b-testing",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "f70896013b8ea3c3383ef111f6c1d33dd03cdb5b5934d45b8823ee3f4e2fb9eb",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, 'online experimentation' in a preferred qualification bullet counts as a direct synonym for A/B testing.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, 'online experimentation' in a preferred qualification bullet counts as a direct synonym for A/B testing.",
+  "error": null
+}

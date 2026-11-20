@@ -1,0 +1,138 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM serving frameworks\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vLLM\"\n    },\n    {\n      \"skill_id\": \"sglang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SGLang\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorRT-LLM\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DeepSpeed-Inference\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerized deployments\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Systems programming\",\n      \"raw_text\": \"systems programming\"\n    },\n    {\n      \"label\": \"ML infrastructure\",\n      \"raw_text\": \"ML infrastructure\"\n    },\n    {\n      \"label\": \"Distributed inference\",\n      \"raw_text\": \"distributed inference\"\n    },\n    {\n      \"label\": \"Token scheduling\",\n      \"raw_text\": \"token scheduling\"\n    },\n    {\n      \"label\": \"KV caching\",\n      \"raw_text\": \"KV caching\"\n    },\n    {\n      \"label\": \"Batching\",\n      \"raw_text\": \"batching\"\n    },\n    {\n      \"label\": \"Pipelined inference\",\n      \"raw_text\": \"pipelined inference\"\n    },\n    {\n      \"label\": \"PCIe\",\n      \"raw_text\": \"PCIe\"\n    },\n    {\n      \"label\": \"Memory management\",\n      \"raw_text\": \"memory management\"\n    },\n    {\n      \"label\": \"Runtime scheduling\",\n      \"raw_text\": \"runtime scheduling\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of professional experience in systems programming, ML infrastructure, or distributed inference\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\",\n  \"uncertain\": [],\n  \"notes\": \"PyTorch, APIs, and quantization appear only in KEY RESPONSIBILITIES, so they are excluded per the labeling guide.\\nDegree set to 'phd' as the highest level named in 'BS/MS/PhD'.\\nMapped 'LLM serving frameworks' to both llms and model-serving (marked model-serving uncertain as it is not an exact alias match).\\nMapped 'DeepSpeed-Inference' to deepspeed.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "LLM serving frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "SGLang"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT-LLM"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "DeepSpeed-Inference"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized deployments"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systems programming",
+        "raw_text": "systems programming"
+      },
+      {
+        "label": "ML infrastructure",
+        "raw_text": "ML infrastructure"
+      },
+      {
+        "label": "Distributed inference",
+        "raw_text": "distributed inference"
+      },
+      {
+        "label": "Token scheduling",
+        "raw_text": "token scheduling"
+      },
+      {
+        "label": "KV caching",
+        "raw_text": "KV caching"
+      },
+      {
+        "label": "Batching",
+        "raw_text": "batching"
+      },
+      {
+        "label": "Pipelined inference",
+        "raw_text": "pipelined inference"
+      },
+      {
+        "label": "PCIe",
+        "raw_text": "PCIe"
+      },
+      {
+        "label": "Memory management",
+        "raw_text": "memory management"
+      },
+      {
+        "label": "Runtime scheduling",
+        "raw_text": "runtime scheduling"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of professional experience in systems programming, ML infrastructure, or distributed inference",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field",
+    "uncertain": [],
+    "notes": "PyTorch, APIs, and quantization appear only in KEY RESPONSIBILITIES, so they are excluded per the labeling guide.\nDegree set to 'phd' as the highest level named in 'BS/MS/PhD'.\nMapped 'LLM serving frameworks' to both llms and model-serving (marked model-serving uncertain as it is not an exact alias match).\nMapped 'DeepSpeed-Inference' to deepspeed."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "5f7af556156445fa1eda9bade660f60123caa255a3eaa24a5f04d6449ee24812",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

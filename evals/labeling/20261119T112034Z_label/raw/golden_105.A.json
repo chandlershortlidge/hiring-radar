@@ -1,0 +1,77 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"production backend systems\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"alternative_group\": 1},\n    {\"skill_id\": \"rust\", \"requirement\": \"required\", \"raw_text\": \"Rust\", \"alternative_group\": 1},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"networking, and data access\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"large-scale APIs\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"real-time data pipelines\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"DBMS internals\", \"raw_text\": \"DBMS internals\"},\n    {\"label\": \"Low-level performance tuning / hardware-level optimisation\", \"raw_text\": \"Low-level performance tuning and hardware-level optimisation\"},\n    {\"label\": \"High-load, low-latency systems\", \"raw_text\": \"high-load, low-latency user-facing systems\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'You may be a good fit if you:' is treated as a requirements heading, so its unmarked items default to required.\\n'Strong candidates may also have experience with:' is treated as an optional heading. Every item under it is labeled nice_to_have.\\nC++ and Rust form alternative group 1, from 'C++ or Rust'.\\nNetworking appears in 'Understand performance at a systems level — CPU, memory, networking, and data access'. It is labeled required but flagged uncertain, because it may be read as systems understanding rather than a networking skill.\\n'8+ years of experience as a software engineer' is treated as years of experience and role, not a software-engineering skill ask. It is not labeled.\\n'High-load web applications' is not mapped to full-stack-development. The posting names no web-application development skill.\\nObservability, metrics and traces appear only in the responsibilities, so they are not labeled.\\nThe search, inference-optimization and AI mentions are in the company and product descriptions and the responsibilities, so they are not labeled.\\n'real-time data pipelines' is an example within 'Performance-critical systems such as trading platforms or real-time data pipelines'. Trading platforms is not a skill, so there are not two skills and no alternative group is formed.\\nSeniority is stated by the 'Staff' title. '8+ years' would also infer senior.\\nThe posting mentions no German and no degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "production backend systems"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking, and data access",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "large-scale APIs"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "DBMS internals",
+        "raw_text": "DBMS internals"
+      },
+      {
+        "label": "Low-level performance tuning / hardware-level optimisation",
+        "raw_text": "Low-level performance tuning and hardware-level optimisation"
+      },
+      {
+        "label": "High-load, low-latency systems",
+        "raw_text": "high-load, low-latency user-facing systems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'You may be a good fit if you:' is treated as a requirements heading, so its unmarked items default to required.\n'Strong candidates may also have experience with:' is treated as an optional heading. Every item under it is labeled nice_to_have.\nC++ and Rust form alternative group 1, from 'C++ or Rust'.\nNetworking appears in 'Understand performance at a systems level — CPU, memory, networking, and data access'. It is labeled required but flagged uncertain, because it may be read as systems understanding rather than a networking skill.\n'8+ years of experience as a software engineer' is treated as years of experience and role, not a software-engineering skill ask. It is not labeled.\n'High-load web applications' is not mapped to full-stack-development. The posting names no web-application development skill.\nObservability, metrics and traces appear only in the responsibilities, so they are not labeled.\nThe search, inference-optimization and AI mentions are in the company and product descriptions and the responsibilities, so they are not labeled.\n'real-time data pipelines' is an example within 'Performance-critical systems such as trading platforms or real-time data pipelines'. Trading platforms is not a skill, so there are not two skills and no alternative group is formed.\nSeniority is stated by the 'Staff' title. '8+ years' would also infer senior.\nThe posting mentions no German and no degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2f9f29752ed59c4b1cfb73bf37a92fae1829674f01cddb3321d0e4e784e83836",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

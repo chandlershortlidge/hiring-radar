@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cff41641b1ad6dbcd6c1ed3cd7751beb2c826f0835745f11e1b65e088266eb82",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Experience implementing and deploying software in containerized or cloud environments\\\" names cloud deployment as a skill, and it sits under the heading saying the section is not required, so nice_to_have and the verbatim raw_text \\\"cloud environments\\\" are right.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Experience implementing and deploying software in containerized or cloud environments\" names cloud deployment as a skill, and it sits under the heading saying the section is not required, so nice_to_have and the verbatim raw_text \"cloud environments\" are right.",
+  "error": null
+}

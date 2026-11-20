@@ -1,0 +1,51 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kotlin\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kotlin\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Android\",\n      \"raw_text\": \"native Android experience\"\n    },\n    {\n      \"label\": \"Android architecture\",\n      \"raw_text\": \"Android architecture\"\n    },\n    {\n      \"label\": \"Jetpack\",\n      \"raw_text\": \"Jetpack\"\n    },\n    {\n      \"label\": \"Kotlin Coroutines\",\n      \"raw_text\": \"Coroutines\"\n    },\n    {\n      \"label\": \"Kotlin Flow\",\n      \"raw_text\": \"Flow\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"APIs and AI Finance Agent appear only in title/responsibilities, not in the qualifications section ('WHAT WE'RE LOOKING FOR'). Android-specific technologies (Android, Jetpack, Coroutines, Flow) are not in the taxonomy and placed in unmapped. 'Strong native Android experience' and 'real technology career highlights' do not match the guide's inferred seniority triggers.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kotlin",
+        "requirement": "required",
+        "raw_text": "Kotlin"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Android",
+        "raw_text": "native Android experience"
+      },
+      {
+        "label": "Android architecture",
+        "raw_text": "Android architecture"
+      },
+      {
+        "label": "Jetpack",
+        "raw_text": "Jetpack"
+      },
+      {
+        "label": "Kotlin Coroutines",
+        "raw_text": "Coroutines"
+      },
+      {
+        "label": "Kotlin Flow",
+        "raw_text": "Flow"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "APIs and AI Finance Agent appear only in title/responsibilities, not in the qualifications section ('WHAT WE'RE LOOKING FOR'). Android-specific technologies (Android, Jetpack, Coroutines, Flow) are not in the taxonomy and placed in unmapped. 'Strong native Android experience' and 'real technology career highlights' do not match the guide's inferred seniority triggers."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "74e0ba994fdf73f117d4a6dc000a49749082428d1da1d89d9ba25330356d449c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

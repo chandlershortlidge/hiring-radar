@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "11bad60eebcfb25794cad760b529f6d8861202b77cec01fccea5f6a6eea5b4d3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly requires expertise in 'benchmarking', which maps to the model evaluation skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly requires expertise in 'benchmarking', which maps to the model evaluation skill.",
+  "error": null
+}

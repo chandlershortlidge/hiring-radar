@@ -1,0 +1,121 @@
+{
+  "id": "golden_118",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossene IT-Ausbildung oder abgeschlossenes Studium der (Wirtschafts-)Informatik oder vergleichbar",
+  "attrs_reviewed": true,
+  "source_sha256": "a2753100f6896c7132bc36211da57a4e70a8007ba71ce584ae576114594a3a01",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:argocd",
+    "skill:cybersecurity",
+    "skill:gitops",
+    "skill:helm",
+    "skill:infrastructure-as-code",
+    "skill:secrets-management",
+    "skill:terraform"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Cloud Platform Engineer (m/w/d) Kubernetes / STACKIT / AI Platform Operations (Hamburg oder Mainz)\n\nHast du Freude daran, komplexe Cloud- und Kubernetes-Umgebungen weiterzuentwickeln, Betriebsprozesse zu automatisieren und professionelle Standards zu etablieren? Dann wartet eine spannende Aufgabe auf dich: Gemeinsam mit internen Teams und externen Partnern entwickelst du als unser **Cloud Platform Engineer (m/w/d)** unsere Plattform kontinuierlich weiter. Bewirb dich jetzt für unseren Standort in **Hamburg oder Mainz**!\n\n### Deine Aufgaben\n\n- Verantwortung für den stabilen, sicheren und skalierbaren Betrieb sowie die Optimierung unserer bereits aufgebauten Cloud- und Kubernetes-basierten AI-/Bot-Plattform auf STACKIT in Zusammenarbeit mit internen Teams und externen Partnern\n- Etablierung und kontinuierliche Weiterentwicklung von Betriebsprozessen, Dokumentationen und Know-how für einen nachhaltigen und professionellen Regelbetrieb\n- Konzeption, Aufbau und Weiterentwicklung von Kubernetes-/STACKIT SKE-Umgebungen inklusive Cluster-Struktur, Namespace- und Berechtigungskonzepten, Ingress/Load Balancing, Ressourcenkonzepten, Secrets Management und GitOps-basierten Deployment-Prozessen\n- Weiterentwicklung und Automatisierung der Deployment- und Betriebsprozesse mit CI/CD, Infrastructure as Code und GitOps (z.B. Terraform und Argo CD)\n- Sicherstellung eines stabilen Plattformbetriebs durch Monitoring, Logging und Alerting\n- Koordination und technische Unterstützung des Incident Managements\n- Mitwirkung bei der Umsetzung von Security- und Compliance-Vorgaben, insbesondere in den Bereichen IAM und RBAC sowie DSGVO, ISO 27001 und C5\n\n### Dein Profil\n\n- Abgeschlossene IT-Ausbildung oder abgeschlossenes Studium der (Wirtschafts-)Informatik oder vergleichbar\n- Fundierte Erfahrung im Aufbau und Betrieb von Kubernetes-Plattformen, idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift\n- Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD, Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize\n- Erfahrung mit Monitoring, Logging und Alerting sowie idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB\n- Gutes Verständnis für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets Management, TLS/Zertifikate, Container-/Image-Security, Audit Logging und Least-Privilege-Prinzipien\n- Erfahrung im strukturierten Troubleshooting komplexer Cloud- und Kubernetes-Umgebungen, ausgeprägte Problemlösungskompetenz sowie Erfahrung in der Zusammenarbeit mit internen Teams und externen Partnern\n- Eigenständige und lösungsorientierte Arbeitsweise sowie Freude daran, professionelle Betriebsstandards mitzugestalten und zu optimieren\n- Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift\n\n### Deine Benefits\n\n- Attraktives Fixgehalt zzgl. Weihnachtsgeld\n- Remote Work anteilig\n- Flexible Arbeitszeiten\n- 30 Tage Urlaub\n- Betriebliche Altersvorsorge\n- Mitarbeiterevents\n- Zuschuss zum Deutschlandticket\n- Urban Sports Club",
+  "expected": [
+    {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "IAM/RBAC"
+    },
+    {
+      "skill_id": "argocd",
+      "requirement": "required",
+      "raw_text": "Argo CD"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Kenntnisse in Cloud-Infrastrukturen"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Container-Technologien"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Kubernetes- und Cloud-Security"
+    },
+    {
+      "skill_id": "gitops",
+      "requirement": "required",
+      "raw_text": "GitOps"
+    },
+    {
+      "skill_id": "helm",
+      "requirement": "required",
+      "raw_text": "Helm"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Erfahrung im Aufbau und Betrieb von Kubernetes-Plattformen"
+    },
+    {
+      "skill_id": "mongodb",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Network Policies"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit Monitoring, Logging und Alerting"
+    },
+    {
+      "skill_id": "openshift",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift"
+    },
+    {
+      "skill_id": "postgresql",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB"
+    },
+    {
+      "skill_id": "secrets-management",
+      "requirement": "required",
+      "raw_text": "Secrets Management"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

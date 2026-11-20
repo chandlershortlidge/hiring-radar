@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "24440debec8291ab55bda1a0ecf7b45aa76497269a070c71a952c39f312106a5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet 'Real depth in one modern ML area' explicitly names machine learning (ML) as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet 'Real depth in one modern ML area' explicitly names machine learning (ML) as a required skill.",
+  "error": null
+}

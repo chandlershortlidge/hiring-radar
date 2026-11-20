@@ -1,0 +1,157 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Hands-on Snowflake experience\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Solid understanding of RAG\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"RAG, embeddings\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt engineering\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation and observability practices\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"observability practices\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Strong SQL\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python skills\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML delivery\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"nice_to_have\", \"raw_text\": \"evaluations, guardrails\", \"uncertain\": true},\n    {\"skill_id\": \"streamlit\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Streamlit in Snowflake\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"external agent frameworks is a plus\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Snowflake Cortex\", \"raw_text\": \"Production experience with Snowflake Cortex\"},\n    {\"label\": \"Cortex Agents\", \"raw_text\": \"Cortex Agents\"},\n    {\"label\": \"Cortex Analyst / Semantic Models or Views\", \"raw_text\": \"Cortex Analyst with Semantic Models or Views\"},\n    {\"label\": \"Cortex Search\", \"raw_text\": \"Cortex Search\"},\n    {\"label\": \"Cortex AI Functions (AISQL)\", \"raw_text\": \"Cortex AI Functions (AISQL)\"},\n    {\"label\": \"Cortex AI Functions examples\", \"raw_text\": \"AI_COMPLETE, AI_CLASSIFY, AI_EXTRACT, AI_AGG and AI_EMBED\"},\n    {\"label\": \"Snowflake CoWork / Snowflake Intelligence\", \"raw_text\": \"Snowflake CoWork (Snowflake Intelligence)\"},\n    {\"label\": \"Semantic Views\", \"raw_text\": \"Semantic Views\"},\n    {\"label\": \"Document AI\", \"raw_text\": \"Document AI\"},\n    {\"label\": \"Snowpark\", \"raw_text\": \"Snowpark\"},\n    {\"label\": \"text-to-SQL\", \"raw_text\": \"text-to-SQL\"},\n    {\"label\": \"performance tuning\", \"raw_text\": \"performance tuning\"},\n    {\"label\": \"security and governance\", \"raw_text\": \"security and governance\"},\n    {\"label\": \"Snowflake Native Apps\", \"raw_text\": \"Snowflake Native Apps\"},\n    {\"label\": \"SnowPro certification\", \"raw_text\": \"A SnowPro Core or Advanced certification is a plus\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3 to 6 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A BS in Computer Science, Engineering or a related field, or equivalent practical experience\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'Core skills for this role:' list in 'The Role' is treated as a skills section asked of the candidate, so its entries are required. All of those entries are also in 'What We Are Looking For', so no label depends on this reading.\\nThe Cortex 'at least two of these' set is all unmapped skills, so no alternative_group is assigned.\\nOne plus bullet reads 'Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks'. Agents is also asked for on its own in another plus bullet ('production agentic AI systems'), so it leaves the group. Native Apps is unmapped. That leaves Streamlit as the only grouped skill, and a group needs at least two, so no group is assigned.\\nagents takes its raw_text from 'external agent frameworks', which matches the taxonomy alias. 'agentic AI systems' is the same id, collapsed into this criterion; both mentions are nice_to_have.\\nguardrails comes only from a plus bullet; its other mention is in the responsibilities, so it is nice_to_have.\\nevaluation is required: 'Solid understanding of ... evaluation and observability practices'. The later plus mention collapses into it.\\nai-ml is taken from the years-of-experience line 'data engineering, analytics engineering, data architecture or AI/ML delivery'. It is uncertain because the line may be domain experience rather than a skill. Its alternatives are unmapped.\\nThe security/governance controls in the responsibilities (RBAC, masking, row access policies) are responsibilities only and not labeled. 'security and governance' in the requirements is left unmapped rather than forced onto data-privacy-and-security.\\nSeniority is inferred from '3 to 6 years', which gives mid. It is flagged because the responsibility 'support junior team members' could be read as a mentoring duty, which would mean senior.\\n'BS ... or equivalent practical experience' gives degree = bachelor, required, with degree_or_equivalent = true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Hands-on Snowflake experience"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Solid understanding of RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "RAG, embeddings"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation and observability practices"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability practices"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Strong SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python skills"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML delivery",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluations, guardrails",
+        "uncertain": true
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit in Snowflake"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "external agent frameworks is a plus",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Snowflake Cortex",
+        "raw_text": "Production experience with Snowflake Cortex"
+      },
+      {
+        "label": "Cortex Agents",
+        "raw_text": "Cortex Agents"
+      },
+      {
+        "label": "Cortex Analyst / Semantic Models or Views",
+        "raw_text": "Cortex Analyst with Semantic Models or Views"
+      },
+      {
+        "label": "Cortex Search",
+        "raw_text": "Cortex Search"
+      },
+      {
+        "label": "Cortex AI Functions (AISQL)",
+        "raw_text": "Cortex AI Functions (AISQL)"
+      },
+      {
+        "label": "Cortex AI Functions examples",
+        "raw_text": "AI_COMPLETE, AI_CLASSIFY, AI_EXTRACT, AI_AGG and AI_EMBED"
+      },
+      {
+        "label": "Snowflake CoWork / Snowflake Intelligence",
+        "raw_text": "Snowflake CoWork (Snowflake Intelligence)"
+      },
+      {
+        "label": "Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "label": "Document AI",
+        "raw_text": "Document AI"
+      },
+      {
+        "label": "Snowpark",
+        "raw_text": "Snowpark"
+      },
+      {
+        "label": "text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "performance tuning",
+        "raw_text": "performance tuning"
+      },
+      {
+        "label": "security and governance",
+        "raw_text": "security and governance"
+      },
+      {
+        "label": "Snowflake Native Apps",
+        "raw_text": "Snowflake Native Apps"
+      },
+      {
+        "label": "SnowPro certification",
+        "raw_text": "A SnowPro Core or Advanced certification is a plus"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3 to 6 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A BS in Computer Science, Engineering or a related field, or equivalent practical experience",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'Core skills for this role:' list in 'The Role' is treated as a skills section asked of the candidate, so its entries are required. All of those entries are also in 'What We Are Looking For', so no label depends on this reading.\nThe Cortex 'at least two of these' set is all unmapped skills, so no alternative_group is assigned.\nOne plus bullet reads 'Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks'. Agents is also asked for on its own in another plus bullet ('production agentic AI systems'), so it leaves the group. Native Apps is unmapped. That leaves Streamlit as the only grouped skill, and a group needs at least two, so no group is assigned.\nagents takes its raw_text from 'external agent frameworks', which matches the taxonomy alias. 'agentic AI systems' is the same id, collapsed into this criterion; both mentions are nice_to_have.\nguardrails comes only from a plus bullet; its other mention is in the responsibilities, so it is nice_to_have.\nevaluation is required: 'Solid understanding of ... evaluation and observability practices'. The later plus mention collapses into it.\nai-ml is taken from the years-of-experience line 'data engineering, analytics engineering, data architecture or AI/ML delivery'. It is uncertain because the line may be domain experience rather than a skill. Its alternatives are unmapped.\nThe security/governance controls in the responsibilities (RBAC, masking, row access policies) are responsibilities only and not labeled. 'security and governance' in the requirements is left unmapped rather than forced onto data-privacy-and-security.\nSeniority is inferred from '3 to 6 years', which gives mid. It is flagged because the responsibility 'support junior team members' could be read as a mentoring duty, which would mean senior.\n'BS ... or equivalent practical experience' gives degree = bachelor, required, with degree_or_equivalent = true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "be016fb4aa674895669dbfa2e9d51c845f14ac8fef245405d840ad88e04e3d26",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

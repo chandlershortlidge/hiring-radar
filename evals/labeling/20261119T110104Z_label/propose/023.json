@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4b43ea610872e8401a54e2fdc3cd05083b1d70a33139ee8053bbce4899a49d69",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Experience owning systems end-to-end in a production environment, including monitoring and iterating post-deployment\\\" sits in the Professional Experience & Qualifications section and is not marked preferred, so the required observability mention stands and the quoted raw_text appears verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Experience owning systems end-to-end in a production environment, including monitoring and iterating post-deployment\" sits in the Professional Experience & Qualifications section and is not marked preferred, so the required observability mention stands and the quoted raw_text appears verbatim.",
+  "error": null
+}

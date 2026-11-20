@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "2c99f2f1e7e357d914d79bd8a38a94019448197a8b73e6c3979fe82515d06323",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet 'Proven track record of deploying and maintaining machine learning/AI systems in production' directly names the ai-ml skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet 'Proven track record of deploying and maintaining machine learning/AI systems in production' directly names the ai-ml skill.",
+  "error": null
+}

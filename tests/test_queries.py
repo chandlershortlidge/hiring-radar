@@ -284,6 +284,37 @@ def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     assert q.stats(conn, NOW, 1)["legacy"] == 1
 
 
+def test_stored_sales_jobs_stay_out_of_the_charts_but_in_the_list(conn):
+    """HIR-246: a sales posting stored before the title filter refused it is not deleted,
+    and does not count in the chart, the city totals, the related panel or the skill tree."""
+    from app import skill_tree
+    f = q.Filters(window="all", requirement="all")
+    before = q.skill_frequency(conn, f, NOW)
+    tree_before = skill_tree.fetch_jobs(conn, f, NOW)
+    jid = add(conn, "Oediv", "PreSales Engineer Data & AI", "Berlin", "arbeitnow", ts(0),
+              [("python", "required"), ("kubernetes", "required")])
+    after = q.skill_frequency(conn, f, NOW)
+    assert after == before and after["total"] == 5
+    assert "kubernetes" not in {s["skill_id"] for s in after["skills"]}
+    assert q.city_totals(conn, f, NOW) == {"Berlin": 4, "San Francisco": 1}
+    assert skill_tree.fetch_jobs(conn, f, NOW) == tree_before
+    r = q.list_jobs(conn, q.Filters(window="all"), NOW)
+    assert r["total"] == 6 and "Oediv" in {j["company"] for j in r["jobs"]}
+    assert conn.execute("SELECT count(*) FROM skill_mention WHERE job_id=?", (jid,)).fetchone()[0] == 2
+
+
+def test_the_chart_hides_exactly_the_titles_ingest_refuses_as_sales(conn):
+    """One list, two readers: the SQL built from it and ingest.sales_title must agree."""
+    from app.ingest import sales_title
+    from tests.test_ingest import NOT_SALES_TITLES, SALES_TITLES
+    titles = SALES_TITLES + NOT_SALES_TITLES
+    for i, t in enumerate(titles):
+        add(conn, f"Co{i}", t, "Berlin", "paste", ts(0), [("python", "required")])
+    kept = {r["title"] for r in conn.execute(f"SELECT j.title FROM job j WHERE {q._NOT_SALES}")}
+    assert {t for t in titles if t in kept} == {t for t in titles if not sales_title(t)}
+    assert kept >= set(NOT_SALES_TITLES) and not kept & set(SALES_TITLES)
+
+
 def test_too_short_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     p = Posting("screenshot", "", "", "Theta", "AI Engineer", "Berlin", "Theta AI Engineer. Python.")
     jid = ingest_one(conn, p, ts(1), require_city=False, trust_title=True).job_id
@@ -644,3 +675,31 @@ def test_the_job_list_reports_each_job_family(conn):
     assert jobs["Acme"] == "ai-engineer" and jobs["Beta"] == "ml-engineer"
     acme = conn.execute("SELECT id FROM job WHERE company='Acme'").fetchone()[0]
     assert q.job_detail(conn, acme, NOW)["family"] == "ai-engineer"
+
+
+# --- how much work the chart's request does (HIR-372) -----------------------------------
+
+def _chart_work(tmp_path, name, skills_per_other_job):
+    """SQLite's own step count for the Berlin chart, with 60 Munich jobs in the database
+    that each list `skills_per_other_job` skills."""
+    c = db.connect(tmp_path / name)
+    db.migrate(c)
+    names = [f"skill{i}" for i in range(skills_per_other_job)]
+    add(c, "Acme", "AI Engineer", "Berlin", "arbeitnow", ts(1), [("python", "required")])
+    for i in range(60):
+        add(c, f"Co{i}", f"AI Engineer {i}", "Munich", "arbeitnow", ts(1), [(s, "required") for s in names])
+    steps = [0]
+    c.set_progress_handler(lambda: steps.__setitem__(0, steps[0] + 1) or 0, 10)
+    r = q.skill_frequency(c, q.Filters(cities=("Berlin",)), NOW)
+    c.set_progress_handler(None, 0)
+    assert (r["total"], [(s["skill_id"], s["count"]) for s in r["skills"]]) == (1, [("python", 1)])
+    return steps[0]
+
+
+def test_the_chart_reads_only_the_skills_of_the_jobs_it_counts(tmp_path):
+    # The chart's request is made by every page. It used to walk every stored skill mention
+    # and re-check the job's filters for each one, so its cost grew with everything stored,
+    # and on 19 Nov the server took over 15 seconds to answer it just after a release
+    # (HIR-372). Jobs outside the filter may cost a look each; their skills must cost nothing.
+    few, many = _chart_work(tmp_path, "few.db", 1), _chart_work(tmp_path, "many.db", 15)
+    assert many <= few * 1.5, (few, many)

@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Strong expertise in both computer vision and natural language processing with hands-on model development experience\", \"requirement\": \"required\"}",
+  "key_sha256": "c48c59c04d610471ab2cf3013a0a409e5b2de04b1c06bf5fb1d94d5f8985218c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"The only explicit mention of AI/ML in the qualifications is in a years-of-experience line which does not count under Rule 1, and we do not add a broad parent skill from specific sub-skills like computer vision or NLP under Rule 5.\"}",
+  "decision": "drop",
+  "why": "The only explicit mention of AI/ML in the qualifications is in a years-of-experience line which does not count under Rule 1, and we do not add a broad parent skill from specific sub-skills like computer vision or NLP under Rule 5.",
+  "error": null
+}

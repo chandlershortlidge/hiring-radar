@@ -1,5 +1,5 @@
 [Unit]
-Description=hiring-radar daily poll
+Description=hiring-radar daily poll, Europe
 After=network-online.target
 Wants=network-online.target
 
@@ -10,4 +10,4 @@ Group=hiring-radar
 WorkingDirectory=/opt/hiring-radar/app
 EnvironmentFile=/etc/hiring-radar.env
 Environment=PYTHONUNBUFFERED=1
-ExecStart=/opt/hiring-radar/app/.venv/bin/python -m app poll
+ExecStart=/opt/hiring-radar/app/.venv/bin/python -m app poll --region europe

@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "425a242509a8ec4f512709ab3b5377ab6a506d5678db97dbf3152a4399b72456",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, 'guardrails' is named only in a qualification bullet under the 'What Sets You Apart' (preferred) section, making it nice_to_have.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, 'guardrails' is named only in a qualification bullet under the 'What Sets You Apart' (preferred) section, making it nice_to_have.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 81,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "xgboost",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fbfd139b875dae21ce01fab0c9cd84ad42ab4e2dc158cbbbb682f1201277baa7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, XGBoost is named in the qualifications bullet \\\"ML/AI libraries (PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face Transformers)\\\" under \\\"The qualifications you need:\\\", so it is a required skill and the agreed label with raw_text \\\"XGBoost\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, XGBoost is named in the qualifications bullet \"ML/AI libraries (PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face Transformers)\" under \"The qualifications you need:\", so it is a required skill and the agreed label with raw_text \"XGBoost\" stands.",
+  "error": null
+}

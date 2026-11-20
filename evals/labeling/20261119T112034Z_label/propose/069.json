@@ -1,0 +1,14 @@
+{
+  "item": 69,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fd4500c00496a306e28fcb11660a315ef85dc065cc057ba2b57be4a91f9e790e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 3, the required qualification \\\"built generative AI products\\\" is a qualification bullet that names the skill (rule 1), and the agreed llms label fits it, so I see no grounds to change it.\"}",
+  "decision": "ok",
+  "why": "Under rule 3, the required qualification \"built generative AI products\" is a qualification bullet that names the skill (rule 1), and the agreed llms label fits it, so I see no grounds to change it.",
+  "error": null
+}

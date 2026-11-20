@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "vector-search",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "265c378c81784924013800a5f10480398ad5787496928127e474656eb6e26e61",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience with 'Similarity Search and VectorDBs', which justifies keeping `vector-search` as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience with 'Similarity Search and VectorDBs', which justifies keeping `vector-search` as nice_to_have.",
+  "error": null
+}

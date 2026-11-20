@@ -1,0 +1,159 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"angular\", \"requirement\": \"required\", \"raw_text\": \"Angular (preferred latest versions)\", \"uncertain\": true},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"frontend application development\", \"uncertain\": true},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java / Spring Boot\"},\n    {\"skill_id\": \"spring-boot\", \"requirement\": \"required\", \"raw_text\": \"Java / Spring Boot\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API development\", \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"REST API design\"},\n    {\"skill_id\": \"azure-devops\", \"requirement\": \"required\", \"raw_text\": \"Azure DevOps\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD pipelines\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"workflow automation\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"Azure OpenAI\", \"uncertain\": true},\n    {\"skill_id\": \"agent-architecture\", \"requirement\": \"required\", \"raw_text\": \"agent-based architectures\"},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"required\", \"raw_text\": \"conversational assistants\", \"uncertain\": true},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"Full Stack development expertise\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"integrating AI/ML capabilities\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure App Services\", \"raw_text\": \"App Services\"},\n    {\"label\": \"Azure Functions\", \"raw_text\": \"Functions\"},\n    {\"label\": \"Azure API Management\", \"raw_text\": \"API Management\"},\n    {\"label\": \"Azure Storage\", \"raw_text\": \"Storage\"},\n    {\"label\": \"Azure AI Services\", \"raw_text\": \"Azure AI Services\"},\n    {\"label\": \"Data integration\", \"raw_text\": \"data integration experience\"},\n    {\"label\": \"Summarization\", \"raw_text\": \"summarization\"},\n    {\"label\": \"Document intelligence\", \"raw_text\": \"document intelligence\"},\n    {\"label\": \"Knowledge retrieval\", \"raw_text\": \"knowledge retrieval solutions\"},\n    {\"label\": \"HL7 FHIR APIs\", \"raw_text\": \"HL7 FHIR APIs\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"One senior engineer (8-10+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Angular: 'preferred' in 'Angular (preferred latest versions)' attaches to the version, not to Angular, so Angular stays required.\\n'AI Experience' heading has no optional marker, so items under it default to required.\\n'Preferred Experience' is an optional heading; its only technical item (HL7 FHIR APIs) is unmapped. Healthcare, HIPAA and care management are domain knowledge, not skills.\\nAzure OpenAI is mapped to openai-api as the closest literal match (uncertain); azure is already labeled from 'Microsoft Azure'.\\nAzure Functions is not mapped to serverless and Storage is not mapped to object-storage: the posting names neither broad skill, so both sub-services are unmapped.\\nknowledge retrieval is not mapped to rag: no literal alias matches, and the #RAG hashtag is not an ask of the candidate.\\nfull-stack-development and ai-ml come from the Job Summary's 'ideal candidate will have' sentence, read as asked of the candidate (uncertain).\\napis: quoted 'API development' (a taxonomy alias) from the required Java bullet; api-design comes from 'REST API design'.\\nJava / Spring Boot are read as asked together, not as alternatives, so there is no alternative_group.\\n'testing' appears only under Responsibilities and is not labeled; the hashtags are not asks.\\nSeniority is stated by the posting's two senior roles ('senior engineer', 'lead/senior engineer').\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "angular",
+        "requirement": "required",
+        "raw_text": "Angular (preferred latest versions)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend application development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java / Spring Boot"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java / Spring Boot"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "REST API design"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "workflow automation"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "Azure OpenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agent-based architectures"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "conversational assistants",
+        "uncertain": true
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Full Stack development expertise",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "integrating AI/ML capabilities",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure App Services",
+        "raw_text": "App Services"
+      },
+      {
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "label": "Azure Storage",
+        "raw_text": "Storage"
+      },
+      {
+        "label": "Azure AI Services",
+        "raw_text": "Azure AI Services"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "data integration experience"
+      },
+      {
+        "label": "Summarization",
+        "raw_text": "summarization"
+      },
+      {
+        "label": "Document intelligence",
+        "raw_text": "document intelligence"
+      },
+      {
+        "label": "Knowledge retrieval",
+        "raw_text": "knowledge retrieval solutions"
+      },
+      {
+        "label": "HL7 FHIR APIs",
+        "raw_text": "HL7 FHIR APIs"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "One senior engineer (8-10+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Angular: 'preferred' in 'Angular (preferred latest versions)' attaches to the version, not to Angular, so Angular stays required.\n'AI Experience' heading has no optional marker, so items under it default to required.\n'Preferred Experience' is an optional heading; its only technical item (HL7 FHIR APIs) is unmapped. Healthcare, HIPAA and care management are domain knowledge, not skills.\nAzure OpenAI is mapped to openai-api as the closest literal match (uncertain); azure is already labeled from 'Microsoft Azure'.\nAzure Functions is not mapped to serverless and Storage is not mapped to object-storage: the posting names neither broad skill, so both sub-services are unmapped.\nknowledge retrieval is not mapped to rag: no literal alias matches, and the #RAG hashtag is not an ask of the candidate.\nfull-stack-development and ai-ml come from the Job Summary's 'ideal candidate will have' sentence, read as asked of the candidate (uncertain).\napis: quoted 'API development' (a taxonomy alias) from the required Java bullet; api-design comes from 'REST API design'.\nJava / Spring Boot are read as asked together, not as alternatives, so there is no alternative_group.\n'testing' appears only under Responsibilities and is not labeled; the hashtags are not asks.\nSeniority is stated by the posting's two senior roles ('senior engineer', 'lead/senior engineer')."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f694fd20a538d17002a6c1604e4c86aac711525e44878879e2fa56f2aed0180b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

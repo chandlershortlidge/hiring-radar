@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "5e943850f9044b73cb6c930f4926339b23489339b54ba9ff9902d449d003d16b",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Nice-to-Haves qualification bullet 'Deploying/operating GenAI apps' directly names the AI deployment skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Nice-to-Haves qualification bullet 'Deploying/operating GenAI apps' directly names the AI deployment skill.",
+  "error": null
+}

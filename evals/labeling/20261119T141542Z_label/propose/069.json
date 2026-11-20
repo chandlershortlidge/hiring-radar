@@ -1,0 +1,14 @@
+{
+  "item": 69,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "eec03f0d7acdfc91998d50eb956df40d35ff0918c9d1852b52443f17569a6910",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only visible mention of software engineering describes the AI Ops team's practices ('combines the best practices of software engineering with data science'), not a skill the candidate is asked for, and rule 4 excludes responsibilities unless the candidate is also asked for the skill; the visible excerpt has no qualification sentence requiring it.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only visible mention of software engineering describes the AI Ops team's practices ('combines the best practices of software engineering with data science'), not a skill the candidate is asked for, and rule 4 excludes responsibilities unless the candidate is also asked for the skill; the visible excerpt has no qualification sentence requiring it.",
+  "error": null
+}

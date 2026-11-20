@@ -1,0 +1,149 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Building with AI as part of how you develop flows\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML-driven optimization\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"removing manual steps and making PPA exploration repeatable\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Physical design methodology\",\n      \"raw_text\": \"physical design methodology\"\n    },\n    {\n      \"label\": \"CAD flow development and support\",\n      \"raw_text\": \"developing and supporting physical design methodology or CAD flows in production use\"\n    },\n    {\n      \"label\": \"PPA exploration\",\n      \"raw_text\": \"making PPA exploration repeatable\"\n    },\n    {\n      \"label\": \"Technical documentation\",\n      \"raw_text\": \"documents flows well enough that others can run them without you\"\n    },\n    {\n      \"label\": \"FusionCompiler\",\n      \"raw_text\": \"FusionCompiler\"\n    },\n    {\n      \"label\": \"ICC2\",\n      \"raw_text\": \"ICC2\"\n    },\n    {\n      \"label\": \"Innovus\",\n      \"raw_text\": \"Innovus\"\n    },\n    {\n      \"label\": \"Genus\",\n      \"raw_text\": \"Genus\"\n    },\n    {\n      \"label\": \"PrimeTime\",\n      \"raw_text\": \"PrimeTime\"\n    },\n    {\n      \"label\": \"RedHawk\",\n      \"raw_text\": \"RedHawk\"\n    },\n    {\n      \"label\": \"Tcl\",\n      \"raw_text\": \"Tcl\"\n    },\n    {\n      \"label\": \"Perl\",\n      \"raw_text\": \"Perl\"\n    },\n    {\n      \"label\": \"Advanced node methodology\",\n      \"raw_text\": \"advanced node methodology\"\n    },\n    {\n      \"label\": \"Low-power intent\",\n      \"raw_text\": \"low-power intent\"\n    },\n    {\n      \"label\": \"UPF\",\n      \"raw_text\": \"UPF\"\n    },\n    {\n      \"label\": \"CPF\",\n      \"raw_text\": \"CPF\"\n    },\n    {\n      \"label\": \"Clock tree synthesis\",\n      \"raw_text\": \"clock tree synthesis\"\n    },\n    {\n      \"label\": \"Physical design signoff\",\n      \"raw_text\": \"signoff\"\n    },\n    {\n      \"label\": \"Electromigration analysis\",\n      \"raw_text\": \"EM\"\n    },\n    {\n      \"label\": \"IR-drop analysis\",\n      \"raw_text\": \"IR\"\n    },\n    {\n      \"label\": \"Design rule checking\",\n      \"raw_text\": \"DRC\"\n    },\n    {\n      \"label\": \"Layout versus schematic verification\",\n      \"raw_text\": \"LVS\"\n    },\n    {\n      \"label\": \"Technology-node, PDK, and foundry flow bring-up\",\n      \"raw_text\": \"standing up flows for new technology nodes, PDKs, or foundry targets\"\n    },\n    {\n      \"label\": \"EDA release qualification\",\n      \"raw_text\": \"qualifying new EDA releases\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"notes\": \"Who You Are and What We Need ask for candidate qualifications; neither is optional. What You Will Learn describes future learning and is excluded.\\nSeniority is null because the posting explicitly welcomes contributors of all seniorities and candidates at various experience levels, notwithstanding the conflicting 5+ years requirement.\\nWorkflow automation is a literal interpretation of removing manual steps from flows; flagged because the wording also describes a working preference.\\nBuilding with AI is labeled AI/ML, not AI Coding Tools: no coding assistant or coding tool is explicitly requested.\\nHardware methodology, EDA tools, scripting languages absent from the taxonomy, and technical flow documentation are recorded as unmapped. Interpersonal collaboration and clear writing as a soft skill are excluded.\\nNo alternative group contains two mapped skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Building with AI as part of how you develop flows"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML-driven optimization"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "removing manual steps and making PPA exploration repeatable",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Physical design methodology",
+        "raw_text": "physical design methodology"
+      },
+      {
+        "label": "CAD flow development and support",
+        "raw_text": "developing and supporting physical design methodology or CAD flows in production use"
+      },
+      {
+        "label": "PPA exploration",
+        "raw_text": "making PPA exploration repeatable"
+      },
+      {
+        "label": "Technical documentation",
+        "raw_text": "documents flows well enough that others can run them without you"
+      },
+      {
+        "label": "FusionCompiler",
+        "raw_text": "FusionCompiler"
+      },
+      {
+        "label": "ICC2",
+        "raw_text": "ICC2"
+      },
+      {
+        "label": "Innovus",
+        "raw_text": "Innovus"
+      },
+      {
+        "label": "Genus",
+        "raw_text": "Genus"
+      },
+      {
+        "label": "PrimeTime",
+        "raw_text": "PrimeTime"
+      },
+      {
+        "label": "RedHawk",
+        "raw_text": "RedHawk"
+      },
+      {
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "label": "Perl",
+        "raw_text": "Perl"
+      },
+      {
+        "label": "Advanced node methodology",
+        "raw_text": "advanced node methodology"
+      },
+      {
+        "label": "Low-power intent",
+        "raw_text": "low-power intent"
+      },
+      {
+        "label": "UPF",
+        "raw_text": "UPF"
+      },
+      {
+        "label": "CPF",
+        "raw_text": "CPF"
+      },
+      {
+        "label": "Clock tree synthesis",
+        "raw_text": "clock tree synthesis"
+      },
+      {
+        "label": "Physical design signoff",
+        "raw_text": "signoff"
+      },
+      {
+        "label": "Electromigration analysis",
+        "raw_text": "EM"
+      },
+      {
+        "label": "IR-drop analysis",
+        "raw_text": "IR"
+      },
+      {
+        "label": "Design rule checking",
+        "raw_text": "DRC"
+      },
+      {
+        "label": "Layout versus schematic verification",
+        "raw_text": "LVS"
+      },
+      {
+        "label": "Technology-node, PDK, and foundry flow bring-up",
+        "raw_text": "standing up flows for new technology nodes, PDKs, or foundry targets"
+      },
+      {
+        "label": "EDA release qualification",
+        "raw_text": "qualifying new EDA releases"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "notes": "Who You Are and What We Need ask for candidate qualifications; neither is optional. What You Will Learn describes future learning and is excluded.\nSeniority is null because the posting explicitly welcomes contributors of all seniorities and candidates at various experience levels, notwithstanding the conflicting 5+ years requirement.\nWorkflow automation is a literal interpretation of removing manual steps from flows; flagged because the wording also describes a working preference.\nBuilding with AI is labeled AI/ML, not AI Coding Tools: no coding assistant or coding tool is explicitly requested.\nHardware methodology, EDA tools, scripting languages absent from the taxonomy, and technical flow documentation are recorded as unmapped. Interpersonal collaboration and clear writing as a soft skill are excluded.\nNo alternative group contains two mapped skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "0face347ae77901b24d74c669f94f1553b153d614cdfe9db7188362b7d12e260",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

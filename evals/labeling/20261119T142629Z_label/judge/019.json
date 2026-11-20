@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "707c9be9a14f70b4f416253c2ecf632bede82f02b4f4b6e4065c09810136b52f",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 4, responsibilities do not count unless required, so only the requirement of \\\"1 to 3 years of related experience\\\" applies, supporting junior seniority.\"}",
+  "decision": "A",
+  "why": "Under Rule 4, responsibilities do not count unless required, so only the requirement of \"1 to 3 years of related experience\" applies, supporting junior seniority.",
+  "error": null
+}

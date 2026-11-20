@@ -1,0 +1,15 @@
+{
+  "item": 76,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "638a8d0bf44b133f8263d2e24c1272c06618970549ae1577531463c37b4fc44e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'ML infrastructure' is explicitly named as a specific technical domain in a qualification bullet rather than a generic job-title years-of-experience line.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'ML infrastructure' is explicitly named as a specific technical domain in a qualification bullet rather than a generic job-title years-of-experience line.",
+  "error": null
+}

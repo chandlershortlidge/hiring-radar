@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "52a4eac22494b68a40aa21b28b125d506f1ef6c31e6fecfdb15a4428f5a7e495",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence \\\"Backend or full-stack background both fine\\\" sits in the WHAT YOU'LL NEED qualifications and names backend development as an accepted background, and under rule 3 that required-section mention wins, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence \"Backend or full-stack background both fine\" sits in the WHAT YOU'LL NEED qualifications and names backend development as an accepted background, and under rule 3 that required-section mention wins, so the agreed required label stands.",
+  "error": null
+}

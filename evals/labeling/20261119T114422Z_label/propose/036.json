@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1552bdea32e42e2f3233343fc838d78053238495298f146da833e724a91c3339",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'You'll need' qualification 'Comfort designing evaluation and feedback loops that tell you whether an agent is actually improving' names the skill as a requirement, and the agreed raw_text quotes it word for word, so the required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'You'll need' qualification 'Comfort designing evaluation and feedback loops that tell you whether an agent is actually improving' names the skill as a requirement, and the agreed raw_text quotes it word for word, so the required label stands.",
+  "error": null
+}

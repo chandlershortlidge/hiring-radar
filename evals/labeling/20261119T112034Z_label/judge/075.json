@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b0f1689b2bd7e4f3404496d0a99b44b258246147644049a201d0d39c2ad1c958",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for an informed point of view on 'using AI to improve how ML engineers work,' which directly maps to AI developer tooling.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for an informed point of view on 'using AI to improve how ML engineers work,' which directly maps to AI developer tooling.",
+  "error": null
+}

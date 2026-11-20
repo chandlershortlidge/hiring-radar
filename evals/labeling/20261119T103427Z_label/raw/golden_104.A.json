@@ -1,0 +1,152 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning research\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"AI model development\", \"uncertain\": true},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning architectures\"},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"transformers, CNNs, RNNs\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning large-scale models\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"validating ML model performance\", \"uncertain\": true},\n    {\"skill_id\": \"quantization\", \"requirement\": \"required\", \"raw_text\": \"quantization, distillation, pruning\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"required\", \"raw_text\": \"distillation\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with distributed training\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Research experience in generative AI\", \"alternative_group\": 2},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning\", \"alternative_group\": 2}\n  ],\n  \"unmapped\": [\n    {\"label\": \"CNNs\", \"raw_text\": \"CNNs\"},\n    {\"label\": \"RNNs\", \"raw_text\": \"RNNs\"},\n    {\"label\": \"Diffusion models\", \"raw_text\": \"diffusion models\"},\n    {\"label\": \"Pruning\", \"raw_text\": \"pruning\"},\n    {\"label\": \"Hardware-aware training\", \"raw_text\": \"hardware-aware training\"},\n    {\"label\": \"Edge inference\", \"raw_text\": \"edge inference\"},\n    {\"label\": \"On-device ML\", \"raw_text\": \"on-device ML\"},\n    {\"label\": \"Multimodal learning\", \"raw_text\": \"multimodal learning\"},\n    {\"label\": \"Federated learning\", \"raw_text\": \"federated learning\"},\n    {\"label\": \"Privacy-preserving ML\", \"raw_text\": \"privacy-preserving ML techniques\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"4+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in Machine Learning\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Skills in the Responsibilities section (LLMs, quantization, deep learning and others) are labeled only where the Qualifications or Preferred Skills sections also ask for them.\\n\\n\\\"machine learning research, AI model development, or related fields\\\" reads as alternatives. model-development is also asked on its own in \\\"Hands-on experience training ... large-scale models\\\", so it leaves the group. That would leave machine-learning alone, and a group needs two skills, so neither gets an alternative_group.\\n\\nmodel-development and machine-learning are flagged as uncertain: they come from a phrase that states a field of experience, which could be read as domain rather than skill.\\n\\n\\\"validating ML model performance\\\" is mapped to evaluation (alias \\\"model evaluation\\\") and flagged as uncertain.\\n\\n\\\"ML frameworks such as PyTorch, TensorFlow, or JAX\\\" forms alternative_group 1. The broad term \\\"ML frameworks\\\" has no matching taxonomy id, so no parent is labeled.\\n\\n\\\"generative AI, reinforcement learning, or multimodal learning\\\" forms alternative_group 2 (llms via the alias \\\"generative ai\\\", plus reinforcement-learning). Multimodal learning is unmapped.\\n\\n\\\"distributed training, edge inference, or on-device ML\\\": only distributed-training maps to the taxonomy, so there is no group.\\n\\nNo inference-optimization or containerization-style parents are added; the posting does not name them.\\n\\nDegree: a Bachelor's is required under Qualifications, and \\\"Master’s or PhD\\\" appears under the Preferred Skills heading. I took the highest level named (PhD), which comes from the optional section, so degree_requirement is nice_to_have. The alternative reading is bachelor/required. Flagged for review.\\n\\nSeniority is inferred from \\\"4+ years of experience (can be graduate research)\\\", which falls in the 3–5 year band, so mid. The title gives no level.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning research",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "AI model development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformers, CNNs, RNNs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning large-scale models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "validating ML model performance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "quantization, distillation, pruning"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with distributed training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Research experience in generative AI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "CNNs",
+        "raw_text": "CNNs"
+      },
+      {
+        "label": "RNNs",
+        "raw_text": "RNNs"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "label": "Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Hardware-aware training",
+        "raw_text": "hardware-aware training"
+      },
+      {
+        "label": "Edge inference",
+        "raw_text": "edge inference"
+      },
+      {
+        "label": "On-device ML",
+        "raw_text": "on-device ML"
+      },
+      {
+        "label": "Multimodal learning",
+        "raw_text": "multimodal learning"
+      },
+      {
+        "label": "Federated learning",
+        "raw_text": "federated learning"
+      },
+      {
+        "label": "Privacy-preserving ML",
+        "raw_text": "privacy-preserving ML techniques"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "4+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in Machine Learning",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Skills in the Responsibilities section (LLMs, quantization, deep learning and others) are labeled only where the Qualifications or Preferred Skills sections also ask for them.\n\n\"machine learning research, AI model development, or related fields\" reads as alternatives. model-development is also asked on its own in \"Hands-on experience training ... large-scale models\", so it leaves the group. That would leave machine-learning alone, and a group needs two skills, so neither gets an alternative_group.\n\nmodel-development and machine-learning are flagged as uncertain: they come from a phrase that states a field of experience, which could be read as domain rather than skill.\n\n\"validating ML model performance\" is mapped to evaluation (alias \"model evaluation\") and flagged as uncertain.\n\n\"ML frameworks such as PyTorch, TensorFlow, or JAX\" forms alternative_group 1. The broad term \"ML frameworks\" has no matching taxonomy id, so no parent is labeled.\n\n\"generative AI, reinforcement learning, or multimodal learning\" forms alternative_group 2 (llms via the alias \"generative ai\", plus reinforcement-learning). Multimodal learning is unmapped.\n\n\"distributed training, edge inference, or on-device ML\": only distributed-training maps to the taxonomy, so there is no group.\n\nNo inference-optimization or containerization-style parents are added; the posting does not name them.\n\nDegree: a Bachelor's is required under Qualifications, and \"Master’s or PhD\" appears under the Preferred Skills heading. I took the highest level named (PhD), which comes from the optional section, so degree_requirement is nice_to_have. The alternative reading is bachelor/required. Flagged for review.\n\nSeniority is inferred from \"4+ years of experience (can be graduate research)\", which falls in the 3–5 year band, so mid. The title gives no level."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "16c59820e65f0483ce212f2cc8871980e04a459a07460d55bcab999fdeb4cfd9",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

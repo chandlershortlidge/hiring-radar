@@ -1,0 +1,114 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"praktische Erfahrung mit AI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Workflow Automation\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"n8n\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"power-automate\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Power Automate\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering oder RAG-Ansätzen\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-Ansätzen\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an Conversational AI\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"Webhooks\",\n      \"raw_text\": \"Webhooks\"\n    },\n    {\n      \"label\": \"Azure AI\",\n      \"raw_text\": \"Azure AI\"\n    }\n  ],\n  \"groups_reviewed\": false,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung\",\n  \"notes\": \"Only the candidate qualifications under “Be our forward thinker” supply skills; no section marks these qualifications optional.\\nProzessautomatisierung maps to workflow-automation, which is also independently required by “Kenntnisse in Workflow Automation”.\\nAlternative grouping remains partially unresolved: AI/GenAI and LLMs/Prompt Engineering/RAG are overlapping alternative sets because GenAI and LLMs map to the same skill. A single alternative_group number cannot faithfully encode both sets; those sets are left ungrouped pending review. The independent language and automation-platform sets are recorded.\\nREST APIs, JSON and Webhooks are alternatives, but only APIs has a taxonomy entry; no singleton group is emitted. The same limitation applies to Azure and Azure AI.\\nAzure AI is read literally as an unspecified Azure AI offering, not assumed to mean Azure AI Foundry. “vergleichbaren Cloud-Technologien” does not add a broad cloud criterion under the “or comparable” rule.\\nChatbots and Voicebots are covered by conversational-ai rather than treated as additional distinct taxonomy skills.\\nPractical experience alone supplies no seniority signal. The comparable field of study does not constitute an experience alternative to the degree.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflow Automation"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "power-automate",
+        "requirement": "required",
+        "raw_text": "Microsoft Power Automate",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering oder RAG-Ansätzen"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Ansätzen"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Webhooks",
+        "raw_text": "Webhooks"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      }
+    ],
+    "groups_reviewed": false,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung",
+    "notes": "Only the candidate qualifications under “Be our forward thinker” supply skills; no section marks these qualifications optional.\nProzessautomatisierung maps to workflow-automation, which is also independently required by “Kenntnisse in Workflow Automation”.\nAlternative grouping remains partially unresolved: AI/GenAI and LLMs/Prompt Engineering/RAG are overlapping alternative sets because GenAI and LLMs map to the same skill. A single alternative_group number cannot faithfully encode both sets; those sets are left ungrouped pending review. The independent language and automation-platform sets are recorded.\nREST APIs, JSON and Webhooks are alternatives, but only APIs has a taxonomy entry; no singleton group is emitted. The same limitation applies to Azure and Azure AI.\nAzure AI is read literally as an unspecified Azure AI offering, not assumed to mean Azure AI Foundry. “vergleichbaren Cloud-Technologien” does not add a broad cloud criterion under the “or comparable” rule.\nChatbots and Voicebots are covered by conversational-ai rather than treated as additional distinct taxonomy skills.\nPractical experience alone supplies no seniority signal. The comparable field of study does not constitute an experience alternative to the degree."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "1d3b1920ae3cbcb603561fed5afcf4d294638653c0c457d7b63f6bd93ab951e7",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

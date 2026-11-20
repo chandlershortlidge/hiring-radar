@@ -182,6 +182,14 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
                             offers=tuple((sid, tuple(ws)) for sid, ws in p.offers.items()))
         else:
             targeted = dict(full_jobs=full, unchanged=True)
+    return cost_of_reading(conn, jobs, model, **targeted)
+
+
+def cost_of_reading(conn: sqlite3.Connection, jobs: int, model: str = DEFAULT_MODEL,
+                    **targeted) -> RereadCost:
+    """What reading exactly `jobs` jobs as one batch costs, priced the same way as the full
+    re-read above. A city launch's first collection asks this about the jobs it collected,
+    so the figure it checks against its cap is the one it then spends (HIR-380)."""
     usages = logged_usages(conn)
     if len(usages) >= MIN_READINGS_TO_AVERAGE:
         tokens, readings = mean_tokens(usages), len(usages)

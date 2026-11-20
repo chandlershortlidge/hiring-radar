@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c7a50b8a6c918c11f551d789fa6a440b9eb0a2242b0309b63bd94f96dd79861d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'distributed computing' is explicitly named in a Required Qualifications bullet, which directly maps to the distributed-systems skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'distributed computing' is explicitly named in a Required Qualifications bullet, which directly maps to the distributed-systems skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e7532ec3815363516ec51315619c9088a66b3a06bffd81e77cf56abe637d75d9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, Azure is explicitly named in a qualification bullet under the 'To Qualify for the Role, You Must Have' heading, making the agreed required label and raw_text 'Azure' correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, Azure is explicitly named in a qualification bullet under the 'To Qualify for the Role, You Must Have' heading, making the agreed required label and raw_text 'Azure' correct.",
+  "error": null
+}

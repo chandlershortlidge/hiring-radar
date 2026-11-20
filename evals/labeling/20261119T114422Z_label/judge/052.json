@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0e57fac0d3be6b4244ab884e753753a46d49f4fbbf776779ed1d1aa8dad3e460",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting asks for 'training and deploying language models' rather than naming the broad parent skill 'model-development'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting asks for 'training and deploying language models' rather than naming the broad parent skill 'model-development'.",
+  "error": null
+}

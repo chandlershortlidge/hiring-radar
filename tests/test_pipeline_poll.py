@@ -563,3 +563,42 @@ def test_a_job_merged_from_two_feeds_is_remembered_under_both(conn):
     kept = {tuple(r) for r in conn.execute("SELECT source, source_job_id FROM dropped_posting")}
     assert {("arbeitnow", "a0"), ("startup_jobs", "s7")} <= kept
     assert ingest_one(conn, twin, skip_dropped=True).kind == "skipped_unreadable"
+
+
+# --- JSearch monthly cap (HIR-352): past the plan's limit every request is billed ---------
+
+def _jsearch_feed(city):
+    return {"type": "jsearch", "search": f"AI engineer in {city}", "country": "us"}
+
+
+def test_jsearch_feeds_stop_at_the_monthly_cap_and_other_feeds_carry_on(conn):
+    fetched, logged = [], []
+    feeds = [_jsearch_feed("Boston"), _jsearch_feed("Austin"), _jsearch_feed("London"),
+             {"type": "arbeitnow"}]
+    poll.poll_feeds(conn, feeds, fetch=lambda f: fetched.append(poll.feed_label(f)) or [],
+                    log=logged.append, jsearch_cap=2)
+    assert fetched == ["jsearch:AI engineer in Boston", "jsearch:AI engineer in Austin", "arbeitnow"]
+    assert any("jsearch:AI engineer in London: SKIPPED" in line for line in logged)
+    month = poll.datetime.now(poll.timezone.utc).strftime("%Y-%m")
+    assert poll.jsearch_requests(conn, month) == 2
+    # The next poll the same month fetches no JSearch feed at all.
+    fetched.clear()
+    poll.poll_feeds(conn, feeds, fetch=lambda f: fetched.append(poll.feed_label(f)) or [],
+                    log=logged.append, jsearch_cap=2)
+    assert fetched == ["arbeitnow"]
+
+
+def test_jsearch_requests_count_failed_runs_and_only_this_month(conn):
+    feed = _jsearch_feed("Boston")
+    poll.record_run(conn, feed, [], day="2026-11-03")
+    poll.record_run(conn, feed, None, "HTTPError: 500", day="2026-11-04")
+    poll.record_run(conn, feed, [], day="2026-10-31")
+    poll.record_run(conn, {"type": "arbeitnow"}, [], day="2026-11-04")
+    assert poll.jsearch_requests(conn, "2026-11") == 2
+    assert poll.jsearch_requests(conn, "2026-10") == 1
+
+
+def test_the_cap_is_well_under_the_plan():
+    from app.sources import jsearch
+    assert jsearch.MONTHLY_CAP == 5000          # the plan allows 10,000, then bills each request
+    assert jsearch.MIN_INTERVAL_S >= 0.2        # the plan allows 5 requests a second

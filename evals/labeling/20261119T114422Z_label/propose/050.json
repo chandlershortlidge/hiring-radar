@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b03f13bb16890bfd6773ee8d49851602f61c03d6900f561246c53a57462fdd2b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the MINIMUM QUALIFICATIONS bullet names large language models as a required experience area, and rule 3 keeps a required mention even though it is one alternative among embedding and encoder models, so the agreed `llms` required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the MINIMUM QUALIFICATIONS bullet names large language models as a required experience area, and rule 3 keeps a required mention even though it is one alternative among embedding and encoder models, so the agreed `llms` required label stands.",
+  "error": null
+}

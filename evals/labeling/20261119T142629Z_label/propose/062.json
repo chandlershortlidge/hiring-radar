@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8cbfca3f2033a297fc1bb5c520fc83dfafe2d628733cc2e9d4fe100582e7187b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet 'Built and shipped agent systems in production with orchestration, tool use, state management' names agent orchestration as a required experience, so the agreed required llm-orchestration label stands as written.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet 'Built and shipped agent systems in production with orchestration, tool use, state management' names agent orchestration as a required experience, so the agreed required llm-orchestration label stands as written.",
+  "error": null
+}

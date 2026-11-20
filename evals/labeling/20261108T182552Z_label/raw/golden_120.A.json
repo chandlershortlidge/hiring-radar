@@ -1,0 +1,107 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"azure-devops\", \"requirement\": \"required\", \"raw_text\": \"Azure DevOps, Git\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Git, Terraform\"},\n    {\"skill_id\": \"microsoft-entra-id\", \"requirement\": \"required\", \"raw_text\": \"Entra ID\"},\n    {\"skill_id\": \"azure-key-vault\", \"requirement\": \"required\", \"raw_text\": \"Key Vaults\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Private Endpoints, Networking\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure-as-Code-Projekten\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Bereitstellung von Azure-Ressourcen\", \"uncertain\": true},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure OpenAI\", \"uncertain\": true},\n    {\"skill_id\": \"azure-ai-foundry\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI Foundry\"},\n    {\"skill_id\": \"azure-ai-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI Search\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Large Language Models (LLMs)\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"RAG-Technologien\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure Landing Zones\", \"raw_text\": \"Landing Zones\"},\n    {\"label\": \"Azure Cognitive Services\", \"raw_text\": \"Cognitive Services\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'Was du bewegst' is responsibilities. 'Was dich auszeichnet' is requirements with no optional heading.\\nCI/CD appears only in responsibilities, so it is not labeled. Terraform and IaC are labeled from the requirements bullets.\\nAzure DevOps is required in the 'tägliches Handwerkszeug' bullet. Its repeat in the 'Idealerweise' bullet collapses into that required criterion.\\nThe 'Idealerweise' (ideally) bullet makes Azure OpenAI, AI Foundry, Cognitive Services and AI Search nice_to_have.\\nAzure OpenAI is mapped to openai-api; flagged because it is the Azure-hosted variant.\\n'von Vorteil' (is an advantage) makes LLMs and RAG nice_to_have.\\nPrivate Endpoints is an alias of networking, and Networking is also named. They collapse into one criterion.\\nThe azure criterion rests on 'Bereitstellung von Azure-Ressourcen' plus the Azure specialist framing; flagged.\\n'Microsoft Azure AI Stack' has no taxonomy entry, so nothing is added for it.\\nThe 'Lust darauf' phrase is in the company diversity text, not candidate appetite.\\nSeniority: no title level, years, lead or mentoring signal, so null.\\nGerman: the posting is written in German and says nothing about language, so required by inference.\\nDegree: 'vergleichbare Qualifikation' is read as accepting an equivalent qualification in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps, Git"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Git, Terraform"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "azure-key-vault",
+        "requirement": "required",
+        "raw_text": "Key Vaults"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Private Endpoints, Networking"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code-Projekten"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von Azure-Ressourcen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure OpenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "nice_to_have",
+        "raw_text": "AI Foundry"
+      },
+      {
+        "skill_id": "azure-ai-search",
+        "requirement": "nice_to_have",
+        "raw_text": "AI Search"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Technologien"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Landing Zones",
+        "raw_text": "Landing Zones"
+      },
+      {
+        "label": "Azure Cognitive Services",
+        "raw_text": "Cognitive Services"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "Sections: 'Was du bewegst' is responsibilities. 'Was dich auszeichnet' is requirements with no optional heading.\nCI/CD appears only in responsibilities, so it is not labeled. Terraform and IaC are labeled from the requirements bullets.\nAzure DevOps is required in the 'tägliches Handwerkszeug' bullet. Its repeat in the 'Idealerweise' bullet collapses into that required criterion.\nThe 'Idealerweise' (ideally) bullet makes Azure OpenAI, AI Foundry, Cognitive Services and AI Search nice_to_have.\nAzure OpenAI is mapped to openai-api; flagged because it is the Azure-hosted variant.\n'von Vorteil' (is an advantage) makes LLMs and RAG nice_to_have.\nPrivate Endpoints is an alias of networking, and Networking is also named. They collapse into one criterion.\nThe azure criterion rests on 'Bereitstellung von Azure-Ressourcen' plus the Azure specialist framing; flagged.\n'Microsoft Azure AI Stack' has no taxonomy entry, so nothing is added for it.\nThe 'Lust darauf' phrase is in the company diversity text, not candidate appetite.\nSeniority: no title level, years, lead or mentoring signal, so null.\nGerman: the posting is written in German and says nothing about language, so required by inference.\nDegree: 'vergleichbare Qualifikation' is read as accepting an equivalent qualification in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ae8a6d95fe6e790e41ca5471d20cdde1e3cc1795b00fc8ff42ff5a12cc057b89",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

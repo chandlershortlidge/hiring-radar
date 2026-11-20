@@ -1,0 +1,15 @@
+{
+  "item": 76,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "reinforcement-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "757cf4029c16029311e8dd19fece39ccae80e7b5ac2e9133e36f45e35aaa8248",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, reinforcement learning is explicitly named inside a Minimum qualifications bullet as a required experience option for Track 2.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, reinforcement learning is explicitly named inside a Minimum qualifications bullet as a required experience option for Track 2.",
+  "error": null
+}

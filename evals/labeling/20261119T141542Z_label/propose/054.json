@@ -1,0 +1,14 @@
+{
+  "item": 54,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "gemini",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5c7580ddfb2aa7ab0f71d43dd62fe0dd0dd442b3552fcbce0e244c5fa92bb1b6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence names Gemini as a tool the candidate must use (\\\"collaborate using ... AI coding assistants such as Gemini or Windsurf\\\"), and it is not marked preferred, so the required label and quoted raw_text stand under rule 3.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence names Gemini as a tool the candidate must use (\"collaborate using ... AI coding assistants such as Gemini or Windsurf\"), and it is not marked preferred, so the required label and quoted raw_text stand under rule 3.",
+  "error": null
+}

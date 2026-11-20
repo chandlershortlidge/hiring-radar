@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8965d2a90d93d844fa95b2d5107a039ccf5cb1ce4402540ce9227616f620634a",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification sentence \\\"Experience with Google Docs automation preferred\\\" names an automation skill, and rule 3 supports B's nice_to_have tag because the quoted raw_text is the word-for-word \\\"preferred\\\" mention.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification sentence \"Experience with Google Docs automation preferred\" names an automation skill, and rule 3 supports B's nice_to_have tag because the quoted raw_text is the word-for-word \"preferred\" mention.",
+  "error": null
+}

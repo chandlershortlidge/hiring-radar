@@ -1,0 +1,15 @@
+{
+  "item": 64,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7ef73886a08cd6ad2197dd10d82ab312cd0301ade939669fb45146bd98bbce18",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the nice-to-have qualification bullet asking for 'Knowledge of relevant architectures and design patterns for client-server systems' explicitly names software architecture.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the nice-to-have qualification bullet asking for 'Knowledge of relevant architectures and design patterns for client-server systems' explicitly names software architecture.",
+  "error": null
+}

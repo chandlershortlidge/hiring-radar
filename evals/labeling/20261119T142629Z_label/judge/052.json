@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "74997b33955417d427fd7be100f0097748fd38dd4b7e48f5e83d880e0f80fee4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications sentence asks for experience managing sensitive data (PII/PHI) and implementing access control and encryption, which supports `data-privacy-and-security` as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications sentence asks for experience managing sensitive data (PII/PHI) and implementing access control and encryption, which supports `data-privacy-and-security` as nice_to_have.",
+  "error": null
+}

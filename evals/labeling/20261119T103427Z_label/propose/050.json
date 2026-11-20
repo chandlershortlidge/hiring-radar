@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b01f75f2465e022869b41c0c69cc5afc7cac7752690c03c28e2111f0fbd5cea1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required bullet \\\"Proficiency in machine learning and data science, with demonstrated application to image data, video data, or agentic systems\\\" names agentic systems as a required qualification, so the agreed `agents` skill as required with raw_text \\\"agentic systems\\\" stands (rule 3 also supports the required mention).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required bullet \"Proficiency in machine learning and data science, with demonstrated application to image data, video data, or agentic systems\" names agentic systems as a required qualification, so the agreed `agents` skill as required with raw_text \"agentic systems\" stands (rule 3 also supports the required mention).",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "699e6f94e7c651798df5cefcf1d4c84c6d9c6ef75790b5349ae6ffca6b77f872",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 4, 'seeking a PhD-level candidate to advance machine learning' describes the role's objective/responsibility rather than a qualification asking the candidate to possess machine learning skill, and the job title does not count.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 4, 'seeking a PhD-level candidate to advance machine learning' describes the role's objective/responsibility rather than a qualification asking the candidate to possess machine learning skill, and the job title does not count.",
+  "error": null
+}

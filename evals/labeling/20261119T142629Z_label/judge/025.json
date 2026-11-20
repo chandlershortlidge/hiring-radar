@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "f20c47c37bdd4855544253202d24877ca5b037537ffcf08263c4a59ced5bcfc7",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the required qualification sentence asking for the ability to implement ML pipelines for 'model training' directly supports the model-development skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the required qualification sentence asking for the ability to implement ML pipelines for 'model training' directly supports the model-development skill.",
+  "error": null
+}

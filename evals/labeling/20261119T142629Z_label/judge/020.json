@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "809a17f0b16881e7041b8407e823f246e45e3a1fbcdfb26bbe3e78405662b024",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a boilerplate interview policy statement about company culture ('we empower employees to innovate with AI — and we look for candidates eager to do the same') is not a qualification asking for AI/ML as a job skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a boilerplate interview policy statement about company culture ('we empower employees to innovate with AI — and we look for candidates eager to do the same') is not a qualification asking for AI/ML as a job skill.",
+  "error": null
+}

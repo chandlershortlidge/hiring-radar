@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1af0005d3ce568b6c3b66217c5dd70de90e996dd376d41c17884f442d125c666",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Basic Qualifications bullet requiring \\\"at least 4 years of experience developing AI and ML algorithms or technologies\\\" is a qualification that names the ai-ml skill, and rule 3 makes that required mention decisive, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Basic Qualifications bullet requiring \"at least 4 years of experience developing AI and ML algorithms or technologies\" is a qualification that names the ai-ml skill, and rule 3 makes that required mention decisive, so the agreed required label stands.",
+  "error": null
+}

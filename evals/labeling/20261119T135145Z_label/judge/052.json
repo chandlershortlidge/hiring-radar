@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "deep-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ee2493fc9d7f210f3f16b17f60a87ef90867734270dc2011486353e5f013cccd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a required qualification bullet explicitly names 'algorithmic optimization for deep learning', so the agreed required label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a required qualification bullet explicitly names 'algorithmic optimization for deep learning', so the agreed required label and raw_text stand.",
+  "error": null
+}

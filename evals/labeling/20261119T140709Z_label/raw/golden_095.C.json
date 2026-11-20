@@ -1,0 +1,127 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building production software\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformer-based stack\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool-calling\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based products\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python Power-User\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"\\\"infinite loops\\\" in agents\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"how to build guardrails against them\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"pydanticai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PydanticAI\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Fine-tuning\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-weight models\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Context window management\",\n      \"raw_text\": \"context window management\"\n    },\n    {\n      \"label\": \"PEFT / LoRA / QLoRA\",\n      \"raw_text\": \"PEFT (LoRA/QLoRA)\"\n    },\n    {\n      \"label\": \"Human-in-the-loop workflows\",\n      \"raw_text\": \"human-in-the-loop workflows\"\n    },\n    {\n      \"label\": \"SSO / RBAC\",\n      \"raw_text\": \"enterprise identity (SSO, role-based access)\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Included prompt-engineering and backend-development from the intro paragraph ('This is a role for a high-leverage builder who can move fluidly between prompt engineering, backend systems, and model optimization') as it describes required candidate capabilities. Skipped RAG, evaluation, orchestration frameworks, persistent memory from 'What You'll Do' (responsibilities only). Flagged software-engineering ('building production software'), agents ('\\\"infinite loops\\\" in agents'), and open-source-llms ('open-weight models') as uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "building production software",
+        "uncertain": true
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer-based stack"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based products"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python Power-User"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "\"infinite loops\" in agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "how to build guardrails against them"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "PydanticAI"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Fine-tuning"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-weight models",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Context window management",
+        "raw_text": "context window management"
+      },
+      {
+        "label": "PEFT / LoRA / QLoRA",
+        "raw_text": "PEFT (LoRA/QLoRA)"
+      },
+      {
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "SSO / RBAC",
+        "raw_text": "enterprise identity (SSO, role-based access)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Included prompt-engineering and backend-development from the intro paragraph ('This is a role for a high-leverage builder who can move fluidly between prompt engineering, backend systems, and model optimization') as it describes required candidate capabilities. Skipped RAG, evaluation, orchestration frameworks, persistent memory from 'What You'll Do' (responsibilities only). Flagged software-engineering ('building production software'), agents ('\"infinite loops\" in agents'), and open-source-llms ('open-weight models') as uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3d3c2b8acd05bac665ce8122986d3e51a8ed9ec3b98bdc640476c609411ebeef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

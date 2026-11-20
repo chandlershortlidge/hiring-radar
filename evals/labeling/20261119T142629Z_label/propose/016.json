@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d0f52576b79ff146dd97ad3440bcc50902c3511b118771bc5a82a13cc6bc9081",
+  "raw": "{\"decision\": \"B\", \"why\": \"Rule 1 applies: the required Minimum Qualifications bullet names deploying production-grade LLM-based systems, and that quote appears verbatim in the posting, so labeler B's required ai-deployment tag stands (rule 3).\"}",
+  "decision": "B",
+  "why": "Rule 1 applies: the required Minimum Qualifications bullet names deploying production-grade LLM-based systems, and that quote appears verbatim in the posting, so labeler B's required ai-deployment tag stands (rule 3).",
+  "error": null
+}

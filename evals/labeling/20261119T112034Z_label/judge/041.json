@@ -1,0 +1,15 @@
+{
+  "item": 41,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "810d435e6e9e7321d4beff69846b03c5532cd92e719513927be14473a6a8ca51",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet under 'What We’re Looking For' explicitly requires experience 'deploying data science solutions', which directly corresponds to AI/ML deployment.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet under 'What We’re Looking For' explicitly requires experience 'deploying data science solutions', which directly corresponds to AI/ML deployment.",
+  "error": null
+}

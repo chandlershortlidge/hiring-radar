@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "12309c01ea436c2cb098b850360941f4e7b45020da3b9b4256d9ed90515bcf8e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the REQUIRED QUALIFICATIONS bullet names LLM architectures as an option in a required list, and Rule 3 makes that required mention decisive, so the agreed required label with raw_text \\\"LLM architectures\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the REQUIRED QUALIFICATIONS bullet names LLM architectures as an option in a required list, and Rule 3 makes that required mention decisive, so the agreed required label with raw_text \"LLM architectures\" stands.",
+  "error": null
+}
