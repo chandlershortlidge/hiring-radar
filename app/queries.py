@@ -23,6 +23,7 @@ import sqlite3
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
+from app.extract import SENIORITY_LEVELS
 from app.geo import ACTIVE_CITIES, CITIES, COLLECTING_SINCE, REMOTE_EU
 from app.ingest import FAMILIES as ingest_families, SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
@@ -41,7 +42,9 @@ FEED_OPEN_DAYS = 3
 MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
-SENIORITIES = ("junior", "mid", "senior")
+# The seniority levels are the ones the model's form allows (HIR-311): one list, so a new
+# level cannot reach the model and be refused by the filter.
+SENIORITIES = SENIORITY_LEVELS
 # The five job families (HIR-186). Defined in ingest, which assigns one to every new job
 # from its title; re-exported here so the API validates against one list.
 FAMILIES = ingest_families
@@ -292,16 +295,23 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     jc, jp = job_set_clause(f, now)
     mc, mp = _mention_clause(f)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {jc}", jp).fetchone()[0]
+    # The jobs are picked first, once, and only their mentions are read (HIR-372). Joined
+    # the other way round, SQLite walked every stored mention and re-checked the whole job
+    # filter for each one, posting text included: many times the work, on the request
+    # every page makes. CROSS JOIN is SQLite's way of fixing the join order as written.
+    js = f"WITH js AS MATERIALIZED (SELECT j.id FROM job j WHERE {jc})"
     rows = conn.execute(
-        f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {jc} AND {mc} GROUP BY m.skill_id", jp + mp).fetchall()
+        f"{js} SELECT m.skill_id, count(DISTINCT m.job_id) n FROM js"
+        f" CROSS JOIN skill_mention m ON m.job_id = js.id"
+        f" WHERE {mc} GROUP BY m.skill_id", jp + mp).fetchall()
     # Per place on a query of its own: a job in two places counts once in `count` and once
     # in each place's `by_city` (HIR-289), so the two cannot come from one grouping.
     by_place: dict[str, dict] = {}
     for r in conn.execute(
-            f"SELECT m.skill_id, jpl.place, count(DISTINCT j.id) n FROM skill_mention m"
-            f" JOIN job j ON j.id = m.job_id JOIN job_place jpl ON jpl.job_id = j.id"
-            f" WHERE {jc} AND {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
+            f"{js} SELECT m.skill_id, jpl.place, count(DISTINCT m.job_id) n FROM js"
+            f" CROSS JOIN skill_mention m ON m.job_id = js.id"
+            f" CROSS JOIN job_place jpl ON jpl.job_id = js.id"
+            f" WHERE {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
         by_place.setdefault(r["skill_id"], {})[r["place"]] = r["n"]
     skills = _skill_rows(rows, total, with_cities=False)
     for s in skills:

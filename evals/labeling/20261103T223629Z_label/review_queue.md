@@ -274,7 +274,7 @@ DECISION: B
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "B.S., M.S. or Ph.D. Student"}
 
 ## 23. golden_056 - attribute `degree` (disagreement)
 
@@ -285,7 +285,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 24. golden_056 - skill `python` (disagreement)
 
@@ -296,7 +296,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 25. golden_056 - skill `r-lang` (disagreement)
 
@@ -307,7 +307,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 26. golden_057 - skill `ai-ml` (disagreement)
 
@@ -549,7 +549,7 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 48. golden_055 - skill `evaluation` (uncertain)
 
@@ -560,7 +560,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 49. golden_055 - skill `model-development` (uncertain)
 
@@ -571,7 +571,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 50. golden_057 - attribute `seniority` (uncertain)
 
@@ -1219,7 +1219,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 112. golden_055 - skill `machine-learning` (spot-check)
 
@@ -1249,7 +1249,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 115. golden_055 - skill `pandas` (spot-check)
 
@@ -1269,7 +1269,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 117. golden_055 - skill `pytorch` (spot-check)
 
