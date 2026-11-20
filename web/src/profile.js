@@ -166,10 +166,15 @@ export const thinlyListed = (total) => total > 0 && total < SKILL_FLOOR;
 // The Wilson score interval's lower bound for `covered` successes out of `total`. Shrinks
 // a ratio towards 0 by however little evidence stands behind it: 2/2 lands at 0.34 and
 // 10/14 at 0.45, so the better-evidenced job sorts first. Returns null for total = 0,
-// which is "unknown", not "no fit". Pure arithmetic — no clamping needed, the bound is in
-// [0, 1] for any 0 <= covered <= total.
+// which is "unknown", not "no fit". The bound is in [0, 1] for any 0 <= covered <= total.
+//
+// Nothing covered is answered as exactly 0 rather than computed. The formula gives 0 there
+// too, but as the difference of two equal numbers, and floating point returned -3e-17 for
+// 0 of 5 and +2e-17 for 0 of 11 (HIR-333). The ranking compares these scores, so jobs the
+// profile covers none of were ordered by that noise instead of tying.
 export function wilsonLower(covered, total, z = Z) {
   if (!total) return null;
+  if (covered <= 0) return 0;
   const p = covered / total;
   const z2 = z * z;
   const centre = p + z2 / (2 * total);

@@ -172,6 +172,15 @@ résumés and scoring a person against a posting stay out.
 uv sync                      # Python deps
 uv run pytest                # tests — model calls are always mocked
 
+# Property tests (HIR-333): a rule stated once, checked against generated inputs. Hypothesis in
+# tests/test_*_properties.py, fast-check in web/src/*.property.test.js. They run inside the two
+# normal suites with a fixed seed, so every run and every PR tries the same 200 inputs per rule.
+# The larger random sweep is run by hand, to look for new failures (2000 inputs per rule):
+HYPOTHESIS_PROFILE=sweep uv run pytest -q -k properties                 # about a minute and a half
+cd web && HYPOTHESIS_PROFILE=sweep npm test -- property && cd ..      # the same switch, a second or two
+# A failure prints the smallest input that breaks the rule. Fix the bug, or pin the input with
+# @example(...) on the test, so the fixed-seed run keeps checking it.
+
 # Live eval (~20 model calls per repeat). Key comes from the environment or .env:
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # a routine change → evals/results/<run_id>/
