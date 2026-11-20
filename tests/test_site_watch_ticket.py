@@ -301,3 +301,90 @@ def test_the_workflow_files_the_right_ticket_for_each_way_a_rollback_ends():
     assert dep[True]["workflow_call"]["outputs"]["login"]["value"] == "${{ jobs.deploy.outputs.login }}"
     assert dep["jobs"]["deploy"]["outputs"]["login"] == "${{ steps.vm.outputs.login }}"
     assert 'if [ "$rc" = 75 ]; then echo "login=refused" >> "$GITHUB_OUTPUT"; fi' in dep["jobs"]["deploy"]["steps"][-1]["run"]
+
+
+# --- "site down" only when nothing passed on the rolled-back site (HIR-359) ----------------
+
+def two_reports(tmp_path, first, recheck):
+    a, b = tmp_path / "first.json", tmp_path / "recheck.json"
+    a.write_text(json.dumps(first))
+    b.write_text(json.dumps(recheck))
+    return ["--kind", "rollback-failed", "--report", str(a), "--recheck-report", str(b),
+            "--change", "8d329b6 Merge pull request #217", "--rolled-back-to", "46b4276", "--run-url", "https://gh/run/7"]
+
+
+def test_a_path_that_still_fails_on_a_site_that_is_up_goes_to_an_agent_not_to_chandler(tmp_path):
+    """19 Nov: the rolled-back site passed eight of nine paths and Chandler got "site down"."""
+    fake = FakeLinear()
+    first = report(spec("each filter reaches the server", ("desktop", "unexpected"), ("phone", "unexpected")))
+    recheck = report(spec("home loads", ("desktop", "expected"), ("phone", "flaky")),
+                     spec("a job card", ("desktop", "expected"), ("phone", "unexpected")))
+    assert run(two_reports(tmp_path, first, recheck), fake) == 0
+    [issue] = fake.created()
+    assert issue["title"] == 'Site watch: "a job card" fails'   # the second run's failure, not the first's
+    assert issue["labelIds"] == ["label-autopilot"]
+    assert "assigneeId" not in issue and issue["priority"] == 2
+    body = issue["description"]
+    for needle in ("**the site is up**", "probably not caused by the deploy", "a job card — at phone width",
+                   "8d329b6 Merge pull request #217", "put back by the rollback:** 46b4276",
+                   "- each filter reaches the server (desktop and phone)", "https://gh/run/7"):
+        assert needle in body
+    # The Monday summary reads this sentence to say the change was rolled back (app/site_watch_week.py).
+    assert "The deploy was rolled back" in body
+    assert "![screenshot]" not in body   # the second run's screenshots are not published
+
+
+def test_every_path_that_still_fails_gets_its_own_ticket(tmp_path):
+    fake = FakeLinear()
+    recheck = report(spec("home loads", ("desktop", "flaky"), ("phone", "unexpected")),
+                     spec("each filter", ("desktop", "unexpected"), ("phone", "skipped")))
+    run(two_reports(tmp_path, report(spec("each filter", ("desktop", "unexpected"))), recheck), fake)
+    assert [i["title"] for i in fake.created()] == ['Site watch: "home loads" fails', 'Site watch: "each filter" fails']
+
+
+def test_site_down_when_no_path_passed_after_the_rollback_and_the_ticket_shows_both_runs(tmp_path):
+    fake = FakeLinear()
+    first = report(spec("compare mode", ("desktop", "unexpected")))
+    recheck = report(spec("home loads", ("desktop", "unexpected"), ("phone", "unexpected")),
+                     spec("each filter", ("desktop", "skipped"), ("phone", "skipped")))
+    run(two_reports(tmp_path, first, recheck), fake)
+    [issue] = fake.created()
+    assert issue["title"] == "Site down and rollback failed"
+    assert issue["assigneeId"] == swt.CHANDLER_ID and issue["priority"] == 1 and "labelIds" not in issue
+    after, before = issue["description"].split("What it found on the new version, before the rollback:")
+    assert "No visitor path passed on the rolled-back site" in after
+    assert "- home loads (desktop and phone)" in after and "compare mode" not in after
+    assert "- compare mode (desktop)" in before and "home loads" not in before
+
+
+def test_site_down_when_the_second_report_is_missing_unreadable_or_names_no_failure(tmp_path):
+    """Any doubt about the rolled-back site stays on the urgent side."""
+    first = report(spec("compare mode", ("desktop", "unexpected")))
+    argv = two_reports(tmp_path, first, report(spec("home loads", ("desktop", "expected"))))
+    for case in ("no failing path", "not json", "missing", "not passed at all"):
+        recheck = tmp_path / "recheck.json"
+        if case == "not json":
+            recheck.write_text("<html>")
+        elif case == "missing":
+            recheck.unlink()
+        elif case == "not passed at all":
+            argv = [a for a in argv if a not in ("--recheck-report", str(recheck))]
+        fake = FakeLinear()
+        assert run(argv, fake) == 0, case
+        [issue] = fake.created()
+        assert issue["title"] == "Site down and rollback failed", case
+        assert "could not be read or names no failing path" in issue["description"], case
+        assert "- compare mode (desktop)" in issue["description"], case
+
+
+def test_the_workflow_hands_the_second_report_to_the_ticket_script():
+    import yaml
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "site-watch.yml").read_text())
+    steps = wf["jobs"]["report"]["steps"]
+    [get] = [s for s in steps if s.get("with", {}).get("name") == "watch-recheck"]
+    # The robot's composite action uploads web/watch-out/ under this name from the recheck job.
+    assert wf["jobs"]["recheck"]["steps"][-1]["with"]["artifact"] == "watch-recheck"
+    assert get["continue-on-error"] is True   # a missing artifact must not stop the ticket
+    [file] = [s for s in steps if s.get("name") == "File the ticket"]
+    assert steps.index(get) < steps.index(file)
+    assert f"--recheck-report {get['with']['path']}/report.json" in file["run"]
