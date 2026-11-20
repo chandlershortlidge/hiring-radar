@@ -32,7 +32,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import geo, misses, poll
+from app import fixes_only, geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
@@ -205,7 +205,7 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
 
 
 def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None,
-           feeds: list[dict] | None = None) -> None:
+           feeds: list[dict] | None = None, mode: dict | None | bool = False) -> None:
     """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
     journal only. Each send is logged so a second run the same day does not repeat it.
@@ -216,7 +216,9 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
     `site_watch(start, end)` returns the
     robot visitor's two pieces (app/site_watch_week.week_text, HIR-260): what waits for
     Chandler, which goes above everything else, and the week's report, which goes after the
-    pull requests; injected so tests never reach Linear, and None leaves both out."""
+    pull requests; injected so tests never reach Linear, and None leaves both out.
+    `mode` is the fixes-only setting (app/fixes_only.py, HIR-341): while it is on, the
+    summary's first line says so. False reads config/lead_agent.json; None is "no mode"."""
     if (items := urgent_now(conn, day)):
         body = "The caretaker found something that cannot wait for Monday:\n\n" + \
                "\n".join(f"- {i}" for i in items) + "\n"
@@ -227,7 +229,9 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
     if (week := weekly_due(conn, day)):
         start, end = week
         robot_first, robot_week = site_watch(start, end) if site_watch else ("", "")
-        body = ((robot_first + "\n" if robot_first else "")
+        frozen = fixes_only.sentence(fixes_only.load() if mode is False else mode, day)
+        body = ((frozen + "\n\n" if frozen else "")
+                + (robot_first + "\n" if robot_first else "")
                 + (changes(start, end) + "\n" if changes else "")
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
