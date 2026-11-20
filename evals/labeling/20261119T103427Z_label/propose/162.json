@@ -1,0 +1,19 @@
+{
+  "item": 162,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e8dbbca8f5c17be84bbca3efc2d8d25eef99b3efb6e91b47abd448026ecf1e0e",
+  "raw": "{\"decision\": [[\"computer-vision\", \"llms\"]], \"why\": \"The posting asks for 'real depth in one modern ML area — computer vision, large language models, or generative modelling', an 'X, Y or Z' marker for one ask, so the labelled computer-vision and llms skills form a group, while the broad machine-learning parent stays out as a skill named alongside its examples.\"}",
+  "decision": [
+    [
+      "computer-vision",
+      "llms"
+    ]
+  ],
+  "why": "The posting asks for 'real depth in one modern ML area — computer vision, large language models, or generative modelling', an 'X, Y or Z' marker for one ask, so the labelled computer-vision and llms skills form a group, while the broad machine-learning parent stays out as a skill named alongside its examples.",
+  "error": null
+}

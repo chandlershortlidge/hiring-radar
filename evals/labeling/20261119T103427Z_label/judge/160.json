@@ -1,0 +1,40 @@
+{
+  "item": 160,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"go\", \"rust\", \"cpp\", \"java\", \"scala\"], [\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"docker\", \"kubernetes\", \"infrastructure-as-code\"], [\"react\", \"vue\", \"angular\", \"graphql\", \"async-processing\"]]",
+  "key_sha256": "af1efdfe291c85ca0eb5e2ef4481d96255c7d809cb585f54f58c38c84dc280be",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"go\", \"rust\", \"cpp\", \"java\", \"scala\"], [\"async-processing\", \"graphql\", \"react\", \"vue\", \"angular\"], [\"docker\", \"kubernetes\", \"infrastructure-as-code\"]], \"why\": \"Under the markers 'at least one of', 'and/or', and 'examples offered for a single ask', each list of examples ('libraries like...', 'at least one systems programming language (e.g., ...)', and the two 'e.g.' example lists for client-server systems and containerized/cloud environments) forms an alternative group while their broad parent skills stay out.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch",
+      "scikit-learn"
+    ],
+    [
+      "go",
+      "rust",
+      "cpp",
+      "java",
+      "scala"
+    ],
+    [
+      "async-processing",
+      "graphql",
+      "react",
+      "vue",
+      "angular"
+    ],
+    [
+      "docker",
+      "kubernetes",
+      "infrastructure-as-code"
+    ]
+  ],
+  "why": "Under the markers 'at least one of', 'and/or', and 'examples offered for a single ask', each list of examples ('libraries like...', 'at least one systems programming language (e.g., ...)', and the two 'e.g.' example lists for client-server systems and containerized/cloud environments) forms an alternative group while their broad parent skills stay out.",
+  "error": null
+}

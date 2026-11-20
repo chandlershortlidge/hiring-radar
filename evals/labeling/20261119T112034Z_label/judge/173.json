@@ -1,0 +1,20 @@
+{
+  "item": 173,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"jax\", \"pytorch\"]]",
+  "key_sha256": "82606c5d421456f2426cafcc130a78830a418175d7bf2b4513068bb852156e7f",
+  "raw": "{\"decision\": [[\"jax\", \"pytorch\"]], \"why\": \"The posting requires 'Expert with PyTorch or JAX', which uses the 'X, Y or Z' marker to accept any one of several skills for a single ask, and neither skill appears on its own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "jax",
+      "pytorch"
+    ]
+  ],
+  "why": "The posting requires 'Expert with PyTorch or JAX', which uses the 'X, Y or Z' marker to accept any one of several skills for a single ask, and neither skill appears on its own elsewhere in the posting.",
+  "error": null
+}

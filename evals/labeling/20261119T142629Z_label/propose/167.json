@@ -1,0 +1,14 @@
+{
+  "item": 167,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "59d66c0ffa5db33f2630c064e6ec0c8af5d354d33c890913dc4e46d4a5dbf5f8",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for deploying large-scale AI, Generative AI capabilities and ML leadership together, with no 'at least one of', 'or', or example-for-one-ask markers, so no skills are offered in place of each other under the alternative_group rule.\"}",
+  "decision": [],
+  "why": "The posting asks for deploying large-scale AI, Generative AI capabilities and ML leadership together, with no 'at least one of', 'or', or example-for-one-ask markers, so no skills are offered in place of each other under the alternative_group rule.",
+  "error": null
+}

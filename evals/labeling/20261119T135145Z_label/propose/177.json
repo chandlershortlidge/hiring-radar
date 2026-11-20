@@ -1,0 +1,20 @@
+{
+  "item": 177,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "32d176b5ef0f2453500b0a4e83626c8590039aaf3eea3916bc7e2fcd85a16bb5",
+  "raw": "{\"decision\": [[\"scikit-learn\", \"tensorflow\", \"pytorch\"]], \"why\": \"The posting offers scikit-learn, TensorFlow, or PyTorch as examples of one ask (\\\"machine learning frameworks such as ... or ...\\\"), which is the rule's \\\"X, Y or Z\\\" alternative marker, while the 'and'-joined lists (AWS S3, SageMaker, Airflow; Snowflake, dbt, Looker, Tableau) are skills asked together and so not grouped.\"}",
+  "decision": [
+    [
+      "scikit-learn",
+      "tensorflow",
+      "pytorch"
+    ]
+  ],
+  "why": "The posting offers scikit-learn, TensorFlow, or PyTorch as examples of one ask (\"machine learning frameworks such as ... or ...\"), which is the rule's \"X, Y or Z\" alternative marker, while the 'and'-joined lists (AWS S3, SageMaker, Airflow; Snowflake, dbt, Looker, Tableau) are skills asked together and so not grouped.",
+  "error": null
+}

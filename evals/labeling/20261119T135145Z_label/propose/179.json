@@ -1,0 +1,19 @@
+{
+  "item": 179,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "eda8b2a7f50d62c2e3507096e51dd13c565f767f0f07927b2cd5b55e4ba84e8a",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"The posting's 'experience using ML frameworks such as PyTorch or TensorFlow' offers one of two examples for a single ask, so under the alternative_group markers the two skills form one group, while the broad 'machine-learning' skill stays out as a broad parent of its examples.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "The posting's 'experience using ML frameworks such as PyTorch or TensorFlow' offers one of two examples for a single ask, so under the alternative_group markers the two skills form one group, while the broad 'machine-learning' skill stays out as a broad parent of its examples.",
+  "error": null
+}

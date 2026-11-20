@@ -1,0 +1,14 @@
+{
+  "item": 176,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "72d61cba3fd90473e006f1e7687f05b08f6a842acbc50ec7683ee6c1cc13dffa",
+  "raw": "{\"decision\": [], \"why\": \"The only example-list ask ('ML optimization techniques (e.g., sparsity, quantization, pruning)') yields just one labeled skill, `quantization`, and a group needs at least two skills from this item, so no group forms.\"}",
+  "decision": [],
+  "why": "The only example-list ask ('ML optimization techniques (e.g., sparsity, quantization, pruning)') yields just one labeled skill, `quantization`, and a group needs at least two skills from this item, so no group forms.",
+  "error": null
+}

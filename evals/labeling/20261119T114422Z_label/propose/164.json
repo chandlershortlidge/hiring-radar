@@ -1,0 +1,20 @@
+{
+  "item": 164,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8f268f7219b8de5a6620920bd978fbcc341897a5757b6ad498d6e704c4338e0d",
+  "raw": "{\"decision\": [[\"databricks\", \"docker\", \"mlflow\"]], \"why\": \"The sentence 'Experience with machine learning tools and MLOps systems such as Docker, Databricks, and MLflow' offers examples for a single ask (the 'such as' marker), so any one meets it and the three form one group, while the broad parent 'MLOps systems' (mlops) stays out per the 'broad skill named alongside its examples' rule.\"}",
+  "decision": [
+    [
+      "databricks",
+      "docker",
+      "mlflow"
+    ]
+  ],
+  "why": "The sentence 'Experience with machine learning tools and MLOps systems such as Docker, Databricks, and MLflow' offers examples for a single ask (the 'such as' marker), so any one meets it and the three form one group, while the broad parent 'MLOps systems' (mlops) stays out per the 'broad skill named alongside its examples' rule.",
+  "error": null
+}

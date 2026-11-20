@@ -1,0 +1,14 @@
+{
+  "item": 164,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6eb62c5daf7c4a6cb3ca9459944a75ab731f4136125b0cf553104a37f363d79f",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for Python and SQL together and lists no 'at least one of' or 'X or Y' alternatives among the labeled skills, so under the alternative_group rule's 'Not alternatives' clause no group applies.\"}",
+  "decision": [],
+  "why": "The posting asks for Python and SQL together and lists no 'at least one of' or 'X or Y' alternatives among the labeled skills, so under the alternative_group rule's 'Not alternatives' clause no group applies.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 177,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3a591eb9ed9f3196a0e633974e872a9ba0afbf4fd140ce1aa63e48a0b35c42f1",
+  "raw": "{\"decision\": [[\"cpp\", \"rust\"]], \"why\": \"The posting asks for \\\"strong hands-on expertise in C++ or Rust\\\" for one ask, and neither skill is asked for elsewhere on its own, so the \\\"X or Y\\\" marker makes them one alternative_group.\"}",
+  "decision": [
+    [
+      "cpp",
+      "rust"
+    ]
+  ],
+  "why": "The posting asks for \"strong hands-on expertise in C++ or Rust\" for one ask, and neither skill is asked for elsewhere on its own, so the \"X or Y\" marker makes them one alternative_group.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 174,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "e6660273c69ab5d46cb213ceb35c167c9fb85f9c74ec77ba74f89c48042e6d57",
+  "raw": "{\"decision\": [], \"why\": \"The posting requires both Kotlin and Android architecture as separate requirements rather than offering any one of several skills for one ask, so under the rule that skills asked for together are not alternatives, no group is formed.\"}",
+  "decision": [],
+  "why": "The posting requires both Kotlin and Android architecture as separate requirements rather than offering any one of several skills for one ask, so under the rule that skills asked for together are not alternatives, no group is formed.",
+  "error": null
+}

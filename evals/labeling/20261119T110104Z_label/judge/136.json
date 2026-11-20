@@ -1,0 +1,15 @@
+{
+  "item": 136,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "32505e6f602fff1154ec721656f153f90508d5d38ffd36f7fed0523a44ca7e58",
+  "raw": "{\"decision\": [], \"why\": \"Under the rule that a group needs at least two skills and a skill asked for on its own elsewhere leaves the group, `llms` is required independently in the Qualifications ('modern LLMs'), leaving only `agents` from the Requirements alternatives list.\"}",
+  "decision": [],
+  "why": "Under the rule that a group needs at least two skills and a skill asked for on its own elsewhere leaves the group, `llms` is required independently in the Qualifications ('modern LLMs'), leaving only `agents` from the Requirements alternatives list.",
+  "error": null
+}

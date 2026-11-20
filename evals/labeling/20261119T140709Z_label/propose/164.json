@@ -1,0 +1,19 @@
+{
+  "item": 164,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "31d5213d18ee3137be89ffc8d75f1231bfa7802a7304ccd9a12b8a0f53f3db8b",
+  "raw": "{\"decision\": [[\"agents\", \"streamlit\"]], \"why\": \"The posting's single nice-to-have ask, 'hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks', is one 'X, Y or Z' set where any one meets it, so the labeled `streamlit` and `agents` skills form group 1; the other listed pairs (evaluation/observability, RAG/embeddings, evaluations/guardrails) are skills asked together with 'and' or commas, so they stay out.\"}",
+  "decision": [
+    [
+      "agents",
+      "streamlit"
+    ]
+  ],
+  "why": "The posting's single nice-to-have ask, 'hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks', is one 'X, Y or Z' set where any one meets it, so the labeled `streamlit` and `agents` skills form group 1; the other listed pairs (evaluation/observability, RAG/embeddings, evaluations/guardrails) are skills asked together with 'and' or commas, so they stay out.",
+  "error": null
+}

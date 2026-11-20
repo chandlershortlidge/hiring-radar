@@ -1,0 +1,14 @@
+{
+  "item": 169,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "86755533340419a4c7aeab99a819ba314e5b5f1022b682ad728f31c5d03f92c3",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for its skills together, with no 'at least one of' or 'X, Y or Z' marker: 'A/B testing, DiD, Bandits and uplift modeling' is a set of methods used jointly, and Python, SQL, Spark, Airflow and AWS are each required alongside the others, so under the rule's 'Not alternatives' clause no group applies.\"}",
+  "decision": [],
+  "why": "The posting asks for its skills together, with no 'at least one of' or 'X, Y or Z' marker: 'A/B testing, DiD, Bandits and uplift modeling' is a set of methods used jointly, and Python, SQL, Spark, Airflow and AWS are each required alongside the others, so under the rule's 'Not alternatives' clause no group applies.",
+  "error": null
+}

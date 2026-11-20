@@ -1,0 +1,38 @@
+{
+  "item": 164,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c3933ec3b7e025ecb92dcd61b6e108b9203011e631749f335fe9a2e8de26137a",
+  "raw": "{\"decision\": [[\"python\", \"go\"], [\"kubernetes\", \"docker\"], [\"jenkins\", \"gitlab-ci\"], [\"langchain\", \"autogen\", \"llamaindex\", \"google-adk\"], [\"airflow\", \"kubeflow\", \"mlflow\"]], \"why\": \"Each bracketed set is offered as examples for one ask ('such as Python or Go', 'e.g., Kubernetes, Docker', 'e.g., Jenkins, GitLab CI', frameworks 'e.g., LangChain, AutoGen, LlamaIndex, or ... Agent Development Kit', and 'concepts similar to Kubeflow, MLflow, or Apache Airflow'), which the alternative_group markers cover, while the broad parents (ci-cd, agents, mlops) stay out; grafana is left ungrouped because datadog is not a labeled skill.\"}",
+  "decision": [
+    [
+      "python",
+      "go"
+    ],
+    [
+      "kubernetes",
+      "docker"
+    ],
+    [
+      "jenkins",
+      "gitlab-ci"
+    ],
+    [
+      "langchain",
+      "autogen",
+      "llamaindex",
+      "google-adk"
+    ],
+    [
+      "airflow",
+      "kubeflow",
+      "mlflow"
+    ]
+  ],
+  "why": "Each bracketed set is offered as examples for one ask ('such as Python or Go', 'e.g., Kubernetes, Docker', 'e.g., Jenkins, GitLab CI', frameworks 'e.g., LangChain, AutoGen, LlamaIndex, or ... Agent Development Kit', and 'concepts similar to Kubeflow, MLflow, or Apache Airflow'), which the alternative_group markers cover, while the broad parents (ci-cd, agents, mlops) stay out; grafana is left ungrouped because datadog is not a labeled skill.",
+  "error": null
+}

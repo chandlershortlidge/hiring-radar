@@ -1,0 +1,21 @@
+{
+  "item": 130,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"vllm\", \"langgraph\"]]",
+  "key_sha256": "e0550f2c45a932b47ce76e2cc5127d587b026926a117e87e3054e787342492e8",
+  "raw": "{\"decision\": [[\"pytorch\", \"vllm\", \"langgraph\"]], \"why\": \"The posting offers \\\"frameworks such as PyTorch, vLLM, or LangGraph\\\" as examples for a single ask, while RAG and agentic orchestration are also required on their own in the responsibilities and therefore leave the \\\"RAG, agentic orchestration, or multi-agent systems\\\" group, leaving fewer than two skills.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "vllm",
+      "langgraph"
+    ]
+  ],
+  "why": "The posting offers \"frameworks such as PyTorch, vLLM, or LangGraph\" as examples for a single ask, while RAG and agentic orchestration are also required on their own in the responsibilities and therefore leave the \"RAG, agentic orchestration, or multi-agent systems\" group, leaving fewer than two skills.",
+  "error": null
+}

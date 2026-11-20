@@ -1,0 +1,14 @@
+{
+  "item": 136,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dd369cb9eedda8553aaf2715fe4c8264433e565ab49daf476e6e02354056bf6c",
+  "raw": "{\"decision\": [], \"why\": \"The only alternative-style list is the Requirements line 'Experience with LLMs, ... scientific agents, or AI discovery platforms', but `llms` is also asked on its own in the Qualifications ('modern LLMs'), so it leaves any group and only `agents` remains, below the two-skill minimum.\"}",
+  "decision": [],
+  "why": "The only alternative-style list is the Requirements line 'Experience with LLMs, ... scientific agents, or AI discovery platforms', but `llms` is also asked on its own in the Qualifications ('modern LLMs'), so it leaves any group and only `agents` remains, below the two-skill minimum.",
+  "error": null
+}

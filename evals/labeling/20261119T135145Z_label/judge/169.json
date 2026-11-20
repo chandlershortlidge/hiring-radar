@@ -1,0 +1,15 @@
+{
+  "item": 169,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "bf812cb39bf7ed0d17799c48ad100fc0c043253c900f877df4be6241434bf64b",
+  "raw": "{\"decision\": [], \"why\": \"All labeled skills in the posting are requested together using 'and' (such as 'Python and SQL' and 'time series forecasting, probabilistic models, and deep learning models'), so under the 'Not alternatives: skills asked for together' rule, no alternative groups apply.\"}",
+  "decision": [],
+  "why": "All labeled skills in the posting are requested together using 'and' (such as 'Python and SQL' and 'time series forecasting, probabilistic models, and deep learning models'), so under the 'Not alternatives: skills asked for together' rule, no alternative groups apply.",
+  "error": null
+}

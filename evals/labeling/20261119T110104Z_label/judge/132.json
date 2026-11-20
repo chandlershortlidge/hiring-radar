@@ -1,0 +1,23 @@
+{
+  "item": 132,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]]",
+  "key_sha256": "032b8b1fa903f4cc726681cd849c99fa01955d2df8e5e7e7c8218096a428538e",
+  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The posting offers examples for a single ask ('agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)'), so the five example skills form an alternative group while the broad skills ('agents' and 'llm-orchestration') stay out of the group.\"}",
+  "decision": [
+    [
+      "pydanticai",
+      "langgraph",
+      "langchain",
+      "crewai",
+      "autogen"
+    ]
+  ],
+  "why": "The posting offers examples for a single ask ('agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)'), so the five example skills form an alternative group while the broad skills ('agents' and 'llm-orchestration') stay out of the group.",
+  "error": null
+}

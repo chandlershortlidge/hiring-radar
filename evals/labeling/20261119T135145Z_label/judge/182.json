@@ -1,0 +1,30 @@
+{
+  "item": 182,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\", \"jax\"], [\"python\", \"cpp\"], [\"aws\", \"gcp\", \"azure\"]]",
+  "key_sha256": "ee28ce1e67674166cdf7c90fb163df75a259b01472e4b7ceabcdb58e1aa8afb5",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"jax\"], [\"python\", \"cpp\"], [\"aws\", \"gcp\", \"azure\"]], \"why\": \"The posting uses the rule's explicit alternative markers ('at least one', 'one or more... such as X, or Y', and parenthetical examples of 'cloud platforms' with the broad 'cloud' excluded) for the frameworks, languages, and clouds, whereas 'containerization and orchestration technologies (e.g., Docker, Kubernetes)' asks for two categories together ('X and Y') rather than offering Docker and Kubernetes in place of each other.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ],
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  ],
+  "why": "The posting uses the rule's explicit alternative markers ('at least one', 'one or more... such as X, or Y', and parenthetical examples of 'cloud platforms' with the broad 'cloud' excluded) for the frameworks, languages, and clouds, whereas 'containerization and orchestration technologies (e.g., Docker, Kubernetes)' asks for two categories together ('X and Y') rather than offering Docker and Kubernetes in place of each other.",
+  "error": null
+}

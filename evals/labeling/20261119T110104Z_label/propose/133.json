@@ -1,0 +1,14 @@
+{
+  "item": 133,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b58ade070d440ffd4944a46c2e1cf18573f27db17d2e166a10b136c26bed36e8",
+  "raw": "{\"decision\": [], \"why\": \"The only labeled skills are causal-inference and software-engineering, and the posting asks for both separately, not as alternatives; the 'and/or' alternative is between causal modeling and evolutionary programming, which has no skill id in this item, so no group can be formed.\"}",
+  "decision": [],
+  "why": "The only labeled skills are causal-inference and software-engineering, and the posting asks for both separately, not as alternatives; the 'and/or' alternative is between causal modeling and evolutionary programming, which has no skill id in this item, so no group can be formed.",
+  "error": null
+}

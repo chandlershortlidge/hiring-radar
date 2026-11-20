@@ -1,0 +1,14 @@
+{
+  "item": 175,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0b6f04357989729fef2f603f4c0e2d768d5ad063ff01ea424e5406d40a707239",
+  "raw": "{\"decision\": [], \"why\": \"The 'one or more of' qualification names reinforcement learning and agent systems, but reinforcement learning is also asked on its own in the responsibilities ('Develop LLM post-training methods, including reinforcement learning'), so it leaves the group and only `agents` remains, below the two-skill minimum.\"}",
+  "decision": [],
+  "why": "The 'one or more of' qualification names reinforcement learning and agent systems, but reinforcement learning is also asked on its own in the responsibilities ('Develop LLM post-training methods, including reinforcement learning'), so it leaves the group and only `agents` remains, below the two-skill minimum.",
+  "error": null
+}

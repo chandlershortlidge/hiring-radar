@@ -1,0 +1,15 @@
+{
+  "item": 138,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "8eb7b804127d58289ac466089374054cc8ac256eb86cd255007aa78518dc918c",
+  "raw": "{\"decision\": [], \"why\": \"The rule requires at least two skills to form an alternative group and excludes a broad skill named alongside its example, and none of the labeled skills are offered as alternatives to each other.\"}",
+  "decision": [],
+  "why": "The rule requires at least two skills to form an alternative group and excludes a broad skill named alongside its example, and none of the labeled skills are offered as alternatives to each other.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 169,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "148de245952e3b6d4bca419b524741a62507e4e137308d8b6c585b09290991fa",
+  "raw": "{\"decision\": [[\"ansible\", \"terraform\"]], \"why\": \"Under the alternative_group rule, \\\"infrastructure as code (Terraform, Ansible)\\\" offers two examples for one ask, with the broad skill infrastructure-as-code left out of the group, while the PyTorch and TensorFlow mentions are separate asks (the required PyTorch line and the preferred \\\"other ML frameworks like TensorFlow\\\") and so are not grouped.\"}",
+  "decision": [
+    [
+      "ansible",
+      "terraform"
+    ]
+  ],
+  "why": "Under the alternative_group rule, \"infrastructure as code (Terraform, Ansible)\" offers two examples for one ask, with the broad skill infrastructure-as-code left out of the group, while the PyTorch and TensorFlow mentions are separate asks (the required PyTorch line and the preferred \"other ML frameworks like TensorFlow\") and so are not grouped.",
+  "error": null
+}

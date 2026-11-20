@@ -1,0 +1,20 @@
+{
+  "item": 177,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"cpp\", \"rust\"]]",
+  "key_sha256": "f284f0b985bb86a7f9517707e7a5519c91dc5e13d168bf4dc333f51be15194fd",
+  "raw": "{\"decision\": [[\"cpp\", \"rust\"]], \"why\": \"The posting accepts either 'C++ or Rust' for a single requirement, matching the 'X, Y or Z' alternative marker with at least two labeled skills.\"}",
+  "decision": [
+    [
+      "cpp",
+      "rust"
+    ]
+  ],
+  "why": "The posting accepts either 'C++ or Rust' for a single requirement, matching the 'X, Y or Z' alternative marker with at least two labeled skills.",
+  "error": null
+}

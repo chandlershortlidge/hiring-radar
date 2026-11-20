@@ -1,0 +1,20 @@
+{
+  "item": 175,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "35ecceebca2ee5b7ef968e6c2d3c276842b1a6162357e641ca9051c7c07b92d0",
+  "raw": "{\"decision\": [[\"distributed-training\", \"ai-infrastructure\"]], \"why\": \"`reinforcement-learning`, `agents`, and `agent-architecture` are all asked for on their own in the Responsibilities section and thus leave their respective alternative groups, leaving only `distributed-training` and `ai-infrastructure` grouped under the 'X, Y or Z' marker in 'Building agent harnesses, distributed training systems, or scalable inference infrastructure'.\"}",
+  "decision": [
+    [
+      "distributed-training",
+      "ai-infrastructure"
+    ]
+  ],
+  "why": "`reinforcement-learning`, `agents`, and `agent-architecture` are all asked for on their own in the Responsibilities section and thus leave their respective alternative groups, leaving only `distributed-training` and `ai-infrastructure` grouped under the 'X, Y or Z' marker in 'Building agent harnesses, distributed training systems, or scalable inference infrastructure'.",
+  "error": null
+}

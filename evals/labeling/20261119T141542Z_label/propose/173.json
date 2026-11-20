@@ -1,0 +1,14 @@
+{
+  "item": 173,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4d79ee5b2e052a15aac502b0c66bd94c826804223c21f9195758c93a337cf347",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills are not offered as alternatives: the only 'or' markers in the posting sit on unlabeled skills (LLaVA/Qwen-VL/PaliGemma, OpenVLA/RT-2/pi0, RLHF-style post-training), and the TensorRT/CUDA/quantization-aware training list has no 'or', so under the rule these are asked together, not as alternatives.\"}",
+  "decision": [],
+  "why": "The labeled skills are not offered as alternatives: the only 'or' markers in the posting sit on unlabeled skills (LLaVA/Qwen-VL/PaliGemma, OpenVLA/RT-2/pi0, RLHF-style post-training), and the TensorRT/CUDA/quantization-aware training list has no 'or', so under the rule these are asked together, not as alternatives.",
+  "error": null
+}

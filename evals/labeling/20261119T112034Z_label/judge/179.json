@@ -1,0 +1,15 @@
+{
+  "item": 179,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "9d18d20efa3f9213fe9d6c1ca6d9b1a1bfedafbfc0d32b1b7783c1abf8c855be",
+  "raw": "{\"decision\": [], \"why\": \"All labeled skills are asked for together (including 'experience across NLP, audio / music content understanding and recommender systems', which uses 'X, Y and Z'), and the rule states that skills asked for together are not alternatives.\"}",
+  "decision": [],
+  "why": "All labeled skills are asked for together (including 'experience across NLP, audio / music content understanding and recommender systems', which uses 'X, Y and Z'), and the rule states that skills asked for together are not alternatives.",
+  "error": null
+}

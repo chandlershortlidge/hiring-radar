@@ -1,0 +1,15 @@
+{
+  "item": 163,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "de5fe036d283333da753ce0e2953dfb5be79b1751b425550ce5add4941235692",
+  "raw": "{\"decision\": [], \"why\": \"All labeled skills appear in lists joined by 'and' (such as 'Python and SQL' and 'Exposure to Java, C, R, SAS, VBA, Bash (Unix shell), Talend, linked data, Spark implementation, and machine learning/AI-based analysis'), which the rule explicitly excludes as 'Not alternatives: skills asked for together (\\\"X and Y\\\", \\\"X, Y and Z\\\")'.\"}",
+  "decision": [],
+  "why": "All labeled skills appear in lists joined by 'and' (such as 'Python and SQL' and 'Exposure to Java, C, R, SAS, VBA, Bash (Unix shell), Talend, linked data, Spark implementation, and machine learning/AI-based analysis'), which the rule explicitly excludes as 'Not alternatives: skills asked for together (\"X and Y\", \"X, Y and Z\")'.",
+  "error": null
+}

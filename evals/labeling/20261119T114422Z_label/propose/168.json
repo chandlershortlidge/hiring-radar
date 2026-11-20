@@ -1,0 +1,14 @@
+{
+  "item": 168,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2bd18b8190923e51a099c60a0e90fea05bc0c973f47f2924096daa898beb5db1",
+  "raw": "{\"decision\": [], \"why\": \"No alternative markers appear: Ansible, Terraform and Kubernetes are all required together, and the networking entry lists areas of specialization rather than one ask that any one example meets, so no skills are offered in place of each other.\"}",
+  "decision": [],
+  "why": "No alternative markers appear: Ansible, Terraform and Kubernetes are all required together, and the networking entry lists areas of specialization rather than one ask that any one example meets, so no skills are offered in place of each other.",
+  "error": null
+}

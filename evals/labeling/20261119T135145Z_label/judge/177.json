@@ -1,0 +1,21 @@
+{
+  "item": 177,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"scikit-learn\", \"tensorflow\", \"pytorch\"]]",
+  "key_sha256": "6aa0a80172c32a9d22e6d131738446ede5335744baaee3aa0c7d8b07f6230a22",
+  "raw": "{\"decision\": [[\"scikit-learn\", \"tensorflow\", \"pytorch\"]], \"why\": \"The posting uses the alternative marker 'machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch', offering these three examples in place of each other while keeping the broad parent (`machine-learning`) and 'and'-joined skill lists out of the group.\"}",
+  "decision": [
+    [
+      "scikit-learn",
+      "tensorflow",
+      "pytorch"
+    ]
+  ],
+  "why": "The posting uses the alternative marker 'machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch', offering these three examples in place of each other while keeping the broad parent (`machine-learning`) and 'and'-joined skill lists out of the group.",
+  "error": null
+}

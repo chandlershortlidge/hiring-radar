@@ -1,0 +1,20 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ae90299fc0604fdc46986c66c7acb47712d5a3d7fb5bb4bae549b6201fb3139f",
+  "raw": "{\"decision\": [[\"go\", \"java\", \"python\"]], \"why\": \"The minimum qualification asks for \\\"at least one programming language (e.g., Python, Go, Java, etc.)\\\", an \\\"at least one of\\\" marker with examples offered for a single ask, so go, java and python form one group, and the \\\"etc.\\\" adds nothing.\"}",
+  "decision": [
+    [
+      "go",
+      "java",
+      "python"
+    ]
+  ],
+  "why": "The minimum qualification asks for \"at least one programming language (e.g., Python, Go, Java, etc.)\", an \"at least one of\" marker with examples offered for a single ask, so go, java and python form one group, and the \"etc.\" adds nothing.",
+  "error": null
+}

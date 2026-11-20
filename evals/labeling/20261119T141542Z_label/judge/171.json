@@ -1,0 +1,15 @@
+{
+  "item": 171,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "7644eb15a3372a4c5553afa890f8e3d68b428f808341192b472b09b95dcef288",
+  "raw": "{\"decision\": [], \"why\": \"The skills are connected with 'and' ('AI platforms like SageMaker, Databricks, and Terraform, along with MLflow'), and under the 'Not alternatives' rule, skills asked for together ('X, Y and Z') are not grouped.\"}",
+  "decision": [],
+  "why": "The skills are connected with 'and' ('AI platforms like SageMaker, Databricks, and Terraform, along with MLflow'), and under the 'Not alternatives' rule, skills asked for together ('X, Y and Z') are not grouped.",
+  "error": null
+}

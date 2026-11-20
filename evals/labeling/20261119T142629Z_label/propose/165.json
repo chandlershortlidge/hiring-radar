@@ -1,0 +1,14 @@
+{
+  "item": 165,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "05e3bfa3600b756d469794eac5546299ee7dc42c067a21d670d926fce7e3ca1e",
+  "raw": "{\"decision\": [], \"why\": \"The posting lists its skills together (\\\"backend services (Python, TypeScript)\\\", and the tech stack list) with no \\\"at least one of\\\", \\\"or\\\", or example-for-one-ask markers, so under the alternative_group rule no skills are offered in place of each other.\"}",
+  "decision": [],
+  "why": "The posting lists its skills together (\"backend services (Python, TypeScript)\", and the tech stack list) with no \"at least one of\", \"or\", or example-for-one-ask markers, so under the alternative_group rule no skills are offered in place of each other.",
+  "error": null
+}

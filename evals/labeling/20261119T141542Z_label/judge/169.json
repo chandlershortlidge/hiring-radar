@@ -1,0 +1,37 @@
+{
+  "item": 169,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"java\", \"scala\", \"python\", \"kotlin\"], [\"kubeflow\", \"mlflow\"], [\"apache-spark\", \"aws-s3\", \"hadoop\"], [\"lightgbm\", \"scikit-learn\", \"tensorflow\", \"pytorch\"]]",
+  "key_sha256": "254112913aa9565eb5853cc92472367fe7139667bffdcda7abc65c212fae6a62",
+  "raw": "{\"decision\": [[\"java\", \"scala\", \"python\", \"kotlin\"], [\"kubeflow\", \"mlflow\"], [\"scikit-learn\", \"lightgbm\", \"tensorflow\", \"pytorch\"], [\"apache-spark\", \"aws-s3\", \"hadoop\"]], \"why\": \"Under the alternative-group rule, examples offered for a single ask ('a modern programming language (Java, Scala, Python, Kotlin)', 'MLOps platforms, such as Kubeflow or MLFlow', 'ML frameworks – like scikit-learn, LGBM, Tensorflow, PyTorch', and 'Big Data tools – Spark, S3, Hadoop') each form an alternative group without their broad parent skills, while Docker and Kubernetes are not alternatives ('Docker and Kubernetes', with Kubernetes also required on its own).\"}",
+  "decision": [
+    [
+      "java",
+      "scala",
+      "python",
+      "kotlin"
+    ],
+    [
+      "kubeflow",
+      "mlflow"
+    ],
+    [
+      "scikit-learn",
+      "lightgbm",
+      "tensorflow",
+      "pytorch"
+    ],
+    [
+      "apache-spark",
+      "aws-s3",
+      "hadoop"
+    ]
+  ],
+  "why": "Under the alternative-group rule, examples offered for a single ask ('a modern programming language (Java, Scala, Python, Kotlin)', 'MLOps platforms, such as Kubeflow or MLFlow', 'ML frameworks – like scikit-learn, LGBM, Tensorflow, PyTorch', and 'Big Data tools – Spark, S3, Hadoop') each form an alternative group without their broad parent skills, while Docker and Kubernetes are not alternatives ('Docker and Kubernetes', with Kubernetes also required on its own).",
+  "error": null
+}

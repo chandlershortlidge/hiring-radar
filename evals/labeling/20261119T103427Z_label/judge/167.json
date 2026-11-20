@@ -1,0 +1,15 @@
+{
+  "item": 167,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "bccda3aa3e6886dabbbe475b4669886761e38347868c0926492d1c424b8b194b",
+  "raw": "{\"decision\": [], \"why\": \"Under the rule, skills asked for together ('LLMs and ML-driven optimization') are not alternatives, and the scripting languages list ('Tcl, Python, Perl') has only one labeled skill ('python'), failing the requirement that a group needs at least two skills.\"}",
+  "decision": [],
+  "why": "Under the rule, skills asked for together ('LLMs and ML-driven optimization') are not alternatives, and the scripting languages list ('Tcl, Python, Perl') has only one labeled skill ('python'), failing the requirement that a group needs at least two skills.",
+  "error": null
+}

@@ -1,0 +1,25 @@
+{
+  "item": 160,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"scala\", \"java\"], [\"r-lang\", \"scikit-learn\"]]",
+  "key_sha256": "06d62cfcc910a316bb09c9a0bba85c9ce513400fb9179334dc5766fd8f7252ae",
+  "raw": "{\"decision\": [[\"python\", \"scala\", \"java\"], [\"r-lang\", \"scikit-learn\"]], \"why\": \"Under the Markers rule, 'one or more of' and examples offered for a single ask ('such as...') form alternative groups—giving one group for Python, Scala, and Java, and a second for R and scikit-learn—while 'statistical modeling' and 'machine learning' are asked for elsewhere on their own and thus leave their 'X, Y, or Z' list, leaving only 'deep-learning' which cannot form a group of at least two skills.\"}",
+  "decision": [
+    [
+      "python",
+      "scala",
+      "java"
+    ],
+    [
+      "r-lang",
+      "scikit-learn"
+    ]
+  ],
+  "why": "Under the Markers rule, 'one or more of' and examples offered for a single ask ('such as...') form alternative groups—giving one group for Python, Scala, and Java, and a second for R and scikit-learn—while 'statistical modeling' and 'machine learning' are asked for elsewhere on their own and thus leave their 'X, Y, or Z' list, leaving only 'deep-learning' which cannot form a group of at least two skills.",
+  "error": null
+}

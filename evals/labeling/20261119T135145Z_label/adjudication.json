@@ -1770,13 +1770,195 @@
       "decision": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\"}",
       "judge_said": "{\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\"}",
       "why": "The rule states that `degree` is the lowest level named ('BS/MS/PhD' -> `bachelor`), a bare mention under required qualifications is `required`, and 'or related field' widens the field rather than accepting experience in place of a degree (`degree_or_equivalent: false`)."
+    },
+    "169": {
+      "n": 169,
+      "golden_id": "golden_094",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[]",
+      "decision": "[]",
+      "judge_said": "[]",
+      "why": "All labeled skills in the posting are requested together using 'and' (such as 'Python and SQL' and 'time series forecasting, probabilistic models, and deep learning models'), so under the 'Not alternatives: skills asked for together' rule, no alternative groups apply."
+    },
+    "170": {
+      "n": 170,
+      "golden_id": "golden_095",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+      "decision": "[[\"autogen\", \"google-adk\", \"langgraph\", \"llamaindex\", \"mcp\"]]",
+      "judge_said": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+      "why": "The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups."
+    },
+    "172": {
+      "n": 172,
+      "golden_id": "golden_097",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"], [\"aws\", \"gcp\", \"azure\"], [\"docker\", \"kubernetes\"]]",
+      "decision": "[[\"aws\", \"azure\", \"gcp\"], [\"cpp\", \"python\"], [\"docker\", \"kubernetes\"], [\"jax\", \"pytorch\", \"tensorflow\"]]",
+      "judge_said": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"], [\"aws\", \"gcp\", \"azure\"], [\"docker\", \"kubernetes\"]]",
+      "why": "Per the alternative_group rule's markers ('one or more', 'at least one', and examples offered for a single ask), these four sets of examples are each grouped while broad parent skills ('cloud' and 'containerization') stay out of the groups."
+    },
+    "173": {
+      "n": 173,
+      "golden_id": "golden_098",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[]",
+      "decision": "[]",
+      "judge_said": "[]",
+      "why": "Although 'reinforcement-learning' and 'ros' appear in alternative lists ('imitation learning, RL or VLA' and 'ROS 2, DDS or Zenoh'), no other members of those lists are among the labeled skills (and broad parents like 'model-development' stay out of the group), leaving no group with the required minimum of two skills."
+    },
+    "174": {
+      "n": 174,
+      "golden_id": "golden_099",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"]]",
+      "decision": "[[\"cpp\", \"python\"], [\"jax\", \"pytorch\", \"tensorflow\"]]",
+      "judge_said": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"]]",
+      "why": "Under the Markers bullet, 'one or more programming languages such as Python and C++' and 'ML frameworks (e.g., PyTorch, TensorFlow, JAX)' offer examples for a single ask, while 'machine-learning' stays out as the broad skill named alongside its examples and 'llms' and 'transformers' are also asked for on their own in the responsibilities."
+    },
+    "175": {
+      "n": 175,
+      "golden_id": "golden_100",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"cuda\", \"jax\"]]",
+      "decision": "[[\"cuda\", \"jax\"]]",
+      "judge_said": "[[\"cuda\", \"jax\"]]",
+      "why": "The posting asks for \"GPU programming for physics (CUDA, NVIDIA Warp or JAX)\", offering CUDA and JAX as alternative examples for a single ask (\"X, Y or Z\"), while Python and C++ are asked for together (\"Python and C++\")."
+    },
+    "176": {
+      "n": 176,
+      "golden_id": "golden_101",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[]",
+      "decision": "[]",
+      "judge_said": "[]",
+      "why": "The only alternative/example ask involving the labeled skills ('ML optimization techniques (e.g., sparsity, quantization, pruning)') has only one labeled example (`quantization`) and a broad skill (`machine-learning`) is not grouped with its examples, while the rule requires at least two skills to form a group."
+    },
+    "177": {
+      "n": 177,
+      "golden_id": "golden_102",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"scikit-learn\", \"tensorflow\", \"pytorch\"]]",
+      "decision": "[[\"pytorch\", \"scikit-learn\", \"tensorflow\"]]",
+      "judge_said": "[[\"scikit-learn\", \"tensorflow\", \"pytorch\"]]",
+      "why": "The posting uses the alternative marker 'machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch', offering these three examples in place of each other while keeping the broad parent (`machine-learning`) and 'and'-joined skill lists out of the group."
+    },
+    "178": {
+      "n": 178,
+      "golden_id": "golden_103",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"pytorch\", \"jax\", \"tensorflow\"], [\"gcp\", \"aws\"]]",
+      "decision": "[[\"aws\", \"gcp\"], [\"jax\", \"pytorch\", \"tensorflow\"]]",
+      "judge_said": "[[\"pytorch\", \"jax\", \"tensorflow\"], [\"gcp\", \"aws\"]]",
+      "why": "Under the 'X, Y or Z' and 'examples offered for a single ask' markers, PyTorch, JAX, and TensorFlow are alternatives for 'a major ML framework', and GCP and AWS are alternative examples for the 'cloud' ask (with 'cloud' kept out as the broad parent skill and 'docker' kept out as the example for 'containerization')."
+    },
+    "179": {
+      "n": 179,
+      "golden_id": "golden_104",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"pytorch\", \"tensorflow\"]]",
+      "decision": "[[\"pytorch\", \"tensorflow\"]]",
+      "judge_said": "[[\"pytorch\", \"tensorflow\"]]",
+      "why": "Under the Markers bullet, 'ML frameworks such as PyTorch or TensorFlow' offers examples for a single ask so `pytorch` and `tensorflow` form an alternative group, while the broad parent `machine-learning` stays out of the group per the 'Not alternatives' rule."
+    },
+    "180": {
+      "n": 180,
+      "golden_id": "golden_105",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[]",
+      "decision": "[]",
+      "judge_said": "[]",
+      "why": "The only shared phrase, \"AI/LLM capabilities\", names a broad skill (`ai-ml`) alongside its example (`llms`), which the rule explicitly excludes under \"Not alternatives: ... a broad skill named alongside its examples\" (and `ai-ml` is also mentioned on its own elsewhere in the posting)."
+    },
+    "182": {
+      "n": 182,
+      "golden_id": "golden_107",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"pytorch\", \"tensorflow\", \"jax\"], [\"python\", \"cpp\"], [\"aws\", \"gcp\", \"azure\"]]",
+      "decision": "[[\"aws\", \"azure\", \"gcp\"], [\"cpp\", \"python\"], [\"jax\", \"pytorch\", \"tensorflow\"]]",
+      "judge_said": "[[\"pytorch\", \"tensorflow\", \"jax\"], [\"python\", \"cpp\"], [\"aws\", \"gcp\", \"azure\"]]",
+      "why": "The posting uses the rule's explicit alternative markers ('at least one', 'one or more... such as X, or Y', and parenthetical examples of 'cloud platforms' with the broad 'cloud' excluded) for the frameworks, languages, and clouds, whereas 'containerization and orchestration technologies (e.g., Docker, Kubernetes)' asks for two categories together ('X and Y') rather than offering Docker and Kubernetes in place of each other."
+    },
+    "183": {
+      "n": 183,
+      "golden_id": "golden_108",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[]",
+      "decision": "[]",
+      "judge_said": "[]",
+      "why": "None of the labeled skills are presented with alternative markers (like 'X, Y or Z') offering one in place of another; rather, they are independent requirements or skills asked for together."
     }
   },
   "human_sample": null,
   "proposer": {
     "model": "claude-haiku-5-5",
     "provider": "anthropic",
-    "proposed": 73,
+    "proposed": 88,
     "unusable": 1,
     "skip_keys": [
       "degree"
@@ -1805,14 +1987,28 @@
       "rules": [
         "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
       ]
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 15,
+      "agreed": 13,
+      "disagreed": 2,
+      "unusable": 0,
+      "keys": [
+        "alternative_group"
+      ],
+      "rules": [
+        "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`)."
+      ]
     }
   ],
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",
-    "ruled": 63,
-    "agreed": 63,
-    "open": 0,
+    "ruled": 78,
+    "agreed": 76,
+    "open": 2,
     "rules": "1. A qualification bullet or sentence that names a skill counts; a job title or a\n   years-of-experience line (\"experience as a software engineer\") does not.\n2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.\n3. Any required mention wins; raw_text quotes the determining mention.\n4. Responsibilities do not count unless the candidate is also asked for it.\n5. Do not add a broad or parent skill the text does not name."
   },
   "third_labeler": {
@@ -1893,6 +2089,39 @@
       "rules": [
         "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
       ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "keys": [
+        "alternative_group"
+      ],
+      "proposed": 15,
+      "unusable": 0,
+      "rules": [
+        "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`)."
+      ]
     }
-  ]
+  ],
+  "groups": {
+    "rule": "LABELING.md `alternative_group: skills offered in place of each other` (HIR-251)",
+    "items": [
+      169,
+      170,
+      171,
+      172,
+      173,
+      174,
+      175,
+      176,
+      177,
+      178,
+      179,
+      180,
+      181,
+      182,
+      183
+    ],
+    "nothing_to_group": []
+  }
 }

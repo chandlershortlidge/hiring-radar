@@ -1,0 +1,14 @@
+{
+  "item": 159,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fce57b17122be650d5ce93c428825dff91455073f57b3194d3d9272a2ef10f7e",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for PyTorch and HuggingFace together ('used PyTorch and HuggingFace') and offers no 'at least one of', 'X or Y', or example-for-one-ask wording among the labeled skills, so under the alternative_group rule no skills are offered in place of each other.\"}",
+  "decision": [],
+  "why": "The posting asks for PyTorch and HuggingFace together ('used PyTorch and HuggingFace') and offers no 'at least one of', 'X or Y', or example-for-one-ask wording among the labeled skills, so under the alternative_group rule no skills are offered in place of each other.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a20907360c78ecc1f087844c92f2cc58b0944b6b834ada2aa42ca39820298645",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"The ask 'interest or experience in ML frameworks' is given with examples in parentheses (PyTorch, TensorFlow), so any one example meets it, as in the rule's 'cloud platforms (GCP, AWS or Azure)' case; the broad parent 'machine-learning' stays out of the group.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "The ask 'interest or experience in ML frameworks' is given with examples in parentheses (PyTorch, TensorFlow), so any one example meets it, as in the rule's 'cloud platforms (GCP, AWS or Azure)' case; the broad parent 'machine-learning' stays out of the group.",
+  "error": null
+}

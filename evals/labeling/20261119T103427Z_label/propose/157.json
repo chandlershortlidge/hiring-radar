@@ -1,0 +1,14 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8cbd5c828a453a003906348bea480ef4b5474f36cf7da664c9f75478806cda96",
+  "raw": "{\"decision\": [], \"why\": \"None of the four labeled skills (distributed-systems, networking, observability, software-architecture) is offered as an alternative to another under an 'at least one of' or 'X, Y or Z' marker, so the alternative_group rule yields no group.\"}",
+  "decision": [],
+  "why": "None of the four labeled skills (distributed-systems, networking, observability, software-architecture) is offered as an alternative to another under an 'at least one of' or 'X, Y or Z' marker, so the alternative_group rule yields no group.",
+  "error": null
+}

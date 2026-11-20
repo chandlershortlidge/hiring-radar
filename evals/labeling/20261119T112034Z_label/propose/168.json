@@ -1,0 +1,24 @@
+{
+  "item": 168,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1e3ce0894fea7b5cdeea49f3ac53cf43e237695fb3a9cc09a8e65d14edea8fb6",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"]], \"why\": \"Per the alternative_group rule, \\\"frameworks like TensorFlow or PyTorch\\\" and \\\"cloud platforms (e.g., AWS, Azure, GCP)\\\" each offer one example that meets a single ask, so each forms a group, with the broad \\\"cloud\\\" left out; Docker and Kubernetes are joined by \\\"&\\\" (asked together, not alternatives) so they stay ungrouped.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch"
+    ],
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "Per the alternative_group rule, \"frameworks like TensorFlow or PyTorch\" and \"cloud platforms (e.g., AWS, Azure, GCP)\" each offer one example that meets a single ask, so each forms a group, with the broad \"cloud\" left out; Docker and Kubernetes are joined by \"&\" (asked together, not alternatives) so they stay ungrouped.",
+  "error": null
+}

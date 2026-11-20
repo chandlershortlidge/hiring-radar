@@ -1,0 +1,21 @@
+{
+  "item": 170,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "160e0585b5aa0644a46325d34295ebd7f5f9b877012318a5f93f1bfd60110dce",
+  "raw": "{\"decision\": [[\"ai-deployment\", \"llms\", \"vector-search\"]], \"why\": \"The nice-to-have list 'Deploying/operating GenAI apps, LLM-powered services, AI agents, RAG, vector search, or shared enterprise AI platforms' uses the 'X, Y or Z' marker, and after excluding `agents` and `rag` because they are also asked for on their own elsewhere in the posting, `ai-deployment`, `llms`, and `vector-search` remain as a valid group of at least two skills.\"}",
+  "decision": [
+    [
+      "ai-deployment",
+      "llms",
+      "vector-search"
+    ]
+  ],
+  "why": "The nice-to-have list 'Deploying/operating GenAI apps, LLM-powered services, AI agents, RAG, vector search, or shared enterprise AI platforms' uses the 'X, Y or Z' marker, and after excluding `agents` and `rag` because they are also asked for on their own elsewhere in the posting, `ai-deployment`, `llms`, and `vector-search` remain as a valid group of at least two skills.",
+  "error": null
+}

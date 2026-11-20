@@ -1,0 +1,14 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c15a0ed9c795a2ba1ac404e3161f2967c701005902d68216963e67606c4b111e",
+  "raw": "{\"decision\": [], \"why\": \"The labelled skills are asked together, not offered in place of each other: \\\"at least 6 months of practical experience with LLMs, agents, and harnesses\\\" is an \\\"X, Y and Z\\\" list, which the rule excludes, and no other labelled skill sits in an \\\"at least one of\\\" or \\\"such as\\\" construction.\"}",
+  "decision": [],
+  "why": "The labelled skills are asked together, not offered in place of each other: \"at least 6 months of practical experience with LLMs, agents, and harnesses\" is an \"X, Y and Z\" list, which the rule excludes, and no other labelled skill sits in an \"at least one of\" or \"such as\" construction.",
+  "error": null
+}

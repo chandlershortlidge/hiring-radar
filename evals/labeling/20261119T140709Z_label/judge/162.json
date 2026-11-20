@@ -1,0 +1,29 @@
+{
+  "item": 162,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"gcp\", \"aws\", \"azure\"], [\"pytorch\", \"tensorflow\"], [\"google-adk\", \"langgraph\"]]",
+  "key_sha256": "53019c6e1a84d71ae221beec66f4335687fa134fbd75da4637302c4259b36748",
+  "raw": "{\"decision\": [[\"gcp\", \"aws\", \"azure\"], [\"pytorch\", \"tensorflow\"], [\"google-adk\", \"langgraph\"]], \"why\": \"The posting accepts any one of PyTorch or TensorFlow, any one of Google Cloud, AWS or Azure as a major cloud (keeping `cloud` out of the group), and either Google ADK or LangGraph as examples of agent frameworks (keeping `agents` out of the group), while skills like `machine-learning`, `knowledge-graphs`, and `data-modeling` are also required on their own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "gcp",
+      "aws",
+      "azure"
+    ],
+    [
+      "pytorch",
+      "tensorflow"
+    ],
+    [
+      "google-adk",
+      "langgraph"
+    ]
+  ],
+  "why": "The posting accepts any one of PyTorch or TensorFlow, any one of Google Cloud, AWS or Azure as a major cloud (keeping `cloud` out of the group), and either Google ADK or LangGraph as examples of agent frameworks (keeping `agents` out of the group), while skills like `machine-learning`, `knowledge-graphs`, and `data-modeling` are also required on their own elsewhere in the posting.",
+  "error": null
+}

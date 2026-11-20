@@ -1,0 +1,14 @@
+{
+  "item": 171,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9b5b7e4702cd287c79c98109786bd5ebb27226ed9d1afcb39a38414827238dee",
+  "raw": "{\"decision\": [], \"why\": \"The only alternative marker is \\\"operating workloads on AWS or GCP\\\", but the responsibilities separately ask to \\\"Manage and harden our AWS, GCP, and on-prem infrastructure\\\", so aws and gcp are each asked for on their own and leave the group. The other parenthetical examples (Terraform/Pulumi, Ansible/Puppet/Salt, Argo CD/Flux) include only one labeled skill or name a broad parent alongside its examples, so they form no group.\"}",
+  "decision": [],
+  "why": "The only alternative marker is \"operating workloads on AWS or GCP\", but the responsibilities separately ask to \"Manage and harden our AWS, GCP, and on-prem infrastructure\", so aws and gcp are each asked for on their own and leave the group. The other parenthetical examples (Terraform/Pulumi, Ansible/Puppet/Salt, Argo CD/Flux) include only one labeled skill or name a broad parent alongside its examples, so they form no group.",
+  "error": null
+}

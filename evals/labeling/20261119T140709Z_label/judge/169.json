@@ -1,0 +1,21 @@
+{
+  "item": 169,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"aws\", \"azure\", \"gcp\"]]",
+  "key_sha256": "1b85bf45621feff81c432de5c362280e0ae8fa322d2bdb00684214c4d3887eed",
+  "raw": "{\"decision\": [[\"aws\", \"azure\", \"gcp\"]], \"why\": \"The posting asks for deployment 'on AWS, Azure, or GCP', which matches the 'X, Y or Z' marker for alternatives while keeping the broader skill 'cloud' out of the group.\"}",
+  "decision": [
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "The posting asks for deployment 'on AWS, Azure, or GCP', which matches the 'X, Y or Z' marker for alternatives while keeping the broader skill 'cloud' out of the group.",
+  "error": null
+}

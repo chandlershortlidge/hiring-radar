@@ -1,0 +1,20 @@
+{
+  "item": 178,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "80718d4d8cc227bc6e7b22db2bb74d6677bf5de88d3c09fae36fa703abb8c1eb",
+  "raw": "{\"decision\": [[\"aws\", \"azure\", \"gcp\"]], \"why\": \"The posting asks for \\\"cloud environments (Azure, AWS, GCP)\\\", which the rule's own example treats as one group of alternatives, with the broad \\\"cloud\\\" skill left out of it. The Spark, Hive and Redshift list and the spaCy/Transformers examples do not form a group under the rule, since only one skill from each is labeled, or the broad NLP parent would have to be excluded.\"}",
+  "decision": [
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "The posting asks for \"cloud environments (Azure, AWS, GCP)\", which the rule's own example treats as one group of alternatives, with the broad \"cloud\" skill left out of it. The Spark, Hive and Redshift list and the spaCy/Transformers examples do not form a group under the rule, since only one skill from each is labeled, or the broad NLP parent would have to be excluded.",
+  "error": null
+}

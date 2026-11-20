@@ -1,0 +1,15 @@
+{
+  "item": 159,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "97e092c727c89b69aa538c67150da327220fea3f4d2fc0e9ae10e992f168099f",
+  "raw": "{\"decision\": [], \"why\": \"Under the 'Not alternatives' rule, skills asked for together ('used PyTorch and HuggingFace') do not form an alternative group, and none of the other labeled skills use 'or' or example markers.\"}",
+  "decision": [],
+  "why": "Under the 'Not alternatives' rule, skills asked for together ('used PyTorch and HuggingFace') do not form an alternative group, and none of the other labeled skills use 'or' or example markers.",
+  "error": null
+}

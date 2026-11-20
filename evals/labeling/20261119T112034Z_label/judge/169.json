@@ -1,0 +1,20 @@
+{
+  "item": 169,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"ansible\", \"terraform\"]]",
+  "key_sha256": "8f89d4e4b9a40b26290bc1c057c93c9b055a481bbed531f4f99eff7d43f80f08",
+  "raw": "{\"decision\": [[\"ansible\", \"terraform\"]], \"why\": \"Under the rule for examples offered for a single ask alongside a broad skill, \\\"infrastructure as code (Terraform, Ansible)\\\" groups `ansible` and `terraform` while leaving `infrastructure-as-code` out of the group.\"}",
+  "decision": [
+    [
+      "ansible",
+      "terraform"
+    ]
+  ],
+  "why": "Under the rule for examples offered for a single ask alongside a broad skill, \"infrastructure as code (Terraform, Ansible)\" groups `ansible` and `terraform` while leaving `infrastructure-as-code` out of the group.",
+  "error": null
+}

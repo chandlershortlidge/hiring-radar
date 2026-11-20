@@ -1,0 +1,14 @@
+{
+  "item": 168,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1adad11d8fe4b602b5619e9d4fc2ea871e1151241e823f9a76db5f67ae9d9c0e",
+  "raw": "{\"decision\": [[\"microsoft-fabric\", \"snowflake\", \"databricks\"]], \"why\": \"The posting says \\\"modern cloud data platforms (Microsoft Fabric, Snowflake, or Databricks)\\\", an \\\"X, Y or Z\\\" list for one ask where any one meets it, and none of the three is asked for on its own elsewhere, while the broad parent `cloud` stays out per the rule.\"",
+  "decision": null,
+  "why": null,
+  "error": "ValueError: unterminated JSON object in response"
+}

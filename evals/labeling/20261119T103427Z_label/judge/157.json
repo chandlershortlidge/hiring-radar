@@ -1,0 +1,15 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "4d5b62ed7115340df04ebca021e0a2c95053890901d62d5e86f24b6e72bba22b",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills are offered as alternatives to each other for a single ask, and a group requires at least two skills.\"}",
+  "decision": [],
+  "why": "None of the labeled skills are offered as alternatives to each other for a single ask, and a group requires at least two skills.",
+  "error": null
+}

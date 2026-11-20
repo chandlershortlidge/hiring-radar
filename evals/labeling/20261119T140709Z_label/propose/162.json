@@ -1,0 +1,28 @@
+{
+  "item": 162,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3778b33eb274a99b70951db99c1a2dd7cebded1b96ccbc5307c4130cdc3cf28",
+  "raw": "{\"decision\": [[\"gcp\", \"aws\", \"azure\"], [\"pytorch\", \"tensorflow\"], [\"google-adk\", \"langgraph\"]], \"why\": \"Under the alternative_group rule, \\\"major cloud (Google Cloud preferred; AWS or Azure acceptable)\\\" groups gcp, aws and azure with cloud left out, \\\"PyTorch or TensorFlow\\\" is an either/or ask, and \\\"agent frameworks (e.g., Google ADK, LangGraph)\\\" gives examples for one ask with the broad agents skill kept out of the group.\"}",
+  "decision": [
+    [
+      "gcp",
+      "aws",
+      "azure"
+    ],
+    [
+      "pytorch",
+      "tensorflow"
+    ],
+    [
+      "google-adk",
+      "langgraph"
+    ]
+  ],
+  "why": "Under the alternative_group rule, \"major cloud (Google Cloud preferred; AWS or Azure acceptable)\" groups gcp, aws and azure with cloud left out, \"PyTorch or TensorFlow\" is an either/or ask, and \"agent frameworks (e.g., Google ADK, LangGraph)\" gives examples for one ask with the broad agents skill kept out of the group.",
+  "error": null
+}

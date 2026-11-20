@@ -1,0 +1,14 @@
+{
+  "item": 167,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d01b1cb457ffa91d3b4ceb3695de67ef8589de8902b854be9cedbd293f9714f3",
+  "raw": "{\"decision\": [], \"why\": \"The posting lists its skills together (\\\"Python, JavaScript/Node.js, HTML5, CSS, and SQL/BigQuery\\\", \\\"across Google Cloud and AWS\\\") and has no \\\"at least one of\\\" or \\\"X or Y\\\" marker for any two labeled skills; the only \\\"or\\\" example, Gemini or Windsurf, has just Gemini among the labeled skills, so no group of two or more exists.\"}",
+  "decision": [],
+  "why": "The posting lists its skills together (\"Python, JavaScript/Node.js, HTML5, CSS, and SQL/BigQuery\", \"across Google Cloud and AWS\") and has no \"at least one of\" or \"X or Y\" marker for any two labeled skills; the only \"or\" example, Gemini or Windsurf, has just Gemini among the labeled skills, so no group of two or more exists.",
+  "error": null
+}

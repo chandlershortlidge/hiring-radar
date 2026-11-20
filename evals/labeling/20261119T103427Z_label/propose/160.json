@@ -1,0 +1,39 @@
+{
+  "item": 160,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "caf274d783f5f1b9cc19ca77f033744d05ce074f9de027ee332a10577b398edb",
+  "raw": "{\"decision\": [[\"go\", \"rust\", \"cpp\", \"java\", \"scala\"], [\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"docker\", \"kubernetes\", \"infrastructure-as-code\"], [\"react\", \"vue\", \"angular\", \"graphql\", \"async-processing\"]], \"why\": \"Under the rule's 'examples offered for a single ask' marker, each parenthesised 'e.g.' or 'and/or' list counts as one ask met by any one member (the systems-language list, the TensorFlow/PyTorch/scikit-learn list, the containerized-or-cloud deployment examples, and the client-server examples), while the broad parents (cloud, containerization, software-architecture) and the unmarked skills stay out.\"}",
+  "decision": [
+    [
+      "go",
+      "rust",
+      "cpp",
+      "java",
+      "scala"
+    ],
+    [
+      "tensorflow",
+      "pytorch",
+      "scikit-learn"
+    ],
+    [
+      "docker",
+      "kubernetes",
+      "infrastructure-as-code"
+    ],
+    [
+      "react",
+      "vue",
+      "angular",
+      "graphql",
+      "async-processing"
+    ]
+  ],
+  "why": "Under the rule's 'examples offered for a single ask' marker, each parenthesised 'e.g.' or 'and/or' list counts as one ask met by any one member (the systems-language list, the TensorFlow/PyTorch/scikit-learn list, the containerized-or-cloud deployment examples, and the client-server examples), while the broad parents (cloud, containerization, software-architecture) and the unmarked skills stay out.",
+  "error": null
+}

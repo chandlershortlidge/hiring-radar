@@ -1,0 +1,25 @@
+{
+  "item": 167,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "454bd6c4ee934da23b2ed1ea81b788b5e3d742705f88f874986324a202b196c3",
+  "raw": "{\"decision\": [[\"forecasting\", \"recommender-systems\"], [\"agents\", \"evaluation\", \"llms\"]], \"why\": \"Under the 'X, Y or Z' marker rule, the nice-to-have bullets 'personalisation, ranking, recommendation, forecasting, classification or decisioning problems' and 'Experience with GenAI, LLMs, agentic workflows, retrieval, evaluation frameworks, or human-in-the-loop product experiences' each offer their labeled skills as alternatives for a single ask.\"}",
+  "decision": [
+    [
+      "forecasting",
+      "recommender-systems"
+    ],
+    [
+      "agents",
+      "evaluation",
+      "llms"
+    ]
+  ],
+  "why": "Under the 'X, Y or Z' marker rule, the nice-to-have bullets 'personalisation, ranking, recommendation, forecasting, classification or decisioning problems' and 'Experience with GenAI, LLMs, agentic workflows, retrieval, evaluation frameworks, or human-in-the-loop product experiences' each offer their labeled skills as alternatives for a single ask.",
+  "error": null
+}

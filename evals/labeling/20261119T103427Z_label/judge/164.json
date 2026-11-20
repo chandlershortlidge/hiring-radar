@@ -1,0 +1,15 @@
+{
+  "item": 164,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "911cea72766f8f0fa6457b9158584326f9acbabbaea6a41f8aa61341534f94a3",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills are asked for together (e.g., \\\"strong Python and SQL\\\") rather than offered as interchangeable alternatives, so under the 'Not alternatives: skills asked for together (\\\"X and Y\\\")' rule, no alternative group applies.\"}",
+  "decision": [],
+  "why": "The labeled skills are asked for together (e.g., \"strong Python and SQL\") rather than offered as interchangeable alternatives, so under the 'Not alternatives: skills asked for together (\"X and Y\")' rule, no alternative group applies.",
+  "error": null
+}

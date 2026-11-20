@@ -1,0 +1,15 @@
+{
+  "item": 165,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "4fce667781763cce2d1990b2e16603c08c3f8e4cb7e25f7eb8751b54a788a81d",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills are presented as alternatives to each other (moreover, both Python and TypeScript are also listed independently in the tech stack, which under the rule requires a skill to leave any group).\"}",
+  "decision": [],
+  "why": "None of the labeled skills are presented as alternatives to each other (moreover, both Python and TypeScript are also listed independently in the tech stack, which under the rule requires a skill to leave any group).",
+  "error": null
+}

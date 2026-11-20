@@ -1,0 +1,31 @@
+{
+  "item": 159,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"machine-learning\", \"nlp\", \"computer-vision\"], [\"cpp\", \"python\", \"go\", \"java\"]]",
+  "key_sha256": "cb4cfe81c3a43d73728aa1119fa14190a691d24f5997c7ec7089e779af69e01b",
+  "raw": "{\"decision\": [[\"machine-learning\", \"computer-vision\"], [\"cpp\", \"python\", \"go\", \"java\"], [\"fine-tuning\", \"knowledge-distillation\", \"reinforcement-learning\"]], \"why\": \"The posting uses the markers 'one or more of', 'at least one of', and 'X, Y or Z' for the field, programming language, and preferred LLM technique sets, while 'nlp' leaves the first group because it is asked for on its own elsewhere ('Proficiency in multilingual NLP') and 'software-engineering' stays out as the broad parent.\"}",
+  "decision": [
+    [
+      "machine-learning",
+      "computer-vision"
+    ],
+    [
+      "cpp",
+      "python",
+      "go",
+      "java"
+    ],
+    [
+      "fine-tuning",
+      "knowledge-distillation",
+      "reinforcement-learning"
+    ]
+  ],
+  "why": "The posting uses the markers 'one or more of', 'at least one of', and 'X, Y or Z' for the field, programming language, and preferred LLM technique sets, while 'nlp' leaves the first group because it is asked for on its own elsewhere ('Proficiency in multilingual NLP') and 'software-engineering' stays out as the broad parent.",
+  "error": null
+}

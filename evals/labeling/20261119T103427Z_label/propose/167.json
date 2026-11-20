@@ -1,0 +1,14 @@
+{
+  "item": 167,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3df92ed1340106375f5f35bb46e1e5d08ed5a19640e62732195c3ba43e8c05e9",
+  "raw": "{\"decision\": [], \"why\": \"Under the alternative_group rule, a group needs at least two of the listed skills offered in place of each other, and the posting's only alternative-style list (scripting languages: Tcl, Python, Perl) has just python among the listed skills, while the other listed skills are joined by 'and' or stand alone, so no group forms.\"}",
+  "decision": [],
+  "why": "Under the alternative_group rule, a group needs at least two of the listed skills offered in place of each other, and the posting's only alternative-style list (scripting languages: Tcl, Python, Perl) has just python among the listed skills, while the other listed skills are joined by 'and' or stand alone, so no group forms.",
+  "error": null
+}

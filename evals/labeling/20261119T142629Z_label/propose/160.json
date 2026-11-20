@@ -1,0 +1,24 @@
+{
+  "item": 160,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e4ac482cf34a8cb98f63f8042b281c40291ec3bff8bd92f478c567eb3cd84e04",
+  "raw": "{\"decision\": [[\"python\", \"scala\", \"java\"], [\"r-lang\", \"scikit-learn\"]], \"why\": \"Under the alternative_group rule, 'one or more programming languages such as Python, Scala, Java and C' and 'one or more ... tools such as R, Matlab and scikit learn' each offer examples for a single ask, so the labelled members form two groups; C and Matlab are unlabelled and add nothing, and none of these skills is asked for elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "python",
+      "scala",
+      "java"
+    ],
+    [
+      "r-lang",
+      "scikit-learn"
+    ]
+  ],
+  "why": "Under the alternative_group rule, 'one or more programming languages such as Python, Scala, Java and C' and 'one or more ... tools such as R, Matlab and scikit learn' each offer examples for a single ask, so the labelled members form two groups; C and Matlab are unlabelled and add nothing, and none of these skills is asked for elsewhere in the posting.",
+  "error": null
+}

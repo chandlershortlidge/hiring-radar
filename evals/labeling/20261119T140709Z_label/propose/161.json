@@ -1,0 +1,20 @@
+{
+  "item": 161,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e4f28d5ca9235ea7ee74c34e2ac2394a694dd3bc121e290063371ec2ff94b709",
+  "raw": "{\"decision\": [[\"langgraph\", \"llamaindex\", \"pydanticai\"]], \"why\": \"The Nice to Have line asks for experience with \\\"frameworks such as LangGraph, LlamaIndex or PydanticAI\\\" for one ask (multi-step workflows), so any one example meets it, and none of the three is asked for on its own elsewhere.\"}",
+  "decision": [
+    [
+      "langgraph",
+      "llamaindex",
+      "pydanticai"
+    ]
+  ],
+  "why": "The Nice to Have line asks for experience with \"frameworks such as LangGraph, LlamaIndex or PydanticAI\" for one ask (multi-step workflows), so any one example meets it, and none of the three is asked for on its own elsewhere.",
+  "error": null
+}

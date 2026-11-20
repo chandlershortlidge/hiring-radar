@@ -1,0 +1,28 @@
+{
+  "item": 166,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dfa9eedf0c22cd148c4e166f3ff6a8c416e3fbe4034455c80aa2026630d5cdc8",
+  "raw": "{\"decision\": [[\"airflow\", \"prefect\"], [\"openai-api\", \"anthropic-api\"], [\"vector-databases\", \"embeddings\", \"vector-search\"]], \"why\": \"Under the alternative_group rule's 'X, Y or Z' marker, the posting accepts any one of Airflow/Prefect, OpenAI/Anthropic, and vector databases/embeddings/semantic search for a single ask, and none of these skills is also asked for on its own elsewhere; 'or similar' adds nothing and the stack list and the single 'AWS' and 'Snowflake' mentions are not alternatives.\"}",
+  "decision": [
+    [
+      "airflow",
+      "prefect"
+    ],
+    [
+      "openai-api",
+      "anthropic-api"
+    ],
+    [
+      "vector-databases",
+      "embeddings",
+      "vector-search"
+    ]
+  ],
+  "why": "Under the alternative_group rule's 'X, Y or Z' marker, the posting accepts any one of Airflow/Prefect, OpenAI/Anthropic, and vector databases/embeddings/semantic search for a single ask, and none of these skills is also asked for on its own elsewhere; 'or similar' adds nothing and the stack list and the single 'AWS' and 'Snowflake' mentions are not alternatives.",
+  "error": null
+}

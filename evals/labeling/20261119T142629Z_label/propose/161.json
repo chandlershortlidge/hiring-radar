@@ -1,0 +1,19 @@
+{
+  "item": 161,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9434f682d22a295e7ecd228316553c831e1c866bf6fa70d5f7d039c9729d706e",
+  "raw": "{\"decision\": [[\"apache-spark\", \"hadoop\"]], \"why\": \"The posting gives Hadoop and Spark as examples for one ask ('familiar with related open source tools and frameworks (such as Hadoop, Spark, etc.)'), so any one meets it, which matches the examples-for-a-single-ask marker; Python and Golang are joined by 'and' in 'such as Python and Golang', which the rule excludes as skills asked together.\"}",
+  "decision": [
+    [
+      "apache-spark",
+      "hadoop"
+    ]
+  ],
+  "why": "The posting gives Hadoop and Spark as examples for one ask ('familiar with related open source tools and frameworks (such as Hadoop, Spark, etc.)'), so any one meets it, which matches the examples-for-a-single-ask marker; Python and Golang are joined by 'and' in 'such as Python and Golang', which the rule excludes as skills asked together.",
+  "error": null
+}

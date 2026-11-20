@@ -1,0 +1,20 @@
+{
+  "item": 179,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\"]]",
+  "key_sha256": "cc20c55f30e1b6dbdcbe3994ee451a3bca96a45b25faccc17409c8a76624940d",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"Under the Markers bullet, 'ML frameworks such as PyTorch or TensorFlow' offers examples for a single ask so `pytorch` and `tensorflow` form an alternative group, while the broad parent `machine-learning` stays out of the group per the 'Not alternatives' rule.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "Under the Markers bullet, 'ML frameworks such as PyTorch or TensorFlow' offers examples for a single ask so `pytorch` and `tensorflow` form an alternative group, while the broad parent `machine-learning` stays out of the group per the 'Not alternatives' rule.",
+  "error": null
+}

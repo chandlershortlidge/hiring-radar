@@ -1,0 +1,20 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\"]]",
+  "key_sha256": "513c4b4f5ff92b40fd52bc170343bb5069daa243534729cb738066d26d22c0f2",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"Under the rule for examples offered for a single ask and broad skills named alongside examples, 'ML frameworks (PyTorch, TensorFlow)' groups `pytorch` and `tensorflow` while leaving the broad skill `machine-learning` out of the group.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "Under the rule for examples offered for a single ask and broad skills named alongside examples, 'ML frameworks (PyTorch, TensorFlow)' groups `pytorch` and `tensorflow` while leaving the broad skill `machine-learning` out of the group.",
+  "error": null
+}

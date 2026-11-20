@@ -1,0 +1,24 @@
+{
+  "item": 165,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5ea2d76800ee2a2226c0f275f06e5e05589ceec1a3dea5b2367e025ddb7cf0b5",
+  "raw": "{\"decision\": [[\"databricks\", \"sql\", \"power-bi\", \"aws\", \"azure\", \"gcp\", \"python\"]], \"why\": \"Under the 'Holding a credential... At least one of the following' marker, any one of these specific credentials meets the single ask, so they form one group, while the broad parents (cloud, data-visualization, machine-learning) stay out and data-modeling and knowledge-graphs belong to separate asks.\"}",
+  "decision": [
+    [
+      "databricks",
+      "sql",
+      "power-bi",
+      "aws",
+      "azure",
+      "gcp",
+      "python"
+    ]
+  ],
+  "why": "Under the 'Holding a credential... At least one of the following' marker, any one of these specific credentials meets the single ask, so they form one group, while the broad parents (cloud, data-visualization, machine-learning) stay out and data-modeling and knowledge-graphs belong to separate asks.",
+  "error": null
+}

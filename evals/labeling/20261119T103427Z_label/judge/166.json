@@ -1,0 +1,25 @@
+{
+  "item": 166,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\", \"jax\"]]",
+  "key_sha256": "650df39e1f643425f1b3a73fd68898c40bb5266f17a8bfc2c5437b554b6ab2cd",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"jax\"], [\"llms\", \"reinforcement-learning\"]], \"why\": \"Per the Markers rule for 'X, Y or Z' and examples offered for a single ask, 'ML frameworks such as PyTorch, TensorFlow, or JAX' groups pytorch, tensorflow, and jax, and 'Research experience in generative AI, reinforcement learning, or multimodal learning' groups llms and reinforcement-learning (while machine-learning and model-development are also required on their own elsewhere in the posting and leave their group).\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ],
+    [
+      "llms",
+      "reinforcement-learning"
+    ]
+  ],
+  "why": "Per the Markers rule for 'X, Y or Z' and examples offered for a single ask, 'ML frameworks such as PyTorch, TensorFlow, or JAX' groups pytorch, tensorflow, and jax, and 'Research experience in generative AI, reinforcement learning, or multimodal learning' groups llms and reinforcement-learning (while machine-learning and model-development are also required on their own elsewhere in the posting and leave their group).",
+  "error": null
+}

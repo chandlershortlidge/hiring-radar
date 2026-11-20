@@ -1,0 +1,14 @@
+{
+  "item": 135,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a49a7022aa08c2f8fb7e302945ee364c53b57a7fdb31564f96ddf05718585d86",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills that look like examples of one ask (PyTorch, RDKit, geometric deep learning, post-DFT descriptors) each appear with unlabeled siblings, so no set of two or more labeled skills is offered in place of each other, and cheminformatics is a broad skill named alongside its examples, which the rule keeps out of a group.\"}",
+  "decision": [],
+  "why": "The labeled skills that look like examples of one ask (PyTorch, RDKit, geometric deep learning, post-DFT descriptors) each appear with unlabeled siblings, so no set of two or more labeled skills is offered in place of each other, and cheminformatics is a broad skill named alongside its examples, which the rule keeps out of a group.",
+  "error": null
+}

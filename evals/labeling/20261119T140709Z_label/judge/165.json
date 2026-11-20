@@ -1,0 +1,15 @@
+{
+  "item": 165,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "a909e93b194f67e5c924a5d0a8408a9deb61e80dea156c448c0cd65a610c899a",
+  "raw": "{\"decision\": [], \"why\": \"Both labeled skills (`distributed-systems` and `software-engineering`) are required on their own rather than offered as alternatives for a single ask, so no `alternative_group` applies.\"}",
+  "decision": [],
+  "why": "Both labeled skills (`distributed-systems` and `software-engineering`) are required on their own rather than offered as alternatives for a single ask, so no `alternative_group` applies.",
+  "error": null
+}

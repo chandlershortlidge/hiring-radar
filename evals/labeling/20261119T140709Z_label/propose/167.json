@@ -1,0 +1,14 @@
+{
+  "item": 167,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "55a4c1a10375ee458b0d601b88f640c5a044d32c492fde3942b47b3da12859f3",
+  "raw": "{\"decision\": [], \"why\": \"The only \"X, Y or Z\" ask is the pipeline-experience line naming NLP and ML, but the responsibilities separately ask for building with lightweight ML models, so machine-learning is asked on its own and leaves the group, which then has fewer than two skills (the other \"or\" phrases such as Python or a general-purpose language name no second labeled skill).\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 36 (char 35)"
+}

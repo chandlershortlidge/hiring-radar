@@ -1,0 +1,14 @@
+{
+  "item": 162,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a83c40cc7534dab030f7f9bbddebf0ad34891c14f172945cf3c04fbb011a347a",
+  "raw": "{\"decision\": [], \"why\": \"The posting names no 'at least one of', 'X or Y', or example-set marker for any skill; machine-learning and recommender-systems are each asked for in their own right, so under the alternative_group rule they are not alternatives and no group applies.\"}",
+  "decision": [],
+  "why": "The posting names no 'at least one of', 'X or Y', or example-set marker for any skill; machine-learning and recommender-systems are each asked for in their own right, so under the alternative_group rule they are not alternatives and no group applies.",
+  "error": null
+}

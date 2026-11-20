@@ -1,0 +1,14 @@
+{
+  "item": 166,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ee534d81c867a455d7c49725067c5a8ba108faa4aafe88acf55b32d58476cedf",
+  "raw": "{\"decision\": [], \"why\": \"The posting offers no skills in place of each other: its only ask-level phrasing joins training and operating models with \\\"and\\\" (skills asked together, not alternatives), and no \\\"at least one of\\\", \\\"or\\\", or example-list marker appears in the labelled skills, so the alternative_group rule yields no group.\"}",
+  "decision": [],
+  "why": "The posting offers no skills in place of each other: its only ask-level phrasing joins training and operating models with \"and\" (skills asked together, not alternatives), and no \"at least one of\", \"or\", or example-list marker appears in the labelled skills, so the alternative_group rule yields no group.",
+  "error": null
+}

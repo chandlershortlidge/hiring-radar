@@ -1,0 +1,14 @@
+{
+  "item": 163,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b82e92cfe6e4397e0eb93dc2385a37b92c66f7b035bbb2eed9cafe2eeaf462df",
+  "raw": "{\"decision\": [], \"why\": \"The posting's only lists are joined by 'and' (the Preferred list ends '...Talend, linked data, Spark implementation, and machine learning/AI-based analysis', and 'Python and SQL' is an 'and' pair), and the rule treats skills asked for together as not alternatives, so no skill offers another in place of itself.\"}",
+  "decision": [],
+  "why": "The posting's only lists are joined by 'and' (the Preferred list ends '...Talend, linked data, Spark implementation, and machine learning/AI-based analysis', and 'Python and SQL' is an 'and' pair), and the rule treats skills asked for together as not alternatives, so no skill offers another in place of itself.",
+  "error": null
+}
