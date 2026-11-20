@@ -381,7 +381,8 @@
       "id": "computer-vision",
       "display": "Computer Vision",
       "aliases": [
-        "opencv"
+        "opencv",
+        "3d perception"
       ],
       "parents": [
         "deep-learning"
@@ -498,7 +499,8 @@
         "etl/elt",
         "etl/elt pipelines",
         "etl",
-        "datenpipelines"
+        "datenpipelines",
+        "data ingestion"
       ],
       "parents": [],
       "reviewed": true
@@ -642,7 +644,8 @@
       "id": "event-driven-systems",
       "display": "Event-driven systems",
       "aliases": [
-        "event-driven architecture"
+        "event-driven architecture",
+        "event-sourced systems"
       ],
       "parents": [],
       "reviewed": true
@@ -709,7 +712,8 @@
       "aliases": [
         "llm fine-tuning",
         "model fine-tuning",
-        "feinabstimmung"
+        "feinabstimmung",
+        "post-training"
       ],
       "parents": [],
       "reviewed": true
@@ -1117,7 +1121,8 @@
         "agent orchestration",
         "multi-step orchestration",
         "orchestration frameworks",
-        "orchestrierungs-frameworks"
+        "orchestrierungs-frameworks",
+        "multi-step ai workflows"
       ],
       "parents": [
         "llms"
@@ -1241,7 +1246,10 @@
       "display": "MLOps",
       "aliases": [
         "production operation of ai models",
-        "produktiver betrieb von ki-modellen"
+        "produktiver betrieb von ki-modellen",
+        "deploying and maintaining machine learning systems in production",
+        "operating ml models in production",
+        "building and operating production ml systems"
       ],
       "parents": [],
       "reviewed": true
@@ -1251,7 +1259,11 @@
       "display": "Model Development",
       "aliases": [
         "ai model training",
-        "training von ki modellen"
+        "training von ki modellen",
+        "language-model training",
+        "training and deploying language models",
+        "developing ml training code",
+        "training workflows for large-scale datasets"
       ],
       "parents": [],
       "reviewed": true
@@ -1672,7 +1684,9 @@
     {
       "id": "reinforcement-learning",
       "display": "Reinforcement Learning",
-      "aliases": [],
+      "aliases": [
+        "trained or deployed learned policies"
+      ],
       "parents": [
         "machine-learning"
       ],
@@ -1763,7 +1777,9 @@
       "aliases": [
         "enterprise architecture",
         "softwarearchitektur",
-        "architekturdesign"
+        "architekturdesign",
+        "designing scalable, maintainable systems",
+        "designed software systems end to end"
       ],
       "parents": [
         "software-engineering"
@@ -1774,7 +1790,9 @@
       "id": "software-engineering",
       "display": "Software engineering",
       "aliases": [
-        "softwareentwicklung"
+        "softwareentwicklung",
+        "writing production code",
+        "building and maintaining scalable codebases"
       ],
       "parents": [],
       "reviewed": true
