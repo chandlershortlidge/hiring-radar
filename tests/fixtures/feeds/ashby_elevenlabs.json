@@ -1,0 +1,42 @@
+{
+ "_note": "HIR-325. ElevenLabs' Applied AI Engineer posting in the shape Ashby's board feed gives it (field names as recorded live in ashby_hir289.json). Rebuilt from the posting as Chandler saw it on 2026-11-16 (ten places, Location Type: Remote), NOT recorded from the live feed: the session that wrote the fix could not reach api.ashbyhq.com. The second job is a made-up control: the same posting open in one non-EU country only.",
+ "jobs": [
+  {
+   "id": "e11e0325-0000-4000-8000-000000000001",
+   "title": "Applied AI Engineer",
+   "department": "Engineering",
+   "team": "Applied AI",
+   "employmentType": "FullTime",
+   "location": "United Kingdom",
+   "secondaryLocations": [
+    {"location": "Bulgaria"},
+    {"location": "Dublin"},
+    {"location": "France"},
+    {"location": "Germany"},
+    {"location": "Hungary"},
+    {"location": "Italy"},
+    {"location": "Netherlands"},
+    {"location": "Poland"},
+    {"location": "Spain"}
+   ],
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "isListed": true,
+   "publishedAt": "2026-11-10T09:00:00.000+00:00",
+   "jobUrl": "https://jobs.ashbyhq.com/elevenlabs/e11e0325-0000-4000-8000-000000000001",
+   "descriptionPlain": "About the role\nAs an Applied AI Engineer you will work with customers to build and ship voice agents on our platform.\n\nRequirements\n- Strong Python\n- Experience building LLM applications in production"
+  },
+  {
+   "id": "e11e0325-0000-4000-8000-000000000002",
+   "title": "Applied AI Engineer",
+   "location": "United States",
+   "secondaryLocations": [],
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "isListed": true,
+   "publishedAt": "2026-11-10T09:00:00.000+00:00",
+   "jobUrl": "https://jobs.ashbyhq.com/elevenlabs/e11e0325-0000-4000-8000-000000000002",
+   "descriptionPlain": "About the role\nAs an Applied AI Engineer you will work with customers to build and ship voice agents on our platform.\n\nRequirements\n- Strong Python"
+  }
+ ]
+}
