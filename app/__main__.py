@@ -1,6 +1,7 @@
 """Command line: `uv run python -m app <command>`.
 
   poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed;
+                    --launch CITY (a launch's first collection) reads only CITY's new jobs, after pricing them;
                     --region europe|us polls only that region's feeds (the VM's two daily runs, HIR-369).
                     Readings run as one Anthropic Message Batch — half price, waits for it to finish (HIR-222)
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump); batches, as poll does
@@ -140,12 +141,30 @@ def cmd_poll(args):
         sys.exit(str(e))
     if args.region:
         print(region_line(args.region, feeds))
+    if args.launch and args.launch not in geo.ACTIVE_CITIES:
+        sys.exit(f"{args.launch!r} is not collected; add it to geo.ACTIVE_CITIES first")
     conn = open_db()
     r = poll_feeds(conn, feeds)
     print(f"TOTAL {r.line()}")
     if args.no_extract:
         return
+    if args.launch:   # a launch's first collection reads only the city's new jobs (HIR-380)
+        launch_first_reading(conn, r.new_job_ids, args.launch)
+        return
     run_extraction(conn, run_kind=langsmith_live.POLL, batch=True)
+
+
+def launch_first_reading(conn, new_job_ids, city):
+    from app import launch_read
+    from app.extract import DEFAULT_MODEL, extractor_version
+    plan = launch_read.plan(conn, new_job_ids, city, extractor_version(Taxonomy.load(), DEFAULT_MODEL))
+    print()
+    for line in plan.lines():
+        print(line)
+    if plan.over_cap:
+        sys.exit(2)
+    if plan.to_read:
+        run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.POLL, batch=True)
 
 
 def cmd_extract(args):
@@ -456,6 +475,9 @@ def main(argv=None):
                    help="poll just this feed, by its log label (e.g. ashby:jupus); repeatable")
     p.add_argument("--region", choices=geo.REGIONS, default=None,
                    help="poll only this region's feeds (the VM's two daily runs); default all feeds")
+    p.add_argument("--launch", metavar="CITY", default=None,
+                   help="a city launch's first collection: read only the new jobs placed in CITY, "
+                        "priced first and stopped above the launch cap; older jobs are left unread")
     p.set_defaults(fn=cmd_poll)
     p = sub.add_parser("extract"); p.add_argument("--limit", type=int); p.set_defaults(fn=cmd_extract)
     p = sub.add_parser("add-text")
