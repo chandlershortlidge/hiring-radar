@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "7ffaa1453bd9304bee29f4860d0cef421c31f171de00e709f27a5052f0c4535a",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a mention of 'open-weight models' in the product description section ('ABOUT TOQAN') is not a qualification asking the candidate for the skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a mention of 'open-weight models' in the product description section ('ABOUT TOQAN') is not a qualification asking the candidate for the skill.",
+  "error": null
+}

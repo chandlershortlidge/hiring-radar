@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "data-visualization",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "867bc8bf27da4033a79c8ca90365de512bd225aeda347b73e6c1b26a34ab0ac0",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, 'visualization tools (Power BI)' is mentioned as a qualification only under the 'What Sets You Apart' preferred section, making it a nice_to_have skill.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, 'visualization tools (Power BI)' is mentioned as a qualification only under the 'What Sets You Apart' preferred section, making it a nice_to_have skill.",
+  "error": null
+}

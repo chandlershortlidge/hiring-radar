@@ -1,0 +1,14 @@
+{
+  "item": 65,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "89227738040cc3296c24de4ca1dd575ddea05222174d114fc94ea7be74e243e1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Azure mention sits in a qualification bullet under the \\\"To Qualify... You Must Have\\\" heading, so it counts, and under rule 3 the required framing of that section keeps the agreed required label, with raw_text \\\"Azure\\\" quoted from the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Azure mention sits in a qualification bullet under the \"To Qualify... You Must Have\" heading, so it counts, and under rule 3 the required framing of that section keeps the agreed required label, with raw_text \"Azure\" quoted from the posting.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1d3db03433beec5959e169182242d7dfe57b23996f58485806d84b6e5013fdf8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Requirements (rule 1), the bullet names \\\"scientific agents\\\" as an accepted experience area, so the required `agents` label with that verbatim raw_text holds (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under Requirements (rule 1), the bullet names \"scientific agents\" as an accepted experience area, so the required `agents` label with that verbatim raw_text holds (rule 3).",
+  "error": null
+}

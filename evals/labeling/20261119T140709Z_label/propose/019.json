@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9e7d7caecdb40b21cbc3181c4c978dc21223e97f17af299d307891e8456b4729",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Rule 4 applies: the only quoted mention, \\\"security\\\", sits in the \\\"What You Will Do\\\" responsibilities bullet, and the visible qualifications section (cut off after \\\"What We Are Looking For\\\") shows no security requirement, so the candidate is not shown to be asked for it.\"}",
+  "decision": "drop",
+  "why": "Rule 4 applies: the only quoted mention, \"security\", sits in the \"What You Will Do\" responsibilities bullet, and the visible qualifications section (cut off after \"What We Are Looking For\") shows no security requirement, so the candidate is not shown to be asked for it.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "11ec98b96ad36680aad35dcc890cbb81918e43a7e97f1798badaa7a89c428bc4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required bullet 'Demonstrated hands-on experience delivering end-to-end ML systems, spanning model development, deployment' under 'Experience Required' names deployment as a qualification, and the agreed raw_text appears verbatim, so the required label stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required bullet 'Demonstrated hands-on experience delivering end-to-end ML systems, spanning model development, deployment' under 'Experience Required' names deployment as a qualification, and the agreed raw_text appears verbatim, so the required label stands (rule 3).",
+  "error": null
+}

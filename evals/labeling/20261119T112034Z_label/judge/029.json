@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "244b815a0dfb692d75379610d3da5bfb35e9d51398b8aeef973fdfc4c68b758f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting says 'multi-step AI workflows' and does not explicitly name the skill 'llm-orchestration'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting says 'multi-step AI workflows' and does not explicitly name the skill 'llm-orchestration'.",
+  "error": null
+}

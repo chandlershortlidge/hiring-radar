@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0c4a2173e453dfb128ef5bde39d6061ebbb1e212c3a716cadf963ea939afc81d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'About you' qualification bullet 'evaluating them against baselines and metrics' names model evaluation as a required skill, and under rule 3 the required mention with its verbatim raw_text supports the agreed label.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'About you' qualification bullet 'evaluating them against baselines and metrics' names model evaluation as a required skill, and under rule 3 the required mention with its verbatim raw_text supports the agreed label.",
+  "error": null
+}

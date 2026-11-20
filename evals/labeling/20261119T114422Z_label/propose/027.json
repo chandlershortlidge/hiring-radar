@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6c4cbccdecbb80bbebf5ebc9c8b844837ceaf2426004a9dbe780aa2aeec4d04b",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' sentence names AI/LLM domain experience ('already done hands-on integration work') as a candidate trait, and rule 3 makes that required mention win over A's omission, so the ai-ml skill belongs in the key.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' sentence names AI/LLM domain experience ('already done hands-on integration work') as a candidate trait, and rule 3 makes that required mention win over A's omission, so the ai-ml skill belongs in the key.",
+  "error": null
+}

@@ -1,0 +1,142 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"2+ years of experience in software development\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"node-js\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Node.js\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM Engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning applications\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud & API Architecture\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API Architecture\"\n    },\n    {\n      \"skill_id\": \"oauth\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OAuth2 authentication flows\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git workflows\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI coding assistants\"\n    },\n    {\n      \"skill_id\": \"gemini\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gemini\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"HTML5\",\n      \"raw_text\": \"HTML5\"\n    },\n    {\n      \"label\": \"CSS\",\n      \"raw_text\": \"CSS\"\n    },\n    {\n      \"label\": \"Database Management\",\n      \"raw_text\": \"Database Management to design, deploy, maintain, and modify scalable database structures\"\n    },\n    {\n      \"label\": \"Agile\",\n      \"raw_text\": \"Agile methodologies\"\n    },\n    {\n      \"label\": \"Windsurf\",\n      \"raw_text\": \"Windsurf\"\n    },\n    {\n      \"label\": \"Google Docs automation\",\n      \"raw_text\": \"Experience with Google Docs automation preferred\"\n    },\n    {\n      \"label\": \"VSCode\",\n      \"raw_text\": \"Proficiency with IDEs such as VSCode, Microsoft Office, and Google Workspace preferred\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of experience in software development\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's Degree\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"2+ years of experience falls on the 0-2 years boundary for junior; flagged seniority as uncertain. Windsurf, HTML5, CSS, VSCode, and Agile are not in the taxonomy and placed in unmapped. Git and GitHub collapse to git.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "2+ years of experience in software development"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Node.js"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM Engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning applications"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud & API Architecture"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API Architecture"
+      },
+      {
+        "skill_id": "oauth",
+        "requirement": "required",
+        "raw_text": "OAuth2 authentication flows"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git workflows"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding assistants"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "HTML5",
+        "raw_text": "HTML5"
+      },
+      {
+        "label": "CSS",
+        "raw_text": "CSS"
+      },
+      {
+        "label": "Database Management",
+        "raw_text": "Database Management to design, deploy, maintain, and modify scalable database structures"
+      },
+      {
+        "label": "Agile",
+        "raw_text": "Agile methodologies"
+      },
+      {
+        "label": "Windsurf",
+        "raw_text": "Windsurf"
+      },
+      {
+        "label": "Google Docs automation",
+        "raw_text": "Experience with Google Docs automation preferred"
+      },
+      {
+        "label": "VSCode",
+        "raw_text": "Proficiency with IDEs such as VSCode, Microsoft Office, and Google Workspace preferred"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of experience in software development",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's Degree",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "2+ years of experience falls on the 0-2 years boundary for junior; flagged seniority as uncertain. Windsurf, HTML5, CSS, VSCode, and Agile are not in the taxonomy and placed in unmapped. Git and GitHub collapse to git."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "5acca53d6cf4d64b453b9c112f3d7ded6ebca51c3b1d853a46639e3fa3326dd1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

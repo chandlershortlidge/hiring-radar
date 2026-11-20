@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ade85381b8ed861013ae68a8e35c9364f65c855bf1aac6c1eaefa2607de1270f",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet under WHAT WE'RE LOOKING FOR names \\\"Android architecture\\\" as a required understanding, and rule 5 is not violated because the text itself names architecture, so labeler B's software-architecture tag stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet under WHAT WE'RE LOOKING FOR names \"Android architecture\" as a required understanding, and rule 5 is not violated because the text itself names architecture, so labeler B's software-architecture tag stands.",
+  "error": null
+}

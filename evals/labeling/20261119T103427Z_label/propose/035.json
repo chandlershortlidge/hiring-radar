@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1a9770a29e8b6dd80bc8cef64f5cb90e83429b1fb1d8c8fa2aeca176146ba111",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the \"Who You Are\" bullet \"Building with AI as part of how you develop flows\" describes what the candidate must be, and it names AI/ML, so it counts as a required mention under rule 3 and labeler B's ai-ml tag stands.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 46 (char 45)"
+}

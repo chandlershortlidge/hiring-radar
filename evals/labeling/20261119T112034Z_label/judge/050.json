@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3a180a44ed6aa847d891788727458146dee1a1e9f825b367a258506f95756445",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 and rule 5, the posting does not name the skill 'MLOps' (describing 'operating them in production, at scale' for ML models does not permit adding a broad/inferred skill label the text does not name).\"}",
+  "decision": "drop",
+  "why": "Under rule 1 and rule 5, the posting does not name the skill 'MLOps' (describing 'operating them in production, at scale' for ML models does not permit adding a broad/inferred skill label the text does not name).",
+  "error": null
+}

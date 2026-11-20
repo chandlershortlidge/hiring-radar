@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "749eb417ef539f3636f96aeffd0b25519866b6850abf9d9e9c183f97bf635d6f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'a deep background in building production software' in the qualifications section explicitly names the skill of building software rather than merely stating a job title.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'a deep background in building production software' in the qualifications section explicitly names the skill of building software rather than merely stating a job title.",
+  "error": null
+}

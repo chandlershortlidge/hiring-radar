@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4730718455f4959d914cf253ff3d269cbbd2a3943fff9d6441a8296872b38f55",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet 'consistent use of AI across the SDLC' explicitly asks for using AI in the software development lifecycle, justifying the required `ai-developer-tooling` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet 'consistent use of AI across the SDLC' explicitly asks for using AI in the software development lifecycle, justifying the required `ai-developer-tooling` skill.",
+  "error": null
+}

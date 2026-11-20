@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6a1732342872ce0d99418c5ad8a48dfe22fe308952fbfbc65c14e3f6ea1274e4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for familiarity with the production ML lifecycle, including deployment.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for familiarity with the production ML lifecycle, including deployment.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dfb89c9adeb8df22368170f5713a37937193b049a5a9d56e2db01fab83377f30",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention is the years-of-experience line \\\"At least 3 years of experience in software engineering,\\\" which does not count as a skill, and the other occurrence is a degree field in the education line, so the skill should not be in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention is the years-of-experience line \"At least 3 years of experience in software engineering,\" which does not count as a skill, and the other occurrence is a degree field in the education line, so the skill should not be in the key.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "streamlit",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "bcb35f5951bab454925e338eb37d395358f76e16923315e697d24c629a426efb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Bonus:' qualification bullet explicitly names 'Streamlit/React', making `streamlit` a valid nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Bonus:' qualification bullet explicitly names 'Streamlit/React', making `streamlit` a valid nice_to_have skill.",
+  "error": null
+}

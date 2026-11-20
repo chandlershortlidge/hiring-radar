@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"experience building or deploying AI/ML solutions\", \"requirement\": \"required\"}",
+  "key_sha256": "878e654c21f637a5cec753aa6e95f84dcb21aa8f479bdea551357e9df028c6ad",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under the 'Must Have' section explicitly names the skill as 'secure AI deployment', making the agreed label and quote accurate.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under the 'Must Have' section explicitly names the skill as 'secure AI deployment', making the agreed label and quote accurate.",
+  "error": null
+}

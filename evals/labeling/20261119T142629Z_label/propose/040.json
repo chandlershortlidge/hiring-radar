@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f6391099bbb60fe10088756cd597f08f30c27c732951e7dc60885080aa6cad17",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet \\\"Background in benchmarking and evaluating AI agents for effectiveness, reliability, and output quality\\\" names the evaluation activity as a qualification, so the agreed nice_to_have label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet \"Background in benchmarking and evaluating AI agents for effectiveness, reliability, and output quality\" names the evaluation activity as a qualification, so the agreed nice_to_have label and raw_text stand.",
+  "error": null
+}

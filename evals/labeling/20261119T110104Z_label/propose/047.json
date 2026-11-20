@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7e54dcba0d814a9e857627023735348b0bc76bcb59810b8275a7e09d527f82e6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the PROFESSIONAL EXPERIENCE & QUALIFICATIONS heading, the required bullet asks for experience with modern ML frameworks (rule 1), and the quoted raw_text appears verbatim, so the agreed machine-learning label with required status stands.\"}",
+  "decision": "ok",
+  "why": "Under the PROFESSIONAL EXPERIENCE & QUALIFICATIONS heading, the required bullet asks for experience with modern ML frameworks (rule 1), and the quoted raw_text appears verbatim, so the agreed machine-learning label with required status stands.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "aca626ccd90ac8ad88f30cd6bde2b8fd4ec63dde7b828a2b802b25f5c5ac0d4e",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the nice-to-have qualification bullet explicitly mentions 'Building agent harnesses' (as well as multi-agent coordination), which supports the agent-architecture skill.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the nice-to-have qualification bullet explicitly mentions 'Building agent harnesses' (as well as multi-agent coordination), which supports the agent-architecture skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d985ed0a71f882f62d5e3ba63f859be7e0c899aa9d065bc4571790ae7f6ae66d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'Guardrails' is explicitly named in a required qualification bullet under 'WHO YOU ARE', supporting the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'Guardrails' is explicitly named in a required qualification bullet under 'WHO YOU ARE', supporting the agreed required label.",
+  "error": null
+}

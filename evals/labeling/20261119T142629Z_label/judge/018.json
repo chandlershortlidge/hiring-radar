@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ed099de57e98f54ab97a6d506ffdf574ec8e0ca69ed1cce47422ebfcb07bbcb7",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the phrase 'intelligent automation solutions' refers to AI testing automation rather than expressly naming workflow automation, so the skill should be dropped.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the phrase 'intelligent automation solutions' refers to AI testing automation rather than expressly naming workflow automation, so the skill should be dropped.",
+  "error": null
+}

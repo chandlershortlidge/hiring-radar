@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e86ec5c1995830cd6907d9de2f9216ab90e10e0c47643890fc5b5c50e94d151d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the PREFERRED QUALIFICATIONS bullet names experience with FinOps for AI infrastructure, the agreed raw_text is a verbatim substring, and nice_to_have fits the preferred section.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the PREFERRED QUALIFICATIONS bullet names experience with FinOps for AI infrastructure, the agreed raw_text is a verbatim substring, and nice_to_have fits the preferred section.",
+  "error": null
+}

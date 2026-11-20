@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Hands-on experience training and fine-tuning large-scale models\", \"requirement\": \"required\"}",
+  "key_sha256": "df19d35457ad3ef7c3f249256b4293223a95a7231bb368dadc9437c980f794c6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a specific skill ('AI model development') counts even if it also mentions years of experience, unlike a generic job-title years-of-experience line.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a specific skill ('AI model development') counts even if it also mentions years of experience, unlike a generic job-title years-of-experience line.",
+  "error": null
+}

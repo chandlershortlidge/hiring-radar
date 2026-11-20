@@ -1,0 +1,14 @@
+{
+  "item": 51,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d3d98908d815e1232bf18b9054e3b657ad337620e7eba44fc7dac900cf1b35be",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Skills bullet \\\"Hands-on experience delivering LLM agent systems\\\" names an LLM skill as required, and rule 3 supports the verbatim raw_text \\\"LLM agent systems\\\", so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Skills bullet \"Hands-on experience delivering LLM agent systems\" names an LLM skill as required, and rule 3 supports the verbatim raw_text \"LLM agent systems\", so the agreed label stands.",
+  "error": null
+}

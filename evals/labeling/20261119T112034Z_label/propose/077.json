@@ -1,0 +1,14 @@
+{
+  "item": 77,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "hugging-face",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7184a4dd8bdf1882976c6d676a71d505d4854419f87b56052618f7019b5118d8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualifications section ('The qualifications you need') names Hugging Face Transformers in the ML/AI libraries list, and Rule 3 makes that required mention decisive, with the raw_text quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualifications section ('The qualifications you need') names Hugging Face Transformers in the ML/AI libraries list, and Rule 3 makes that required mention decisive, with the raw_text quoted verbatim.",
+  "error": null
+}

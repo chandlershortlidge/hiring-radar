@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "prompt-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0e69e118380937883e8d4b6a5f1a5e7c00904c2c7a70445369d86c91e6e23759",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the sentence stating the role is for a builder 'who can move fluidly between prompt engineering, backend systems, and model optimization' describes a required candidate capability, so the skill counts.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the sentence stating the role is for a builder 'who can move fluidly between prompt engineering, backend systems, and model optimization' describes a required candidate capability, so the skill counts.",
+  "error": null
+}

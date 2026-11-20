@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7c1ea0d346c26215042f4a6e43ba990c366047095e453331ca1ff830395fca36",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the text only mentions ML model monitoring ('production deployment and monitoring'), which does not directly name the broader infrastructure skill 'observability'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the text only mentions ML model monitoring ('production deployment and monitoring'), which does not directly name the broader infrastructure skill 'observability'.",
+  "error": null
+}

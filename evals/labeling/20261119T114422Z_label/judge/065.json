@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "72e65ad9f2f2a5ad4439d079baf109f6857de8b9a3ac08e01e2b8403cb81a680",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a minimum qualification bullet explicitly requires experience with \\\"Transformers\\\" (as a library alongside PyTorch), so the agreed required label is correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a minimum qualification bullet explicitly requires experience with \"Transformers\" (as a library alongside PyTorch), so the agreed required label is correct.",
+  "error": null
+}

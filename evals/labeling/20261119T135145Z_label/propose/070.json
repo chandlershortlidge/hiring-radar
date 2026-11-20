@@ -1,0 +1,14 @@
+{
+  "item": 70,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "tool-calling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "63e9c5756c25fadd3c338fd2cb165e3ec61301ce8f16c81645a2dc233b3f5252",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"Agentic systems knowledge — tools, memory, and long-running workflows\\\" names tools in an agentic context, which is tool-calling, and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"Agentic systems knowledge — tools, memory, and long-running workflows\" names tools in an agentic context, which is tool-calling, and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

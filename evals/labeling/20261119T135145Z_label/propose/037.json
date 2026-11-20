@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "788cfa18a496fd053dc46cc083c4ccd6e6c2c0fc1e566869d0604bdc3e481906",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification bullet \\\"Experience in developing ML training code for use in a cloud computing environment\\\" names ML development work, and under rule 3 that required mention, quoted as \\\"developing ML training code\\\", supports labeler B's required model-development tag.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification bullet \"Experience in developing ML training code for use in a cloud computing environment\" names ML development work, and under rule 3 that required mention, quoted as \"developing ML training code\", supports labeler B's required model-development tag.",
+  "error": null
+}

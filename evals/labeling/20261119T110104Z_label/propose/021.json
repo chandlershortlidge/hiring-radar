@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1a14a6fdc40367db62fb71c07349d24e60819892a8824977233121f7c16c455b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"Proficiency in Python and tools for ML development, large-scale data pipelines, and standard evaluation protocols\\\" names evaluation as a skill, and rule 3 supports the required label with the quoted raw_text \\\"standard evaluation protocols\\\", which appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"Proficiency in Python and tools for ML development, large-scale data pipelines, and standard evaluation protocols\" names evaluation as a skill, and rule 3 supports the required label with the quoted raw_text \"standard evaluation protocols\", which appears verbatim in the posting.",
+  "error": null
+}

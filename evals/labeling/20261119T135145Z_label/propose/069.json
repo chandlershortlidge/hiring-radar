@@ -1,0 +1,14 @@
+{
+  "item": 69,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cd95f95582fc11650b71b58e6809dc0a49ed3233ac2b676ea0cc0e022d56e76d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the 'What You'll Need' qualifications, rule 1 applies because the bullet asks for experience with 'profiling, and monitoring' as part of end-to-end model development, and monitoring is a named observability practice, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under the 'What You'll Need' qualifications, rule 1 applies because the bullet asks for experience with 'profiling, and monitoring' as part of end-to-end model development, and monitoring is a named observability practice, so the agreed required label stands.",
+  "error": null
+}

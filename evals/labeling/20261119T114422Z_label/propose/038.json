@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dfb7c7540894200aea5cd7ba4f1fbd4f11193e33955c1fd1e52f40677067adff",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"You're friends with AI assistants and use them regularly for coding\\\" names regular use of AI coding assistants, which fits ai-developer-tooling at nice_to_have, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred-qualifications bullet \"You're friends with AI assistants and use them regularly for coding\" names regular use of AI coding assistants, which fits ai-developer-tooling at nice_to_have, so the agreed label stands.",
+  "error": null
+}

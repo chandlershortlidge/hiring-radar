@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "distributed-training",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "005026fa956e03a291ea7e0d0e722d123530794df6486216963db121c30bfecc",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for proficiency in designing 'distributed systems for model training,' which directly supports the distributed-training skill as nice_to_have.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for proficiency in designing 'distributed systems for model training,' which directly supports the distributed-training skill as nice_to_have.",
+  "error": null
+}

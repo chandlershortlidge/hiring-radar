@@ -1,0 +1,15 @@
+{
+  "item": 82,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ml-engineering|machine-learning",
+  "reason": "mapping",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "98e813e6ef3ea633339e92d4d2dbf6f6765dd25036f151d18b753effd4697aeb",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rules 1 and 5, 'building and shipping ML systems' in the qualifications specifically describes ML engineering rather than the broader parent skill of machine learning.\"}",
+  "decision": "A",
+  "why": "Under rules 1 and 5, 'building and shipping ML systems' in the qualifications specifically describes ML engineering rather than the broader parent skill of machine learning.",
+  "error": null
+}

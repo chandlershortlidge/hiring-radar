@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "data-science",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7694750522a33ffd0ac6eacdf59ae19d755effd509946b90963db7a92e145ebb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What We're Looking For' bullet names data science as a required qualification ('Hands-on experience building and deploying data science solutions'), and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What We're Looking For' bullet names data science as a required qualification ('Hands-on experience building and deploying data science solutions'), and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

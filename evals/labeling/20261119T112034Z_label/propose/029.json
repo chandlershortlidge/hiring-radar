@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "34d799b9ddd14a4cc6f01cf7ee47ac990add11a3d882d788ba3c300a0a4c448d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification bullet \\\"Experience implementing RAG pipelines, tool use, or multi-step AI workflows\\\" names the skill, and it sits in the WHO YOU ARE list rather than a \\\"plus\\\" line, so labeler B's required tag and quoted raw_text are supported (rule 3).\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification bullet \"Experience implementing RAG pipelines, tool use, or multi-step AI workflows\" names the skill, and it sits in the WHO YOU ARE list rather than a \"plus\" line, so labeler B's required tag and quoted raw_text are supported (rule 3).",
+  "error": null
+}

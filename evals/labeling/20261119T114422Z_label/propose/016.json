@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "da010c5fd40cfa28a228e6ac7beae2b7ca95d5383f61290370fe38fd7d17b3e8",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the PREFERRED QUALIFICATIONS bullet \\\"Track record of building synthetic data generation pipelines\\\" names a data-pipeline skill as a qualification, so B's nice_to_have label with that raw_text is supported, and rule 5 is not triggered because the text names pipelines directly.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the PREFERRED QUALIFICATIONS bullet \"Track record of building synthetic data generation pipelines\" names a data-pipeline skill as a qualification, so B's nice_to_have label with that raw_text is supported, and rule 5 is not triggered because the text names pipelines directly.",
+  "error": null
+}

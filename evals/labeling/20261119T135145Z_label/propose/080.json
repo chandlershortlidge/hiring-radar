@@ -1,0 +1,14 @@
+{
+  "item": 80,
+  "golden_id": "golden_107",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "184b0546c92bad774c6cb28d791743b5bbed4d5bdca7a6ac0f24fabba3f75c19",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 4, the responsibility-line signal is backed by a required qualification ('3+ years of experience leading Machine Learning research initiatives'), so the inferred 'senior' value stands with its verbatim signal.\"}",
+  "decision": "ok",
+  "why": "Under rule 4, the responsibility-line signal is backed by a required qualification ('3+ years of experience leading Machine Learning research initiatives'), so the inferred 'senior' value stands with its verbatim signal.",
+  "error": null
+}

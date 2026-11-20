@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "250835d7be1ca2bdd0ce259496aec4f60da3da8099206edc774f8c273b48e148",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required 'What We're Looking For' sentence names building guardrails against LLM failure modes like hallucinations and agent loops, and the agreed raw_text quotes it verbatim, so the required llm-guardrails label stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required 'What We're Looking For' sentence names building guardrails against LLM failure modes like hallucinations and agent loops, and the agreed raw_text quotes it verbatim, so the required llm-guardrails label stands (rule 3).",
+  "error": null
+}

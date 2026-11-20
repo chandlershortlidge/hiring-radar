@@ -1,0 +1,14 @@
+{
+  "item": 67,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8fc5e004af4fa2b8b1729cd9e7858192d53e5a6317cbec81bc8e0b48e3b44c9a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the bullet names cloud engineering as a qualification, and it sits under the 'To Qualify for the Role, You Must Have' heading, so under rule 3 the required label stands and the raw_text 'Cloud engineering' appears verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the bullet names cloud engineering as a qualification, and it sits under the 'To Qualify for the Role, You Must Have' heading, so under rule 3 the required label stands and the raw_text 'Cloud engineering' appears verbatim.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 18,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "df4432602aec2678ed602f46b57fa125d55d0185090f66ad9a11bebdd1c7cc95",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the only signal visible in the excerpt is A's quoted '3 to 6 years of experience', which supports 'mid', while B's 'support junior team members' does not appear in the excerpt shown, so I cannot verify it and I'm ruling on the evidence I can see.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the only signal visible in the excerpt is A's quoted '3 to 6 years of experience', which supports 'mid', while B's 'support junior team members' does not appear in the excerpt shown, so I cannot verify it and I'm ruling on the evidence I can see.",
+  "error": null
+}

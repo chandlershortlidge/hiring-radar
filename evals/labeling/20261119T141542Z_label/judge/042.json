@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "openai-api",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "f9e41481de0d806edac7ccf28c9b1dd44977fcf38329e9a2dbacb9ae6b5d15ef",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, a qualification bullet explicitly naming 'Azure OpenAI' counts as a required skill mention for openai-api.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, a qualification bullet explicitly naming 'Azure OpenAI' counts as a required skill mention for openai-api.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "524a950d49d1969bc15bc0bba19d5306dd849bf4bcc44871d8f1a26a8b2d9c3b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names cloud-native infrastructure at scale, so `cloud` counts, and the nice_to_have requirement and verbatim raw_text match the posting (rule 5 doesn't call for adding anything beyond that).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet names cloud-native infrastructure at scale, so `cloud` counts, and the nice_to_have requirement and verbatim raw_text match the posting (rule 5 doesn't call for adding anything beyond that).",
+  "error": null
+}

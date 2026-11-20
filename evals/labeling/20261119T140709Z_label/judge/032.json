@@ -1,0 +1,18 @@
+{
+  "item": 32,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "c5495709d8e9cb256ec21e2aa712746a4dd11ac67a331d0ce22460b00ae7d878",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"developing and shipping deep learning models\"}, \"why\": \"Under rule 1 and rule 5, the required bullet only names building training and metric workflows, whereas 'developing and shipping deep learning models' in the preferred section explicitly names model development.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "developing and shipping deep learning models"
+  },
+  "why": "Under rule 1 and rule 5, the required bullet only names building training and metric workflows, whereas 'developing and shipping deep learning models' in the preferred section explicitly names model development.",
+  "error": null
+}

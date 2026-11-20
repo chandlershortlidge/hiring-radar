@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f91a2137da7be52d5e9b94bd969510183f3d87cd615290fc0784ca5c352b2c58",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Who You Are' qualification bullet names the skill (a point of view on using AI to improve how ML engineers work, and inspiring a team to adopt it), and the agreed required label and quoted raw_text match the posting word for word.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Who You Are' qualification bullet names the skill (a point of view on using AI to improve how ML engineers work, and inspiring a team to adopt it), and the agreed required label and quoted raw_text match the posting word for word.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 65,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "hadoop",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ee3f50c9f83d89035f8f075886b1d9dec878b7c4a9f49960edf779051bf1573a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the \\\"It's Great if you have\\\" bullet \\\"Experience with Big Data tools – Spark, S3, Hadoop\\\" names Hadoop explicitly as a nice-to-have qualification, so the agreed label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the \"It's Great if you have\" bullet \"Experience with Big Data tools – Spark, S3, Hadoop\" names Hadoop explicitly as a nice-to-have qualification, so the agreed label and raw_text stand.",
+  "error": null
+}

@@ -1,0 +1,52 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"recommender systems\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"using AI to improve how ML engineers work\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"audio / music content understanding\",\n      \"raw_text\": \"audio / music content understanding\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineering Manager\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'using AI to improve how ML engineers work' in Who You Are to ai-developer-tooling and flagged uncertain as it asks for a 'clear, informed point of view on using AI to improve how ML engineers work' rather than explicitly naming an alias.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommender systems"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "using AI to improve how ML engineers work",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "audio / music content understanding",
+        "raw_text": "audio / music content understanding"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineering Manager",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'using AI to improve how ML engineers work' in Who You Are to ai-developer-tooling and flagged uncertain as it asks for a 'clear, informed point of view on using AI to improve how ML engineers work' rather than explicitly naming an alias."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2791fbe7e79f1947b40af8e3f3b9ee0443dce8a324dcd280e234d9e62086a531",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

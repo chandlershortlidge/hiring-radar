@@ -1,0 +1,14 @@
+{
+  "item": 68,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "21946db8f3de40a7cf1c898a32fab5e58502359d80915a6411abf3821b77ca47",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification sentence \\\"This role demands extensive ML leadership\\\" names machine learning (ML), and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification sentence \"This role demands extensive ML leadership\" names machine learning (ML), and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "angular",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "889ee7406e97c3f5ef3a1bda006765ee3f4bed5d84263424508dee2c2c15dfd0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the \\\"Required Skills\\\" heading, the bullet \\\"Angular (preferred latest versions) for frontend application development\\\" names Angular as a qualification (rule 1), and the required mention wins (rule 3), so the agreed required label and quoted raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under the \"Required Skills\" heading, the bullet \"Angular (preferred latest versions) for frontend application development\" names Angular as a qualification (rule 1), and the required mention wins (rule 3), so the agreed required label and quoted raw_text stand.",
+  "error": null
+}

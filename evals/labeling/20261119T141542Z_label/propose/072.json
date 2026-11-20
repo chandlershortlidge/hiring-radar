@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "cybersecurity",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6d3fafd4b9912336357fd2ad6cf9eb5cae7af7831f5f4612f1e7a28490149be3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet names \\\"cloud security fundamentals\\\" in its list of skills, which supports the agreed cybersecurity label with that raw_text, and rule 5 does not block it because the security skill is actually named.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet names \"cloud security fundamentals\" in its list of skills, which supports the agreed cybersecurity label with that raw_text, and rule 5 does not block it because the security skill is actually named.",
+  "error": null
+}

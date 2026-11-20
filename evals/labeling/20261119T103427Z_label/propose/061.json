@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cf00f417d15cd9139879b4918366e5cb1020bca55e1e6f88dc608fd7246e0db6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Experience working with asynchronous programming, concurrency, or event-driven architectures\\\" names the skill, and it sits under the heading saying the section \\\"isn't required,\\\" so nice_to_have and the quoted raw_text \\\"asynchronous programming\\\" are correct as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Experience working with asynchronous programming, concurrency, or event-driven architectures\" names the skill, and it sits under the heading saying the section \"isn't required,\" so nice_to_have and the quoted raw_text \"asynchronous programming\" are correct as agreed.",
+  "error": null
+}

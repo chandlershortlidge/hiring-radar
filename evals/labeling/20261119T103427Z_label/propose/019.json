@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "461ab43323970b0adcc2ccb7830fc8565bd7dc64094d0a78ac10c506ca3a4f2b",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the \\\"5+ years\\\" is a years-of-experience requirement, which does not count as a qualification signal, and the posting explicitly says it welcomes various experience levels and that offers may differ from the level posted, so no seniority is supported.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the \"5+ years\" is a years-of-experience requirement, which does not count as a qualification signal, and the posting explicitly says it welcomes various experience levels and that offers may differ from the level posted, so no seniority is supported.",
+  "error": null
+}

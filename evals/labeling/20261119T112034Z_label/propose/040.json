@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8487b8bdd05032241eaa61d9b36cc9f371c4796e643c002269efbbe2ce78bcc8",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted support, \\\"experience as a software engineer\\\", is a job-title/years-of-experience line, which does not count as a named skill, so `software-engineering` should not be in the answer key.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted support, \"experience as a software engineer\", is a job-title/years-of-experience line, which does not count as a named skill, so `software-engineering` should not be in the answer key.",
+  "error": null
+}

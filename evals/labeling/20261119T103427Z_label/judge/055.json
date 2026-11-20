@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c9445ace88ea85eb0f21eccba8c45c1e0a435669361ba61e8c43f74e211d9574",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'Azure' is explicitly named in a qualification bullet under Preferred Skills, so the nice_to_have label and raw_text are correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'Azure' is explicitly named in a qualification bullet under Preferred Skills, so the nice_to_have label and raw_text are correct.",
+  "error": null
+}

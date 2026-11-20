@@ -1,0 +1,15 @@
+{
+  "item": 49,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "256ac4990d2723072b87d102a04ce356bc541d76169497a6492cef7a6407df5f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the sentence 'you will need prior experience in AI' explicitly names the skill as a required qualification.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the sentence 'you will need prior experience in AI' explicitly names the skill as a required qualification.",
+  "error": null
+}

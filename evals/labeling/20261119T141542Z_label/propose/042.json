@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "openai-api",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3f5b10a760d3a4a6784a7008b44012373442adb1d7062a4ee2e271583fcb19b8",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the qualification list names \\\"Azure OpenAI\\\" as a required technology, and rule 3 makes that required mention win, so openai-api stands as labeled by A.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the qualification list names \"Azure OpenAI\" as a required technology, and rule 3 makes that required mention win, so openai-api stands as labeled by A.",
+  "error": null
+}

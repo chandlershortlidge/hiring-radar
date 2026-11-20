@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "embeddings",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8719a3d5cf005211e51fbf576fea4bae227def0d848f08ad2c8e0a8afe1e4d6b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'working on graph embeddings' is explicitly named as part of a required qualification ('Hands-on experience with graph machine learning is required. This includes working on graph embeddings...'), making it a valid required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'working on graph embeddings' is explicitly named as part of a required qualification ('Hands-on experience with graph machine learning is required. This includes working on graph embeddings...'), making it a valid required skill.",
+  "error": null
+}

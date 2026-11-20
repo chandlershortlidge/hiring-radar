@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "0d8a8bf8cf68a2458ae1a497661b43cdc9959c216bc290cf4a2b6bdec89e8587",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting never actually names the skill 'workflow automation', only referring generally to being 'automation-minded' and 'removing manual steps' in CAD/PPA flows.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting never actually names the skill 'workflow automation', only referring generally to being 'automation-minded' and 'removing manual steps' in CAD/PPA flows.",
+  "error": null
+}

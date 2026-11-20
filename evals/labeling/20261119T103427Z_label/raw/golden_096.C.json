@@ -1,0 +1,177 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML engineering\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"reinforcement learning\"},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"computer vision\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"natural language processing\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"model development\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"transformer architectures\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"large language model\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"large language model fine-tuning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"distributed training\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps\"},\n    {\"skill_id\": \"model-versioning\", \"requirement\": \"required\", \"raw_text\": \"model versioning\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deployment pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"deepspeed\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DeepSpeed\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"quantization\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerization\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"RLHF\", \"raw_text\": \"RLHF\"},\n    {\"label\": \"FairScale\", \"raw_text\": \"FairScale\"},\n    {\"label\": \"Horovod\", \"raw_text\": \"Horovod\"},\n    {\"label\": \"Model Pruning\", \"raw_text\": \"pruning\"},\n    {\"label\": \"Vision-Language-Action (VLA) models\", \"raw_text\": \"Vision-Language-Action (VLA) models\"},\n    {\"label\": \"Imitation Learning\", \"raw_text\": \"imitation learning\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff R&D AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Robotics, AI/ML, or related field\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'deployment pipelines' (in MLOps context) and 'edge AI deployment' to ai-deployment; marked required based on the Qualifications section mention, flagged uncertain as 'deployment pipelines' is slightly more specific than the alias 'model deployment'. 'AI/ML engineering' mapped to ai-ml rather than ml-engineering to stay literal to 'AI/ML'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML engineering"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer architectures"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language model"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "large language model fine-tuning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "model versioning"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "FairScale",
+        "raw_text": "FairScale"
+      },
+      {
+        "label": "Horovod",
+        "raw_text": "Horovod"
+      },
+      {
+        "label": "Model Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Vision-Language-Action (VLA) models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "label": "Imitation Learning",
+        "raw_text": "imitation learning"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff R&D AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Robotics, AI/ML, or related field",
+    "uncertain": [],
+    "notes": "Mapped 'deployment pipelines' (in MLOps context) and 'edge AI deployment' to ai-deployment; marked required based on the Qualifications section mention, flagged uncertain as 'deployment pipelines' is slightly more specific than the alias 'model deployment'. 'AI/ML engineering' mapped to ai-ml rather than ml-engineering to stay literal to 'AI/ML'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "549a3350160d3b6459a469271c9515926e5714ecd79edf2af8aeef6c2625d61b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

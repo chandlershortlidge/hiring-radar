@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "72a54cc74a1f5ab258e17b88925c3b41c9c2d1db3ea246726c8d0f04e50555a0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The title 'AI Director' explicitly states the seniority of the role (Rule 1 applies to skills, whereas job titles are valid signals for stated seniority).\"}",
+  "decision": "ok",
+  "why": "The title 'AI Director' explicitly states the seniority of the role (Rule 1 applies to skills, whereas job titles are valid signals for stated seniority).",
+  "error": null
+}

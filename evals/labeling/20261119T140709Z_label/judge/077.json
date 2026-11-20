@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "frontend-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "86f98d8325d672ffbfd9326c96ad531baa02ee5844e9f81c0b41f92c4e8183bf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the 'Required Skills' heading, the qualification bullet explicitly names 'frontend application development' as a required skill (Rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under the 'Required Skills' heading, the qualification bullet explicitly names 'frontend application development' as a required skill (Rules 1 and 3).",
+  "error": null
+}

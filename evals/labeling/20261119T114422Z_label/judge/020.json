@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "0a2ce72b173a87fdc04b39b43c92c4864cb9182fd0b1bb84b068d0184017720b",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for the ability to 'implement models in production environments', which supports the ai-deployment skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for the ability to 'implement models in production environments', which supports the ai-deployment skill.",
+  "error": null
+}

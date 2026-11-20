@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "10e4c4896752f726bb0fccbcc711dc8cd6d8b196ead4589fe0cf8f42f7cd1437",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet under REQUIRED EXPERIENCE asking for experience supporting 'high-availability inference services' directly refers to model serving as a required skill.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet under REQUIRED EXPERIENCE asking for experience supporting 'high-availability inference services' directly refers to model serving as a required skill.",
+  "error": null
+}

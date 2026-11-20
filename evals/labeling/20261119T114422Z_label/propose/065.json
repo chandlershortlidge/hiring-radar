@@ -1,0 +1,14 @@
+{
+  "item": 65,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f87bf7fc949d1726cbe44ed3589c8722f0c9a7dd830f1e3e92acf343289fae1f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum qualifications bullet names experience with Transformers as an ML library, and under rule 3 that required mention is quoted in the posting, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum qualifications bullet names experience with Transformers as an ML library, and under rule 3 that required mention is quoted in the posting, so the agreed required label stands.",
+  "error": null
+}

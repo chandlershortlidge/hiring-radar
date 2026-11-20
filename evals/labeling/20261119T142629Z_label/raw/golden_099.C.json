@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical modeling\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideal candidates will have a strong academic background as well as technical skills including applied statistics, machine learning, data mining, and software development.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"R\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit learn\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Mining\",\n      \"raw_text\": \"data mining\"\n    },\n    {\n      \"label\": \"Big Data\",\n      \"raw_text\": \"Familiarity with working with large-scale datasets and big data techniques would be a plus.\"\n    },\n    {\n      \"label\": \"C\",\n      \"raw_text\": \"C\"\n    },\n    {\n      \"label\": \"Matlab\",\n      \"raw_text\": \"Matlab\"\n    },\n    {\n      \"label\": \"Relational Databases\",\n      \"raw_text\": \"relational databases\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"2027 University Graduate - Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required\",\n  \"uncertain\": [],\n  \"notes\": \"Software development is in the 'Ideal candidates will have...' paragraph; mapped to software-engineering as nice_to_have (following 'ideally' marker) and flagged uncertain.\\nCausal analysis and time series analysis appear only in the responsibilities/role description paragraph ('the candidate will be working on...'), not in requirements.\\nStatistics and machine learning appear in both the 'Ideal candidates' paragraph and 'What You Need to Succeed', so required wins.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical modeling"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideal candidates will have a strong academic background as well as technical skills including applied statistics, machine learning, data mining, and software development.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "R"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit learn"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Mining",
+        "raw_text": "data mining"
+      },
+      {
+        "label": "Big Data",
+        "raw_text": "Familiarity with working with large-scale datasets and big data techniques would be a plus."
+      },
+      {
+        "label": "C",
+        "raw_text": "C"
+      },
+      {
+        "label": "Matlab",
+        "raw_text": "Matlab"
+      },
+      {
+        "label": "Relational Databases",
+        "raw_text": "relational databases"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "2027 University Graduate - Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required",
+    "uncertain": [],
+    "notes": "Software development is in the 'Ideal candidates will have...' paragraph; mapped to software-engineering as nice_to_have (following 'ideally' marker) and flagged uncertain.\nCausal analysis and time series analysis appear only in the responsibilities/role description paragraph ('the candidate will be working on...'), not in requirements.\nStatistics and machine learning appear in both the 'Ideal candidates' paragraph and 'What You Need to Succeed', so required wins."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ddc76f6977f3c52344e3a717bd6d4c606f3dd9ceb117c0d494cc8cf2eb220403",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

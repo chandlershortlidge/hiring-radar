@@ -1,0 +1,15 @@
+{
+  "item": 49,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "structured-data-extraction",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "741eb48acced3579e05bc6adcf72023206521d6404dccf71463a78861b31acfa",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Required Qualifications bullet explicitly asks for experience with 'information extraction from documents', supporting the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Required Qualifications bullet explicitly asks for experience with 'information extraction from documents', supporting the agreed required label.",
+  "error": null
+}

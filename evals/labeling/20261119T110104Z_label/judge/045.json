@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d8fa349c98dbb2b5eef38c53b62895368aba843045e147d56bfa2af393279b56",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the required qualifications explicitly ask for experience driving 'cross disciplinary AI/ML projects' and progression of AI/ML models, so the agreed required label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the required qualifications explicitly ask for experience driving 'cross disciplinary AI/ML projects' and progression of AI/ML models, so the agreed required label and raw_text stand.",
+  "error": null
+}

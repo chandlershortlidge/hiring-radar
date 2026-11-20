@@ -1,0 +1,14 @@
+{
+  "item": 51,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9cc105c92c374209584e1809c75eea6fe2f404ef82811bf52928461fa5423495",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only support for seniority is responsibilities ('You'll own end-to-end AI projects', 'leading architecture...'), and the posting never asks the candidate for a seniority level, title, or years of experience, so the attribute should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only support for seniority is responsibilities ('You'll own end-to-end AI projects', 'leading architecture...'), and the posting never asks the candidate for a seniority level, title, or years of experience, so the attribute should be null.",
+  "error": null
+}

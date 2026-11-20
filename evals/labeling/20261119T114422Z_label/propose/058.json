@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "672ed285688d4d49bf932b698560469d793fff0874d26e064552c157a3aff43f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting only mentions monitoring as one step of the ML model lifecycle (\\\"deployment, monitoring and retraining\\\"), not observability tooling or practice, so the broader observability skill is not named and should not be added.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the posting only mentions monitoring as one step of the ML model lifecycle (\"deployment, monitoring and retraining\"), not observability tooling or practice, so the broader observability skill is not named and should not be added.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8b66cc73899041d9109d605ab5d0b1bdd193407db3eeb71a7442efccc66cb1d2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence \\\"Ideal candidates will have ... technical skills including ... software development\\\" names the skill as a candidate qualification, and the quoted raw_text appears verbatim, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence \"Ideal candidates will have ... technical skills including ... software development\" names the skill as a candidate qualification, and the quoted raw_text appears verbatim, so the agreed required label stands.",
+  "error": null
+}

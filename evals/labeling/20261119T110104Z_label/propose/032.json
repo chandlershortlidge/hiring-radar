@@ -1,0 +1,14 @@
+{
+  "item": 32,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "abe4706dfcc6684e4aa180d92f0202626ac2fce73448ea3391beed4a310ed209",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes job titles as skill evidence, but seniority is a level attribute rather than a skill, and the title's explicit \\\"(Senior)\\\" is the stated level, so the agreed value stands.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes job titles as skill evidence, but seniority is a level attribute rather than a skill, and the title's explicit \"(Senior)\" is the stated level, so the agreed value stands.",
+  "error": null
+}

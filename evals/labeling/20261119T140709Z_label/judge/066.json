@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ci-cd",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "02a89176317dd5c25cf462e1c3dda4dbbdcbe6c5a8a00570bb31f7d0b9961b9b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, CI/CD is named as a qualification in a required section ('To Qualify for the Role, You Must Have'), so the agreed required label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, CI/CD is named as a qualification in a required section ('To Qualify for the Role, You Must Have'), so the agreed required label and raw_text stand.",
+  "error": null
+}

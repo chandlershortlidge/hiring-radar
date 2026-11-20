@@ -1,0 +1,15 @@
+{
+  "item": 37,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "5f84a0519267647ea6eeef3e5d7da968ca0f136694a86f44a277f0949af4589d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a 'Nice to have' qualification bullet asking for a track record of optimizing performance in 'distributed environments' directly requests distributed-systems experience.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a 'Nice to have' qualification bullet asking for a track record of optimizing performance in 'distributed environments' directly requests distributed-systems experience.",
+  "error": null
+}

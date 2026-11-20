@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applying machine learning\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong C++\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python programming\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning frameworks\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tensor Flow\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model optimization for real-time inference\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Multi-sensor fusion\",\n      \"raw_text\": \"multi-sensor fusion\"\n    },\n    {\n      \"label\": \"LiDAR/camera perception\",\n      \"raw_text\": \"lidar/camera perception\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience.\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'model optimization for real-time inference' under Ways To Stand Out From The Crowd to inference-optimization (marked uncertain). Put domain-specific perception techniques (lidar/camera perception, multi-sensor fusion) in unmapped rather than stretching computer-vision.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applying machine learning"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Strong C++"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python programming"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Tensor Flow"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "model optimization for real-time inference",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "label": "LiDAR/camera perception",
+        "raw_text": "lidar/camera perception"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience.",
+    "uncertain": [],
+    "notes": "Mapped 'model optimization for real-time inference' under Ways To Stand Out From The Crowd to inference-optimization (marked uncertain). Put domain-specific perception techniques (lidar/camera perception, multi-sensor fusion) in unmapped rather than stretching computer-vision."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "0ab255e17b05ba4160b650a70f43a10da79957155f261d595148041cde4161c8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

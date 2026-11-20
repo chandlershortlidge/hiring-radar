@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "77a2005186cb42ea77e07d447727a64fc614f2cf9617828bd78fc88f2ae20ec0",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 4, responsibilities do not count, so the Minimum Qualifications requirement of '3+ years of experience' is the valid signal, indicating mid-level seniority.\"}",
+  "decision": "A",
+  "why": "Under Rule 4, responsibilities do not count, so the Minimum Qualifications requirement of '3+ years of experience' is the valid signal, indicating mid-level seniority.",
+  "error": null
+}

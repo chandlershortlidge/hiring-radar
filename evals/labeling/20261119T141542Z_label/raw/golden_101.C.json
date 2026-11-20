@@ -1,0 +1,275 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure environments\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"azure-devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure DevOps\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"secrets management\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bash\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring, logging, tracing\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automated testing\"\n    },\n    {\n      \"skill_id\": \"azure-ai-foundry\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Foundry\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"azure-key-vault\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Key Vault\"\n    },\n    {\n      \"skill_id\": \"microsoft-entra-id\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions\"\n    },\n    {\n      \"skill_id\": \"helm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Helm\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI application and agent evaluation\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG quality\"\n    },\n    {\n      \"skill_id\": \"opentelemetry\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Open Telemetry\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices\"\n    },\n    {\n      \"skill_id\": \"event-driven-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"event-driven integration\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks\"\n    },\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps scanning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GenAI apps, LLM-powered services\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI agents\"\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector search\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GitOps\"\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Argo CD\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Bicep\",\n      \"raw_text\": \"Bicep\"\n    },\n    {\n      \"label\": \"PowerShell\",\n      \"raw_text\": \"PowerShell\"\n    },\n    {\n      \"label\": \"Azure Machine Learning\",\n      \"raw_text\": \"Azure Machine Learning\"\n    },\n    {\n      \"label\": \"Azure OpenAI\",\n      \"raw_text\": \"Azure OpenAI\"\n    },\n    {\n      \"label\": \"AKS\",\n      \"raw_text\": \"AKS\"\n    },\n    {\n      \"label\": \"Azure API Management\",\n      \"raw_text\": \"API Management\"\n    },\n    {\n      \"label\": \"Azure Monitor\",\n      \"raw_text\": \"Azure Monitor\"\n    },\n    {\n      \"label\": \"Azure Boards\",\n      \"raw_text\": \"Azure Boards\"\n    },\n    {\n      \"label\": \"ServiceNow\",\n      \"raw_text\": \"ServiceNow\"\n    },\n    {\n      \"label\": \"Application Insights\",\n      \"raw_text\": \"Application Insights\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    },\n    {\n      \"label\": \"Dynatrace\",\n      \"raw_text\": \"Dynatrace\"\n    },\n    {\n      \"label\": \"Splunk\",\n      \"raw_text\": \"Splunk\"\n    },\n    {\n      \"label\": \"JSON/YAML\",\n      \"raw_text\": \"JSON/YAML\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years in DevOps, platform engineering, cloud engineering, site reliability engineering, software engineering, or a related discipline.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience.\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'Microsoft Foundry' to azure-ai-foundry (marked uncertain); mapped 'event-driven integration' to event-driven-systems (marked uncertain). Semicolon-separated tech stack lists under Required Skills & Experience treated as required, overriding duplicates under Nice-to-Haves and inline '(beneficial)' on Bicep. 'MLOps' comes from Required Certification list.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure environments"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "secrets management"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring, logging, tracing"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "required",
+        "raw_text": "Microsoft Foundry",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-key-vault",
+        "requirement": "required",
+        "raw_text": "Key Vault"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI application and agent evaluation"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG quality"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "required",
+        "raw_text": "Open Telemetry"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven integration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps scanning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAI apps, LLM-powered services"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI agents"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "nice_to_have",
+        "raw_text": "Argo CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Bicep",
+        "raw_text": "Bicep"
+      },
+      {
+        "label": "PowerShell",
+        "raw_text": "PowerShell"
+      },
+      {
+        "label": "Azure Machine Learning",
+        "raw_text": "Azure Machine Learning"
+      },
+      {
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "label": "AKS",
+        "raw_text": "AKS"
+      },
+      {
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "label": "Azure Monitor",
+        "raw_text": "Azure Monitor"
+      },
+      {
+        "label": "Azure Boards",
+        "raw_text": "Azure Boards"
+      },
+      {
+        "label": "ServiceNow",
+        "raw_text": "ServiceNow"
+      },
+      {
+        "label": "Application Insights",
+        "raw_text": "Application Insights"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Dynatrace",
+        "raw_text": "Dynatrace"
+      },
+      {
+        "label": "Splunk",
+        "raw_text": "Splunk"
+      },
+      {
+        "label": "JSON/YAML",
+        "raw_text": "JSON/YAML"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years in DevOps, platform engineering, cloud engineering, site reliability engineering, software engineering, or a related discipline.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience.",
+    "uncertain": [],
+    "notes": "Mapped 'Microsoft Foundry' to azure-ai-foundry (marked uncertain); mapped 'event-driven integration' to event-driven-systems (marked uncertain). Semicolon-separated tech stack lists under Required Skills & Experience treated as required, overriding duplicates under Nice-to-Haves and inline '(beneficial)' on Bicep. 'MLOps' comes from Required Certification list."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "c28d10859574a4c3c02119e7c4717098e1478e60fea51bc0ca4371508927fa47",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

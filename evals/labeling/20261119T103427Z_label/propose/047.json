@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "25f3955372f1a2851ff896ddc0a43185b888820966ed2b41843abdda1fc5816a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have bullet names \\\"asynchronous programming\\\" as a knowledge area for client-server systems, so the skill is counted, and the section heading correctly sets requirement to nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have bullet names \"asynchronous programming\" as a knowledge area for client-server systems, so the skill is counted, and the section heading correctly sets requirement to nice_to_have.",
+  "error": null
+}

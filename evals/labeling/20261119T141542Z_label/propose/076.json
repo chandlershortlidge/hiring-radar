@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "03cff242cb4332528bd7670e21d39a22d914222af8f005519f1365b0fa5ddf31",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention of software engineering is inside a years-of-experience line ('7+ years in DevOps, ... software engineering, or a related discipline'), which does not count as a named skill.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention of software engineering is inside a years-of-experience line ('7+ years in DevOps, ... software engineering, or a related discipline'), which does not count as a named skill.",
+  "error": null
+}

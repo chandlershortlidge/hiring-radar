@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6364354ef3fc48a3ff69e0935bec7bfe778816083b467b8abec3b8f97df73645",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'You should apply if' explicitly requires experience 'shipping state-of-the-art ML models to production' (as well as 'deployment of advanced Machine Learning models').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'You should apply if' explicitly requires experience 'shipping state-of-the-art ML models to production' (as well as 'deployment of advanced Machine Learning models').",
+  "error": null
+}

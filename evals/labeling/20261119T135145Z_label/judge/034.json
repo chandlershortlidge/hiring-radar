@@ -1,0 +1,15 @@
+{
+  "item": 34,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "c485e766afa32255942bfb4526bf55752714461372832bbe939e7df7c768c4f0",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for a track record of technical leadership including 'architectural direction', which counts as a nice-to-have skill for software-architecture.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for a track record of technical leadership including 'architectural direction', which counts as a nice-to-have skill for software-architecture.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 51,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "fa0eb91420af69e9b5e0768f3b6671e92658e49aef97fee2e9a97de7d543765f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Inferring seniority from high-level ownership and leadership duties ('leading architecture, testing, and governance efforts') is valid when no explicit title or years of experience are stated, as Rule 4 applies to skills rather than role seniority.\"}",
+  "decision": "ok",
+  "why": "Inferring seniority from high-level ownership and leadership duties ('leading architecture, testing, and governance efforts') is valid when no explicit title or years of experience are stated, as Rule 4 applies to skills rather than role seniority.",
+  "error": null
+}

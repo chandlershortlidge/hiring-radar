@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6913d7749436e6db557b25111cb8f6acd104d9c33c9f7c9bbae58cebc4fe7930",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Specific Knowledge and Skills' list is a qualification section that names software development as a skill, and the agreed raw_text quotes it word for word, so the required software-engineering label stands (rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Specific Knowledge and Skills' list is a qualification section that names software development as a skill, and the agreed raw_text quotes it word for word, so the required software-engineering label stands (rules 1 and 3).",
+  "error": null
+}

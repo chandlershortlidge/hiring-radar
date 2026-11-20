@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"feature-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"engineering features\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training models\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluating them against baselines and metrics\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production ML lifecycle, including deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"transformers\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM-based workflows\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Multimodal models\",\n      \"raw_text\": \"multimodal models\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'training models' to model-development, 'evaluating them against baselines and metrics' to evaluation, 'production ML lifecycle, including deployment' to ai-deployment, and 'monitoring' to observability. 'care for data privacy' treated as motivation/mindset rather than technical skill data-privacy-and-security.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "engineering features"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training models"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating them against baselines and metrics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "production ML lifecycle, including deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "transformers"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM-based workflows"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodal models"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'training models' to model-development, 'evaluating them against baselines and metrics' to evaluation, 'production ML lifecycle, including deployment' to ai-deployment, and 'monitoring' to observability. 'care for data privacy' treated as motivation/mindset rather than technical skill data-privacy-and-security."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3d3057094590199e3b1a71ec06f32d741502907fb017d91d329dc49fe7f1eba6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

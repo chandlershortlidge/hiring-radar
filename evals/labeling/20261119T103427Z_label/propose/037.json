@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5551803022838da6377fec7d443f6df944268abecbe3f43dbd5c51e7750e3eb4",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Nice to have' qualification bullet 'Track record of optimizing resource usage and performance in distributed environments' names distributed-systems experience as a requested skill, and the nice_to_have level matches the section heading.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Nice to have' qualification bullet 'Track record of optimizing resource usage and performance in distributed environments' names distributed-systems experience as a requested skill, and the nice_to_have level matches the section heading.",
+  "error": null
+}

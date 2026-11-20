@@ -1,0 +1,68 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern ML frameworks\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"preferably in the AWS ecosystem\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Scientific ML\",\n      \"raw_text\": \"scientific ML\"\n    },\n    {\n      \"label\": \"Spatiotemporal modeling\",\n      \"raw_text\": \"spatiotemporal modeling\"\n    },\n    {\n      \"label\": \"Data assimilation\",\n      \"raw_text\": \"data assimilation\"\n    },\n    {\n      \"label\": \"Hybrid physics-ML methods\",\n      \"raw_text\": \"hybrid physics-ML methods\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Scientist, Climate & Hydrology\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline.\",\n  \"uncertain\": [],\n  \"notes\": \"Climate/weather/hydrologic/Earth system modeling treated as domain knowledge rather than general taxonomy skills; scientific ML, spatiotemporal modeling, data assimilation, and hybrid physics-ML methods placed in unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "modern ML frameworks"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably in the AWS ecosystem"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Scientific ML",
+        "raw_text": "scientific ML"
+      },
+      {
+        "label": "Spatiotemporal modeling",
+        "raw_text": "spatiotemporal modeling"
+      },
+      {
+        "label": "Data assimilation",
+        "raw_text": "data assimilation"
+      },
+      {
+        "label": "Hybrid physics-ML methods",
+        "raw_text": "hybrid physics-ML methods"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Scientist, Climate & Hydrology",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline.",
+    "uncertain": [],
+    "notes": "Climate/weather/hydrologic/Earth system modeling treated as domain knowledge rather than general taxonomy skills; scientific ML, spatiotemporal modeling, data assimilation, and hybrid physics-ML methods placed in unmapped."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "63a9375938b7b3e2a3959f67ae64f7ccb034fcf0ff803c4645fb8619a9b8478c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

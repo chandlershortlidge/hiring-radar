@@ -1,0 +1,14 @@
+{
+  "item": 46,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1150e407c041904c376f2b10c5e94ef242fcb5e3108a6a53fd91630f9f34a8ee",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Ability to design rigorous evaluation frameworks...\\\" sits in the PROFESSIONAL EXPERIENCE & QUALIFICATIONS section with no preferred qualifier, so the required tag and the quoted raw_text hold up under rules 1 and 3.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Ability to design rigorous evaluation frameworks...\" sits in the PROFESSIONAL EXPERIENCE & QUALIFICATIONS section with no preferred qualifier, so the required tag and the quoted raw_text hold up under rules 1 and 3.",
+  "error": null
+}

@@ -1,0 +1,107 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"feature-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"feature engineering\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML systems from feature engineering to production deployment\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software/data engineering\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-assisted evaluation systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Distributed systems\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"software/data engineering\"\n    },\n    {\n      \"label\": \"Data infrastructure\",\n      \"raw_text\": \"data infrastructure\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus.\",\n  \"uncertain\": [],\n  \"notes\": \"In 'Experience building with LLMs and/or AI agents', LLMs and AI agents carry alternative_group 1 per the guide.\\nMapped 'ML systems from feature engineering to production deployment' to ai-deployment and 'AI-assisted evaluation systems' to evaluation (marked uncertain).\\n'advanced degree a plus' does not specify Master or PhD explicitly, so kept degree as bachelor (required, with equivalent experience).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "feature engineering"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "ML systems from feature engineering to production deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software/data engineering"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-assisted evaluation systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "software/data engineering"
+      },
+      {
+        "label": "Data infrastructure",
+        "raw_text": "data infrastructure"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus.",
+    "uncertain": [],
+    "notes": "In 'Experience building with LLMs and/or AI agents', LLMs and AI agents carry alternative_group 1 per the guide.\nMapped 'ML systems from feature engineering to production deployment' to ai-deployment and 'AI-assisted evaluation systems' to evaluation (marked uncertain).\n'advanced degree a plus' does not specify Master or PhD explicitly, so kept degree as bachelor (required, with equivalent experience)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "191114ad3d116574f63b44fb2ccccc78133c033644a878ab9f6a84f8a04fc942",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

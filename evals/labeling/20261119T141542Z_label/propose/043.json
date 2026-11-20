@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d621978546f1f6ac3e08427ca4ee1bd76ca612e63e9e70da54fb4189568c4165",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the skills list explicitly names \\\"Artificial Intelligence (AI)\\\" under the posting's Skills heading, which counts as a skill mention, and rule 5 is satisfied because ai-ml is named rather than inferred, so labeler B's required-level label stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the skills list explicitly names \"Artificial Intelligence (AI)\" under the posting's Skills heading, which counts as a skill mention, and rule 5 is satisfied because ai-ml is named rather than inferred, so labeler B's required-level label stands.",
+  "error": null
+}

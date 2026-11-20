@@ -1,0 +1,14 @@
+{
+  "item": 77,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8ce0e62f339e450f742eeb14653b838c1d9382e05a400e61db968a5f7825d660",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Requirements bullet \\\"Experience deploying deep learning models in production\\\" names the skill as a qualification, and rule 3 makes that required mention the determining one, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Requirements bullet \"Experience deploying deep learning models in production\" names the skill as a qualification, and rule 3 makes that required mention the determining one, so the agreed label stands.",
+  "error": null
+}

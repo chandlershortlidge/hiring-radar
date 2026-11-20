@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8d984ed078442cdd2465dc34892bd01a8796177fae512d2a894bc94420dd3ffd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the nice-to-have qualification bullets 'Experience with ML frameworks' and 'Understanding of ML Projects lifecycle' directly ask for machine learning skills.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the nice-to-have qualification bullets 'Experience with ML frameworks' and 'Understanding of ML Projects lifecycle' directly ask for machine learning skills.",
+  "error": null
+}

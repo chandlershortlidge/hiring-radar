@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6e64ddf460b750b4e83788847b1e409a6f286da8ec4cb7863b3ef5f2ddedc84d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rules 1 and 3, the required qualification bullet \\\"Familiarity with AI inference and/or training workflows\\\" names training workflows, which supports model-development as required, and labeler B's raw_text quotes it accurately; the operational framing is a weaker match, so this is a close call.\"}",
+  "decision": "B",
+  "why": "Under rules 1 and 3, the required qualification bullet \"Familiarity with AI inference and/or training workflows\" names training workflows, which supports model-development as required, and labeler B's raw_text quotes it accurately; the operational framing is a weaker match, so this is a close call.",
+  "error": null
+}

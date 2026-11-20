@@ -1,0 +1,15 @@
+{
+  "item": 64,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agent-state-management",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1afd1d665d5ec3251228663e902b1901827eb14776d22c1a1fb6cd99c4a200f4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet under 'What You’ll Need' asking for 'Agentic systems knowledge — tools, memory, and long-running workflows' directly names the skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet under 'What You’ll Need' asking for 'Agentic systems knowledge — tools, memory, and long-running workflows' directly names the skill.",
+  "error": null
+}

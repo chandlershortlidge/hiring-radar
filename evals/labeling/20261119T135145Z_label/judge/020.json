@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "fe3347a84e37e131f904b01aef432f20f818c7cfb3f6381f3d49f736d1ae4b04",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, familiarity with the operational patterns around AI inference and training workflows for an infrastructure role does not actually name or ask for the skill of developing models (`model-development`).\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, familiarity with the operational patterns around AI inference and training workflows for an infrastructure role does not actually name or ask for the skill of developing models (`model-development`).",
+  "error": null
+}

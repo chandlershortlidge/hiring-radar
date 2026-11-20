@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "c73ee546f0169de6ee5331c0ff055051b2a4a53ed2fe59d45239b2969da39c13",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 4, responsibilities do not count unless asked for in qualifications, so B's responsibility-section signal fails and A's mid-level inference from the required '3+ years of experience' qualification line stands.\"}",
+  "decision": "A",
+  "why": "Under Rule 4, responsibilities do not count unless asked for in qualifications, so B's responsibility-section signal fails and A's mid-level inference from the required '3+ years of experience' qualification line stands.",
+  "error": null
+}

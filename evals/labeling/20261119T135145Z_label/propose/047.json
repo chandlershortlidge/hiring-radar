@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ad61ba8535fc59175c1af1e833be91450ce44ed9a33af24ade2304c178b3aac6",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only support is the years-of-experience line \\\"3+ years of machine learning R&D and deployment experience,\\\" which does not count as a named skill, and no other required mention of AI deployment appears.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only support is the years-of-experience line \"3+ years of machine learning R&D and deployment experience,\" which does not count as a named skill, and no other required mention of AI deployment appears.",
+  "error": null
+}

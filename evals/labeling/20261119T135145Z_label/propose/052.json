@@ -1,0 +1,14 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "deep-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "41c864ee18e060da9851eb449585227eea1520acff09382ef918217c945a3344",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required-qualifications bullet names deep learning in \\\"Quantization, sparsity, or algorithmic optimization for deep learning\\\", and rule 3 says a required mention wins, so the agreed required label and quoted raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required-qualifications bullet names deep learning in \"Quantization, sparsity, or algorithmic optimization for deep learning\", and rule 3 says a required mention wins, so the agreed required label and quoted raw_text stand.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "claude-code",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "bb90b0a29cc6ff1bd41892a108ac0b51c9249da15ba8bb34f305c3f3a423afea",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, a qualification bullet under 'WHAT YOU’LL NEED' explicitly names 'Claude Code' as one of the required daily AI coding tools.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, a qualification bullet under 'WHAT YOU’LL NEED' explicitly names 'Claude Code' as one of the required daily AI coding tools.",
+  "error": null
+}

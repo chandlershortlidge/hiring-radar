@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "09008040730dec49e3bac22b4219fb2a7bede055751ad4d02935fb7ccd915024",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet under 'You should apply if' explicitly names ML/AI ('thoughtful about responsible ML/AI'), and under Rule 3 this required mention wins.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet under 'You should apply if' explicitly names ML/AI ('thoughtful about responsible ML/AI'), and under Rule 3 this required mention wins.",
+  "error": null
+}

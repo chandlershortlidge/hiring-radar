@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "mcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "136bb9ff265cbe4163cc93d0f9dde66fa104572abdbefca3e59b61023669cd3c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'Anthropic MCP' is explicitly named as an example of required production experience in a qualification bullet under 'What we're looking for'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'Anthropic MCP' is explicitly named as an example of required production experience in a qualification bullet under 'What we're looking for'.",
+  "error": null
+}

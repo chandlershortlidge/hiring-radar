@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "12149bb3df92b3f33cfd10490f5757cdb31181cdd1aec6633148a9acde41fcb9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the qualifications bullet \\\"Proficiency in PyTorch and/or TensorFlow with experience training and deploying large-scale models\\\" is a required skill mention, and the agreed raw_text is quoted verbatim from it, so the label stands (the MLOps \\\"deployment pipelines\\\" bullet also supports it under rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the qualifications bullet \"Proficiency in PyTorch and/or TensorFlow with experience training and deploying large-scale models\" is a required skill mention, and the agreed raw_text is quoted verbatim from it, so the label stands (the MLOps \"deployment pipelines\" bullet also supports it under rule 3).",
+  "error": null
+}

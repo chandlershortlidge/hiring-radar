@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7ce9613529104f7a76409cca33cc9014fba4a66b3172e7260ecb999c9bd83af5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence describing the candidate as someone who \\\"can move fluidly between prompt engineering, backend systems, and model optimization\\\" names backend systems as a capability the candidate must have, so the agreed required backend-development label with raw_text \\\"backend systems\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence describing the candidate as someone who \"can move fluidly between prompt engineering, backend systems, and model optimization\" names backend systems as a capability the candidate must have, so the agreed required backend-development label with raw_text \"backend systems\" stands.",
+  "error": null
+}

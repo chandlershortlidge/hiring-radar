@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0e7f43b693250eae050a0f3873cbcf7bf06e80ef4b50b16d3296c433e82f8d91",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the only Azure mention sits inside the 'What Sets You Apart' section, which is the preferred tier and not 'What You Must Have', so under rule 3 no required mention exists and nice_to_have fits; the credential is also just one option among several cloud platforms.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the only Azure mention sits inside the 'What Sets You Apart' section, which is the preferred tier and not 'What You Must Have', so under rule 3 no required mention exists and nice_to_have fits; the credential is also just one option among several cloud platforms.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "dc92ff5adfd744a60ebdcd9238dadb8c01eafee766e2b0e53bc5e2aeebdf84f3",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification bullet explicitly asks for experience with ML systems spanning production infrastructure.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification bullet explicitly asks for experience with ML systems spanning production infrastructure.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "quantization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ce87c9a3aadfb5856c8cb6acbee94caae1911370d43ebdb74dd8d3a284bbc984",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for familiarity with quantization, making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for familiarity with quantization, making it a valid nice-to-have skill.",
+  "error": null
+}

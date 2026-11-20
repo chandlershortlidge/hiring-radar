@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "snowflake",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "133ae0366451586567a4712f80c3a8dfe9a247c81749f86fab08a2fea7975e27",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 and rule 3, 'Snowflake/Databricks familiarity' appears in the required qualifications list before the Nice-to-Haves heading and explicitly names Snowflake.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 and rule 3, 'Snowflake/Databricks familiarity' appears in the required qualifications list before the Nice-to-Haves heading and explicitly names Snowflake.",
+  "error": null
+}

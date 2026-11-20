@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "react",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "702f173d685024db47579534568c47946f9dd954a208dbb51eb78cc7bd2ebf10",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Bonus: Experience with ... Streamlit/React' bullet sits in the 'What You Bring' qualifications and names React, so tagging react as nice_to_have with raw_text \\\"Streamlit/React\\\" is supported and the verbatim quote checks out.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Bonus: Experience with ... Streamlit/React' bullet sits in the 'What You Bring' qualifications and names React, so tagging react as nice_to_have with raw_text \"Streamlit/React\" is supported and the verbatim quote checks out.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 80,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8e9f8493f574d415f95693ba4366cbaf1e83f1dbb880043a9a395af5f82a5ef0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the bullet is a required qualification, and under rule 3 the quoted \\\"model optimization\\\" sits beside \\\"inference serving\\\" in a production-deployment track-record requirement, so inference-optimization is supported as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the bullet is a required qualification, and under rule 3 the quoted \"model optimization\" sits beside \"inference serving\" in a production-deployment track-record requirement, so inference-optimization is supported as agreed.",
+  "error": null
+}

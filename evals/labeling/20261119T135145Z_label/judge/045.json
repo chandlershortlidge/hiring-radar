@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "bc391c9234a7db4d062ad27d2c322083c78f7795f896d55c191ce657c2d34e8d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 2, a Preferred/Bonus qualification bullet asks for experience building customer-facing API platforms, which counts as a nice-to-have skill for building APIs.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 2, a Preferred/Bonus qualification bullet asks for experience building customer-facing API platforms, which counts as a nice-to-have skill for building APIs.",
+  "error": null
+}

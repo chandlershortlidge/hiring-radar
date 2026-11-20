@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "beadd26f4080c9b8e6528c0950f20c0092d461a91324923253b53121191134b0",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the MINIMUM QUALIFICATIONS bullet \\\"Proven experience training and deploying language models to production\\\" names model development as a required skill, and Rule 3 makes that required mention decisive over labeler A's omission.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the MINIMUM QUALIFICATIONS bullet \"Proven experience training and deploying language models to production\" names model development as a required skill, and Rule 3 makes that required mention decisive over labeler A's omission.",
+  "error": null
+}

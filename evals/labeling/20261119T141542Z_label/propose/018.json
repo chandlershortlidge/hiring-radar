@@ -1,0 +1,14 @@
+{
+  "item": 18,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1ddbed07f3523b920e5db19af5cff834a70778f8d47fc282de9fd1280bb15bbc",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the cloud mention sits in the 'What Sets You Apart' section as one option in an 'at least one of the following' credential list, so it is nice_to_have, not required (rule 3 does not apply because no required mention exists).\"}",
+  "decision": "A",
+  "why": "Under rule 1 the cloud mention sits in the 'What Sets You Apart' section as one option in an 'at least one of the following' credential list, so it is nice_to_have, not required (rule 3 does not apply because no required mention exists).",
+  "error": null
+}

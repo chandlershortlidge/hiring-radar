@@ -1,0 +1,46 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLflow\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Platform & MLOps Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Posting appears truncated at the end. Only labeled skills explicitly required ('The role requires strong experience with...'); skipped 'MLOps', 'AI/ML', 'observability', and 'cloud-based solutions' as they only appear in the title or responsibilities.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Platform & MLOps Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Posting appears truncated at the end. Only labeled skills explicitly required ('The role requires strong experience with...'); skipped 'MLOps', 'AI/ML', 'observability', and 'cloud-based solutions' as they only appear in the title or responsibilities."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "019466e57a03c289752da5e002f9f38f13ce6c53b44bcb72646ec78722394621",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

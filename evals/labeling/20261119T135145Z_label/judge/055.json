@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "206195cbf0b638fc572a3af2a618f1f9db75de2bad482fd4baf2d0a9bb79842e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, 'transformer internals' is explicitly named in a qualification bullet under REQUIRED QUALIFICATIONS, supporting the required `transformers` skill.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, 'transformer internals' is explicitly named in a qualification bullet under REQUIRED QUALIFICATIONS, supporting the required `transformers` skill.",
+  "error": null
+}

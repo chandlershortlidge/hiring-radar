@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "61dcb521d4df5c47e56bccf9cb2725195190e7f7454fd510323aac6bf38dc7ff",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required 'Who You Are' bullet names 'distributed control systems' as delivered experience, and under rule 3 a required mention wins, so the agreed required tag with that raw_text stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required 'Who You Are' bullet names 'distributed control systems' as delivered experience, and under rule 3 a required mention wins, so the agreed required tag with that raw_text stands.",
+  "error": null
+}

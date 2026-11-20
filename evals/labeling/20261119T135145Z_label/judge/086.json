@@ -1,0 +1,15 @@
+{
+  "item": 86,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3de8b2b111281828fbd7c4c32800a385d5efd22b999cf186d70e20e7dd96e603",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet under 'What You’ll Need' explicitly requires experience with a 'cloud computing environment', confirming the agreed label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet under 'What You’ll Need' explicitly requires experience with a 'cloud computing environment', confirming the agreed label.",
+  "error": null
+}

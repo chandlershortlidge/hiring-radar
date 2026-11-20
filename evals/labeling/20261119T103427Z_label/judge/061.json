@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d2b0e31a45e2ef5786b9568949735eb600619000a6217f09f60bae3b3eaf7e9d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly naming 'asynchronous programming' under a non-required section counts as a nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly naming 'asynchronous programming' under a non-required section counts as a nice_to_have skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "95f56399b91e125435995a8abf6c89f73ce5dc9f57374d99caffc080511c170c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred bullet \\\"Familiarity with model encryption, privacy-preserving machine learning, and secure AI techniques\\\" is a qualification that names the skill, so the agreed nice_to_have label and the verbatim raw_text are correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred bullet \"Familiarity with model encryption, privacy-preserving machine learning, and secure AI techniques\" is a qualification that names the skill, so the agreed nice_to_have label and the verbatim raw_text are correct.",
+  "error": null
+}

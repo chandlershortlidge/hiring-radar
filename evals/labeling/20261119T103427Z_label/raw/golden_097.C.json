@@ -1,0 +1,224 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ETL pipelines\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered agents\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered agents\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP servers\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation approaches and frameworks\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"retrieval-augmented generation (RAG)\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent architectures\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering fundamentals\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Rust\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"async-processing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"asynchronous programming\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"graphql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GraphQL\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"vue\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Vue\"\n    },\n    {\n      \"skill_id\": \"angular\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Angular\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerized\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud environments\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes [K8s]\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"infrastructure as code\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Data Cleaning\",\n      \"raw_text\": \"data cleaning\"\n    },\n    {\n      \"label\": \"Agentic Workflows\",\n      \"raw_text\": \"agentic workflows\"\n    },\n    {\n      \"label\": \"Agent Planning\",\n      \"raw_text\": \"planning\"\n    },\n    {\n      \"label\": \"Algorithms & Data Structures\",\n      \"raw_text\": \"algorithms, data structures\"\n    },\n    {\n      \"label\": \"Design Patterns\",\n      \"raw_text\": \"design patterns\"\n    },\n    {\n      \"label\": \"Agile\",\n      \"raw_text\": \"Agile\"\n    },\n    {\n      \"label\": \"Issue Tracking\",\n      \"raw_text\": \"issue tracking\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer, Agentic Systems\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, or a related discipline\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'asynchronous programming' to 'async-processing' (flagged uncertain). 'APIs' under requirements covers 'REST' under nice-to-have. 'A BS degree' is required; 'An advanced degree' is nice-to-have without a specific level (MS/PhD), so kept degree as bachelor/required.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL pipelines"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered agents"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLM-powered agents"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP servers"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation approaches and frameworks"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation (RAG)"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent architectures"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering fundamentals"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "nice_to_have",
+        "raw_text": "asynchronous programming",
+        "uncertain": true
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "vue",
+        "requirement": "nice_to_have",
+        "raw_text": "Vue"
+      },
+      {
+        "skill_id": "angular",
+        "requirement": "nice_to_have",
+        "raw_text": "Angular"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes [K8s]"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Data Cleaning",
+        "raw_text": "data cleaning"
+      },
+      {
+        "label": "Agentic Workflows",
+        "raw_text": "agentic workflows"
+      },
+      {
+        "label": "Agent Planning",
+        "raw_text": "planning"
+      },
+      {
+        "label": "Algorithms & Data Structures",
+        "raw_text": "algorithms, data structures"
+      },
+      {
+        "label": "Design Patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "label": "Agile",
+        "raw_text": "Agile"
+      },
+      {
+        "label": "Issue Tracking",
+        "raw_text": "issue tracking"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer, Agentic Systems",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, or a related discipline",
+    "uncertain": [],
+    "notes": "Mapped 'asynchronous programming' to 'async-processing' (flagged uncertain). 'APIs' under requirements covers 'REST' under nice-to-have. 'A BS degree' is required; 'An advanced degree' is nice-to-have without a specific level (MS/PhD), so kept degree as bachelor/required."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2fbfbbcb4f6fe231f42ea7e4f283751ddef993c4e4d9afe6bc6eda412306424c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

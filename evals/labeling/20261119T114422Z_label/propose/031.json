@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b30d490fed189d323319d78d0a2923b5a445d7346f5e306226d83a10a0de478b",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, \\\"a software engineer that applies sound engineering principles\\\" is a role-descriptor in the About the Role profile, closer to a job title than a named qualification, and the posting's actual skill asks are systems and operations (rule 5 forbids adding a broader skill the text doesn't name).\"}",
+  "decision": "drop",
+  "why": "Under rule 1, \"a software engineer that applies sound engineering principles\" is a role-descriptor in the About the Role profile, closer to a job title than a named qualification, and the posting's actual skill asks are systems and operations (rule 5 forbids adding a broader skill the text doesn't name).",
+  "error": null
+}

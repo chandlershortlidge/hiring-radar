@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "6f0919796c15d3508e406d5134d9fa464283ed6cc635ce2cdf9ae6cec3957505",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, 'financial/tax automation' describes a domain rather than explicitly naming workflow automation, so the broader skill should not be added.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, 'financial/tax automation' describes a domain rather than explicitly naming workflow automation, so the broader skill should not be added.",
+  "error": null
+}

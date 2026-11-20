@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "93aa01b3d9a11e3839551e768d7b339c7a38d8c2c978cbc480e18ff6daea64db",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, the mention of 'model training and deployment systems' appears in the responsibilities section ('In This Role, You’ll Get to:') and does not count as a requested skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, the mention of 'model training and deployment systems' appears in the responsibilities section ('In This Role, You’ll Get to:') and does not count as a requested skill.",
+  "error": null
+}

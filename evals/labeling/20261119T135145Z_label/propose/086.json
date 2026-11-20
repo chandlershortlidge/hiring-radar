@@ -1,0 +1,14 @@
+{
+  "item": 86,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1fd5605f7b73e851252dce02f8bfc70045319b91e3fffbea9f43f1dd8cd24066",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the 'What You'll Need' section names cloud computing as a required experience area ('ML training code for use in a cloud computing environment'), and Rule 3 confirms the required mention, so the agreed label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the 'What You'll Need' section names cloud computing as a required experience area ('ML training code for use in a cloud computing environment'), and Rule 3 confirms the required mention, so the agreed label and raw_text stand.",
+  "error": null
+}

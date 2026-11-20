@@ -1,0 +1,36 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Treated 'You might thrive in this role if you:' as the main requirements section (required). Excluded skills mentioned only in the 'In this role, you will:' responsibilities section (e.g. evaluation, data pipelines, machine learning infrastructure). 'Strong experience' is not a seniority trigger per the guide ('proven experience' is).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Treated 'You might thrive in this role if you:' as the main requirements section (required). Excluded skills mentioned only in the 'In this role, you will:' responsibilities section (e.g. evaluation, data pipelines, machine learning infrastructure). 'Strong experience' is not a seniority trigger per the guide ('proven experience' is)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "14e300b0ddece0682062915f828ce3e49bd1d2b31d78304255227e6efe0bea56",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

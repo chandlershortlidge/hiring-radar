@@ -1,0 +1,15 @@
+{
+  "item": 37,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "80e92654712bc9d9812e41515439f64f3393d110b8aa712cfb05f7f3a6ade0bd",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Per rule 4, 'model training' only appears in the responsibilities section ('In This Role, You’ll Get to:') and is not requested as a qualification.\"}",
+  "decision": "drop",
+  "why": "Per rule 4, 'model training' only appears in the responsibilities section ('In This Role, You’ll Get to:') and is not requested as a qualification.",
+  "error": null
+}

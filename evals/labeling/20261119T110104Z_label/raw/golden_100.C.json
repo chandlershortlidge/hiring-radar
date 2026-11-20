@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Principal Scientist, Machine Learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern LLMs\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"benchmarking\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"translational data science\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"interpretability\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scientific agents\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Multimodal modeling\",\n      \"raw_text\": \"multimodal modeling\"\n    },\n    {\n      \"label\": \"Representation learning\",\n      \"raw_text\": \"representation learning\"\n    },\n    {\n      \"label\": \"Post-training\",\n      \"raw_text\": \"post-training\"\n    },\n    {\n      \"label\": \"ML systems\",\n      \"raw_text\": \"ML systems\"\n    },\n    {\n      \"label\": \"Computational biology\",\n      \"raw_text\": \"computational biology\"\n    },\n    {\n      \"label\": \"Biological foundation models\",\n      \"raw_text\": \"biological foundation models\"\n    },\n    {\n      \"label\": \"Protein language models\",\n      \"raw_text\": \"protein language models\"\n    },\n    {\n      \"label\": \"Genomic foundation models\",\n      \"raw_text\": \"genomic foundation models\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist, Machine Learning - Multimodal Biological Reasoning\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD, MS, or equivalent experience in computational biology, machine learning, bioengineering, computer science, systems biology, quantitative biology, translational science, or a related field.\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'benchmarking' to evaluation, 'translational data science' to data-science, 'interpretability' to explainable-ai, and 'scientific agents' to agents (marked uncertain). Put multimodal modeling, representation learning, post-training, and biological/protein/genomic foundation models in unmapped. 'hallucination risk' left unmapped as it describes judgment around risk rather than building hallucination-detection.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Principal Scientist, Machine Learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "modern LLMs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "benchmarking",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "translational data science",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "interpretability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "scientific agents",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multimodal modeling",
+        "raw_text": "multimodal modeling"
+      },
+      {
+        "label": "Representation learning",
+        "raw_text": "representation learning"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "ML systems",
+        "raw_text": "ML systems"
+      },
+      {
+        "label": "Computational biology",
+        "raw_text": "computational biology"
+      },
+      {
+        "label": "Biological foundation models",
+        "raw_text": "biological foundation models"
+      },
+      {
+        "label": "Protein language models",
+        "raw_text": "protein language models"
+      },
+      {
+        "label": "Genomic foundation models",
+        "raw_text": "genomic foundation models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist, Machine Learning - Multimodal Biological Reasoning",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD, MS, or equivalent experience in computational biology, machine learning, bioengineering, computer science, systems biology, quantitative biology, translational science, or a related field.",
+    "uncertain": [],
+    "notes": "Mapped 'benchmarking' to evaluation, 'translational data science' to data-science, 'interpretability' to explainable-ai, and 'scientific agents' to agents (marked uncertain). Put multimodal modeling, representation learning, post-training, and biological/protein/genomic foundation models in unmapped. 'hallucination risk' left unmapped as it describes judgment around risk rather than building hallucination-detection."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "8fa968fa2f6aa87806095e6a48f15ed23d37f694f04c2cad9a440044616ac26b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f60a580cf9f30867bf320119042cb6f8289047d80133f93a0a882daaaad05ed2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a sentence naming a candidate qualification ('technical skills including... software development') counts as a valid required skill mention.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a sentence naming a candidate qualification ('technical skills including... software development') counts as a valid required skill mention.",
+  "error": null
+}

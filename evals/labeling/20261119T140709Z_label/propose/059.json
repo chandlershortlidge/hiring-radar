@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6ea38c35dc0135a97d4838332e821b03767fab5668eca9aabcd0dbba1d7db9e1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention of \\\"data modeling\\\" is in the title-like header \\\"Senior Data Engineer, Taxonomy, AI Data Modeling, MLOps, YouTube Business\\\", and a job title does not count, so the required label is unsupported by the visible excerpt.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention of \"data modeling\" is in the title-like header \"Senior Data Engineer, Taxonomy, AI Data Modeling, MLOps, YouTube Business\", and a job title does not count, so the required label is unsupported by the visible excerpt.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "terraform",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6b1006beecc3e24de3459593dde126f809636d5ea6644294709f96ba3e71ac89",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under Preferred Skills explicitly names Terraform, so it is a nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under Preferred Skills explicitly names Terraform, so it is a nice-to-have skill.",
+  "error": null
+}

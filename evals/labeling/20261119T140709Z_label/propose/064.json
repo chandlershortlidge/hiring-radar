@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "04e914d537b878108ebf7fea65f72c41941fc47d71ca78952cb0bad7efceb811",
+  "raw": "{\"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\"}\n\nUnder rule 3, the AWS mention sits in a \"one or more of these areas\" list, where AWS is one of three cloud options alongside Azure and GCP, so it is not a specific required mention. Rule 5 bars adding a broader \"cloud\" skill, so I kept `aws` but downgraded it to nice_to_have.",
+  "decision": null,
+  "why": null,
+  "error": null
+}

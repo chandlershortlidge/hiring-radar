@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "python",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "09005159e6af7021ec7727aa3f14a811d953092ed190c8f469f522d39218c745",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, Python is named in a Minimum Qualifications bullet (\"proficient in developing using common programming languages (such as Python and Golang)\"), and under Rule 3 that required mention supports the agreed required label with raw_text \"Python\".\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 95 (char 94)"
+}

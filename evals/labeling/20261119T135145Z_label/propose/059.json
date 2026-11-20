@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "076f0c3e39d9d7bb63f2a66d8f0b7ccb72f39282d56391b7ee1710f389998040",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification 'Deep understanding of modern AI/ML models, particularly LLMs' names the skill directly, and the agreed raw_text 'modern AI/ML models' appears verbatim, so the required label stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification 'Deep understanding of modern AI/ML models, particularly LLMs' names the skill directly, and the agreed raw_text 'modern AI/ML models' appears verbatim, so the required label stands (rule 3).",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8df105ec1ff05c0a4f98cb3e2640acf785d3ea8b0e804a8a30afc20da4f35465",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet under 'Skills And Attributes For Success' explicitly requires understanding of 'agentic architectures', matching the agreed label and raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet under 'Skills And Attributes For Success' explicitly requires understanding of 'agentic architectures', matching the agreed label and raw_text.",
+  "error": null
+}

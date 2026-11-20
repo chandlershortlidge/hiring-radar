@@ -1,0 +1,15 @@
+{
+  "item": 51,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "41ea5d99e1013222a15168d2c9d148dd7d6956d9d19ee5ba93070756f8e66e25",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Required Skills bullet naming 'LLM agent systems' directly requires experience with LLMs and provides the determining verbatim raw_text.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Required Skills bullet naming 'LLM agent systems' directly requires experience with LLMs and provides the determining verbatim raw_text.",
+  "error": null
+}

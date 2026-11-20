@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ee83195b1ff8ee28df0b9e2cde1319f1a63cdd74601dbc53f0b5fb5861ceb89d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asks for \\\"experience operationalising models\\\", which directly describes the required MLOps skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asks for \"experience operationalising models\", which directly describes the required MLOps skill.",
+  "error": null
+}

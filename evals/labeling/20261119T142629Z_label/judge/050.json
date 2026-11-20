@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "774fb1bdae26707bba6a57d7be91394347444037a58ccfb8261b7cd3a08a4f02",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under Required Skills explicitly requires hands-on experience with \\\"Async Python\\\", which supports the `async-processing` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under Required Skills explicitly requires hands-on experience with \"Async Python\", which supports the `async-processing` skill.",
+  "error": null
+}

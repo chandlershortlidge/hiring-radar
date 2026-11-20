@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "91d7c6b9bc71a9a5c18edfac1c5dfd2576700e829632873c8adac44b2d83cf08",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Basic Qualifications bullet explicitly requires experience 'developing AI and ML algorithms or technologies', confirming the required `ai-ml` label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Basic Qualifications bullet explicitly requires experience 'developing AI and ML algorithms or technologies', confirming the required `ai-ml` label.",
+  "error": null
+}

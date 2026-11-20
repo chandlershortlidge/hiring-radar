@@ -1,0 +1,15 @@
+{
+  "item": 15,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "2cb9d6a0ef0caba4f997973380bc8653881f0f7175c99e8f372a251800412b87",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a preferred qualification bullet specifically asks that the candidate has 'trained models yourself', which supports `model-development` as a nice-to-have skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a preferred qualification bullet specifically asks that the candidate has 'trained models yourself', which supports `model-development` as a nice-to-have skill.",
+  "error": null
+}

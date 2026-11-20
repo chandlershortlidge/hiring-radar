@@ -1,0 +1,14 @@
+{
+  "item": 66,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dff2fb35fbe79cb7e7f927eedb04ad04ad71c5e32924d252b2128a96f886f5da",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have qualification sentence \\\"Experience working on large code bases or large machine learning models at scale\\\" names machine learning as an experience requirement, and the agreed raw_text quotes it word for word, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have qualification sentence \"Experience working on large code bases or large machine learning models at scale\" names machine learning as an experience requirement, and the agreed raw_text quotes it word for word, so the agreed label stands.",
+  "error": null
+}

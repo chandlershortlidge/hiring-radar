@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3da1cf09b9dfce19ded4b761246eaf05433c862046da312f4e7bf140c03fc8e4",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the visible posting places LLM/agentic automation only under the Preferred Qualifications heading, and B's quoted phrase \"spin up LLM based agents\" does not appear in the excerpt, so the nice_to_have reading with raw_text \"LLM/agentic automation\" stands (rule 1 applies since it names a skill).\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 163 (char 162)"
+}

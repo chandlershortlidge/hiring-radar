@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "e21a4a7ef32aab9bd9e66b8fa26f21ccb0415128ca686bfce12af132a8a17dbd",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for the ability to 'apply AI-enabled approaches', as well as a strong background in applied machine learning.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for the ability to 'apply AI-enabled approaches', as well as a strong background in applied machine learning.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5463e99c1c5d8e0405c4ef775f608f9f9724cd41e81b8d72beb81e512542a7ab",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, 'supporting the data backend' in a Data Engineer qualification refers to data infrastructure rather than explicitly naming backend software development.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, 'supporting the data backend' in a Data Engineer qualification refers to data infrastructure rather than explicitly naming backend software development.",
+  "error": null
+}

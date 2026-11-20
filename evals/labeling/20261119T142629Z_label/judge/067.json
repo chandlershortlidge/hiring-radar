@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8fc6a8d604b1f6cb6a10d7f07b2a1905d7ec4e3942fe9fc71b4b80f471b5efab",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence explicitly demands 'a track record in deploying large-scale AI', which supports the agreed required label and raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence explicitly demands 'a track record in deploying large-scale AI', which supports the agreed required label and raw_text.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 54,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "095273c30168799c12024f1bfb1fa427a49e3461363172068e37b8d7b4660bbc",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"Familiarity with the production ML lifecycle, including deployment, monitoring and retraining\\\" names ML deployment, and under rule 3 the quoted phrase \\\"including deployment\\\" supports the required ai-deployment label as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"Familiarity with the production ML lifecycle, including deployment, monitoring and retraining\" names ML deployment, and under rule 3 the quoted phrase \"including deployment\" supports the required ai-deployment label as agreed.",
+  "error": null
+}

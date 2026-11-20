@@ -1,0 +1,14 @@
+{
+  "item": 78,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "kubernetes",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "898fd436f9808f4a3107344f47e7af5eea51fffeb9b404d1c50cd331aa7cc0e0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Familiarity with containerized deployments (Docker/Kubernetes)\\\" names Kubernetes, the raw_text appears verbatim, and its placement under PREFERRED / BONUS makes nice_to_have the correct requirement level.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Familiarity with containerized deployments (Docker/Kubernetes)\" names Kubernetes, the raw_text appears verbatim, and its placement under PREFERRED / BONUS makes nice_to_have the correct requirement level.",
+  "error": null
+}

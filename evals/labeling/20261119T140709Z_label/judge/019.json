@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "5333e82694a3f6cd2cf574ff8079d9ca2873dfaf8792029dc33c5d4e1deafde6",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, the mention of 'security' is in the 'What You Will Do' responsibilities section and does not count unless also asked for in the qualifications.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, the mention of 'security' is in the 'What You Will Do' responsibilities section and does not count unless also asked for in the qualifications.",
+  "error": null
+}

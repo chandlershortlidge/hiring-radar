@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "databricks",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "aaeed201dac51ed2865f09450b6d2a45dc6c9b0e9af9705b32c1849cec49da80",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, Databricks is named in a qualification bullet, and since it only appears under the 'What Sets You Apart' preferred qualifications section without a required mention for Rule 3 to elevate it, it is nice_to_have.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, Databricks is named in a qualification bullet, and since it only appears under the 'What Sets You Apart' preferred qualifications section without a required mention for Rule 3 to elevate it, it is nice_to_have.",
+  "error": null
+}

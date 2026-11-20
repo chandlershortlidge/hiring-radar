@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "docker",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "494c4e6f5cf80dd3f58640925c3c11a069906b395ac5953c9e584683833a3ab1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, Docker is explicitly named as an example in a Minimum Qualifications sentence, making the agreed required label and raw_text correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, Docker is explicitly named as an example in a Minimum Qualifications sentence, making the agreed required label and raw_text correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "cheminformatics",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7286b62c560c1a7d15cbb996ae72fc92cd4996f5e3046e97b7cdfa6ce1a2f84f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence explicitly names cheminformatics toolkits, and the trailing \\\"is preferred\\\" applies to that whole list, so nice_to_have with the quoted raw_text is correct (rule 5 is not triggered because the skill is named directly).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence explicitly names cheminformatics toolkits, and the trailing \"is preferred\" applies to that whole list, so nice_to_have with the quoted raw_text is correct (rule 5 is not triggered because the skill is named directly).",
+  "error": null
+}

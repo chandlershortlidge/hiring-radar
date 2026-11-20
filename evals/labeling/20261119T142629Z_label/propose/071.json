@@ -1,0 +1,14 @@
+{
+  "item": 71,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "agent-state-management",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f589f88f1b7a3a8f774429917d068bec7168a4b2f8b06cfbb4689477c908894a",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting names only \"Memory\" as one example in a list of AI technologies (alongside LLM Inference, Guardrails, and VectorDBs), not agent state management, so the agreed label adds a specific skill the text does not name.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 68 (char 67)"
+}

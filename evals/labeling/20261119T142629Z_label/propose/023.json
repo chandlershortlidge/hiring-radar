@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cb634d2e1951ccf9256dc16a308776e88cf820b14beb8e63700bbdf06bfacfe5",
+  "raw": "{\"decision\": \"B\", \"why\": \"Rule 3: the required qualification ('Proven ability to design and implement end-to-end ML pipelines for data management, model training, evaluation, and deployment') is a required mention that outranks the preferred-section mention labeler A used, so `evaluation` is required.\"}",
+  "decision": "B",
+  "why": "Rule 3: the required qualification ('Proven ability to design and implement end-to-end ML pipelines for data management, model training, evaluation, and deployment') is a required mention that outranks the preferred-section mention labeler A used, so `evaluation` is required.",
+  "error": null
+}

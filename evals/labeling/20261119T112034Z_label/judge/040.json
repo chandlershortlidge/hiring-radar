@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "bc1f2e6f7727f836f4637a760933c7be5eb702f703fa5e2007c828258c6bc8c6",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line mentioning a job title ('experience as a software engineer') does not count as a named skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line mentioning a job title ('experience as a software engineer') does not count as a named skill.",
+  "error": null
+}

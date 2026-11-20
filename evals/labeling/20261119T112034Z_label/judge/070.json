@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3672c96140dc37e2e1f584ac786bbf54fb21835c551ce6299353b0ca0becf6cd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'networking' is explicitly named in a required qualification bullet ('Understand performance at a systems level — CPU, memory, networking, and data access').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'networking' is explicitly named in a required qualification bullet ('Understand performance at a systems level — CPU, memory, networking, and data access').",
+  "error": null
+}

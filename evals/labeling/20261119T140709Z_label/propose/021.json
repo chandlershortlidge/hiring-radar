@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fd46618940461ecb52fd076698edb3d90d0b9d798766f3ab731bd0d618869f8f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only quoted mention ('AI-powered applications') sits in the 'What you'll do' responsibilities list, and the visible excerpt does not ask the candidate for AI/ML skills as a qualification.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only quoted mention ('AI-powered applications') sits in the 'What you'll do' responsibilities list, and the visible excerpt does not ask the candidate for AI/ML skills as a qualification.",
+  "error": null
+}

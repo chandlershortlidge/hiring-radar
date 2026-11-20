@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "vector-search",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b55e9cabf1fd371ff9ff46808ef9b400a967236afe5b67990475a6fddd44ee2c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names \\\"Similarity Search and VectorDBs\\\" as an experience area, so vector-search counts as a nice_to_have skill with the agreed raw_text, and rule 5 adds nothing broader.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet names \"Similarity Search and VectorDBs\" as an experience area, so vector-search counts as a nice_to_have skill with the agreed raw_text, and rule 5 adds nothing broader.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "10e41db02e3b4cbe3ab6905413e31971f58a681ee1ded3ab2488b68af1b04487",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names experience with cost-governance/FinOps for AI infrastructure, so the skill counts, and nice_to_have fits the preferred section with the raw_text quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet names experience with cost-governance/FinOps for AI infrastructure, so the skill counts, and nice_to_have fits the preferred section with the raw_text quoted verbatim.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 76,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "56b599fc4a7a9b8907f1139b65c17f7d1312bac4f279c261fc5ede8d60dc28f9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'The qualifications you need' explicitly asks for an understanding of 'data governance, privacy, and compliance' within an AI security context, supporting the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'The qualifications you need' explicitly asks for an understanding of 'data governance, privacy, and compliance' within an AI security context, supporting the agreed required label.",
+  "error": null
+}

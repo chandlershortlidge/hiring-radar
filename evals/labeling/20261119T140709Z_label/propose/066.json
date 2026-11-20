@@ -1,0 +1,14 @@
+{
+  "item": 66,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ci-cd",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b39f3c0850efd0501c72fe001888525d98277fdb3434f84e844faf9689acbb71",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the CI/CD mention sits in the qualification list under the 'You Must Have' heading, and under rule 3 that heading makes the mention a required one, so the agreed 'required' label with raw_text \\\"DevSecOps, CI/CD\\\" stands, though the 'one or more of these areas' wording makes it a soft requirement.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the CI/CD mention sits in the qualification list under the 'You Must Have' heading, and under rule 3 that heading makes the mention a required one, so the agreed 'required' label with raw_text \"DevSecOps, CI/CD\" stands, though the 'one or more of these areas' wording makes it a soft requirement.",
+  "error": null
+}

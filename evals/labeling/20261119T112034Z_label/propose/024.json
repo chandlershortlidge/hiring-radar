@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "62d8bb008123e2dff86141414eb41995f6c6da47282becf9869a92c1a4d58a8c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the required-section phrase \\\"focus on ML infrastructure\\\" is a verbatim, explicit mention of the ai-infrastructure domain, and it is not merely a job title under rule 1, so the required label stands.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the required-section phrase \"focus on ML infrastructure\" is a verbatim, explicit mention of the ai-infrastructure domain, and it is not merely a job title under rule 1, so the required label stands.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "85a29ff330b9e19d6b7cff9af320ed0750465be20fda239dbe09ba9fc48205dc",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes job titles only from counting as skills, whereas the job title explicitly states '(Senior)' as the seniority level for this role.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes job titles only from counting as skills, whereas the job title explicitly states '(Senior)' as the seniority level for this role.",
+  "error": null
+}

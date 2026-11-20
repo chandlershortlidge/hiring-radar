@@ -1,0 +1,58 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generative AI products\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"full-stack developer\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Typescript\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic product features\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"eval sets and LLMs as judges\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"MCP, Make (Figma Make product), and agentic coding appear only in the company description and responsibilities, not as candidate asks.\\n'We’re looking for people who have built generative AI products' in the intro paragraph is an explicit candidate requirement, mapping to llms (which supersedes the nice_to_have 'LLM' mention).\\nSeniority is set to null and marked uncertain: the posting states 'hiring AI Product Engineers across multiple levels' (all levels = none per guide), though it also lists '3+ years of experience' (mid) and 'Be a mentor to, and be mentored by'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative AI products"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "full-stack developer"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Typescript"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic product features"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "eval sets and LLMs as judges"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "MCP, Make (Figma Make product), and agentic coding appear only in the company description and responsibilities, not as candidate asks.\n'We’re looking for people who have built generative AI products' in the intro paragraph is an explicit candidate requirement, mapping to llms (which supersedes the nice_to_have 'LLM' mention).\nSeniority is set to null and marked uncertain: the posting states 'hiring AI Product Engineers across multiple levels' (all levels = none per guide), though it also lists '3+ years of experience' (mid) and 'Be a mentor to, and be mentored by'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "0ff8032398611f13c96a2c3e2d9f07a0bd73e1116cbf178e9b0bf001977c51bb",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "streamlit",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f34e2cf5325034f9569ef7591c2eb5b811d0d5693b285a7c85f683f21c9c50d7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Bonus:' qualification bullet names Streamlit, so it counts as a nice_to_have, and the raw_text \\\"Streamlit/React\\\" appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Bonus:' qualification bullet names Streamlit, so it counts as a nice_to_have, and the raw_text \"Streamlit/React\" appears verbatim in the posting.",
+  "error": null
+}

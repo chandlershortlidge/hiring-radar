@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f7592490ed438fe71082e522f8baada219d25b6e601fda54991b72adcc3b7377",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet \\\"You understand the full ML lifecycle and have significant experience operationalising models\\\" names machine learning as a required qualification, and rule 3 supports B's quoted raw_text \\\"understand the full ML lifecycle\\\" as the determining mention.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet \"You understand the full ML lifecycle and have significant experience operationalising models\" names machine learning as a required qualification, and rule 3 supports B's quoted raw_text \"understand the full ML lifecycle\" as the determining mention.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d408f73c052f17a457541725fc05992bc9e0bfcb03063ebf72595c548abbcafb",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the 'What We're Looking For' bullet requires hands-on experience 'building and deploying data science solutions', which names ML deployment as a required skill, and Rule 3 makes that required mention decisive.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the 'What We're Looking For' bullet requires hands-on experience 'building and deploying data science solutions', which names ML deployment as a required skill, and Rule 3 makes that required mention decisive.",
+  "error": null
+}

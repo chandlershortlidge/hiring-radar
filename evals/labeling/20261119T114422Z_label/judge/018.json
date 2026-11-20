@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "fa7fc3aeae61fe00f31e2982ea35de39a1f29a5363c41a99e0afb4255eb4252f",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet asking for hands-on experience 'training models' explicitly counts as a required skill for model development.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet asking for hands-on experience 'training models' explicitly counts as a required skill for model development.",
+  "error": null
+}

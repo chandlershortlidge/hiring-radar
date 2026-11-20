@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9f5d99b4b53a69f3cecf6aa32be8f7607e19b2c03c5d356cb752e40f14282a16",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification sentence \\\"design and implement end-to-end ML pipelines for ... model training, evaluation, and deployment\\\" names model training as a required skill, and rule 3 keeps the required mention quoted as \\\"model training\\\".\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification sentence \"design and implement end-to-end ML pipelines for ... model training, evaluation, and deployment\" names model training as a required skill, and rule 3 keeps the required mention quoted as \"model training\".",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "a53df3984c34c09907143060fbc38470545fb1f5fa68cac308723aca3dd70196",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for experience 'architecting and deploying agentic AI systems', which names the skill rather than just a job title.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for experience 'architecting and deploying agentic AI systems', which names the skill rather than just a job title.",
+  "error": null
+}

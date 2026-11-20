@@ -1,0 +1,18 @@
+{
+  "item": 58,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Strong experience with Google Cloud Platform (GCP) MLOps services\", \"requirement\": \"required\"}",
+  "key_sha256": "962db51488106ebecec50429ca50adad77e2bdad5167b9c615731b7ceb24a98d",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Strong experience with Google Cloud Platform (GCP) MLOps services\"}, \"why\": \"Under Rule 1, a years-of-experience line does not count, whereas the qualification sentence explicitly asks for experience with GCP MLOps services, making it the determining required mention under Rule 3.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Strong experience with Google Cloud Platform (GCP) MLOps services"
+  },
+  "why": "Under Rule 1, a years-of-experience line does not count, whereas the qualification sentence explicitly asks for experience with GCP MLOps services, making it the determining required mention under Rule 3.",
+  "error": null
+}

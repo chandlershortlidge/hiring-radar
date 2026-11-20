@@ -1,0 +1,15 @@
+{
+  "item": 47,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "54ca3cd2c7ec61a8a83e5ac6efcb962ad54a623a0c9f8f7d7c277f48565adabf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 and rule 3, the qualification bullet asking for 'experience with modern ML frameworks' directly names machine learning (ML) as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 and rule 3, the qualification bullet asking for 'experience with modern ML frameworks' directly names machine learning (ML) as a required skill.",
+  "error": null
+}
