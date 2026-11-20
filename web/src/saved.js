@@ -50,7 +50,9 @@ export function useSaved() {
 // The server's SORTS (app/queries.py), re-spoken in the browser: the Saved view has the
 // whole (small) set in hand, so it sorts locally instead of telling the server which jobs
 // to order. "Best fit" reuses rankJobs over a newest-first base, exactly what the main
-// list does, so both views rank identically.
+// list does, so both views rank identically. One difference, on purpose (HIR-391): the
+// main list first drops jobs older than FIT_DAYS; this view ranks every saved job
+// whatever its age, because the visitor saved them on purpose.
 const COMPARE = {
   newest: (a, b) => b.first_seen.localeCompare(a.first_seen) || b.id - a.id,
   oldest: (a, b) => a.first_seen.localeCompare(b.first_seen) || a.id - b.id,

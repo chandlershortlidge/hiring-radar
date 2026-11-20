@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
 import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
-import { fails, fit, gates, jobSeniority, metSkills, rankJobs, skillSides } from "./profile.js";
+import { FIT_DAYS, fails, fit, gates, jobSeniority, metSkills, rankJobs, recentJobs, skillSides } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 import { FlagNote, FlagToggle, useFlag } from "./FlagButton.jsx";
@@ -16,14 +16,15 @@ const PAGE = 20;
 // So that sort asks for the whole filtered set in one request, ranks it here, and pages
 // through the result locally. FIT_MAX is the largest page /api/jobs will serve, and the
 // honest limit of the trick: past it the ranking only covers the newest FIT_MAX jobs, so
-// the foot says so rather than quietly ranking a slice.
+// the foot says so rather than quietly ranking a slice. Of those, only the jobs first seen
+// in the last FIT_DAYS days are ranked and shown (HIR-391); the foot says that too.
 const FIT_MAX = 200;
 
 export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, openJobId, onOpened, onOpenPage,
   taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null, connect = false }) {
-  // Best fit is the default for someone who has a profile: it is why they made one. The
-  // profile loads synchronously, so this is right on the first render, not after a flash.
-  const [sort, setSort] = useState(() => (profile ? FIT : "newest"));
+  // Newest first is the default for everyone, profile or not (HIR-391). Best fit is a
+  // choice in the menu, not where the list opens.
+  const [sort, setSort] = useState("newest");
   const [page, setPage] = useState({ jobs: [], total: 0 });
   const [shown, setShown] = useState(PAGE);   // only "Best fit" pages locally; see FIT_MAX
   const [open, setOpen] = useState(null);
@@ -70,8 +71,13 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   }, [savedOn, savedIds, refreshKey]);
 
   // Ranked once per fetch, not once per row: every row's badge reads its own fit, but the
-  // order is one pass over the set. Ties keep the server's newest-first order.
-  const ordered = useMemo(() => (byFit ? rankJobs(profile, page.jobs, demand) : page.jobs), [byFit, profile, page.jobs, demand]);
+  // order is one pass over the set. Ties keep the server's newest-first order. The age
+  // check comes before the ranking: an old job is dropped without being scored, and the
+  // ranking is handed a shorter list and otherwise left alone.
+  const ordered = useMemo(() => (byFit ? rankJobs(profile, recentJobs(page.jobs), demand) : page.jobs), [byFit, profile, page.jobs, demand]);
+  // True when the server had more jobs than one request can carry and every one it sent
+  // is recent: there may be more recent jobs it did not send, so the foot names the cap.
+  const fitCapped = byFit && page.total > FIT_MAX && ordered.length === page.jobs.length;
   // The Saved view sorts locally (saved.js mirrors the server's sorts) because the ids
   // never leave the browser; the whole set is in hand, so there is nothing to page.
   const savedRows = useMemo(
@@ -128,7 +134,8 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
           </>)}
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
-            {profile && <option value={FIT}>Best fit</option>}
+            {/* The Saved view ranks every saved job whatever its age, so its label makes no age claim. */}
+            {profile && <option value={FIT}>{savedOn ? "Best fit" : `Best fit (last ${FIT_DAYS} days)`}</option>}
             {Object.entries(SORTS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
           </select>
         </div>
@@ -143,12 +150,14 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         {savedOn && !rows.length && (savedJobs || !savedIds.length) && <div className="empty">Nothing saved yet. Star a job to keep it here.</div>}
         {/* The "no posting contains those words" variant of this message went with the
             posting-text box (HIR-187): nothing in the UI can set `filters.text` any more. */}
-        {!savedOn && !loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
+        {!savedOn && !loading && !rows.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
       </div>
       <div className="jobs-foot">
         {!savedOn && left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
         <span>{savedOn ? `Showing all ${rows.length} saved` : `Showing ${rows.length} of ${page.total}`}</span>
-        {!savedOn && byFit && page.total > FIT_MAX && <span className="dim">Best fit ranks the {FIT_MAX} newest of them.</span>}
+        {!savedOn && byFit && <span className="dim">{fitCapped
+          ? `Best fit ranks the ${FIT_MAX} newest jobs first seen in the last ${FIT_DAYS} days.`
+          : `Best fit ranks jobs first seen in the last ${FIT_DAYS} days.`}</span>}
       </div>
     </section>
   );
