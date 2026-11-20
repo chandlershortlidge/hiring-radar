@@ -1,0 +1,27 @@
+{
+  "item": 168,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e81925fab20407b0c3bdf141c52a31ee0053763f11e2842253faec9a34517287",
+  "raw": "{\"decision\": [[\"python\", \"go\", \"scala\", \"cuda\", \"java\"], [\"aws\", \"gcp\", \"azure\"]], \"why\": \"The basic qualification's 'at least 4 years of experience programming with Python, Go, Scala, CUDA, or Java' and the cloud-platform 'e.g. AWS, Google Cloud, Azure' each offer one ask with any one example meeting it, so each gets its own group, while the broad 'cloud' stays out per the rule's broad-skill exclusion. I left out the preferred-qualification examples (LLM Inference, Similarity Search/VectorDBs, Guardrails, Memory) and the C++/C# languages because the 'Similarity Search and VectorDBs' example is a conjunction, not a single member, and the rest are illustrations of a broad ask rather than clear alternatives.\"}",
+  "decision": [
+    [
+      "python",
+      "go",
+      "scala",
+      "cuda",
+      "java"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  ],
+  "why": "The basic qualification's 'at least 4 years of experience programming with Python, Go, Scala, CUDA, or Java' and the cloud-platform 'e.g. AWS, Google Cloud, Azure' each offer one ask with any one example meeting it, so each gets its own group, while the broad 'cloud' stays out per the rule's broad-skill exclusion. I left out the preferred-qualification examples (LLM Inference, Similarity Search/VectorDBs, Guardrails, Memory) and the C++/C# languages because the 'Similarity Search and VectorDBs' example is a conjunction, not a single member, and the rest are illustrations of a broad ask rather than clear alternatives.",
+  "error": null
+}

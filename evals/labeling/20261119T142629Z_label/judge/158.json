@@ -1,0 +1,21 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"go\", \"java\", \"python\"]]",
+  "key_sha256": "f8db9e383f8ad517cd5b5810f739a6323cea5d37b20a0db769f58c2163c368a8",
+  "raw": "{\"decision\": [[\"go\", \"java\", \"python\"]], \"why\": \"The posting asks for \\\"at least one programming language (e.g., Python, Go, Java, etc.)\\\", which uses both the \\\"at least one of\\\" marker and examples offered for a single ask, so `go`, `java`, and `python` form an alternative group.\"}",
+  "decision": [
+    [
+      "go",
+      "java",
+      "python"
+    ]
+  ],
+  "why": "The posting asks for \"at least one programming language (e.g., Python, Go, Java, etc.)\", which uses both the \"at least one of\" marker and examples offered for a single ask, so `go`, `java`, and `python` form an alternative group.",
+  "error": null
+}

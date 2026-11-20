@@ -1,0 +1,15 @@
+{
+  "item": 158,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "e69ca4deb3eb5dc82c63a33598359517653b1c7b7cba9a6a3c21374a56c1c78d",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills are asked for together (e.g., \\\"LLMs, agents, and harnesses\\\"), which the rule excludes under 'Not alternatives: skills asked for together (\\\"X and Y\\\", \\\"X, Y and Z\\\")'.\"}",
+  "decision": [],
+  "why": "The labeled skills are asked for together (e.g., \"LLMs, agents, and harnesses\"), which the rule excludes under 'Not alternatives: skills asked for together (\"X and Y\", \"X, Y and Z\")'.",
+  "error": null
+}

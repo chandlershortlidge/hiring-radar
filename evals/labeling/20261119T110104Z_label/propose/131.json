@@ -1,0 +1,14 @@
+{
+  "item": 131,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b44ba7e6784f32d478ac30e7d0dfb6666468c3fec983e66a92bb0a55f7ce38c9",
+  "raw": "{\"decision\": [], \"why\": \"None of the four labeled skills (agents, machine-learning, python, statistics) is offered in place of another; the posting asks for them together or as a single requirement, with no 'one of', 'or', or example-set marker, so the alternative_group rule yields no group.\"}",
+  "decision": [],
+  "why": "None of the four labeled skills (agents, machine-learning, python, statistics) is offered in place of another; the posting asks for them together or as a single requirement, with no 'one of', 'or', or example-set marker, so the alternative_group rule yields no group.",
+  "error": null
+}

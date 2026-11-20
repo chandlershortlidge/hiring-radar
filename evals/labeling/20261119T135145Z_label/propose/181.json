@@ -1,0 +1,14 @@
+{
+  "item": 181,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "008adf3786357a734c6e9c06593f7d5f0bee13223763592a6735abfc9377eeed",
+  "raw": "{\"decision\": [], \"why\": \"The 'one or more of' list in the required qualifications would group vllm, sglang, tensorrt and deepspeed, but the role summary asks for vllm, SGLang and TensorRT-LLM together as frameworks the engineer hacks, an unmarked tech-stack entry, so those three leave the group and only deepspeed remains, below the two-skill minimum.\"}",
+  "decision": [],
+  "why": "The 'one or more of' list in the required qualifications would group vllm, sglang, tensorrt and deepspeed, but the role summary asks for vllm, SGLang and TensorRT-LLM together as frameworks the engineer hacks, an unmarked tech-stack entry, so those three leave the group and only deepspeed remains, below the two-skill minimum.",
+  "error": null
+}

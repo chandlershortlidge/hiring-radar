@@ -1,0 +1,19 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9b9c4e88f0f99ce6e61bc562579c273eeeb95b85b7caca627fa5590be18289ad",
+  "raw": "{\"decision\": [[\"mcp\", \"opentelemetry\"]], \"why\": \"The preferred qualification 'open-source contributions in AI, agent frameworks, or observability ecosystems (e.g., OpenTelemetry, MCP)' offers examples for a single ask, so under the Markers rule any one of them meets it and both get one group, while 'observability' is the broad domain and stays out.\"}",
+  "decision": [
+    [
+      "mcp",
+      "opentelemetry"
+    ]
+  ],
+  "why": "The preferred qualification 'open-source contributions in AI, agent frameworks, or observability ecosystems (e.g., OpenTelemetry, MCP)' offers examples for a single ask, so under the Markers rule any one of them meets it and both get one group, while 'observability' is the broad domain and stays out.",
+  "error": null
+}

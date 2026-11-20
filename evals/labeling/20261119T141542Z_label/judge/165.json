@@ -1,0 +1,25 @@
+{
+  "item": 165,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"databricks\", \"sql\", \"power-bi\", \"aws\", \"azure\", \"gcp\", \"python\"]]",
+  "key_sha256": "f22a7efb2eebfabfa2ef6b5b0c136ea0a5cfd667c450129cae175a9d228466d2",
+  "raw": "{\"decision\": [[\"databricks\", \"sql\", \"power-bi\", \"aws\", \"azure\", \"gcp\", \"python\"]], \"why\": \"The marker 'At least one of the following: a Certification in ...' offers any one of the specific example skills (`databricks`, `sql`, `power-bi`, `aws`, `azure`, `gcp`, `python`) to satisfy the single credential ask, while the broad parent skills named alongside their examples (`data-visualization`, `cloud`, `machine-learning`) stay out of the group.\"}",
+  "decision": [
+    [
+      "databricks",
+      "sql",
+      "power-bi",
+      "aws",
+      "azure",
+      "gcp",
+      "python"
+    ]
+  ],
+  "why": "The marker 'At least one of the following: a Certification in ...' offers any one of the specific example skills (`databricks`, `sql`, `power-bi`, `aws`, `azure`, `gcp`, `python`) to satisfy the single credential ask, while the broad parent skills named alongside their examples (`data-visualization`, `cloud`, `machine-learning`) stay out of the group.",
+  "error": null
+}

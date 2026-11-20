@@ -1,0 +1,15 @@
+{
+  "item": 168,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "4c7cebca92a10e7436e1c66cecbc14f41abc551c0618f217f8c449fd1a7b8786",
+  "raw": "{\"decision\": [], \"why\": \"Under 'Not alternatives: skills asked for together (\\\"X and Y\\\", \\\"X, Y and Z\\\")', all labeled skills in this posting—such as 'Ansible (roles, playbooks), Terraform, and Kubernetes'—are asked for together rather than offered in place of each other.\"}",
+  "decision": [],
+  "why": "Under 'Not alternatives: skills asked for together (\"X and Y\", \"X, Y and Z\")', all labeled skills in this posting—such as 'Ansible (roles, playbooks), Terraform, and Kubernetes'—are asked for together rather than offered in place of each other.",
+  "error": null
+}

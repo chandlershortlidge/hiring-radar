@@ -1,0 +1,20 @@
+{
+  "item": 161,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"fsdp\", \"megatron-lm\"], [\"embeddings\", \"llms\"]]",
+  "key_sha256": "7cd4b8303b3ef82aa432033e00b40b09d88159a40095ee3d6533dc4819a866dc",
+  "raw": "{\"decision\": [[\"fsdp\", \"megatron-lm\"]], \"why\": \"The distributed training frameworks ask offers DeepSpeed, FSDP, Megatron-LM, or Axolotl as alternatives, leaving `fsdp` and `megatron-lm` grouped after `deepspeed` leaves the group because it is asked for on its own in 'training libraries (Transformers, DeepSpeed, Accelerate)'; similarly, `llms` is required on its own elsewhere in the posting ('Train large language models for our domain'), leaving `embeddings` without a partner.\"}",
+  "decision": [
+    [
+      "fsdp",
+      "megatron-lm"
+    ]
+  ],
+  "why": "The distributed training frameworks ask offers DeepSpeed, FSDP, Megatron-LM, or Axolotl as alternatives, leaving `fsdp` and `megatron-lm` grouped after `deepspeed` leaves the group because it is asked for on its own in 'training libraries (Transformers, DeepSpeed, Accelerate)'; similarly, `llms` is required on its own elsewhere in the posting ('Train large language models for our domain'), leaving `embeddings` without a partner.",
+  "error": null
+}

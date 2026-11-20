@@ -1,0 +1,14 @@
+{
+  "item": 160,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2fc0c653063d19901195684bbe6ab513e9688776e79a12687892cf9bf1f556ac",
+  "raw": "{\"decision\": [[\"aws\", \"gcp\"], [\"go\", \"python\", \"typescript\"], [\"claude-code\", \"codex\", \"cursor\", \"github-copilot\"], [\"backend-development\", \"full-stack-development\"], [\"agents\", \"llms\"]], \"why\": \"Under the rule's markers ('X or Y', 'X, Y or Z', and examples offered for a single ask), the posting accepts any one of AWS or GCP, any one of Go, Python or TypeScript, any one of the named AI coding tools, Backend or full-stack background, and agents or LLM-based systems, with the broad parents 'cloud' and 'ai-developer-tooling' left out.\"",
+  "decision": null,
+  "why": null,
+  "error": "ValueError: unterminated JSON object in response"
+}

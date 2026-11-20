@@ -1,0 +1,24 @@
+{
+  "item": 161,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"apache-spark\", \"hadoop\"]]",
+  "key_sha256": "d0d89ed97f4385efd71a5788c5ef953df7d644b238167e5f9d34c7627237e414",
+  "raw": "{\"decision\": [[\"go\", \"python\"], [\"apache-spark\", \"hadoop\"]], \"why\": \"Both 'common programming languages (such as Python and Golang)' and 'open source tools and frameworks (such as Hadoop, Spark, etc.)' offer examples for a single ask, where the 'such as' marker means any one example meets the ask.\"}",
+  "decision": [
+    [
+      "go",
+      "python"
+    ],
+    [
+      "apache-spark",
+      "hadoop"
+    ]
+  ],
+  "why": "Both 'common programming languages (such as Python and Golang)' and 'open source tools and frameworks (such as Hadoop, Spark, etc.)' offer examples for a single ask, where the 'such as' marker means any one example meets the ask.",
+  "error": null
+}

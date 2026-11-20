@@ -1,0 +1,39 @@
+{
+  "item": 168,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"go\", \"scala\", \"cuda\", \"java\"], [\"aws\", \"gcp\", \"azure\"]]",
+  "key_sha256": "8ca9bb8bc734baa49429efda571baf0882eefe8a4f8854d756cabe427dd4f1d3",
+  "raw": "{\"decision\": [[\"python\", \"go\", \"scala\", \"cuda\", \"java\"], [\"aws\", \"gcp\", \"azure\"], [\"llms\", \"vector-search\", \"vector-databases\", \"llm-guardrails\", \"agent-state-management\"], [\"cpp\", \"csharp\"]], \"why\": \"The posting uses 'X, Y or Z' and example markers ('e.g.') to offer alternatives for programming languages ('Python, Go, Scala, CUDA, or Java' and 'C++, C#'), cloud platforms ('e.g. AWS, Google Cloud, Azure', keeping 'cloud' out as a broad parent), and AI technologies ('e.g. LLM Inference, Similarity Search and VectorDBs, Guardrails, Memory').\"}",
+  "decision": [
+    [
+      "python",
+      "go",
+      "scala",
+      "cuda",
+      "java"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ],
+    [
+      "llms",
+      "vector-search",
+      "vector-databases",
+      "llm-guardrails",
+      "agent-state-management"
+    ],
+    [
+      "cpp",
+      "csharp"
+    ]
+  ],
+  "why": "The posting uses 'X, Y or Z' and example markers ('e.g.') to offer alternatives for programming languages ('Python, Go, Scala, CUDA, or Java' and 'C++, C#'), cloud platforms ('e.g. AWS, Google Cloud, Azure', keeping 'cloud' out as a broad parent), and AI technologies ('e.g. LLM Inference, Similarity Search and VectorDBs, Guardrails, Memory').",
+  "error": null
+}

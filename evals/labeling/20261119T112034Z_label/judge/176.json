@@ -1,0 +1,15 @@
+{
+  "item": 176,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "340751184c200689ae9b39499c968c4bce70c0b5cdb96e9ee48451bf1b02f6f6",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for skills together (such as \\\"React & Typescript\\\") with no alternative markers, and under the rule skills asked for together as \\\"X and Y\\\" are not alternatives.\"}",
+  "decision": [],
+  "why": "The posting asks for skills together (such as \"React & Typescript\") with no alternative markers, and under the rule skills asked for together as \"X and Y\" are not alternatives.",
+  "error": null
+}

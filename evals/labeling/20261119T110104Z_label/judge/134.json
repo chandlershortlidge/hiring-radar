@@ -1,0 +1,28 @@
+{
+  "item": 134,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"jax\", \"tensorflow\"], [\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]]",
+  "key_sha256": "f83151e522369549ad28cac5803e0bc2041fe2cf2b250901fabe2bc84314d34b",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"Under the Markers and Not-alternatives rules, \\\"modern ML frameworks (PyTorch or JAX/TensorFlow)\\\" and \\\"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\\\" each offer examples/alternatives for a single ask while keeping their broad parent skills out of the groups, whereas \\\"including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\\\" joins skills with \\\"and\\\" as skills asked for together.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "pydanticai",
+      "langgraph",
+      "langchain",
+      "crewai",
+      "autogen"
+    ]
+  ],
+  "why": "Under the Markers and Not-alternatives rules, \"modern ML frameworks (PyTorch or JAX/TensorFlow)\" and \"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\" each offer examples/alternatives for a single ask while keeping their broad parent skills out of the groups, whereas \"including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\" joins skills with \"and\" as skills asked for together.",
+  "error": null
+}

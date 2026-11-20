@@ -1,0 +1,27 @@
+{
+  "item": 134,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bac9efad590b0484bf5be9d8c49c9322670367260a6f483676ce3537b204f62b",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"Under the alternative_group rule, \\\"modern ML frameworks (PyTorch or JAX/TensorFlow)\\\" and \\\"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\\\" each offer examples for a single ask, so any one meets it, while the broad parents (machine-learning, llm-orchestration) stay out. The model-platform list (\\\"Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\\\") is joined by \\\"and\\\" and so counts as skills asked together, not alternatives.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "pydanticai",
+      "langgraph",
+      "langchain",
+      "crewai",
+      "autogen"
+    ]
+  ],
+  "why": "Under the alternative_group rule, \"modern ML frameworks (PyTorch or JAX/TensorFlow)\" and \"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\" each offer examples for a single ask, so any one meets it, while the broad parents (machine-learning, llm-orchestration) stay out. The model-platform list (\"Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\") is joined by \"and\" and so counts as skills asked together, not alternatives.",
+  "error": null
+}

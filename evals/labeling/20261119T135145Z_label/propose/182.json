@@ -1,0 +1,29 @@
+{
+  "item": 182,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "71a93d88aa7faebbeb4f6d3664e5f9ebb29188fc5d2dbe3dd34e296710828e79",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"jax\"], [\"python\", \"cpp\"], [\"aws\", \"gcp\", \"azure\"]], \"why\": \"The rule's markers 'at least one of' and 'such as X, Y or Z' cover the ML frameworks, the languages, and the cloud platforms (with 'cloud' excluded as the broad parent), while docker and kubernetes stay ungrouped because the 'containerization and orchestration technologies' ask needs both categories, so one example does not meet it.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ],
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  ],
+  "why": "The rule's markers 'at least one of' and 'such as X, Y or Z' cover the ML frameworks, the languages, and the cloud platforms (with 'cloud' excluded as the broad parent), while docker and kubernetes stay ungrouped because the 'containerization and orchestration technologies' ask needs both categories, so one example does not meet it.",
+  "error": null
+}

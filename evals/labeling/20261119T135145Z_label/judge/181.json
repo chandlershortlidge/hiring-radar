@@ -1,0 +1,22 @@
+{
+  "item": 181,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "2245296163d747f070038048c71998d186a8e338a4f56637dee00d606f6f7d51",
+  "raw": "{\"decision\": [[\"vllm\", \"sglang\", \"tensorrt\", \"deepspeed\"]], \"why\": \"The posting requires familiarity with 'one or more LLM serving frameworks (vLLM, SGLang, TensorRT-LLM, DeepSpeed-Inference, etc.)', and the earlier mention ('frameworks like vLLM, SGLang, and TensorRT-LLM') also offers them as examples for a single ask rather than standalone requirements, so all four remain grouped under the 'one or more of' and example markers.\"}",
+  "decision": [
+    [
+      "vllm",
+      "sglang",
+      "tensorrt",
+      "deepspeed"
+    ]
+  ],
+  "why": "The posting requires familiarity with 'one or more LLM serving frameworks (vLLM, SGLang, TensorRT-LLM, DeepSpeed-Inference, etc.)', and the earlier mention ('frameworks like vLLM, SGLang, and TensorRT-LLM') also offers them as examples for a single ask rather than standalone requirements, so all four remain grouped under the 'one or more of' and example markers.",
+  "error": null
+}

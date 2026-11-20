@@ -1,0 +1,20 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"mcp\", \"opentelemetry\"]]",
+  "key_sha256": "325aead582373ed5c20afa8131155f607111998be0a10c3c937abe12bae9e57a",
+  "raw": "{\"decision\": [[\"mcp\", \"opentelemetry\"]], \"why\": \"Under the Markers bullet, 'e.g., OpenTelemetry, MCP' offers examples for a single ask ('open-source contributions in AI, agent frameworks, or observability ecosystems'), so `mcp` and `opentelemetry` share an alternative group while the broad skill `observability` (also asked for separately) stays out.\"}",
+  "decision": [
+    [
+      "mcp",
+      "opentelemetry"
+    ]
+  ],
+  "why": "Under the Markers bullet, 'e.g., OpenTelemetry, MCP' offers examples for a single ask ('open-source contributions in AI, agent frameworks, or observability ecosystems'), so `mcp` and `opentelemetry` share an alternative group while the broad skill `observability` (also asked for separately) stays out.",
+  "error": null
+}

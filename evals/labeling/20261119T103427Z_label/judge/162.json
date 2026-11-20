@@ -1,0 +1,20 @@
+{
+  "item": 162,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"computer-vision\", \"llms\"]]",
+  "key_sha256": "12a84626b84148b4d6cd198a36ae7ce82fc876da811f08fb724ed12f3f14acb3",
+  "raw": "{\"decision\": [[\"computer-vision\", \"llms\"]], \"why\": \"The posting uses the 'X, Y or Z' marker to accept any one example for 'one modern ML area — computer vision, large language models, or generative modelling', grouping `computer-vision` and `llms` while keeping the broad `machine-learning` skill out of the group.\"}",
+  "decision": [
+    [
+      "computer-vision",
+      "llms"
+    ]
+  ],
+  "why": "The posting uses the 'X, Y or Z' marker to accept any one example for 'one modern ML area — computer vision, large language models, or generative modelling', grouping `computer-vision` and `llms` while keeping the broad `machine-learning` skill out of the group.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 165,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "39dad8c1d9cb318fc5a63a19e3d5371221e44bd6f9d839fbc0376402fab9cb69",
+  "raw": "{\"decision\": [], \"why\": \"The posting names no set of skills offered as alternatives to one another (no 'at least one of', 'X or Y', or example list for a single ask); the two labeled skills, distributed-systems and software-engineering, are each asked for on their own, so under the alternative_group rule no group applies.\"}",
+  "decision": [],
+  "why": "The posting names no set of skills offered as alternatives to one another (no 'at least one of', 'X or Y', or example list for a single ask); the two labeled skills, distributed-systems and software-engineering, are each asked for on their own, so under the alternative_group rule no group applies.",
+  "error": null
+}

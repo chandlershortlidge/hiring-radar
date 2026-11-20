@@ -1,0 +1,27 @@
+{
+  "item": 162,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "290350fbfaab1ee539e6c3d3be056948a39c652dccf0cbd9510a62b04af716b8",
+  "raw": "{\"decision\": [[\"computer-vision\", \"nlp\"], [\"scikit-learn\", \"pytorch\"], [\"transformers\", \"llms\"]], \"why\": \"Under the alternative_group rule's markers, 'at least one of ... computer vision, natural language processing' and 'ML libraries such as scikit-learn or PyTorch' each offer one ask with any one example meeting it, and 'transformers, multimodal models or LLM-based workflows' is an 'X, Y or Z' list where the labelled skills transformers and llms are alternatives, while Python and SQL are asked together and so stay out.\"}",
+  "decision": [
+    [
+      "computer-vision",
+      "nlp"
+    ],
+    [
+      "scikit-learn",
+      "pytorch"
+    ],
+    [
+      "transformers",
+      "llms"
+    ]
+  ],
+  "why": "Under the alternative_group rule's markers, 'at least one of ... computer vision, natural language processing' and 'ML libraries such as scikit-learn or PyTorch' each offer one ask with any one example meeting it, and 'transformers, multimodal models or LLM-based workflows' is an 'X, Y or Z' list where the labelled skills transformers and llms are alternatives, while Python and SQL are asked together and so stay out.",
+  "error": null
+}

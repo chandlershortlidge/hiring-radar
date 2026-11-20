@@ -1,0 +1,15 @@
+{
+  "item": 167,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "87f47b73cee76f7b1eff37ca4ccab5b3e5e10333dc76e1e5f1c3e6bea6dfec54",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for all three labeled skills together using 'and' and 'with', and contains no alternative markers offering any skill in place of another.\"}",
+  "decision": [],
+  "why": "The posting asks for all three labeled skills together using 'and' and 'with', and contains no alternative markers offering any skill in place of another.",
+  "error": null
+}

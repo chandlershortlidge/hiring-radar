@@ -1,0 +1,36 @@
+{
+  "item": 169,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4c498bf13896ed1e618a023f71c1106e2eb4e97230d6c4c4f7f0c952ed6b09cd",
+  "raw": "{\"decision\": [[\"java\", \"scala\", \"python\", \"kotlin\"], [\"kubeflow\", \"mlflow\"], [\"apache-spark\", \"aws-s3\", \"hadoop\"], [\"lightgbm\", \"scikit-learn\", \"tensorflow\", \"pytorch\"]], \"why\": \"Under the alternative-group rule, each list offered for one ask ('a modern programming language (Java, Scala, Python, Kotlin)', 'MLOps platforms, such as Kubeflow or MLFlow', 'Big Data tools – Spark, S3, Hadoop', 'ML frameworks – like scikit-learn, LGBM, Tensorflow, PyTorch') is a set where any one meets the ask, while docker stays out because kubernetes is asked on its own and the broad parents (machine-learning, mlops, containerization) are not grouped.\"}",
+  "decision": [
+    [
+      "java",
+      "scala",
+      "python",
+      "kotlin"
+    ],
+    [
+      "kubeflow",
+      "mlflow"
+    ],
+    [
+      "apache-spark",
+      "aws-s3",
+      "hadoop"
+    ],
+    [
+      "lightgbm",
+      "scikit-learn",
+      "tensorflow",
+      "pytorch"
+    ]
+  ],
+  "why": "Under the alternative-group rule, each list offered for one ask ('a modern programming language (Java, Scala, Python, Kotlin)', 'MLOps platforms, such as Kubeflow or MLFlow', 'Big Data tools – Spark, S3, Hadoop', 'ML frameworks – like scikit-learn, LGBM, Tensorflow, PyTorch') is a set where any one meets the ask, while docker stays out because kubernetes is asked on its own and the broad parents (machine-learning, mlops, containerization) are not grouped.",
+  "error": null
+}

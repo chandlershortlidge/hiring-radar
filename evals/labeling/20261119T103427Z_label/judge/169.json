@@ -1,0 +1,20 @@
+{
+  "item": 169,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"go\", \"python\"]]",
+  "key_sha256": "e21314a0a3769f2b2efac9d239b637cf31a677d49cdb92f0a345b838fbe3fa97",
+  "raw": "{\"decision\": [[\"go\", \"python\"]], \"why\": \"\\\"Strong proficiency in Python or Go\\\" offers `python` and `go` as alternatives via the \\\"X, Y or Z\\\" marker, whereas `ray` appears on its own in the responsibilities (\\\"Evaluate, integrate and extend open-source tooling (Argo Workflows, Ray, Kubernetes ecosystem)\\\") and leaves the \\\"Argo Workflows, Ray, MLflow, or comparable\\\" list with only `mlflow`, failing the rule that a group needs at least two skills.\"}",
+  "decision": [
+    [
+      "go",
+      "python"
+    ]
+  ],
+  "why": "\"Strong proficiency in Python or Go\" offers `python` and `go` as alternatives via the \"X, Y or Z\" marker, whereas `ray` appears on its own in the responsibilities (\"Evaluate, integrate and extend open-source tooling (Argo Workflows, Ray, Kubernetes ecosystem)\") and leaves the \"Argo Workflows, Ray, MLflow, or comparable\" list with only `mlflow`, failing the rule that a group needs at least two skills.",
+  "error": null
+}

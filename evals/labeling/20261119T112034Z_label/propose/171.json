@@ -1,0 +1,19 @@
+{
+  "item": 171,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7de3551c6d2a1073145ddac66aa9ae2afd03109a437ef19589ff72f6cab983f0",
+  "raw": "{\"decision\": [[\"jax\", \"pytorch\"]], \"why\": \"The posting says \\\"Expert with PyTorch or JAX\\\", an \\\"X or Y\\\" marker for one ask that either skill meets, so the two form one group; the \\\"training or fine-tuning\\\" phrasing is a choice between verbs for the same LLM ask, not between labelled skills, so it does not form a group.\"}",
+  "decision": [
+    [
+      "jax",
+      "pytorch"
+    ]
+  ],
+  "why": "The posting says \"Expert with PyTorch or JAX\", an \"X or Y\" marker for one ask that either skill meets, so the two form one group; the \"training or fine-tuning\" phrasing is a choice between verbs for the same LLM ask, not between labelled skills, so it does not form a group.",
+  "error": null
+}

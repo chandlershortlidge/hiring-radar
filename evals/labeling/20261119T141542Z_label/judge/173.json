@@ -1,0 +1,15 @@
+{
+  "item": 173,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "20f52bab025b0e3ff83470f02ba070d23698bca79eb9c6589f298e64c0af923b",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills are part of an alternative group of two or more labeled skills; where 'or' appears (such as 'LLM tooling such as vLLM, or with RLHF-style post-training'), only a broad skill and a single example are labeled.\"}",
+  "decision": [],
+  "why": "None of the labeled skills are part of an alternative group of two or more labeled skills; where 'or' appears (such as 'LLM tooling such as vLLM, or with RLHF-style post-training'), only a broad skill and a single example are labeled.",
+  "error": null
+}

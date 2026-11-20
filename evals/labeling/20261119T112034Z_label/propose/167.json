@@ -1,0 +1,14 @@
+{
+  "item": 167,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cb756826cf67a4135f626724ac1fd336355f5f80ce8a8c7ed8b234ae9f3e8f33",
+  "raw": "{\"decision\": [], \"why\": \"The 'Experience with GenAI, LLMs, agentic workflows, retrieval, evaluation frameworks, or human-in-the-loop' list is an 'or' alternative set, but its labeled members llms and evaluation are also asked on their own in the responsibilities (LLM-powered experiences; design robust evaluation), which removes them from the group and leaves fewer than two members, so under the 'a group needs at least two skills' and 'asked on its own elsewhere' rules there is no group.\"}",
+  "decision": [],
+  "why": "The 'Experience with GenAI, LLMs, agentic workflows, retrieval, evaluation frameworks, or human-in-the-loop' list is an 'or' alternative set, but its labeled members llms and evaluation are also asked on their own in the responsibilities (LLM-powered experiences; design robust evaluation), which removes them from the group and leaves fewer than two members, so under the 'a group needs at least two skills' and 'asked on its own elsewhere' rules there is no group.",
+  "error": null
+}

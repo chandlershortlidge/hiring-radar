@@ -1,0 +1,19 @@
+{
+  "item": 167,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c6cebfec8d6e69ad3ed9a6dee9388b69cc9c702885b73ee8cc51ff37ec075588",
+  "raw": "{\"decision\": [[\"megatron-lm\", \"fsdp\"]], \"why\": \"The minimum qualifications say \\\"distributed training frameworks (Megatron-LM, DeepSpeed, FSDP or Axolotl)\\\", an 'or' list of examples for one ask, so Megatron-LM and FSDP form a group; DeepSpeed leaves it because \\\"Transformers, DeepSpeed, Accelerate\\\" asks for it on its own, and the broad \\\"distributed training\\\" parent stays out.\"}",
+  "decision": [
+    [
+      "megatron-lm",
+      "fsdp"
+    ]
+  ],
+  "why": "The minimum qualifications say \"distributed training frameworks (Megatron-LM, DeepSpeed, FSDP or Axolotl)\", an 'or' list of examples for one ask, so Megatron-LM and FSDP form a group; DeepSpeed leaves it because \"Transformers, DeepSpeed, Accelerate\" asks for it on its own, and the broad \"distributed training\" parent stays out.",
+  "error": null
+}

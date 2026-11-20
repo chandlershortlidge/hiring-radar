@@ -1,0 +1,28 @@
+{
+  "item": 163,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "31d9fa427e4f2f37d4a14ade162ed83667fcc73c21c0649df97448ec0cd50f26",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"], [\"hadoop\", \"apache-spark\"]], \"why\": \"Under the rule's markers, \\\"TensorFlow and/or PyTorch\\\" is an 'and/or' set, and the parenthetical lists \\\"(AWS, Azure, GCP)\\\" and \\\"(Hadoop, Spark)\\\" are examples offered for the single asks \\\"cloud computing services\\\" and \\\"Big Data technologies\\\", so any one meets each ask; \\\"containerization and orchestration (Docker, Kubernetes)\\\" is left ungrouped because it asks for both categories together.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch"
+    ],
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ],
+    [
+      "hadoop",
+      "apache-spark"
+    ]
+  ],
+  "why": "Under the rule's markers, \"TensorFlow and/or PyTorch\" is an 'and/or' set, and the parenthetical lists \"(AWS, Azure, GCP)\" and \"(Hadoop, Spark)\" are examples offered for the single asks \"cloud computing services\" and \"Big Data technologies\", so any one meets each ask; \"containerization and orchestration (Docker, Kubernetes)\" is left ungrouped because it asks for both categories together.",
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "item": 172,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"aws\", \"sagemaker\", \"airflow\", \"kafka\", \"redis\", \"snowflake\"]]",
+  "key_sha256": "0d5ee3309003c558a381c5d8c850b1d62a89e11c3da85fc0f3ce1e94fb722bc7",
+  "raw": "{\"decision\": [[\"aws\", \"sagemaker\", \"airflow\", \"kafka\", \"redis\", \"snowflake\"]], \"why\": \"The requirement 'Knowledge of AWS, SageMaker, Airflow, Kafka, Redis or Snowflake' uses the 'X, Y or Z' marker for one ask, and none of these six skills is asked for on its own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "aws",
+      "sagemaker",
+      "airflow",
+      "kafka",
+      "redis",
+      "snowflake"
+    ]
+  ],
+  "why": "The requirement 'Knowledge of AWS, SageMaker, Airflow, Kafka, Redis or Snowflake' uses the 'X, Y or Z' marker for one ask, and none of these six skills is asked for on its own elsewhere in the posting.",
+  "error": null
+}

@@ -1,0 +1,26 @@
+{
+  "item": 166,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"claude-code\", \"cursor\", \"github-copilot\", \"codex\"]]",
+  "key_sha256": "4a4c7e629fbbf2c4cbe862652e2738e71455d58a89aa7c87d07066cd3311b359",
+  "raw": "{\"decision\": [[\"claude-code\", \"cursor\", \"github-copilot\", \"codex\"], [\"llms\", \"tool-calling\"]], \"why\": \"Under the Markers bullet ('X, Y or Z' and examples offered for a single ask), 'whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex' groups `claude-code`, `cursor`, `github-copilot`, and `codex` (leaving the broad skill `ai-developer-tooling` out), and 'Experience integrating LLMs, AI models or tool-calling systems into production applications' groups `llms` and `tool-calling`.\"}",
+  "decision": [
+    [
+      "claude-code",
+      "cursor",
+      "github-copilot",
+      "codex"
+    ],
+    [
+      "llms",
+      "tool-calling"
+    ]
+  ],
+  "why": "Under the Markers bullet ('X, Y or Z' and examples offered for a single ask), 'whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex' groups `claude-code`, `cursor`, `github-copilot`, and `codex` (leaving the broad skill `ai-developer-tooling` out), and 'Experience integrating LLMs, AI models or tool-calling systems into production applications' groups `llms` and `tool-calling`.",
+  "error": null
+}

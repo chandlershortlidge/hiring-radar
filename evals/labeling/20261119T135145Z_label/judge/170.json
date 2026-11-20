@@ -1,0 +1,23 @@
+{
+  "item": 170,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+  "key_sha256": "216c13341ac9bfdc69daec332971d4b35bd0d2855d756c05f79da91093dde8b5",
+  "raw": "{\"decision\": [[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]], \"why\": \"The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups.\"}",
+  "decision": [
+    [
+      "langgraph",
+      "mcp",
+      "google-adk",
+      "autogen",
+      "llamaindex"
+    ]
+  ],
+  "why": "The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups.",
+  "error": null
+}

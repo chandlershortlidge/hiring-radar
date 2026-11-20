@@ -1,0 +1,14 @@
+{
+  "item": 163,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4b65dd7d348b09b87779566ef616d494e6c1fb3ce45ff220bca9a9dc62181144",
+  "raw": "{\"decision\": [], \"why\": \"The 'at least one backend language' ask is an alternative set, but Go, TypeScript and Python each reappear as unmarked tech-stack requirements ('Go for the platform control plane', 'TypeScript and Python for services and APIs'), and the rule says a skill asked for on its own elsewhere, including as a tech-stack entry, leaves the group, which drops it below two members.\"}",
+  "decision": [],
+  "why": "The 'at least one backend language' ask is an alternative set, but Go, TypeScript and Python each reappear as unmarked tech-stack requirements ('Go for the platform control plane', 'TypeScript and Python for services and APIs'), and the rule says a skill asked for on its own elsewhere, including as a tech-stack entry, leaves the group, which drops it below two members.",
+  "error": null
+}

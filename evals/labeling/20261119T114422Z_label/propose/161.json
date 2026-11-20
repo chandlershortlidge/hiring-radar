@@ -1,0 +1,23 @@
+{
+  "item": 161,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "98d2cf18e83c220007516f54251fd5395a18e062f4d21538043cb8836af18618",
+  "raw": "{\"decision\": [[\"fsdp\", \"megatron-lm\"], [\"embeddings\", \"llms\"]], \"why\": \"Under the alternative_group rule, the 'distributed training frameworks (DeepSpeed, FSDP, Megatron-LM, or Axolotl)' ask leaves deepspeed out because it reappears as an unmarked tech-stack entry, so fsdp and megatron-lm remain as a two-skill group, and the 'embedding models, encoder models, or large language models' examples for one training-experience ask group embeddings and llms.\"}",
+  "decision": [
+    [
+      "fsdp",
+      "megatron-lm"
+    ],
+    [
+      "embeddings",
+      "llms"
+    ]
+  ],
+  "why": "Under the alternative_group rule, the 'distributed training frameworks (DeepSpeed, FSDP, Megatron-LM, or Axolotl)' ask leaves deepspeed out because it reappears as an unmarked tech-stack entry, so fsdp and megatron-lm remain as a two-skill group, and the 'embedding models, encoder models, or large language models' examples for one training-experience ask group embeddings and llms.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 162,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "25ca83a69dee81db46abeb3cdf4feb60c1041974b6fad9256d6ca4ecc281cc64",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks to 'advance machine learning across recommendation, search, and e-commerce systems', asking for these skills together rather than offering any one of several skills for a single ask.\"}",
+  "decision": [],
+  "why": "The posting asks to 'advance machine learning across recommendation, search, and e-commerce systems', asking for these skills together rather than offering any one of several skills for a single ask.",
+  "error": null
+}

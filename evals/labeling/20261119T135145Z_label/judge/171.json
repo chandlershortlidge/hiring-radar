@@ -1,0 +1,20 @@
+{
+  "item": 171,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "d9865f57cdbfac81308e2fb41f535a77d8ddfca18595ff8c710c0124138e6f95",
+  "raw": "{\"decision\": [[\"triton-inference-server\", \"vllm\"]], \"why\": \"Under the rule for examples offered for a single ask, 'inference servers and runtimes (e.g., Triton, vLLM, TGI)' groups `triton-inference-server` and `vllm`, whereas `aws` and `gcp` leave their group because they are also asked for together in the responsibilities ('AWS, GCP, and on-prem infrastructure') and the other parenthetical examples have only one labeled skill each.\"}",
+  "decision": [
+    [
+      "triton-inference-server",
+      "vllm"
+    ]
+  ],
+  "why": "Under the rule for examples offered for a single ask, 'inference servers and runtimes (e.g., Triton, vLLM, TGI)' groups `triton-inference-server` and `vllm`, whereas `aws` and `gcp` leave their group because they are also asked for together in the responsibilities ('AWS, GCP, and on-prem infrastructure') and the other parenthetical examples have only one labeled skill each.",
+  "error": null
+}

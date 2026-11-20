@@ -1,0 +1,36 @@
+{
+  "item": 137,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ee0aedeef88151149f1830a9e7a3e226ad62ac258d65210bd2bc8c0e3786470a",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"mlflow\", \"weights-and-biases\"], [\"airflow\", \"prefect\"], [\"fastapi\", \"streamlit\"], [\"faiss\", \"pgvector\"]], \"why\": \"Under the rule's markers, each parenthetical gives examples for one ask ('modern ML frameworks (PyTorch or JAX/TensorFlow)', 'experiment tracking (MLflow/W&B)', 'workflow orchestration (Airflow/Prefect/Argo)', 'lightweight internal tools (FastAPI, Streamlit/Gradio)', 'vector search (FAISS/pgvector)'), so any one meets it; the S3/SageMaker and CI/CD or Terraform lists are left out because the broad parent is named alongside examples or the list has no 'or'.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "mlflow",
+      "weights-and-biases"
+    ],
+    [
+      "airflow",
+      "prefect"
+    ],
+    [
+      "fastapi",
+      "streamlit"
+    ],
+    [
+      "faiss",
+      "pgvector"
+    ]
+  ],
+  "why": "Under the rule's markers, each parenthetical gives examples for one ask ('modern ML frameworks (PyTorch or JAX/TensorFlow)', 'experiment tracking (MLflow/W&B)', 'workflow orchestration (Airflow/Prefect/Argo)', 'lightweight internal tools (FastAPI, Streamlit/Gradio)', 'vector search (FAISS/pgvector)'), so any one meets it; the S3/SageMaker and CI/CD or Terraform lists are left out because the broad parent is named alongside examples or the list has no 'or'.",
+  "error": null
+}

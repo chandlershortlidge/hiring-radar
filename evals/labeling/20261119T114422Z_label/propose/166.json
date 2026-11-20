@@ -1,0 +1,21 @@
+{
+  "item": 166,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a4facad0acf6fbc4228baa45947aca426c1788fbbd1148c9072132cf2fe0d2bd",
+  "raw": "{\"decision\": [[\"claude-code\", \"cursor\", \"github-copilot\", \"codex\"]], \"why\": \"The line \\\"regular, thoughtful use of AI coding tools ... whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex\\\" gives examples offered for one ask, so under the markers section these four form one group, while the broad `ai-developer-tooling` skill stays out as the parent of its examples.\"}",
+  "decision": [
+    [
+      "claude-code",
+      "cursor",
+      "github-copilot",
+      "codex"
+    ]
+  ],
+  "why": "The line \"regular, thoughtful use of AI coding tools ... whether that's Claude Code, Cursor, GitHub Copilot, or OpenAI Codex\" gives examples offered for one ask, so under the markers section these four form one group, while the broad `ai-developer-tooling` skill stays out as the parent of its examples.",
+  "error": null
+}

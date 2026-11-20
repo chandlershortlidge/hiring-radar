@@ -1,0 +1,19 @@
+{
+  "item": 168,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fbdbe511fbf61a555d758ef37b325b402e53192a5d4442a12e78c5bcc8414954",
+  "raw": "{\"decision\": [[\"bash\", \"python\"]], \"why\": \"The alternative_group rule's markers include 'X, Y or Z' and 'X or Y', and 'Proficient in Linux environments with Python, or Bash scripting' offers either scripting language for one ask, while bash appears nowhere else as a standalone requirement, so bash and python form one group and linux and ci-cd stay out.\"}",
+  "decision": [
+    [
+      "bash",
+      "python"
+    ]
+  ],
+  "why": "The alternative_group rule's markers include 'X, Y or Z' and 'X or Y', and 'Proficient in Linux environments with Python, or Bash scripting' offers either scripting language for one ask, while bash appears nowhere else as a standalone requirement, so bash and python form one group and linux and ci-cd stay out.",
+  "error": null
+}

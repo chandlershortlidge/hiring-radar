@@ -1,0 +1,15 @@
+{
+  "item": 174,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "5bc652a7623ba0e61ce4767868911e69d10f065bafb31b95b43c0bc587775965",
+  "raw": "{\"decision\": [], \"why\": \"All labeled skills are asked for together without alternative markers, and although 'Terraform/CloudFormation' could indicate alternatives, only 'terraform' is labeled and the rule states that a group needs at least two skills.\"}",
+  "decision": [],
+  "why": "All labeled skills are asked for together without alternative markers, and although 'Terraform/CloudFormation' could indicate alternatives, only 'terraform' is labeled and the rule states that a group needs at least two skills.",
+  "error": null
+}

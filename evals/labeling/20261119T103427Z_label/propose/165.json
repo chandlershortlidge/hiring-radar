@@ -1,0 +1,40 @@
+{
+  "item": 165,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4ccd826ab97fdeb869ffa37b31886586e54b3a28d276b7b0c2ae1ba9fe7fd660",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"scikit-learn\"], [\"docker\", \"kubernetes\"], [\"agents\", \"evaluation\", \"testing\", \"observability\", \"llm-guardrails\"], [\"vector-databases\", \"embeddings\", \"rag\"], [\"async-processing\", \"event-driven-systems\"]], \"why\": \"Each bullet asks for one thing that any one listed example meets (\\\"libraries and frameworks like X, Y, and/or Z\\\", \\\"tools such as X, Y, or Z\\\", \\\"X, Y, Z, or W\\\"), so under the alternative_group rule each becomes a group of its labelled skills, with the broad parents (containerization, cloud, software-engineering) and the 'or other' phrasing left out.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "scikit-learn"
+    ],
+    [
+      "docker",
+      "kubernetes"
+    ],
+    [
+      "agents",
+      "evaluation",
+      "testing",
+      "observability",
+      "llm-guardrails"
+    ],
+    [
+      "vector-databases",
+      "embeddings",
+      "rag"
+    ],
+    [
+      "async-processing",
+      "event-driven-systems"
+    ]
+  ],
+  "why": "Each bullet asks for one thing that any one listed example meets (\"libraries and frameworks like X, Y, and/or Z\", \"tools such as X, Y, or Z\", \"X, Y, Z, or W\"), so under the alternative_group rule each becomes a group of its labelled skills, with the broad parents (containerization, cloud, software-engineering) and the 'or other' phrasing left out.",
+  "error": null
+}

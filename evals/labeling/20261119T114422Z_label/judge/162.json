@@ -1,0 +1,28 @@
+{
+  "item": 162,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"computer-vision\", \"nlp\"], [\"scikit-learn\", \"pytorch\"], [\"transformers\", \"llms\"]]",
+  "key_sha256": "c5ea4aafc32816f1ac8831a9dd8f5c2c09b61220ac1aa78d7495b8d4d9e8cd12",
+  "raw": "{\"decision\": [[\"scikit-learn\", \"pytorch\"], [\"nlp\", \"computer-vision\"], [\"transformers\", \"llms\"]], \"why\": \"Under the rule's Markers, \\\"ML libraries such as scikit-learn or PyTorch\\\", \\\"at least one of the following: ... natural language processing, or computer vision\\\", and \\\"transformers, multimodal models or LLM-based workflows\\\" each offer alternative skills where any one meets the single ask.\"}",
+  "decision": [
+    [
+      "scikit-learn",
+      "pytorch"
+    ],
+    [
+      "nlp",
+      "computer-vision"
+    ],
+    [
+      "transformers",
+      "llms"
+    ]
+  ],
+  "why": "Under the rule's Markers, \"ML libraries such as scikit-learn or PyTorch\", \"at least one of the following: ... natural language processing, or computer vision\", and \"transformers, multimodal models or LLM-based workflows\" each offer alternative skills where any one meets the single ask.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f7b28ce6b66f5f0e4694abeaf5e01ff2cc8f794d61be0fb2dd1a7515053e42f9",
+  "raw": "{\"decision\": [[\"recommender-systems\", \"knowledge-distillation\"]], \"why\": \"The preferred qualification 'Experience with recommender systems, generative retrieval, semantic IDs, continual learning, synthetic data, distillation or tabular foundation models' offers any one of several skills for a single ask, and the two labeled members here are not asked for on their own elsewhere, so they form one group under the 'X, Y or Z' marker.\"}",
+  "decision": [
+    [
+      "recommender-systems",
+      "knowledge-distillation"
+    ]
+  ],
+  "why": "The preferred qualification 'Experience with recommender systems, generative retrieval, semantic IDs, continual learning, synthetic data, distillation or tabular foundation models' offers any one of several skills for a single ask, and the two labeled members here are not asked for on their own elsewhere, so they form one group under the 'X, Y or Z' marker.",
+  "error": null
+}

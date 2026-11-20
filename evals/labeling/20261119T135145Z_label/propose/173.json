@@ -1,0 +1,14 @@
+{
+  "item": 173,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "56dfbbf655a6f439d3d96f9576c28e7c23c1cc79493fe5a3d57965bf3f082fc8",
+  "raw": "{\"decision\": [], \"why\": \"The only one-of set in the posting is the learned-policy examples (imitation learning, RL or VLA), but only reinforcement-learning is among the labeled skills, so the group would have fewer than two members; the other skills (python, cpp, pytorch, ros, linux) are asked together or on their own, not as alternatives.\"}",
+  "decision": [],
+  "why": "The only one-of set in the posting is the learned-policy examples (imitation learning, RL or VLA), but only reinforcement-learning is among the labeled skills, so the group would have fewer than two members; the other skills (python, cpp, pytorch, ros, linux) are asked together or on their own, not as alternatives.",
+  "error": null
+}

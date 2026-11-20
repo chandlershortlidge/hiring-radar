@@ -1,0 +1,20 @@
+{
+  "item": 166,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9ccb3c8ad24b7853099e3c9547a83f20369e32648970a3de4f1f457392ebd7d5",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"jax\"]], \"why\": \"The qualifications ask for \\\"ML frameworks such as PyTorch, TensorFlow, or JAX\\\", where the \\\"X, Y or Z\\\" and \\\"such as\\\" markers offer any one example for a single ask, so these three form one group, while Python is asked separately and stays out.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ]
+  ],
+  "why": "The qualifications ask for \"ML frameworks such as PyTorch, TensorFlow, or JAX\", where the \"X, Y or Z\" and \"such as\" markers offer any one example for a single ask, so these three form one group, while Python is asked separately and stays out.",
+  "error": null
+}

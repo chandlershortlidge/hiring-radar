@@ -2882,5 +2882,1124 @@
     "excerpt": "...contributions to deployed systems. - Strong Python and PyTorch skills, with experience implementing experiments and debugging...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "hands-on experience with distributed training"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied science experience in machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "experience developing and training models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch skills"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with recommender systems"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "deep expertise in pre-training, post-training or reinforcement learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical judgment"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Principal Applied AI Scientist, Commerce Foundation Models",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents, and harnesses"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "focus on AI"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing evaluation and feedback loops"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "AI Quantitative Researcher | Internship | '27",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "You're friends with AI assistants and use them regularly for coding"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Bonus points if you've worked with distributed systems"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML fundamentals"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "trained models yourself"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "write good Python code"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "used PyTorch"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "ML Engineering Intern - LLM Research & Development",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "hands-on experience with agents"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS or GCP"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend or full-stack background"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Some cloud experience"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Backend or full-stack background"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "AWS or GCP"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git and GitHub workflows"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based systems"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP server infrastructure"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool call"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Developer Advocate, Toqan (Prosus AI Platform)",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "Transformers, DeepSpeed, Accelerate"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "deep understanding of distributed systems"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "(embedding models"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "rigorous evaluation"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "or fine-tuning"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing models for production inference"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "or large language models"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM, or Axolotl"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source LLM training projects or tools"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Expert Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "other reinforcement learning approaches"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering practices"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers, DeepSpeed"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Machine Learning Engineer - LLMs",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "including deployment"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "care for data privacy"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating them against baselines and metrics"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "engineering features"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM-based workflows"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "a solid foundation in machine learning"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "Familiarity with the production ML lifecycle"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training models"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics and probability theory"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with transformers"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Data Scientist, Trust & Safety",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "integrating third-party APIs"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "ArgoCD"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Kubernetes (EKS) on AWS"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend engineering experience"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD: GitHub Actions"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go for the platform control plane"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "required",
+        "raw_text": "Grafana"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm and ArgoCD"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "running services on Kubernetes"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAI systems is considered an advantage"
+      },
+      {
+        "skill_id": "oauth",
+        "requirement": "required",
+        "raw_text": "OAuth2/OIDC"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability: Grafana, Prometheus and OpenTelemetry"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "required",
+        "raw_text": "OpenTelemetry"
+      },
+      {
+        "skill_id": "prometheus",
+        "requirement": "required",
+        "raw_text": "Prometheus"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "TypeScript and Python for services and APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "designing systems yourself"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform, Helm and ArgoCD"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript and Python for services and APIs"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Backend Engineer, GenAI Platform",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "implement models in production environments"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Experience transforming data models into scalable data products"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Deep expertise in data science"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "data science and machine learning"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps systems"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "design, train, and implement models"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Amsterdam or Antwerp- Combine Data Science, AI, and Media to transform the advertising market. As a Data Scientist Total Video, you will tak",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent or gaming environments"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "owning evaluation frameworks"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "post-training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and evaluating ML systems"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation metrics"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "reliable production software development"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "experimental design and statistics"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Machine Learning Engineer, Evals",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "Familiarity with agentic architectures"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience building agentic AI systems"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Regular, thoughtful use of AI coding tools"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with AI or ML infrastructure"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "the AI and LLM space — not as a trend to track, but as a domain where you've already done hands-on integration work"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Hands-on AWS experience"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "building and operating production backend services"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Experience with CI/CD"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native services"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "OpenAI Codex"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or maintaining event-sourced systems"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Strong Go programming skills"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience integrating LLMs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "protocols such as MCP"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "production observability"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python programming skills"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "owning architectural decisions"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling systems"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Backend Engineer, AI Platform (Toqan)",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experiments and A/B tests"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "Transformers, DeepSpeed, Accelerate"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience evaluating models"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "instruction tuning"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP or Axolotl)"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimising models for production inference"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "including distillation"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "training and deploying language models to production"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks (Megatron-LM"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering experience"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models to production"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch skills"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantisation, compression"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "other reinforcement learning approaches"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT-LLM"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "training libraries (Transformers"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Machine Learning Engineer – LLMs",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Expert knowledge of Ansible"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Advanced knowledge of cloud services"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "interests in algorithms and distributed systems"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Ansible (roles, playbooks), Terraform, and Kubernetes"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "You specialize in systems (operating systems, storage subsystems, networking)"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and observability practices"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Ansible (roles, playbooks), Terraform"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Lead/Manager AI Infra Systems Engineering Team",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "groups",
+    "key": "alternative_group",
+    "reason": "groups",
+    "skills": [
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "hands-on experience with distributed training"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "entity representations, distillation"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "pre-training or mid-training of language models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "research or applied science experience in machine learning"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "nice_to_have",
+        "raw_text": "Megatron-LM"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "designing and running model-training experiments"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch skills"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Research in recommender systems"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "or reinforcement learning and decision-model training"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical analysis"
+      }
+    ],
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Applied AI Scientist, Commerce Foundation Models",
+    "problems": [],
+    "decision": "?"
   }
 ]

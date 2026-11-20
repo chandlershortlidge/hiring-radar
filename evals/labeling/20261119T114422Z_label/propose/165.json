@@ -1,0 +1,27 @@
+{
+  "item": 165,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7e6c023eb88d81dcffd0123beeb75969dce23d4475dde66fcea1cf117cd07e06",
+  "raw": "{\"decision\": [[\"fine-tuning\", \"model-development\"], [\"a-b-testing\", \"recommender-systems\"], [\"pytorch\", \"transformers\"]], \"why\": \"Under the alternative_group rule's markers ('X or Y' and 'X, Y or comparable' for a single ask), the posting offers post-training or language-model training, human evaluation/LLM-as-judge/recommendation metrics/online experimentation, and PyTorch or Transformers as one-of options, while 'or comparable' adds nothing and llms is left out as it is not clearly a named alternative member.\"}",
+  "decision": [
+    [
+      "fine-tuning",
+      "model-development"
+    ],
+    [
+      "a-b-testing",
+      "recommender-systems"
+    ],
+    [
+      "pytorch",
+      "transformers"
+    ]
+  ],
+  "why": "Under the alternative_group rule's markers ('X or Y' and 'X, Y or comparable' for a single ask), the posting offers post-training or language-model training, human evaluation/LLM-as-judge/recommendation metrics/online experimentation, and PyTorch or Transformers as one-of options, while 'or comparable' adds nothing and llms is left out as it is not clearly a named alternative member.",
+  "error": null
+}

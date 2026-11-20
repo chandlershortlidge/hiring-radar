@@ -1,0 +1,20 @@
+{
+  "item": 164,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"agents\", \"streamlit\"]]",
+  "key_sha256": "e04a0e32d90468be368aed748a29fd66f40a91ba61002fe0963d7cb802ef4c70",
+  "raw": "{\"decision\": [[\"agents\", \"streamlit\"]], \"why\": \"The posting asks for hands-on work with \\\"Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks\\\", which matches the \\\"X, Y or Z\\\" marker for a single ask where any one meets it, grouping the two labeled skills `streamlit` and `agents`.\"}",
+  "decision": [
+    [
+      "agents",
+      "streamlit"
+    ]
+  ],
+  "why": "The posting asks for hands-on work with \"Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks\", which matches the \"X, Y or Z\" marker for a single ask where any one meets it, grouping the two labeled skills `streamlit` and `agents`.",
+  "error": null
+}

@@ -1,0 +1,32 @@
+{
+  "item": 161,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"data-pipelines\", \"workflow-automation\"], [\"go\", \"rust\", \"cpp\", \"java\", \"scala\"]]",
+  "key_sha256": "02d6c0211c939fdb62221ddde02066559f42fcd5b35e5315edfbc54d98a438d2",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"data-pipelines\", \"workflow-automation\"], [\"go\", \"rust\", \"cpp\", \"java\", \"scala\"]], \"why\": \"The rule groups skills connected by 'and/or' markers ('TensorFlow, PyTorch, and/or scikit-learn' and 'ETL pipelines, data pipelines, and/or workflow automation') as well as examples offered for a single ask ('systems programming language (e.g., Go, Rust, C++, Java, Scala, etc.)'), none of which are asked for independently elsewhere.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch",
+      "scikit-learn"
+    ],
+    [
+      "data-pipelines",
+      "workflow-automation"
+    ],
+    [
+      "go",
+      "rust",
+      "cpp",
+      "java",
+      "scala"
+    ]
+  ],
+  "why": "The rule groups skills connected by 'and/or' markers ('TensorFlow, PyTorch, and/or scikit-learn' and 'ETL pipelines, data pipelines, and/or workflow automation') as well as examples offered for a single ask ('systems programming language (e.g., Go, Rust, C++, Java, Scala, etc.)'), none of which are asked for independently elsewhere.",
+  "error": null
+}

@@ -1,0 +1,21 @@
+{
+  "item": 161,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"langgraph\", \"llamaindex\", \"pydanticai\"]]",
+  "key_sha256": "e567adfce5f2cc188ebdfd3937a320a9721f7a7b478cae12132a6b3ade9e8504",
+  "raw": "{\"decision\": [[\"langgraph\", \"llamaindex\", \"pydanticai\"]], \"why\": \"The posting asks for experience using \\\"frameworks such as LangGraph, LlamaIndex or PydanticAI\\\" for a single ask, which matches the rule's marker for examples offered as alternatives where any one meets the ask.\"}",
+  "decision": [
+    [
+      "langgraph",
+      "llamaindex",
+      "pydanticai"
+    ]
+  ],
+  "why": "The posting asks for experience using \"frameworks such as LangGraph, LlamaIndex or PydanticAI\" for a single ask, which matches the rule's marker for examples offered as alternatives where any one meets the ask.",
+  "error": null
+}

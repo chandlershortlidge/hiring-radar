@@ -1,0 +1,19 @@
+{
+  "item": 173,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "61ab4481c122b97255118edf4aed3d446408ce9c1edd116c1a46caf8914efe7e",
+  "raw": "{\"decision\": [[\"jax\", \"pytorch\"]], \"why\": \"\\\"Expert with PyTorch or JAX\\\" is a single ask with an \\\"or\\\" marker, so under the alternative_group rule jax and pytorch form one group, and neither is asked for on its own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "jax",
+      "pytorch"
+    ]
+  ],
+  "why": "\"Expert with PyTorch or JAX\" is a single ask with an \"or\" marker, so under the alternative_group rule jax and pytorch form one group, and neither is asked for on its own elsewhere in the posting.",
+  "error": null
+}

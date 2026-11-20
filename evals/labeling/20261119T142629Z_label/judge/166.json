@@ -1,0 +1,15 @@
+{
+  "item": 166,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "0cdf7178745c09a545b5d10e282f979f87fd3bab21af35954549b560e47ef08b",
+  "raw": "{\"decision\": [], \"why\": \"Although 'LLMs and/or AI agents' uses the alternative marker 'and/or', the posting also asks for both skills together elsewhere ('Apply LLMs and AI agents'), so under the rule that a skill also asked for on its own elsewhere leaves the group, no alternative group is formed.\"}",
+  "decision": [],
+  "why": "Although 'LLMs and/or AI agents' uses the alternative marker 'and/or', the posting also asks for both skills together elsewhere ('Apply LLMs and AI agents'), so under the rule that a skill also asked for on its own elsewhere leaves the group, no alternative group is formed.",
+  "error": null
+}

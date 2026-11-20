@@ -1,0 +1,14 @@
+{
+  "item": 172,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "492e0b0224cc67b88887801253c8dd02dc01804323d1546d556b67bb2a7fd938",
+  "raw": "{\"decision\": [], \"why\": \"The posting lists its skills as things to combine (Java / Spring Boot, Azure with its services, Angular, Azure DevOps, Git) and never offers one skill in place of another, so no marker from the alternative_group rule applies.\"}",
+  "decision": [],
+  "why": "The posting lists its skills as things to combine (Java / Spring Boot, Azure with its services, Angular, Azure DevOps, Git) and never offers one skill in place of another, so no marker from the alternative_group rule applies.",
+  "error": null
+}

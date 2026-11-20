@@ -1,0 +1,26 @@
+{
+  "item": 159,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "97aa8e0428ee38eea58a939b76c3529fd37a54d886db2b885f7f0f48e0d66270",
+  "raw": "{\"decision\": [[\"machine-learning\", \"nlp\", \"computer-vision\"], [\"cpp\", \"python\", \"go\", \"java\"]], \"why\": \"Under the alternative_group rule's 'X, Y or Z' marker, the minimum qualifications accept 'one or more of' the fields Machine Learning, NLP or Computer Vision, and 'at least one of' the languages C++, Python, Go or Java, with no skill in either set asked for separately elsewhere, while 'software-engineering' stays out as the broad parent.\"}",
+  "decision": [
+    [
+      "machine-learning",
+      "nlp",
+      "computer-vision"
+    ],
+    [
+      "cpp",
+      "python",
+      "go",
+      "java"
+    ]
+  ],
+  "why": "Under the alternative_group rule's 'X, Y or Z' marker, the minimum qualifications accept 'one or more of' the fields Machine Learning, NLP or Computer Vision, and 'at least one of' the languages C++, Python, Go or Java, with no skill in either set asked for separately elsewhere, while 'software-engineering' stays out as the broad parent.",
+  "error": null
+}

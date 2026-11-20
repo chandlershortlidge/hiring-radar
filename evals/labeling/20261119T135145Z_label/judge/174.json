@@ -1,0 +1,25 @@
+{
+  "item": 174,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"]]",
+  "key_sha256": "0d6fe00f0dd9e88c5b1eff3febe782fbc24fd3409ab15864195090d28ccc9dc1",
+  "raw": "{\"decision\": [[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"]], \"why\": \"Under the Markers bullet, 'one or more programming languages such as Python and C++' and 'ML frameworks (e.g., PyTorch, TensorFlow, JAX)' offer examples for a single ask, while 'machine-learning' stays out as the broad skill named alongside its examples and 'llms' and 'transformers' are also asked for on their own in the responsibilities.\"}",
+  "decision": [
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ]
+  ],
+  "why": "Under the Markers bullet, 'one or more programming languages such as Python and C++' and 'ML frameworks (e.g., PyTorch, TensorFlow, JAX)' offer examples for a single ask, while 'machine-learning' stays out as the broad skill named alongside its examples and 'llms' and 'transformers' are also asked for on their own in the responsibilities.",
+  "error": null
+}

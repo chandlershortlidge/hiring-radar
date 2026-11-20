@@ -1,0 +1,19 @@
+{
+  "item": 169,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "be5e11bb8a149efe04ecdd1ad3dfd5286ceb35febe6bb2314c57c16ec568a2f9",
+  "raw": "{\"decision\": [[\"megatron-lm\", \"deepspeed\"]], \"why\": \"The preferred qualification offers frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF as examples for one ask (implementing and debugging training methods), so the two labeled members form one group, and the other listed frameworks are unlabeled and add nothing.\"}",
+  "decision": [
+    [
+      "megatron-lm",
+      "deepspeed"
+    ]
+  ],
+  "why": "The preferred qualification offers frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF as examples for one ask (implementing and debugging training methods), so the two labeled members form one group, and the other listed frameworks are unlabeled and add nothing.",
+  "error": null
+}

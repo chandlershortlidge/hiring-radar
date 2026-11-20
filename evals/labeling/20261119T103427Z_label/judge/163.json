@@ -1,0 +1,29 @@
+{
+  "item": 163,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"], [\"hadoop\", \"apache-spark\"]]",
+  "key_sha256": "31cb8aa33d0fb28883ad66f512974e093c8953e0a97952795e4da13f23cacd4d",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"], [\"hadoop\", \"apache-spark\"]], \"why\": \"Under the markers rule, 'TensorFlow and/or PyTorch' uses an 'and/or' marker and the parenthetical examples '(AWS, Azure, GCP)' and '(Hadoop, Spark)' each satisfy a single ask ('cloud computing services' and 'Big Data technologies'), while `cloud` stays out as the broad skill and 'Docker, Kubernetes' are excluded as corresponding to 'containerization and orchestration' asked for together.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch"
+    ],
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ],
+    [
+      "hadoop",
+      "apache-spark"
+    ]
+  ],
+  "why": "Under the markers rule, 'TensorFlow and/or PyTorch' uses an 'and/or' marker and the parenthetical examples '(AWS, Azure, GCP)' and '(Hadoop, Spark)' each satisfy a single ask ('cloud computing services' and 'Big Data technologies'), while `cloud` stays out as the broad skill and 'Docker, Kubernetes' are excluded as corresponding to 'containerization and orchestration' asked for together.",
+  "error": null
+}

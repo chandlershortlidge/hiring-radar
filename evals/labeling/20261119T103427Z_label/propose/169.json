@@ -1,0 +1,19 @@
+{
+  "item": 169,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dcfff9e7c328b95519e07def70b4b5232fa02ca14653d86e87f40b01cc28c277",
+  "raw": "{\"decision\": [[\"go\", \"python\"]], \"why\": \"The 'Strong proficiency in Python or Go' line is an 'X or Y' alternative for one ask, so python and go form a group; the Argo/Ray/MLflow 'or comparable' list is not grouped because Ray is also required on its own via the Ray-based SDK responsibility, which leaves only mlflow.\"}",
+  "decision": [
+    [
+      "go",
+      "python"
+    ]
+  ],
+  "why": "The 'Strong proficiency in Python or Go' line is an 'X or Y' alternative for one ask, so python and go form a group; the Argo/Ray/MLflow 'or comparable' list is not grouped because Ray is also required on its own via the Ray-based SDK responsibility, which leaves only mlflow.",
+  "error": null
+}

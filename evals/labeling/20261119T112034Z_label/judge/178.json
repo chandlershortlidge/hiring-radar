@@ -1,0 +1,21 @@
+{
+  "item": 178,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"aws\", \"azure\", \"gcp\"]]",
+  "key_sha256": "4ae90b6e861e92d5391f2c447a501d17de9066df9fb6171714e5a7cb37dc5295",
+  "raw": "{\"decision\": [[\"aws\", \"azure\", \"gcp\"]], \"why\": \"The posting offers Azure, AWS, and GCP as examples for the single ask 'cloud environments (Azure, AWS, GCP)' while leaving the broad 'cloud' skill out of the group, and no other alternative ask has at least two non-parent skills labeled.\"}",
+  "decision": [
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "The posting offers Azure, AWS, and GCP as examples for the single ask 'cloud environments (Azure, AWS, GCP)' while leaving the broad 'cloud' skill out of the group, and no other alternative ask has at least two non-parent skills labeled.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 176,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7181e224406af33420045a8ba97101fafcd9729dd08de2fae61ab16c5ca4e64a",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for React and Typescript together and for generative AI products, with no 'at least one of', 'X or Y' or example-set markers, so no skills are offered in place of each other under the alternative_group rule.\"}",
+  "decision": [],
+  "why": "The posting asks for React and Typescript together and for generative AI products, with no 'at least one of', 'X or Y' or example-set markers, so no skills are offered in place of each other under the alternative_group rule.",
+  "error": null
+}

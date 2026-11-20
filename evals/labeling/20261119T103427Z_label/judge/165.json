@@ -1,0 +1,41 @@
+{
+  "item": 165,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\", \"scikit-learn\"], [\"docker\", \"kubernetes\"], [\"agents\", \"evaluation\", \"testing\", \"observability\", \"llm-guardrails\"], [\"vector-databases\", \"embeddings\", \"rag\"], [\"async-processing\", \"event-driven-systems\"]]",
+  "key_sha256": "075331e0f3b0f7d7f3b9e619e0d30e239fbd06c959a9021f72943fa4d7a68be8",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"scikit-learn\"], [\"agents\", \"evaluation\", \"testing\", \"observability\", \"llm-guardrails\"], [\"vector-databases\", \"embeddings\", \"rag\"], [\"docker\", \"kubernetes\"], [\"async-processing\", \"event-driven-systems\"]], \"why\": \"Under the Markers rule ('X, Y or Z', 'X and/or Y', and 'such as X, Y or Z' / 'like X or Y'), each of these five bullets lists alternative skills for a single ask, while broad skills named alongside examples ('containerized or cloud environments') stay out of the example tool group.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "scikit-learn"
+    ],
+    [
+      "agents",
+      "evaluation",
+      "testing",
+      "observability",
+      "llm-guardrails"
+    ],
+    [
+      "vector-databases",
+      "embeddings",
+      "rag"
+    ],
+    [
+      "docker",
+      "kubernetes"
+    ],
+    [
+      "async-processing",
+      "event-driven-systems"
+    ]
+  ],
+  "why": "Under the Markers rule ('X, Y or Z', 'X and/or Y', and 'such as X, Y or Z' / 'like X or Y'), each of these five bullets lists alternative skills for a single ask, while broad skills named alongside examples ('containerized or cloud environments') stay out of the example tool group.",
+  "error": null
+}

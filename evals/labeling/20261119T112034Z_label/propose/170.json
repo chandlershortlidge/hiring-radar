@@ -1,0 +1,14 @@
+{
+  "item": 170,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bab089c0279ea232be7051516afa877b075f383c0968487d0dc37e99308d1a72",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for each listed skill (Python, machine learning techniques, Generative/agentic AI with LLMs, scalable codebases) as separate requirements with no 'at least one of', 'or', or example-for-one-ask marker, so no skills are offered in place of each other under the alternative_group rule.\"}",
+  "decision": [],
+  "why": "The posting asks for each listed skill (Python, machine learning techniques, Generative/agentic AI with LLMs, scalable codebases) as separate requirements with no 'at least one of', 'or', or example-for-one-ask marker, so no skills are offered in place of each other under the alternative_group rule.",
+  "error": null
+}

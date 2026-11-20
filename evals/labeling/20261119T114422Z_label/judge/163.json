@@ -1,0 +1,15 @@
+{
+  "item": 163,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "6c0833ebfa45c00b32aecf951a332d78b2c27df11c07866a46c02940d58dbdcf",
+  "raw": "{\"decision\": [], \"why\": \"Go, TypeScript, and Python are each listed as unmarked tech-stack entries under 'Our stack', and under the rule a skill also asked for on its own elsewhere (including as an unmarked tech-stack entry) leaves the group, leaving no group with at least two skills.\"}",
+  "decision": [],
+  "why": "Go, TypeScript, and Python are each listed as unmarked tech-stack entries under 'Our stack', and under the rule a skill also asked for on its own elsewhere (including as an unmarked tech-stack entry) leaves the group, leaving no group with at least two skills.",
+  "error": null
+}

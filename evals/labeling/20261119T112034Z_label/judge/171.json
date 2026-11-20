@@ -1,0 +1,20 @@
+{
+  "item": 171,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"jax\", \"pytorch\"]]",
+  "key_sha256": "9fa49a13da191f4149448678429ec778e02617e13d136908c1f4a48e07becdfe",
+  "raw": "{\"decision\": [[\"jax\", \"pytorch\"]], \"why\": \"The posting requires \\\"Expert with PyTorch or JAX\\\", offering `pytorch` and `jax` as alternatives for one ask under the \\\"X, Y or Z\\\" marker, whereas `model-development` is also asked for on its own elsewhere in the posting (\\\"model training\\\", \\\"Run pre-training, post-training\\\") and cannot form an alternative group with `fine-tuning`.\"}",
+  "decision": [
+    [
+      "jax",
+      "pytorch"
+    ]
+  ],
+  "why": "The posting requires \"Expert with PyTorch or JAX\", offering `pytorch` and `jax` as alternatives for one ask under the \"X, Y or Z\" marker, whereas `model-development` is also asked for on its own elsewhere in the posting (\"model training\", \"Run pre-training, post-training\") and cannot form an alternative group with `fine-tuning`.",
+  "error": null
+}

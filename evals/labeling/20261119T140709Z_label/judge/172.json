@@ -1,0 +1,15 @@
+{
+  "item": 172,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "ed9870facb7424144883b07c594ff2c59ed06f5ca5c60a6129fde187211770ce",
+  "raw": "{\"decision\": [], \"why\": \"The posting requires all listed skills together rather than offering any skill in place of another, so no alternative group markers apply.\"}",
+  "decision": [],
+  "why": "The posting requires all listed skills together rather than offering any skill in place of another, so no alternative group markers apply.",
+  "error": null
+}

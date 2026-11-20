@@ -1,0 +1,14 @@
+{
+  "item": 180,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b16af19c2fbe6720371da5bb63f9c4627141df34b22d361887f28bfafd6dd1d6",
+  "raw": "{\"decision\": [], \"why\": \"No skills are offered in place of each other: \\\"AI/LLM capabilities\\\" names a broad skill (ai-ml) alongside its example (llms), which the rule excludes as a broad skill named with its examples, and the other labeled skills each come from a single ask with no alternative markers.\"}",
+  "decision": [],
+  "why": "No skills are offered in place of each other: \"AI/LLM capabilities\" names a broad skill (ai-ml) alongside its example (llms), which the rule excludes as a broad skill named with its examples, and the other labeled skills each come from a single ask with no alternative markers.",
+  "error": null
+}

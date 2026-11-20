@@ -1,0 +1,14 @@
+{
+  "item": 166,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4bb859c6e00b5ca7847b01fbdac7cb25100e68643aa40801e34108da64ad298e",
+  "raw": "{\"decision\": [], \"why\": \"The 'and/or' in 'Experience building with LLMs and/or AI agents' would group llms and agents, but the responsibilities separately say to 'Apply LLMs and AI agents', which asks for both together, so neither is only an alternative under the rule's 'skill also asked for on its own elsewhere' exclusion.\"}",
+  "decision": [],
+  "why": "The 'and/or' in 'Experience building with LLMs and/or AI agents' would group llms and agents, but the responsibilities separately say to 'Apply LLMs and AI agents', which asks for both together, so neither is only an alternative under the rule's 'skill also asked for on its own elsewhere' exclusion.",
+  "error": null
+}

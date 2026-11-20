@@ -1,0 +1,29 @@
+{
+  "item": 166,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"airflow\", \"prefect\"], [\"openai-api\", \"anthropic-api\"], [\"vector-databases\", \"embeddings\", \"vector-search\"]]",
+  "key_sha256": "3c9fc20c4c67116406f2741cd53da1c71ecfdb924b69a3d3175ff89d7ed5f0ca",
+  "raw": "{\"decision\": [[\"openai-api\", \"anthropic-api\"], [\"airflow\", \"prefect\"], [\"vector-databases\", \"embeddings\", \"vector-search\"]], \"why\": \"The posting offers three sets of alternatives using the 'X, Y or Z' and examples-for-a-single-ask markers ('LLM APIs (OpenAI, Anthropic, or similar)', 'workflow orchestration tools (Airflow, Prefect, or similar)', and 'vector databases, embeddings, or semantic search'), while 'or similar' adds nothing and the parent skill 'llms' stays out of the group.\"}",
+  "decision": [
+    [
+      "openai-api",
+      "anthropic-api"
+    ],
+    [
+      "airflow",
+      "prefect"
+    ],
+    [
+      "vector-databases",
+      "embeddings",
+      "vector-search"
+    ]
+  ],
+  "why": "The posting offers three sets of alternatives using the 'X, Y or Z' and examples-for-a-single-ask markers ('LLM APIs (OpenAI, Anthropic, or similar)', 'workflow orchestration tools (Airflow, Prefect, or similar)', and 'vector databases, embeddings, or semantic search'), while 'or similar' adds nothing and the parent skill 'llms' stays out of the group.",
+  "error": null
+}

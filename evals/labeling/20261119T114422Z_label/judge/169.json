@@ -1,0 +1,20 @@
+{
+  "item": 169,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"megatron-lm\", \"deepspeed\"]]",
+  "key_sha256": "88f090fa8f6b7d5309eba1e153fc8cc9eae0052538e118c072d1d5c5e961bed9",
+  "raw": "{\"decision\": [[\"megatron-lm\", \"deepspeed\"]], \"why\": \"The posting offers 'frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF' as examples for a single ask, which matches the rule's marker for examples offered for one ask ('a framework like X or Y').\"}",
+  "decision": [
+    [
+      "megatron-lm",
+      "deepspeed"
+    ]
+  ],
+  "why": "The posting offers 'frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF' as examples for a single ask, which matches the rule's marker for examples offered for one ask ('a framework like X or Y').",
+  "error": null
+}

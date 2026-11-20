@@ -1905,3 +1905,348 @@ Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
 PROPOSED: {"degree": "master", "degree_requirement": "nice_to_have", "degree_or_equivalent": false, "degree_signal": "MSc or PhD in a numerate discipline"} - Under the degree rule the level is the lowest named, so 'MSc or PhD' gives master rather than the older highest-level phd, and the whole mention sits under 'Bonus Points For', so it is nice_to_have.
 
 DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "nice_to_have", "degree_signal": "MSc or PhD in a numerate discipline"}
+
+## 166. golden_094 - groups `alternative_group` (groups)
+
+> Engineering Manager, AI Models Infrastructure
+
+- `ai-ml` · required · raw_text: "you will need prior experience in AI"
+- `machine-learning` · nice_to_have · raw_text: "Experience training ML models"
+- `mlops` · nice_to_have · raw_text: "operating them in production, at scale"
+- `model-development` · nice_to_have · raw_text: "Experience training ML models"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The posting offers no skills in place of each other: its only ask-level phrasing joins training and operating models with "and" (skills asked together, not alternatives), and no "at least one of", "or", or example-list marker appears in the labelled skills, so the alternative_group rule yields no group.
+
+DECISION: []
+
+## 167. golden_095 - groups `alternative_group` (groups)
+
+> Lead Machine Learning Scientist, Business Banking
+
+- `a-b-testing` · nice_to_have · raw_text: "A/B tests"
+- `agents` · nice_to_have · raw_text: "agentic workflows"
+- `ai-deployment` · required · raw_text: "shipping state-of-the-art ML models to production"
+- `ai-ml` · required · raw_text: "thoughtful about responsible ML/AI"
+- `evaluation` · nice_to_have · raw_text: "evaluation frameworks"
+- `explainable-ai` · nice_to_have · raw_text: "explainability"
+- `forecasting` · nice_to_have · raw_text: "forecasting"
+- `go` · nice_to_have · raw_text: "keen to learn Go"
+- `llms` · nice_to_have · raw_text: "Experience with GenAI, LLMs"
+- `machine-learning` · required · raw_text: "leading the development and deployment of advanced Machine Learning models"
+- `microservices` · nice_to_have · raw_text: "working with microservices"
+- `model-development` · required · raw_text: "development and deployment of advanced Machine Learning models"
+- `python` · required · raw_text: "You speak Python fluently"
+- `recommender-systems` · nice_to_have · raw_text: "recommendation"
+- `scikit-learn` · required · raw_text: "extensive, hands-on experience with scikit-learn"
+- `software-engineering` · nice_to_have · raw_text: "writing critical production code"
+- `sql` · required · raw_text: "You are comfortable using SQL"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The 'Experience with GenAI, LLMs, agentic workflows, retrieval, evaluation frameworks, or human-in-the-loop' list is an 'or' alternative set, but its labeled members llms and evaluation are also asked on their own in the responsibilities (LLM-powered experiences; design robust evaluation), which removes them from the group and leaves fewer than two members, so under the 'a group needs at least two skills' and 'asked on its own elsewhere' rules there is no group.
+
+DECISION: ?
+
+## 168. golden_096 - groups `alternative_group` (groups)
+
+> Senior Machine Learning Engineer
+
+- `aws` · required · raw_text: "AWS"
+- `azure` · required · raw_text: "Azure"
+- `cloud` · required · raw_text: "cloud platforms"
+- `containerization` · required · raw_text: "container and orchestration tools"
+- `docker` · required · raw_text: "Docker"
+- `gcp` · required · raw_text: "GCP"
+- `kubernetes` · required · raw_text: "Kubernetes"
+- `machine-learning` · required · raw_text: "understand the full ML lifecycle"
+- `mlops` · required · raw_text: "experience operationalising models"
+- `python` · required · raw_text: "strong Python skills"
+- `pytorch` · required · raw_text: "PyTorch"
+- `software-engineering` · required · raw_text: "deep expertise in software engineering"
+- `tensorflow` · required · raw_text: "TensorFlow"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["tensorflow", "pytorch"], ["aws", "azure", "gcp"]] - Per the alternative_group rule, "frameworks like TensorFlow or PyTorch" and "cloud platforms (e.g., AWS, Azure, GCP)" each offer one example that meets a single ask, so each forms a group, with the broad "cloud" left out; Docker and Kubernetes are joined by "&" (asked together, not alternatives) so they stay ungrouped.
+
+DECISION: [["aws", "azure", "gcp"], ["pytorch", "tensorflow"]]
+
+## 169. golden_097 - groups `alternative_group` (groups)
+
+> Member of Technical Staff (AI Infrastructure Engineer)
+
+- `ai-deployment` · nice_to_have · raw_text: "Ideally, 3-5 years of relevant experience in ML systems deployment"
+- `ai-infrastructure` · required · raw_text: "focus on ML infrastructure"
+- `ansible` · nice_to_have · raw_text: "Ansible"
+- `apis` · required · raw_text: "Experience developing APIs"
+- `aws` · required · raw_text: "primarily on AWS"
+- `containerization` · required · raw_text: "container orchestration"
+- `cpp` · required · raw_text: "C++ programming"
+- `cuda` · nice_to_have · raw_text: "CUDA optimization"
+- `devops` · required · raw_text: "Previous roles in SRE, DevOps, or Platform Engineering"
+- `distributed-systems` · required · raw_text: "distributed systems architecture"
+- `distributed-training` · required · raw_text: "managing distributed training systems"
+- `gitops` · nice_to_have · raw_text: "GitOps practices"
+- `infrastructure-as-code` · nice_to_have · raw_text: "infrastructure as code"
+- `kubernetes` · required · raw_text: "Strong expertise in Kubernetes administration"
+- `llms` · required · raw_text: "familiarity with LLM architecture"
+- `model-serving` · required · raw_text: "high-availability inference services"
+- `networking` · required · raw_text: "Strong understanding of networking"
+- `observability` · required · raw_text: "expertise in observability tools"
+- `python` · required · raw_text: "Python and C++ programming"
+- `pytorch` · required · raw_text: "ML frameworks such as PyTorch"
+- `slurm` · required · raw_text: "Hands-on experience with Slurm workload management"
+- `tensorflow` · nice_to_have · raw_text: "other ML frameworks like TensorFlow"
+- `terraform` · nice_to_have · raw_text: "Terraform"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["ansible", "terraform"]] - Under the alternative_group rule, "infrastructure as code (Terraform, Ansible)" offers two examples for one ask, with the broad skill infrastructure-as-code left out of the group, while the PyTorch and TensorFlow mentions are separate asks (the required PyTorch line and the preferred "other ML frameworks like TensorFlow") and so are not grouped.
+
+DECISION: [["ansible", "terraform"]]
+
+## 170. golden_098 - groups `alternative_group` (groups)
+
+> Principal Data Scientist
+
+- `agents` · required · raw_text: "agentic AI applications"
+- `llms` · required · raw_text: "Large Language Models"
+- `machine-learning` · required · raw_text: "machine learning techniques"
+- `python` · required · raw_text: "Python"
+- `software-engineering` · required · raw_text: "building and maintaining scalable codebases"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The posting asks for each listed skill (Python, machine learning techniques, Generative/agentic AI with LLMs, scalable codebases) as separate requirements with no 'at least one of', 'or', or example-for-one-ask marker, so no skills are offered in place of each other under the alternative_group rule.
+
+DECISION: []
+
+## 171. golden_099 - groups `alternative_group` (groups)
+
+> Applied Scientist - Tabular Data, EMEA
+
+- `agents` · nice_to_have · raw_text: "spreadsheet agents"
+- `ci-cd` · nice_to_have · raw_text: "CI pipelines"
+- `fine-tuning` · required · raw_text: "fine-tuning large language models"
+- `jax` · required · raw_text: "JAX"
+- `llms` · required · raw_text: "large language models"
+- `machine-learning` · required · raw_text: "machine learning on tabular data"
+- `model-development` · required · raw_text: "training or fine-tuning large language models"
+- `pandas` · required · raw_text: "pandas"
+- `python` · required · raw_text: "Python code"
+- `pytorch` · required · raw_text: "PyTorch"
+- `reinforcement-learning` · nice_to_have · raw_text: "reinforcement learning using verifiable rewards"
+- `sql` · required · raw_text: "comfortable with SQL"
+- `testing` · nice_to_have · raw_text: "tests"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["jax", "pytorch"]] - The posting says "Expert with PyTorch or JAX", an "X or Y" marker for one ask that either skill meets, so the two form one group; the "training or fine-tuning" phrasing is a choice between verbs for the same LLM ask, not between labelled skills, so it does not form a group.
+
+DECISION: [["jax", "pytorch"]]
+
+## 172. golden_100 - groups `alternative_group` (groups)
+
+> AI Engineer, UK
+
+- `agent-architecture` · nice_to_have · raw_text: "agent architectures"
+- `agents` · required · raw_text: "AI agents in production"
+- `ai-deployment` · required · raw_text: "deploying LLM-powered applications or AI agents in production"
+- `aws` · nice_to_have · raw_text: "AWS"
+- `azure` · nice_to_have · raw_text: "Azure"
+- `cloud` · nice_to_have · raw_text: "cloud platforms"
+- `devops` · required · raw_text: "modern DevOps practices"
+- `evaluation` · required · raw_text: "AI system evaluation"
+- `gcp` · nice_to_have · raw_text: "GCP"
+- `langchain` · required · raw_text: "LangChain"
+- `llamaindex` · required · raw_text: "LlamaIndex"
+- `llm-guardrails` · required · raw_text: "Guardrails"
+- `llm-orchestration` · required · raw_text: "multi-step AI workflows"
+- `llms` · required · raw_text: "LLM-powered applications"
+- `mcp` · required · raw_text: "MCP"
+- `observability` · required · raw_text: "debugging, and observability"
+- `python` · required · raw_text: "Strong proficiency in Python"
+- `rag` · required · raw_text: "RAG pipelines"
+- `software-engineering` · required · raw_text: "professional software engineering experience"
+- `tool-calling` · required · raw_text: "RAG pipelines, tool use"
+- `typescript` · required · raw_text: "TypeScript"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["python", "typescript"], ["langchain", "llamaindex", "llm-guardrails", "mcp"], ["aws", "gcp", "azure"], ["rag", "llm-orchestration"]] - Under the rule's markers, 'Python or TypeScript', the 'such as LangChain, LlamaIndex, Guardrails, MCP, or agent frameworks' examples, and the parenthesised 'AWS, GCP, or Azure' (with 'cloud' left out) each form a group of alternatives; 'RAG pipelines, tool use, or multi-step AI workflows' also reads as an 'X, Y or Z' set, but tool use is also asked on its own in the responsibilities list, so tool-calling leaves that group and the remaining two form it.
+
+DECISION: [["aws", "azure", "gcp"], ["langchain", "llamaindex", "llm-guardrails", "mcp"], ["llm-orchestration", "rag"], ["python", "typescript"]]
+
+## 173. golden_101 - groups `alternative_group` (groups)
+
+> Applied Scientist Lead - Robotics, EMEA
+
+- `ai-deployment` · required · raw_text: "shipping models on real robots"
+- `ci-cd` · nice_to_have · raw_text: "CI pipelines"
+- `jax` · required · raw_text: "Expert with PyTorch or JAX"
+- `machine-learning` · nice_to_have · raw_text: "large machine learning models at scale"
+- `python` · required · raw_text: "Python code"
+- `pytorch` · required · raw_text: "Expert with PyTorch or JAX"
+- `testing` · nice_to_have · raw_text: "tests"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["jax", "pytorch"]] - "Expert with PyTorch or JAX" is a single ask with an "or" marker, so under the alternative_group rule jax and pytorch form one group, and neither is asked for on its own elsewhere in the posting.
+
+DECISION: [["jax", "pytorch"]]
+
+## 174. golden_102 - groups `alternative_group` (groups)
+
+> Android Developer - AI Finance Agent
+
+- `kotlin` · required · raw_text: "Strong native Android experience using Kotlin"
+- `software-architecture` · required · raw_text: "Android architecture"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The posting asks for Kotlin and for Android architecture as separate requirements with no 'at least one of', 'or', or example-marker wording linking them, so under the alternative_group rule (skills asked for together are not alternatives) neither forms a group.
+
+DECISION: []
+
+## 175. golden_103 - groups `alternative_group` (groups)
+
+> Member of Technical Staff (Machine Learning Engineer, Search Agent RL)
+
+- `agent-architecture` · nice_to_have · raw_text: "Building agent harnesses"
+- `agents` · required · raw_text: "or agent systems"
+- `ai-infrastructure` · nice_to_have · raw_text: "scalable inference infrastructure"
+- `distributed-training` · nice_to_have · raw_text: "distributed training systems"
+- `evaluation` · required · raw_text: "designing rigorous evaluations"
+- `ml-engineering` · required · raw_text: "building and shipping ML systems"
+- `model-development` · required · raw_text: "model training"
+- `multi-agent-systems` · nice_to_have · raw_text: "Multi-agent training, coordination, or evaluation"
+- `recommender-systems` · nice_to_have · raw_text: "recommendation systems"
+- `reinforcement-learning` · required · raw_text: "reinforcement learning, search and retrieval"
+- `software-engineering` · required · raw_text: "Strong software engineering skills"
+- `tool-calling` · nice_to_have · raw_text: "training models to use tools"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The 'one or more of' qualification names reinforcement learning and agent systems, but reinforcement learning is also asked on its own in the responsibilities ('Develop LLM post-training methods, including reinforcement learning'), so it leaves the group and only `agents` remains, below the two-skill minimum.
+
+DECISION: ?
+
+## 176. golden_104 - groups `alternative_group` (groups)
+
+> Software Engineer - AI Product (London, United Kingdom)
+
+- `agents` · nice_to_have · raw_text: "agentic product features"
+- `evaluation` · nice_to_have · raw_text: "curating and developing eval sets and LLMs as judges"
+- `full-stack-development` · required · raw_text: "as a full-stack developer"
+- `llms` · required · raw_text: "built generative AI products"
+- `react` · required · raw_text: "React"
+- `typescript` · required · raw_text: "Typescript"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The posting asks for React and Typescript together and for generative AI products, with no 'at least one of', 'X or Y' or example-set markers, so no skills are offered in place of each other under the alternative_group rule.
+
+DECISION: []
+
+## 177. golden_105 - groups `alternative_group` (groups)
+
+> Staff Software Engineer (Agentic Search) - Runtime
+
+- `apis` · nice_to_have · raw_text: "large-scale APIs"
+- `backend-development` · required · raw_text: "production backend systems"
+- `cloud` · nice_to_have · raw_text: "cloud infrastructure"
+- `cpp` · required · raw_text: "C++"
+- `data-pipelines` · nice_to_have · raw_text: "real-time data pipelines"
+- `networking` · required · raw_text: "networking, and data access"
+- `rust` · required · raw_text: "Rust"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["cpp", "rust"]] - The posting asks for "strong hands-on expertise in C++ or Rust" for one ask, and neither skill is asked for elsewhere on its own, so the "X or Y" marker makes them one alternative_group.
+
+DECISION: [["cpp", "rust"]]
+
+## 178. golden_106 - groups `alternative_group` (groups)
+
+> Senior Data Scientist
+
+- `ai-deployment` · required · raw_text: "deploying data science solutions"
+- `ai-ml` · required · raw_text: "apply AI-enabled approaches"
+- `apache-spark` · required · raw_text: "Spark"
+- `aws` · required · raw_text: "AWS"
+- `azure` · required · raw_text: "Azure"
+- `ci-cd` · nice_to_have · raw_text: "CI/CD"
+- `cloud` · required · raw_text: "cloud environments"
+- `data-science` · required · raw_text: "building and deploying data science solutions"
+- `devops` · nice_to_have · raw_text: "DevOps integration"
+- `gcp` · required · raw_text: "GCP"
+- `llms` · nice_to_have · raw_text: "Generative AI or LLMs"
+- `machine-learning` · required · raw_text: "applied machine learning"
+- `mlops` · nice_to_have · raw_text: "MLOps practices"
+- `model-development` · required · raw_text: "model development"
+- `nlp` · nice_to_have · raw_text: "advanced NLP frameworks such as spaCy"
+- `observability` · nice_to_have · raw_text: "model monitoring"
+- `python` · required · raw_text: "Python"
+- `transformers` · nice_to_have · raw_text: "Transformers"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["aws", "azure", "gcp"]] - The posting asks for "cloud environments (Azure, AWS, GCP)", which the rule's own example treats as one group of alternatives, with the broad "cloud" skill left out of it. The Spark, Hive and Redshift list and the spaCy/Transformers examples do not form a group under the rule, since only one skill from each is labeled, or the broad NLP parent would have to be excluded.
+
+DECISION: [["aws", "azure", "gcp"]]
+
+## 179. golden_107 - groups `alternative_group` (groups)
+
+> Senior Machine Learning Engineering Manager - Content Platform
+
+- `ai-developer-tooling` · required · raw_text: "using AI to improve how ML engineers work"
+- `machine-learning` · required · raw_text: "deep machine learning expertise"
+- `nlp` · required · raw_text: "NLP"
+- `recommender-systems` · required · raw_text: "recommender systems"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [] - The posting asks for experience across NLP, audio/music content understanding and recommender systems together ('You bring experience across...'), which is a set of skills asked for jointly, not one of several accepted for a single ask, so no alternative_group applies.
+
+DECISION: []
+
+## 180. golden_108 - groups `alternative_group` (groups)
+
+> Applied Value Engineer - AI and Pre-Sales Consultant
+
+- `agents` · required · raw_text: "RAG, agents"
+- `ai-deployment` · required · raw_text: "model deployment"
+- `ai-ml` · required · raw_text: "ML/AI libraries"
+- `api-design` · required · raw_text: "API design"
+- `aws-bedrock` · required · raw_text: "AWS Bedrock"
+- `azure` · required · raw_text: "Azure AI"
+- `cloud` · required · raw_text: "cloud services"
+- `data-privacy-and-security` · required · raw_text: "data governance, privacy, and compliance"
+- `forecasting` · nice_to_have · raw_text: "forecasting is a plus"
+- `hugging-face` · required · raw_text: "Hugging Face Transformers"
+- `llm-orchestration` · required · raw_text: "LLM orchestration"
+- `llmops` · required · raw_text: "MLOps/LLMOps"
+- `mlops` · required · raw_text: "MLOps/LLMOps"
+- `observability` · required · raw_text: "monitoring"
+- `prompt-engineering` · required · raw_text: "prompt engineering"
+- `python` · required · raw_text: "Python proficiency"
+- `pytorch` · required · raw_text: "PyTorch"
+- `rag` · required · raw_text: "function calling, RAG"
+- `reinforcement-learning` · nice_to_have · raw_text: "reinforcement learning"
+- `scikit-learn` · required · raw_text: "scikit-learn"
+- `software-engineering` · required · raw_text: "Software/Data Engineering"
+- `sql` · required · raw_text: "SQL"
+- `statistics` · nice_to_have · raw_text: "statistical analysis"
+- `tensorflow` · required · raw_text: "TensorFlow"
+- `tool-calling` · required · raw_text: "tool use/function calling"
+- `transformers` · required · raw_text: "Hugging Face Transformers"
+- `vertex-ai` · required · raw_text: "GCP Vertex AI"
+- `xgboost` · required · raw_text: "XGBoost"
+
+Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
+
+PROPOSED: [["llm-orchestration", "tool-calling", "prompt-engineering"]] - The Agentic AI Systems line offers LLM orchestration, tool use/function calling, RAG, agents, prompt engineering or agentic patterns for one ask, with 'or' marking the alternatives; rag and agents are also asked on their own in the duties ('LLM/agent systems with RAG'), so they leave the group, leaving three members. The cloud and ML-library parentheticals have no 'or' or 'such as' marker, so they are not grouped.
+
+DECISION: [["llm-orchestration", "prompt-engineering", "tool-calling"]]

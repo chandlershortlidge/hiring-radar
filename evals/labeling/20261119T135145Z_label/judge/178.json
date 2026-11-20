@@ -1,0 +1,25 @@
+{
+  "item": 178,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"jax\", \"tensorflow\"], [\"gcp\", \"aws\"]]",
+  "key_sha256": "ac0ee4671fe8652516d683777d35e2d3d685d5bedcc70aa96730accb47441738",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"gcp\", \"aws\"]], \"why\": \"Under the 'X, Y or Z' and 'examples offered for a single ask' markers, PyTorch, JAX, and TensorFlow are alternatives for 'a major ML framework', and GCP and AWS are alternative examples for the 'cloud' ask (with 'cloud' kept out as the broad parent skill and 'docker' kept out as the example for 'containerization').\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "gcp",
+      "aws"
+    ]
+  ],
+  "why": "Under the 'X, Y or Z' and 'examples offered for a single ask' markers, PyTorch, JAX, and TensorFlow are alternatives for 'a major ML framework', and GCP and AWS are alternative examples for the 'cloud' ask (with 'cloud' kept out as the broad parent skill and 'docker' kept out as the example for 'containerization').",
+  "error": null
+}

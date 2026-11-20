@@ -1,0 +1,15 @@
+{
+  "item": 166,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "4bee1bcf2b775cc8d34277c5ebdd83be6e76f208a982299bc78575e630c13b75",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills are offered as alternatives to each other (the only 'X, Y, or Z' phrasing among them is 'MLOps platforms, feature stores, or ML observability solutions', where only `observability` is a standalone labeled skill here while `mlops` is required on its own elsewhere, and a group needs at least two skills).\"}",
+  "decision": [],
+  "why": "None of the labeled skills are offered as alternatives to each other (the only 'X, Y, or Z' phrasing among them is 'MLOps platforms, feature stores, or ML observability solutions', where only `observability` is a standalone labeled skill here while `mlops` is required on its own elsewhere, and a group needs at least two skills).",
+  "error": null
+}

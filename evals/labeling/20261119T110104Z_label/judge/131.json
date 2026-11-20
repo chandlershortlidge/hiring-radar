@@ -1,0 +1,15 @@
+{
+  "item": 131,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "7e019ba85564a58986ef6553a9cdd795cc31c713fe570472725ce0ae511777be",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills (agents, machine-learning, python, statistics) are presented as alternatives to one another with markers like 'or' or 'such as'; each is asked for on its own.\"}",
+  "decision": [],
+  "why": "None of the labeled skills (agents, machine-learning, python, statistics) are presented as alternatives to one another with markers like 'or' or 'such as'; each is asked for on its own.",
+  "error": null
+}

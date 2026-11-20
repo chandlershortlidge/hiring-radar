@@ -1,0 +1,19 @@
+{
+  "item": 170,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5307fc11ae766e1442d08f3b61be718b8016454d9a6346c4cbd315cad0104854",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"The posting asks for 'deep learning frameworks (e.g., PyTorch, Tensor Flow)', so the two examples are alternatives for one ask under the alternative_group rule, and 'deep-learning' stays out as the broad parent.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "The posting asks for 'deep learning frameworks (e.g., PyTorch, Tensor Flow)', so the two examples are alternatives for one ask under the alternative_group rule, and 'deep-learning' stays out as the broad parent.",
+  "error": null
+}

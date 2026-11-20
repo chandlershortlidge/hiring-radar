@@ -1,0 +1,40 @@
+{
+  "item": 164,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"go\"], [\"kubernetes\", \"docker\"], [\"jenkins\", \"gitlab-ci\"], [\"langchain\", \"autogen\", \"llamaindex\", \"google-adk\"], [\"airflow\", \"kubeflow\", \"mlflow\"]]",
+  "key_sha256": "c26ea5823db4a6922e9ac9e7356d6d67a37ec52952819d86d36caef9e9ab8121",
+  "raw": "{\"decision\": [[\"vertex-ai\", \"kubeflow\", \"airflow\", \"mlflow\"], [\"python\", \"go\"], [\"kubernetes\", \"docker\"], [\"jenkins\", \"gitlab-ci\"], [\"langchain\", \"autogen\", \"llamaindex\", \"google-adk\"]], \"why\": \"Under the markers rule for 'X, Y or Z' and examples offered for a single ask ('such as', 'e.g.'), each set of interchangeable examples forms a group (including 'Vertex AI, Kubeflow' or 'Apache Airflow, MLflow' together as alternatives for one MLOps ask), while broad parents (mlops, containerization, ci-cd, agents) stay out and single labeled skills (grafana) cannot form a two-skill group.\"}",
+  "decision": [
+    [
+      "vertex-ai",
+      "kubeflow",
+      "airflow",
+      "mlflow"
+    ],
+    [
+      "python",
+      "go"
+    ],
+    [
+      "kubernetes",
+      "docker"
+    ],
+    [
+      "jenkins",
+      "gitlab-ci"
+    ],
+    [
+      "langchain",
+      "autogen",
+      "llamaindex",
+      "google-adk"
+    ]
+  ],
+  "why": "Under the markers rule for 'X, Y or Z' and examples offered for a single ask ('such as', 'e.g.'), each set of interchangeable examples forms a group (including 'Vertex AI, Kubeflow' or 'Apache Airflow, MLflow' together as alternatives for one MLOps ask), while broad parents (mlops, containerization, ci-cd, agents) stay out and single labeled skills (grafana) cannot form a two-skill group.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 167,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "d73be85ec3753d727286629b2fa92bd57642fd591951f045a1d65a94020b0372",
+  "raw": "{\"decision\": [], \"why\": \"All labeled skills are asked for together, and the only alternative example in the text (\\\"Gemini or Windsurf\\\") has only one labeled skill (`gemini`), failing the rule that \\\"A group needs at least two skills.\\\"\"}",
+  "decision": [],
+  "why": "All labeled skills are asked for together, and the only alternative example in the text (\"Gemini or Windsurf\") has only one labeled skill (`gemini`), failing the rule that \"A group needs at least two skills.\"",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 183,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7a30364afa6f6a66ff9329664a2087263a2622ca721e1526abab69b47e32b133",
+  "raw": "{\"decision\": [], \"why\": \"No part of the posting offers one skill in place of another: its requirements are skills asked for together (\\\"fluent in Python\\\", \\\"experience building and deploying\\\", \\\"cloud computing environment\\\"), and the JAX mention is a standalone bonus, so no alternative_group marker applies.\"}",
+  "decision": [],
+  "why": "No part of the posting offers one skill in place of another: its requirements are skills asked for together (\"fluent in Python\", \"experience building and deploying\", \"cloud computing environment\"), and the JAX mention is a standalone bonus, so no alternative_group marker applies.",
+  "error": null
+}

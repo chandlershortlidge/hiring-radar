@@ -1,0 +1,15 @@
+{
+  "item": 173,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "72cd292da3c317323cebc33aae10746a45370a4bde67aafabf2aa1085755fe63",
+  "raw": "{\"decision\": [], \"why\": \"Although 'reinforcement-learning' and 'ros' appear in alternative lists ('imitation learning, RL or VLA' and 'ROS 2, DDS or Zenoh'), no other members of those lists are among the labeled skills (and broad parents like 'model-development' stay out of the group), leaving no group with the required minimum of two skills.\"}",
+  "decision": [],
+  "why": "Although 'reinforcement-learning' and 'ros' appear in alternative lists ('imitation learning, RL or VLA' and 'ROS 2, DDS or Zenoh'), no other members of those lists are among the labeled skills (and broad parents like 'model-development' stay out of the group), leaving no group with the required minimum of two skills.",
+  "error": null
+}

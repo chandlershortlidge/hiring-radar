@@ -1,0 +1,20 @@
+{
+  "item": 180,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "45b18e3f8c414704cc84828f676a7722b5fa2da0d9581c87c5f6a60f3a268209",
+  "raw": "{\"decision\": [[\"llm-orchestration\", \"tool-calling\", \"prompt-engineering\"]], \"why\": \"The Agentic AI Systems line offers LLM orchestration, tool use/function calling, RAG, agents, prompt engineering or agentic patterns for one ask, with 'or' marking the alternatives; rag and agents are also asked on their own in the duties ('LLM/agent systems with RAG'), so they leave the group, leaving three members. The cloud and ML-library parentheticals have no 'or' or 'such as' marker, so they are not grouped.\"}",
+  "decision": [
+    [
+      "llm-orchestration",
+      "tool-calling",
+      "prompt-engineering"
+    ]
+  ],
+  "why": "The Agentic AI Systems line offers LLM orchestration, tool use/function calling, RAG, agents, prompt engineering or agentic patterns for one ask, with 'or' marking the alternatives; rag and agents are also asked on their own in the duties ('LLM/agent systems with RAG'), so they leave the group, leaving three members. The cloud and ML-library parentheticals have no 'or' or 'such as' marker, so they are not grouped.",
+  "error": null
+}
