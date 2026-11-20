@@ -1,0 +1,380 @@
+{
+  "meta": {
+    "run_id": "20261120T174218Z_heldout_x2-9b923cba1e",
+    "split": "heldout",
+    "n_goldens": 60,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-9b923cba1e",
+    "taxonomy_version": 12,
+    "max_tokens": 4096,
+    "prompt_trial": {
+      "file": "hir-368-round-3.md",
+      "text": "10. A broad skill is asked for whenever its name is written in an ask, in any form: as a\n    noun, as a modifier of another word (\"B platforms\", \"B libraries\", \"B infrastructure\",\n    \"B workloads\", \"B-based\", \"B-powered\"), inside a hyphenated or compound word, as its\n    adjective, abbreviated, or in another language. When an ask names a broad skill and then\n    gives examples of it, report the broad skill first, then each example: they are separate\n    skills (rules 3 and 4). Before you finish, reread each ask for a broad term you have not\n    reported. This adds nothing the text does not write: a list of specific skills alone\n    never implies the broad skill they belong to.\n11. For seniority, years of experience count however they are written: in digits, in words,\n    or in another language (\"several years\" and its translations are years of experience).\n    A range or an open-ended count (\"X\u2013Y years\", \"X or more years\", \"X+ years\") is read at\n    its lowest number.\n"
+    }
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.9572312534764746,
+      "min": 0.95593635250918,
+      "max": 0.9592356687898089,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.8886292834890965,
+      "min": 0.8738317757009346,
+      "max": 0.9123831775700935,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9215647082750262,
+      "min": 0.9133089133089134,
+      "max": 0.9336521219366408,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9767448745851621,
+      "min": 0.9721115537848606,
+      "max": 0.9795134443021767,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 0.9055555555555556,
+      "min": 0.9,
+      "max": 0.9166666666666666,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 0.9555555555555556,
+      "min": 0.95,
+      "max": 0.9666666666666667,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.8833333333333333,
+      "min": 0.8833333333333333,
+      "max": 0.8833333333333333,
+      "n": 3
+    },
+    "production_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "production_signal_agreement": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "grounding_accuracy": {
+      "mean": 0.9983534214038263,
+      "min": 0.9975124378109452,
+      "max": 0.9988009592326139,
+      "n": 3
+    },
+    "group_f1": {
+      "mean": 0.8302985564304461,
+      "min": 0.828125,
+      "max": 0.8346456692913385,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.9440326446052998,
+      "min": 0.9337650481370797,
+      "max": 0.9546114358798927,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.6999999999999998,
+      "min": 0.7,
+      "max": 0.7,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 60,
+      "n_errors": 1,
+      "tp": 753,
+      "fp": 32,
+      "fn": 103,
+      "precision": 0.9592356687898089,
+      "recall": 0.8796728971962616,
+      "f1": 0.9177330895795247,
+      "requirement_accuracy": 0.9721115537848606,
+      "seniority_accuracy": 0.9166666666666666,
+      "seniority_n": 60,
+      "german_accuracy": 0.95,
+      "german_n": 60,
+      "degree_accuracy": 0.8833333333333333,
+      "degree_n": 60,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "grounding_accuracy": 0.9975124378109452,
+      "grounding_n": 804,
+      "group_f1": 0.828125,
+      "group_n": 11,
+      "rank_spearman": 0.9437214497989269,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "kubernetes",
+        "software-engineering",
+        "agents",
+        "rag",
+        "ai-ml",
+        "ci-cd",
+        "ai-deployment"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "cloud",
+        "agents",
+        "kubernetes",
+        "rag",
+        "ci-cd",
+        "machine-learning",
+        "apis",
+        "azure"
+      ]
+    },
+    {
+      "n_goldens": 60,
+      "n_errors": 0,
+      "tp": 781,
+      "fp": 36,
+      "fn": 75,
+      "precision": 0.95593635250918,
+      "recall": 0.9123831775700935,
+      "f1": 0.9336521219366408,
+      "requirement_accuracy": 0.9795134443021767,
+      "seniority_accuracy": 0.9,
+      "seniority_n": 60,
+      "german_accuracy": 0.9666666666666667,
+      "german_n": 60,
+      "degree_accuracy": 0.8833333333333333,
+      "degree_n": 60,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "grounding_accuracy": 0.9988009592326139,
+      "grounding_n": 834,
+      "group_f1": 0.828125,
+      "group_n": 11,
+      "rank_spearman": 0.9546114358798927,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "kubernetes",
+        "software-engineering",
+        "agents",
+        "rag",
+        "ai-ml",
+        "ci-cd",
+        "ai-deployment"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "cloud",
+        "agents",
+        "kubernetes",
+        "rag",
+        "ci-cd",
+        "azure",
+        "machine-learning",
+        "apis"
+      ]
+    },
+    {
+      "n_goldens": 60,
+      "n_errors": 1,
+      "tp": 748,
+      "fp": 34,
+      "fn": 108,
+      "precision": 0.9565217391304348,
+      "recall": 0.8738317757009346,
+      "f1": 0.9133089133089134,
+      "requirement_accuracy": 0.9786096256684492,
+      "seniority_accuracy": 0.9,
+      "seniority_n": 60,
+      "german_accuracy": 0.95,
+      "german_n": 60,
+      "degree_accuracy": 0.8833333333333333,
+      "degree_n": 60,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "grounding_accuracy": 0.9987468671679198,
+      "grounding_n": 798,
+      "group_f1": 0.8346456692913385,
+      "group_n": 11,
+      "rank_spearman": 0.9337650481370797,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "kubernetes",
+        "software-engineering",
+        "agents",
+        "rag",
+        "ai-ml",
+        "ci-cd",
+        "ai-deployment"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "cloud",
+        "agents",
+        "kubernetes",
+        "rag",
+        "ci-cd",
+        "apis",
+        "azure",
+        "machine-learning"
+      ]
+    }
+  ]
+}
