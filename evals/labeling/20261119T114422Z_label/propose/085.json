@@ -1,0 +1,14 @@
+{
+  "item": 85,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8471cc177ba384a870de6458e101bf11161acfea5b25ffc84658a69b62ff8878",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting never names a degree, diploma, or completed studies; its only education reference is the diversity paragraph's 'access to education', so the degree rule's 'when no degree is mentioned' gives null.\"}",
+  "decision": "ok",
+  "why": "The posting never names a degree, diploma, or completed studies; its only education reference is the diversity paragraph's 'access to education', so the degree rule's 'when no degree is mentioned' gives null.",
+  "error": null
+}

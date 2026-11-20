@@ -1,0 +1,20 @@
+{
+  "item": 57,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience\"}",
+  "key_sha256": "b38963c38685b21baf10153bc271c40823784532b195a16c4fbd7df2b8ab298d",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience\"}, \"why\": \"The rule states that `degree` is the lowest level named (`bachelor` in minimum qualifications rather than the preferred `master`), `degree_requirement` is `required` for a bare mention in a requirements list, and `degree_or_equivalent` is true when experience is accepted in place of the degree.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience"
+  },
+  "why": "The rule states that `degree` is the lowest level named (`bachelor` in minimum qualifications rather than the preferred `master`), `degree_requirement` is `required` for a bare mention in a requirements list, and `degree_or_equivalent` is true when experience is accepted in place of the degree.",
+  "error": null
+}

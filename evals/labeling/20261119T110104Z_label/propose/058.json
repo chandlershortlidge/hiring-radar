@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e5503859d4dce3d6a2c29b063d79a671dafa749e7f1fe547d99401511a79f56c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree level named is PhD (the MD/PhD is still a PhD-level credential), it sits in the required qualifications with no optional marking, and no equivalent-experience clause appears, so the agreed label matches the degree section's lowest-level rule.\"}",
+  "decision": "ok",
+  "why": "The only degree level named is PhD (the MD/PhD is still a PhD-level credential), it sits in the required qualifications with no optional marking, and no equivalent-experience clause appears, so the agreed label matches the degree section's lowest-level rule.",
+  "error": null
+}

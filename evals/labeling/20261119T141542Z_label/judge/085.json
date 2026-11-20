@@ -1,0 +1,15 @@
+{
+  "item": 85,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3fda2c54d3b4c3ec1afb077fa59d49bd39827363ccac02cda17504afc54ceaab",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting requires 'At least a Bachelor's degree' under 'What You Must Have' without mentioning equivalent experience, so the lowest degree level is `bachelor`, `required`, and `degree_or_equivalent` is false.\"}",
+  "decision": "ok",
+  "why": "The posting requires 'At least a Bachelor's degree' under 'What You Must Have' without mentioning equivalent experience, so the lowest degree level is `bachelor`, `required`, and `degree_or_equivalent` is false.",
+  "error": null
+}

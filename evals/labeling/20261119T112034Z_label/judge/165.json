@@ -1,0 +1,20 @@
+{
+  "item": 165,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"nice_to_have\", \"degree_signal\": \"MSc or PhD in a numerate discipline\"}",
+  "key_sha256": "e52e6734f3a26ba38e0f94e6b8befa4240ddfccaa4502fc79a9726ac0f58f3ab",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"MSc or PhD in a numerate discipline\"}, \"why\": \"The rule specifies recording the lowest degree level named even when the whole mention is optional, so 'MSc or PhD' under 'Bonus Points For' gives `master` with `nice_to_have`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MSc or PhD in a numerate discipline"
+  },
+  "why": "The rule specifies recording the lowest degree level named even when the whole mention is optional, so 'MSc or PhD' under 'Bonus Points For' gives `master` with `nice_to_have`.",
+  "error": null
+}

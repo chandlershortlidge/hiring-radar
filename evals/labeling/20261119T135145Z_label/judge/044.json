@@ -1,0 +1,20 @@
+{
+  "item": 44,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Minimum BS in Computer Science, Software Engineering, or a related field\"}",
+  "key_sha256": "cacfbd697e649a91b5b308a543db53c44ee71139c3c1c681fc8f40e8972cdf61",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Minimum BS in Computer Science, Software Engineering, or a related field\"}, \"why\": \"The rule specifies recording only the lowest degree level named ('bachelor' from 'Minimum BS' under Required Qualifications), while higher levels welcomed by the posting ('MS/PhD') are not recorded.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Minimum BS in Computer Science, Software Engineering, or a related field"
+  },
+  "why": "The rule specifies recording only the lowest degree level named ('bachelor' from 'Minimum BS' under Required Qualifications), while higher levels welcomed by the posting ('MS/PhD') are not recorded.",
+  "error": null
+}

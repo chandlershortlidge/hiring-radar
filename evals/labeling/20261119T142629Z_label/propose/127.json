@@ -1,0 +1,14 @@
+{
+  "item": 127,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f3c51cc3d36b117ba9fd3ef64542327fd9cf4928449fc258aa5dde37de7d4abf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting never names a degree or level (no degree, bachelor's, master's, or PhD requirement); the only university mention is that the team includes researchers from Harvard/MIT, so the degree label should stay null under the 'none (null) when no degree is mentioned' rule.\"}",
+  "decision": "ok",
+  "why": "The posting never names a degree or level (no degree, bachelor's, master's, or PhD requirement); the only university mention is that the team includes researchers from Harvard/MIT, so the degree label should stay null under the 'none (null) when no degree is mentioned' rule.",
+  "error": null
+}

@@ -2371,5 +2371,47 @@
     "excerpt": "...Strong programming skills in Python and experience with modern ML frameworks such as PyTorch - Background in scientific ML, spatiotemporal modeling,...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline"
+    },
+    "excerpt": "...teams PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "PhD, MS, or equivalent experience"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "PhD, MS, or equivalent experience"
+    },
+    "excerpt": "...creation and scientific discovery. Requirements - PhD, MS, or equivalent experience in computational biology, machine learning,...",
+    "problems": [],
+    "decision": "?"
   }
 ]

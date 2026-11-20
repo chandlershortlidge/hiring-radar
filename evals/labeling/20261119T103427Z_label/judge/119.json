@@ -1,0 +1,20 @@
+{
+  "item": 119,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"nice_to_have\", \"degree_signal\": \"MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field\"}",
+  "key_sha256": "353f027742e3b3cdb66eb53f042049d5eb1f87fc07ec4946acc5886ac690cbfc",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field\"}, \"why\": \"The rule specifies recording the lowest degree level named ('MS or PhD' -> 'master') and keeping 'nice_to_have' when the whole mention is optional.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
+  },
+  "why": "The rule specifies recording the lowest degree level named ('MS or PhD' -> 'master') and keeping 'nice_to_have' when the whole mention is optional.",
+  "error": null
+}

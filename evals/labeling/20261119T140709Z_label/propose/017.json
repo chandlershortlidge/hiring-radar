@@ -1,0 +1,19 @@
+{
+  "item": 17,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "43b5fec547cec3aa6382b572ed36fb00f91b0643089054b30777d2e22acc3ae1",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience\"}, \"why\": \"Under the degree rule, the label is the lowest level named, which is the required bachelor's degree (or equivalent experience), not the optional master's-or-PhD preference in the Preferred Qualifications, so neither labeler's phd value is right.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience"
+  },
+  "why": "Under the degree rule, the label is the lowest level named, which is the required bachelor's degree (or equivalent experience), not the optional master's-or-PhD preference in the Preferred Qualifications, so neither labeler's phd value is right.",
+  "error": null
+}

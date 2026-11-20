@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a17818d623df0f0248aff2f6a012e65f0ea4b1e00db63f6faf7263fa7d01fb5c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only level named is Master's, and the rule explicitly maps \\\"Master's degree (or above)\\\" to `master`; the bare requirements-list mention makes it `required`, and \\\"equivalent practical experience considered\\\" correctly sets `degree_or_equivalent` to true, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "The only level named is Master's, and the rule explicitly maps \"Master's degree (or above)\" to `master`; the bare requirements-list mention makes it `required`, and \"equivalent practical experience considered\" correctly sets `degree_or_equivalent` to true, so the agreed label stands.",
+  "error": null
+}

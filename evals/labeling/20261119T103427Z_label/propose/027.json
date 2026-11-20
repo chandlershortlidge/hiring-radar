@@ -1,0 +1,19 @@
+{
+  "item": 27,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5932eb61e33453d13e0681e56ff19fa14399d03407971c60b9103758b7cd0f60",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field\"}, \"why\": \"Under the degree rule the label is the lowest level named, so the Bachelor's is recorded and the welcomed MS/PhD is not, and the bare mention in the 'What You Bring' requirements list is required.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field"
+  },
+  "why": "Under the degree rule the label is the lowest level named, so the Bachelor's is recorded and the welcomed MS/PhD is not, and the bare mention in the 'What You Bring' requirements list is required.",
+  "error": null
+}

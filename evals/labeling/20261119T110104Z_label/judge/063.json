@@ -1,0 +1,20 @@
+{
+  "item": 63,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}",
+  "key_sha256": "d17e388569c76fb607da9a001ab3d514fdf4ca95717a4e1010523447d183cd18",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}, \"why\": \"The rule specifies that `degree` is the lowest level named ('Bachelor's or Master's' -> `bachelor`), and 'or a related field' widens the field rather than accepting equivalent experience (`degree_or_equivalent: false`).\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"
+  },
+  "why": "The rule specifies that `degree` is the lowest level named ('Bachelor's or Master's' -> `bachelor`), and 'or a related field' widens the field rather than accepting equivalent experience (`degree_or_equivalent: false`).",
+  "error": null
+}

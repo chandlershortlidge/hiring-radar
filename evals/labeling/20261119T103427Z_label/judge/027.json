@@ -1,0 +1,20 @@
+{
+  "item": 27,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field\"}",
+  "key_sha256": "3547d398a1b6057d1829ae99499711b2a634d6d2c0a54e15e66f11dbdf5fef5b",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named (`bachelor`), it is `required` as a bare mention in a requirements list while the welcomed MS/PhD is not recorded, and 'or a related field' widens the field rather than the requirement so `degree_or_equivalent` is false.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named (`bachelor`), it is `required` as a bare mention in a requirements list while the welcomed MS/PhD is not recorded, and 'or a related field' widens the field rather than the requirement so `degree_or_equivalent` is false.",
+  "error": null
+}

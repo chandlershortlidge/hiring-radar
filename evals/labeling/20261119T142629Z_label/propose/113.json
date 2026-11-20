@@ -1,0 +1,14 @@
+{
+  "item": 113,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d5e02885ed52e7879752fed3efa02ad6b8d1ea550a2b71ccde5b9b7571fcb1b0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names no degree or level anywhere (no bachelor, master, PhD, or 'degree' wording), so the degree rule's 'none (`null`) when no degree is mentioned' applies and the agreed null is correct.\"}",
+  "decision": "ok",
+  "why": "The posting names no degree or level anywhere (no bachelor, master, PhD, or 'degree' wording), so the degree rule's 'none (`null`) when no degree is mentioned' applies and the agreed null is correct.",
+  "error": null
+}

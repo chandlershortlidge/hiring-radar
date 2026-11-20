@@ -1,0 +1,15 @@
+{
+  "item": 129,
+  "golden_id": "golden_105",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6eab2794079a6ab81a9d4c2e157863805f98dd418afd981f595f7763d9121bcf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting requires a 'bachelor's degree' under 'You Must Have' (`bachelor`, `required`), and per the rule, 'or a related field' widens the field rather than accepting experience in place of the degree (`degree_or_equivalent: false`).\"}",
+  "decision": "ok",
+  "why": "The posting requires a 'bachelor's degree' under 'You Must Have' (`bachelor`, `required`), and per the rule, 'or a related field' widens the field rather than accepting experience in place of the degree (`degree_or_equivalent: false`).",
+  "error": null
+}

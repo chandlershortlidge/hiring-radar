@@ -1,0 +1,19 @@
+{
+  "item": 165,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0e9176f613c97f07119f6a49853d041a79a9fb41fbaa542f63bbbd3aa0184910",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"MSc or PhD in a numerate discipline\"}, \"why\": \"Under the degree rule the level is the lowest named, so 'MSc or PhD' gives master rather than the older highest-level phd, and the whole mention sits under 'Bonus Points For', so it is nice_to_have.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MSc or PhD in a numerate discipline"
+  },
+  "why": "Under the degree rule the level is the lowest named, so 'MSc or PhD' gives master rather than the older highest-level phd, and the whole mention sits under 'Bonus Points For', so it is nice_to_have.",
+  "error": null
+}

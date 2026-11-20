@@ -2857,5 +2857,26 @@
     "excerpt": "...Skills & Qualifications: - 5+ years of combined experience in software engineering and machine learning. - Active US Security clearance -...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "master",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s degree in a relevant technical discipline."
+    },
+    "b": {
+      "degree": "master",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s degree in a relevant technical discipline."
+    },
+    "excerpt": "...privacy-preserving AI and secure compute environments. - Master’s degree in a relevant technical discipline. We at webAI are committed to living out the core values...",
+    "problems": [],
+    "decision": "?"
   }
 ]

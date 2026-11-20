@@ -629,7 +629,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only level named is Master's, and the rule explicitly maps "Master's degree (or above)" to `master`; the bare requirements-list mention makes it `required`, and "equivalent practical experience considered" correctly sets `degree_or_equivalent` to true, so the agreed label stands.
+
+DECISION: ok
 
 ## 49. golden_094 - attribute `german` (spot-check)
 
@@ -729,7 +731,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is PhD (the MD/PhD is still a PhD-level credential), it sits in the required qualifications with no optional marking, and no equivalent-experience clause appears, so the agreed label matches the degree section's lowest-level rule.
+
+DECISION: ok
 
 ## 59. golden_095 - attribute `german` (spot-check)
 
@@ -779,7 +783,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"} - Under the degree rule, "B.S. or M.S." records the lowest level named, so the degree is bachelor, not the highest level the older labels recorded as master; the requirement stays required as a bare mention in the qualifications list, and no equivalent-experience clause is present.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"}
 
 ## 64. golden_096 - attribute `german` (spot-check)
 
@@ -929,7 +935,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is PhD, so under the lowest-level rule `phd` stands; it is a bare entry in the qualifications list, so `required`, and the "or equivalent demonstrated expertise" wording makes `degree_or_equivalent` true, with the signal quoted verbatim.
+
+DECISION: ok
 
 ## 79. golden_097 - skill `software-engineering` (spot-check)
 
@@ -949,7 +957,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Master’s, or PhD in a relevant field"} - Under the degree rule, `degree` is the lowest level named, and this posting names Master's and PhD, so the level is `master`; the bare mention in the qualifications list makes it `required`, and no 'or equivalent experience' wording appears.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Master’s, or PhD in a relevant field"}
 
 ## 81. golden_098 - attribute `seniority` (spot-check)
 
@@ -1179,7 +1189,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Master’s, or PhD in a relevant field"} - Under the degree rule the label is the lowest level named, and this posting names Master's alongside PhD in a bare requirements list, so the level is master, not the phd the older highest-level rule recorded.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Master’s, or PhD in a relevant field"}
 
 ## 104. golden_101 - attribute `german` (spot-check)
 
@@ -1379,7 +1391,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree named is the PhD, listed bare in the qualifications, so `phd` and `required` are correct; 'or a related quantitative discipline' widens the field rather than accepting experience, so `or_equivalent` stays false, and the signal quote matches the posting.
+
+DECISION: ok
 
 ## 124. golden_102 - attribute `german` (spot-check)
 
@@ -1420,3 +1434,27 @@ DECISION: ok
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ok
+
+## 128. golden_099 - attribute `degree` (rule-change)
+
+> ...teams PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "M.S. degree with 6+ years of industry experience"} - Under the degree rule the label is the lowest level named, and the posting's alternative path still requires an M.S. (master) with 6+ years of experience, so the agreed 'phd' label records the higher level; the experience path substitutes for the PhD, not for the degree, so or_equivalent stays false.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "M.S. degree with 6+ years of industry experience"}
+
+## 129. golden_100 - attribute `degree` (rule-change)
+
+> ...creation and scientific discovery. Requirements - PhD, MS, or equivalent experience in computational biology, machine learning,...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="PhD, MS, or equivalent experience"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "PhD, MS, or equivalent experience"} - Under the degree rule, `degree` is the lowest level named, and this posting names both PhD and MS in "PhD, MS, or equivalent experience", so the label should be master, not the older highest-level phd.
+
+DECISION: {"degree": "master", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "PhD, MS, or equivalent experience"}

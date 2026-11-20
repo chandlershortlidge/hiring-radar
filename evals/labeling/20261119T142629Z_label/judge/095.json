@@ -1,0 +1,20 @@
+{
+  "item": 95,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required\"}",
+  "key_sha256": "1a0c56375d6e19abc0bd2bdaeca02f3b511aa9e7d6f985dacc29b0e071ad3223",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required\"}, \"why\": \"The degree rule states that `degree` is the lowest level named ('MS or PhD' -> `master`), while `degree_requirement` is `required` and `degree_or_equivalent` is true due to 'or equivalent experience required'.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required"
+  },
+  "why": "The degree rule states that `degree` is the lowest level named ('MS or PhD' -> `master`), while `degree_requirement` is `required` and `degree_or_equivalent` is true due to 'or equivalent experience required'.",
+  "error": null
+}

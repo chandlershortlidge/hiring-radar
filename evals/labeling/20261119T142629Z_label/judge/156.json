@@ -1,0 +1,20 @@
+{
+  "item": 156,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MS or PhD in Computer Science, AI, Mathematics, or a related field\"}",
+  "key_sha256": "0ddfc2402cfa8d44561bfe1561dde4fee60e9303ce6ef9c43c049c8a4e08a0f9",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MS or PhD in Computer Science, AI, Mathematics, or a related field\"}, \"why\": \"The degree rule states that `degree` is the lowest level named (explicitly giving \\\"MS or PhD\\\" → `master`), is `required` as a minimum qualification, and \\\"or a related field\\\" widens the field rather than accepting equivalent experience (`degree_or_equivalent: false`).\"}",
+  "decision": {
+    "degree": "master",
+    "degree_or_equivalent": false,
+    "degree_requirement": "required",
+    "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"
+  },
+  "why": "The degree rule states that `degree` is the lowest level named (explicitly giving \"MS or PhD\" → `master`), is `required` as a minimum qualification, and \"or a related field\" widens the field rather than accepting equivalent experience (`degree_or_equivalent: false`).",
+  "error": null
+}

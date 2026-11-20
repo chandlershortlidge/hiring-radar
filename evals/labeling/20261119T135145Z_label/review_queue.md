@@ -208,7 +208,9 @@ DECISION: yes
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: A - Under the degree rule, `degree` is the lowest level the posting names, and the only level named is "Advanced degree" (a master's or higher), so `master` is right while B's `bachelor` has no support in the text; the nice_to_have requirement and or_equivalent=false are correct under the "While not required… a plus" framing.
+
+DECISION: A
 
 ## 17. golden_095 - skill `agent-architecture` (disagreement)
 
@@ -492,7 +494,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "MS with 8+ years experiences with equivalent publications"} - Under the rule, `degree` is the lowest level named, and the posting names an MS alternative ('or MS with 8+ years experiences'), so the level is master rather than phd.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "MS with 8+ years experiences with equivalent publications"}
 
 ## 39. golden_094 - skill `agents` (uncertain)
 
@@ -568,7 +572,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Minimum BS in Computer Science, Software Engineering, or a related field"} - Under the rule, `degree` is the lowest level named, so the required 'Minimum BS' (a bare requirements-list mention, hence `required`) governs and the optional 'MS/PhD' preference is not recorded, which makes the agreed phd/nice_to_have label wrong.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Minimum BS in Computer Science, Software Engineering, or a related field"}
 
 ## 45. golden_096 - skill `apis` (uncertain)
 
@@ -631,7 +637,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Strong candidates with a bachelor’s and 3+ years of industry experience are also considered"} - Under the lowest-level rule the least a candidate must hold is a bachelor's, since the minimum qualifications explicitly admit bachelor's-plus-experience candidates, so the agreed phd (a highest-level reading) is wrong.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Strong candidates with a bachelor’s and 3+ years of industry experience are also considered"}
 
 ## 50. golden_098 - skill `reinforcement-learning` (uncertain)
 
@@ -655,7 +663,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "BS/MS/PhD in Computer Science, Software Engineering, or a related field."} - Under the lowest-level rule, the posting's required qualification 'BS/MS/PhD' makes bachelor the degree, not the phd the agreed label recorded under the older highest-level rule.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "BS/MS/PhD in Computer Science, Software Engineering, or a related field."}
 
 ## 52. golden_099 - skill `deep-learning` (uncertain)
 
@@ -805,7 +815,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)"} - Under the degree rule the label is the lowest level named, and the Education line requires a BS or MSc (bare mention, so required, with 'or equivalent experience'), so the agreed 'phd' from the older highest-level rule is wrong.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)"}
 
 ## 64. golden_103 - skill `agent-state-management` (uncertain)
 
@@ -907,7 +919,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."} - Under the degree rule the label is the lowest level named, so the required bachelor's in 'What You Bring' applies, and the optional Master's/PhD under 'Preferred' is not recorded, as the agreed phd label reflects the older highest-level rule.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."}
 
 ## 72. golden_104 - skill `data-privacy-and-security` (uncertain)
 
@@ -1074,7 +1088,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "A B.Sc. in computer or computational science"} - Under the rule's lowest-level test, the required 'What You'll Need' bachelor's (B.Sc.) sets the degree, and the Ph.D. under 'It's A Bonus If You' is a welcomed higher level that is not recorded, so the agreed phd/nice_to_have label is wrong.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "A B.Sc. in computer or computational science"}
 
 ## 85. golden_108 - attribute `seniority` (uncertain)
 
@@ -1350,7 +1366,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "PhD/MS in Computer Science, Computer Engineering, or a related field"} - Under the rule's lowest-level test, the posting names both PhD and MS, and MS is the lower level, so the degree is master, not the phd recorded under the older highest-level rule; the mention is a bare entry in Required Qualifications, so it stays required with no equivalent-experience clause.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "PhD/MS in Computer Science, Computer Engineering, or a related field"}
 
 ## 112. golden_097 - skill `containerization` (spot-check)
 
@@ -1540,7 +1558,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field"} - Under the degree rule, `degree` is the lowest level named, and "Bachelor's or Master's" therefore gives `bachelor`, not the older highest-level `master`; the bare mention in the requirements list stays `required`, and the "related quantitative field" wording widens the field only, so `degree_or_equivalent` stays false.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field"}
 
 ## 131. golden_102 - skill `causal-inference` (spot-check)
 
@@ -1901,3 +1921,27 @@ DECISION: ok
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ok
+
+## 167. golden_101 - attribute `degree` (rule-change)
+
+> ...engineering team. Required Qualifications: - BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field. - Proven experience (5+ years) in hardware design, with...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field."
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field."} - Under the degree rule, `degree` is the lowest level named, and "BS, MS or PhD" names bachelor as the least a candidate must hold; the bare mention in Required Qualifications is `required`, and the "related field" wording widens the field, not the requirement, so or_equivalent is false.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field."}
+
+## 168. golden_106 - attribute `degree` (rule-change)
+
+> ...kernels and PCIe drivers. REQUIRED QUALIFICATIONS - BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field. - 3+ years of professional experience in systems...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field"} - Under the degree rule, `degree` is the lowest level named, and the posting names BS/MS/PhD, so the label should be `bachelor` rather than the older highest-level `phd`; the bare mention in the required qualifications stays `required`, and 'related field' widens the field only, so `degree_or_equivalent` stays false.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field"}

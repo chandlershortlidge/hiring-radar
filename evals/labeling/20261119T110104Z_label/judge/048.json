@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b288cda5494d45de9bd10dafc13b0e8f584383e5e99b648ef2e7467dca8db3c6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The rule explicitly maps \\\"Master's degree (or above)\\\" to `master` as the lowest level named, a bare mention in a qualifications list is `required`, and accepting \\\"equivalent practical experience\\\" sets `degree_or_equivalent` to true.\"}",
+  "decision": "ok",
+  "why": "The rule explicitly maps \"Master's degree (or above)\" to `master` as the lowest level named, a bare mention in a qualifications list is `required`, and accepting \"equivalent practical experience\" sets `degree_or_equivalent` to true.",
+  "error": null
+}
