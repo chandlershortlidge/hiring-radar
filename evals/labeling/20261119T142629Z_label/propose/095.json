@@ -1,0 +1,19 @@
+{
+  "item": 95,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7b64265bfa0261d7ab692482dfc6e851bf16c616b3d46941a1a867097f138a54",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required\"}, \"why\": \"The degree rule records the lowest level named, and this posting names \\\"PhD or MS\\\", so the level is master rather than the older highest-level phd; the bare requirements-list mention stays required and \\\"or equivalent experience\\\" sets degree_or_equivalent to true.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required"
+  },
+  "why": "The degree rule records the lowest level named, and this posting names \"PhD or MS\", so the level is master rather than the older highest-level phd; the bare requirements-list mention stays required and \"or equivalent experience\" sets degree_or_equivalent to true.",
+  "error": null
+}

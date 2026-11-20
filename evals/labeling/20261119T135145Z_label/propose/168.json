@@ -1,0 +1,19 @@
+{
+  "item": 168,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a2e42bb3b7da474096947a71fe12fd4d16cd125058ab400b424d9b75c409f103",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named, and the posting names BS/MS/PhD, so the label should be `bachelor` rather than the older highest-level `phd`; the bare mention in the required qualifications stays `required`, and 'related field' widens the field only, so `degree_or_equivalent` stays false.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named, and the posting names BS/MS/PhD, so the label should be `bachelor` rather than the older highest-level `phd`; the bare mention in the required qualifications stays `required`, and 'related field' widens the field only, so `degree_or_equivalent` stays false.",
+  "error": null
+}

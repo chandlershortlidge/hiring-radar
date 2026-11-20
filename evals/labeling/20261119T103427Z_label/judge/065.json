@@ -1,0 +1,20 @@
+{
+  "item": 65,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field\"}",
+  "key_sha256": "f92ed64c9ae1f85418c0e1b1bc74e011b806d5dbc4e3c62965c788407f924c58",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field\"}, \"why\": \"The rule states that `degree` is the lowest level named (`bachelor`), which appears as a bare, `required` mention under Qualifications, while the higher optional levels under Preferred Skills are not recorded.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field"
+  },
+  "why": "The rule states that `degree` is the lowest level named (`bachelor`), which appears as a bare, `required` mention under Qualifications, while the higher optional levels under Preferred Skills are not recorded.",
+  "error": null
+}

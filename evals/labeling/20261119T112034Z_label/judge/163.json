@@ -1,0 +1,20 @@
+{
+  "item": 163,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"nice_to_have\", \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)\"}",
+  "key_sha256": "87278fa4e7f0e96a4cf3cf066e2433f5dae862dffab01b9245f6d3f62cd10f81",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named (`master` from 'PhD / Master'), and when the whole mention is optional (under 'NICE TO HAVE'), it remains the lowest level named with `nice_to_have`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named (`master` from 'PhD / Master'), and when the whole mention is optional (under 'NICE TO HAVE'), it remains the lowest level named with `nice_to_have`.",
+  "error": null
+}

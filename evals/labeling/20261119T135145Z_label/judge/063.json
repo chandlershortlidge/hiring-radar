@@ -1,0 +1,20 @@
+{
+  "item": 63,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)\"}",
+  "key_sha256": "8e74093df1db34e25f72df2d4fe785494c2b227d8df5836ca4b1760e866f3e5a",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)\"}, \"why\": \"The rule requires recording the lowest degree level named (`bachelor` from \\\"BS or MSc\\\"), as `required` for a bare mention in a requirements list, with `degree_or_equivalent: true` for \\\"(or equivalent experience)\\\".\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)"
+  },
+  "why": "The rule requires recording the lowest degree level named (`bachelor` from \"BS or MSc\"), as `required` for a bare mention in a requirements list, with `degree_or_equivalent: true` for \"(or equivalent experience)\".",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "27b6e639e75f97fb0baf559bf94fc86af35afd498527f89261472b281ff6d9e5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the degree rule the label is the lowest level named, which here is the required BS (bachelor), and the master's is listed as optional, so it is not recorded; the \\\"or a related discipline\\\" wording widens the field, not the requirement, so or_equivalent=false and the agreed signal is accurate.\"}",
+  "decision": "ok",
+  "why": "Under the degree rule the label is the lowest level named, which here is the required BS (bachelor), and the master's is listed as optional, so it is not recorded; the \"or a related discipline\" wording widens the field, not the requirement, so or_equivalent=false and the agreed signal is accurate.",
+  "error": null
+}

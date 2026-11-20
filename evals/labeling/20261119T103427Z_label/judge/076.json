@@ -1,0 +1,20 @@
+{
+  "item": 76,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline\"}",
+  "key_sha256": "24d072c01522ef20ac89c3075b63dfdba63d8732c708d161473f40f081c005fb",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline\"}, \"why\": \"The degree rule states that `degree` is the lowest level named (`bachelor` for 'BS, MS, or PhD'), a bare mention in a requirements list is `required`, and widening the field ('or a related technical discipline') sets `degree_or_equivalent` to false.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
+  },
+  "why": "The degree rule states that `degree` is the lowest level named (`bachelor` for 'BS, MS, or PhD'), a bare mention in a requirements list is `required`, and widening the field ('or a related technical discipline') sets `degree_or_equivalent` to false.",
+  "error": null
+}

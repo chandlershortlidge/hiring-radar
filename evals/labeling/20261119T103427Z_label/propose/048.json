@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "275f93878d6c6ac750ee3c450b8cb397e9f2e38ca307995edfe163b8cbf1a9dd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the degree rule, `degree` is the lowest level named, and the required bachelor's ('A BS degree in computer science, machine learning, mathematics, or a related discipline') is the minimum, while the advanced degree is welcomed but not recorded, so `bachelor`, `required`, `or_equivalent=false`, and the quoted signal are all correct as agreed.\"}",
+  "decision": "ok",
+  "why": "Under the degree rule, `degree` is the lowest level named, and the required bachelor's ('A BS degree in computer science, machine learning, mathematics, or a related discipline') is the minimum, while the advanced degree is welcomed but not recorded, so `bachelor`, `required`, `or_equivalent=false`, and the quoted signal are all correct as agreed.",
+  "error": null
+}

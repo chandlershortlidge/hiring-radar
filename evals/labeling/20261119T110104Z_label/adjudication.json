@@ -1323,13 +1323,139 @@
       "by": "model",
       "model": "gemini-4-argon",
       "decision": "ok"
+    },
+    "48": {
+      "n": 48,
+      "golden_id": "golden_094",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The rule explicitly maps \"Master's degree (or above)\" to `master` as the lowest level named, a bare mention in a qualifications list is `required`, and accepting \"equivalent practical experience\" sets `degree_or_equivalent` to true."
+    },
+    "58": {
+      "n": 58,
+      "golden_id": "golden_095",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The posting requires a 'PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD' with no equivalent experience accepted, making `phd`, `required`, and `degree_or_equivalent: false` correct under the degree rule."
+    },
+    "63": {
+      "n": 63,
+      "golden_id": "golden_096",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}",
+      "decision": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}",
+      "judge_said": "{\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}",
+      "why": "The rule specifies that `degree` is the lowest level named ('Bachelor's or Master's' -> `bachelor`), and 'or a related field' widens the field rather than accepting equivalent experience (`degree_or_equivalent: false`)."
+    },
+    "78": {
+      "n": 78,
+      "golden_id": "golden_097",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "PhD is the only degree level mentioned, listed as a required qualification with 'or equivalent demonstrated expertise' accepted in place of the degree, and the signal accurately quotes the phrase including the equivalent wording."
+    },
+    "80": {
+      "n": 80,
+      "golden_id": "golden_098",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "decision": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "judge_said": "{\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "why": "The degree rule states that `degree` is the lowest level named (\"MS or PhD\" -> `master`), so \"Master’s, or PhD in a relevant field\" requires `master` rather than `phd`."
+    },
+    "103": {
+      "n": 103,
+      "golden_id": "golden_101",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "decision": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "judge_said": "{\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+      "why": "Under the degree rule, `degree` is the lowest level named ('MS or PhD' -> `master`), so 'Master’s, or PhD in a relevant field' must be labeled `master` rather than `phd`."
+    },
+    "123": {
+      "n": 123,
+      "golden_id": "golden_102",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The posting lists a bare mention of a 'PhD in machine learning... or a related quantitative discipline' under qualifications, making 'phd' required with degree_or_equivalent false since 'related quantitative discipline' only widens the field."
+    },
+    "128": {
+      "n": 128,
+      "golden_id": "golden_099",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "rule-change",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"M.S. degree with 6+ years of industry experience\"}",
+      "decision": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"M.S. degree with 6+ years of industry experience\"}",
+      "judge_said": "{\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience\"}",
+      "why": "The posting requires either a Ph.D. or an M.S. degree, and under the degree rule, `degree` is the lowest level named (`master`)."
+    },
+    "129": {
+      "n": 129,
+      "golden_id": "golden_100",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "rule-change",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"PhD, MS, or equivalent experience\"}",
+      "decision": "{\"degree\": \"master\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"PhD, MS, or equivalent experience\"}",
+      "judge_said": "{\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"PhD, MS, or equivalent experience\"}",
+      "why": "The rule states that `degree` is the lowest level named ('MS or PhD' -> `master`), and the posting lists 'PhD, MS, or equivalent experience' as a requirement."
     }
   },
   "human_sample": null,
   "proposer": {
     "model": "claude-haiku-5-5",
     "provider": "anthropic",
-    "proposed": 35,
+    "proposed": 44,
     "unusable": 3,
     "skip_keys": [
       "degree"
@@ -1344,13 +1470,27 @@
       "agreed": 35,
       "disagreed": 0,
       "unusable": 0
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 9,
+      "agreed": 9,
+      "disagreed": 0,
+      "unusable": 0,
+      "keys": [
+        "degree"
+      ],
+      "rules": [
+        "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
+      ]
     }
   ],
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",
-    "ruled": 35,
-    "agreed": 35,
+    "ruled": 44,
+    "agreed": 44,
     "open": 0,
     "rules": "1. A qualification bullet or sentence that names a skill counts; a job title or a\n   years-of-experience line (\"experience as a software engineer\") does not.\n2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.\n3. Any required mention wins; raw_text quotes the determining mention.\n4. Responsibilities do not count unless the candidate is also asked for it.\n5. Do not add a broad or parent skill the text does not name."
   },
@@ -1409,5 +1549,29 @@
       119
     ],
     "answered_by": "human"
-  }
+  },
+  "rule_change": [
+    {
+      "key": "degree",
+      "rule": "lowest level named (HIR-245)",
+      "items": [
+        128,
+        129
+      ]
+    }
+  ],
+  "proposer_passes": [
+    {
+      "model": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "keys": [
+        "degree"
+      ],
+      "proposed": 9,
+      "unusable": 0,
+      "rules": [
+        "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
+      ]
+    }
+  ]
 }

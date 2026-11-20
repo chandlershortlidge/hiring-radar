@@ -1,0 +1,19 @@
+{
+  "item": 142,
+  "golden_id": "golden_105",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6a77450c7f394763b20f93fdcc46bac6bfc8a4ddac561e22b26aa1f18d282890",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"BS/MS/PhD in CS, EE, or a related field, or equivalent experience\"}, \"why\": \"Under the degree rule the label is the lowest level named, and this bare mention in the requirements list names BS/MS/PhD, so the level is bachelor, not the highest level phd recorded under the old rule; the \\\"or equivalent experience\\\" wording keeps degree_or_equivalent true and the signal is quoted verbatim from the posting.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and this bare mention in the requirements list names BS/MS/PhD, so the level is bachelor, not the highest level phd recorded under the old rule; the \"or equivalent experience\" wording keeps degree_or_equivalent true and the signal is quoted verbatim from the posting.",
+  "error": null
+}

@@ -1,0 +1,20 @@
+{
+  "item": 128,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"M.S. degree with 6+ years of industry experience\"}",
+  "key_sha256": "8b413ba4a0a5d357649ee58bf4c73a7dc9a39452bbb92561b0ef3d45bd72dbf6",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience\"}, \"why\": \"The posting requires either a Ph.D. or an M.S. degree, and under the degree rule, `degree` is the lowest level named (`master`).\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience"
+  },
+  "why": "The posting requires either a Ph.D. or an M.S. degree, and under the degree rule, `degree` is the lowest level named (`master`).",
+  "error": null
+}

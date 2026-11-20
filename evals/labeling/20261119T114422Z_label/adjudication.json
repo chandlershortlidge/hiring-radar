@@ -1508,13 +1508,139 @@
       "by": "model",
       "model": "gemini-4-argon",
       "decision": "ok"
+    },
+    "37": {
+      "n": 37,
+      "golden_id": "golden_096",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "uncertain",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The rule states that 'currently studying' with no level named maps to `bachelor`, and here 'currently enrolled at a university' is listed as a mandatory eligibility criterion (`required`) with no equivalent experience option."
+    },
+    "77": {
+      "n": 77,
+      "golden_id": "golden_094",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The posting requires 'A PhD or equivalent industry research experience' under Minimum qualifications, which makes 'phd' the only (and lowest) degree named, 'required' as a minimum qualification, and 'degree_or_equivalent' true."
+    },
+    "80": {
+      "n": 80,
+      "golden_id": "golden_095",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MSc or PhD\"}",
+      "decision": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MSc or PhD\"}",
+      "judge_said": "{\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"(MSc or PhD)\"}",
+      "why": "Per the rule that `degree` is the lowest level named (e.g., \"MS or PhD\" -> `master`), the phrase \"(MSc or PhD)\" in the required list labels as `master` and `required`."
+    },
+    "85": {
+      "n": 85,
+      "golden_id": "golden_097",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The posting contains no mention of any degree or academic study, so the rule's provision for 'none (`null`) when no degree is mentioned' applies."
+    },
+    "95": {
+      "n": 95,
+      "golden_id": "golden_098",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "No degree or university education is mentioned anywhere in the posting, so the agreed null label is correct under the rule 'none (null) when no degree is mentioned'."
+    },
+    "102": {
+      "n": 102,
+      "golden_id": "golden_099",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The rule specifies 'none (null) when no degree is mentioned', and this posting contains no reference to a degree or university studies."
+    },
+    "110": {
+      "n": 110,
+      "golden_id": "golden_100",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The rule specifies `null` when no degree is mentioned, and this posting contains no reference to a degree or university study."
+    },
+    "122": {
+      "n": 122,
+      "golden_id": "golden_102",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "The posting does not mention any degree requirement, so the label is correctly `null` under the rule 'none (`null`) when no degree is mentioned'."
+    },
+    "125": {
+      "n": 125,
+      "golden_id": "golden_103",
+      "kind": "attribute",
+      "key": "degree",
+      "reason": "spot-check",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "ok",
+      "decision": "ok",
+      "judge_said": "ok",
+      "why": "No degree or university education is mentioned anywhere in the posting, so under the rule 'One label per posting, or none (`null`) when no degree is mentioned', the agreed null label is correct."
     }
   },
   "human_sample": null,
   "proposer": {
     "model": "claude-haiku-5-5",
     "provider": "anthropic",
-    "proposed": 58,
+    "proposed": 67,
     "unusable": 4,
     "skip_keys": [
       "degree"
@@ -1529,14 +1655,28 @@
       "agreed": 49,
       "disagreed": 9,
       "unusable": 0
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 9,
+      "agreed": 9,
+      "disagreed": 0,
+      "unusable": 0,
+      "keys": [
+        "degree"
+      ],
+      "rules": [
+        "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
+      ]
     }
   ],
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",
     "ruled": 58,
-    "agreed": 49,
-    "open": 9,
+    "agreed": 58,
+    "open": 0,
     "rules": "1. A qualification bullet or sentence that names a skill counts; a job title or a\n   years-of-experience line (\"experience as a software engineer\") does not.\n2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.\n3. Any required mention wins; raw_text quotes the determining mention.\n4. Responsibilities do not count unless the candidate is also asked for it.\n5. Do not add a broad or parent skill the text does not name."
   },
   "third_labeler": {
@@ -1594,5 +1734,19 @@
       150
     ],
     "answered_by": "human"
-  }
+  },
+  "proposer_passes": [
+    {
+      "model": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "keys": [
+        "degree"
+      ],
+      "proposed": 9,
+      "unusable": 0,
+      "rules": [
+        "One label per posting, or none (`null`) when no degree is mentioned.\n\n- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a\n  candidate must hold to get in. \"Bachelor's or Master's\" → `bachelor`; \"MS or PhD\" →\n  `master`; \"Master's degree (or above)\" → `master`. \"Degree in …\", \"university degree\",\n  \"completed studies\", \"currently studying\" with no level → `bachelor`. When the whole\n  mention is optional (\"ein Master oder Ph.D. ist von Vorteil\"), the level is still the\n  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not\n  recorded: one label per posting (decision of 2026-11-19, HIR-245).\n- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;\n  otherwise `required`, including a bare mention in a requirements list. Most postings\n  are bare mentions, so most labeled degrees are `required` — that is correct, not a\n  default to fix.\n- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:\n  \"or equivalent experience\", \"or comparable qualification/experience\". \"…or a related\n  field\" / \"or a comparable technical focus\" widens the *field*, not the requirement → false.\n- `degree_signal` quotes the phrase, including the \"or equivalent\" wording when present.\n- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person."
+      ]
+    }
+  ]
 }

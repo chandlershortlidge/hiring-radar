@@ -1,0 +1,19 @@
+{
+  "item": 80,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f1e4e05dc8370d2ea00482f82407c49c325208b5cdff4ab5f889ab37b43ee2b2",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"MSc or PhD\"}, \"why\": \"Per the degree rule, `degree` is the lowest level named, and the posting says \\\"(MSc or PhD)\\\" as a required mention, so the value is `master`, not the older highest-level `phd`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "MSc or PhD"
+  },
+  "why": "Per the degree rule, `degree` is the lowest level named, and the posting says \"(MSc or PhD)\" as a required mention, so the value is `master`, not the older highest-level `phd`.",
+  "error": null
+}

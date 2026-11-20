@@ -2871,5 +2871,26 @@
     "excerpt": "...or technologies • At least 4 years of experience programming with Python, Go, Scala, CUDA, or Java Preferred Qualifications: •...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"
+    },
+    "excerpt": "...vLLM). Qualifications Minimum Qualifications • MS or PhD in Computer Science, AI, Mathematics, or a related field. • 5+ years of professional experience in one or more of...",
+    "problems": [],
+    "decision": "?"
   }
 ]

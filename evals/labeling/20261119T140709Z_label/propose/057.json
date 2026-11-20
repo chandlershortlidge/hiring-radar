@@ -1,0 +1,19 @@
+{
+  "item": 57,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c834d3992914010f091d05a40780f7115cc6047206e5fde6c544cc9f9afc80cf",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience\"}, \"why\": \"Under the degree rule, the level is the lowest one named, so the bachelor's degree in the minimum qualifications applies rather than the preferred master's, and as a bare requirements-list mention it is required, with the 'or equivalent practical experience' wording setting degree_or_equivalent to true.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience"
+  },
+  "why": "Under the degree rule, the level is the lowest one named, so the bachelor's degree in the minimum qualifications applies rather than the preferred master's, and as a bare requirements-list mention it is required, with the 'or equivalent practical experience' wording setting degree_or_equivalent to true.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 63,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5e7581acaeb103a905701e2993c46d4f8debc355cefb68248b1b396799802b3e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the degree rule, the lowest level named is bachelor, and the bare requirements-list mention \\\"Bachelor's or equivalent experience\\\" is required with or_equivalent true; \\\"advanced degree a plus\\\" is a higher level the posting welcomes, so it is not recorded.\"}",
+  "decision": "ok",
+  "why": "Under the degree rule, the lowest level named is bachelor, and the bare requirements-list mention \"Bachelor's or equivalent experience\" is required with or_equivalent true; \"advanced degree a plus\" is a higher level the posting welcomes, so it is not recorded.",
+  "error": null
+}

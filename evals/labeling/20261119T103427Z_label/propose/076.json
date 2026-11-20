@@ -1,0 +1,19 @@
+{
+  "item": 76,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "672da593d2cf2bfcf021a435f22c4ae27c321a8d16933a95378479cf221b3931",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline\"}, \"why\": \"Under the degree rule, the label is the lowest level named, and the posting names BS, MS, and PhD, so the level is bachelor; the bare mention in the requirements list stays required, and 'or a related technical discipline' widens the field, not the requirement, so or_equivalent is false.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
+  },
+  "why": "Under the degree rule, the label is the lowest level named, and the posting names BS, MS, and PhD, so the level is bachelor; the bare mention in the requirements list stays required, and 'or a related technical discipline' widens the field, not the requirement, so or_equivalent is false.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 77,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ce282a1a4e531cc8b4616492ce6595c46ef512b0178f1de4e0168a25c9fca643",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only level named is 'BS in Electrical or Computer Engineering', so the lowest-level rule gives bachelor. It sits as a bare mention in the requirements list, so it is required, and 'or equivalent experience' sets degree_or_equivalent to true, with the signal quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "The only level named is 'BS in Electrical or Computer Engineering', so the lowest-level rule gives bachelor. It sits as a bare mention in the requirements list, so it is required, and 'or equivalent experience' sets degree_or_equivalent to true, with the signal quoted verbatim.",
+  "error": null
+}

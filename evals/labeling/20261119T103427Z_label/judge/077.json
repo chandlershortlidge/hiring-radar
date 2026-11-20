@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1c50c7df212079dac84b01341b42b6a175b122eeed4f195539a54b7204052367",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only a 'BS in Electrical or Computer Engineering (or equivalent experience)' in the requirements list, which maps to `bachelor`, `required`, and `degree_or_equivalent: true` with the phrase quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "The posting names only a 'BS in Electrical or Computer Engineering (or equivalent experience)' in the requirements list, which maps to `bachelor`, `required`, and `degree_or_equivalent: true` with the phrase quoted verbatim.",
+  "error": null
+}

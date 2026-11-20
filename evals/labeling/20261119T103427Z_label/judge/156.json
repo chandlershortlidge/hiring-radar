@@ -1,0 +1,15 @@
+{
+  "item": 156,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "483e9296f858a4e8096478710075e53b3c58cfaf6ef616b8afd0fb3edb9658b7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree mentioned is a Master's degree under 'Preferred Qualifications', which makes 'master' the lowest level named and 'nice_to_have' the correct requirement.\"}",
+  "decision": "ok",
+  "why": "The only degree mentioned is a Master's degree under 'Preferred Qualifications', which makes 'master' the lowest level named and 'nice_to_have' the correct requirement.",
+  "error": null
+}

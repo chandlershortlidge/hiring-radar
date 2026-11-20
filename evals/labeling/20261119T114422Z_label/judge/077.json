@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "80b1381412bed9f9379c7fb61d9e318e430fddab1c177be049e6dc2c439e40fe",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting requires 'A PhD or equivalent industry research experience' under Minimum qualifications, which makes 'phd' the only (and lowest) degree named, 'required' as a minimum qualification, and 'degree_or_equivalent' true.\"}",
+  "decision": "ok",
+  "why": "The posting requires 'A PhD or equivalent industry research experience' under Minimum qualifications, which makes 'phd' the only (and lowest) degree named, 'required' as a minimum qualification, and 'degree_or_equivalent' true.",
+  "error": null
+}

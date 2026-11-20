@@ -1,0 +1,19 @@
+{
+  "item": 84,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "09ca59f63e8f5b2cae49db402e40bd77e9396888335ee42bdacad64f0b1e04cc",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"A B.Sc. in computer or computational science\"}, \"why\": \"Under the rule's lowest-level test, the required 'What You'll Need' bachelor's (B.Sc.) sets the degree, and the Ph.D. under 'It's A Bonus If You' is a welcomed higher level that is not recorded, so the agreed phd/nice_to_have label is wrong.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A B.Sc. in computer or computational science"
+  },
+  "why": "Under the rule's lowest-level test, the required 'What You'll Need' bachelor's (B.Sc.) sets the degree, and the Ph.D. under 'It's A Bonus If You' is a welcomed higher level that is not recorded, so the agreed phd/nice_to_have label is wrong.",
+  "error": null
+}

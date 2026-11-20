@@ -1,0 +1,20 @@
+{
+  "item": 38,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MS with 8+ years experiences with equivalent publications\"}",
+  "key_sha256": "ec0af542948a140953d228fc2706546cc5f06fded9766e32c3c90ff80ff26569",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS with 8+ years experiences with equivalent publications.\"}, \"why\": \"Under the rule, `degree` is the lowest level named when multiple levels are accepted ('PhD... or MS' -> `master`), with no option to substitute experience for the degree itself.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS with 8+ years experiences with equivalent publications."
+  },
+  "why": "Under the rule, `degree` is the lowest level named when multiple levels are accepted ('PhD... or MS' -> `master`), with no option to substitute experience for the degree itself.",
+  "error": null
+}

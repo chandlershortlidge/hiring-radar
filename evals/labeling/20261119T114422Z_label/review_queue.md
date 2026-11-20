@@ -483,7 +483,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - The eligibility line 'currently enrolled at a university' with no level named is the rule's 'currently studying' case, which maps to bachelor; it is a hard requirement, not optional, and no other degree level is named, so the agreed label stands.
+
+DECISION: ok
 
 ## 38. golden_096 - skill `ai-developer-tooling` (uncertain)
 
@@ -994,7 +996,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is PhD, which is the lowest level the posting names; it sits in the requirements list so it is required, and 'or equivalent industry research experience' sets degree_or_equivalent to true, all as the agreed label states.
+
+DECISION: ok
 
 ## 78. golden_094 - skill `distributed-training` (spot-check)
 
@@ -1024,7 +1028,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "MSc or PhD"} - Per the degree rule, `degree` is the lowest level named, and the posting says "(MSc or PhD)" as a required mention, so the value is `master`, not the older highest-level `phd`.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "MSc or PhD"}
 
 ## 81. golden_095 - attribute `german` (spot-check)
 
@@ -1074,7 +1080,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree, diploma, or completed studies; its only education reference is the diversity paragraph's 'access to education', so the degree rule's 'when no degree is mentioned' gives null.
+
+DECISION: ok
 
 ## 86. golden_097 - attribute `german` (spot-check)
 
@@ -1174,7 +1182,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree (no bachelor, master, PhD, or 'degree in' wording appears), so under the degree rule's 'none (null) when no degree is mentioned' the agreed null value is correct.
+
+DECISION: ok
 
 ## 96. golden_098 - attribute `german` (spot-check)
 
@@ -1244,7 +1254,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree, university qualification, or study level (it asks only for practical experience and a 'solid foundation' in ML, statistics and probability), so under the degree rule 'none (null) when no degree is mentioned' the agreed null is correct.
+
+DECISION: ok
 
 ## 103. golden_099 - attribute `seniority` (spot-check)
 
@@ -1324,7 +1336,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree, university qualification, or level (bachelor, master, PhD), so under the degree rule's 'null when no degree is mentioned' the agreed null is correct.
+
+DECISION: ok
 
 ## 111. golden_100 - attribute `german` (spot-check)
 
@@ -1444,7 +1458,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or degree level anywhere (the only 'education' mention is in the diversity statement, not a requirement), so under the rule's 'none (null) when no degree is mentioned' the agreed null is correct.
+
+DECISION: ok
 
 ## 123. golden_102 - attribute `german` (spot-check)
 
@@ -1474,7 +1490,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere (no degree, bachelor, master, or PhD mention), so the Degree section's rule that `degree` is null when no degree is mentioned applies, and the agreed null values are correct.
+
+DECISION: ok
 
 ## 126. golden_103 - attribute `seniority` (spot-check)
 

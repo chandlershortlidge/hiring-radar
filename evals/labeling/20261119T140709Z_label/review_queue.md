@@ -221,7 +221,9 @@ DECISION: B
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience"} - Under the degree rule, the label is the lowest level named, which is the required bachelor's degree (or equivalent experience), not the optional master's-or-PhD preference in the Preferred Qualifications, so neither labeler's phd value is right.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience"}
 
 ## 18. golden_099 - attribute `seniority` (disagreement)
 
@@ -731,7 +733,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience"} - Under the degree rule, the level is the lowest one named, so the bachelor's degree in the minimum qualifications applies rather than the preferred master's, and as a bare requirements-list mention it is required, with the 'or equivalent practical experience' wording setting degree_or_equivalent to true.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "Bachelor's degree in Computer Science, Engineering, Mathematics, a related quantitative field, or equivalent practical experience"}
 
 ## 58. golden_102 - skill `apis` (uncertain)
 
@@ -1025,7 +1029,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The degree rule sets the label to null when no degree is mentioned, and this posting names no degree, education level, or equivalent qualification, so the agreed null stands.
+
+DECISION: ok
 
 ## 81. golden_095 - attribute `degree` (spot-check)
 
@@ -1035,7 +1041,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree, university qualification, or level of study, so the degree rule's 'none (null) when no degree is mentioned' applies and the agreed null is correct.
+
+DECISION: ok
 
 ## 82. golden_095 - skill `langgraph` (spot-check)
 
@@ -1185,7 +1193,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or degree level anywhere; "coursework or project experience" is not a degree mention, so the Degree section's null rule applies and the agreed null stands.
+
+DECISION: ok
 
 ## 97. golden_097 - attribute `german` (spot-check)
 
@@ -1275,7 +1285,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never mentions a degree, university, or completed studies, so under the degree rule `degree` should be null, matching the agreed label.
+
+DECISION: ok
 
 ## 106. golden_100 - attribute `german` (spot-check)
 
@@ -1495,7 +1507,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named as a requirement is "At least a Bachelor's degree" in the must-have list, so under the rule's lowest-level and bare-mention-is-required provisions, bachelor/required/false with that signal is correct; the "Preference for" fields of study widens the field, not the level, and no equivalent-experience wording appears.
+
+DECISION: ok
 
 ## 128. golden_104 - attribute `seniority` (spot-check)
 
@@ -1515,7 +1529,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree named is "A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field" in a must-have list, so the level is bachelor and requirement is required; "or a related field" widens the field, not the requirement, so or_equivalent is false.
+
+DECISION: ok
 
 ## 130. golden_105 - attribute `german` (spot-check)
 
@@ -1715,7 +1731,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere, so under the degree rule ('one label per posting, or none (`null`) when no degree is mentioned') the agreed null value is correct.
+
+DECISION: ok
 
 ## 150. golden_107 - attribute `seniority` (spot-check)
 
@@ -1816,3 +1834,15 @@ DECISION: ok
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ok
+
+## 160. golden_106 - attribute `degree` (rule-change)
+
+> ...solutions for autonomous driving. What We Need To See • MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience. • 8+ years of relevant proven industry experience...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"} - Under the degree rule, "MS or PhD" → master, since the degree is the lowest level named, so the agreed phd label reflects the superseded highest-level rule; the posting's "or equivalent experience" keeps degree_or_equivalent true.
+
+DECISION: {"degree": "master", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"}

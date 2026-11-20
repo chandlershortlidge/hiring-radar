@@ -1,0 +1,14 @@
+{
+  "item": 123,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "72c917dc9da5ff18fcecbd01a4eafe2ab7f6d1107577d1bc49633585b60e4a55",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree named is the PhD, listed bare in the qualifications, so `phd` and `required` are correct; 'or a related quantitative discipline' widens the field rather than accepting experience, so `or_equivalent` stays false, and the signal quote matches the posting.\"}",
+  "decision": "ok",
+  "why": "The only degree named is the PhD, listed bare in the qualifications, so `phd` and `required` are correct; 'or a related quantitative discipline' widens the field rather than accepting experience, so `or_equivalent` stays false, and the signal quote matches the posting.",
+  "error": null
+}

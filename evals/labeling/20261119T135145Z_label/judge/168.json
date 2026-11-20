@@ -1,0 +1,20 @@
+{
+  "item": 168,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\"}",
+  "key_sha256": "b4ec3e7074fc1569aec855eea2c53d4c362c2f559ecc5dc704b06d18d3df028a",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field\"}, \"why\": \"The rule states that `degree` is the lowest level named ('BS/MS/PhD' -> `bachelor`), a bare mention under required qualifications is `required`, and 'or related field' widens the field rather than accepting experience in place of a degree (`degree_or_equivalent: false`).\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field"
+  },
+  "why": "The rule states that `degree` is the lowest level named ('BS/MS/PhD' -> `bachelor`), a bare mention under required qualifications is `required`, and 'or related field' widens the field rather than accepting experience in place of a degree (`degree_or_equivalent: false`).",
+  "error": null
+}

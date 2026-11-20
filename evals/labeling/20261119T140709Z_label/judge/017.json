@@ -1,0 +1,20 @@
+{
+  "item": 17,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience\"}",
+  "key_sha256": "99ccb3527e96f77c9a8f3fd85c75bca4a7b68236a2d13a7955784c8e40d0fba7",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience\"}, \"why\": \"The rule requires recording one label per posting at the lowest degree level named ('Bachelor’s degree'), marked 'required' as it is under Required Qualifications, and 'degree_or_equivalent: true' due to 'or equivalent applicable experience'.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience"
+  },
+  "why": "The rule requires recording one label per posting at the lowest degree level named ('Bachelor’s degree'), marked 'required' as it is under Required Qualifications, and 'degree_or_equivalent: true' due to 'or equivalent applicable experience'.",
+  "error": null
+}

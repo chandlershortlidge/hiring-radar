@@ -347,7 +347,9 @@ DECISION: B
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field"} - Under the degree rule the label is the lowest level named, so the Bachelor's is recorded and the welcomed MS/PhD is not, and the bare mention in the 'What You Bring' requirements list is required.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field"}
 
 ## 28. golden_100 - attribute `seniority` (disagreement)
 
@@ -371,7 +373,9 @@ DECISION: drop
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field"} - Under the degree rule the label is the lowest level named, and the posting requires an advanced degree (master-level) while only welcoming a Ph.D., which per the 2026-11-19 decision is not recorded, so neither labeler's phd is correct.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field"}
 
 ## 30. golden_101 - skill `ai-deployment` (disagreement)
 
@@ -588,7 +592,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under the degree rule, the lowest level named is the required BS, so `bachelor` with `required` is correct; the optional advanced degree is not recorded, and "and 6+ years" is a conjunction, not an "or equivalent experience" substitute, so `or_equivalent=false` stands.
+
+DECISION: ok
 
 ## 47. golden_097 - skill `async-processing` (uncertain)
 
@@ -612,7 +618,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under the degree rule, `degree` is the lowest level named, and the required bachelor's ('A BS degree in computer science, machine learning, mathematics, or a related discipline') is the minimum, while the advanced degree is welcomed but not recorded, so `bachelor`, `required`, `or_equivalent=false`, and the quoted signal are all correct as agreed.
+
+DECISION: ok
 
 ## 49. golden_098 - attribute `seniority` (uncertain)
 
@@ -751,7 +759,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under the degree rule the label is the lowest level named, which here is the required BS (bachelor), and the master's is listed as optional, so it is not recorded; the "or a related discipline" wording widens the field, not the requirement, so or_equivalent=false and the agreed signal is accurate.
+
+DECISION: ok
 
 ## 60. golden_103 - skill `agents` (uncertain)
 
@@ -827,7 +837,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field"} - Under the degree rule the label is the lowest level named, and the Qualifications list gives a bare, required Bachelor's degree, while the Master's or PhD appears only under Preferred Skills and so is not recorded.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field"}
 
 ## 66. golden_104 - skill `evaluation` (uncertain)
 
@@ -967,7 +979,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"} - Under the degree rule, the label is the lowest level named, and the posting names BS, MS, and PhD, so the level is bachelor; the bare mention in the requirements list stays required, and 'or a related technical discipline' widens the field, not the requirement, so or_equivalent is false.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"}
 
 ## 77. golden_095 - attribute `degree` (spot-check)
 
@@ -977,7 +991,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only level named is 'BS in Electrical or Computer Engineering', so the lowest-level rule gives bachelor. It sits as a bare mention in the requirements list, so it is required, and 'or equivalent experience' sets degree_or_equivalent to true, with the signal quoted verbatim.
+
+DECISION: ok
 
 ## 78. golden_096 - attribute `seniority` (spot-check)
 
@@ -1397,7 +1413,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "nice_to_have", "degree_or_equivalent": false, "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"} - Under the degree rule, 'MS or PhD' means the lowest named level, master, not phd, and the mention sits under the optional Nice to have section, so it is nice_to_have.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "nice_to_have", "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"}
 
 ## 120. golden_102 - skill `python` (spot-check)
 
@@ -1607,7 +1625,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree at all ("education" appears only in the generic compensation sentence), and the degree rule says the label is `null` when no degree is mentioned, so the agreed null is correct.
+
+DECISION: ok
 
 ## 141. golden_105 - attribute `german` (spot-check)
 
@@ -1756,5 +1776,17 @@ DECISION: ok
 - agreed label: `software-engineering` · required · raw_text: "experience in software engineering"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 156. golden_108 - attribute `degree` (rule-change)
+
+> ...privacy-preserving AI and secure compute environments. - Master’s degree in a relevant technical discipline. We at webAI are committed to living out the core values...
+
+- agreed label: value="master" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s degree in a relevant technical discipline."
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: ok - The posting names only one degree level, a Master's degree, so the lowest-named-level rule still yields `master`, and it sits under the 'Preferred Qualifications' heading, which marks it optional, so `nice_to_have` and the quoted signal also stand.
 
 DECISION: ok

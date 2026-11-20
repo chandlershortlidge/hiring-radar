@@ -2946,5 +2946,68 @@
     "excerpt": "...Applied knowledge of linear/nonlinear optimization, statistical analysis, reinforcement learning, and forecasting is a plus. -...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"
+    },
+    "excerpt": "...NICE TO HAVE - Ex-founder or builder - PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome....",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)"
+    },
+    "excerpt": "...or academia. NICE TO HAVE - Ex-founder or builder - PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome....",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "MSc or PhD in a numerate discipline"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "MSc or PhD in a numerate discipline"
+    },
+    "excerpt": "...to AI technologies including Generative AI or LLMs. - MSc or PhD in a numerate discipline. - Financial services or banking experience. Why Join...",
+    "problems": [],
+    "decision": "?"
   }
 ]

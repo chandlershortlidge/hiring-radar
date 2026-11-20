@@ -1,0 +1,20 @@
+{
+  "item": 29,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field\"}",
+  "key_sha256": "9dc57d9cfbb34a16bd06acc7d2876c38c8e7cf415586f37b20042f0f8cebc93d",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field\"}, \"why\": \"The rule requires recording the lowest degree level a candidate must hold to get in, which here is an advanced degree (`master`) as a required qualification, while the preferred higher level (`Ph.D.`) is not recorded.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field"
+  },
+  "why": "The rule requires recording the lowest degree level a candidate must hold to get in, which here is an advanced degree (`master`) as a required qualification, while the preferred higher level (`Ph.D.`) is not recorded.",
+  "error": null
+}

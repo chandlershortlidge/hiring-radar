@@ -1,0 +1,19 @@
+{
+  "item": 164,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "963184968b747b14fda44672836dfb74b6ff82eaaa32357119d64a6e1493a5be",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"PhD / Master in a relevant field (Robotics, Machine Learning)\"}, \"why\": \"Under the rule, `degree` is the lowest level named, and the posting names both PhD and Master in the optional NICE TO HAVE list, so the value is `master` rather than the older highest-level `phd`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)"
+  },
+  "why": "Under the rule, `degree` is the lowest level named, and the posting names both PhD and Master in the optional NICE TO HAVE list, so the value is `master` rather than the older highest-level `phd`.",
+  "error": null
+}

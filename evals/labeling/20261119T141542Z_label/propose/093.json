@@ -1,0 +1,14 @@
+{
+  "item": 93,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "be45469e2f2bcdb0797ff5a3a258aa17dbc452703c0848f2f5ebc74d0500dfbb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree level named is \\\"Bachelor's Degree\\\", listed bare under Specific Knowledge and Skills and Basic Requirements, so under the degree rule it is `bachelor`, `required`, with no equivalent-experience wording, and the signal quotes the posting exactly.\"}",
+  "decision": "ok",
+  "why": "The only degree level named is \"Bachelor's Degree\", listed bare under Specific Knowledge and Skills and Basic Requirements, so under the degree rule it is `bachelor`, `required`, with no equivalent-experience wording, and the signal quotes the posting exactly.",
+  "error": null
+}

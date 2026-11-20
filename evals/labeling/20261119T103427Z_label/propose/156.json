@@ -1,0 +1,14 @@
+{
+  "item": 156,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "10f39e3f3b9ba809f096fedc76448e81d53e1a2b71cec56118d27224e668bd3c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only one degree level, a Master's degree, so the lowest-named-level rule still yields `master`, and it sits under the 'Preferred Qualifications' heading, which marks it optional, so `nice_to_have` and the quoted signal also stand.\"}",
+  "decision": "ok",
+  "why": "The posting names only one degree level, a Master's degree, so the lowest-named-level rule still yields `master`, and it sits under the 'Preferred Qualifications' heading, which marks it optional, so `nice_to_have` and the quoted signal also stand.",
+  "error": null
+}

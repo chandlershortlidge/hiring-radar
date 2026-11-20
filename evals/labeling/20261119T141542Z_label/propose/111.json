@@ -1,0 +1,14 @@
+{
+  "item": 111,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "63621c06472bd7a9eeba9b9ee52e44089f7e778469c208fdfa6d39af2e069abe",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only a bachelor's level ('Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline'), so the lowest and only named level is bachelor, which is required under the bare-mention-in-requirements rule, and 'or equivalent practical experience' correctly sets degree_or_equivalent to true.\"}",
+  "decision": "ok",
+  "why": "The posting names only a bachelor's level ('Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline'), so the lowest and only named level is bachelor, which is required under the bare-mention-in-requirements rule, and 'or equivalent practical experience' correctly sets degree_or_equivalent to true.",
+  "error": null
+}

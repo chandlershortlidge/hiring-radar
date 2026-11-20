@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "079a22768aa0c973e25f9ea2e6e4e3c2d874f6fd72e54e3f42007721a6e1a372",
+  "raw": "{\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply\"}\n\nUnder the degree rule, `degree` is the lowest level named, and the posting admits candidates holding only a bachelor's degree (plus 3+ years of experience), so the agreed `phd` is outdated under the current rule. The bachelor path is a stated entry route under Minimum Qualifications, so the requirement is `required`. Experience substitutes for the higher degrees, not for the bachelor's, so `degree_or_equivalent` is false.",
+  "decision": null,
+  "why": null,
+  "error": null
+}
