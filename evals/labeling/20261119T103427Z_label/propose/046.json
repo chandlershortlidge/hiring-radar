@@ -1,0 +1,14 @@
+{
+  "item": 46,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "285e71321ed06c2c807a0f4d43eaccc2534ff31446ba7334b4e650345dec0e47",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the degree rule, the lowest level named is the required BS, so `bachelor` with `required` is correct; the optional advanced degree is not recorded, and \\\"and 6+ years\\\" is a conjunction, not an \\\"or equivalent experience\\\" substitute, so `or_equivalent=false` stands.\"}",
+  "decision": "ok",
+  "why": "Under the degree rule, the lowest level named is the required BS, so `bachelor` with `required` is correct; the optional advanced degree is not recorded, and \"and 6+ years\" is a conjunction, not an \"or equivalent experience\" substitute, so `or_equivalent=false` stands.",
+  "error": null
+}

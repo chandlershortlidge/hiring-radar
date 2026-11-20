@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c05e21d0461e6cc6a7f8ee7cde62801ae2b3d22fe56b9aa8015d82947334384e",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'You should apply if' bullets name ML/AI as a qualification (e.g., 'thoughtful about responsible ML/AI'), and under rule 3 that required mention wins over labeler A's omission.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'You should apply if' bullets name ML/AI as a qualification (e.g., 'thoughtful about responsible ML/AI'), and under rule 3 that required mention wins over labeler A's omission.",
+  "error": null
+}

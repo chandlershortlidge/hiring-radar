@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "869958a5a075f03807f18f67de08567f412be5cf8e89a4e12da16f2fb632b4de",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Requirements bullet \\\"Experience deploying AI/ML for biology systems into scientific workflows at enterprise scale\\\" is a qualification that names AI deployment, and the agreed raw_text \\\"deploying AI/ML\\\" appears verbatim, so the required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Requirements bullet \"Experience deploying AI/ML for biology systems into scientific workflows at enterprise scale\" is a qualification that names AI deployment, and the agreed raw_text \"deploying AI/ML\" appears verbatim, so the required label stands.",
+  "error": null
+}

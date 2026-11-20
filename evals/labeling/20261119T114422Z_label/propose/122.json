@@ -1,0 +1,14 @@
+{
+  "item": 122,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e6b83479c95155a3c0120355fe744d1874b436d80432c8187f7b45dd7406436f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names no degree or degree level anywhere (the only 'education' mention is in the diversity statement, not a requirement), so under the rule's 'none (null) when no degree is mentioned' the agreed null is correct.\"}",
+  "decision": "ok",
+  "why": "The posting names no degree or degree level anywhere (the only 'education' mention is in the diversity statement, not a requirement), so under the rule's 'none (null) when no degree is mentioned' the agreed null is correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a53b60d47026f1c1fb4fbf8d4f1aad4ab51bcb0932f41ee4d0b2b95430424cd6",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Rule 4 applies: \\\"model training\\\" appears only in the \\\"In This Role, You'll Get to:\\\" responsibilities bullets, and the visible excerpt does not ask the candidate for model development skills.\"}",
+  "decision": "drop",
+  "why": "Rule 4 applies: \"model training\" appears only in the \"In This Role, You'll Get to:\" responsibilities bullets, and the visible excerpt does not ask the candidate for model development skills.",
+  "error": null
+}

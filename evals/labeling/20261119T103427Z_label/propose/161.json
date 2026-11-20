@@ -1,0 +1,31 @@
+{
+  "item": 161,
+  "golden_id": "golden_098",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "189868bfe8b02110a9530c0347f2ea1b64c17b16b9901f0a83b099639ddc1727",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\", \"scikit-learn\"], [\"data-pipelines\", \"workflow-automation\"], [\"go\", \"rust\", \"cpp\", \"java\", \"scala\"]], \"why\": \"Under the alternative_group markers, the 'knowledge of TensorFlow, PyTorch, and/or scikit-learn' list, the 'ETL pipelines, data pipelines, and/or workflow automation' list, and the 'systems programming language (e.g., Go, Rust, C++, Java, Scala, etc.)' examples each offer any one member for a single ask, and none of these members is asked for elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch",
+      "scikit-learn"
+    ],
+    [
+      "data-pipelines",
+      "workflow-automation"
+    ],
+    [
+      "go",
+      "rust",
+      "cpp",
+      "java",
+      "scala"
+    ]
+  ],
+  "why": "Under the alternative_group markers, the 'knowledge of TensorFlow, PyTorch, and/or scikit-learn' list, the 'ETL pipelines, data pipelines, and/or workflow automation' list, and the 'systems programming language (e.g., Go, Rust, C++, Java, Scala, etc.)' examples each offer any one member for a single ask, and none of these members is asked for elsewhere in the posting.",
+  "error": null
+}

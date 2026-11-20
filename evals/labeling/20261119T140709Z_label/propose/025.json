@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "explainable-ai",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2ffb09e263116eab9faec5e6bd43526ed353f1df9f8cc6309d2cea7d7f04d6cf",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Rule 4: the only visible mention of explainability is in the Responsibilities bullet describing what the role will set, and nothing in the excerpt asks the candidate to have this skill, so it does not count.\"}",
+  "decision": "drop",
+  "why": "Rule 4: the only visible mention of explainability is in the Responsibilities bullet describing what the role will set, and nothing in the excerpt asks the candidate to have this skill, so it does not count.",
+  "error": null
+}

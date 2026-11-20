@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "chemical-descriptors",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b3d8959a438f4128f96b80884a75b481bedca8118709861148a08f568a8197ec",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'post-DFT descriptors' is explicitly named in a required qualifications bullet, so keeping the skill as required with that raw_text is correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'post-DFT descriptors' is explicitly named in a required qualifications bullet, so keeping the skill as required with that raw_text is correct.",
+  "error": null
+}

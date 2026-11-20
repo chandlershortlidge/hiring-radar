@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "faea64faa3c8918ade94f0afd2bd147977660d105fef9a9b9affc234ddbde4b7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly naming 'building agentic AI solutions' as highly desirable counts as a nice_to_have mention of the agents skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly naming 'building agentic AI solutions' as highly desirable counts as a nice_to_have mention of the agents skill.",
+  "error": null
+}

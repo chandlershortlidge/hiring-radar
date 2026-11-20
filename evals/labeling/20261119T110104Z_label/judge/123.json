@@ -1,0 +1,15 @@
+{
+  "item": 123,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6d860f024351f4f7b7d8b00dce7a4b2666a5406da3b9fac0b67fdd7a916d86c2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting lists a bare mention of a 'PhD in machine learning... or a related quantitative discipline' under qualifications, making 'phd' required with degree_or_equivalent false since 'related quantitative discipline' only widens the field.\"}",
+  "decision": "ok",
+  "why": "The posting lists a bare mention of a 'PhD in machine learning... or a related quantitative discipline' under qualifications, making 'phd' required with degree_or_equivalent false since 'related quantitative discipline' only widens the field.",
+  "error": null
+}

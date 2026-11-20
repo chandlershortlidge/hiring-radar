@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "databricks",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "63a460aece7f4e31f2791e18f0f96dbabf97c02a54cecbddab1f1104b4c58264",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'Snowflake/Databricks familiarity' appears in the required qualifications list above the 'Nice-to-Haves' heading, making it a valid required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'Snowflake/Databricks familiarity' appears in the required qualifications list above the 'Nice-to-Haves' heading, making it a valid required skill.",
+  "error": null
+}

@@ -1,0 +1,158 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS expertise\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python skills\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building agents\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM solutions\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bedrock agents\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"guardrails\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"S3\"\n    },\n    {\n      \"skill_id\": \"power-bi\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Power BI\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Amazon Quick Suite\",\n      \"raw_text\": \"Amazon Quick Suite\"\n    },\n    {\n      \"label\": \"Semantic and knowledge layers\",\n      \"raw_text\": \"semantic and knowledge layers\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Apache Iceberg\",\n      \"raw_text\": \"Iceberg\"\n    },\n    {\n      \"label\": \"AWS Glue\",\n      \"raw_text\": \"Glue\"\n    },\n    {\n      \"label\": \"Amazon Athena\",\n      \"raw_text\": \"Athena\"\n    },\n    {\n      \"label\": \"AWS IAM\",\n      \"raw_text\": \"IAM\"\n    },\n    {\n      \"label\": \"DAX\",\n      \"raw_text\": \"DAX\"\n    },\n    {\n      \"label\": \"SAP\",\n      \"raw_text\": \"SAP\"\n    },\n    {\n      \"label\": \"JD Edwards (JDE)\",\n      \"raw_text\": \"JDE\"\n    },\n    {\n      \"label\": \"Infor M3\",\n      \"raw_text\": \"M3\"\n    },\n    {\n      \"label\": \"AWS CloudFormation\",\n      \"raw_text\": \"CloudFormation\"\n    },\n    {\n      \"label\": \"Jira\",\n      \"raw_text\": \"Jira\"\n    },\n    {\n      \"label\": \"Atlan\",\n      \"raw_text\": \"Atlan data catalog\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"senior-to-architect-level engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Mapped 'Bedrock agents' to aws-bedrock (agents is already mapped from 'building agents').\\nMapped bare 'guardrails' in 'Bedrock agents, tool use, text-to-SQL, evaluation and guardrails' to llm-guardrails and marked uncertain since the prefix 'LLM' or 'security' is omitted.\\n'text-to-SQL' left in unmapped rather than mapping to sql, as it refers to the NL-to-SQL technique while bare SQL only appears in 'What You’ll Do'.\\nAWS Lambda, ECS, Step Functions, and explainable AI appear only in 'What You’ll Do' (responsibilities) and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS expertise"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "building agents"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM solutions"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Bedrock agents"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "guardrails",
+        "uncertain": true
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "nice_to_have",
+        "raw_text": "Power BI"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Amazon Quick Suite",
+        "raw_text": "Amazon Quick Suite"
+      },
+      {
+        "label": "Semantic and knowledge layers",
+        "raw_text": "semantic and knowledge layers"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Apache Iceberg",
+        "raw_text": "Iceberg"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "Glue"
+      },
+      {
+        "label": "Amazon Athena",
+        "raw_text": "Athena"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "label": "DAX",
+        "raw_text": "DAX"
+      },
+      {
+        "label": "SAP",
+        "raw_text": "SAP"
+      },
+      {
+        "label": "JD Edwards (JDE)",
+        "raw_text": "JDE"
+      },
+      {
+        "label": "Infor M3",
+        "raw_text": "M3"
+      },
+      {
+        "label": "AWS CloudFormation",
+        "raw_text": "CloudFormation"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "Jira"
+      },
+      {
+        "label": "Atlan",
+        "raw_text": "Atlan data catalog"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "senior-to-architect-level engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Mapped 'Bedrock agents' to aws-bedrock (agents is already mapped from 'building agents').\nMapped bare 'guardrails' in 'Bedrock agents, tool use, text-to-SQL, evaluation and guardrails' to llm-guardrails and marked uncertain since the prefix 'LLM' or 'security' is omitted.\n'text-to-SQL' left in unmapped rather than mapping to sql, as it refers to the NL-to-SQL technique while bare SQL only appears in 'What You’ll Do'.\nAWS Lambda, ECS, Step Functions, and explainable AI appear only in 'What You’ll Do' (responsibilities) and are excluded."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "d363f3f89be5e8ac8a4dd1caae594308bb428cf30b670d41bf234bbdb9bd6ca1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

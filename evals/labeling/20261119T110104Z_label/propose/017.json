@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5bcb942eb7e0fc1aa670199b7d28dfea0513906bcaf77268a8ed4ee0fd0ed1ec",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the Qualifications bullet naming \\\"ML systems\\\" is a required skill mention, and the abbreviation \\\"ML\\\" points to machine-learning, so labeler A's required tag with raw_text \\\"ML systems\\\" stands.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the Qualifications bullet naming \"ML systems\" is a required skill mention, and the abbreviation \"ML\" points to machine-learning, so labeler A's required tag with raw_text \"ML systems\" stands.",
+  "error": null
+}

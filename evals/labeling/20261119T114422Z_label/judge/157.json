@@ -1,0 +1,20 @@
+{
+  "item": 157,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"recommender-systems\", \"knowledge-distillation\"]]",
+  "key_sha256": "582029e365286b294c3f1f203fcfdeaeddbcb5b84c176a0ffd9dd06fbef66dbb",
+  "raw": "{\"decision\": [[\"recommender-systems\", \"knowledge-distillation\"]], \"why\": \"The posting asks for experience with 'recommender systems, generative retrieval, semantic IDs, continual learning, synthetic data, distillation or tabular foundation models', matching the 'X, Y or Z' marker where any one skill meets the ask.\"}",
+  "decision": [
+    [
+      "recommender-systems",
+      "knowledge-distillation"
+    ]
+  ],
+  "why": "The posting asks for experience with 'recommender systems, generative retrieval, semantic IDs, continual learning, synthetic data, distillation or tabular foundation models', matching the 'X, Y or Z' marker where any one skill meets the ask.",
+  "error": null
+}

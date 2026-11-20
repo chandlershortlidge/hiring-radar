@@ -1,0 +1,15 @@
+{
+  "item": 166,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "e0a1ec46552b1aee63872269e33bd402efd583f44348b1badb318c1e8ac8bf09",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills are either standalone asks or joined with 'and' ('Experience training ML models and operating them in production'), which under the 'Not alternatives' rule are skills asked for together rather than offered in place of each other.\"}",
+  "decision": [],
+  "why": "The labeled skills are either standalone asks or joined with 'and' ('Experience training ML models and operating them in production'), which under the 'Not alternatives' rule are skills asked for together rather than offered in place of each other.",
+  "error": null
+}

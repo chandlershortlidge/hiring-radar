@@ -1,0 +1,175 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"running ML or inference services\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bash\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux OS\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure-as-code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ansible\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitOps workflows\"\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Argo CD\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI inference and/or training workflows\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"triton-inference-server\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Triton\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model-serving patterns\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"building customer facing API platforms\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"EKS\",\n      \"raw_text\": \"EKS\"\n    },\n    {\n      \"label\": \"GKE\",\n      \"raw_text\": \"GKE\"\n    },\n    {\n      \"label\": \"MIG\",\n      \"raw_text\": \"MIG\"\n    },\n    {\n      \"label\": \"Pulumi\",\n      \"raw_text\": \"Pulumi\"\n    },\n    {\n      \"label\": \"Puppet\",\n      \"raw_text\": \"Puppet\"\n    },\n    {\n      \"label\": \"Salt\",\n      \"raw_text\": \"Salt\"\n    },\n    {\n      \"label\": \"Flux\",\n      \"raw_text\": \"Flux\"\n    },\n    {\n      \"label\": \"TGI\",\n      \"raw_text\": \"TGI\"\n    },\n    {\n      \"label\": \"FPGAs\",\n      \"raw_text\": \"FPGAs\"\n    },\n    {\n      \"label\": \"ASICs\",\n      \"raw_text\": \"custom ASICs\"\n    },\n    {\n      \"label\": \"SRE\",\n      \"raw_text\": \"SRE\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3–5 years of hands-on Kubernetes experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Minimum BS in Computer Science, Software Engineering, or a related field.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Rust is only mentioned in Key Responsibilities, not in Required or Preferred Qualifications, so it is omitted.\\nDegree: 'Minimum BS' is in Required Qualifications and 'MS/PhD' is in Preferred/Bonus Qualifications. Per guide ('degree is the highest level named', while requirement is required because a degree is required), labeled phd + required and flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "running ML or inference services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux OS"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps workflows"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "Argo CD"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "AI inference and/or training workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "triton-inference-server",
+        "requirement": "nice_to_have",
+        "raw_text": "Triton"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model-serving patterns"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "building customer facing API platforms"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "GKE",
+        "raw_text": "GKE"
+      },
+      {
+        "label": "MIG",
+        "raw_text": "MIG"
+      },
+      {
+        "label": "Pulumi",
+        "raw_text": "Pulumi"
+      },
+      {
+        "label": "Puppet",
+        "raw_text": "Puppet"
+      },
+      {
+        "label": "Salt",
+        "raw_text": "Salt"
+      },
+      {
+        "label": "Flux",
+        "raw_text": "Flux"
+      },
+      {
+        "label": "TGI",
+        "raw_text": "TGI"
+      },
+      {
+        "label": "FPGAs",
+        "raw_text": "FPGAs"
+      },
+      {
+        "label": "ASICs",
+        "raw_text": "custom ASICs"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3–5 years of hands-on Kubernetes experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Minimum BS in Computer Science, Software Engineering, or a related field.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Rust is only mentioned in Key Responsibilities, not in Required or Preferred Qualifications, so it is omitted.\nDegree: 'Minimum BS' is in Required Qualifications and 'MS/PhD' is in Preferred/Bonus Qualifications. Per guide ('degree is the highest level named', while requirement is required because a degree is required), labeled phd + required and flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2f2a20c92da923134674de77032f32a5b8af67058d59e061e53e35ccfbd1cf8b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

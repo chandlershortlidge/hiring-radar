@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5499159b62c537fc0b1a4456231f7904be33defc25b1fb0c072e484d39263a27",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have bullet 'Knowledge of relevant architectures and design patterns for client-server systems' is a qualification that names software architecture, and the agreed nice_to_have requirement and verbatim raw_text match the posting's 'isn't required' section.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have bullet 'Knowledge of relevant architectures and design patterns for client-server systems' is a qualification that names software architecture, and the agreed nice_to_have requirement and verbatim raw_text match the posting's 'isn't required' section.",
+  "error": null
+}

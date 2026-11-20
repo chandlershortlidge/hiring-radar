@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "31f0b39bbb93bffad6c2a933c869d3f236e6fdc450e5e91aec6adcf8cf4d9bd7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualifications bullet explicitly requires 'Strong cloud-native engineering', which directly supports the agreed `cloud` skill label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualifications bullet explicitly requires 'Strong cloud-native engineering', which directly supports the agreed `cloud` skill label.",
+  "error": null
+}

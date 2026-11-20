@@ -1,0 +1,20 @@
+{
+  "item": 103,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Master’s, or PhD in a relevant field\"}",
+  "key_sha256": "08c331690b850e5589a53af53e104620ac3baa83e595d8dc89c802a7b4444a5b",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s, or PhD in a relevant field\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named ('MS or PhD' -> `master`), so 'Master’s, or PhD in a relevant field' must be labeled `master` rather than `phd`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named ('MS or PhD' -> `master`), so 'Master’s, or PhD in a relevant field' must be labeled `master` rather than `phd`.",
+  "error": null
+}

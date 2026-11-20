@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b45346000a0abc565a302482e10362f6644a8f5040e5c5fce1abb10359d2f461",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who you are' qualification bullet names ML frameworks (PyTorch, TensorFlow) as a candidate attribute, and the 'What we need' ML mentions are role responsibilities that rule 4 excludes, so B's nice_to_have machine-learning tag with that raw_text is right.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who you are' qualification bullet names ML frameworks (PyTorch, TensorFlow) as a candidate attribute, and the 'What we need' ML mentions are role responsibilities that rule 4 excludes, so B's nice_to_have machine-learning tag with that raw_text is right.",
+  "error": null
+}

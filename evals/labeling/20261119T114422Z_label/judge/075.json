@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cf21dd24f430a4828846071248407c8146e77d045aadaf2fa56a50b4dbd6d517",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the minimum qualifications explicitly require experience with language models (and also mention work on large language models), making the agreed label and raw_text valid.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the minimum qualifications explicitly require experience with language models (and also mention work on large language models), making the agreed label and raw_text valid.",
+  "error": null
+}

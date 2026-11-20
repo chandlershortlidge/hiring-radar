@@ -1,0 +1,14 @@
+{
+  "item": 78,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "474a56b8c1d08876dbb40a5b448b52ce6c48532a93209681d9ea0d03e9de139e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, \\\"distributed compute\\\" sits in the Requirements list as a candidate qualification, and under rule 3 that required mention is the determining quote, so the agreed required `distributed-systems` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, \"distributed compute\" sits in the Requirements list as a candidate qualification, and under rule 3 that required mention is the determining quote, so the agreed required `distributed-systems` label stands.",
+  "error": null
+}

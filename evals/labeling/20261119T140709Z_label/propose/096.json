@@ -1,0 +1,14 @@
+{
+  "item": 96,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "afe000e153b52c47aaaee465601a1240dd1f507b0c31895424bc323008b18988",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names no degree or degree level anywhere; \\\"coursework or project experience\\\" is not a degree mention, so the Degree section's null rule applies and the agreed null stands.\"}",
+  "decision": "ok",
+  "why": "The posting names no degree or degree level anywhere; \"coursework or project experience\" is not a degree mention, so the Degree section's null rule applies and the agreed null stands.",
+  "error": null
+}

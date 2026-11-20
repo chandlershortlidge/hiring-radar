@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "998c6ac78246f6edac026790ba54dd1e6ba837ebc9f171e8f2a54d9e63f968db",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a bullet under PREFERRED QUALIFICATIONS explicitly asks for experience involving AI infrastructure ('FinOps for AI infrastructure'), making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a bullet under PREFERRED QUALIFICATIONS explicitly asks for experience involving AI infrastructure ('FinOps for AI infrastructure'), making it a valid nice-to-have skill.",
+  "error": null
+}

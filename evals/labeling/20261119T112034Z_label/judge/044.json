@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "8db22c956ef94ac7d4a1a6a47dfeb4bf2562bf28166648637af8cc0c7ff80c63",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly names 'ML/AI libraries', supporting labeler B's extraction of the `ai-ml` skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly names 'ML/AI libraries', supporting labeler B's extraction of the `ai-ml` skill.",
+  "error": null
+}

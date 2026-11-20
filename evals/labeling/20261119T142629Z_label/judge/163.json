@@ -1,0 +1,20 @@
+{
+  "item": 163,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"claude-code\", \"codex\"]]",
+  "key_sha256": "fb8599e9a8f02128e882aee804198faf9556d4289f409c3d6a80e6962baa0fe1",
+  "raw": "{\"decision\": [[\"claude-code\", \"codex\"]], \"why\": \"The posting requires \\\"Daily experience using Claude Code or Codex\\\", which uses the \\\"X, Y or Z\\\" marker to accept either skill for a single ask, and neither skill is requested on its own elsewhere.\"}",
+  "decision": [
+    [
+      "claude-code",
+      "codex"
+    ]
+  ],
+  "why": "The posting requires \"Daily experience using Claude Code or Codex\", which uses the \"X, Y or Z\" marker to accept either skill for a single ask, and neither skill is requested on its own elsewhere.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 34,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "94d48eda6c12184c01c7b79d88ac8b907abb2d2af1c0647efb13a53d869808c2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, 'Google Docs automation' refers to automating a specific document application and does not name the broad 'workflow-automation' skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, 'Google Docs automation' refers to automating a specific document application and does not name the broad 'workflow-automation' skill.",
+  "error": null
+}

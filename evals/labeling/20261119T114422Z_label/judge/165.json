@@ -1,0 +1,29 @@
+{
+  "item": 165,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"fine-tuning\", \"model-development\"], [\"a-b-testing\", \"recommender-systems\"], [\"pytorch\", \"transformers\"]]",
+  "key_sha256": "fbddb67d6287e1b42494940c63104629065b7b25b38ba448d6a8e96b46230ec6",
+  "raw": "{\"decision\": [[\"pytorch\", \"transformers\"], [\"fine-tuning\", \"llms\", \"model-development\"], [\"a-b-testing\", \"recommender-systems\"]], \"why\": \"The posting uses 'X, Y or Z' markers to offer 'PyTorch, Transformers or comparable ML libraries' (where 'or comparable' adds nothing), 'language-model training or post-training' (which includes both `llms` and `model-development` labeled from 'language-model training'), and 'human evaluation, LLM-as-judge calibration, recommendation metrics or online experimentation' as alternatives for single asks.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "transformers"
+    ],
+    [
+      "fine-tuning",
+      "llms",
+      "model-development"
+    ],
+    [
+      "a-b-testing",
+      "recommender-systems"
+    ]
+  ],
+  "why": "The posting uses 'X, Y or Z' markers to offer 'PyTorch, Transformers or comparable ML libraries' (where 'or comparable' adds nothing), 'language-model training or post-training' (which includes both `llms` and `model-development` labeled from 'language-model training'), and 'human evaluation, LLM-as-judge calibration, recommendation metrics or online experimentation' as alternatives for single asks.",
+  "error": null
+}

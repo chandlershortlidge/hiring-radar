@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "3b17a7de592ca7a422dbf57cfa0d631808012f877162f703ff730d01a0e2334b",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet under 'What You Bring' explicitly names 'deploying AI/ML models to production' as a required skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet under 'What You Bring' explicitly names 'deploying AI/ML models to production' as a required skill.",
+  "error": null
+}

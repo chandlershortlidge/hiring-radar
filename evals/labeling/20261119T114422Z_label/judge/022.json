@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "d4f30b5c9ed561735681cc8ab3329474f37e1234158050ca56546d05f8a8e200",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet asking for expertise enabling you to 'design, train, and implement models' counts as a required mention of model development.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet asking for expertise enabling you to 'design, train, and implement models' counts as a required mention of model development.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3eb2584669c328ada56582c5612c2c94293b2b9ce03b5123e177413da0741f42",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asking for experience with 'model training' directly supports the required `model-development` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asking for experience with 'model training' directly supports the required `model-development` skill.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 49,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "807f54708b59252c517349a881875e34085e2adba64c5e24c5dcafc70ae75035",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Strong candidates with a bachelor’s and 3+ years of industry experience are also considered\"}, \"why\": \"Under the lowest-level rule the least a candidate must hold is a bachelor's, since the minimum qualifications explicitly admit bachelor's-plus-experience candidates, so the agreed phd (a highest-level reading) is wrong.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Strong candidates with a bachelor’s and 3+ years of industry experience are also considered"
+  },
+  "why": "Under the lowest-level rule the least a candidate must hold is a bachelor's, since the minimum qualifications explicitly admit bachelor's-plus-experience candidates, so the agreed phd (a highest-level reading) is wrong.",
+  "error": null
+}

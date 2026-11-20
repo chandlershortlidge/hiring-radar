@@ -1,0 +1,25 @@
+{
+  "item": 168,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"]]",
+  "key_sha256": "4fe41e3b21fb4251da562e089fd2b9f1977eee5330c336d873fbe62786df31a1",
+  "raw": "{\"decision\": [[\"tensorflow\", \"pytorch\"], [\"aws\", \"azure\", \"gcp\"]], \"why\": \"Per the rule on markers, examples offered for a single ask ('frameworks like TensorFlow or PyTorch' and 'cloud platforms (e.g., AWS, Azure, GCP)') form alternative groups while the broad parent 'cloud' stays out, whereas 'Docker & Kubernetes' are asked for together and are not alternatives.\"}",
+  "decision": [
+    [
+      "tensorflow",
+      "pytorch"
+    ],
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "Per the rule on markers, examples offered for a single ask ('frameworks like TensorFlow or PyTorch' and 'cloud platforms (e.g., AWS, Azure, GCP)') form alternative groups while the broad parent 'cloud' stays out, whereas 'Docker & Kubernetes' are asked for together and are not alternatives.",
+  "error": null
+}

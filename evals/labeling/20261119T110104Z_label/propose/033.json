@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "chemical-descriptors",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "133173cc891051dd6b3a41daa77cf6c2bca7827b23654476e5c120c2640afd35",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualifications bullet \\\"Experience with quantum chemistry, DFT, electronic structure methods, or post-DFT descriptors\\\" names the skill as a required qualification (only the publications line is marked \\\"a strong plus\\\"), and rule 3 keeps the required mention with its quoted raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualifications bullet \"Experience with quantum chemistry, DFT, electronic structure methods, or post-DFT descriptors\" names the skill as a required qualification (only the publications line is marked \"a strong plus\"), and rule 3 keeps the required mention with its quoted raw_text.",
+  "error": null
+}

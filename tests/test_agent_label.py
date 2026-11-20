@@ -1091,7 +1091,8 @@ def test_judge_question_shows_both_labelers_the_proposal_and_the_options():
     assert "python" not in q.lower().split("posting-excerpt")[0]
 
 
-def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required", spot=2):
+def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required", spot=2,
+              b_over=None, posting=POSTING):
     """A one-posting run whose single disagreement carries a proposal, ready to judge."""
     goldens = tmp_path / "goldens"
     goldens.mkdir()
@@ -1103,7 +1104,7 @@ def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required",
         " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
         "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
     conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
-                 (POSTING,))
+                 (posting,))
     conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
     conn.commit()
     conn.close()
@@ -1114,6 +1115,7 @@ def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required",
     b = ok_answer(expected=[
         *ok_answer()["expected"][:2],
         {"skill_id": "docker", "requirement": "required", "raw_text": "Docker"}])
+    b.update(b_over or {})
     monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic(
         [ok_answer() if provider == "anthropic" else b]))
     monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
@@ -1125,6 +1127,8 @@ def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required",
     # the proposal a reviewer wrote by hand, on the one disagreement
     n = next(i for i, item in enumerate(json.loads((run_dir / "items.json").read_text()), 1)
              if item["reason"] == "disagreement")
+    if proposal is None:
+        return run_dir, queue, n
     blocks = re.split(r"(?=^## \d+\.)", text, flags=re.M)
     for i, block in enumerate(blocks):
         if block.startswith(f"## {n}."):
@@ -1218,6 +1222,256 @@ def test_judge_refuses_a_model_that_labeled_the_run(tmp_path, monkeypatch):
         al.main(["judge", "--run", run_dir.name, "--model", al.DEFAULT_MODEL_B])
 
 
+# --- propose: a model with no stake writes the PROPOSED lines (HIR-379) ---------------
+
+def item_numbers(run_dir, **match):
+    return [n for n, i in enumerate(json.loads((run_dir / "items.json").read_text()), 1)
+            if all(i.get(k) == v for k, v in match.items())]
+
+
+def test_judge_question_without_a_proposal_has_no_proposal_lines():
+    item = {"golden_id": "golden_001", "kind": "skill", "key": "docker", "reason": "disagreement",
+            "a": {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+            "b": None, "problems": []}
+    q = al.judge_question(item, POSTING, None, None)
+    assert "proposed decision" not in q and "proposer's reason" not in q
+    assert al.DECISIONS["disagreement"] in q
+
+
+def test_propose_system_keeps_the_judges_rules_and_answer_form():
+    assert al.JUDGE_RULES in al.PROPOSE_SYSTEM
+    assert al.JUDGE_SYSTEM.split("Answer with one JSON object")[1].split("Rule on what")[0] \
+        in al.PROPOSE_SYSTEM
+    assert "earlier reviewer" not in al.PROPOSE_SYSTEM
+
+
+def test_propose_writes_a_line_the_judge_reads(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
+    before = queue.read_text()
+    client = judge_client(monkeypatch, {"decision": "B", "why": "rule 3:\nthe required mention wins"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model"])
+
+    after = queue.read_text()
+    assert al.parse_proposals(after) == {n: ("B", "rule 3: the required mention wins")}
+    assert dict(al.parse_queue(after))[n] == "?"           # a proposal is not a decision
+    assert after.replace(f"PROPOSED: B - rule 3: the required mention wins\n\n", "") == before
+    assert len(client.calls) == 1                          # spot-checks and scope are skipped
+    assert (run_dir / "propose" / f"{n:03d}.json").exists()
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["proposer"]["model"] == "proposer-model" and adj["proposer"]["proposed"] == 1
+    assert "wrote 1 PROPOSED lines" in capsys.readouterr().out
+
+
+def test_propose_reuses_its_cache_and_skips_an_item_that_has_a_proposal(tmp_path, monkeypatch):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model"])
+    second = judge_client(monkeypatch)    # no answers left: a call would raise
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model"])
+    assert second.calls == []
+    assert queue.read_text().count("PROPOSED:") == 1
+
+
+def test_propose_writes_nothing_for_an_unusable_verdict(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch, {"decision": "maybe", "why": "unsure"})
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model"])
+    assert al.parse_proposals(queue.read_text()) == {}
+    assert "does not allow" in capsys.readouterr().out
+
+
+def test_propose_skip_key_leaves_a_degree_item_without_a_proposal(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch, proposal=None,
+                                  b_over={"degree": "bachelor"})
+    degree, = item_numbers(run_dir, kind="attribute", key="degree", reason="disagreement")
+    docker, = item_numbers(run_dir, kind="skill", key="docker", reason="disagreement")
+    client = judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model", "--skip-key", "degree"])
+    assert set(al.parse_proposals(queue.read_text())) == {docker}
+    assert len(client.calls) == 1 and degree != docker
+
+
+@pytest.mark.parametrize("model", [al.DEFAULT_MODEL_A, al.DEFAULT_MODEL_B, al.EXTRACTOR_MODEL])
+def test_propose_refuses_a_model_with_a_stake(tmp_path, monkeypatch, model):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch)
+    with pytest.raises(SystemExit):
+        al.main(["propose", "--run", run_dir.name, "--model", model])
+
+
+def test_judge_refuses_the_model_that_wrote_the_proposals(tmp_path, monkeypatch):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model"])
+    judge_client(monkeypatch)
+    with pytest.raises(SystemExit, match="wrote this run's proposals"):
+        al.main(["judge", "--run", run_dir.name, "--model", "proposer-model"])
+
+
+# --- degree labels re-read under the lowest-level rule (HIR-381) ----------------------
+
+MULTI_LEVEL = POSTING.replace("- Master's degree in computer science",
+                              "- Bachelor's or Master's degree in computer science")
+DEGREE_ITEM = {"golden_id": "golden_001", "kind": "attribute", "key": "degree",
+               "reason": "spot-check", "problems": [], "excerpt": "...Master's degree...",
+               "a": {"degree": "master", "degree_requirement": "required",
+                     "degree_or_equivalent": True,
+                     "degree_signal": "Master's degree in computer science or equivalent experience"}}
+DEGREE_ITEM["b"] = DEGREE_ITEM["a"]
+
+
+@pytest.mark.parametrize("text, levels", [
+    ("BS, MS or PhD in Computer Engineering", {"bachelor", "master", "phd"}),
+    ("PhD / Master in a relevant field", {"master", "phd"}),
+    ("MSc or PhD in a numerate discipline", {"master", "phd"}),
+    ("Master's degree in Computer Science", {"master"}),          # "degree" after a level is not a second level
+    ("Degree in computer science; a PhD is a plus", {"bachelor", "phd"}),  # a bare degree reads as bachelor
+    ("Abgeschlossenes Studium, Promotion von Vorteil", {"bachelor", "phd"}),
+    ("A bachelor's or above degree in computer science", {"bachelor"}),
+    ("PhD in Computer Science, Robotics, AI/ML", {"phd"}),
+    ("Strong Python and Docker", set()),
+])
+def test_degree_levels_named(text, levels):
+    assert al.degree_levels_named(text) == levels
+
+
+def test_degree_items_are_ruled_on_under_the_guides_degree_section_not_the_skill_rules():
+    guide = al.GUIDE_FILE.read_text()
+    judge, propose, rules = al.systems_for(DEGREE_ITEM, guide)
+    assert rules == al.guide_section(guide, "Degree") and "**lowest** level named" in rules
+    for system in (judge, propose):
+        assert rules in system and al.JUDGE_RULES not in system
+        assert "older rule that recorded the highest" in system
+    assert "earlier reviewer" not in propose and "earlier reviewer" in judge
+    # everything else keeps the skill rules, byte for byte, so cached rulings stay valid
+    skill = {**DEGREE_ITEM, "kind": "skill", "key": "docker"}
+    assert al.systems_for(skill) == (al.JUDGE_SYSTEM, al.PROPOSE_SYSTEM, al.JUDGE_RULES)
+    with pytest.raises(ValueError, match="no `## Degree` section"):
+        al.guide_section("# Guide\n\n## Seniority\n\ntext\n", "Degree")
+
+
+def test_a_degree_item_shows_the_model_the_whole_posting_and_the_agreed_label():
+    posting = POSTING + "\n" + "filler line\n" * 200 + "PhD preferred\n"
+    q = al.judge_question(DEGREE_ITEM, posting, None, None)
+    assert "<posting>" in q and "PhD preferred" in q
+    assert "- agreed label: value=\"master\"" in q and "- B:" not in q
+
+
+def test_key_degree_takes_agreed_degree_items_and_nothing_else():
+    rule_change = {**DEGREE_ITEM, "reason": "rule-change"}
+    skill_spot = {**DEGREE_ITEM, "kind": "skill", "key": "docker"}
+    assert al.model_target(DEGREE_ITEM, {"degree"})
+    assert al.model_target(rule_change, {"degree"}) and al.model_target(rule_change, set())
+    assert not al.model_target(skill_spot, {"degree"})
+    assert not al.model_target(DEGREE_ITEM, set())        # the spot-check stays a person's
+    assert not al.model_target({**DEGREE_ITEM, "kind": "scope"}, {"degree"})
+
+
+def test_attribute_verdicts_agree_on_value_requirement_and_flag_not_on_the_quote():
+    item = {**DEGREE_ITEM, "reason": "rule-change"}
+    long = json.dumps({"degree": "bachelor", "degree_requirement": "required",
+                       "degree_or_equivalent": True,
+                       "degree_signal": "Bachelor's or Master's degree in computer science or equivalent experience"})
+    short = {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": True,
+             "degree_signal": "Bachelor's or Master's degree"}
+    assert al.verdicts_agree(item, long, short)
+    assert not al.verdicts_agree(item, long, {**short, "degree_requirement": "nice_to_have"})
+    assert not al.verdicts_agree(item, "ok", short)        # ok keeps master
+    assert al.settled_decision(item, long, json.dumps(short)) == json.dumps(short)
+    assert al.settled_decision(item, "ok", json.dumps(short)) == "ok"
+
+
+def test_rule_change_items_are_read_by_apply_like_any_decision():
+    item = {**DEGREE_ITEM, "reason": "rule-change"}
+    assert al.apply_decision(item, "ok") == ([], DEGREE_ITEM["a"])
+    _, group = al.apply_decision(item, '{"degree": "bachelor", "degree_requirement": "required"}')
+    assert group["degree"] == "bachelor" and group["degree_or_equivalent"] is False
+    assert al.apply_decision(item, "drop")[1]["degree"] is None
+    assert "- agreed label:" in al.render_item(9, item) and "- A:" not in al.render_item(9, item)
+
+
+def recheck_run(tmp_path, monkeypatch, posting=MULTI_LEVEL):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None, spot=0, posting=posting)
+    judge_client(monkeypatch)                    # no answers: recheck must not call a model
+    al.main(["recheck", "--run", run_dir.name])
+    return run_dir, queue, n
+
+
+def test_recheck_queues_an_agreed_degree_in_a_posting_naming_two_levels(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = recheck_run(tmp_path, monkeypatch)
+    items = json.loads((run_dir / "items.json").read_text())
+    new = items[-1]
+    assert (new["reason"], new["key"], new["a"]["degree"]) == ("rule-change", "degree", "master")
+    assert al.parse_queue(queue.read_text())[-1] == (len(items), "?")
+    assert f"## {len(items)}. golden_001 - attribute `degree` (rule-change)" in queue.read_text()
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["rule_change"] == [{"key": "degree", "rule": "lowest level named (HIR-245)",
+                                   "items": [len(items)]}]
+    # a second run adds nothing: the posting now has a degree item
+    al.main(["recheck", "--run", run_dir.name])
+    assert len(json.loads((run_dir / "items.json").read_text())) == len(items)
+    assert "0 agreed `degree` labels" in capsys.readouterr().out
+
+
+def test_recheck_leaves_a_posting_that_names_one_level(tmp_path, monkeypatch):
+    run_dir, queue, _ = recheck_run(tmp_path, monkeypatch, posting=POSTING)
+    assert not any(i["reason"] == "rule-change"
+                   for i in json.loads((run_dir / "items.json").read_text()))
+    assert not (run_dir / "adjudication.json").exists()
+
+
+def test_propose_and_judge_with_key_degree_settle_a_rule_change_item(tmp_path, monkeypatch, capsys):
+    run_dir, queue, docker = recheck_run(tmp_path, monkeypatch)
+    n, = item_numbers(run_dir, reason="rule-change")
+    signal = "Bachelor's or Master's degree in computer science or equivalent experience"
+    value = {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": True}
+    proposer = judge_client(monkeypatch, {"decision": {**value, "degree_signal": signal},
+                                          "why": "lowest level named"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model", "--key", "degree"])
+    assert set(al.parse_proposals(queue.read_text())) == {n}       # not the docker disagreement
+    call, = proposer.calls
+    assert "**lowest** level named" in call["system"][0]["text"]
+    assert MULTI_LEVEL.strip() in call["messages"][0]["content"]
+
+    judge = judge_client(monkeypatch, {"decision": {**value, "degree_signal": "Bachelor's or Master's degree"},
+                                       "why": "lowest level"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "degree"])
+    assert len(judge.calls) == 1 and "**lowest** level named" in judge.calls[0]["system"][0]["text"]
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert json.loads(decisions[n])["degree_signal"] == "Bachelor's or Master's degree"  # the shorter quote
+    assert decisions[docker] == "?"
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["items"][str(n)]["by"] == "model"
+    assert adj["proposer_passes"][0]["keys"] == ["degree"]
+    assert adj["judge_passes"][0]["keys"] == ["degree"]
+
+    # apply writes the re-read level into the answer key
+    _answer(queue, lambda i, b: None if i == n else
+            "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["degree"] == "bachelor"
+    assert golden["degree_signal"] == "Bachelor's or Master's degree"
+    assert "degree" in golden["adjudicated_by_model"]
+
+
+def test_propose_refuses_a_second_proposer_on_a_run(tmp_path, monkeypatch):
+    run_dir, queue, n = recheck_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model", "--items", str(n)])
+    with pytest.raises(SystemExit, match="written by 'proposer-model'"):
+        al.main(["propose", "--run", run_dir.name, "--model", "other-model", "--key", "degree"])
+
+
+def test_write_proposals_refuses_a_decided_item():
+    text = "## 1. g - skill `x` (disagreement)\n\nDECISION: A\n"
+    with pytest.raises(ValueError, match="already says"):
+        al.write_proposals(text, {1: ("B", "why")})
+
+
 def test_item_range():
     assert al.item_range("30-33") == {30, 31, 32, 33}
     assert al.item_range("30,41") == {30, 41}
@@ -1304,6 +1558,17 @@ def test_third_records_ok_where_all_three_labelers_agree(tmp_path, monkeypatch, 
     out = capsys.readouterr().out
     assert "third labeler differed on 0/2" in out
     assert "recorded `ok` on three-way agreement" in out
+
+
+def test_third_skip_key_leaves_a_degree_spot_check_for_a_person(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch, spot=80)
+    degree, = item_numbers(run_dir, kind="attribute", key="degree", reason="spot-check")
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model", "--skip-key", "degree"])
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert decisions[degree] == "?"
+    others = [n for n in spot_numbers(run_dir) if n != degree]
+    assert others and all(decisions[n] == "ok" for n in others)
 
 
 def test_third_leaves_a_difference_undecided_and_prints_both_sides(tmp_path, monkeypatch, capsys):
@@ -1686,6 +1951,100 @@ def test_apply_overwrites_the_same_posting_so_rerunning_after_a_fix_still_works(
     assert json.loads((goldens / "golden_001.json").read_text())["source_sha256"] == first["source_sha256"]
 
 
+# --- a correction made after apply is not undone by applying again (HIR-376) --------
+#
+# Re-applying an October batch rewrote 20 Berlin keys from the run's own files and took
+# five skills, an any-of group and a reviewed marker off one of them, with a success
+# message. apply now stops on a Golden someone changed after the run last wrote it.
+
+def _two_goldens_applied(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch,
+                                  [("Acme", "Senior AI Engineer", POSTING),
+                                   ("Beta", "ML Engineer", POSTING)])
+    items = json.loads((run_dir / "items.json").read_text())
+    scope = {n for n, i in enumerate(items, 1) if i["kind"] == "scope"}
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n in scope else "ok")
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    return goldens, run_dir
+
+
+def _correct_by_hand(path):
+    """A person adds a skill to a written Golden, the way the October keys were corrected."""
+    g = json.loads(path.read_text())
+    g["expected"].append({"skill_id": "cuda", "requirement": "required", "raw_text": "CUDA"})
+    path.write_text(json.dumps(g, indent=2, ensure_ascii=False) + "\n")
+    return g
+
+
+def test_apply_stops_on_a_golden_corrected_since_it_was_written(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    corrected = _correct_by_hand(goldens / "golden_001.json")
+    untouched = (goldens / "golden_002.json").read_text()
+
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    msg = str(e.value)
+    assert "golden_001" in msg and "changed on disk" in msg
+    lost = [ln for ln in msg.splitlines() if ln.startswith("-") and not ln.startswith("---")]
+    assert any('"cuda"' in ln for ln in lost)  # the line that would be lost is shown
+    assert "golden_002" not in msg.split("--only")[0]  # an untouched key is not reported
+    assert "--only golden_001" in msg
+    # nothing was written: the correction and the other key are as they were
+    assert json.loads((goldens / "golden_001.json").read_text()) == corrected
+    assert (goldens / "golden_002.json").read_text() == untouched
+
+
+def test_apply_stops_on_a_changed_golden_of_a_run_applied_before_the_record(tmp_path, monkeypatch):
+    """Batches applied before HIR-376 carry no record of what apply wrote, so any
+    difference on disk is treated as a correction - which is the October case exactly."""
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    (run_dir / "applied.json").unlink()
+    _correct_by_hand(goldens / "golden_002.json")
+
+    with pytest.raises(SystemExit, match="golden_002"):
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+
+
+def test_naming_a_changed_golden_writes_it_and_leaves_the_rest_of_the_batch_alone(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    _correct_by_hand(goldens / "golden_001.json")
+    corrected_2 = _correct_by_hand(goldens / "golden_002.json")
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev", "--only", "golden_001"])
+    # the named key is rewritten from the run; the unnamed one keeps its correction
+    assert "cuda" not in {s["skill_id"] for s in json.loads((goldens / "golden_001.json").read_text())["expected"]}
+    assert json.loads((goldens / "golden_002.json").read_text()) == corrected_2
+
+
+def test_only_refuses_a_golden_the_run_does_not_write(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    with pytest.raises(SystemExit, match="golden_099"):
+        al.main(["apply", "--run", run_dir.name, "--split", "dev", "--only", "golden_099"])
+
+
+def test_a_batch_whose_goldens_are_untouched_applies_again_normally(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    before = {p.name: p.read_text() for p in goldens.glob("golden_*.json")}
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
+    assert {p.name: p.read_text() for p in goldens.glob("golden_*.json")} == before
+
+
+def test_fixing_a_decision_and_applying_again_still_writes(tmp_path, monkeypatch):
+    """The ordinary loop: the Golden on disk is this run's own last output, so a changed
+    decision rewrites it without a stop. Only an edit made outside the run stops it."""
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    items = json.loads((run_dir / "items.json").read_text())
+    n, spot = next((n, i) for n, i in enumerate(items, 1) if i["reason"] == "spot-check")
+    scope = {k for k, i in enumerate(items, 1) if i["kind"] == "scope"}
+    _answer(run_dir / "review_queue.md",
+            lambda k, b: "yes" if k in scope else "drop" if k == n else "ok")
+    path = goldens / f"{spot['golden_id']}.json"
+    before = path.read_text()
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
+    assert path.read_text() != before
+
+
 # --- renumber: the fix the id-clash refusal sends you to ---------------------------
 
 def _taken_slot(goldens, gid="golden_001"):
@@ -1770,3 +2129,188 @@ def test_renumber_does_nothing_when_the_ids_are_already_free(tmp_path, monkeypat
 
     assert "nothing to do" in capsys.readouterr().out
     assert "golden_001" in (run_dir / "picks.json").read_text()
+
+
+# --- "any one of" groups marked by two models (HIR-387) --------------------------------
+
+GROUP_POSTING = POSTING.replace("Strong Python and experience", "Strong Python or experience")
+GROUPS_ITEM = {"golden_id": "golden_001", "kind": "groups", "key": "alternative_group",
+               "reason": "groups", "a": None, "b": None, "problems": [], "excerpt": "x",
+               "skills": [{"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+                          {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+                          {"skill_id": "rag", "requirement": "required",
+                           "raw_text": "experience with RAG pipelines"}]}
+
+
+def test_groups_are_ruled_on_under_the_guides_alternative_group_section():
+    guide = al.GUIDE_FILE.read_text()
+    judge, propose, rules = al.systems_for(GROUPS_ITEM, guide)
+    assert rules == al.guide_section(guide, al.GROUPS_HEADING)
+    assert "**any one of several\nskills**" in rules and "A group needs at least two skills" in rules
+    for system in (judge, propose):
+        assert rules in system and al.JUDGE_RULES not in system
+        assert "a group changes no requirement" in system
+    assert "earlier reviewer" in judge and "earlier reviewer" not in propose
+    assert "first reader" in propose
+
+
+def test_a_groups_item_shows_the_whole_posting_and_its_skills():
+    posting = GROUP_POSTING + "\n" + "filler line\n" * 200 + "Python is a must\n"
+    q = al.judge_question(GROUPS_ITEM, posting, None, None)
+    assert "<posting>" in q and "Python is a must" in q
+    assert "- `python` · required · raw_text: \"Strong Python\"" in q
+    assert "proposed decision" not in q
+    q = al.judge_question(GROUPS_ITEM, posting, '[["python", "rag"]]', "an or")
+    assert 'proposed decision: [["python", "rag"]]' in q
+
+
+def test_parse_groups_sorts_and_refuses_what_the_guide_does_not_allow():
+    assert al.parse_groups(GROUPS_ITEM, '[["rag", "python"]]') == [["python", "rag"]]
+    assert al.parse_groups(GROUPS_ITEM, "[]") == []
+    assert al.apply_decision(GROUPS_ITEM, '[["rag", "python"]]') == ([], [["python", "rag"]])
+    for bad, why in (('[["python"]]', "fewer than two"), ('[["python", "go"]]', "not labeled"),
+                     ('[["python", "rag"], ["rag", "docker"]]', "in two groups"),
+                     ("ok", "not a JSON list"), ('{"a": 1}', "not a JSON list")):
+        with pytest.raises(ValueError, match=why):
+            al.parse_groups(GROUPS_ITEM, bad)
+
+
+def test_grouping_verdicts_agree_whatever_the_order():
+    assert al.verdicts_agree(GROUPS_ITEM, '[["rag", "python"]]', [["python", "rag"]])
+    assert not al.verdicts_agree(GROUPS_ITEM, '[["rag", "python"]]', [])
+    assert al.settled_decision(GROUPS_ITEM, '[["rag", "python"]]', '[["python", "rag"]]') \
+        == '[["python", "rag"]]'
+    assert al.parse_proposal('[["python", "rag"]] - an or')[0] == '[["python", "rag"]]'
+    assert al.verdict_text([["python", "rag"]]) == '[["python", "rag"]]'
+
+
+def test_key_alternative_group_takes_the_groups_items_only():
+    assert al.model_target(GROUPS_ITEM, {"alternative_group"})
+    assert not al.model_target(DEGREE_ITEM, {"alternative_group"})
+    assert not al.model_target(GROUPS_ITEM, {"degree"})
+
+
+def test_group_candidates_keep_open_items_and_decided_additions_not_drops():
+    items = [{"golden_id": "g", "kind": "skill", "key": "docker", "reason": "disagreement",
+              "a": {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+              "b": None},
+             {"golden_id": "g", "kind": "skill", "key": "go", "reason": "disagreement",
+              "a": {"skill_id": "go", "requirement": "required", "raw_text": "Go"}, "b": None},
+             {"golden_id": "g", "kind": "skill", "key": "java", "reason": "disagreement",
+              "a": {"skill_id": "java", "requirement": "required", "raw_text": "Java"}, "b": None},
+             {"golden_id": "other", "kind": "skill", "key": "rust", "reason": "disagreement",
+              "a": {"skill_id": "rust", "requirement": "required", "raw_text": "Rust"}, "b": None}]
+    accepted = [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]
+    got = al.group_candidates("g", accepted, items, {1: "?", 2: "drop", 3: "A"})
+    assert [s["skill_id"] for s in got] == ["docker", "java", "python"]
+
+
+def test_groups_items_skip_a_posting_with_fewer_than_two_skills():
+    one = {"accepted_skills": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]}
+    two = {"accepted_skills": one["accepted_skills"]
+           + [{"skill_id": "go", "requirement": "required", "raw_text": "Go"}]}
+    picks = {g: {"job_description": "Title\nbody"} for g in ("g1", "g2", "g3")}
+    new, nothing = al.groups_items([], {"g1": one, "g2": two, "g3": two}, picks, {}, {"g3"})
+    assert [i["golden_id"] for i in new] == ["g2"] and nothing == ["g1"]
+    assert new[0]["reason"] == "groups" and new[0]["excerpt"] == "Title"
+    # a second run adds nothing for a posting that already has its item
+    assert al.groups_items(new, {"g2": two}, picks, {}, set()) == ([], [])
+
+
+def test_number_groups_drops_members_that_left_the_key_and_numbers_in_posting_order():
+    skills = {s: {"skill_id": s, "raw_text": s.upper()} for s in ("aws", "gcp", "go", "java")}
+    posting = "We use GO or JAVA. Clouds: AWS, GCP or AZURE."
+    groups = [["aws", "azure", "gcp"], ["go", "java"], ["python", "rust"]]
+    assert al.number_groups(groups, skills, posting) == {"go": 1, "java": 1, "aws": 2, "gcp": 2}
+    # one member left: no group
+    assert al.number_groups([["aws", "azure"]], skills, posting) == {}
+
+
+def groups_run(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0,
+                                       posting=GROUP_POSTING)
+    judge_client(monkeypatch)                    # no answers: recheck must not call a model
+    al.main(["recheck", "--run", run_dir.name, "--key", "alternative_group"])
+    n, = item_numbers(run_dir, reason="groups")
+    return run_dir, queue, docker, n
+
+
+def test_recheck_queues_one_groups_item_per_posting(tmp_path, monkeypatch, capsys):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    item = json.loads((run_dir / "items.json").read_text())[n - 1]
+    assert [s["skill_id"] for s in item["skills"]] == ["docker", "python", "rag"]
+    assert f"## {n}. golden_001 - groups `alternative_group` (groups)" in queue.read_text()
+    assert al.parse_queue(queue.read_text())[-1] == (n, "?")
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["groups"]["items"] == [n] and adj["groups"]["nothing_to_group"] == []
+    al.main(["recheck", "--run", run_dir.name, "--key", "alternative_group"])
+    assert item_numbers(run_dir, reason="groups") == [n]
+    assert "0 postings with two or more skills" in capsys.readouterr().out
+
+
+def test_propose_and_judge_settle_the_groups_and_apply_writes_them(tmp_path, monkeypatch):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    proposer = judge_client(monkeypatch, {"decision": [["rag", "python"]], "why": "an or"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model",
+             "--key", "alternative_group"])
+    assert set(al.parse_proposals(queue.read_text())) == {n}       # not the docker disagreement
+    call, = proposer.calls
+    assert "<alternative-group-rule>" in call["system"][0]["text"]
+    assert GROUP_POSTING.strip() in call["messages"][0]["content"]
+
+    judge = judge_client(monkeypatch, {"decision": [["python", "rag"]], "why": "X or Y"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "alternative_group"])
+    assert len(judge.calls) == 1
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert decisions[n] == '[["python", "rag"]]' and decisions[docker] == "?"
+    assert json.loads((run_dir / "adjudication.json").read_text())["items"][str(n)]["by"] == "model"
+
+    _answer(queue, lambda i, b: None if i == n else "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    groups = {e["skill_id"]: e.get("alternative_group") for e in golden["expected"]}
+    assert groups == {"docker": None, "python": 1, "rag": 1}
+    assert "alternative_group" in golden["adjudicated_by_model"]
+    assert {e["skill_id"]: e["requirement"] for e in golden["expected"]}["python"] == "required"
+
+
+def test_a_split_on_groups_stays_for_a_person(tmp_path, monkeypatch):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": [["python", "rag"]], "why": "an or"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model",
+             "--key", "alternative_group"])
+    judge_client(monkeypatch, {"decision": [], "why": "asked together"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "alternative_group"])
+    assert dict(al.parse_queue(queue.read_text()))[n] == "?"
+
+    # a person answers it; their answer is a human adjudication
+    _answer(queue, lambda i, b: "[]" if i == n else "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    assert not any("alternative_group" in e for e in golden["expected"])
+    assert "alternative_group" in golden["adjudicated"]
+
+
+def test_a_run_without_a_groups_pass_writes_no_groups_marker(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0)
+    _answer(queue, lambda i, b: "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert "groups_reviewed" not in golden
+    assert not any("alternative_group" in e for e in golden["expected"])
+
+
+def test_apply_marks_a_posting_with_nothing_to_group_as_reviewed(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0)
+    adj = al.load_adjudication(run_dir)
+    adj["groups"] = {"rule": "x", "items": [], "nothing_to_group": ["golden_001"]}
+    al.save_adjudication(run_dir, adj)
+    _answer(queue, lambda i, b: "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    assert "alternative_group" not in golden["adjudicated_by_model"]

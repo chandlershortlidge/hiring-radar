@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a22ecb251dcefddb7f40906c150e00c4dd9653088d4cb367721af44bec536df6",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualifications list names ML/AI libraries (PyTorch, TensorFlow, scikit-learn) as a required qualification, and rule 3 makes that required mention win, so labeler B's `ai-ml` tag with the quoted raw_text is supported.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualifications list names ML/AI libraries (PyTorch, TensorFlow, scikit-learn) as a required qualification, and rule 3 makes that required mention win, so labeler B's `ai-ml` tag with the quoted raw_text is supported.",
+  "error": null
+}

@@ -1,0 +1,34 @@
+{
+  "item": 172,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cfde5a36cac8422fcab050d5e7b43da730a287d04148cb38af9457a79a64cbf6",
+  "raw": "{\"decision\": [[\"python\", \"typescript\"], [\"langchain\", \"llamaindex\", \"llm-guardrails\", \"mcp\"], [\"aws\", \"gcp\", \"azure\"], [\"rag\", \"llm-orchestration\"]], \"why\": \"Under the rule's markers, 'Python or TypeScript', the 'such as LangChain, LlamaIndex, Guardrails, MCP, or agent frameworks' examples, and the parenthesised 'AWS, GCP, or Azure' (with 'cloud' left out) each form a group of alternatives; 'RAG pipelines, tool use, or multi-step AI workflows' also reads as an 'X, Y or Z' set, but tool use is also asked on its own in the responsibilities list, so tool-calling leaves that group and the remaining two form it.\"}",
+  "decision": [
+    [
+      "python",
+      "typescript"
+    ],
+    [
+      "langchain",
+      "llamaindex",
+      "llm-guardrails",
+      "mcp"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ],
+    [
+      "rag",
+      "llm-orchestration"
+    ]
+  ],
+  "why": "Under the rule's markers, 'Python or TypeScript', the 'such as LangChain, LlamaIndex, Guardrails, MCP, or agent frameworks' examples, and the parenthesised 'AWS, GCP, or Azure' (with 'cloud' left out) each form a group of alternatives; 'RAG pipelines, tool use, or multi-step AI workflows' also reads as an 'X, Y or Z' set, but tool use is also asked on its own in the responsibilities list, so tool-calling leaves that group and the remaining two form it.",
+  "error": null
+}

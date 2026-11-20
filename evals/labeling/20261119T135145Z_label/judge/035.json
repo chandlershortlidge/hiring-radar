@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "d87f65caa9c48ee25e1d961f8e9c708b9cd936ff12e36b6610dce57cb7882959",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line like '9+ years of software development experience' does not count as a skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line like '9+ years of software development experience' does not count as a skill.",
+  "error": null
+}

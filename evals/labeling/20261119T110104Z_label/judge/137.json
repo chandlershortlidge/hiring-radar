@@ -1,0 +1,37 @@
+{
+  "item": 137,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"jax\", \"tensorflow\"], [\"mlflow\", \"weights-and-biases\"], [\"airflow\", \"prefect\"], [\"fastapi\", \"streamlit\"], [\"faiss\", \"pgvector\"]]",
+  "key_sha256": "74c85a3079cc48c148e719a764d85a57cb0a7b973acec384a69eb00def37000e",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"mlflow\", \"weights-and-biases\"], [\"airflow\", \"prefect\"], [\"faiss\", \"pgvector\"], [\"fastapi\", \"streamlit\"]], \"why\": \"Under Markers and Not alternatives, each parenthetical offers interchangeable examples for a single ask ('modern ML frameworks (PyTorch or JAX/TensorFlow)', 'experiment tracking (MLflow/W&B)', 'Workflow orchestration (Airflow/Prefect/Argo)', 'vector search (FAISS/pgvector)', and 'lightweight internal tools (FastAPI, Streamlit/Gradio)'), while broad parent skills named alongside their examples (`experiment-tracking`, `vector-search`) stay out of the groups and AWS services ('S3, Batch/ECS/EKS, SageMaker') are listed together rather than as alternatives.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "mlflow",
+      "weights-and-biases"
+    ],
+    [
+      "airflow",
+      "prefect"
+    ],
+    [
+      "faiss",
+      "pgvector"
+    ],
+    [
+      "fastapi",
+      "streamlit"
+    ]
+  ],
+  "why": "Under Markers and Not alternatives, each parenthetical offers interchangeable examples for a single ask ('modern ML frameworks (PyTorch or JAX/TensorFlow)', 'experiment tracking (MLflow/W&B)', 'Workflow orchestration (Airflow/Prefect/Argo)', 'vector search (FAISS/pgvector)', and 'lightweight internal tools (FastAPI, Streamlit/Gradio)'), while broad parent skills named alongside their examples (`experiment-tracking`, `vector-search`) stay out of the groups and AWS services ('S3, Batch/ECS/EKS, SageMaker') are listed together rather than as alternatives.",
+  "error": null
+}

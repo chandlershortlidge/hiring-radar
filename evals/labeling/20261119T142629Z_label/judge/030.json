@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ef53dca82bec5041acd302e959caa78af43fcb633d4422ca671a0b46c2a0c198",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the Basic Qualifications bullet explicitly requires experience developing ML algorithms, which counts as a required mention of the machine-learning skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the Basic Qualifications bullet explicitly requires experience developing ML algorithms, which counts as a required mention of the machine-learning skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "2f3c830dd3deb42afd10fb1fdea9cfecd51c09a5d33bfe994e64dbc54801f9ed",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' qualification sentence asking for a candidate comfortable 'owning architectural decisions' explicitly names the software-architecture skill as a required qualification.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' qualification sentence asking for a candidate comfortable 'owning architectural decisions' explicitly names the software-architecture skill as a required qualification.",
+  "error": null
+}

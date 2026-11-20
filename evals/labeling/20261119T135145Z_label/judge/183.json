@@ -1,0 +1,15 @@
+{
+  "item": 183,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "30dcb5f9fddd99cce018b09f8859dbe45521aa73e07e03168fefa44d3695c192",
+  "raw": "{\"decision\": [], \"why\": \"None of the labeled skills are presented with alternative markers (like 'X, Y or Z') offering one in place of another; rather, they are independent requirements or skills asked for together.\"}",
+  "decision": [],
+  "why": "None of the labeled skills are presented with alternative markers (like 'X, Y or Z') offering one in place of another; rather, they are independent requirements or skills asked for together.",
+  "error": null
+}

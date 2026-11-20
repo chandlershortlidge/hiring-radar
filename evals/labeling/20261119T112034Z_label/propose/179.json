@@ -1,0 +1,14 @@
+{
+  "item": 179,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c6cb7d4f8158e63f69bcd40710a5d0c763b143c981d5a6e46c42a2136ff9a80a",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for experience across NLP, audio/music content understanding and recommender systems together ('You bring experience across...'), which is a set of skills asked for jointly, not one of several accepted for a single ask, so no alternative_group applies.\"}",
+  "decision": [],
+  "why": "The posting asks for experience across NLP, audio/music content understanding and recommender systems together ('You bring experience across...'), which is a set of skills asked for jointly, not one of several accepted for a single ask, so no alternative_group applies.",
+  "error": null
+}

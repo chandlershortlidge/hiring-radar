@@ -1,0 +1,14 @@
+{
+  "item": 49,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0709f4a96b037599c0bb9133aceb64cd039a3e5166e17160f04cb3991cc1b20c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only one degree level, PhD (\"seeking a PhD-level candidate\"), so under the lowest-level rule the degree is phd, and as a bare requirement it is required with no equivalence clause and the quoted signal appears verbatim.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 75 (char 74)"
+}

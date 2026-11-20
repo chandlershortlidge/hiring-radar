@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "b718480136ec582a7b7a97cdb11272067e9ce78ec63b249310353d264a53d1bb",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, the required qualification mention of deploying LLM-powered applications or AI agents in production wins over the nice-to-have enterprise deployment mention.\"}",
+  "decision": "B",
+  "why": "Under rule 3, the required qualification mention of deploying LLM-powered applications or AI agents in production wins over the nice-to-have enterprise deployment mention.",
+  "error": null
+}

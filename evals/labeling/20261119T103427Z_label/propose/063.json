@@ -1,0 +1,14 @@
+{
+  "item": 63,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "containerization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "802ae748f028e34bad18f32df9dc6b3638a6d4868e2cad488472ce4add6d1341",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet under the 'isn't required, but we'd love to see it' heading names containerized environments and Docker/Kubernetes, so containerization counts as nice_to_have, and the quoted raw_text 'containerized' appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet under the 'isn't required, but we'd love to see it' heading names containerized environments and Docker/Kubernetes, so containerization counts as nice_to_have, and the quoted raw_text 'containerized' appears verbatim in the posting.",
+  "error": null
+}

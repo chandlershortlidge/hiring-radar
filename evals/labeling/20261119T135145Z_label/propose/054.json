@@ -1,0 +1,14 @@
+{
+  "item": 54,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "quantization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "291ad4f424628a4d3514c2ab081949628d164c9654e45954c7e96078541a4e01",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only visible mention of quantization is in the ROLE SUMMARY as something the company may do ('if improving inference efficiency requires inventing new quantization schemes'), not a candidate requirement, and the excerpt is cut off before any qualifications list where the agreed raw_text 'Quantization' would need to appear.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only visible mention of quantization is in the ROLE SUMMARY as something the company may do ('if improving inference efficiency requires inventing new quantization schemes'), not a candidate requirement, and the excerpt is cut off before any qualifications list where the agreed raw_text 'Quantization' would need to appear.",
+  "error": null
+}

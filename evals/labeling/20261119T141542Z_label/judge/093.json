@@ -1,0 +1,15 @@
+{
+  "item": 93,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d43c5cb8782c74737be5f1e49ce60599dc2b0a1ff8fb3663c02dab55a9279060",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting lists \\\"Bachelor's Degree\\\" as a bare mention under Basic Requirements with no higher levels or equivalent-experience wording, making `bachelor`, `required`, and `or_equivalent: false` correct under the degree rule.\"}",
+  "decision": "ok",
+  "why": "The posting lists \"Bachelor's Degree\" as a bare mention under Basic Requirements with no higher levels or equivalent-experience wording, making `bachelor`, `required`, and `or_equivalent: false` correct under the degree rule.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1a07765d34678760a66a9c9936e1623e5d05dbf946e4f9be04b00360c6eca094",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention of ML infrastructure is inside the '3+ years of professional experience in ... ML infrastructure' line, which is a years-of-experience line and does not count as a named skill.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention of ML infrastructure is inside the '3+ years of professional experience in ... ML infrastructure' line, which is a years-of-experience line and does not count as a named skill.",
+  "error": null
+}

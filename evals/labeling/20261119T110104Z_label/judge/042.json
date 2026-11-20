@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "95e529146b557716343744d670e76a82409dfbad53eff7a3dd6917cc4737c4ba",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under Requirements explicitly asks for experience deploying 'AI/ML for biology systems'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under Requirements explicitly asks for experience deploying 'AI/ML for biology systems'.",
+  "error": null
+}

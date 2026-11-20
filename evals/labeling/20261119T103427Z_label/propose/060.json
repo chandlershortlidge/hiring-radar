@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8ad0aaa8fd5802f22e4f445b8e281c9f22cd73672b051feacfb4fd63cd3d4ff6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the bullet \\\"Experience with agentic workflows, LLM evaluation, testing, observability, or guardrails\\\" names the skill, and the section heading marks it as nice_to_have, so the agreed label and the quoted raw_text \\\"agentic workflows\\\" (which appears verbatim) are supported.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the bullet \"Experience with agentic workflows, LLM evaluation, testing, observability, or guardrails\" names the skill, and the section heading marks it as nice_to_have, so the agreed label and the quoted raw_text \"agentic workflows\" (which appears verbatim) are supported.",
+  "error": null
+}

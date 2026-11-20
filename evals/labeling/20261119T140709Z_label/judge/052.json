@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Solid understanding of RAG, embeddings, text-to-SQL, prompt engineering\", \"requirement\": \"required\"}",
+  "key_sha256": "f6537d365bce428942ed7600ad0c8f427c1dc31b7acdfe7e146c4e6bc4f134d8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names the skill ('AI/ML delivery') counts, and only years-of-experience lines naming a job title (like 'experience as a software engineer') are excluded.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names the skill ('AI/ML delivery') counts, and only years-of-experience lines naming a job title (like 'experience as a software engineer') are excluded.",
+  "error": null
+}

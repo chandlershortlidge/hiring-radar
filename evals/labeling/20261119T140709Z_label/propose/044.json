@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c953dfae62d54a02aa9eccde4353e79069d95a8bd8c2ff0ff23b64bbad85644d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, GCP is named in a Required Qualifications bullet, and under rule 3 the only GCP mention is 'Google Cloud preferred', so nice_to_have with that verbatim raw_text is correct (the required cloud experience is satisfiable by AWS or Azure, so it doesn't make GCP required).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, GCP is named in a Required Qualifications bullet, and under rule 3 the only GCP mention is 'Google Cloud preferred', so nice_to_have with that verbatim raw_text is correct (the required cloud experience is satisfiable by AWS or Azure, so it doesn't make GCP required).",
+  "error": null
+}

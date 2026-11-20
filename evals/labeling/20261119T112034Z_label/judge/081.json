@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "xgboost",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "95cdf36c89e8eaaf5b7f601286cd61aa1e00d58f23a41013c1b045cbc529da3b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'XGBoost' is explicitly listed inside a required qualifications bullet under 'The qualifications you need:', so the agreed required label is correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'XGBoost' is explicitly listed inside a required qualifications bullet under 'The qualifications you need:', so the agreed required label is correct.",
+  "error": null
+}

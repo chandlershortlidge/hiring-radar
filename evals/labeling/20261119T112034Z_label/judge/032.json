@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "efeecbcc46267f9c9c4e4a3b3b572d5b15d67601173a3649245204df292bd3a9",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 5, 'Member of Technical Staff' is a flat IC title that does not name or explicitly state a 'senior' level, so seniority is null.\"}",
+  "decision": "A",
+  "why": "Under rule 5, 'Member of Technical Staff' is a flat IC title that does not name or explicitly state a 'senior' level, so seniority is null.",
+  "error": null
+}

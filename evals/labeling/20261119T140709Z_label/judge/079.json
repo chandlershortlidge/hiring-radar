@@ -1,0 +1,15 @@
+{
+  "item": 79,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "openai-api",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "edc5f4c12646b6ce859d3bef8f6c7ec5ffd56bfbb14c97c14242e3a70e6410fa",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the qualification bullet 'Familiarity with Azure OpenAI' under the required 'AI Experience' section explicitly names the skill and supports the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the qualification bullet 'Familiarity with Azure OpenAI' under the required 'AI Experience' section explicitly names the skill and supports the agreed required label.",
+  "error": null
+}

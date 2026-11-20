@@ -1,0 +1,14 @@
+{
+  "item": 102,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ae0c4fd3729f0f8b8d650dc16768c04d0342c95c10c432e4d64cf772548f407a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting never names a degree, university qualification, or study level (it asks only for practical experience and a 'solid foundation' in ML, statistics and probability), so under the degree rule 'none (null) when no degree is mentioned' the agreed null is correct.\"}",
+  "decision": "ok",
+  "why": "The posting never names a degree, university qualification, or study level (it asks only for practical experience and a 'solid foundation' in ML, statistics and probability), so under the degree rule 'none (null) when no degree is mentioned' the agreed null is correct.",
+  "error": null
+}

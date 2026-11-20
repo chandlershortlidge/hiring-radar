@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "a332f060f5ee29fa7238c269a50651153c45462f18a3f1f64b418149e7c3c9c7",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet under Preferred Skills explicitly mentions 'privacy-preserving ML techniques', supporting labeler B's label and requirement level.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet under Preferred Skills explicitly mentions 'privacy-preserving ML techniques', supporting labeler B's label and requirement level.",
+  "error": null
+}

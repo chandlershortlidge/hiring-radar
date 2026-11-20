@@ -1,0 +1,15 @@
+{
+  "item": 180,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "c8b4248a26c23d0c2133be8e001760b56316fbae16a00b1a25ca3157425ca855",
+  "raw": "{\"decision\": [], \"why\": \"The only shared phrase, \\\"AI/LLM capabilities\\\", names a broad skill (`ai-ml`) alongside its example (`llms`), which the rule explicitly excludes under \\\"Not alternatives: ... a broad skill named alongside its examples\\\" (and `ai-ml` is also mentioned on its own elsewhere in the posting).\"}",
+  "decision": [],
+  "why": "The only shared phrase, \"AI/LLM capabilities\", names a broad skill (`ai-ml`) alongside its example (`llms`), which the rule explicitly excludes under \"Not alternatives: ... a broad skill named alongside its examples\" (and `ai-ml` is also mentioned on its own elsewhere in the posting).",
+  "error": null
+}

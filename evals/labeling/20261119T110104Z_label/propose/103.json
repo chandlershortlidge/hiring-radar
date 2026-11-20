@@ -1,0 +1,19 @@
+{
+  "item": 103,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1cad41255b75ec19af8590b7c8a6aa488dbb04166f9b25c98b1f1867f937b099",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s, or PhD in a relevant field\"}, \"why\": \"Under the degree rule the label is the lowest level named, and this posting names Master's alongside PhD in a bare requirements list, so the level is master, not the phd the older highest-level rule recorded.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and this posting names Master's alongside PhD in a bare requirements list, so the level is master, not the phd the older highest-level rule recorded.",
+  "error": null
+}

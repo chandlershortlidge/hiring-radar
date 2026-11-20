@@ -1,0 +1,19 @@
+{
+  "item": 63,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9b00bdb97922a50056ec0ac3964ea6add1e3b937a1b62c5651016cf5e76bdff0",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)\"}, \"why\": \"Under the degree rule the label is the lowest level named, and the Education line requires a BS or MSc (bare mention, so required, with 'or equivalent experience'), so the agreed 'phd' from the older highest-level rule is wrong.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and the Education line requires a BS or MSc (bare mention, so required, with 'or equivalent experience'), so the agreed 'phd' from the older highest-level rule is wrong.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ca6c267b5dd241f7cdd6c802114d7b634d26b37e7699bd3f6b6f5e55c031a47c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting asks for 'System design' ('designed robot software systems end to end') rather than naming software architecture, so we should not add a skill the text does not name.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting asks for 'System design' ('designed robot software systems end to end') rather than naming software architecture, so we should not add a skill the text does not name.",
+  "error": null
+}

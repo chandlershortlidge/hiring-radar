@@ -1,0 +1,15 @@
+{
+  "item": 80,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "tensorflow",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ab3d78b4b2ea1c08110c07a1ddde2cc0f1c297f0e006262d5405684813eecf22",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'TensorFlow' is explicitly named as a required skill within a qualification bullet under 'The qualifications you need:'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'TensorFlow' is explicitly named as a required skill within a qualification bullet under 'The qualifications you need:'.",
+  "error": null
+}

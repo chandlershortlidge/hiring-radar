@@ -1,0 +1,265 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\"},\n    {\"skill_id\": \"knowledge-graphs\", \"requirement\": \"required\", \"raw_text\": \"knowledge graphs\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"semantic data models\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"embedding-based matching\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-based information extraction\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"thorough offline and online evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying ML\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"major cloud\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Google Cloud preferred\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps practices\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD pipelines\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GraphRAG, including hybrid retrieval\"},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector search\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agent frameworks\"},\n    {\"skill_id\": \"google-adk\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Google ADK\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"NLP\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Entity Resolution\", \"raw_text\": \"entity-resolution systems\"},\n    {\"label\": \"Graph Databases\", \"raw_text\": \"graph database\"},\n    {\"label\": \"Neo4j\", \"raw_text\": \"Neo4j\"},\n    {\"label\": \"Amazon Neptune\", \"raw_text\": \"Amazon Neptune\"},\n    {\"label\": \"TigerGraph\", \"raw_text\": \"TigerGraph\"},\n    {\"label\": \"Cypher / GQL\", \"raw_text\": \"Cypher/GQL\"},\n    {\"label\": \"SPARQL\", \"raw_text\": \"SPARQL\"},\n    {\"label\": \"Gremlin\", \"raw_text\": \"Gremlin\"},\n    {\"label\": \"RDF\", \"raw_text\": \"RDF\"},\n    {\"label\": \"OWL\", \"raw_text\": \"OWL\"},\n    {\"label\": \"SHACL\", \"raw_text\": \"SHACL\"},\n    {\"label\": \"SKOS\", \"raw_text\": \"SKOS\"},\n    {\"label\": \"Property-graph modeling\", \"raw_text\": \"property-graph modeling\"},\n    {\"label\": \"Splink\", \"raw_text\": \"Splink\"},\n    {\"label\": \"Zingg\", \"raw_text\": \"Zingg\"},\n    {\"label\": \"Senzing\", \"raw_text\": \"Senzing\"},\n    {\"label\": \"Graph Machine Learning\", \"raw_text\": \"graph machine learning\"},\n    {\"label\": \"PyTorch Geometric\", \"raw_text\": \"PyTorch Geometric\"},\n    {\"label\": \"DGL\", \"raw_text\": \"DGL\"},\n    {\"label\": \"GraphRAG\", \"raw_text\": \"GraphRAG\"},\n    {\"label\": \"Collibra\", \"raw_text\": \"Collibra\"},\n    {\"label\": \"Informatica\", \"raw_text\": \"Informatica\"},\n    {\"label\": \"Google Dataplex\", \"raw_text\": \"Google Dataplex\"},\n    {\"label\": \"Data Mesh\", \"raw_text\": \"data-mesh delivery\"},\n    {\"label\": \"Wikidata / Wikibase\", \"raw_text\": \"Wikidata / Wikibase\"},\n    {\"label\": \"Palantir Foundry\", \"raw_text\": \"Palantir Foundry Ontology\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience. ... Master’s or PhD in Computer Science, Machine Learning or Information Science\",\n  \"notes\": \"Google Cloud has inline marker 'preferred' in a required section, so gcp is nice_to_have while aws and azure ('acceptable') remain required. Bachelor's degree (with 'or equivalent applicable experience') is required, while Master's or PhD is in Preferred Qualifications; per rules, highest degree level named is phd, requirement for that level is nice_to_have, and degree_or_equivalent is true from the Bachelor's line. Vertex AI Pipelines and MLflow appear only in Key Responsibilities and are omitted.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "knowledge graphs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "semantic data models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embedding-based matching"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based information extraction"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "thorough offline and online evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying ML"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "major cloud"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Cloud preferred"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphRAG, including hybrid retrieval"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent frameworks"
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "nice_to_have",
+        "raw_text": "Google ADK"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "NLP"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Entity Resolution",
+        "raw_text": "entity-resolution systems"
+      },
+      {
+        "label": "Graph Databases",
+        "raw_text": "graph database"
+      },
+      {
+        "label": "Neo4j",
+        "raw_text": "Neo4j"
+      },
+      {
+        "label": "Amazon Neptune",
+        "raw_text": "Amazon Neptune"
+      },
+      {
+        "label": "TigerGraph",
+        "raw_text": "TigerGraph"
+      },
+      {
+        "label": "Cypher / GQL",
+        "raw_text": "Cypher/GQL"
+      },
+      {
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "label": "Gremlin",
+        "raw_text": "Gremlin"
+      },
+      {
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "label": "SHACL",
+        "raw_text": "SHACL"
+      },
+      {
+        "label": "SKOS",
+        "raw_text": "SKOS"
+      },
+      {
+        "label": "Property-graph modeling",
+        "raw_text": "property-graph modeling"
+      },
+      {
+        "label": "Splink",
+        "raw_text": "Splink"
+      },
+      {
+        "label": "Zingg",
+        "raw_text": "Zingg"
+      },
+      {
+        "label": "Senzing",
+        "raw_text": "Senzing"
+      },
+      {
+        "label": "Graph Machine Learning",
+        "raw_text": "graph machine learning"
+      },
+      {
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "label": "GraphRAG",
+        "raw_text": "GraphRAG"
+      },
+      {
+        "label": "Collibra",
+        "raw_text": "Collibra"
+      },
+      {
+        "label": "Informatica",
+        "raw_text": "Informatica"
+      },
+      {
+        "label": "Google Dataplex",
+        "raw_text": "Google Dataplex"
+      },
+      {
+        "label": "Data Mesh",
+        "raw_text": "data-mesh delivery"
+      },
+      {
+        "label": "Wikidata / Wikibase",
+        "raw_text": "Wikidata / Wikibase"
+      },
+      {
+        "label": "Palantir Foundry",
+        "raw_text": "Palantir Foundry Ontology"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience. ... Master’s or PhD in Computer Science, Machine Learning or Information Science",
+    "notes": "Google Cloud has inline marker 'preferred' in a required section, so gcp is nice_to_have while aws and azure ('acceptable') remain required. Bachelor's degree (with 'or equivalent applicable experience') is required, while Master's or PhD is in Preferred Qualifications; per rules, highest degree level named is phd, requirement for that level is nice_to_have, and degree_or_equivalent is true from the Bachelor's line. Vertex AI Pipelines and MLflow appear only in Key Responsibilities and are omitted."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "56544dea3900f97fdddda02e10eb9d768e2d49af8192c5c7932e82b350f44090",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "4f7bd5337ee3bac6c8afcbb27c5ba9f413b91f9f16fdabb0e1c8a433c0eec585",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet in the 'Ways To Stand Out From The Crowd' section explicitly asks for a history of delivering ML features and models into production, which supports labeling `ai-deployment` as nice_to_have.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet in the 'Ways To Stand Out From The Crowd' section explicitly asks for a history of delivering ML features and models into production, which supports labeling `ai-deployment` as nice_to_have.",
+  "error": null
+}

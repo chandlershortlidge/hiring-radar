@@ -1,0 +1,14 @@
+{
+  "item": 78,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f78841a4ebb6d75f0525f614a13db7736f753a4540fef5c939aa98bc07ce3589",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree level named is PhD, so under the lowest-level rule `phd` stands; it is a bare entry in the qualifications list, so `required`, and the \\\"or equivalent demonstrated expertise\\\" wording makes `degree_or_equivalent` true, with the signal quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "The only degree level named is PhD, so under the lowest-level rule `phd` stands; it is a bare entry in the qualifications list, so `required`, and the \"or equivalent demonstrated expertise\" wording makes `degree_or_equivalent` true, with the signal quoted verbatim.",
+  "error": null
+}

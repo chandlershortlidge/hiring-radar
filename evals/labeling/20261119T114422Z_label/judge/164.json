@@ -1,0 +1,21 @@
+{
+  "item": 164,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"databricks\", \"docker\", \"mlflow\"]]",
+  "key_sha256": "5ed0c849c5e7712dab138adad5573f3c7ece7dcf03da12774b6a6ce4052b76c4",
+  "raw": "{\"decision\": [[\"databricks\", \"docker\", \"mlflow\"]], \"why\": \"Per the rule on examples offered for a single ask, 'such as Docker, Databricks, and MLflow' groups those three examples together while the broad skill 'MLOps systems' (`mlops`) stays out of the group.\"}",
+  "decision": [
+    [
+      "databricks",
+      "docker",
+      "mlflow"
+    ]
+  ],
+  "why": "Per the rule on examples offered for a single ask, 'such as Docker, Databricks, and MLflow' groups those three examples together while the broad skill 'MLOps systems' (`mlops`) stays out of the group.",
+  "error": null
+}

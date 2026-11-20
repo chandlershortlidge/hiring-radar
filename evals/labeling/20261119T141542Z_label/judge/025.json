@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "power-bi",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "17c4819e33d9b8469ab975d1e9ba7e80aab04ceb5a23e073cdcf09b41b08618a",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rules 1 and 3, Power BI is only mentioned under the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have skill.\"}",
+  "decision": "A",
+  "why": "Under rules 1 and 3, Power BI is only mentioned under the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have skill.",
+  "error": null
+}

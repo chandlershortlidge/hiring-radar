@@ -1,0 +1,14 @@
+{
+  "item": 138,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "66b5fb58733460392fdcaf4c8e2bc5df9753100df8f25dc3241bbc0d6881d21a",
+  "raw": "{\"decision\": [], \"why\": \"The posting names only one framework (PyTorch, labeled as its own skill) and asks for Python and AWS together or as a preference, with no 'at least one of', 'X or Y', or example set for a single ask, so no two skills are alternatives under the rule.\"}",
+  "decision": [],
+  "why": "The posting names only one framework (PyTorch, labeled as its own skill) and asks for Python and AWS together or as a preference, with no 'at least one of', 'X or Y', or example set for a single ask, so no two skills are alternatives under the rule.",
+  "error": null
+}

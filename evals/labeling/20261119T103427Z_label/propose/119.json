@@ -1,0 +1,19 @@
+{
+  "item": 119,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8da33ca67e47d57a9db2e890576bb4862c0df3a85fb3ffca55ea24c78abc03e1",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field\"}, \"why\": \"Under the degree rule, 'MS or PhD' means the lowest named level, master, not phd, and the mention sits under the optional Nice to have section, so it is nice_to_have.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
+  },
+  "why": "Under the degree rule, 'MS or PhD' means the lowest named level, master, not phd, and the mention sits under the optional Nice to have section, so it is nice_to_have.",
+  "error": null
+}

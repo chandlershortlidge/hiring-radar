@@ -1,0 +1,24 @@
+{
+  "item": 178,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4b951077afffea223c4173755b77082c5c4dbb36090bdf48542e8cb8d84b1365",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"gcp\", \"aws\"]], \"why\": \"The 'major ML framework (PyTorch, JAX, or TensorFlow)' ask is met by any one of the three, so they form group 1; under the 'examples offered for a single ask' marker, GCP and AWS are alternative examples of the cloud part of the ask, while Docker is the containerization example and cannot stand in for cloud, so it stays out and 'cloud' stays out as the broad parent.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "jax",
+      "tensorflow"
+    ],
+    [
+      "gcp",
+      "aws"
+    ]
+  ],
+  "why": "The 'major ML framework (PyTorch, JAX, or TensorFlow)' ask is met by any one of the three, so they form group 1; under the 'examples offered for a single ask' marker, GCP and AWS are alternative examples of the cloud part of the ask, while Docker is the containerization example and cannot stand in for cloud, so it stays out and 'cloud' stays out as the broad parent.",
+  "error": null
+}

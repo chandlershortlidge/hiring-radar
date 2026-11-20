@@ -1,0 +1,14 @@
+{
+  "item": 81,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "58b8597215fbc5458b45c3a9f8c5fe0a6ddfcdbb124292e6c7e1d0bf99a1e666",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree level named is 'BS in Computer Science or related fields' under Minimum Qualifications, so the lowest-level rule gives bachelor; a bare mention in a requirements list is required, 'or related fields' widens the field and not the requirement, so or_equivalent is false and the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "The only degree level named is 'BS in Computer Science or related fields' under Minimum Qualifications, so the lowest-level rule gives bachelor; a bare mention in a requirements list is required, 'or related fields' widens the field and not the requirement, so or_equivalent is false and the agreed label stands.",
+  "error": null
+}

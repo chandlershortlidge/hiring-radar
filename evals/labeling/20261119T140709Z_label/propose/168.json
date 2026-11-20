@@ -1,0 +1,14 @@
+{
+  "item": 168,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "edabfe26878f3a0c0c3a7bf557856171d827ed92da551953d1267bac90b36ddd",
+  "raw": "{\"decision\": [], \"why\": \"The labelled skills (AI and data strategy, AI evaluation, hallucinations, guardrails, enterprise architecture) are each asked for in their own bullet or as items in one list of standards to establish, not as one ask met by any one of them, so under the rule's 'Not alternatives' clause they form no group.\"}",
+  "decision": [],
+  "why": "The labelled skills (AI and data strategy, AI evaluation, hallucinations, guardrails, enterprise architecture) are each asked for in their own bullet or as items in one list of standards to establish, not as one ask met by any one of them, so under the rule's 'Not alternatives' clause they form no group.",
+  "error": null
+}

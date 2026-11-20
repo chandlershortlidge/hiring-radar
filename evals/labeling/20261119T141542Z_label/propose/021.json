@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "databricks",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "845d9e45271cb6bc8528c5482d5d27fcb708bfabfad818aca55a1243842df54c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the Databricks mention counts because it sits in a qualification bullet, but it appears under the 'What Sets You Apart' preference section as one option in an 'at least one of the following' credential list, so it is nice_to_have, not a required mention (rule 3 does not apply).\"}",
+  "decision": "A",
+  "why": "Under rule 1 the Databricks mention counts because it sits in a qualification bullet, but it appears under the 'What Sets You Apart' preference section as one option in an 'at least one of the following' credential list, so it is nice_to_have, not a required mention (rule 3 does not apply).",
+  "error": null
+}

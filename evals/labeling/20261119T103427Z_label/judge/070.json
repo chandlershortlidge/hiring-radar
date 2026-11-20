@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7f2d145a39c454c499e29f08dab3ade25601ece5a5bb8378509434d7598b53cf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a 'Who You Are' qualification bullet asks for a candidate who is 'opinionated about where LLMs and ML-driven optimization genuinely help,' which explicitly names ML.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a 'Who You Are' qualification bullet asks for a candidate who is 'opinionated about where LLMs and ML-driven optimization genuinely help,' which explicitly names ML.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b249408a40a8e936a245a5c96f71822566eeb8c2378600c6b762c9c0a79f1561",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification 'building and deploying a relevant ML application' names a skill rather than just a title or years line, and rule 3 supports the required mention quoted by labeler B.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification 'building and deploying a relevant ML application' names a skill rather than just a title or years line, and rule 3 supports the required mention quoted by labeler B.",
+  "error": null
+}

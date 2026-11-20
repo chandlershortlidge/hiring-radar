@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f230a3877f002dcc8457bb23a9fa93c9eaecbd91b3572bd0f444d40a93acbe88",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet \\\"Demonstrated ability to influence architectural decisions across multiple AI product lines or platforms\\\" names a skill, so software-architecture stands as nice_to_have with the verbatim raw_text \\\"architectural decisions\\\" (Rule 5 is not violated because the text names architecture work directly).\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the Preferred Qualifications bullet \"Demonstrated ability to influence architectural decisions across multiple AI product lines or platforms\" names a skill, so software-architecture stands as nice_to_have with the verbatim raw_text \"architectural decisions\" (Rule 5 is not violated because the text names architecture work directly).",
+  "error": null
+}

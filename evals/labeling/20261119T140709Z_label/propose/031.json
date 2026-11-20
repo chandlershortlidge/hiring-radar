@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "computer-vision",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "630a81730b74ecb2745575984a9c7415b452412198dd41bdfe3ce17287da0277",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only visible mention of camera/LiDAR perception (\\\"lidar/camera perception\\\") sits in the \\\"What You'll Be Doing\\\" responsibilities, and the excerpt shows no qualifications bullet asking the candidate for computer vision, so the skill is not supported as required.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only visible mention of camera/LiDAR perception (\"lidar/camera perception\") sits in the \"What You'll Be Doing\" responsibilities, and the excerpt shows no qualifications bullet asking the candidate for computer vision, so the skill is not supported as required.",
+  "error": null
+}

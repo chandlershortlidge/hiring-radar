@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "9d9bc552b9de99a6160112736da86ab617dec1086c9c5be48d54a42181debec3",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, \\\"Focus will be on Python across backend services\\\" describes the responsibilities of the role rather than a required qualification.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, \"Focus will be on Python across backend services\" describes the responsibilities of the role rather than a required qualification.",
+  "error": null
+}

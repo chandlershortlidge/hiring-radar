@@ -1,6 +1,10 @@
 """Greenhouse job boards: https://boards-api.greenhouse.io/v1/boards/<token>/jobs?content=true
 
 Public, no key. `content` is HTML-escaped HTML. Ids are numeric and stable.
+
+The feed has no remote field of its own (checked for HIR-325): a job is a title, a
+`location.name` and the content, so a remote posting says so in the location text and
+`app.geo` reads it there.
 """
 
 import html

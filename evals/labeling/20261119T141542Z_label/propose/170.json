@@ -1,0 +1,14 @@
+{
+  "item": 170,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7c8c0a4852f77b9da49550e62b24e9086022d63b349f289f76910f567221ad53",
+  "raw": "{\"decision\": [], \"why\": \"The only candidate is the certifications list ('Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering'), but after removing azure, kubernetes and terraform (each asked on its own elsewhere) and mlops (listed on its own in the nice-to-haves), fewer than two skills remain, and the rule requires at least two; the other 'and/or' and example lists either name skills with no labeled id or are required together.\"}",
+  "decision": [],
+  "why": "The only candidate is the certifications list ('Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering'), but after removing azure, kubernetes and terraform (each asked on its own elsewhere) and mlops (listed on its own in the nice-to-haves), fewer than two skills remain, and the rule requires at least two; the other 'and/or' and example lists either name skills with no labeled id or are required together.",
+  "error": null
+}

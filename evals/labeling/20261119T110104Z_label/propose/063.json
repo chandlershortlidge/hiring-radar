@@ -1,0 +1,19 @@
+{
+  "item": 63,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5ad71882dd0e0acde6edb49655907df5348c238d7017de92ae6cc68345f4c860",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\"}, \"why\": \"Under the degree rule, \\\"B.S. or M.S.\\\" records the lowest level named, so the degree is bachelor, not the highest level the older labels recorded as master; the requirement stays required as a bare mention in the qualifications list, and no equivalent-experience clause is present.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"
+  },
+  "why": "Under the degree rule, \"B.S. or M.S.\" records the lowest level named, so the degree is bachelor, not the highest level the older labels recorded as master; the requirement stays required as a bare mention in the qualifications list, and no equivalent-experience clause is present.",
+  "error": null
+}

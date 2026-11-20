@@ -1,0 +1,34 @@
+{
+  "item": 172,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"], [\"aws\", \"gcp\", \"azure\"], [\"docker\", \"kubernetes\"]]",
+  "key_sha256": "557ed49e496d6ebfbf34f96365fe14cbcdff662b72f949ad6fbdd98c3c43f24d",
+  "raw": "{\"decision\": [[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"], [\"aws\", \"gcp\", \"azure\"], [\"docker\", \"kubernetes\"]], \"why\": \"Per the alternative_group rule's markers ('one or more', 'at least one', and examples offered for a single ask), these four sets of examples are each grouped while broad parent skills ('cloud' and 'containerization') stay out of the groups.\"}",
+  "decision": [
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ],
+    [
+      "docker",
+      "kubernetes"
+    ]
+  ],
+  "why": "Per the alternative_group rule's markers ('one or more', 'at least one', and examples offered for a single ask), these four sets of examples are each grouped while broad parent skills ('cloud' and 'containerization') stay out of the groups.",
+  "error": null
+}

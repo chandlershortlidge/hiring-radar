@@ -1,0 +1,14 @@
+{
+  "item": 52,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cc50835cb36b90851c6b735b1996d5a0c014af95678b0049d1c5598015d2da79",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications sentence names data privacy work (managing PII/PHI with strict access control and encryption), and the agreed raw_text appears verbatim and supports the skill at nice_to_have, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications sentence names data privacy work (managing PII/PHI with strict access control and encryption), and the agreed raw_text appears verbatim and supports the skill at nice_to_have, so the agreed label stands.",
+  "error": null
+}

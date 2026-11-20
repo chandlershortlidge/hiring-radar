@@ -1,0 +1,15 @@
+{
+  "item": 16,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "da24a8cfed309f27f8549012e81a9d4eea42c000efeb9b43b7a3a3e76fe9dd66",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a Minimum Qualifications bullet explicitly requiring experience 'deploying production-grade LLM-based systems' counts as a required mention of `ai-deployment`.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a Minimum Qualifications bullet explicitly requiring experience 'deploying production-grade LLM-based systems' counts as a required mention of `ai-deployment`.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d71caf35f6a86d7671773a713029cf76c89eebea1aebf8e216c5b5613f06f5c4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the quoted years-of-experience line is the only seniority evidence, and the 3+ minimum with a 5+ preference supports the agreed 'mid' value at inferred basis, with the signal quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the quoted years-of-experience line is the only seniority evidence, and the 3+ minimum with a 5+ preference supports the agreed 'mid' value at inferred basis, with the signal quoted verbatim.",
+  "error": null
+}

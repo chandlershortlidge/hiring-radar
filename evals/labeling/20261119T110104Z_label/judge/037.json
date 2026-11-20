@@ -1,0 +1,15 @@
+{
+  "item": 37,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "python",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "915ea1a0903c3dbc6549371b3fae3572400ab2145998c372b75e918b268de4a0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, Python is explicitly named in a qualification bullet that ends with 'is preferred', making the agreed nice_to_have label correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, Python is explicitly named in a qualification bullet that ends with 'is preferred', making the agreed nice_to_have label correct.",
+  "error": null
+}

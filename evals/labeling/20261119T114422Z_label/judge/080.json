@@ -1,0 +1,20 @@
+{
+  "item": 80,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"MSc or PhD\"}",
+  "key_sha256": "3625556f67b38e3e5cec09397c0a2b4ed09f0f2b21c9713f77243cefe1bf6122",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"(MSc or PhD)\"}, \"why\": \"Per the rule that `degree` is the lowest level named (e.g., \\\"MS or PhD\\\" -> `master`), the phrase \\\"(MSc or PhD)\\\" in the required list labels as `master` and `required`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "(MSc or PhD)"
+  },
+  "why": "Per the rule that `degree` is the lowest level named (e.g., \"MS or PhD\" -> `master`), the phrase \"(MSc or PhD)\" in the required list labels as `master` and `required`.",
+  "error": null
+}

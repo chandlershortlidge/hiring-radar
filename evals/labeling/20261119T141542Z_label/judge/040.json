@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "llmops",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "67caf0dd8b2a6f0935ebba1486716c89211550bb1bffb4d989f7006f7d23bafe",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet under Nice-to-Haves explicitly names 'GenAIOps', which maps directly to the llmops skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet under Nice-to-Haves explicitly names 'GenAIOps', which maps directly to the llmops skill.",
+  "error": null
+}

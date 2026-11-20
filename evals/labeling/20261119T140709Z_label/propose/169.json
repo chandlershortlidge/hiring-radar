@@ -1,0 +1,20 @@
+{
+  "item": 169,
+  "golden_id": "golden_105",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b8920f956c108704cc955f8bd39db654598adfc5f438c3cc091365cb1d10a73f",
+  "raw": "{\"decision\": [[\"aws\", \"azure\", \"gcp\"]], \"why\": \"The posting says \\\"Cloud engineering and secure AI deployment on AWS, Azure, or GCP\\\", an \\\"X, Y or Z\\\" marker naming three platforms for one ask, so they form one group; \\\"cloud\\\" stays out as the broad parent, and the \\\"one or more of these areas\\\" bullets are multi-skill bundles rather than single alternative skills, so they are not grouped.\"}",
+  "decision": [
+    [
+      "aws",
+      "azure",
+      "gcp"
+    ]
+  ],
+  "why": "The posting says \"Cloud engineering and secure AI deployment on AWS, Azure, or GCP\", an \"X, Y or Z\" marker naming three platforms for one ask, so they form one group; \"cloud\" stays out as the broad parent, and the \"one or more of these areas\" bullets are multi-skill bundles rather than single alternative skills, so they are not grouped.",
+  "error": null
+}

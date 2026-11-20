@@ -1,0 +1,15 @@
+{
+  "item": 52,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "273d813de56f6a0830ab7b87a4807b988df33a941c30921176c9672daf391567",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a nice-to-have qualification bullet explicitly asks for experience with 'agentic workflows', which directly supports the `agents` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a nice-to-have qualification bullet explicitly asks for experience with 'agentic workflows', which directly supports the `agents` skill.",
+  "error": null
+}

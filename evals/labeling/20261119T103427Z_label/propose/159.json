@@ -1,0 +1,24 @@
+{
+  "item": 159,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "eddf386827acca93d5e6f6cdf35c2eca010fb5c84a42f3f9649e97903a1a6160",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"], [\"aws\", \"gcp\", \"azure\"]], \"why\": \"The posting says \\\"PyTorch and/or TensorFlow\\\", which matches the and/or marker, and lists \\\"cloud platforms (AWS, GCP, Azure)\\\" as examples for a single ask, so each set groups its members while `cloud` stays out and the quantization/pruning/distillation list, which has no alternative marker, is not grouped.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  ],
+  "why": "The posting says \"PyTorch and/or TensorFlow\", which matches the and/or marker, and lists \"cloud platforms (AWS, GCP, Azure)\" as examples for a single ask, so each set groups its members while `cloud` stays out and the quantization/pruning/distillation list, which has no alternative marker, is not grouped.",
+  "error": null
+}

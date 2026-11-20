@@ -1,0 +1,84 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"taking models from data collection through training\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"to something that ran in production or on real hardware\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Real depth in one modern ML area\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning framework\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Enough C++ to be useful\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"made a model meaningfully faster on target hardware\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Generative modelling\",\n      \"raw_text\": \"generative modelling\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least three years taking models from data collection through training to something that ran in production or on real hardware\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'taking models from data collection through training to something that ran in production' to model-development and ai-deployment (flagged uncertain as they are descriptive rather than explicit terms). Mapped 'made a model meaningfully faster on target hardware' under 'Things that would stand out' to inference-optimization (flagged uncertain). 'generative modelling' put in unmapped as it is broader than LLMs. 'autonomous vehicles or robotics' under nice-to-have treated as domain experience.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "taking models from data collection through training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "to something that ran in production or on real hardware",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Real depth in one modern ML area"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning framework"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Enough C++ to be useful"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "made a model meaningfully faster on target hardware",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Generative modelling",
+        "raw_text": "generative modelling"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least three years taking models from data collection through training to something that ran in production or on real hardware",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'taking models from data collection through training to something that ran in production' to model-development and ai-deployment (flagged uncertain as they are descriptive rather than explicit terms). Mapped 'made a model meaningfully faster on target hardware' under 'Things that would stand out' to inference-optimization (flagged uncertain). 'generative modelling' put in unmapped as it is broader than LLMs. 'autonomous vehicles or robotics' under nice-to-have treated as domain experience."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ca3a56f74f515b477a49b8fffb50b9d138b324af1b125dbba0c511020af0c70d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

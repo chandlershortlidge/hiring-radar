@@ -1,0 +1,33 @@
+{
+  "item": 172,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f16d549203f880085cc55fe4ee51331c02ffa74c60fbd77710550c89a7265df3",
+  "raw": "{\"decision\": [[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"], [\"aws\", \"gcp\", \"azure\"], [\"docker\", \"kubernetes\"]], \"why\": \"Under the alternative_group rule, each example list offered for a single ask (programming language such as Python or C++; ML framework e.g. PyTorch, TensorFlow or JAX; cloud platforms AWS, GCP or Azure; containerization e.g. Docker or Kubernetes) forms a group, with the broad parents 'cloud' and 'containerization' kept out, and none of these skills is asked on its own elsewhere.\"}",
+  "decision": [
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ],
+    [
+      "docker",
+      "kubernetes"
+    ]
+  ],
+  "why": "Under the alternative_group rule, each example list offered for a single ask (programming language such as Python or C++; ML framework e.g. PyTorch, TensorFlow or JAX; cloud platforms AWS, GCP or Azure; containerization e.g. Docker or Kubernetes) forms a group, with the broad parents 'cloud' and 'containerization' kept out, and none of these skills is asked on its own elsewhere.",
+  "error": null
+}

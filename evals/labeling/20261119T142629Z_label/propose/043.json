@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c62a2a35920030e5afa684f6f1f50ca56eaa3a673e4a1a2291cb85b18c388fbf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Minimum Qualifications, the bullet \\\"Proficiency in software development with at least one of the following programming languages\\\" is a required skill named in a qualification bullet, so rule 1 supports keeping software-engineering as required (rule 3 also applies).\"}",
+  "decision": "ok",
+  "why": "Under Minimum Qualifications, the bullet \"Proficiency in software development with at least one of the following programming languages\" is a required skill named in a qualification bullet, so rule 1 supports keeping software-engineering as required (rule 3 also applies).",
+  "error": null
+}

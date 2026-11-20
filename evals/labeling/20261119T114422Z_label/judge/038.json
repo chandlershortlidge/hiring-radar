@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "33c9730e69a3f1b3d57f3e5093636ae9733f165920e8e001ce5c6e1367b7d360",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred qualification bullet explicitly asks for regular use of AI assistants for coding, supporting `ai-developer-tooling` as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred qualification bullet explicitly asks for regular use of AI assistants for coding, supporting `ai-developer-tooling` as nice_to_have.",
+  "error": null
+}

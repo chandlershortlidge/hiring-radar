@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0bc7448dcab84d9a2b7c1b5f3a573e45b49e3556045f8f10baa400022be54aa2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet in the 'Ways To Stand Out From The Crowd' section explicitly names 'model optimization for real-time inference' as a nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet in the 'Ways To Stand Out From The Crowd' section explicitly names 'model optimization for real-time inference' as a nice-to-have skill.",
+  "error": null
+}

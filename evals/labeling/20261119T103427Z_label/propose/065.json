@@ -1,0 +1,19 @@
+{
+  "item": 65,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0e187d8dd02a919c7086e21f304feab9d773da623e749cc007f6b2777e748a35",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field\"}, \"why\": \"Under the degree rule the label is the lowest level named, and the Qualifications list gives a bare, required Bachelor's degree, while the Master's or PhD appears only under Preferred Skills and so is not recorded.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Mathematics, or a related field"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and the Qualifications list gives a bare, required Bachelor's degree, while the Master's or PhD appears only under Preferred Skills and so is not recorded.",
+  "error": null
+}

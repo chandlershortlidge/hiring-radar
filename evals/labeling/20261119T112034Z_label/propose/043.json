@@ -1,0 +1,14 @@
+{
+  "item": 43,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3bf5e31aa25c33094747d56abe04f41f0928877b203c01145435c460b7fc5e3",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the qualification line's explicit requirement of 2+ years of executive-facing presales experience, alongside the senior-level responsibilities in the posting, supports the \\\"mid\\\" reading over \\\"junior\\\" (the excerpt contains no junior-level signal).\"}",
+  "decision": "A",
+  "why": "Under rule 1, the qualification line's explicit requirement of 2+ years of executive-facing presales experience, alongside the senior-level responsibilities in the posting, supports the \"mid\" reading over \"junior\" (the excerpt contains no junior-level signal).",
+  "error": null
+}

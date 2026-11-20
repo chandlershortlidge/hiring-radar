@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2dbe845a0afc0ff66458006089ccb39546f0fc4f25fac2b503bd9883032ddce0",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only mention of \\\"model evaluation\\\" sits in the \\\"What You'll Do\\\" responsibilities list, and the excerpt shows no qualification bullet asking for it, so the skill does not belong in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only mention of \"model evaluation\" sits in the \"What You'll Do\" responsibilities list, and the excerpt shows no qualification bullet asking for it, so the skill does not belong in the key.",
+  "error": null
+}

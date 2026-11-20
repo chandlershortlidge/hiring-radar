@@ -1,0 +1,20 @@
+{
+  "item": 71,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.\"}",
+  "key_sha256": "511de72406ee69438bdabbbeeadc2b6beada118cadf5e9ba3a48c64e734ace8c",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.\"}, \"why\": \"The rule specifies recording only the lowest degree level named in the posting ('bachelor' under 'What You Bring' as required), while higher optional levels ('Master’s degree or PhD' under 'Preferred') are not recorded.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."
+  },
+  "why": "The rule specifies recording only the lowest degree level named in the posting ('bachelor' under 'What You Bring' as required), while higher optional levels ('Master’s degree or PhD' under 'Preferred') are not recorded.",
+  "error": null
+}

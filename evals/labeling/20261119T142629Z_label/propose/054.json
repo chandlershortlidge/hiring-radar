@@ -1,0 +1,14 @@
+{
+  "item": 54,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "docker",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f46e2f528bb5ef51715fdad19969500e8e09654b185b00eb7d8b61eea52e57c2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications sentence names Docker directly in \\\"container orchestration (e.g., Kubernetes, Docker)\\\", and under rule 3 that required mention is the determining quote, so the agreed required `docker` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications sentence names Docker directly in \"container orchestration (e.g., Kubernetes, Docker)\", and under rule 3 that required mention is the determining quote, so the agreed required `docker` label stands.",
+  "error": null
+}

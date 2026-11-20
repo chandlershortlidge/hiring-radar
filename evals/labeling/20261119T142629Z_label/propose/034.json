@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3431ee4a02eaa8be5402bb84f08c017868f37e93a2ff487ff1b83c17ec6193a2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications bullet names experience with an agentic system, and under rule 3 the required mention 'at least one agentic system' (quoted verbatim) supports the agreed `agents` label at required level.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications bullet names experience with an agentic system, and under rule 3 the required mention 'at least one agentic system' (quoted verbatim) supports the agreed `agents` label at required level.",
+  "error": null
+}

@@ -1,0 +1,35 @@
+{
+  "item": 172,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"python\", \"typescript\"], [\"langchain\", \"llamaindex\", \"llm-guardrails\", \"mcp\"], [\"aws\", \"gcp\", \"azure\"], [\"rag\", \"llm-orchestration\"]]",
+  "key_sha256": "90add269372423480188608ac73e6262d99b2973f4445cf620e070a12bd45c07",
+  "raw": "{\"decision\": [[\"python\", \"typescript\"], [\"langchain\", \"llamaindex\", \"llm-guardrails\", \"mcp\"], [\"rag\", \"llm-orchestration\"], [\"aws\", \"gcp\", \"azure\"]], \"why\": \"Under the 'X, Y or Z' and 'such as' markers, Python/TypeScript, the LLM tooling examples, the RAG/workflows pair, and the cloud platform examples (excluding the broad parent 'cloud') form alternative groups, while skills also required on their own elsewhere in the posting (llms, agents, and tool-calling) leave their groups.\"}",
+  "decision": [
+    [
+      "python",
+      "typescript"
+    ],
+    [
+      "langchain",
+      "llamaindex",
+      "llm-guardrails",
+      "mcp"
+    ],
+    [
+      "rag",
+      "llm-orchestration"
+    ],
+    [
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  ],
+  "why": "Under the 'X, Y or Z' and 'such as' markers, Python/TypeScript, the LLM tooling examples, the RAG/workflows pair, and the cloud platform examples (excluding the broad parent 'cloud') form alternative groups, while skills also required on their own elsewhere in the posting (llms, agents, and tool-calling) leave their groups.",
+  "error": null
+}

@@ -1,0 +1,19 @@
+{
+  "item": 160,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b1f1ccd6635a40a2170061409b30462500e3ca7a8edaddbdd32f39f75c5f770e",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience\"}, \"why\": \"Under the degree rule, \\\"MS or PhD\\\" → master, since the degree is the lowest level named, so the agreed phd label reflects the superseded highest-level rule; the posting's \\\"or equivalent experience\\\" keeps degree_or_equivalent true.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"
+  },
+  "why": "Under the degree rule, \"MS or PhD\" → master, since the degree is the lowest level named, so the agreed phd label reflects the superseded highest-level rule; the posting's \"or equivalent experience\" keeps degree_or_equivalent true.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 16,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "348588543dc7af2a4513e2d0ae689729fe201883497af96c0c0f3bb66d16ff61",
+  "raw": "{\"decision\": \"A\", \"why\": \"\\\"Advanced degree\\\" refers to a graduate degree (Master's or PhD), making `master` the lowest level named, and it is marked optional under \\\"While not required, these are a plus\\\" (`nice_to_have`).\"}",
+  "decision": "A",
+  "why": "\"Advanced degree\" refers to a graduate degree (Master's or PhD), making `master` the lowest level named, and it is marked optional under \"While not required, these are a plus\" (`nice_to_have`).",
+  "error": null
+}

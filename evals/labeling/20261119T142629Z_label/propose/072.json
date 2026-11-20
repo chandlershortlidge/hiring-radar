@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7c981e619bf386bbc72f89e192f7f4af6a11321960c2ec15489c1c21c53c527e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"6+ years of experience deploying scalable and responsible AI solutions on cloud platforms\\\" names the skill, and the nice_to_have level and quoted raw_text both match the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred-qualifications bullet \"6+ years of experience deploying scalable and responsible AI solutions on cloud platforms\" names the skill, and the nice_to_have level and quoted raw_text both match the posting.",
+  "error": null
+}

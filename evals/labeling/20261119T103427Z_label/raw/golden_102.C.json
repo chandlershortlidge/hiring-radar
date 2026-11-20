@@ -1,0 +1,52 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Statistics\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pipelines\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"data engineering\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Formal training in statistics (for example, MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework).\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'ship analyses and pipelines end to end' to data-pipelines (flagged uncertain as it does not explicitly say data pipelines or ETL, though 'analysis pipelines' appears in responsibilities).\\n'data engineering' in 'Nice to have' has no taxonomy entry, added to unmapped.\\nDegree is 'phd' (highest named in 'MS or PhD') and 'nice_to_have' because it appears under the 'Nice to have' section heading.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistics"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "pipelines",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "data engineering"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Formal training in statistics (for example, MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework).",
+    "uncertain": [],
+    "notes": "Mapped 'ship analyses and pipelines end to end' to data-pipelines (flagged uncertain as it does not explicitly say data pipelines or ETL, though 'analysis pipelines' appears in responsibilities).\n'data engineering' in 'Nice to have' has no taxonomy entry, added to unmapped.\nDegree is 'phd' (highest named in 'MS or PhD') and 'nice_to_have' because it appears under the 'Nice to have' section heading."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "e82d71176fe9a83ffdba7fb66199c341b87e4a677898a8aeed63db4a614339b4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

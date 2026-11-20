@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "2a0f81d8131428f6cd7d040ee20f37a38e461b867e29f90cf0b6cec2dcac7e39",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a role description like 'a software engineer' does not count as a named skill qualification.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a role description like 'a software engineer' does not count as a named skill qualification.",
+  "error": null
+}

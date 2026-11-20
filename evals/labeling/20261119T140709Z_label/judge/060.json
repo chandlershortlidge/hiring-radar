@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "565c2bc2a9943743def46ee025f7649bba1ae350fed3b381a1742eda57157787",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a minimum qualification bullet explicitly requires experience building and operating production ETL/ELT pipelines (and another mentions machine learning data pipelines), so the agreed label and quote are valid.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a minimum qualification bullet explicitly requires experience building and operating production ETL/ELT pipelines (and another mentions machine learning data pipelines), so the agreed label and quote are valid.",
+  "error": null
+}

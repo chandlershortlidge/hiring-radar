@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "a9b9b3c078b32b5677268cb2c29b4fb049db012b9f265ac5a4a8188549df5428",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for \\\"Experience integrating AI systems\\\" (and other bullets explicitly name \\\"machine learning\\\"), so B's label is correct.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for \"Experience integrating AI systems\" (and other bullets explicitly name \"machine learning\"), so B's label is correct.",
+  "error": null
+}

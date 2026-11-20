@@ -1,0 +1,15 @@
+{
+  "item": 41,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d33a84d409bfeb20fa0a43a17dbc80268aeb947f09ee49ed566df4faffba6c12",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet under Required Qualifications explicitly asks for \\\"Experience deploying ML\\\", supporting the required `ai-deployment` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet under Required Qualifications explicitly asks for \"Experience deploying ML\", supporting the required `ai-deployment` skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "99ddad5820e3c78ba83d96a4df859c90757fd8584e8565ee20470c7da60cd179",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the sentence \\\"We work with ... and primarily on AWS\\\" names AWS as the platform the candidate will work on, and rule 3 keeps a mention that the text supports, so labeler A's aws skill stands.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the sentence \"We work with ... and primarily on AWS\" names AWS as the platform the candidate will work on, and rule 3 keeps a mention that the text supports, so labeler A's aws skill stands.",
+  "error": null
+}

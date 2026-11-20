@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "statistics",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3e1a95138d989da743a7d5fd3347dea15a3184cfc1d62fa51798c99426b6535",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Minimum qualifications (rule 1), the bullet names \\\"statistical judgment\\\" as a requirement, and rule 3 makes that required mention win, with the agreed raw_text appearing verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under Minimum qualifications (rule 1), the bullet names \"statistical judgment\" as a requirement, and rule 3 makes that required mention win, with the agreed raw_text appearing verbatim in the posting.",
+  "error": null
+}

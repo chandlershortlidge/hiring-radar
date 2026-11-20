@@ -1,0 +1,19 @@
+{
+  "item": 163,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ac380c2a7a73ea426493151757ddb15d773dd0034aef24b8e1acde2dd910faa6",
+  "raw": "{\"decision\": [[\"claude-code\", \"codex\"]], \"why\": \"The required line \\\"Daily experience using Claude Code or Codex\\\" is one ask met by either tool, so under the \\\"X or Y\\\" marker the two form a single alternative_group, and neither is asked for elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "claude-code",
+      "codex"
+    ]
+  ],
+  "why": "The required line \"Daily experience using Claude Code or Codex\" is one ask met by either tool, so under the \"X or Y\" marker the two form a single alternative_group, and neither is asked for elsewhere in the posting.",
+  "error": null
+}

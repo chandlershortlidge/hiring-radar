@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "api-design",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd700d1ca32797089d7fdd10cbbf166e693629a354b860731c797a1d01042c11",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \\\"Experience designing SDKs, APIs, and data contracts\\\" names designing APIs, which is the api-design skill (rule 2 does not apply because the candidate is building APIs, not consuming them), so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet \"Experience designing SDKs, APIs, and data contracts\" names designing APIs, which is the api-design skill (rule 2 does not apply because the candidate is building APIs, not consuming them), so the agreed label stands.",
+  "error": null
+}

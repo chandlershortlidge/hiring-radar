@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "26cdd342047f4946e2818652c39d41a0ff5663af9cdff54575f1afbc31773557",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly requiring the ability to \\\"design rigorous evaluation frameworks\\\" counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly requiring the ability to \"design rigorous evaluation frameworks\" counts as a required skill.",
+  "error": null
+}

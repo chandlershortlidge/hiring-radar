@@ -1,0 +1,15 @@
+{
+  "item": 133,
+  "golden_id": "golden_097",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "8d5f5d3939a482ddb804da51f1a14721fb492470f691bf3399386e94f6d13871",
+  "raw": "{\"decision\": [], \"why\": \"A group needs at least two labeled skills offered in place of each other, and the two skills labeled for this posting (`causal-inference` and `software-engineering`) are separate requirements.\"}",
+  "decision": [],
+  "why": "A group needs at least two labeled skills offered in place of each other, and the two skills labeled for this posting (`causal-inference` and `software-engineering`) are separate requirements.",
+  "error": null
+}

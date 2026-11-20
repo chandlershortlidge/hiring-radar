@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "quantization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "8fd2d8cc9422e8bc6eef914d72e26d97800b47d7512ba9478e044d1892e3ec8e",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, the only visible mention of quantization is in the role summary describing what the company does ('inventing new quantization schemes'), rather than a candidate requirement.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, the only visible mention of quantization is in the role summary describing what the company does ('inventing new quantization schemes'), rather than a candidate requirement.",
+  "error": null
+}

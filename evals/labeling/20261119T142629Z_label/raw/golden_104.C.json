@@ -1,0 +1,117 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Built and shipped agent systems in production\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent systems in production with orchestration\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent systems in production with orchestration, tool use, state management\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenCV\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"knowledge graph\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend services\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"frontend interfaces\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"React Native\",\n      \"raw_text\": \"React Native\"\n    },\n    {\n      \"label\": \"Human-in-the-loop\",\n      \"raw_text\": \"human-in-the-loop workflows\"\n    },\n    {\n      \"label\": \"Multimodal AI\",\n      \"raw_text\": \"multimodal AI pipelines\"\n    },\n    {\n      \"label\": \"Ontology\",\n      \"raw_text\": \"ontology\"\n    },\n    {\n      \"label\": \"PLC / OPC-UA\",\n      \"raw_text\": \"PLC / OPC-UA\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years experience (5+ preferred) building and shipping production AI systems\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Seniority inferred as 'mid' from '3+ years experience (5+ preferred)' where 3+ is the baseline requirement. 'What you have done' and 'Who you are' describe required candidate qualifications; 'What you will build' is responsibilities (skipped, e.g., YOLO, tracing). 'Agentic AI' and 'agent systems' mapped to 'agents' (required wins over 'ideally agentic products'). 'OpenCV' and 'vision (detection, segmentation, action recognition)' mapped to 'computer-vision'. React Native placed in unmapped as distinct from web React.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Built and shipped agent systems in production"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agent systems in production with orchestration"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "agent systems in production with orchestration, tool use, state management"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "OpenCV"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "knowledge graph"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend interfaces"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "React Native",
+        "raw_text": "React Native"
+      },
+      {
+        "label": "Human-in-the-loop",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "Multimodal AI",
+        "raw_text": "multimodal AI pipelines"
+      },
+      {
+        "label": "Ontology",
+        "raw_text": "ontology"
+      },
+      {
+        "label": "PLC / OPC-UA",
+        "raw_text": "PLC / OPC-UA"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years experience (5+ preferred) building and shipping production AI systems",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Seniority inferred as 'mid' from '3+ years experience (5+ preferred)' where 3+ is the baseline requirement. 'What you have done' and 'Who you are' describe required candidate qualifications; 'What you will build' is responsibilities (skipped, e.g., YOLO, tracing). 'Agentic AI' and 'agent systems' mapped to 'agents' (required wins over 'ideally agentic products'). 'OpenCV' and 'vision (detection, segmentation, action recognition)' mapped to 'computer-vision'. React Native placed in unmapped as distinct from web React."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "6c6a55674dcec9ad502860160b8686fdc84e4ea99587457a54f373312361c0d3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

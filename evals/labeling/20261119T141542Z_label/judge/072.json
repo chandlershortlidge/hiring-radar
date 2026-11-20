@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "cybersecurity",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "692db1e4b20ddb09dd7b69ad3ca28b0694df1e32cd07e1fd9e0ace9a7bbd4e5f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly lists \\\"cloud security fundamentals\\\", which directly supports the agreed cybersecurity skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly lists \"cloud security fundamentals\", which directly supports the agreed cybersecurity skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "google-adk",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "983e41e161aa2508326fb2fa468d8be72fb498e114eceb2c3383123a038f32f0",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the preferred-qualifications sentence explicitly names the Agent Development Kit as an example framework, and that mention is the determining quote, so the skill counts as nice_to_have as labeler A had it.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the preferred-qualifications sentence explicitly names the Agent Development Kit as an example framework, and that mention is the determining quote, so the skill counts as nice_to_have as labeler A had it.",
+  "error": null
+}

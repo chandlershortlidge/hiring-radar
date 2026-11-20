@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "structured-data-extraction",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f01457e6d498a07cd82bc314f9ec6e88d1810f2f8b572ece5c1acb9dff72a0d1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required What You Bring bullet names unstructured document parsing, which is a reasonable match for structured-data-extraction, and rule 3 keeps a required mention even though labeler B did not tag it.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required What You Bring bullet names unstructured document parsing, which is a reasonable match for structured-data-extraction, and rule 3 keeps a required mention even though labeler B did not tag it.",
+  "error": null
+}

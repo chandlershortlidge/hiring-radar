@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "knowledge-graphs",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1bde5f1b73e8492c41d0538407721fcd5fab7e3570a924a4d163bfe6e2210dfc",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet names knowledge graphs as a skill (\\\"3+ years building knowledge graphs\\\"), and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet names knowledge graphs as a skill (\"3+ years building knowledge graphs\"), and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "sql",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "82f82e97573da4ff6b70cb0288f1c3c19d1f97314918f622e27db26a572503fd",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the MS SQL mention sits inside the 'What Sets You Apart' list, and it is one option among several certifications ('at least one of the following'), so it is a preference rather than a requirement, which makes nice_to_have correct under rule 3.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the MS SQL mention sits inside the 'What Sets You Apart' list, and it is one option among several certifications ('at least one of the following'), so it is a preference rather than a requirement, which makes nice_to_have correct under rule 3.",
+  "error": null
+}

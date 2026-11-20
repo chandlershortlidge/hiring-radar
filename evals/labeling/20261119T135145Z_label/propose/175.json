@@ -1,0 +1,19 @@
+{
+  "item": 175,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7fc9b037b69fc208f14442d87c61004552c3351ea679af8da4a31e422ec20b4d",
+  "raw": "{\"decision\": [[\"cuda\", \"jax\"]], \"why\": \"The preferred qualification 'GPU programming for physics (CUDA, NVIDIA Warp or JAX)' offers its examples as one ask, so under the rule's example-list marker cuda and jax form a group. Python and C++ are asked together as required skills, so they are not alternatives, and reinforcement-learning is the only skill from its phrase, so it cannot form a group.\"}",
+  "decision": [
+    [
+      "cuda",
+      "jax"
+    ]
+  ],
+  "why": "The preferred qualification 'GPU programming for physics (CUDA, NVIDIA Warp or JAX)' offers its examples as one ask, so under the rule's example-list marker cuda and jax form a group. Python and C++ are asked together as required skills, so they are not alternatives, and reinforcement-learning is the only skill from its phrase, so it cannot form a group.",
+  "error": null
+}

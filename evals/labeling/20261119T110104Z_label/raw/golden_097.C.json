@@ -1,0 +1,66 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"causal-inference\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bayesian causal modeling\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Bayesian causal modeling\",\n      \"raw_text\": \"Bayesian causal modeling\"\n    },\n    {\n      \"label\": \"Evolutionary programming\",\n      \"raw_text\": \"evolutionary programming\"\n    },\n    {\n      \"label\": \"Probabilistic programming\",\n      \"raw_text\": \"probabilistic programming\"\n    },\n    {\n      \"label\": \"Bayesian model comparison and weighting\",\n      \"raw_text\": \"Bayesian model comparison and weighting\"\n    },\n    {\n      \"label\": \"Genetic/evolutionary algorithms\",\n      \"raw_text\": \"genetic/evolutionary algorithms\"\n    },\n    {\n      \"label\": \"Quality-diversity methods\",\n      \"raw_text\": \"quality-diversity methods\"\n    },\n    {\n      \"label\": \"Population-based search\",\n      \"raw_text\": \"population-based search\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'Bayesian causal modeling' to causal-inference (marked uncertain, also included in unmapped alongside evolutionary programming, probabilistic programming, and genetic/evolutionary algorithms). Reinforcement learning appears only in The Role overview, not in Qualifications. Statistics in the PhD bullet is a degree field, not a skill requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "Bayesian causal modeling",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Bayesian causal modeling",
+        "raw_text": "Bayesian causal modeling"
+      },
+      {
+        "label": "Evolutionary programming",
+        "raw_text": "evolutionary programming"
+      },
+      {
+        "label": "Probabilistic programming",
+        "raw_text": "probabilistic programming"
+      },
+      {
+        "label": "Bayesian model comparison and weighting",
+        "raw_text": "Bayesian model comparison and weighting"
+      },
+      {
+        "label": "Genetic/evolutionary algorithms",
+        "raw_text": "genetic/evolutionary algorithms"
+      },
+      {
+        "label": "Quality-diversity methods",
+        "raw_text": "quality-diversity methods"
+      },
+      {
+        "label": "Population-based search",
+        "raw_text": "population-based search"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise",
+    "uncertain": [],
+    "notes": "Mapped 'Bayesian causal modeling' to causal-inference (marked uncertain, also included in unmapped alongside evolutionary programming, probabilistic programming, and genetic/evolutionary algorithms). Reinforcement learning appears only in The Role overview, not in Qualifications. Statistics in the PhD bullet is a degree field, not a skill requirement."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "1cb83a736f1362846c7eda1cd07c241f1a8562144552a2a7179428f31a67539d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

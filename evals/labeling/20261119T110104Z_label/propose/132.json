@@ -1,0 +1,22 @@
+{
+  "item": 132,
+  "golden_id": "golden_096",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "acb6335ac355a8c8bf571ddba0d5a62fa674215aaa27e5a2f3e115ab792af737",
+  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The preferred-qualifications line 'Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' offers examples for a single ask, so these five form one group, while the broad parents 'agents' and 'llm-orchestration' stay out and the model platforms listed with 'and' are asked together, not as alternatives.\"}",
+  "decision": [
+    [
+      "pydanticai",
+      "langgraph",
+      "langchain",
+      "crewai",
+      "autogen"
+    ]
+  ],
+  "why": "The preferred-qualifications line 'Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' offers examples for a single ask, so these five form one group, while the broad parents 'agents' and 'llm-orchestration' stay out and the model platforms listed with 'and' are asked together, not as alternatives.",
+  "error": null
+}

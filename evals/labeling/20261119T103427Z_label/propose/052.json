@@ -1,0 +1,14 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3eae47f31fad34992dfc8b5a81cbee4f0cc4c393e462c184b258f63db8e758b8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What we're looking for' qualification 'Real depth in one modern ML area' is a required bullet that names machine learning, and the agreed required label and raw_text quote support it.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What we're looking for' qualification 'Real depth in one modern ML area' is a required bullet that names machine learning, and the agreed required label and raw_text quote support it.",
+  "error": null
+}

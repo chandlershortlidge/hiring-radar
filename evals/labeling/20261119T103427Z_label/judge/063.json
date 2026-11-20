@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "containerization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e6bf72fbc89e704200513b3a11ddd3a624b4ccfc1503e684c3570c2734bb9dc3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under the 'isn’t required, but we’d love to see it' heading explicitly asks for experience in 'containerized' environments, making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under the 'isn’t required, but we’d love to see it' heading explicitly asks for experience in 'containerized' environments, making it a valid nice-to-have skill.",
+  "error": null
+}

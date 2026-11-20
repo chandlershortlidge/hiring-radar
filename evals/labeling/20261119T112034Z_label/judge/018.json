@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ad9490366e61f4f9e12eb552b5fd95d1b2ec65be20e4ef00e109c013ca9bc585",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet in the 'You should apply if' section explicitly asks for experience in the 'development and deployment of advanced Machine Learning models'.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet in the 'You should apply if' section explicitly asks for experience in the 'development and deployment of advanced Machine Learning models'.",
+  "error": null
+}

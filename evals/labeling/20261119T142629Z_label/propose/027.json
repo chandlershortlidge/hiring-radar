@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "532ecfe04f4af389a222966bee44e4ec155a48dbf48abe9eb27740710244e7a5",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, the required qualification \\\"building and operating production ML systems\\\" (with the required bullet on taking ML systems to production deployment and monitoring) supports mlops, and labeler A did not label it, so B's required tag stands.\"}",
+  "decision": "B",
+  "why": "Under rule 3, the required qualification \"building and operating production ML systems\" (with the required bullet on taking ML systems to production deployment and monitoring) supports mlops, and labeler A did not label it, so B's required tag stands.",
+  "error": null
+}

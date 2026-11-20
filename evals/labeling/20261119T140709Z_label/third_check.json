@@ -1,0 +1,39 @@
+{
+  "model": "gemini-4-argon",
+  "provider": "google",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5",
+  "n_items": 73,
+  "agreed": 73,
+  "differed": 0,
+  "rate": 0.0,
+  "wilson_95": [
+    0.0,
+    0.0499920079557311
+  ],
+  "by_field": {
+    "skill": {
+      "n": 60,
+      "agreed": 60,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "german": {
+      "n": 5,
+      "agreed": 5,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "seniority": {
+      "n": 8,
+      "agreed": 8,
+      "differed": 0,
+      "rate": 0.0
+    }
+  },
+  "differences": [],
+  "auto_check_problems": [
+    "golden_096: degree_signal does not appear in the posting: 'Bachelor’s degree in Computer Science, Data Science, Information Science or a related field, or equivalent applicable experience. ... Master’s or PhD in Computer Science, Machine Learning or Information Science'"
+  ],
+  "failed": [],
+  "not_compared": []
+}

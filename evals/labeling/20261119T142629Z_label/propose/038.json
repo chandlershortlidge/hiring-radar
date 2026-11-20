@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1ab49350dec554bbb71c228712201433aea4aa8b06694f52d4c444ee7fc934be",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required minimum-qualifications bullet on \\\"retrieval and context pipelines\\\" for structured and semi-structured data, set alongside LLM-based systems, names retrieval-augmented work, so the agreed required `rag` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required minimum-qualifications bullet on \"retrieval and context pipelines\" for structured and semi-structured data, set alongside LLM-based systems, names retrieval-augmented work, so the agreed required `rag` label stands.",
+  "error": null
+}

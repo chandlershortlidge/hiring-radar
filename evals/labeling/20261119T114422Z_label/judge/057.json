@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "984a63e5b2d2a0bda432eadd6c1ec42565ba182f976cd6fc30a28348313decdb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the 'About you' qualification bullet explicitly requires 'Familiarity with the production ML lifecycle, including deployment, monitoring and retraining', which directly maps to MLOps.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the 'About you' qualification bullet explicitly requires 'Familiarity with the production ML lifecycle, including deployment, monitoring and retraining', which directly maps to MLOps.",
+  "error": null
+}

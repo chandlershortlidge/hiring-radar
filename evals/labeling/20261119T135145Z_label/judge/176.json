@@ -1,0 +1,15 @@
+{
+  "item": 176,
+  "golden_id": "golden_101",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "da7600b1427177e8ecd8bbca0e67a41e6c4dbf49b9345b1bb0087239fa625e98",
+  "raw": "{\"decision\": [], \"why\": \"The only alternative/example ask involving the labeled skills ('ML optimization techniques (e.g., sparsity, quantization, pruning)') has only one labeled example (`quantization`) and a broad skill (`machine-learning`) is not grouped with its examples, while the rule requires at least two skills to form a group.\"}",
+  "decision": [],
+  "why": "The only alternative/example ask involving the labeled skills ('ML optimization techniques (e.g., sparsity, quantization, pruning)') has only one labeled example (`quantization`) and a broad skill (`machine-learning`) is not grouped with its examples, while the rule requires at least two skills to form a group.",
+  "error": null
+}

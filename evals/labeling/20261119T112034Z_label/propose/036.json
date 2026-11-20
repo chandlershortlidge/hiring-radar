@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7ad24d468c073bb250da1ff4a482a749c0e85ec930f609a95a2d26c0fcbdc565",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4 the only visible mention of LLM post-training is in the company description and the responsibilities bullet, and the excerpt shows no candidate requirement for it, so the required tag on raw_text \\\"LLM post-training\\\" isn't supported.\"}",
+  "decision": "drop",
+  "why": "Under rule 4 the only visible mention of LLM post-training is in the company description and the responsibilities bullet, and the excerpt shows no candidate requirement for it, so the required tag on raw_text \"LLM post-training\" isn't supported.",
+  "error": null
+}

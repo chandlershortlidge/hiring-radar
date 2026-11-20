@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "cd43e9c4e38944466bcf9eafa60d5ab2b13c0ffb9cf71f06d746dce4780adb0c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting never names MLOps, so we do not infer or add a skill that the text does not name.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting never names MLOps, so we do not infer or add a skill that the text does not name.",
+  "error": null
+}

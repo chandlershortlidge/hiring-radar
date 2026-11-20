@@ -1,0 +1,14 @@
+{
+  "item": 66,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4a5a4ff589105ddc69737cfadf8012370e64fa4b9946c7a85a4af04eebc062f8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 applies: the nice-to-have bullet \\\"Experience with ML frameworks\\\" in the \\\"It's Great if you have\\\" section names an ML skill, and \\\"machine learning\\\" also appears in the posting, so the agreed nice_to_have label with that raw_text stands.\"}",
+  "decision": "ok",
+  "why": "Rule 1 applies: the nice-to-have bullet \"Experience with ML frameworks\" in the \"It's Great if you have\" section names an ML skill, and \"machine learning\" also appears in the posting, so the agreed nice_to_have label with that raw_text stands.",
+  "error": null
+}

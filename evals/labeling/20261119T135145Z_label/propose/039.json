@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "236c60b31046f61bd71376a854b24c7903195c16551f8e7050619477eea76263",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence \\\"Experience building agentic AI solutions for pricing is highly desirable\\\" names the skill, and it is the only mention, so nice_to_have is correct and the agreed raw_text is verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence \"Experience building agentic AI solutions for pricing is highly desirable\" names the skill, and it is the only mention, so nice_to_have is correct and the agreed raw_text is verbatim.",
+  "error": null
+}

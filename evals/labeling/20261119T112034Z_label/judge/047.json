@@ -1,0 +1,15 @@
+{
+  "item": 47,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "055dfe46db2d4682f7635d7356cc8e4e953a0701c6784ddb5364eef7d8727f44",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet under 'The qualifications you need' explicitly names 'Hugging Face Transformers', making B's required label correct.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet under 'The qualifications you need' explicitly names 'Hugging Face Transformers', making B's required label correct.",
+  "error": null
+}

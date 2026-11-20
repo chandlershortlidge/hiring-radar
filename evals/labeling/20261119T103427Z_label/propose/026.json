@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "93122d573036b79ffeb115ef6b9a90ffb7265096a3b1264051aa0dd99be95762",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification sentence \\\"At least three years taking models from data collection through training to something that ran in production\\\" names model development as a requirement, and rule 3 makes that required mention decisive, so B's required tag and quoted raw_text are right.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification sentence \"At least three years taking models from data collection through training to something that ran in production\" names model development as a requirement, and rule 3 makes that required mention decisive, so B's required tag and quoted raw_text are right.",
+  "error": null
+}

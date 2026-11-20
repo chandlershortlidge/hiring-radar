@@ -1,0 +1,17 @@
+{
+  "item": 43,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ac8c3f9d2cd506e3f81d3507873638b762f64a71e433fed8056201a0a2083a70",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Strong expertise in both computer vision and natural language processing with hands-on model development experience\"}, \"why\": \"Under rule 1 the agreed raw_text \\\"AI/ML engineering\\\" sits in a years-of-experience line that does not count, so I replaced it with a qualifying required sentence that names the skill, keeping the required requirement under rule 3.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Strong expertise in both computer vision and natural language processing with hands-on model development experience"
+  },
+  "why": "Under rule 1 the agreed raw_text \"AI/ML engineering\" sits in a years-of-experience line that does not count, so I replaced it with a qualifying required sentence that names the skill, keeping the required requirement under rule 3.",
+  "error": null
+}

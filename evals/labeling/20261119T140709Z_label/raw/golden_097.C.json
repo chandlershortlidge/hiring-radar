@@ -1,0 +1,99 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical analysis\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"R\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Bash (Unix shell)\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark implementation\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"database design\",\n      \"raw_text\": \"database design\"\n    },\n    {\n      \"label\": \"C\",\n      \"raw_text\": \"C\"\n    },\n    {\n      \"label\": \"SAS\",\n      \"raw_text\": \"SAS\"\n    },\n    {\n      \"label\": \"VBA\",\n      \"raw_text\": \"VBA\"\n    },\n    {\n      \"label\": \"Talend\",\n      \"raw_text\": \"Talend\"\n    },\n    {\n      \"label\": \"linked data\",\n      \"raw_text\": \"linked data\"\n    },\n    {\n      \"label\": \"big data\",\n      \"raw_text\": \"Interest in big data\"\n    },\n    {\n      \"label\": \"quantum engineering\",\n      \"raw_text\": \"Interest in big data, scalability, statistical analysis tools, and quantum engineering\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Technical Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Skipped skills only mentioned in Duties (ETL, Hadoop, generative AI, NLP, Looker, TensorFlow, AWS, etc.). In Qualifications, 'Preferred:' marks items as nice_to_have, and 'Interest in' marks that bullet's items as nice_to_have.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "nice_to_have",
+        "raw_text": "R"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Bash (Unix shell)"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark implementation"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "database design",
+        "raw_text": "database design"
+      },
+      {
+        "label": "C",
+        "raw_text": "C"
+      },
+      {
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "label": "VBA",
+        "raw_text": "VBA"
+      },
+      {
+        "label": "Talend",
+        "raw_text": "Talend"
+      },
+      {
+        "label": "linked data",
+        "raw_text": "linked data"
+      },
+      {
+        "label": "big data",
+        "raw_text": "Interest in big data"
+      },
+      {
+        "label": "quantum engineering",
+        "raw_text": "Interest in big data, scalability, statistical analysis tools, and quantum engineering"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Technical Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Skipped skills only mentioned in Duties (ETL, Hadoop, generative AI, NLP, Looker, TensorFlow, AWS, etc.). In Qualifications, 'Preferred:' marks items as nice_to_have, and 'Interest in' marks that bullet's items as nice_to_have."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "a09d146e8c7e442b88bab43826f638efa365baa2b3ceaf36a1913bba795f5f9e",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

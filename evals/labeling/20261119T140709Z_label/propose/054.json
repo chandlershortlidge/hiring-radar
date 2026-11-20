@@ -1,0 +1,14 @@
+{
+  "item": 54,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9687b9e67f428914809f6de25e6abc5332b505df67354105f39355be6e136665",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet \\\"Demonstrate excellent software engineering fundamentals\\\" names the skill directly, so it counts, and the agreed required label and raw_text match the posting word for word.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet \"Demonstrate excellent software engineering fundamentals\" names the skill directly, so it counts, and the agreed required label and raw_text match the posting word for word.",
+  "error": null
+}

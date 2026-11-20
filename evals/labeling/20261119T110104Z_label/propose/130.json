@@ -1,0 +1,20 @@
+{
+  "item": 130,
+  "golden_id": "golden_094",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8b9d5c219a4f95135fc622dfe45c417bec5f0e7d66359b06733504d9c2bfa81d",
+  "raw": "{\"decision\": [[\"pytorch\", \"vllm\", \"langgraph\"]], \"why\": \"The qualifications offer frameworks \\\"such as PyTorch, vLLM, or LangGraph\\\" as examples for one ask (deploying LLM-powered applications), so under the alternative_group rule's example marker these three share a group. The RAG / agentic orchestration / multi-agent list is left ungrouped because rag and llm-orchestration are also asked on their own in the responsibilities, which takes them out of the group, leaving multi-agent-systems alone and below the two-skill minimum.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "vllm",
+      "langgraph"
+    ]
+  ],
+  "why": "The qualifications offer frameworks \"such as PyTorch, vLLM, or LangGraph\" as examples for one ask (deploying LLM-powered applications), so under the alternative_group rule's example marker these three share a group. The RAG / agentic orchestration / multi-agent list is left ungrouped because rag and llm-orchestration are also asked on their own in the responsibilities, which takes them out of the group, leaving multi-agent-systems alone and below the two-skill minimum.",
+  "error": null
+}

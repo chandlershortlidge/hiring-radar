@@ -1,0 +1,15 @@
+{
+  "item": 85,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f809e1ad47678f77df597163463b7984bbe90346fc047ee38323b736cb9643ca",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 3, the required qualification mention of '2-4 years of experience' supports the inferred mid-level seniority attribute (while Rule 1 only excludes years-of-experience lines from counting as skills).\"}",
+  "decision": "ok",
+  "why": "Under Rule 3, the required qualification mention of '2-4 years of experience' supports the inferred mid-level seniority attribute (while Rule 1 only excludes years-of-experience lines from counting as skills).",
+  "error": null
+}

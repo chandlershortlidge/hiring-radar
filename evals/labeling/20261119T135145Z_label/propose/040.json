@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b0ded8dab4e62503e1d4a157b8aaea21adb917ae0e273e1e6b5bd3682adb2d25",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What we're looking for' bullet requiring 'successfully deploying models' is a qualification naming the skill, and rule 3 makes that required mention decisive, so the agreed required label and quote stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What we're looking for' bullet requiring 'successfully deploying models' is a qualification naming the skill, and rule 3 makes that required mention decisive, so the agreed required label and quote stand.",
+  "error": null
+}

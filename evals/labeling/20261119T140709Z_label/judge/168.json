@@ -1,0 +1,15 @@
+{
+  "item": 168,
+  "golden_id": "golden_103",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "e01a91d4f7e893505db70138559c1df5935bd6c9f320375d093d59cf35016067",
+  "raw": "{\"decision\": [], \"why\": \"Under the 'Not alternatives' clause, skills asked for together in an 'X, Y, and Z' list ('failure modes, bias, drift, hallucinations, explainability, and guardrails') or in separate bullets are not offered in place of each other and form no alternative group.\"}",
+  "decision": [],
+  "why": "Under the 'Not alternatives' clause, skills asked for together in an 'X, Y, and Z' list ('failure modes, bias, drift, hallucinations, explainability, and guardrails') or in separate bullets are not offered in place of each other and form no alternative group.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5dbddd1b4c0c8f4456994435495bd239dd57d837f754cbee62413cbeece01f87",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet asking for 'Knowledge of privacy-preserving AI and secure compute environments' directly names a qualifying nice-to-have skill in data privacy and security.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Preferred Qualifications bullet asking for 'Knowledge of privacy-preserving AI and secure compute environments' directly names a qualifying nice-to-have skill in data privacy and security.",
+  "error": null
+}

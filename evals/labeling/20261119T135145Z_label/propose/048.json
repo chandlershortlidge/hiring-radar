@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d639b2ff6fc3486b1d11bcc7c2ef9a0b8f658a0106d9f49e8f5ef1748bf78dcb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bonus-qualifications bullet \\\"Experience with training generative machine learning models\\\" names a skill, and its placement under Preferred/Bonus supports the nice_to_have requirement, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bonus-qualifications bullet \"Experience with training generative machine learning models\" names a skill, and its placement under Preferred/Bonus supports the nice_to_have requirement, so the agreed label stands.",
+  "error": null
+}

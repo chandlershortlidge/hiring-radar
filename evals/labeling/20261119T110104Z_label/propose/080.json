@@ -1,0 +1,19 @@
+{
+  "item": 80,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "08cbd7733adaa80df7b91f76cb07f723244610c7053145cbeacff1573f720c75",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s, or PhD in a relevant field\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named, and this posting names Master's and PhD, so the level is `master`; the bare mention in the qualifications list makes it `required`, and no 'or equivalent experience' wording appears.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named, and this posting names Master's and PhD, so the level is `master`; the bare mention in the qualifications list makes it `required`, and no 'or equivalent experience' wording appears.",
+  "error": null
+}

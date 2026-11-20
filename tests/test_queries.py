@@ -675,3 +675,31 @@ def test_the_job_list_reports_each_job_family(conn):
     assert jobs["Acme"] == "ai-engineer" and jobs["Beta"] == "ml-engineer"
     acme = conn.execute("SELECT id FROM job WHERE company='Acme'").fetchone()[0]
     assert q.job_detail(conn, acme, NOW)["family"] == "ai-engineer"
+
+
+# --- how much work the chart's request does (HIR-372) -----------------------------------
+
+def _chart_work(tmp_path, name, skills_per_other_job):
+    """SQLite's own step count for the Berlin chart, with 60 Munich jobs in the database
+    that each list `skills_per_other_job` skills."""
+    c = db.connect(tmp_path / name)
+    db.migrate(c)
+    names = [f"skill{i}" for i in range(skills_per_other_job)]
+    add(c, "Acme", "AI Engineer", "Berlin", "arbeitnow", ts(1), [("python", "required")])
+    for i in range(60):
+        add(c, f"Co{i}", f"AI Engineer {i}", "Munich", "arbeitnow", ts(1), [(s, "required") for s in names])
+    steps = [0]
+    c.set_progress_handler(lambda: steps.__setitem__(0, steps[0] + 1) or 0, 10)
+    r = q.skill_frequency(c, q.Filters(cities=("Berlin",)), NOW)
+    c.set_progress_handler(None, 0)
+    assert (r["total"], [(s["skill_id"], s["count"]) for s in r["skills"]]) == (1, [("python", 1)])
+    return steps[0]
+
+
+def test_the_chart_reads_only_the_skills_of_the_jobs_it_counts(tmp_path):
+    # The chart's request is made by every page. It used to walk every stored skill mention
+    # and re-check the job's filters for each one, so its cost grew with everything stored,
+    # and on 19 Nov the server took over 15 seconds to answer it just after a release
+    # (HIR-372). Jobs outside the filter may cost a look each; their skills must cost nothing.
+    few, many = _chart_work(tmp_path, "few.db", 1), _chart_work(tmp_path, "many.db", 15)
+    assert many <= few * 1.5, (few, many)

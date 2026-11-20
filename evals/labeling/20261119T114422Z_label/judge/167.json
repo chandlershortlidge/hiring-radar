@@ -1,0 +1,20 @@
+{
+  "item": 167,
+  "golden_id": "golden_104",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"megatron-lm\", \"fsdp\"]]",
+  "key_sha256": "84cd67742bfbabf9a5b4c7680b7dcb59eeac2b39bb94738d612db852195f37d5",
+  "raw": "{\"decision\": [[\"megatron-lm\", \"fsdp\"]], \"why\": \"The posting offers \\\"distributed training frameworks (Megatron-LM, DeepSpeed, FSDP or Axolotl)\\\" as an \\\"X, Y or Z\\\" list of examples for one ask, grouping `megatron-lm` and `fsdp`, while `distributed-training` stays out as the broad parent skill and `deepspeed` leaves the group because it is asked for on its own elsewhere in \\\"training libraries (Transformers, DeepSpeed, Accelerate)\\\".\"}",
+  "decision": [
+    [
+      "megatron-lm",
+      "fsdp"
+    ]
+  ],
+  "why": "The posting offers \"distributed training frameworks (Megatron-LM, DeepSpeed, FSDP or Axolotl)\" as an \"X, Y or Z\" list of examples for one ask, grouping `megatron-lm` and `fsdp`, while `distributed-training` stays out as the broad parent skill and `deepspeed` leaves the group because it is asked for on its own elsewhere in \"training libraries (Transformers, DeepSpeed, Accelerate)\".",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 77,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "docker",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ca1be2250b261a006515d83ebfda37af6145c63cdbbd53078c183e38356b31c8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the PREFERRED / BONUS bullet \\\"Familiarity with containerized deployments (Docker/Kubernetes)\\\" names Docker as a nice-to-have, and the agreed raw_text \\\"Docker/Kubernetes\\\" appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the PREFERRED / BONUS bullet \"Familiarity with containerized deployments (Docker/Kubernetes)\" names Docker as a nice-to-have, and the agreed raw_text \"Docker/Kubernetes\" appears verbatim in the posting.",
+  "error": null
+}

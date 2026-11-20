@@ -1,0 +1,20 @@
+{
+  "item": 175,
+  "golden_id": "golden_100",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"cuda\", \"jax\"]]",
+  "key_sha256": "447e6568e641531f2633e0222a325b2e3c3a2a62e7050695385bf522280a0ea4",
+  "raw": "{\"decision\": [[\"cuda\", \"jax\"]], \"why\": \"The posting asks for \\\"GPU programming for physics (CUDA, NVIDIA Warp or JAX)\\\", offering CUDA and JAX as alternative examples for a single ask (\\\"X, Y or Z\\\"), while Python and C++ are asked for together (\\\"Python and C++\\\").\"}",
+  "decision": [
+    [
+      "cuda",
+      "jax"
+    ]
+  ],
+  "why": "The posting asks for \"GPU programming for physics (CUDA, NVIDIA Warp or JAX)\", offering CUDA and JAX as alternative examples for a single ask (\"X, Y or Z\"), while Python and C++ are asked for together (\"Python and C++\").",
+  "error": null
+}

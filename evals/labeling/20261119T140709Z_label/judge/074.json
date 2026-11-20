@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "angular",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "18c95033960d350512d6eb239547b0e1a3a750d7d307c60ee835ff8d61c118ed",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, Angular is explicitly listed as a qualification under the 'Required Skills' section ('Angular (preferred latest versions) for frontend application development'), where only the latest versions are marked as preferred.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, Angular is explicitly listed as a qualification under the 'Required Skills' section ('Angular (preferred latest versions) for frontend application development'), where only the latest versions are marked as preferred.",
+  "error": null
+}

@@ -1,0 +1,21 @@
+{
+  "item": 170,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "61de41e988279de538ce641e49226096285e4f2c646d1a656beae30756528e30",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"onnx\", \"jax\"]], \"why\": \"The ask for ML frameworks is an example list offered for a single ask ('frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc.'), so any one meets it, 'etc.' adds nothing, and none of the four is asked for on its own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "onnx",
+      "jax"
+    ]
+  ],
+  "why": "The ask for ML frameworks is an example list offered for a single ask ('frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc.'), so any one meets it, 'etc.' adds nothing, and none of the four is asked for on its own elsewhere in the posting.",
+  "error": null
+}

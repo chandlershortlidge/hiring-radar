@@ -1,0 +1,20 @@
+{
+  "item": 170,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\"]]",
+  "key_sha256": "c3fef1a101b6125999000bdc043c6c2e45c9bc8c98a65f7a94239da09df22156",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\"]], \"why\": \"The posting asks for \\\"deep learning frameworks (e.g., PyTorch, Tensor Flow)\\\", which offers `pytorch` and `tensorflow` as examples for a single ask while keeping the broad parent `deep-learning` out of the group.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow"
+    ]
+  ],
+  "why": "The posting asks for \"deep learning frameworks (e.g., PyTorch, Tensor Flow)\", which offers `pytorch` and `tensorflow` as examples for a single ask while keeping the broad parent `deep-learning` out of the group.",
+  "error": null
+}

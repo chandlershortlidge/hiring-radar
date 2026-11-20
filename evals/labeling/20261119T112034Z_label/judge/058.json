@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ansible",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "07f2c86799231324cc5575c15241312594cedb633828c04ed32d3785865f21ec",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, Ansible is explicitly named in a qualification bullet under Preferred Skills, so keeping it as nice_to_have with the agreed raw_text is correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, Ansible is explicitly named in a qualification bullet under Preferred Skills, so keeping it as nice_to_have with the agreed raw_text is correct.",
+  "error": null
+}

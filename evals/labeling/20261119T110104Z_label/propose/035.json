@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "deep-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "92b08f21fd4cf48a06e3a6bcd3ce7331602d1c2c5e4bba487eaa4b9880710922",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualifications bullet \\\"Experience building molecular ML models including ... geometric deep learning\\\" names the skill, and rule 3 makes that required mention determine the label, so the agreed required tag with that raw_text stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualifications bullet \"Experience building molecular ML models including ... geometric deep learning\" names the skill, and rule 3 makes that required mention determine the label, so the agreed required tag with that raw_text stands.",
+  "error": null
+}

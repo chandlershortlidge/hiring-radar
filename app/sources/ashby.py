@@ -8,8 +8,16 @@ whose first office is untracked still maps to a tracked city (HIR-268: Qonto lis
 first and Berlin second). Each office also contributes the city of its street address when
 its name does not already say it (HIR-289: "Mercor HQ, 181 Fremont Street", "Czech
 Republic").
+
+A posting says whether it is remote in fields of its own, not in the office names:
+`workplaceType` ("Remote", "Hybrid", "OnSite") and the older `isRemote` flag (names as
+recorded in tests/fixtures/feeds/ashby_hir289.json). A remote posting is passed to
+`geo.remote_location`, so a list of countries that never says "remote" still reads as a
+remote posting (HIR-325). `workplaceType` decides when it is set, because boards set
+`isRemote` on hybrid roles too; `isRemote` is read only when it is absent.
 """
 
+from app.geo import remote_location
 from app.html_text import html_to_text
 from app.sources import Posting, fetch_json
 
@@ -39,7 +47,16 @@ def _office(o: dict) -> list[str]:
 def _locations(j: dict) -> str | None:
     """Every office the posting lists, primary first, "; "-joined, each once."""
     offices = [j] + [s for s in j.get("secondaryLocations") or [] if isinstance(s, dict)]
-    return "; ".join(dict.fromkeys(p for o in offices for p in _office(o))) or None
+    places = "; ".join(dict.fromkeys(p for o in offices for p in _office(o))) or None
+    return remote_location(places) if _is_remote(j) else places
+
+
+def _is_remote(j: dict) -> bool:
+    """The posting's own remote marker: `workplaceType` when set, else `isRemote`."""
+    kind = j.get("workplaceType")
+    if isinstance(kind, str) and kind.strip():
+        return kind.strip().lower() == "remote"
+    return j.get("isRemote") is True
 
 
 def parse(payload: dict, company: str | None = None) -> list[Posting]:

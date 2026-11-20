@@ -1,0 +1,17 @@
+{
+  "item": 32,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "python",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b684f848d3db33e8d94d2cf35dfb442d0d20a2ee88d8ba28b302422aa173962a",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Focus will be on Python across backend services\"}, \"why\": \"Under rule 1 the title fragment \\\"Python & ML Infra\\\" does not count, so I anchor python to the body sentence naming Python as the focus of the evaluator's work, and I keep it required under rule 3.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Focus will be on Python across backend services"
+  },
+  "why": "Under rule 1 the title fragment \"Python & ML Infra\" does not count, so I anchor python to the body sentence naming Python as the focus of the evaluator's work, and I keep it required under rule 3.",
+  "error": null
+}

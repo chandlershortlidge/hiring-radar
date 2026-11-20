@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "e8fe821e47235fbaa87a06e1796326f6b8471ca45ded49d7634f91759d3ef044",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the text names specific LLM skills ('language-model training or post-training') rather than the broad parent skill 'model-development'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the text names specific LLM skills ('language-model training or post-training') rather than the broad parent skill 'model-development'.",
+  "error": null
+}

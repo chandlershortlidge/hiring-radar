@@ -1,0 +1,125 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical modeling\"\n    },\n    {\n      \"skill_id\": \"causal-inference\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"causal inference\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"A/B testing\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS S3\"\n    },\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt\"\n    },\n    {\n      \"skill_id\": \"tableau\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Tableau\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"machine learning frameworks\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data science procedures\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Looker\",\n      \"raw_text\": \"Looker\"\n    },\n    {\n      \"label\": \"Robyn\",\n      \"raw_text\": \"Robyn\"\n    },\n    {\n      \"label\": \"LightweightMMM\",\n      \"raw_text\": \"LightweightMMM\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field\",\n  \"uncertain\": [],\n  \"notes\": \"Looker, Robyn, and LightweightMMM are concrete tools/frameworks in the optional section not present in the taxonomy. Marked data-science as uncertain because it appears as a role title in requirements and as 'data science procedures' in the optional section.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical modeling"
+      },
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "causal inference"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "tableau",
+        "requirement": "nice_to_have",
+        "raw_text": "Tableau"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "machine learning frameworks"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "nice_to_have",
+        "raw_text": "data science procedures",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Robyn",
+        "raw_text": "Robyn"
+      },
+      {
+        "label": "LightweightMMM",
+        "raw_text": "LightweightMMM"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field",
+    "uncertain": [],
+    "notes": "Looker, Robyn, and LightweightMMM are concrete tools/frameworks in the optional section not present in the taxonomy. Marked data-science as uncertain because it appears as a role title in requirements and as 'data science procedures' in the optional section."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "e739dbe2575df68227b4437a42061edd56d57f08137e1f28aa4f0c87ddb6a59c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

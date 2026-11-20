@@ -1,0 +1,14 @@
+{
+  "item": 144,
+  "golden_id": "golden_107",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "359e33d5eb27fa86664a011cdfd063b0b214c9f09b0f1cba648732a3ecbc80b6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names no degree or level anywhere (only 'extensive ML leadership' and 'a track record'), so the rule's 'none (null) when no degree is mentioned' applies and the agreed null is correct.\"}",
+  "decision": "ok",
+  "why": "The posting names no degree or level anywhere (only 'extensive ML leadership' and 'a track record'), so the rule's 'none (null) when no degree is mentioned' applies and the agreed null is correct.",
+  "error": null
+}

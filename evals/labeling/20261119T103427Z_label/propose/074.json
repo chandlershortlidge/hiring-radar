@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fbceeeddee5a5630626b651878060b9900b72ade8fc7aed155c65df252b9c0b3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the \\\"Required Skills & Qualifications\\\" heading, the bullet \\\"Proven track record of deploying and maintaining machine learning/AI systems in production\\\" names the skill as a requirement, so under rules 1 and 3 the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under the \"Required Skills & Qualifications\" heading, the bullet \"Proven track record of deploying and maintaining machine learning/AI systems in production\" names the skill as a requirement, so under rules 1 and 3 the agreed required label stands.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 174,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d5a78e79d18e99ae3585aab2e83d3b0ecb7a402715786bf56e0a2667c463a1e4",
+  "raw": "{\"decision\": [], \"why\": \"The posting lists its skills together (\\\"Snowflake, Iceberg, S3, Glue, Athena and IAM\\\", \\\"Terraform/CloudFormation, Git, CI/CD, testing and Jira\\\") with no \\\"or\\\", \\\"at least one of\\\", or example-for-one-ask marker, so under the alternative_group rule these are skills asked for together, not alternatives.\"}",
+  "decision": [],
+  "why": "The posting lists its skills together (\"Snowflake, Iceberg, S3, Glue, Athena and IAM\", \"Terraform/CloudFormation, Git, CI/CD, testing and Jira\") with no \"or\", \"at least one of\", or example-for-one-ask marker, so under the alternative_group rule these are skills asked for together, not alternatives.",
+  "error": null
+}

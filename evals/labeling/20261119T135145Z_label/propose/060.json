@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cbbd4490dc9f4ab7ea638964a8bdd9cc6d2203b3b66eb807af5e82b1e5b6d500",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Qualifications bullet explicitly names \\\"distributed computing\\\" as a required understanding, and rule 3 makes that required mention decisive, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Qualifications bullet explicitly names \"distributed computing\" as a required understanding, and rule 3 makes that required mention decisive, so the agreed label stands.",
+  "error": null
+}

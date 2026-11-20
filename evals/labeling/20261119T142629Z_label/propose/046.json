@@ -1,0 +1,14 @@
+{
+  "item": 46,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "go",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9c0ecd7dcfa764ab28dc935c3d96e38c00b0207be03e26621bc1717a7069b5bd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications bullet names Golang as a required programming language, and rule 3 makes that required mention decisive, so the agreed `go` label with raw_text \\\"Golang\\\" is correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications bullet names Golang as a required programming language, and rule 3 makes that required mention decisive, so the agreed `go` label with raw_text \"Golang\" is correct.",
+  "error": null
+}

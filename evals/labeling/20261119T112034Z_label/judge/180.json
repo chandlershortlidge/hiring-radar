@@ -1,0 +1,21 @@
+{
+  "item": 180,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"llm-orchestration\", \"tool-calling\", \"prompt-engineering\"]]",
+  "key_sha256": "b0d5b0cb8f209a15276825a0cd91464d5497ff9fd7ea2be81f988fed010c4264",
+  "raw": "{\"decision\": [[\"llm-orchestration\", \"tool-calling\", \"prompt-engineering\"]], \"why\": \"The posting uses the \\\"X, Y or Z\\\" marker in \\\"agentic AI setups including LLM orchestration, tool use/function calling, RAG, agents, prompt engineering, or agentic patterns\\\", and since `rag` and `agents` are also asked for on their own in the duties section (\\\"Deliver secure, scalable LLM/agent systems with RAG, tools, and guardrails\\\"), they leave the group per the rule that a skill also asked for on its own elsewhere is a requirement on its own.\"}",
+  "decision": [
+    [
+      "llm-orchestration",
+      "tool-calling",
+      "prompt-engineering"
+    ]
+  ],
+  "why": "The posting uses the \"X, Y or Z\" marker in \"agentic AI setups including LLM orchestration, tool use/function calling, RAG, agents, prompt engineering, or agentic patterns\", and since `rag` and `agents` are also asked for on their own in the duties section (\"Deliver secure, scalable LLM/agent systems with RAG, tools, and guardrails\"), they leave the group per the rule that a skill also asked for on its own elsewhere is a requirement on its own.",
+  "error": null
+}

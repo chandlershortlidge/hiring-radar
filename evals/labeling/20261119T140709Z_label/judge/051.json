@@ -1,0 +1,15 @@
+{
+  "item": 51,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4ed17c0350ca0a12af3d03e1eb3e270aae17845d1692f0dfe617bf2ebd6acb2d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly asks for experience with 'external agent frameworks' (as well as 'agentic AI systems') as a plus, supporting the agreed nice_to_have label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly asks for experience with 'external agent frameworks' (as well as 'agentic AI systems') as a plus, supporting the agreed nice_to_have label.",
+  "error": null
+}

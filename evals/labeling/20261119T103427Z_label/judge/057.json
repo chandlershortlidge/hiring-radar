@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "hadoop",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9a99da3bd2f7a4bfe5f51b0ca9ed0c0be6ba52aee5f79dee72366b9536f0229d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, Hadoop is explicitly named in a qualification bullet under Preferred Skills, so the agreed nice_to_have label is correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, Hadoop is explicitly named in a qualification bullet under Preferred Skills, so the agreed nice_to_have label is correct.",
+  "error": null
+}

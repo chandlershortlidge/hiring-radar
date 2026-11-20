@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "tool-calling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c6a587610f9da021530a51623e71bcfa5d0b79d7a23bf720f85ac201ae76391d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under 'NICE TO HAVE' explicitly asks for experience 'training models to use tools', which supports the `tool-calling` skill as a nice-to-have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under 'NICE TO HAVE' explicitly asks for experience 'training models to use tools', which supports the `tool-calling` skill as a nice-to-have.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 70,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "azure-ai-foundry",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9aade69cad3dcab2638dd0ca3c47be3c935cf1049ee8e8f0312d68e748c236ee",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification list names \\\"Microsoft Foundry / Azure AI services\\\" as a skill, and the excerpt gives no sign it is optional, so the agreed required label stands under rule 3.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification list names \"Microsoft Foundry / Azure AI services\" as a skill, and the excerpt gives no sign it is optional, so the agreed required label stands under rule 3.",
+  "error": null
+}

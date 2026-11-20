@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5eabf26d886aae46546461bf7f48a82b9d9eced4fef1de87f7f2aab7df2d5a49",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly requiring experience with 'cloud-native services' counts for the cloud skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly requiring experience with 'cloud-native services' counts for the cloud skill.",
+  "error": null
+}

@@ -1,0 +1,24 @@
+{
+  "item": 174,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "669e7d742f6e39d2f63cab5b685e19fc862b586c0733b24bdc763eb50c8e1c0e",
+  "raw": "{\"decision\": [[\"python\", \"cpp\"], [\"pytorch\", \"tensorflow\", \"jax\"]], \"why\": \"Under the alternative_group rule, \\\"one or more programming languages such as Python and C++\\\" and \\\"Deep expertise on ML frameworks (e.g., PyTorch, TensorFlow, JAX)\\\" each offer examples for a single ask, so each set is one group, while \\\"machine-learning\\\" stays out as the broad parent. The \\\"one or more of the following\\\" list is left ungrouped because llms and transformers share one bullet joined by \\\"and\\\", so grouping llms with deep-learning would wrongly imply llms alone suffices.\"}",
+  "decision": [
+    [
+      "python",
+      "cpp"
+    ],
+    [
+      "pytorch",
+      "tensorflow",
+      "jax"
+    ]
+  ],
+  "why": "Under the alternative_group rule, \"one or more programming languages such as Python and C++\" and \"Deep expertise on ML frameworks (e.g., PyTorch, TensorFlow, JAX)\" each offer examples for a single ask, so each set is one group, while \"machine-learning\" stays out as the broad parent. The \"one or more of the following\" list is left ungrouped because llms and transformers share one bullet joined by \"and\", so grouping llms with deep-learning would wrongly imply llms alone suffices.",
+  "error": null
+}

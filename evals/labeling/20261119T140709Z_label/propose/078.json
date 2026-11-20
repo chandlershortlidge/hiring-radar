@@ -1,0 +1,14 @@
+{
+  "item": 78,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a6a95fbb08cbc65288d87a56342c07373876267359cd85a290363ff93d8502b4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the job summary sentence \\\"seeking a highly skilled AI Engineer with strong Full Stack development expertise\\\" is a qualification sentence that names the skill, and rule 3 makes that required mention decisive, so the agreed required label and quote stand.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the job summary sentence \"seeking a highly skilled AI Engineer with strong Full Stack development expertise\" is a qualification sentence that names the skill, and rule 3 makes that required mention decisive, so the agreed required label and quote stand.",
+  "error": null
+}

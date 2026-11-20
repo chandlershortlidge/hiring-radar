@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "embeddings",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e2e82a171f04728b388f5352c94560ae663174583d6eaab4ee3ca95d478d9915",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By rule 1, the MINIMUM QUALIFICATIONS bullet explicitly asks for experience with 'embedding models', which is a required mention under rule 3.\"}",
+  "decision": "ok",
+  "why": "By rule 1, the MINIMUM QUALIFICATIONS bullet explicitly asks for experience with 'embedding models', which is a required mention under rule 3.",
+  "error": null
+}

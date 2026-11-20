@@ -1,0 +1,209 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic architectures\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"retrieval-augmented generation\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cybersecurity\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool-calling\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool-calling agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation harnesses\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automated testing\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML solutions\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containers\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure-as-code\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud engineering\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"secure AI deployment\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"safeguards informed by OWASP Top 10 for LLMs\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data protection\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-selection\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model selection\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent orchestration\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM observability\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning models\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-source AI\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SIEM\",\n      \"raw_text\": \"SIEM\"\n    },\n    {\n      \"label\": \"SOAR\",\n      \"raw_text\": \"SOAR\"\n    },\n    {\n      \"label\": \"EDR\",\n      \"raw_text\": \"EDR\"\n    },\n    {\n      \"label\": \"OWASP Top 10 for LLMs\",\n      \"raw_text\": \"OWASP Top 10 for LLMs\"\n    },\n    {\n      \"label\": \"MITRE ATLAS\",\n      \"raw_text\": \"MITRE ATLAS\"\n    },\n    {\n      \"label\": \"Identity and Access Management\",\n      \"raw_text\": \"identity and access management\"\n    },\n    {\n      \"label\": \"AI Red Teaming\",\n      \"raw_text\": \"AI red teaming\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Cyber - AI Engineer - Senior - Consulting\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Title states 'Senior' (Senior Consultant level), though years of experience in requirements are '3–5 years of relevant experience' (which corresponds to mid-level under inferred rules); labeled senior/stated per title and flagged uncertain. 'data protection' (and 'privacy' in nice-to-have) mapped to data-privacy-and-security and marked uncertain. 'safeguards informed by OWASP Top 10 for LLMs' mapped to llm-guardrails and marked uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agentic architectures"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "cybersecurity"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "tool-calling agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation harnesses"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML solutions"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud engineering"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "secure AI deployment"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "safeguards informed by OWASP Top 10 for LLMs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "data protection",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "nice_to_have",
+        "raw_text": "model selection"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source AI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SIEM",
+        "raw_text": "SIEM"
+      },
+      {
+        "label": "SOAR",
+        "raw_text": "SOAR"
+      },
+      {
+        "label": "EDR",
+        "raw_text": "EDR"
+      },
+      {
+        "label": "OWASP Top 10 for LLMs",
+        "raw_text": "OWASP Top 10 for LLMs"
+      },
+      {
+        "label": "MITRE ATLAS",
+        "raw_text": "MITRE ATLAS"
+      },
+      {
+        "label": "Identity and Access Management",
+        "raw_text": "identity and access management"
+      },
+      {
+        "label": "AI Red Teaming",
+        "raw_text": "AI red teaming"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Cyber - AI Engineer - Senior - Consulting",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Title states 'Senior' (Senior Consultant level), though years of experience in requirements are '3–5 years of relevant experience' (which corresponds to mid-level under inferred rules); labeled senior/stated per title and flagged uncertain. 'data protection' (and 'privacy' in nice-to-have) mapped to data-privacy-and-security and marked uncertain. 'safeguards informed by OWASP Top 10 for LLMs' mapped to llm-guardrails and marked uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "9158fc433fbb9ffb20cd0fd5d78d8a6b052bb5798812c0cce4497fcd93368174",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

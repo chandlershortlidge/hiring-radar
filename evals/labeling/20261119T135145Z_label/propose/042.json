@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "004f9ef8fe19ae528ca4c0fe2bf8dce11c1d67e04f5c2de6f23826af3539d56b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have bullet names data privacy as part of its security compliance expertise, the quoted \\\"data privacy\\\" appears verbatim, and the \\\"not required\\\" framing correctly makes it nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have bullet names data privacy as part of its security compliance expertise, the quoted \"data privacy\" appears verbatim, and the \"not required\" framing correctly makes it nice_to_have.",
+  "error": null
+}

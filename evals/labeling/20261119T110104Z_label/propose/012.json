@@ -1,0 +1,14 @@
+{
+  "item": 12,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9d804d66d035b330963d241b9d521b82e941462e4427ac364d78ce2708cd3791",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet \\\"Demonstrated track record architecting and maintaining large-scale distributed systems\\\" names the skill as a required qualification, and Labeler A did not label it, so B's required tag with that raw_text stands (Rule 3).\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet \"Demonstrated track record architecting and maintaining large-scale distributed systems\" names the skill as a required qualification, and Labeler A did not label it, so B's required tag with that raw_text stands (Rule 3).",
+  "error": null
+}

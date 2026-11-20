@@ -1,0 +1,15 @@
+{
+  "item": 171,
+  "golden_id": "golden_107",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "6abbed3b64126d679a4e2a18f7fb67d5e96c395746a9dadb3acece3c1acbdf2d",
+  "raw": "{\"decision\": [], \"why\": \"The posting requires SQL, Python, and RAG-based workflows together using 'and', which under the 'Not alternatives: skills asked for together' clause means no skills are offered in place of each other.\"}",
+  "decision": [],
+  "why": "The posting requires SQL, Python, and RAG-based workflows together using 'and', which under the 'Not alternatives: skills asked for together' clause means no skills are offered in place of each other.",
+  "error": null
+}

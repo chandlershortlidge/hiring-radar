@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c9c5681c831a7afe6ce744741d988b61fe7878050b62d5a276b7561452df045d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The lowest degree level named is 'Bachelor's' in the requirements list, which makes it `bachelor` and `required` with `degree_or_equivalent: true` for 'or equivalent experience', while 'advanced degree a plus' is a welcomed higher level that is not recorded.\"}",
+  "decision": "ok",
+  "why": "The lowest degree level named is 'Bachelor's' in the requirements list, which makes it `bachelor` and `required` with `degree_or_equivalent: true` for 'or equivalent experience', while 'advanced degree a plus' is a welcomed higher level that is not recorded.",
+  "error": null
+}

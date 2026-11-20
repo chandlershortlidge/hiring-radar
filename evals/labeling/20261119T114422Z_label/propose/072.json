@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c29cde79667ede7b1b6f3351435722b837a42ea00b7c04fafa3c43929cecd203",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence describing the candidate (\"You are a blend...\", \"with varied interests in algorithms and distributed systems\") is a profile sentence that names the skill, so the agreed nice_to_have label stands.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 82 (char 81)"
+}

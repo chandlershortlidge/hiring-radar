@@ -1,0 +1,15 @@
+{
+  "item": 12,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "5e005b35ecbb794a7493b544b5cede20460e25e18dbf0be148a8af32b0edadbf",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for a track record in \\\"architecting and maintaining large-scale distributed systems\\\" (and also mentions \\\"event-driven architecture\\\"), which supports software-architecture as a required skill (Rule 3).\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for a track record in \"architecting and maintaining large-scale distributed systems\" (and also mentions \"event-driven architecture\"), which supports software-architecture as a required skill (Rule 3).",
+  "error": null
+}

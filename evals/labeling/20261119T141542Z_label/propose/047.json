@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e5028ddb1e632d95eacaad76edb54e47b5b4202bd8a822720f7c0bfbf384607d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the posting's explicit 'As a Manager, you will lead client workstreams with accountability for planning, budgets, timelines, and deliverables' supports a senior-level seniority, so the agreed 'senior' value stands, though the truncated title and inferred basis leave some doubt.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the posting's explicit 'As a Manager, you will lead client workstreams with accountability for planning, budgets, timelines, and deliverables' supports a senior-level seniority, so the agreed 'senior' value stands, though the truncated title and inferred basis leave some doubt.",
+  "error": null
+}

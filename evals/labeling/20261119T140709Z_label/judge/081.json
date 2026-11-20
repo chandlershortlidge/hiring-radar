@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8588ffffb2db70228f93042d79928fdb17b21d9709acfbc82d5f214fa09baac3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting does not mention any degree or university studies, so the degree label should be none (null) per the rule.\"}",
+  "decision": "ok",
+  "why": "The posting does not mention any degree or university studies, so the degree label should be none (null) per the rule.",
+  "error": null
+}

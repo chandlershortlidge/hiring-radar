@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cf30305bc5040ff0e18553c5e12de285bfe89b3a581e1bccdcc5bc093a9778a1",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the nice-to-have bullet \\\"Building agent harnesses\\\" names agent system design directly, so labeler A's nice_to_have tag with that raw_text stands, and labeler B's omission does not remove it.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the nice-to-have bullet \"Building agent harnesses\" names agent system design directly, so labeler A's nice_to_have tag with that raw_text stands, and labeler B's omission does not remove it.",
+  "error": null
+}

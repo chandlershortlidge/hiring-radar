@@ -1,0 +1,18 @@
+{
+  "item": 74,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering\", \"requirement\": \"required\"}",
+  "key_sha256": "95a5859097df5302c498d17093136c9c16173721885ce942a00d856cff936a3e",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering\"}, \"why\": \"Under Rule 1, a years-of-experience line does not count, so raw_text is updated to the required certification bullet under Rule 3.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering"
+  },
+  "why": "Under Rule 1, a years-of-experience line does not count, so raw_text is updated to the required certification bullet under Rule 3.",
+  "error": null
+}

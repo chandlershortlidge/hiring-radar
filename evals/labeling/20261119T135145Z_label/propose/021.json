@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fde835f7b3df6b0ea9f199e11c17e9118e7ab6332c5db64328a6f446ebfb1d61",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the only model-serving mention visible in the excerpt is \\\"model-serving patterns\\\" in the Preferred/Bonus Qualifications section, so it is nice_to_have, and labeler B's quoted required phrase does not appear in the posting excerpt.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the only model-serving mention visible in the excerpt is \"model-serving patterns\" in the Preferred/Bonus Qualifications section, so it is nice_to_have, and labeler B's quoted required phrase does not appear in the posting excerpt.",
+  "error": null
+}

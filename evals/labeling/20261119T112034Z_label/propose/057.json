@@ -1,0 +1,17 @@
+{
+  "item": 57,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a253d6e277dfae1017a8efd833fa188a5e710f0bb8364a2c45a1f197f8388970",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Experience supporting both long-running training jobs and high-availability inference services\"}, \"why\": \"Under rule 1 the agreed quote is a years-of-experience line that cannot count, and under rule 3 a required qualification bullet naming ML inference service deployment wins, so the skill should be required and quote that bullet.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Experience supporting both long-running training jobs and high-availability inference services"
+  },
+  "why": "Under rule 1 the agreed quote is a years-of-experience line that cannot count, and under rule 3 a required qualification bullet naming ML inference service deployment wins, so the skill should be required and quote that bullet.",
+  "error": null
+}

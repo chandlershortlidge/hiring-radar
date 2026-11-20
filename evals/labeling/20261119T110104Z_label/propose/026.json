@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c9bf2f31d708c52575356c206fd1b7ddd172248c08f06c9772057e640f8b5bcb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualifications bullet \\\"Strong cloud-native engineering on AWS...\\\" names cloud as a required skill, and the agreed raw_text quotes it verbatim, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualifications bullet \"Strong cloud-native engineering on AWS...\" names cloud as a required skill, and the agreed raw_text quotes it verbatim, so the agreed label stands.",
+  "error": null
+}

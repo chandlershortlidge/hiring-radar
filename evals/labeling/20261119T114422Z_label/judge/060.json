@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "87f630d2e00a1169c6da1ed1bf78d49739868b23f122ce4e063f3863357fb4bc",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 and rule 5, the posting names 'GenAI systems', not LLMs specifically, so `llms` is not directly named in the text.\"}",
+  "decision": "drop",
+  "why": "Under rule 1 and rule 5, the posting names 'GenAI systems', not LLMs specifically, so `llms` is not directly named in the text.",
+  "error": null
+}

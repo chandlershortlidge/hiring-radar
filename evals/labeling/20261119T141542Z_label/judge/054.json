@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "gemini",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b15aa557ee2dbd715d8d05f9c36f5186b0e568c902b189c340e65cf08d2d1bb6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the sentence names Gemini as a required tool to collaborate with ('AI coding assistants such as Gemini'), so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the sentence names Gemini as a required tool to collaborate with ('AI coding assistants such as Gemini'), so the agreed label stands.",
+  "error": null
+}

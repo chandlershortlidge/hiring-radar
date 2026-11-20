@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "bd6f6a8b06ce86ab27537d8bc3d6595bd93f7364033e7cbd33cd30682025a5d8",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, 'model-serving patterns' is explicitly named in a qualification bullet under Preferred/Bonus Qualifications, whereas B's quote does not appear in the excerpt.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, 'model-serving patterns' is explicitly named in a qualification bullet under Preferred/Bonus Qualifications, whereas B's quote does not appear in the excerpt.",
+  "error": null
+}

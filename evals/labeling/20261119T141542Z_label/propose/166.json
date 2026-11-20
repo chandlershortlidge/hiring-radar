@@ -1,0 +1,14 @@
+{
+  "item": 166,
+  "golden_id": "golden_095",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "424e0db90de67f09f5c25e82bc533bc06aab5a49df4ae12c8353831613e0ccd8",
+  "raw": "{\"decision\": [], \"why\": \"The posting has no alternative markers (no \\\"at least one of\\\", \\\"X or Y\\\", or \\\"such as\\\" offering any one of several skills for one ask); its examples such as EC2, EKS and SageMaker are not labeled skills here, and the labeled skills are each asked for together, so no group applies under the alternative_group rule.\"}",
+  "decision": [],
+  "why": "The posting has no alternative markers (no \"at least one of\", \"X or Y\", or \"such as\" offering any one of several skills for one ask); its examples such as EC2, EKS and SageMaker are not labeled skills here, and the labeled skills are each asked for together, so no group applies under the alternative_group rule.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f160e9c2c729f5ca9b0c3ee47e9b32ac1b4ebc4086f66ac804d4d65f54cf30af",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the sentence \\\"seeking a PhD-level candidate to advance machine learning\\\" is a candidate-facing qualification that names the skill, not just the job title, and under rule 3 the required framing stands, so labeler A's required tag is supported.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the sentence \"seeking a PhD-level candidate to advance machine learning\" is a candidate-facing qualification that names the skill, not just the job title, and under rule 3 the required framing stands, so labeler A's required tag is supported.",
+  "error": null
+}

@@ -1,0 +1,109 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM post-training\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing rigorous evaluations\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"use tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Multi-agent training, coordination, or evaluation\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed training systems\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommendation systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"LLM Post-training\",\n      \"raw_text\": \"LLM post-training\"\n    },\n    {\n      \"label\": \"Search and Retrieval / Information Retrieval\",\n      \"raw_text\": \"search and retrieval\"\n    },\n    {\n      \"label\": \"Experimentation Infrastructure\",\n      \"raw_text\": \"experimentation infrastructure\"\n    },\n    {\n      \"label\": \"Agent Harnesses\",\n      \"raw_text\": \"agent harnesses\"\n    },\n    {\n      \"label\": \"Scalable Inference Infrastructure\",\n      \"raw_text\": \"scalable inference infrastructure\"\n    },\n    {\n      \"label\": \"Ranking Systems\",\n      \"raw_text\": \"ranking\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"In QUALIFICATIONS, 'one or more of LLM post-training, reinforcement learning, search and retrieval, or agent systems' forms an alternative group across llms, reinforcement-learning, and agents. 'Member of Technical Staff', 'experienced', and 'A strong track record' are not valid seniority signals per the guide. Marked machine-learning ('ML systems'), tool-calling ('use tools'), and multi-agent-systems ('Multi-agent training...') uncertain where phrasing slightly diverges from taxonomy aliases.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM post-training"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing rigorous evaluations"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "use tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Multi-agent training, coordination, or evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training systems"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "LLM Post-training",
+        "raw_text": "LLM post-training"
+      },
+      {
+        "label": "Search and Retrieval / Information Retrieval",
+        "raw_text": "search and retrieval"
+      },
+      {
+        "label": "Experimentation Infrastructure",
+        "raw_text": "experimentation infrastructure"
+      },
+      {
+        "label": "Agent Harnesses",
+        "raw_text": "agent harnesses"
+      },
+      {
+        "label": "Scalable Inference Infrastructure",
+        "raw_text": "scalable inference infrastructure"
+      },
+      {
+        "label": "Ranking Systems",
+        "raw_text": "ranking"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "In QUALIFICATIONS, 'one or more of LLM post-training, reinforcement learning, search and retrieval, or agent systems' forms an alternative group across llms, reinforcement-learning, and agents. 'Member of Technical Staff', 'experienced', and 'A strong track record' are not valid seniority signals per the guide. Marked machine-learning ('ML systems'), tool-calling ('use tools'), and multi-agent-systems ('Multi-agent training...') uncertain where phrasing slightly diverges from taxonomy aliases."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ffccf25966eba0ef219ab3f8a681de88c9c66cde6b3c951c25e0a86ae243b8d8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

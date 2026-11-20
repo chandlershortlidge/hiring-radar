@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d5da94c4880ad133b55c3dd39d734dd2c0959414f4b5041d09a187c069846618",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for proficiency in \\\"modern cloud data platforms\\\", supporting the `cloud` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for proficiency in \"modern cloud data platforms\", supporting the `cloud` skill.",
+  "error": null
+}

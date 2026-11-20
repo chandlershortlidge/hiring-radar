@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b08129e98a301219a27930337b399917998fb011468fa3385549b3cd29d7df54",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under the NICE TO HAVE qualification list (rule 1), the bullet \"Building agent harnesses, distributed training systems, or scalable inference infrastructure\" names AI infrastructure work as desired experience, so labeler A's nice_to_have tag with that verbatim raw_text holds.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 91 (char 90)"
+}

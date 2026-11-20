@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d4690371f99330ac631e8272e9ae03c7ab1f931ac1221d93d3d355bc5972a8dd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred-qualifications bullet names GraphRAG explicitly, which is a retrieval-augmented generation technique, so `rag` fits as a nice_to_have and the agreed raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred-qualifications bullet names GraphRAG explicitly, which is a retrieval-augmented generation technique, so `rag` fits as a nice_to_have and the agreed raw_text appears verbatim in the posting.",
+  "error": null
+}

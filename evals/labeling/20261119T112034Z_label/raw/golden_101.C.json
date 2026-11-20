@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large machine learning models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tests\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI pipelines\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Vision Language Models (VLM)\",\n      \"raw_text\": \"Vision Language Models (VLM)\"\n    },\n    {\n      \"label\": \"Vision-Language-Action (VLA) models\",\n      \"raw_text\": \"Vision-Language-Action (VLA) models\"\n    },\n    {\n      \"label\": \"Perception\",\n      \"raw_text\": \"perception\"\n    },\n    {\n      \"label\": \"Navigation\",\n      \"raw_text\": \"navigation\"\n    },\n    {\n      \"label\": \"Manipulation\",\n      \"raw_text\": \"manipulation\"\n    },\n    {\n      \"label\": \"Simulation tools\",\n      \"raw_text\": \"simulation tools\"\n    },\n    {\n      \"label\": \"Isaac SIM\",\n      \"raw_text\": \"Isaac SIM\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer\"\n    },\n    {\n      \"label\": \"World models\",\n      \"raw_text\": \"world models\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Applied Scientist Lead - Robotics, EMEA\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"PyTorch and JAX are alternatives ('PyTorch or JAX'). Mapped 'CI pipelines' to ci-cd and 'large machine learning models' to machine-learning (flagged uncertain). Degree is under 'NICE TO HAVE' and includes 'exceptional candidates from other backgrounds welcome' (flagged degree uncertain for degree_or_equivalent).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "large machine learning models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vision Language Models (VLM)",
+        "raw_text": "Vision Language Models (VLM)"
+      },
+      {
+        "label": "Vision-Language-Action (VLA) models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "label": "Perception",
+        "raw_text": "perception"
+      },
+      {
+        "label": "Navigation",
+        "raw_text": "navigation"
+      },
+      {
+        "label": "Manipulation",
+        "raw_text": "manipulation"
+      },
+      {
+        "label": "Simulation tools",
+        "raw_text": "simulation tools"
+      },
+      {
+        "label": "Isaac SIM",
+        "raw_text": "Isaac SIM"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "World models",
+        "raw_text": "world models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Applied Scientist Lead - Robotics, EMEA",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "PyTorch and JAX are alternatives ('PyTorch or JAX'). Mapped 'CI pipelines' to ci-cd and 'large machine learning models' to machine-learning (flagged uncertain). Degree is under 'NICE TO HAVE' and includes 'exceptional candidates from other backgrounds welcome' (flagged degree uncertain for degree_or_equivalent)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "b2275ed431ab4ffedd67ac3be6530f9ff1ac89c5e26ce4f291d7c973d85ea361",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

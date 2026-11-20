@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c6338bd37a8a5bb7109efa746bf87d2a07d257fa9de989606181b0a8e6a46907",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the nice-to-have bullet names \\\"architectures and design patterns for client-server systems\\\" as a qualification, which supports software-architecture; the nice_to_have requirement and the verbatim raw_text are correct, so labeler B's version stands.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the nice-to-have bullet names \"architectures and design patterns for client-server systems\" as a qualification, which supports software-architecture; the nice_to_have requirement and the verbatim raw_text are correct, so labeler B's version stands.",
+  "error": null
+}

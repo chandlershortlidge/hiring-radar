@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1f34a646e4dee74c9f50d39e59b0b5179f6f9cfef09e7fa7cde98cfbb0a32cbf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Experience Preferred' bullet names designing and scaling real-time and batch inference systems in production, which supports model-serving as nice_to_have, and the quoted raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Experience Preferred' bullet names designing and scaling real-time and batch inference systems in production, which supports model-serving as nice_to_have, and the quoted raw_text appears verbatim in the posting.",
+  "error": null
+}

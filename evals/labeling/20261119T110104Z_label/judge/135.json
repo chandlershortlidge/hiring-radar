@@ -1,0 +1,15 @@
+{
+  "item": 135,
+  "golden_id": "golden_099",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[]",
+  "key_sha256": "47c7939b9284d4f2efcf9e24522415812f604899266aad6a2ff243c2f5ac2c5d",
+  "raw": "{\"decision\": [], \"why\": \"Because a group needs at least two skills and a broad skill named alongside its examples stays out of the group, none of the alternative lists in the posting contain two or more labeled sibling skills.\"}",
+  "decision": [],
+  "why": "Because a group needs at least two skills and a broad skill named alongside its examples stays out of the group, none of the alternative lists in the posting contain two or more labeled sibling skills.",
+  "error": null
+}

@@ -27,7 +27,8 @@ def test_the_titles_the_ticket_script_writes_are_recognised():
     class Args:
         change = rolled_back_to = run_url = results_root = evidence_base = detail = None
     f = {"test": "compare mode", "projects": ["phone"], "error": "x", "screenshots": []}
-    for t in (swt.robot_ticket("deploy", f, Args), swt.uptime_ticket(Args), swt.rollback_failed_ticket(Args, [f])):
+    for t in (swt.robot_ticket("deploy", f, Args), swt.robot_ticket("still-failing", f, Args, [f]),
+              swt.uptime_ticket(Args), swt.rollback_failed_ticket(Args, [f])):
         assert sw.is_robot_ticket(t["title"]), t["title"]
 
 

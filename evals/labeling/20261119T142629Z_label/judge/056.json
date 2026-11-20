@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "kubernetes",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "39108c221b4a2bce1e5f8cb2d60abd148ff2de32030670d43c03c283dd4e0b72",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, Kubernetes is explicitly named in a Minimum Qualifications sentence, making it a valid required skill with the exact determining quote.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, Kubernetes is explicitly named in a Minimum Qualifications sentence, making it a valid required skill with the exact determining quote.",
+  "error": null
+}

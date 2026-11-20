@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "df1a224a1e245deaeab2f0dc4a7645a9f15496441b53e9f8c6444e4d6baa7cf1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting does not name the skill 'MLOps' directly, so a broad or parent skill should not be inferred from a description of deploying and maintaining ML systems.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting does not name the skill 'MLOps' directly, so a broad or parent skill should not be inferred from a description of deploying and maintaining ML systems.",
+  "error": null
+}

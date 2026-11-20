@@ -1,0 +1,57 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"focus on AI\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing evaluation and feedback loops that tell you whether an agent is actually improving\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agent harnesses\",\n      \"raw_text\": \"harnesses\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Quantitative Researcher | Internship\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"To have a background in a highly quantitative field, with a focus on AI (MSc or PhD)\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'focus on AI' (and 'using AI for quantitative research') to ai-ml, flagged uncertain as bare 'AI' in a degree/domain requirement may not be counted as the ai-ml skill.\\n'harnesses' (agent harnesses) is not in the taxonomy and placed in unmapped.\\n'exposure to trading' and 'quantitative research' treated as domain knowledge, not skills.\\nDegree labeled 'phd' per rule that highest level named in 'MSc or PhD' wins.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "focus on AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing evaluation and feedback loops that tell you whether an agent is actually improving"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent harnesses",
+        "raw_text": "harnesses"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Quantitative Researcher | Internship",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "To have a background in a highly quantitative field, with a focus on AI (MSc or PhD)",
+    "uncertain": [],
+    "notes": "Mapped 'focus on AI' (and 'using AI for quantitative research') to ai-ml, flagged uncertain as bare 'AI' in a degree/domain requirement may not be counted as the ai-ml skill.\n'harnesses' (agent harnesses) is not in the taxonomy and placed in unmapped.\n'exposure to trading' and 'quantitative research' treated as domain knowledge, not skills.\nDegree labeled 'phd' per rule that highest level named in 'MSc or PhD' wins."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "8ac9bc2be8ebd070488004b41d38cd8a5ae2da7ca85f50ba3ef249f72f4c0822",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

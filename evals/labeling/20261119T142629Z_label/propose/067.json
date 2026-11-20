@@ -1,0 +1,14 @@
+{
+  "item": 67,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "fd887b0a1b2cd3b33d910089278ef710dc2a5b54b1d10e10b279ee208bc28722",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence \\\"a track record in deploying large-scale AI\\\" names the skill, and the agreed required label and verbatim raw_text \\\"deploying large-scale AI\\\" match the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence \"a track record in deploying large-scale AI\" names the skill, and the agreed required label and verbatim raw_text \"deploying large-scale AI\" match the posting.",
+  "error": null
+}

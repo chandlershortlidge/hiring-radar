@@ -1,0 +1,15 @@
+{
+  "item": 69,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "c75c49d21d93b38e34d39febc034c5a2f1034940c6c374fdf91fc7a8b91cc1b2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 4, the mention of software engineering is in a general team description rather than a qualification asking the candidate for the skill.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 4, the mention of software engineering is in a general team description rather than a qualification asking the candidate for the skill.",
+  "error": null
+}

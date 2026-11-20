@@ -1,0 +1,15 @@
+{
+  "item": 168,
+  "golden_id": "golden_106",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"bash\", \"python\"]]",
+  "key_sha256": "a98175809f3716d409a6abad119524694a96b03a09551cc476655afcb784ad19",
+  "raw": "{\"decision\": [], \"why\": \"Under the rule that 'A skill also asked for on its own elsewhere in the posting... is a requirement on its own: it leaves the group,' Python leaves the 'Python, or Bash scripting' group because 'Build and maintain reusable verification environments... in SystemVerilog and Python' asks for Python on its own, leaving fewer than two skills in the group.\"}",
+  "decision": [],
+  "why": "Under the rule that 'A skill also asked for on its own elsewhere in the posting... is a requirement on its own: it leaves the group,' Python leaves the 'Python, or Bash scripting' group because 'Build and maintain reusable verification environments... in SystemVerilog and Python' asks for Python on its own, leaving fewer than two skills in the group.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "knowledge-graphs",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "47a4e37643de5e919517f05f6e62e2e1cbe67d3835f7e93da867c3ad005691fe",
+  "raw": "{\"decision\": \"A\", \"why\": \"The skill is listed in a qualification bullet (Rule 1) under the 'What Sets You Apart' section, which indicates preferred/nice-to-have skills rather than required ones (Rule 3).\"}",
+  "decision": "A",
+  "why": "The skill is listed in a qualification bullet (Rule 1) under the 'What Sets You Apart' section, which indicates preferred/nice-to-have skills rather than required ones (Rule 3).",
+  "error": null
+}

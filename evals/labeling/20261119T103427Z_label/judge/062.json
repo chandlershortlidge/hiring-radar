@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "59567367ff8e5506ae66e46f9fce07ccb10e58c1142624f322d9126bdc981427",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet asking for experience deploying software in 'cloud environments' under the nice-to-have section counts for the cloud skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet asking for experience deploying software in 'cloud environments' under the nice-to-have section counts for the cloud skill.",
+  "error": null
+}

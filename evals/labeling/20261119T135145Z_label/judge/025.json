@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "computer-vision",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "c16d8e0f091d22cd0446fd6df18c4f97fcae1732233bb39d48cc5a127f32ead3",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, do not add a broad or parent skill like computer-vision when the text does not name it.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, do not add a broad or parent skill like computer-vision when the text does not name it.",
+  "error": null
+}

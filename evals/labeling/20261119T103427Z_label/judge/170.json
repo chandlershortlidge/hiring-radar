@@ -1,0 +1,22 @@
+{
+  "item": 170,
+  "golden_id": "golden_108",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "[[\"pytorch\", \"tensorflow\", \"onnx\", \"jax\"]]",
+  "key_sha256": "5fe98f130dec4141cfd3532c9be992872e1f6175651021515a7ed928f5d740dc",
+  "raw": "{\"decision\": [[\"pytorch\", \"tensorflow\", \"onnx\", \"jax\"]], \"why\": \"Under the Markers bullet, 'ML frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc.' offers examples for a single ask where any one meets it, and none of the four skills is required on its own elsewhere in the posting.\"}",
+  "decision": [
+    [
+      "pytorch",
+      "tensorflow",
+      "onnx",
+      "jax"
+    ]
+  ],
+  "why": "Under the Markers bullet, 'ML frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc.' offers examples for a single ask where any one meets it, and none of the four skills is required on its own elsewhere in the posting.",
+  "error": null
+}

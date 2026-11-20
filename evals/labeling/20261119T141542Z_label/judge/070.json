@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "azure-ai-foundry",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3a00cab70eb4f8f016cdae6dc4b6cbb6c90395f9b28fe3e5bca97071898e9b9a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'Microsoft Foundry / Azure AI services' is explicitly listed in a qualification bullet, and it is a required skill under Rule 3.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'Microsoft Foundry / Azure AI services' is explicitly listed in a qualification bullet, and it is a required skill under Rule 3.",
+  "error": null
+}

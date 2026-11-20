@@ -1,0 +1,14 @@
+{
+  "item": 66,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6a3b083d336c33dafabbc552fe746811e71a296334cbefe50a995ec68f279d6e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the required Qualifications bullet \\\"Experience building datasets, designing experiments, and validating ML model performance\\\" names model evaluation, and Rule 3 keeps the required mention quoted as raw_text, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the required Qualifications bullet \"Experience building datasets, designing experiments, and validating ML model performance\" names model evaluation, and Rule 3 keeps the required mention quoted as raw_text, so the agreed label stands.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 174,
+  "golden_id": "golden_102",
+  "kind": "groups",
+  "key": "alternative_group",
+  "reason": "groups",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1feafbc9c597a72636d9075e21a674e0c49004c0edd4520a862a993233090d05",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for Kotlin and for Android architecture as separate requirements with no 'at least one of', 'or', or example-marker wording linking them, so under the alternative_group rule (skills asked for together are not alternatives) neither forms a group.\"}",
+  "decision": [],
+  "why": "The posting asks for Kotlin and for Android architecture as separate requirements with no 'at least one of', 'or', or example-marker wording linking them, so under the alternative_group rule (skills asked for together are not alternatives) neither forms a group.",
+  "error": null
+}

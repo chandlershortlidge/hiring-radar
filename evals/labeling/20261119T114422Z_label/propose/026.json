@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "recommender-systems",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "477d3fcc231b76ffc8308af9fbdf0c07c7816bea2eb4b4f62ccae98f3502d9e1",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the preferred-qualifications bullet names \"recommendation metrics\" as experience sought, which falls under recommender-systems, and rule 5 is not violated because the text itself names that area.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 84 (char 83)"
+}

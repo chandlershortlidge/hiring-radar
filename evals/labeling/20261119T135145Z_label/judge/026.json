@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7d2e6be71a78a7c25cc750f4bc3bcd69deffbc2c8296b7543ad59dc32ba9319d",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting asks for having 'trained or deployed learned policies' and does not name 'model development'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting asks for having 'trained or deployed learned policies' and does not name 'model development'.",
+  "error": null
+}
