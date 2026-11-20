@@ -38,6 +38,22 @@ Some taxonomy entries are broader than others (`cloud` over `aws`, `llms` over `
 This matches extraction rule 3 in `PRINCIPLES` (`app/extract.py`), deliberately: a Golden
 that silently adds parents would score the extractor against a rule it is not given.
 
+### A skill described in other words
+
+When a posting describes a skill in other words instead of naming it ("operating ML models
+in production" for `mlops`, "post-training" for `fine-tuning`), the skill counts — by adding
+that phrase to `taxonomy/skills.json` as an alias of the skill, so "label what the text
+names" above still holds. Both conditions must be met:
+
+1. **The phrase sits in a section that asks the candidate for something**: requirements,
+   qualifications, nice-to-have, or a tech-stack section. The same words under
+   responsibilities or in the company description still don't count.
+2. **The phrase clearly means that skill.** If it is only loosely related, leave it out.
+
+Chandler, 20 Nov 2026: "Count them. Where a posting describes a skill in other words instead
+of naming it, add that phrase as another spelling of the skill, so 'label what the text
+names' still holds." (`decisions/2026-11-20-hir-384-skill-described-in-other-words.md`)
+
 `skill_id` must exist in `taxonomy/skills.json`. If no entry fits, the skill belongs in
 the taxonomy first — the Golden never invents an id.
 
