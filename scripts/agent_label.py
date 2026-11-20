@@ -502,13 +502,17 @@ DECISIONS = {
     "spot-check": "`ok` (correct) / `drop` (not a real label) / JSON (what it should be)",
     # An agreed label written under a rule that has changed since (HIR-381, the degree rule).
     "rule-change": "`ok` (right under today's rule) / `drop` / JSON (what it should be)",
+    # The posting's "any one of" groups, as one answer (HIR-387).
+    "groups": "a JSON list of groups of the skill ids below, e.g. `[[\"bash\", \"python\"]]`, "
+              "or `[]` when no skills are offered in place of each other",
 }
 # The order a human works the queue in: scope first (a `no` there skips the rest of that
 # posting's items), then the items that need a judgment between two labelers, then the blind
 # spot-check sample last, so the sample is not read in the light of the disagreements above it.
 # `rule-change` items are never made by `label`; `recheck` appends them after the rest.
 REASON_ORDER = {"in-scope": 0, "disagreement": 1, "uncertain": 2,
-                "mapping": 3, "check-failed": 4, "spot-check": 5, "rule-change": 6}
+                "mapping": 3, "check-failed": 4, "spot-check": 5, "rule-change": 6,
+                "groups": 7}
 # Reasons whose item carries one agreed label rather than two answers to choose between.
 AGREED_REASONS = ("uncertain", "spot-check", "rule-change")
 
@@ -570,6 +574,11 @@ def render_item(n: int, item: dict) -> str:
         lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
                   f"DECISION: {item.get('decision', '?')}", ""]
         return "\n".join(lines)
+    if item["kind"] == "groups":
+        lines += ["- " + fmt_value("skill", s) for s in item["skills"]]
+        lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
+                  f"DECISION: {item.get('decision', '?')}", ""]
+        return "\n".join(lines)
     if item["reason"] in ("spot-check", "rule-change"):
         # Blind on purpose: both labelers agreed, so printing them twice only invites
         # agreeing with them. The question is whether the posting supports the label.
@@ -625,6 +634,8 @@ def apply_decision(item: dict, decision: str):
     than quietly writing the wrong answer key.
     """
     word = decision.strip()
+    if item["kind"] == "groups":
+        return [], parse_groups(item, word)
     if word.startswith("{"):
         override = json.loads(word)
         if item["kind"] == "skill":
@@ -683,7 +694,7 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
                  labeled_by: list[str], adjudicated: dict[str, str],
                  spot_checked_by: str | None = None,
                  third_labeler: str | None = None, reviewed: set[str] | None = None,
-                 split: str = "heldout") -> dict:
+                 split: str = "heldout", groups: dict[str, int] | None = None) -> dict:
     """A Golden in the shape evals/goldens/ already uses, plus HIR-70 provenance.
 
     `adjudicated` maps each decided field to who decided it, "human" or "model". `reviewed`
@@ -695,6 +706,10 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
     `spot_checked_by` names who answered the spot-check - a person, or the model id if a
     model did - rather than a bare `spot_checked: true`. A flag cannot say who, and a
     spot-check answered by a model is not the number this process exists to produce.
+
+    `groups` maps each grouped skill to its group number once the posting's groups have been
+    settled (HIR-387); the Golden then carries `groups_reviewed: true`. None leaves both out,
+    so a run that never settled groups writes exactly what it wrote before.
     """
     reviewed = set() if reviewed is None else reviewed
     if split not in SPLITS:
@@ -707,6 +722,8 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
         if attr == "seniority":
             out["seniority_reviewed"] = "seniority" in reviewed
     out["attrs_reviewed"] = bool({"german", "degree"} & reviewed)
+    if groups is not None:
+        out["groups_reviewed"] = True
     out["source_sha256"] = base["source_sha256"]
     out["labeled_by"] = labeled_by
     if third_labeler:
@@ -716,7 +733,9 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
     out["spot_checked_by"] = spot_checked_by
     out["job_description"] = base["job_description"]
     out["expected"] = [{"skill_id": s["skill_id"], "requirement": s["requirement"],
-                        "raw_text": s["raw_text"]}
+                        "raw_text": s["raw_text"],
+                        **({"alternative_group": groups[s["skill_id"]]}
+                           if groups and s["skill_id"] in groups else {})}
                        for s in sorted(skills, key=lambda s: s["skill_id"])]
     return out
 
@@ -841,11 +860,155 @@ def systems_for(item: dict, guide_md: str | None = None) -> tuple[str, str, str]
 
     A degree item is ruled on under the guide's Degree section; everything else under the
     five skill rules, exactly as before."""
+    if item["kind"] == "groups":
+        return groups_systems(GUIDE_FILE.read_text() if guide_md is None else guide_md)
     if item["kind"] == "attribute" and item["key"] == "degree":
         guide_md = GUIDE_FILE.read_text() if guide_md is None else guide_md
         judge = degree_judge_system(guide_md)
         return judge, proposer_system(judge), guide_section(guide_md, "Degree")
     return JUDGE_SYSTEM, PROPOSE_SYSTEM, JUDGE_RULES
+
+# --- "any one of" groups: the guide's alternative_group section (HIR-387) ---------------
+
+GROUPS_HEADING = "alternative_group: skills offered in place of each other"
+
+GROUPS_SYSTEM = """{opening}
+
+The rule is the labelling guide's alternative_group section, quoted in full. It is the only
+policy you may use:
+
+<alternative-group-rule>
+{rule}
+</alternative-group-rule>
+
+The item lists the skills already labeled for this posting, each with the words it was
+labeled from. Group only those skills, by their ids. Do not add, drop or relabel a skill, and
+do not change any requirement: a group changes no requirement. The labels were written
+without groups, so a missing group says nothing about whether one belongs.
+
+Answer with one JSON object and nothing else:
+
+{{"decision": <your ruling>, "why": "<one sentence, citing the part of the rule you applied>"}}
+
+`decision` is a list of groups, each a list of two or more skill ids from the item, e.g.
+[["bash", "python"]] for "Python, or Bash scripting", or [] when the posting offers no
+skills in place of each other. A skill is in at most one group.
+
+{closing}"""
+
+
+def groups_systems(guide_md: str) -> tuple[str, str, str]:
+    """(judge system prompt, proposer system prompt, the rule) for a posting's groups.
+
+    The five skill rules say nothing about groups, so the guide's section goes in word for
+    word, as the degree rule does (HIR-381). Two prompts from one template, so the proposer
+    and the judge rule under the same text and differ only in who reads first."""
+    rule = guide_section(guide_md, GROUPS_HEADING)
+    judge = GROUPS_SYSTEM.format(
+        rule=rule,
+        opening="You rule on one item from a review queue of job-posting labels: which of a "
+                "posting's skills it\noffers in place of each other. An earlier reviewer has "
+                "proposed an answer. Your job is to rule on\nthat one item.",
+        closing="Rule on what the posting supports, not on what the proposal says. Agreeing "
+                "with the\nproposal because it is there is worth nothing; the whole point of "
+                "asking you is that you\nare a second reader.")
+    propose = GROUPS_SYSTEM.format(
+        rule=rule,
+        opening="You propose a decision on one item from a review queue of job-posting labels: "
+                "which of a\nposting's skills it offers in place of each other. You are the "
+                "first reader: propose the\ndecision. A separate judge rules on your proposal "
+                "afterwards.",
+        closing="Rule on what the posting supports.")
+    return judge, propose, rule
+
+
+def parse_groups(item: dict, text: str) -> list[list[str]]:
+    """A grouping decision, as groups of sorted ids in sorted order, so two answers naming the
+    same groups in another order compare equal. Raises ValueError on anything the guide does
+    not allow, so a bad answer stops rather than writing a wrong group."""
+    try:
+        value = json.loads(text.strip().strip("`"))
+    except json.JSONDecodeError:
+        value = None
+    if not isinstance(value, list):
+        raise ValueError(f"{text!r} is not a JSON list of groups, e.g. [[\"bash\", \"python\"]] or []")
+    known = {s["skill_id"] for s in item["skills"]}
+    seen: set[str] = set()
+    out = []
+    for group in value:
+        if not isinstance(group, list) or not all(isinstance(x, str) for x in group):
+            raise ValueError(f"group {group!r} is not a list of skill ids")
+        ids = sorted(set(group))
+        if len(ids) < 2:
+            raise ValueError(f"group {group!r} has fewer than two skills")
+        if set(ids) - known:
+            raise ValueError(f"group {group!r} names skills this posting was not labeled with: "
+                             f"{sorted(set(ids) - known)}")
+        if set(ids) & seen:
+            raise ValueError(f"{sorted(set(ids) & seen)} is in two groups")
+        seen |= set(ids)
+        out.append(ids)
+    return sorted(out)
+
+
+def group_candidates(gid: str, accepted: list[dict], items: list[dict],
+                     decisions: dict[int, str]) -> list[dict]:
+    """The skills a posting's answer key can still hold: the agreed ones, what a decided queue
+    item adds, and both labelers' versions of an item still open. Wider than the key will be;
+    `number_groups` drops a member that does not reach it."""
+    out = {s["skill_id"]: s for s in accepted}
+    for n, item in enumerate(items, 1):
+        if item["golden_id"] != gid or item["kind"] != "skill":
+            continue
+        sides = [s for s in (item.get("a"), item.get("b")) if s]
+        decision = decisions.get(n, "?")
+        if decision not in ("?", ""):
+            try:
+                sides, _ = apply_decision(item, decision)
+            except (ValueError, json.JSONDecodeError):
+                pass
+        for side in sides:
+            out.setdefault(side["skill_id"], side)
+    return [out[sid] for sid in sorted(out)]
+
+
+def groups_items(items: list[dict], merged: dict, picks: dict, decisions: dict[int, str],
+                 skip: set[str]) -> tuple[list[dict], list[str]]:
+    """One `groups` item per posting with two or more skills to group, and the postings with
+    fewer, which need no reading: nothing in them can be grouped. A posting that already has
+    a `groups` item is left alone, so a second run adds nothing."""
+    queued = {i["golden_id"] for i in items if i["kind"] == "groups"}
+    new, nothing = [], []
+    for gid in sorted(merged):
+        if gid in queued or gid in skip:
+            continue
+        skills = group_candidates(gid, merged[gid]["accepted_skills"], items, decisions)
+        if len(skills) < 2:
+            nothing.append(gid)
+            continue
+        new.append({"golden_id": gid, "kind": "groups", "key": "alternative_group",
+                    "reason": "groups", "skills": skills, "a": None, "b": None,
+                    "excerpt": " ".join(picks[gid]["job_description"].splitlines()[0:1])[:140],
+                    "problems": [], "decision": "?"})
+    return new, nothing
+
+
+def number_groups(groups: list[list[str]], skills: dict[str, dict], posting: str) -> dict[str, int]:
+    """{skill_id: group number} for the members that reached the answer key.
+
+    A member that did not leaves its group, and a group left with one member is no group (the
+    guide: a group needs at least two skills). Numbered 1, 2, ... in the order the groups
+    first appear in the posting, as the guide numbers them."""
+    kept = [[sid for sid in g if sid in skills] for g in groups]
+    kept = [g for g in kept if len(g) >= 2]
+    text = norm_text(posting)
+
+    def first_seen(group):
+        at = [text.find(norm_text(skills[sid].get("raw_text") or "")) for sid in group]
+        return min([i for i in at if i >= 0] or [len(text)])
+
+    kept.sort(key=first_seen)
+    return {sid: n for n, group in enumerate(kept, 1) for sid in group}
 
 
 BULLET_CHARS = ("-", "*", "•", "·")
@@ -923,6 +1086,18 @@ def judge_question(item: dict, posting: str, proposed: str | None, reason: str |
     """The one item as the judge sees it: context, both labelers, the proposal, the options.
 
     With `proposed=None` it is the proposer's question: the same item, no proposal lines."""
+    if item["kind"] == "groups":
+        # The whole posting: whether a skill is also asked for on its own elsewhere decides
+        # whether it leaves a group, and that can be anywhere in the text.
+        lines = [f"posting: {item['golden_id']}", "item: the posting's alternative groups (groups)",
+                 "", "<posting>", posting.strip(), "</posting>", "",
+                 "skills labeled for this posting:",
+                 *("- " + fmt_value("skill", s) for s in item["skills"]),
+                 "", f"options: {DECISIONS['groups']}"]
+        if proposed is not None:
+            lines += ["", f"proposed decision: {proposed}",
+                      f"proposer's reason: {reason or '(none given)'}"]
+        return "\n".join(lines)
     quote = (item.get("a") or item.get("b") or {}).get("raw_text") if item["kind"] == "skill" \
         else (item.get("a") or item.get("b") or {}).get(f"{item['key']}_signal")
     if item["kind"] == "attribute" and item["key"] == "degree":
@@ -957,7 +1132,7 @@ def judge_question(item: dict, posting: str, proposed: str | None, reason: str |
 def parse_proposal(line: str) -> tuple[str, str]:
     """A `PROPOSED:` line as (verdict, reason). The verdict is a word or a JSON object."""
     s = line.strip()
-    if s.startswith("{"):
+    if s.startswith(("{", "[")):
         obj, end = json.JSONDecoder().raw_decode(s)
         return json.dumps(obj, ensure_ascii=False, sort_keys=True), s[end:].lstrip(" -–—")
     m = re.match(r"`?([A-Za-z?]+)`?\s*[-–—:]?\s*(.*)$", s, flags=re.S)
@@ -987,7 +1162,7 @@ def parse_proposals(text: str) -> dict[int, tuple[str, str]]:
 
 def verdict_text(verdict) -> str:
     """A verdict as it would be written on a DECISION line."""
-    if isinstance(verdict, dict):
+    if isinstance(verdict, (dict, list)):
         return json.dumps(verdict, ensure_ascii=False)
     return str(verdict).strip()
 
@@ -1064,7 +1239,10 @@ def settled_decision(item: dict, proposed: str, judge_said: str) -> str:
 
     A word (`A`, `ok`, `drop`) when either gave one, the proposer's first, so the line names
     a labeler's value rather than a copy of it. Two written values agree on what they decide,
-    not on their quote: keep the shorter quote (Chandler's standing preference)."""
+    not on their quote: keep the shorter quote (Chandler's standing preference). A grouping
+    is written in its sorted form, so the line does not depend on which model listed first."""
+    if item["kind"] == "groups":
+        return json.dumps(parse_groups(item, proposed))
     for text in (proposed, judge_said):
         if not text.startswith("{"):
             return text
@@ -1135,7 +1313,8 @@ def model_target(item: dict, only_keys) -> bool:
     """Whether `propose` and `judge` read this item, before its decision is looked at.
 
     Without `--key`: every item that asks for a judgment, as before - not the scope questions
-    and not the spot-check sample, which is a person's to answer. With `--key degree`: only
+    and not the spot-check sample, which is a person's to answer. With `--key
+    alternative_group`: each posting's `groups` item (HIR-387). With `--key degree`: only
     that attribute's items, and its spot-check items too, because those labels were agreed
     under a rule that has changed since (HIR-381). A `rule-change` item exists only to be
     re-read, so it is always a target.
@@ -1143,7 +1322,7 @@ def model_target(item: dict, only_keys) -> bool:
     if item["kind"] == "scope":
         return False
     if only_keys:
-        return item["kind"] == "attribute" and item["key"] in only_keys
+        return item["kind"] in ("attribute", "groups") and item["key"] in only_keys
     return item["reason"] != "spot-check"
 
 
@@ -1589,6 +1768,9 @@ def cmd_apply(args):
     # Who answered the sample. "human" is the point of drawing one; a model id means the
     # error rate is a further model check, and nothing it confirms counts as reviewed.
     answered_by = drawn.get("answered_by") or "human"
+    # A posting with fewer than two skills to group was settled without a reading (HIR-387).
+    settled_groups: dict[str, list] = {gid: [] for gid in
+                                       (record.get("groups") or {}).get("nothing_to_group", [])}
 
     # Scope first: a posting ruled out of scope is not a Golden, so none of its other
     # decisions matter and its spot-checks must not count toward the error rate.
@@ -1661,6 +1843,14 @@ def cmd_apply(args):
             add, group = apply_decision(item, decision)
         except (ValueError, json.JSONDecodeError) as e:
             raise SystemExit(f"item {n} ({gid} {item['kind']} {item['key']}): {e}")
+        if item["kind"] == "groups":
+            # Numbered once the skills are final: a member may not reach the key.
+            settled_groups[gid] = group
+            who = "model" if n in by_model else "human"
+            adjudicated[gid]["alternative_group"] = who
+            if who == "human":
+                reviewed[gid].add("alternative_group")
+            continue
         if item["kind"] == "run":
             skills.pop(gid, None)
             attrs.pop(gid, None)
@@ -1716,7 +1906,10 @@ def cmd_apply(args):
     built = {gid: final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
                                attrs.get(gid, {}), labeled_by, adjudicated[gid],
                                spot_by_gid.get(gid), third_by_gid.get(gid),
-                               reviewed[gid], split=args.split)
+                               reviewed[gid], split=args.split,
+                               groups=(number_groups(settled_groups[gid], skills[gid],
+                                                     picks[gid]["job_description"])
+                                       if gid in settled_groups else None))
              for gid in sorted(skills)}
     texts = {gid: json.dumps(g, indent=2, ensure_ascii=False) + "\n" for gid, g in built.items()}
 
@@ -2154,7 +2347,10 @@ def cmd_recheck(args):
     """
     run_dir, items, picks, summary, queue_text = load_run(args.run)
     merged = json.loads((run_dir / "merged.json").read_text())
-    skip = out_of_scope_goldens(items, dict(parse_queue(queue_text)))
+    decisions = dict(parse_queue(queue_text))
+    skip = out_of_scope_goldens(items, decisions)
+    if args.key == "alternative_group":
+        return recheck_groups(args, run_dir, items, picks, queue_text, merged, decisions, skip)
     new = rule_change_items(items, merged, picks, args.key, skip)
     first = len(items) + 1
     print(f"{len(new)} agreed `{args.key}` labels in postings naming more than one level"
@@ -2171,6 +2367,33 @@ def cmd_recheck(args):
     adj = load_adjudication(run_dir)
     adj.setdefault("rule_change", []).append(
         {"key": args.key, "rule": "lowest level named (HIR-245)", "items": [n for n, _ in numbered]})
+    save_adjudication(run_dir, adj)
+
+
+def recheck_groups(args, run_dir, items, picks, queue_text, merged, decisions, skip):
+    """Append one `groups` item per posting, for `propose --key alternative_group` and
+    `judge --key alternative_group` to settle (HIR-387). The labelling step's merge keeps no
+    groups, so without this no Golden from the batch is scored on grouping."""
+    new, nothing = groups_items(items, merged, picks, decisions, skip)
+    first = len(items) + 1
+    print(f"{len(new)} postings with two or more skills to group"
+          + (f" -> items {first}-{first + len(new) - 1}" if new else "")
+          + f"; {len(nothing)} with fewer, nothing to group")
+    for n, item in enumerate(new, first):
+        print(f"  [{n}] {item['golden_id']}  {len(item['skills'])} skills")
+    if args.dry_run or not (new or nothing):
+        return
+    numbered = list(enumerate(new, first))
+    if new:
+        (run_dir / "items.json").write_text(
+            json.dumps(items + new, indent=2, ensure_ascii=False) + "\n")
+        (run_dir / "review_queue.md").write_text(
+            queue_text.rstrip("\n") + "\n\n" + "\n".join(render_item(n, i) for n, i in numbered))
+    adj = load_adjudication(run_dir)
+    record = adj.setdefault("groups", {"rule": f"LABELING.md `{GROUPS_HEADING}` (HIR-251)",
+                                       "items": [], "nothing_to_group": []})
+    record["items"] += [n for n, _ in numbered]
+    record["nothing_to_group"] = sorted(set(record["nothing_to_group"]) | set(nothing))
     save_adjudication(run_dir, adj)
 
 
@@ -2509,7 +2732,8 @@ def main(argv=None):
     jud.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
     jud.add_argument("--key", action="append", metavar="ATTR",
                      help="only this attribute's items, its agreed spot-check items included "
-                          "(e.g. degree, re-read under a changed rule)")
+                          "(e.g. degree, re-read under a changed rule), or alternative_group "
+                          "for each posting's groups")
     jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
     jud.set_defaults(fn=cmd_judge)
 
@@ -2523,7 +2747,8 @@ def main(argv=None):
                      help="leave this attribute's items for a person, repeatable (e.g. degree)")
     pro.add_argument("--key", action="append", metavar="ATTR",
                      help="only this attribute's items, its agreed spot-check items included "
-                          "(e.g. degree, re-read under a changed rule)")
+                          "(e.g. degree, re-read under a changed rule), or alternative_group "
+                          "for each posting's groups")
     pro.add_argument("--dry-run", action="store_true", help="list what would be proposed and stop")
     pro.set_defaults(fn=cmd_propose)
 
@@ -2553,8 +2778,9 @@ def main(argv=None):
 
     rec = sub.add_parser("recheck", help="queue the agreed labels a changed rule could move")
     rec.add_argument("--run", required=True)
-    rec.add_argument("--key", default="degree", choices=("degree",),
-                     help="the attribute whose rule changed (only degree so far)")
+    rec.add_argument("--key", default="degree", choices=("degree", "alternative_group"),
+                     help="degree: queue agreed degrees the lowest-level rule could move; "
+                          "alternative_group: queue each posting's \"any one of\" groups")
     rec.add_argument("--dry-run", action="store_true", help="list what would be added and stop")
     rec.set_defaults(fn=cmd_recheck)
 

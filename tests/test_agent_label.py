@@ -2129,3 +2129,188 @@ def test_renumber_does_nothing_when_the_ids_are_already_free(tmp_path, monkeypat
 
     assert "nothing to do" in capsys.readouterr().out
     assert "golden_001" in (run_dir / "picks.json").read_text()
+
+
+# --- "any one of" groups marked by two models (HIR-387) --------------------------------
+
+GROUP_POSTING = POSTING.replace("Strong Python and experience", "Strong Python or experience")
+GROUPS_ITEM = {"golden_id": "golden_001", "kind": "groups", "key": "alternative_group",
+               "reason": "groups", "a": None, "b": None, "problems": [], "excerpt": "x",
+               "skills": [{"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+                          {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+                          {"skill_id": "rag", "requirement": "required",
+                           "raw_text": "experience with RAG pipelines"}]}
+
+
+def test_groups_are_ruled_on_under_the_guides_alternative_group_section():
+    guide = al.GUIDE_FILE.read_text()
+    judge, propose, rules = al.systems_for(GROUPS_ITEM, guide)
+    assert rules == al.guide_section(guide, al.GROUPS_HEADING)
+    assert "**any one of several\nskills**" in rules and "A group needs at least two skills" in rules
+    for system in (judge, propose):
+        assert rules in system and al.JUDGE_RULES not in system
+        assert "a group changes no requirement" in system
+    assert "earlier reviewer" in judge and "earlier reviewer" not in propose
+    assert "first reader" in propose
+
+
+def test_a_groups_item_shows_the_whole_posting_and_its_skills():
+    posting = GROUP_POSTING + "\n" + "filler line\n" * 200 + "Python is a must\n"
+    q = al.judge_question(GROUPS_ITEM, posting, None, None)
+    assert "<posting>" in q and "Python is a must" in q
+    assert "- `python` · required · raw_text: \"Strong Python\"" in q
+    assert "proposed decision" not in q
+    q = al.judge_question(GROUPS_ITEM, posting, '[["python", "rag"]]', "an or")
+    assert 'proposed decision: [["python", "rag"]]' in q
+
+
+def test_parse_groups_sorts_and_refuses_what_the_guide_does_not_allow():
+    assert al.parse_groups(GROUPS_ITEM, '[["rag", "python"]]') == [["python", "rag"]]
+    assert al.parse_groups(GROUPS_ITEM, "[]") == []
+    assert al.apply_decision(GROUPS_ITEM, '[["rag", "python"]]') == ([], [["python", "rag"]])
+    for bad, why in (('[["python"]]', "fewer than two"), ('[["python", "go"]]', "not labeled"),
+                     ('[["python", "rag"], ["rag", "docker"]]', "in two groups"),
+                     ("ok", "not a JSON list"), ('{"a": 1}', "not a JSON list")):
+        with pytest.raises(ValueError, match=why):
+            al.parse_groups(GROUPS_ITEM, bad)
+
+
+def test_grouping_verdicts_agree_whatever_the_order():
+    assert al.verdicts_agree(GROUPS_ITEM, '[["rag", "python"]]', [["python", "rag"]])
+    assert not al.verdicts_agree(GROUPS_ITEM, '[["rag", "python"]]', [])
+    assert al.settled_decision(GROUPS_ITEM, '[["rag", "python"]]', '[["python", "rag"]]') \
+        == '[["python", "rag"]]'
+    assert al.parse_proposal('[["python", "rag"]] - an or')[0] == '[["python", "rag"]]'
+    assert al.verdict_text([["python", "rag"]]) == '[["python", "rag"]]'
+
+
+def test_key_alternative_group_takes_the_groups_items_only():
+    assert al.model_target(GROUPS_ITEM, {"alternative_group"})
+    assert not al.model_target(DEGREE_ITEM, {"alternative_group"})
+    assert not al.model_target(GROUPS_ITEM, {"degree"})
+
+
+def test_group_candidates_keep_open_items_and_decided_additions_not_drops():
+    items = [{"golden_id": "g", "kind": "skill", "key": "docker", "reason": "disagreement",
+              "a": {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+              "b": None},
+             {"golden_id": "g", "kind": "skill", "key": "go", "reason": "disagreement",
+              "a": {"skill_id": "go", "requirement": "required", "raw_text": "Go"}, "b": None},
+             {"golden_id": "g", "kind": "skill", "key": "java", "reason": "disagreement",
+              "a": {"skill_id": "java", "requirement": "required", "raw_text": "Java"}, "b": None},
+             {"golden_id": "other", "kind": "skill", "key": "rust", "reason": "disagreement",
+              "a": {"skill_id": "rust", "requirement": "required", "raw_text": "Rust"}, "b": None}]
+    accepted = [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]
+    got = al.group_candidates("g", accepted, items, {1: "?", 2: "drop", 3: "A"})
+    assert [s["skill_id"] for s in got] == ["docker", "java", "python"]
+
+
+def test_groups_items_skip_a_posting_with_fewer_than_two_skills():
+    one = {"accepted_skills": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]}
+    two = {"accepted_skills": one["accepted_skills"]
+           + [{"skill_id": "go", "requirement": "required", "raw_text": "Go"}]}
+    picks = {g: {"job_description": "Title\nbody"} for g in ("g1", "g2", "g3")}
+    new, nothing = al.groups_items([], {"g1": one, "g2": two, "g3": two}, picks, {}, {"g3"})
+    assert [i["golden_id"] for i in new] == ["g2"] and nothing == ["g1"]
+    assert new[0]["reason"] == "groups" and new[0]["excerpt"] == "Title"
+    # a second run adds nothing for a posting that already has its item
+    assert al.groups_items(new, {"g2": two}, picks, {}, set()) == ([], [])
+
+
+def test_number_groups_drops_members_that_left_the_key_and_numbers_in_posting_order():
+    skills = {s: {"skill_id": s, "raw_text": s.upper()} for s in ("aws", "gcp", "go", "java")}
+    posting = "We use GO or JAVA. Clouds: AWS, GCP or AZURE."
+    groups = [["aws", "azure", "gcp"], ["go", "java"], ["python", "rust"]]
+    assert al.number_groups(groups, skills, posting) == {"go": 1, "java": 1, "aws": 2, "gcp": 2}
+    # one member left: no group
+    assert al.number_groups([["aws", "azure"]], skills, posting) == {}
+
+
+def groups_run(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0,
+                                       posting=GROUP_POSTING)
+    judge_client(monkeypatch)                    # no answers: recheck must not call a model
+    al.main(["recheck", "--run", run_dir.name, "--key", "alternative_group"])
+    n, = item_numbers(run_dir, reason="groups")
+    return run_dir, queue, docker, n
+
+
+def test_recheck_queues_one_groups_item_per_posting(tmp_path, monkeypatch, capsys):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    item = json.loads((run_dir / "items.json").read_text())[n - 1]
+    assert [s["skill_id"] for s in item["skills"]] == ["docker", "python", "rag"]
+    assert f"## {n}. golden_001 - groups `alternative_group` (groups)" in queue.read_text()
+    assert al.parse_queue(queue.read_text())[-1] == (n, "?")
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["groups"]["items"] == [n] and adj["groups"]["nothing_to_group"] == []
+    al.main(["recheck", "--run", run_dir.name, "--key", "alternative_group"])
+    assert item_numbers(run_dir, reason="groups") == [n]
+    assert "0 postings with two or more skills" in capsys.readouterr().out
+
+
+def test_propose_and_judge_settle_the_groups_and_apply_writes_them(tmp_path, monkeypatch):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    proposer = judge_client(monkeypatch, {"decision": [["rag", "python"]], "why": "an or"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model",
+             "--key", "alternative_group"])
+    assert set(al.parse_proposals(queue.read_text())) == {n}       # not the docker disagreement
+    call, = proposer.calls
+    assert "<alternative-group-rule>" in call["system"][0]["text"]
+    assert GROUP_POSTING.strip() in call["messages"][0]["content"]
+
+    judge = judge_client(monkeypatch, {"decision": [["python", "rag"]], "why": "X or Y"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "alternative_group"])
+    assert len(judge.calls) == 1
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert decisions[n] == '[["python", "rag"]]' and decisions[docker] == "?"
+    assert json.loads((run_dir / "adjudication.json").read_text())["items"][str(n)]["by"] == "model"
+
+    _answer(queue, lambda i, b: None if i == n else "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    groups = {e["skill_id"]: e.get("alternative_group") for e in golden["expected"]}
+    assert groups == {"docker": None, "python": 1, "rag": 1}
+    assert "alternative_group" in golden["adjudicated_by_model"]
+    assert {e["skill_id"]: e["requirement"] for e in golden["expected"]}["python"] == "required"
+
+
+def test_a_split_on_groups_stays_for_a_person(tmp_path, monkeypatch):
+    run_dir, queue, docker, n = groups_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": [["python", "rag"]], "why": "an or"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model",
+             "--key", "alternative_group"])
+    judge_client(monkeypatch, {"decision": [], "why": "asked together"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "alternative_group"])
+    assert dict(al.parse_queue(queue.read_text()))[n] == "?"
+
+    # a person answers it; their answer is a human adjudication
+    _answer(queue, lambda i, b: "[]" if i == n else "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    assert not any("alternative_group" in e for e in golden["expected"])
+    assert "alternative_group" in golden["adjudicated"]
+
+
+def test_a_run_without_a_groups_pass_writes_no_groups_marker(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0)
+    _answer(queue, lambda i, b: "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert "groups_reviewed" not in golden
+    assert not any("alternative_group" in e for e in golden["expected"])
+
+
+def test_apply_marks_a_posting_with_nothing_to_group_as_reviewed(tmp_path, monkeypatch):
+    run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0)
+    adj = al.load_adjudication(run_dir)
+    adj["groups"] = {"rule": "x", "items": [], "nothing_to_group": ["golden_001"]}
+    al.save_adjudication(run_dir, adj)
+    _answer(queue, lambda i, b: "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["groups_reviewed"] is True
+    assert "alternative_group" not in golden["adjudicated_by_model"]
