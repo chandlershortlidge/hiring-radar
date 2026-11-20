@@ -206,6 +206,31 @@ describe("a city page's layout", () => {
     expect(firstPaint("/compare/berlin+munich")).toContain('<main class="main">');
     expect(css).toMatch(/@media \(max-width: 1099px\) \{ \.main\.split \{ grid-template-columns: minmax\(0, 1fr\); \} \}/);
   });
+
+  // HIR-345: the jobs list is far longer than the chart, so the chart has to follow it down.
+  it("keeps the chart in view beside the jobs on a wide screen, never taller than the window", () => {
+    const wide = css.slice(css.indexOf("@media (min-width: 1100px) {"));
+    expect(wide).toMatch(/\.main\.split > \.lead \{ position: sticky; top: 16px; max-height: calc\(100vh - 32px\); overflow-y: auto; \}/);
+    // the jobs get half the page, not the smaller share
+    expect(css).toContain(".main.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }");
+  });
+
+  it("moves What's rising out of the column that stays in view, to under the jobs", () => {
+    const html = firstPaint("/berlin");
+    const [lead, side, jobs, below] = ['<div class="stack lead">', '<div class="stack side">', '<section class="card jobs"', '<div class="below">'].map((t) => html.indexOf(t));
+    expect(lead).toBeGreaterThan(-1);
+    expect(side).toBeGreaterThan(lead);
+    expect(jobs).toBeGreaterThan(side);
+    expect(below).toBeGreaterThan(jobs);
+    // a comparison has no single market to follow, so no such card and no empty box for it
+    expect(firstPaint("/compare/berlin+munich")).not.toContain('class="below"');
+  });
+
+  it("stacks in the old order on a narrow screen: chart, what's rising, related skills, jobs", () => {
+    const narrow = css.slice(css.lastIndexOf("@media (max-width: 1099px) {\n"));
+    for (const rule of [".main.split > .stack { display: contents; }", ".main.split > .lead > * { order: 3; }", ".main.split > .lead > :first-child { order: 1; }",
+      ".main.split > .side > .below { order: 2; }", ".main.split > .side > :first-child { order: 4; }"]) expect(narrow).toContain(rule);
+  });
 });
 
 describe("the butter best-fit badge", () => {
