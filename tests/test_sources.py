@@ -43,6 +43,86 @@ def test_lever_parse_joins_description_and_lists():
     assert p.posted_at == "2025-10-09T08:53:20Z"
 
 
+# --- a board's own remote marker (HIR-325) ---------------------------------------
+
+def _elevenlabs():
+    return ashby.parse(load("ashby_elevenlabs.json"), company="ElevenLabs")
+
+
+def test_ashby_remote_posting_listing_countries_reads_as_eu_remote():
+    """ElevenLabs' Applied AI Engineer lists ten places, Germany among them, and marks
+    remote only in `workplaceType`. The list alone named no tracked city and never said
+    "remote", so the posting was dropped."""
+    from app.geo import active_place, place_of
+    p = _elevenlabs()[0]
+    assert p.location_raw == ("Remote (United Kingdom, Bulgaria, Dublin, France, Germany, Hungary, "
+                              "Italy, Netherlands, Poland, Spain)")
+    assert place_of(p.location_raw, p.title, p.description_text) == "Remote (EU)"
+    assert active_place(p.location_raw, p.title, p.description_text) == "Remote (EU)"
+    assert in_scope_title(p.title)
+
+
+def test_ashby_remote_posting_in_one_non_eu_country_stays_out():
+    from app.geo import active_place
+    p = _elevenlabs()[1]
+    assert p.location_raw == "Remote (United States)"
+    assert active_place(p.location_raw, p.title, p.description_text) is None
+
+
+def _ashby_one(**fields):
+    [p] = ashby.parse({"jobs": [{"id": "1", "title": "AI Engineer", "descriptionPlain": "text", **fields}]})
+    return p.location_raw
+
+
+def test_ashby_workplace_type_decides_and_is_remote_is_the_fallback():
+    """Boards set `isRemote` on hybrid roles too (ashby_hir289.json), so `workplaceType`
+    wins when it is set; `isRemote` is read only when it is absent."""
+    assert _ashby_one(location="Germany", workplaceType="Remote") == "Remote (Germany)"
+    assert _ashby_one(location="Germany", workplaceType="Hybrid", isRemote=True) == "Germany"
+    assert _ashby_one(location="Germany", workplaceType="OnSite", isRemote=False) == "Germany"
+    assert _ashby_one(location="Germany", isRemote=True) == "Remote (Germany)"
+    assert _ashby_one(location="Germany", workplaceType=None, isRemote=True) == "Remote (Germany)"
+    assert _ashby_one(location="Germany") == "Germany"
+    assert _ashby_one(location=None, workplaceType="Remote") == "Remote"
+
+
+def test_ashby_remote_posting_naming_a_tracked_city_is_left_as_it_was():
+    """A city match wins over remote, so the marker changes nothing there: the remote
+    posting that lists Paris first and Berlin second (HIR-268) still reads as Berlin."""
+    [job] = load("ashby_second_office.json")["jobs"]
+    assert job["workplaceType"] == "Remote"
+    [p] = ashby.parse({"jobs": [job]})
+    assert p.location_raw.startswith("Paris, France; Berlin, Germany") and "Remote" not in p.location_raw
+
+
+def test_lever_remote_marker_is_read():
+    """Lever has the same shape as Ashby: `workplaceType` beside the location."""
+    from app.geo import place_of
+    [job] = load("lever.json")
+    job = {**job, "categories": {"location": "Germany"}}
+    assert lever.parse([job])[0].location_raw == "Germany"
+    [p] = lever.parse([{**job, "workplaceType": "remote"}])
+    assert p.location_raw == "Remote (Germany)" and place_of(p.location_raw) == "Remote (EU)"
+    assert lever.parse([{**job, "workplaceType": "hybrid"}])[0].location_raw == "Germany"
+    [p] = lever.parse([{**job, "workplaceType": "remote", "categories": {"location": "Toronto"}}])
+    assert p.location_raw == "Remote (Toronto)" and place_of(p.location_raw) is None
+
+
+def test_remote_location_rules():
+    from app.geo import place_of, remote_location
+    # Already says remote, or names a tracked city: unchanged.
+    assert remote_location("Remote - US") == "Remote - US"
+    assert remote_location("Berlin; Paris") == "Berlin; Paris"
+    assert remote_location(None) == remote_location("  ") == "Remote"
+    # One segment whatever separators the names used, so the region rule sees all of it.
+    assert remote_location("US / Germany") == "Remote (US, Germany)"
+    assert place_of(remote_location("US / Germany")) == "Remote (EU)"
+    assert place_of(remote_location("EMEA")) == "Remote (EU)"
+    # Other EU countries without Germany or an EU-wide region: tied to those countries.
+    assert place_of(remote_location("France; Spain")) is None
+    assert place_of(remote_location("United Kingdom")) is None
+
+
 def test_ashby_parse_prefers_plain_description():
     [p] = ashby.parse(load("ashby.json"), company="Acme")
     assert p.source == "ashby" and p.location_raw == "San Francisco"

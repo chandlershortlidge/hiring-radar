@@ -2,8 +2,13 @@
 
 Public, no key. Ships `descriptionPlain` plus `lists` (bulleted sections with HTML content);
 we join both so requirement bullets are not lost. Ids are UUIDs.
+
+A posting carries `workplaceType` ("remote", "hybrid", "on-site", "unspecified") beside
+its location. A remote one is passed to `geo.remote_location`, so "Germany" on a remote
+posting reads as remote in Germany, not as no tracked city (HIR-325).
 """
 
+from app.geo import remote_location
 from app.html_text import html_to_text
 from app.sources import Posting, fetch_json
 
@@ -24,6 +29,13 @@ def _text(j: dict) -> str:
     return "\n".join(p for p in parts if p).strip()
 
 
+def _location(j: dict) -> str | None:
+    location = (j.get("categories") or {}).get("location")
+    if str(j.get("workplaceType") or "").strip().lower() == "remote":
+        return remote_location(location)
+    return location
+
+
 def parse(payload: list, company: str | None = None) -> list[Posting]:
     out = []
     for j in payload:
@@ -37,7 +49,7 @@ def parse(payload: list, company: str | None = None) -> list[Posting]:
             url=j.get("hostedUrl", ""),
             company=company,
             title=j["text"].strip(),
-            location_raw=(j.get("categories") or {}).get("location"),
+            location_raw=_location(j),
             description_text=text,
             posted_at=_ms_to_iso(created) if created else None,
         ))
