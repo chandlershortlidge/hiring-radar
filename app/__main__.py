@@ -33,6 +33,7 @@
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
                     sent back and fixed, what broke on the live site (read from the robot
                     visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
+                    Also files the ticket for company boards "Add a job" found missing (HIR-324)
   flags             why each job flagged "doesn't belong here" showed: every filter that was on
                     screen against what was stored and what the posting says, grouped by cause.
                     Makes no model call. --fixed ID [ID ...] closes flags whose cause is fixed,
