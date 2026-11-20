@@ -1,0 +1,19 @@
+{
+  "item": 163,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "323833b1662f752be79dc87fdb852738e4e844a66bfc1951bcb8a1740f5990e8",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)\"}, \"why\": \"Under the degree rule, the level recorded is the lowest named (Master, not PhD), and since the whole mention is under NICE TO HAVE it stays nice_to_have; the 'exceptional candidates from other backgrounds welcome' line widens the field rather than accepting experience in place of a degree, so or_equivalent stays false.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"
+  },
+  "why": "Under the degree rule, the level recorded is the lowest named (Master, not PhD), and since the whole mention is under NICE TO HAVE it stays nice_to_have; the 'exceptional candidates from other backgrounds welcome' line widens the field rather than accepting experience in place of a degree, so or_equivalent stays false.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 78,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "54ae8589acdf11686354435d03f361f8c96759bd700f564a44c4d5d00e8f65ae",
+  "raw": "{\"decision\": \"ok\", \"why\": \"PhD is the only degree level mentioned, listed as a required qualification with 'or equivalent demonstrated expertise' accepted in place of the degree, and the signal accurately quotes the phrase including the equivalent wording.\"}",
+  "decision": "ok",
+  "why": "PhD is the only degree level mentioned, listed as a required qualification with 'or equivalent demonstrated expertise' accepted in place of the degree, and the signal accurately quotes the phrase including the equivalent wording.",
+  "error": null
+}

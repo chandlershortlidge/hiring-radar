@@ -1,0 +1,15 @@
+{
+  "item": 127,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cfd238c2bcd44e9b37061cbc0a0c8e377bda06693c1289e4c5ee8e1f2eb3c70a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting lists \\\"At least a Bachelor's degree\\\" under \\\"What You Must Have\\\" with no equivalent-experience alternative, making `bachelor`, `required`, and `degree_or_equivalent: false` correct under the degree rule.\"}",
+  "decision": "ok",
+  "why": "The posting lists \"At least a Bachelor's degree\" under \"What You Must Have\" with no equivalent-experience alternative, making `bachelor`, `required`, and `degree_or_equivalent: false` correct under the degree rule.",
+  "error": null
+}

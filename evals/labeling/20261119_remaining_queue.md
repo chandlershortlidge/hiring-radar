@@ -5,21 +5,21 @@ Groups run hardest first. Within a group, items are sorted by field, then batch.
 
 | Batch | Labels | Settled by models | Left for you | of which spot-check |
 |---|---:|---:|---:|---:|
-| 20261119T103427Z_label | 140 | 102 | 38 | 15 |
-| 20261119T110104Z_label | 118 | 93 | 25 | 15 |
-| 20261119T112034Z_label | 147 | 115 | 32 | 15 |
-| 20261119T114422Z_label | 143 | 106 | 37 | 15 |
-| 20261119T135145Z_label | 151 | 114 | 37 | 15 |
-| 20261119T140709Z_label | 144 | 111 | 33 | 15 |
-| 20261119T141542Z_label | 149 | 111 | 38 | 15 |
-| 20261119T142629Z_label | 140 | 102 | 38 | 15 |
-| **all eight** | 1132 | 854 | 278 | 120 |
+| 20261119T103427Z_label | 141 | 113 | 28 | 15 |
+| 20261119T110104Z_label | 120 | 102 | 18 | 15 |
+| 20261119T112034Z_label | 150 | 122 | 28 | 15 |
+| 20261119T114422Z_label | 143 | 115 | 28 | 15 |
+| 20261119T135145Z_label | 153 | 126 | 27 | 15 |
+| 20261119T140709Z_label | 145 | 121 | 24 | 15 |
+| 20261119T141542Z_label | 149 | 120 | 29 | 15 |
+| 20261119T142629Z_label | 141 | 112 | 29 | 15 |
+| **all eight** | 1142 | 931 | 211 | 120 |
 
 | Group | Items |
 |---|---:|
 | 1. The two models split | 58 |
-| 2. No model could rule | 29 |
-| 3. Degree, under the lowest-level rule | 70 |
+| 2. No model could rule | 32 |
+| 3. Degree: the two models split | 0 |
 | 4. Agreed labels a third model read differently | 1 |
 | 5. Random spot-check | 120 |
 
@@ -433,7 +433,7 @@ A labeler disagreement where the proposer and the judge (two different companies
 - proposer: ok - Under rule 1, the required qualification bullet names monitoring of production ML systems ("production deployment and monitoring"), which is a reasonable mapping to observability, and rule 5 doesn't block it because the text names moni
 - judge: drop - Under Rule 5, the text only mentions ML model monitoring ('production deployment and monitoring'), which does not directly name the broader infrastructure skill 'observability'.
 
-## 2. No model could rule (29)
+## 2. No model could rule (32)
 
 A labeler disagreement the proposer answered unusably (no valid answer, or `ok` on a disagreement), so the judge never saw it.
 
@@ -582,310 +582,27 @@ A labeler disagreement the proposer answered unusably (no valid answer, or `ok` 
 - A: `agent-state-management` · nice_to_have · raw_text: "Guardrails, Memory"
 - B: `agent-state-management` · nice_to_have · raw_text: "Memory"
 
-## 3. Degree, under the lowest-level rule (70)
-
-These batches were labelled before the rule changed to *record the lowest degree level the posting names* (a 'Bachelor's, MS or PhD preferred' posting is `bachelor`). Neither model ruled on them. Answer by the new rule, even where A and B agree.
-
-### 20261119T103427Z_label item 27 - golden_100 `degree` (disagreement)
-> ...models for architecture exploration. What You Bring - A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred). - Strong foundational experience in RTL design with a...
-- A: value="phd" · requirement="required" · or_equivalent=false · signal="A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)."
-
-### 20261119T103427Z_label item 29 - golden_101 `degree` (disagreement)
-> ...and best practices. Qualifications: - Advanced degree (Ph.D. preferred) in Computer Science, or a related field. - Proven track record of building and innovations...
-- A: value="phd" · requirement="required" · or_equivalent=false · signal="Advanced degree (Ph.D. preferred) in Computer Science, or a related field"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Advanced degree (Ph.D. preferred) in Computer Science, or a related field."
-
-### 20261119T103427Z_label item 46 - golden_097 `degree` (uncertain)
-> ...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, or a related discipline and 6+ years relevant experience - Demonstrated...
-- A: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, or a related discipline"
-- B: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, or a related discipline"
-
-### 20261119T103427Z_label item 48 - golden_098 `degree` (uncertain)
-> ...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, mathematics, or a related discipline and 2+ years of relevant experience - Proficiency in...
-- A: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, mathematics, or a related discipline"
-- B: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, mathematics, or a related discipline"
-
-### 20261119T103427Z_label item 59 - golden_103 `degree` (uncertain)
-> ...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, or a related discipline and 0–2 years of relevant experience - Strong proficiency...
-- A: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, or a related discipline"
-- B: value="bachelor" · requirement="required" · or_equivalent=false · signal="A BS degree in computer science, machine learning, or a related discipline"
-
-### 20261119T103427Z_label item 65 - golden_104 `degree` (uncertain)
-> ...Mathematics, or a related field Preferred Skills - Master’s or PhD in Machine Learning, Computer Science, AI, or a related field - Experience...
-- A: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s or PhD in Machine Learning"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s or PhD in Machine Learning, Computer Science, AI, or a related field"
-
-### 20261119T103427Z_label item 76 - golden_094 `degree` (spot-check)
-> ...differ from the one in this posting. Who You Are - You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline, and 12+ years of relevant engineering experience. - You...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
-
-### 20261119T103427Z_label item 77 - golden_095 `degree` (spot-check)
-> ...differ from the one in this posting. Who you are - BS in Electrical or Computer Engineering (or equivalent experience) with 5+ years in Physical Design CAD methodology at...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="BS in Electrical or Computer Engineering (or equivalent experience)"
-
-### 20261119T103427Z_label item 119 - golden_102 `degree` (spot-check)
-> ...to have - Formal training in statistics (for example, MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework). - Familiarity with...
-- agreed label: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
-
-### 20261119T103427Z_label item 140 - golden_105 `degree` (spot-check)
-> Physical Design Methodology Engineer, AI HW IP
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T110104Z_label item 48 - golden_094 `degree` (spot-check)
-> ...stakeholders Professional Experience & Qualifications - Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered - 5+ years of professional experience in applied machine...
-- agreed label: value="master" · requirement="required" · or_equivalent=true · signal="Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered"
-
-### 20261119T110104Z_label item 58 - golden_095 `degree` (spot-check)
-> ...to the measurement pipeline REQUIRED QUALIFICATIONS - PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD, with substantial applied machine learning experience -...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD"
-
-### 20261119T110104Z_label item 63 - golden_096 `degree` (spot-check)
-> ...scientists. Professional Experience & Qualifications - B.S. or M.S. in Computer Science, Engineering, or a related field, with 10+ years of professional software development...
-- agreed label: value="master" · requirement="required" · or_equivalent=false · signal="B.S. or M.S. in Computer Science, Engineering, or a related field"
-
-### 20261119T110104Z_label item 78 - golden_097 `degree` (spot-check)
-> ...prototypes, and external publications. Qualifications - PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertis...
-- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalen...
-
-### 20261119T110104Z_label item 80 - golden_098 `degree` (spot-check)
-> ...action. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics,...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="Master’s, or PhD in a relevant field"
-
-### 20261119T110104Z_label item 103 - golden_101 `degree` (spot-check)
-> ...and action. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics,...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="Master’s, or PhD in a relevant field"
-
-### 20261119T110104Z_label item 123 - golden_102 `degree` (spot-check)
-> ...leadership. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline. - 5+ years of postdoctoral, industry, or a...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline"
-
-### 20261119T112034Z_label item 83 - golden_094 `degree` (spot-check)
-> Engineering Manager, AI Models Infrastructure
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T112034Z_label item 89 - golden_096 `degree` (spot-check)
-> Senior Machine Learning Engineer
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T112034Z_label item 134 - golden_105 `degree` (spot-check)
-> Staff Software Engineer (Agentic Search) - Runtime
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T112034Z_label item 151 - golden_108 `degree` (spot-check)
-> ...English with exceptional executive presence. - Degree: Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred. #LI-NS1 What Celonis can offer ...
-- agreed label: value="master" · requirement="nice_to_have" · or_equivalent=true · signal="Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred"
-
-### 20261119T114422Z_label item 37 - golden_096 `degree` (uncertain)
-> ...internship is open to candidates who are currently enrolled at a university and either hold EU citizenship or are studying in the...
-- A: value="bachelor" · requirement="required" · or_equivalent=false · signal="currently enrolled at a university"
-- B: value="bachelor" · requirement="required" · or_equivalent=false · signal="currently enrolled at a university"
-
-### 20261119T114422Z_label item 77 - golden_094 `degree` (spot-check)
-> ...in a downstream application. Minimum qualifications - A PhD or equivalent industry research experience in machine learning, computer science, statistics or a...
-- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="A PhD or equivalent industry research experience"
-
-### 20261119T114422Z_label item 80 - golden_095 `degree` (spot-check)
-> ...in a highly quantitative field, with a focus on AI (MSc or PhD) - At least 6 months of practical experience with LLMs,...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="(MSc or PhD)"
-
-### 20261119T114422Z_label item 85 - golden_097 `degree` (spot-check)
-> Developer Advocate, Toqan (Prosus AI Platform)
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T114422Z_label item 95 - golden_098 `degree` (spot-check)
-> Machine Learning Engineer - LLMs
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T114422Z_label item 102 - golden_099 `degree` (spot-check)
-> Data Scientist, Trust & Safety
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T114422Z_label item 110 - golden_100 `degree` (spot-check)
-> Backend Engineer, GenAI Platform
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T114422Z_label item 122 - golden_102 `degree` (spot-check)
-> Senior Machine Learning Engineer, Evals
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T114422Z_label item 125 - golden_103 `degree` (spot-check)
-> Senior Backend Engineer, AI Platform (Toqan)
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T135145Z_label item 16 - golden_095 `degree` (disagreement)
-> ...team While not required, these are a plus: - Advanced degree in Computer Science, Machine Learning, or related technical field - Experience building customized agent harnesses,...
-- A: value="master" · requirement="nice_to_have" · or_equivalent=false · signal="Advanced degree in Computer Science, Machine Learning, or related technical field"
-- B: value="bachelor" · requirement="nice_to_have" · or_equivalent=false · signal="Advanced degree in Computer Science, Machine Learning, or related technical field"
-
-### 20261119T135145Z_label item 38 - golden_094 `degree` (uncertain)
-> ...machine learning organization What we're looking for - PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS with 8+ years...
-- A: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field"
-- B: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in Computer Science, Statistics, Economics, Applied Mathematics, Industrial Engineering, Operational Research, or a related STEM field with 6+ years of relevant experience, or MS ...
-
-### 20261119T135145Z_label item 44 - golden_096 `degree` (uncertain)
-> ...shipping iteratively. Preferred/Bonus Qualifications: - MS/PhD in Computer Science, Software Engineering, or a related field. - Experience with inference servers and runtimes (e.g.,...
-- A: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="MS/PhD in Computer Science, Software Engineering, or a related field"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="MS/PhD in Computer Science, Software Engineering, or a related field."
-
-### 20261119T135145Z_label item 49 - golden_098 `degree` (uncertain)
-> ...You’ll Need: Minimum Qualifications: - Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of...
-- A: value="phd" · requirement="required" · or_equivalent=false · signal="Master’s with 3+ years of experience, or PhD, in robotics, control or a related field"
-- B: value="phd" · requirement="required" · or_equivalent=false · signal="Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered."
-
-### 20261119T135145Z_label item 51 - golden_099 `degree` (uncertain)
-> ...inference engine. REQUIRED QUALIFICATIONS - BS/MS/PhD in Computer Science, Software Engineering, or a related field. - Deep experience building compilers, optimizing...
-- A: value="phd" · requirement="required" · or_equivalent=false · signal="BS/MS/PhD in Computer Science, Software Engineering, or a related field."
-- B: value="phd" · requirement="required" · or_equivalent=false · signal="BS/MS/PhD in Computer Science, Software Engineering, or a related field."
-
 ### 20261119T135145Z_label item 56 - golden_100 `degree` (uncertain)
-> ...trust it. What You’ll Need: Minimum Qualifications: - PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and...
+> ...trust it. What You’ll Need: Minimum Qualifications: - PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+...
 - A: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience"
-- B: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachel...
-
-### 20261119T135145Z_label item 63 - golden_103 `degree` (uncertain)
-> ...deep learning and/or foundation models — whether through a PhD in ML or equivalent hands-on industry work. You're a curious, agile engineer who can generate ideas,...
-- A: value="phd" · requirement="required" · or_equivalent=true · signal="PhD in ML or equivalent hands-on industry work"
-- B: value="phd" · requirement="required" · or_equivalent=true · signal="a PhD in ML or equivalent hands-on industry work"
-
-### 20261119T135145Z_label item 71 - golden_104 `degree` (uncertain)
-> ...scientists, engineers, and product managers. Preferred - Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field. - Experience with LLMOps, including model evaluation,...
-- A: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."
-
-### 20261119T135145Z_label item 84 - golden_108 `degree` (uncertain)
-> ...excellent communications skills. It's A Bonus If You: - Have a Ph. D. in computer or computational science, atmospheric science or a related geophysical science, or...
-- A: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Have a Ph. D. in computer or computational science"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Have a Ph. D. in computer or computational science, atmospheric science or a related geophysical science, or applied mathematics/statistics"
-
-### 20261119T135145Z_label item 111 - golden_097 `degree` (spot-check)
-> ...our inference solutions. Required Qualifications: - PhD/MS in Computer Science, Computer Engineering, or a related field. - 3+ years of machine learning R&D and deployment...
-- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="PhD/MS in Computer Science, Computer Engineering, or a related field"
-
-### 20261119T135145Z_label item 130 - golden_102 `degree` (spot-check)
-> ...high-output processes What we're looking for - Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field - 6+ years of proven experience as a Data Scientist or...
-- agreed label: value="master" · requirement="required" · or_equivalent=false · signal="Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field"
-
-### 20261119T140709Z_label item 17 - golden_096 `degree` (disagreement)
-> ...Dataplex), and with data-product or data-mesh delivery. • Master’s or PhD in Computer Science, Machine Learning or Information Science; publications, patents or open-source contributions in...
-- A: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="Master’s or PhD in Computer Science, Machine Learning or Information Science"
-- B: value="phd" · requirement="nice_to_have" · or_equivalent=true · signal="Master’s or PhD in Computer Science, Machine Learning or Information Science"
-
-### 20261119T140709Z_label item 57 - golden_102 `degree` (uncertain)
-> ...learning data pipelines. Preferred qualifications: • Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience. • Experience designing ontologies, versioned tax...
-- A: value="master" · requirement="nice_to_have" · or_equivalent=true · signal="Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience"
-- B: value="master" · requirement="nice_to_have" · or_equivalent=true · signal="Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience."
-
-### 20261119T140709Z_label item 80 - golden_094 `degree` (spot-check)
-> Real-Time Voice AI Engineer — Equity & In-Office LA
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T140709Z_label item 81 - golden_095 `degree` (spot-check)
-> Founding AI Engineer
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T140709Z_label item 96 - golden_097 `degree` (spot-check)
-> Technical Intern — AI Engineering (In Person + Remote)
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T140709Z_label item 105 - golden_100 `degree` (spot-check)
-> Machine Learning Engineer, Distributed Data Systems
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T140709Z_label item 127 - golden_103 `degree` (spot-check)
-> ...and professional conduct expectations What You Must Have - At least a Bachelor's degree - At least 8 years of experience What Sets You Apart -...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="At least a Bachelor's degree"
-
-### 20261119T140709Z_label item 129 - golden_105 `degree` (spot-check)
-> ...capabilities. To Qualify for the Role, You Must Have • A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field and 3–5 years of relevant experience, including hands-on...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field"
-
-### 20261119T140709Z_label item 149 - golden_107 `degree` (spot-check)
-> Cortex AI Engineer — Scale AI on the Snowflake Data Cloud
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T141542Z_label item 85 - golden_094 `degree` (spot-check)
-> ...risks to clients and project leaders What You Must Have - At least a Bachelor's degree - At least 4 years of experience What Sets You Apart -...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="At least a Bachelor's degree"
-
-### 20261119T141542Z_label item 91 - golden_096 `degree` (spot-check)
-> Forward Deployed AI Engineer — Global Impact
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T141542Z_label item 92 - golden_097 `degree` (spot-check)
-> AI-Driven Full Stack Engineer (Python & ML Infra)
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T141542Z_label item 93 - golden_098 `degree` (spot-check)
-> ...and system performance Specific Knowledge and Skills Bachelor's Degree 2+ years of experience in software development Legal...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="Bachelor's Degree"
-
-### 20261119T141542Z_label item 105 - golden_100 `degree` (spot-check)
-> [Data Engineer] Senior / Staff MLOps Engineer (Bangkok Based, relocation provided)
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T141542Z_label item 111 - golden_101 `degree` (spot-check)
-> AI DevOps Engineer Azure and GenAI Required Education-Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience.Required Certification-Certifications: Microsoft Azure,...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience"
-
-### 20261119T141542Z_label item 134 - golden_104 `degree` (spot-check)
-> AI/ML Engineer (Deep Learning, PyTorch) at Chime Chicago
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T141542Z_label item 142 - golden_105 `degree` (spot-check)
-> ...and shipping ML systems, with focus on computer vision; BS/MS/PhD in CS, EE, or a related field, or equivalent experience. • Deep hands-on experience with object detection and...
-- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="BS/MS/PhD in CS, EE, or a related field, or equivalent experience"
-
-### 20261119T141542Z_label item 150 - golden_106 `degree` (spot-check)
-> Senior AI/ML Engineer — Hybrid, Impactful ML Solutions
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
+- B: value="phd" · requirement="required" · or_equivalent=false · signal="PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply."
+- proposer: no usable answer (its reply was not in the form asked for), so the judge never saw it
 
 ### 20261119T142629Z_label item 49 - golden_101 `degree` (uncertain)
 > ...& Scalable Systems TikTok USDS Joint Venture is seeking a PhD-level candidate to advance machine learning across recommendation, search,...
 - A: value="phd" · requirement="required" · or_equivalent=false · signal="PhD-level candidate"
 - B: value="phd" · requirement="required" · or_equivalent=false · signal="PhD-level candidate"
-
-### 20261119T142629Z_label item 63 - golden_106 `degree` (uncertain)
-> ...and ability to solve ambiguous, adversarial problems. Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus. Preferred Attributes Device...
-- A: value="bachelor" · requirement="required" · or_equivalent=true · signal="Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field"
-- B: value="bachelor" · requirement="required" · or_equivalent=true · signal="Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field; advanced degree a plus."
+- proposer: no usable answer (its reply was not in the form asked for), so the judge never saw it
 
 ### 20261119T142629Z_label item 69 - golden_108 `degree` (uncertain)
 > ...developing AI and ML algorithms or technologies, or a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 2 years of experience developing AI and ML...
 - A: value="master" · requirement="required" · or_equivalent=false · signal="a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields"
-- B: value="master" · requirement="required" · or_equivalent=false · signal="Bachelor's Degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 4 years of experience developing AI and ML algorithms or te...
+- B: value="master" · requirement="required" · or_equivalent=false · signal="Bachelor's Degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 4 years of experience developing AI and ML algorithms or technologies, or a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 2 years of experience developing AI and ML algorithms or technologies"
+- proposer: no usable answer (its reply was not in the form asked for), so the judge never saw it
 
-### 20261119T142629Z_label item 76 - golden_094 `degree` (spot-check)
-> Principal Software Engineer, Applied AI – Splunk Observability Cloud
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
+## 3. Degree: the two models split (0)
 
-### 20261119T142629Z_label item 81 - golden_095 `degree` (spot-check)
-> ...practices Qualifications Minimum Qualifications - BS in Computer Science or related fields - Proficiency in at least one programming language (e.g.,...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="BS in Computer Science or related fields"
-
-### 20261119T142629Z_label item 94 - golden_098 `degree` (spot-check)
-> ...Requirements 1 to 3 years of related experience Bachelor’s degree or equivalent combination of education and experience Benefits A comprehensive benefits package is offered in...
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="Bachelor’s degree or equivalent combination of education and experience"
-
-### 20261119T142629Z_label item 95 - golden_099 `degree` (spot-check)
-> ...new products and features. What You Need to Succeed • PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required with an expected graduation date of December 2026...
-- agreed label: value="phd" · requirement="required" · or_equivalent=true · signal="PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required"
-
-### 20261119T142629Z_label item 104 - golden_102 `degree` (spot-check)
-> AI & Data Engineer – Python / FastAPI
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T142629Z_label item 113 - golden_103 `degree` (spot-check)
-> AI Engineer Lead - Visa Independent Consultants Only
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T142629Z_label item 127 - golden_104 `degree` (spot-check)
-> Remote AI Engineer
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
-
-### 20261119T142629Z_label item 144 - golden_107 `degree` (spot-check)
-> Senior Staff AI Engineer — Multimodal for Smart Glasses
-- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
+These batches were labelled before the rule changed to *record the lowest degree level the posting names* (a 'Bachelor's, MS or PhD preferred' posting is `bachelor`). Every degree label was read again under that rule by the proposer and the judge; where they agreed it is settled. None are left here: the two models agreed on all 77 they both answered. The three where the proposer gave no usable answer are at the end of group 2; answer those by the new rule.
 
 ## 4. Agreed labels a third model read differently (1)
 
@@ -1379,4 +1096,3 @@ A seeded random sample of labels all three models agreed on. This is what measur
 ### 20261119T142629Z_label item 149 - golden_108 `cpp` (spot-check)
 > ...Search and VectorDBs, Guardrails, Memory) using Python, C++, C#, Java, CUDA, or Golang • Experience developing and...
 - agreed label: `cpp` · nice_to_have · raw_text: "C++"
-

@@ -1,0 +1,20 @@
+{
+  "item": 167,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.\"}",
+  "key_sha256": "17970d3d1dff775c6e5d8788acd19a0f8827b795a591f7a1b5eed7c7a545694b",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field.\"}, \"why\": \"The rule requires recording the lowest degree level named ('BS, MS or PhD' -> bachelor), marking a bare mention under Required Qualifications as 'required', and setting degree_or_equivalent to false because 'or a related field' only widens the field.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS, MS or PhD in Computer Engineering, Electrical Engineering, or a related field."
+  },
+  "why": "The rule requires recording the lowest degree level named ('BS, MS or PhD' -> bachelor), marking a bare mention under Required Qualifications as 'required', and setting degree_or_equivalent to false because 'or a related field' only widens the field.",
+  "error": null
+}

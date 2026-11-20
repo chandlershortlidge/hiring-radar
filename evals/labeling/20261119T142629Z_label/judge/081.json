@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "42dde18305d0ff5a1666c002b34583978bd817d5285169850377c574be57b51e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting lists 'BS in Computer Science or related fields' under Minimum Qualifications, which maps to a required bachelor's degree with degree_or_equivalent set to false because 'or related fields' only widens the field of study.\"}",
+  "decision": "ok",
+  "why": "The posting lists 'BS in Computer Science or related fields' under Minimum Qualifications, which maps to a required bachelor's degree with degree_or_equivalent set to false because 'or related fields' only widens the field of study.",
+  "error": null
+}

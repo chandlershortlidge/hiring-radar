@@ -1,0 +1,19 @@
+{
+  "item": 128,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "71d3597d97df444375328df3860bebe4975c914f4e8766e0a3d1055ffc382ad1",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"M.S. degree with 6+ years of industry experience\"}, \"why\": \"Under the degree rule the label is the lowest level named, and the posting's alternative path still requires an M.S. (master) with 6+ years of experience, so the agreed 'phd' label records the higher level; the experience path substitutes for the PhD, not for the degree, so or_equivalent stays false.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "M.S. degree with 6+ years of industry experience"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and the posting's alternative path still requires an M.S. (master) with 6+ years of experience, so the agreed 'phd' label records the higher level; the experience path substitutes for the PhD, not for the degree, so or_equivalent stays false.",
+  "error": null
+}

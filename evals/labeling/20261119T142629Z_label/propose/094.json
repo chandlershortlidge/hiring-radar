@@ -1,0 +1,14 @@
+{
+  "item": 94,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "529b37b30fab18bcea65f16b2e3c0b8fe656f3ee5eafd3c9791d1a13e8b6c057",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only one degree level, a Bachelor's, so `degree: bachelor` is the lowest and only level under the degree rule; it is a bare requirements-list mention, so `required` is correct, and the \\\"or equivalent combination of education and experience\\\" wording sets `degree_or_equivalent` to true and matches the quoted signal.\"}",
+  "decision": "ok",
+  "why": "The posting names only one degree level, a Bachelor's, so `degree: bachelor` is the lowest and only level under the degree rule; it is a bare requirements-list mention, so `required` is correct, and the \"or equivalent combination of education and experience\" wording sets `degree_or_equivalent` to true and matches the quoted signal.",
+  "error": null
+}

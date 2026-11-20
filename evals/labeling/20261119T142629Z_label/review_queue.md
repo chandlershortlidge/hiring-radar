@@ -813,7 +813,9 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under the degree rule, the lowest level named is bachelor, and the bare requirements-list mention "Bachelor's or equivalent experience" is required with or_equivalent true; "advanced degree a plus" is a higher level the posting welcomes, so it is not recorded.
+
+DECISION: ok
 
 ## 64. golden_106 - skill `ai-deployment` (uncertain)
 
@@ -975,7 +977,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree level or degree phrase anywhere; the only mention is the generic word "education" in the pay-determination paragraph, so under the rule `degree` is null (`null` when no degree is mentioned).
+
+DECISION: ok
 
 ## 77. golden_094 - attribute `german` (spot-check)
 
@@ -1025,7 +1029,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is 'BS in Computer Science or related fields' under Minimum Qualifications, so the lowest-level rule gives bachelor; a bare mention in a requirements list is required, 'or related fields' widens the field and not the requirement, so or_equivalent is false and the agreed label stands.
+
+DECISION: ok
 
 ## 82. golden_095 - attribute `german` (spot-check)
 
@@ -1155,7 +1161,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names only one degree level, a Bachelor's, so `degree: bachelor` is the lowest and only level under the degree rule; it is a bare requirements-list mention, so `required` is correct, and the "or equivalent combination of education and experience" wording sets `degree_or_equivalent` to true and matches the quoted signal.
+
+DECISION: ok
 
 ## 95. golden_099 - attribute `degree` (spot-check)
 
@@ -1165,7 +1173,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required"} - The degree rule records the lowest level named, and this posting names "PhD or MS", so the level is master rather than the older highest-level phd; the bare requirements-list mention stays required and "or equivalent experience" sets degree_or_equivalent to true.
+
+DECISION: {"degree": "master", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required"}
 
 ## 96. golden_099 - attribute `german` (spot-check)
 
@@ -1255,7 +1265,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree anywhere (no bachelor, master, PhD, or 'degree in' wording), so the rule's 'none (null) when no degree is mentioned' applies and the agreed null label is correct.
+
+DECISION: ok
 
 ## 105. golden_102 - attribute `german` (spot-check)
 
@@ -1345,7 +1357,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere (no bachelor, master, PhD, or 'degree' wording), so the degree rule's 'none (`null`) when no degree is mentioned' applies and the agreed null is correct.
+
+DECISION: ok
 
 ## 114. golden_103 - attribute `german` (spot-check)
 
@@ -1485,7 +1499,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree or level (no degree, bachelor's, master's, or PhD requirement); the only university mention is that the team includes researchers from Harvard/MIT, so the degree label should stay null under the 'none (null) when no degree is mentioned' rule.
+
+DECISION: ok
 
 ## 128. golden_104 - attribute `german` (spot-check)
 
@@ -1655,7 +1671,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere (only 'extensive ML leadership' and 'a track record'), so the rule's 'none (null) when no degree is mentioned' applies and the agreed null is correct.
+
+DECISION: ok
 
 ## 145. golden_107 - attribute `seniority` (spot-check)
 
@@ -1766,3 +1784,15 @@ DECISION: ok
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ok
+
+## 156. golden_097 - attribute `degree` (rule-change)
+
+> ...vLLM). Qualifications Minimum Qualifications • MS or PhD in Computer Science, AI, Mathematics, or a related field. • 5+ years of professional experience in one or more of...
+
+- agreed label: value="phd" · requirement="required" · or_equivalent=false · signal="MS or PhD in Computer Science, AI, Mathematics, or a related field"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"} - Under the degree rule, `degree` is the lowest level named, and "MS or PhD" → `master`, so the agreed `phd` came from the older highest-level rule and should be `master`.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "required", "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"}

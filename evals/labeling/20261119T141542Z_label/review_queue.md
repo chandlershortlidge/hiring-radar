@@ -1094,7 +1094,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is "At least a Bachelor's degree" in the requirements list, so under the lowest-level rule the label `bachelor`, `required`, `or_equivalent=false`, with that exact signal, is correct as it stands.
+
+DECISION: ok
 
 ## 86. golden_094 - attribute `german` (spot-check)
 
@@ -1154,7 +1156,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting mentions no degree or qualification level anywhere, so under the rule ('one label per posting, or none (`null`) when no degree is mentioned') the agreed null value is correct.
+
+DECISION: ok
 
 ## 92. golden_097 - attribute `degree` (spot-check)
 
@@ -1164,7 +1168,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere, and the degree rule says the label is none (`null`) when no degree is mentioned, which matches the agreed null label.
+
+DECISION: ok
 
 ## 93. golden_098 - attribute `degree` (spot-check)
 
@@ -1174,7 +1180,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The only degree level named is "Bachelor's Degree", listed bare under Specific Knowledge and Skills and Basic Requirements, so under the degree rule it is `bachelor`, `required`, with no equivalent-experience wording, and the signal quotes the posting exactly.
+
+DECISION: ok
 
 ## 94. golden_098 - skill `cloud` (spot-check)
 
@@ -1294,7 +1302,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or degree level anywhere, and the rule says `degree` is `null` when no degree is mentioned, so the agreed null is correct.
+
+DECISION: ok
 
 ## 106. golden_100 - skill `java` (spot-check)
 
@@ -1354,7 +1364,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names only a bachelor's level ('Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline'), so the lowest and only named level is bachelor, which is required under the bare-mention-in-requirements rule, and 'or equivalent practical experience' correctly sets degree_or_equivalent to true.
+
+DECISION: ok
 
 ## 112. golden_101 - attribute `german` (spot-check)
 
@@ -1584,7 +1596,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The degree rule sets the label to null when no degree is mentioned, and this posting names no degree or level anywhere, so the agreed null stands.
+
+DECISION: ok
 
 ## 135. golden_104 - skill `aws` (spot-check)
 
@@ -1664,7 +1678,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": true, "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience"} - Under the degree rule the label is the lowest level named, and this bare mention in the requirements list names BS/MS/PhD, so the level is bachelor, not the highest level phd recorded under the old rule; the "or equivalent experience" wording keeps degree_or_equivalent true and the signal is quoted verbatim from the posting.
+
+DECISION: {"degree": "bachelor", "degree_or_equivalent": true, "degree_requirement": "required", "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience"}
 
 ## 143. golden_105 - attribute `german` (spot-check)
 
@@ -1744,7 +1760,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The degree rule sets the label to `null` when no degree is mentioned, and this posting names no degree or qualification level, so the agreed null stands.
+
+DECISION: ok
 
 ## 151. golden_106 - attribute `german` (spot-check)
 

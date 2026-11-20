@@ -1,0 +1,20 @@
+{
+  "item": 49,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Strong candidates with a bachelor’s and 3+ years of industry experience are also considered\"}",
+  "key_sha256": "990fa27ab116e7211898549ec6956f1bf7a634db6a1b0c4d78cc46cd25585799",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.\"}, \"why\": \"The degree rule states that `degree` is the lowest level named—the least a candidate must hold to get in—which here is `bachelor`, since candidates with a bachelor's degree are considered under Minimum Qualifications.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered."
+  },
+  "why": "The degree rule states that `degree` is the lowest level named—the least a candidate must hold to get in—which here is `bachelor`, since candidates with a bachelor's degree are considered under Minimum Qualifications.",
+  "error": null
+}

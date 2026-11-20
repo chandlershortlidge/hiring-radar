@@ -2955,5 +2955,26 @@
     "excerpt": "...latest versions) for frontend application development • Java / Spring Boot for middleware and API development • Microsoft Azure (App...",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "rule-change",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"
+    },
+    "excerpt": "...solutions for autonomous driving. What We Need To See • MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience. • 8+ years of relevant proven industry experience...",
+    "problems": [],
+    "decision": "?"
   }
 ]

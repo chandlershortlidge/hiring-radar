@@ -1,0 +1,15 @@
+{
+  "item": 151,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6ab35072ad5a19a9e58a2890cd9b5851d04599b6101c08bd8c9e9f348a68e2c8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only a 'Masters Degree', marks it as 'preferred' (yielding `nice_to_have`), and explicitly allows 'or equivalent work experience' (`degree_or_equivalent: true`), all matching the agreed label.\"}",
+  "decision": "ok",
+  "why": "The posting names only a 'Masters Degree', marks it as 'preferred' (yielding `nice_to_have`), and explicitly allows 'or equivalent work experience' (`degree_or_equivalent: true`), all matching the agreed label.",
+  "error": null
+}

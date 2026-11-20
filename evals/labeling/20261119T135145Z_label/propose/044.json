@@ -1,0 +1,19 @@
+{
+  "item": 44,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f07821a7148a6dccdc77c63e3ca3d2c03fe66d8db96807e095394d72edecc684",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Minimum BS in Computer Science, Software Engineering, or a related field\"}, \"why\": \"Under the rule, `degree` is the lowest level named, so the required 'Minimum BS' (a bare requirements-list mention, hence `required`) governs and the optional 'MS/PhD' preference is not recorded, which makes the agreed phd/nice_to_have label wrong.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Minimum BS in Computer Science, Software Engineering, or a related field"
+  },
+  "why": "Under the rule, `degree` is the lowest level named, so the required 'Minimum BS' (a bare requirements-list mention, hence `required`) governs and the optional 'MS/PhD' preference is not recorded, which makes the agreed phd/nice_to_have label wrong.",
+  "error": null
+}

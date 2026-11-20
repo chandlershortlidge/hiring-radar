@@ -1,0 +1,20 @@
+{
+  "item": 84,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"A B.Sc. in computer or computational science\"}",
+  "key_sha256": "689856bc224afb2ca079258056e4a5081ba0a30b5c2891f9cd665c7502f983c1",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"A B.Sc. in computer or computational science\"}, \"why\": \"The rule requires recording the lowest degree level named—here, the required B.Sc. under 'What You’ll Need'—while a welcomed higher level like the optional Ph.D. is not recorded.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A B.Sc. in computer or computational science"
+  },
+  "why": "The rule requires recording the lowest degree level named—here, the required B.Sc. under 'What You’ll Need'—while a welcomed higher level like the optional Ph.D. is not recorded.",
+  "error": null
+}

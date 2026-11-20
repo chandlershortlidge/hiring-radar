@@ -1,0 +1,19 @@
+{
+  "item": 111,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "85ef346ce842d7abbb18965f2d9209d3314fcc85981ef0700242d9c08a0689c4",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"PhD/MS in Computer Science, Computer Engineering, or a related field\"}, \"why\": \"Under the rule's lowest-level test, the posting names both PhD and MS, and MS is the lower level, so the degree is master, not the phd recorded under the older highest-level rule; the mention is a bare entry in Required Qualifications, so it stays required with no equivalent-experience clause.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD/MS in Computer Science, Computer Engineering, or a related field"
+  },
+  "why": "Under the rule's lowest-level test, the posting names both PhD and MS, and MS is the lower level, so the degree is master, not the phd recorded under the older highest-level rule; the mention is a bare entry in Required Qualifications, so it stays required with no equivalent-experience clause.",
+  "error": null
+}

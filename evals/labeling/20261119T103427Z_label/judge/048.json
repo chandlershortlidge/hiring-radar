@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "44431154c9851841fad9328639cb24716696baa98e70050ebb4384b3e10a8aa6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting requires a BS degree (the lowest level named) with no equivalent experience alternative, while the optional advanced degree is a higher welcomed level that is not recorded under the single-label rule.\"}",
+  "decision": "ok",
+  "why": "The posting requires a BS degree (the lowest level named) with no equivalent experience alternative, while the optional advanced degree is a higher welcomed level that is not recorded under the single-label rule.",
+  "error": null
+}

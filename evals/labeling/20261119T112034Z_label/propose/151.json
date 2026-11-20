@@ -1,0 +1,14 @@
+{
+  "item": 151,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7cb2a75dea378bc131674c0b73d84f92699b29d59015325145b27aae9bc403e2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names only one degree level (Masters), so the lowest-named-level rule still yields `master`; the trailing \\\"preferred\\\" marks the whole mention optional (nice_to_have), and \\\"or equivalent work experience\\\" sets degree_or_equivalent to true, matching the agreed label and quoted signal.\"}",
+  "decision": "ok",
+  "why": "The posting names only one degree level (Masters), so the lowest-named-level rule still yields `master`; the trailing \"preferred\" marks the whole mention optional (nice_to_have), and \"or equivalent work experience\" sets degree_or_equivalent to true, matching the agreed label and quoted signal.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 85,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5ca4175dfd1d53e3599c757f77381912c9af4416921d59136f0d2495722b73fb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree level named is \\\"At least a Bachelor's degree\\\" in the requirements list, so under the lowest-level rule the label `bachelor`, `required`, `or_equivalent=false`, with that exact signal, is correct as it stands.\"}",
+  "decision": "ok",
+  "why": "The only degree level named is \"At least a Bachelor's degree\" in the requirements list, so under the lowest-level rule the label `bachelor`, `required`, `or_equivalent=false`, with that exact signal, is correct as it stands.",
+  "error": null
+}

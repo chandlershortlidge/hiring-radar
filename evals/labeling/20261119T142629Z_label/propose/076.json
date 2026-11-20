@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6950cdd055879968302dac577885f294ce0d8a2c75e01c911614d6c203c91bd2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting names no degree level or degree phrase anywhere; the only mention is the generic word \\\"education\\\" in the pay-determination paragraph, so under the rule `degree` is null (`null` when no degree is mentioned).\"}",
+  "decision": "ok",
+  "why": "The posting names no degree level or degree phrase anywhere; the only mention is the generic word \"education\" in the pay-determination paragraph, so under the rule `degree` is null (`null` when no degree is mentioned).",
+  "error": null
+}

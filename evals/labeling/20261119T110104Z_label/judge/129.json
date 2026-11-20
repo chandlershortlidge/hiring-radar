@@ -1,0 +1,20 @@
+{
+  "item": 129,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"master\", \"degree_or_equivalent\": true, \"degree_requirement\": \"required\", \"degree_signal\": \"PhD, MS, or equivalent experience\"}",
+  "key_sha256": "609d5882618cdb2b51aea66c453feb9ec820f33d6aa028e7f6f56f59d25e385f",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": true, \"degree_signal\": \"PhD, MS, or equivalent experience\"}, \"why\": \"The rule states that `degree` is the lowest level named ('MS or PhD' -> `master`), and the posting lists 'PhD, MS, or equivalent experience' as a requirement.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD, MS, or equivalent experience"
+  },
+  "why": "The rule states that `degree` is the lowest level named ('MS or PhD' -> `master`), and the posting lists 'PhD, MS, or equivalent experience' as a requirement.",
+  "error": null
+}

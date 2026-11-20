@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b2d9a65afed15012a550af38e55b855946826bb689b69bdc3e0239b260051ee4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The eligibility line 'currently enrolled at a university' with no level named is the rule's 'currently studying' case, which maps to bachelor; it is a hard requirement, not optional, and no other degree level is named, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "The eligibility line 'currently enrolled at a university' with no level named is the rule's 'currently studying' case, which maps to bachelor; it is a hard requirement, not optional, and no other degree level is named, so the agreed label stands.",
+  "error": null
+}

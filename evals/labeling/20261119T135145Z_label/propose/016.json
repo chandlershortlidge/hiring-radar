@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "276184dda79c05817ddcabe1e9eef2e139ec6f2250b828b8c70dfd95615721d1",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under the degree rule, `degree` is the lowest level the posting names, and the only level named is \\\"Advanced degree\\\" (a master's or higher), so `master` is right while B's `bachelor` has no support in the text; the nice_to_have requirement and or_equivalent=false are correct under the \\\"While not required… a plus\\\" framing.\"}",
+  "decision": "A",
+  "why": "Under the degree rule, `degree` is the lowest level the posting names, and the only level named is \"Advanced degree\" (a master's or higher), so `master` is right while B's `bachelor` has no support in the text; the nice_to_have requirement and or_equivalent=false are correct under the \"While not required… a plus\" framing.",
+  "error": null
+}

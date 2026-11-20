@@ -1,0 +1,20 @@
+{
+  "item": 130,
+  "golden_id": "golden_102",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"degree\": \"bachelor\", \"degree_or_equivalent\": false, \"degree_requirement\": \"required\", \"degree_signal\": \"Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field\"}",
+  "key_sha256": "843e4aca1d2f3684dd9ced483728c36313c8b8be71cda7f20bacdd776cdc2abe",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field\"}, \"why\": \"The degree rule states that `degree` is the lowest level named, so \\\"Bachelor’s or Master’s\\\" must be labeled as `bachelor` rather than `master`.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field"
+  },
+  "why": "The degree rule states that `degree` is the lowest level named, so \"Bachelor’s or Master’s\" must be labeled as `bachelor` rather than `master`.",
+  "error": null
+}

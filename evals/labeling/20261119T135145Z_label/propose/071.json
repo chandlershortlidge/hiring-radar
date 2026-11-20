@@ -1,0 +1,19 @@
+{
+  "item": 71,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "64c3567b724a208989e0ce99598557a3930d79ca3225ab917d191af486b3c7ef",
+  "raw": "{\"decision\": {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.\"}, \"why\": \"Under the degree rule the label is the lowest level named, so the required bachelor's in 'What You Bring' applies, and the optional Master's/PhD under 'Preferred' is not recorded, as the agreed phd label reflects the older highest-level rule.\"}",
+  "decision": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s degree in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field."
+  },
+  "why": "Under the degree rule the label is the lowest level named, so the required bachelor's in 'What You Bring' applies, and the optional Master's/PhD under 'Preferred' is not recorded, as the agreed phd label reflects the older highest-level rule.",
+  "error": null
+}

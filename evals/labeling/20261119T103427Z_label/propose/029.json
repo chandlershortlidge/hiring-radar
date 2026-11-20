@@ -1,0 +1,19 @@
+{
+  "item": 29,
+  "golden_id": "golden_101",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2ce5bed7c191cd3599c81bbc60945ecc6a20d4e5eab2ec2a415e50ab81c6d8ee",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field\"}, \"why\": \"Under the degree rule the label is the lowest level named, and the posting requires an advanced degree (master-level) while only welcoming a Ph.D., which per the 2026-11-19 decision is not recorded, so neither labeler's phd is correct.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field"
+  },
+  "why": "Under the degree rule the label is the lowest level named, and the posting requires an advanced degree (master-level) while only welcoming a Ph.D., which per the 2026-11-19 decision is not recorded, so neither labeler's phd is correct.",
+  "error": null
+}

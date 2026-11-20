@@ -1,0 +1,19 @@
+{
+  "item": 156,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7b7f4e26dfbfdf976c710b58816b2b7bdc82c897e801cd715fc9e4abb7d7b572",
+  "raw": "{\"decision\": {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"MS or PhD in Computer Science, AI, Mathematics, or a related field\"}, \"why\": \"Under the degree rule, `degree` is the lowest level named, and \\\"MS or PhD\\\" → `master`, so the agreed `phd` came from the older highest-level rule and should be `master`.\"}",
+  "decision": {
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field"
+  },
+  "why": "Under the degree rule, `degree` is the lowest level named, and \"MS or PhD\" → `master`, so the agreed `phd` came from the older highest-level rule and should be `master`.",
+  "error": null
+}

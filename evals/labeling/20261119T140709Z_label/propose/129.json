@@ -1,0 +1,14 @@
+{
+  "item": 129,
+  "golden_id": "golden_105",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a8b237ec2982181e9a43668e92af84696442ea727c27c8b35e42ac27a9268567",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The only degree named is \\\"A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field\\\" in a must-have list, so the level is bachelor and requirement is required; \\\"or a related field\\\" widens the field, not the requirement, so or_equivalent is false.\"}",
+  "decision": "ok",
+  "why": "The only degree named is \"A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field\" in a must-have list, so the level is bachelor and requirement is required; \"or a related field\" widens the field, not the requirement, so or_equivalent is false.",
+  "error": null
+}

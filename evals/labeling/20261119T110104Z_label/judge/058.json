@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_095",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "spot-check",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4cf6d3c3b5d7d700e8ddd486180b8d5a763e69bf7847f306327776c8ec996cf1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting requires a 'PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD' with no equivalent experience accepted, making `phd`, `required`, and `degree_or_equivalent: false` correct under the degree rule.\"}",
+  "decision": "ok",
+  "why": "The posting requires a 'PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD' with no equivalent experience accepted, making `phd`, `required`, and `degree_or_equivalent: false` correct under the degree rule.",
+  "error": null
+}

@@ -1070,7 +1070,9 @@ DECISION: A
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting never names a degree, university, or level (no bachelor, master, PhD, or 'degree in' wording), so under the degree rule's 'none (null) when no degree is mentioned' the agreed null value is correct.
+
+DECISION: ok
 
 ## 84. golden_095 - attribute `german` (spot-check)
 
@@ -1130,7 +1132,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree or level anywhere (no bachelor, master, PhD, or 'degree' wording), and the degree rule sets the label to `null` when no degree is mentioned, so the agreed null is correct.
+
+DECISION: ok
 
 ## 90. golden_096 - skill `aws` (spot-check)
 
@@ -1580,7 +1584,9 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names no degree anywhere (the only education-adjacent mentions are "SHAD or similar advanced technical programmes" and competitive programming/CTF, which are not degrees), so the degree rule's "none (null) when no degree is mentioned" applies and the agreed null is correct.
+
+DECISION: ok
 
 ## 135. golden_105 - attribute `seniority` (spot-check)
 
@@ -1750,7 +1756,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+PROPOSED: ok - The posting names only one degree level (Masters), so the lowest-named-level rule still yields `master`; the trailing "preferred" marks the whole mention optional (nice_to_have), and "or equivalent work experience" sets degree_or_equivalent to true, matching the agreed label and quoted signal.
+
+DECISION: ok
 
 ## 152. golden_108 - attribute `german` (spot-check)
 
@@ -1861,3 +1869,39 @@ DECISION: ok
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ok
+
+## 163. golden_099 - attribute `degree` (rule-change)
+
+> ...NICE TO HAVE - Ex-founder or builder - PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome....
+
+- agreed label: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "nice_to_have", "degree_or_equivalent": false, "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"} - Under the degree rule, the level recorded is the lowest named (Master, not PhD), and since the whole mention is under NICE TO HAVE it stays nice_to_have; the 'exceptional candidates from other backgrounds welcome' line widens the field rather than accepting experience in place of a degree, so or_equivalent stays false.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "nice_to_have", "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)"}
+
+## 164. golden_101 - attribute `degree` (rule-change)
+
+> ...or academia. NICE TO HAVE - Ex-founder or builder - PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome....
+
+- agreed label: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="PhD / Master in a relevant field (Robotics, Machine Learning)"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "nice_to_have", "degree_or_equivalent": false, "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)"} - Under the rule, `degree` is the lowest level named, and the posting names both PhD and Master in the optional NICE TO HAVE list, so the value is `master` rather than the older highest-level `phd`.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "nice_to_have", "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)"}
+
+## 165. golden_106 - attribute `degree` (rule-change)
+
+> ...to AI technologies including Generative AI or LLMs. - MSc or PhD in a numerate discipline. - Financial services or banking experience. Why Join...
+
+- agreed label: value="phd" · requirement="nice_to_have" · or_equivalent=false · signal="MSc or PhD in a numerate discipline"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: {"degree": "master", "degree_requirement": "nice_to_have", "degree_or_equivalent": false, "degree_signal": "MSc or PhD in a numerate discipline"} - Under the degree rule the level is the lowest named, so 'MSc or PhD' gives master rather than the older highest-level phd, and the whole mention sits under 'Bonus Points For', so it is nice_to_have.
+
+DECISION: {"degree": "master", "degree_or_equivalent": false, "degree_requirement": "nice_to_have", "degree_signal": "MSc or PhD in a numerate discipline"}
