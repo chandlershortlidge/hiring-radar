@@ -55,3 +55,21 @@ describe("the statistics line above the chart", () => {
       expect(source).not.toContain(words);
     });
 });
+
+// HIR-412: on a city or compare page the bar with the job-family and city pickers said
+// "1289 open jobs · updated 18 h ago" on its right edge. That number was every open job on
+// the site, while the jobs card below says "78 open jobs · Berlin" for the search the
+// visitor is looking at: two "open jobs" numbers that disagree. The bar now says only how
+// fresh the data is. Like the block above, that text only renders once /api/stats has
+// answered, so this holds the line on the source.
+describe("the right edge of the pickers' bar", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  it("no longer counts open jobs: the jobs card is the only place that does", () => {
+    expect(source).not.toContain("open jobs");
+  });
+
+  it("still says how fresh the data is", () => {
+    expect(source).toContain(">updated {timeAgo(stats.last_updated)}</span>");
+  });
+});
