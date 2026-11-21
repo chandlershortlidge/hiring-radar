@@ -22,67 +22,67 @@
   "expected": [
     {
       "skill_id": "airflow",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Airflow"
     },
     {
       "skill_id": "apache-spark",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Spark/PySpark"
     },
     {
       "skill_id": "apis",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "LLM APIs"
     },
     {
       "skill_id": "aws",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "AWS/Azure/GCP"
     },
     {
       "skill_id": "azure",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "AWS/Azure/GCP"
     },
     {
       "skill_id": "ci-cd",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "CI/CD"
     },
     {
       "skill_id": "docker",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Docker"
     },
     {
       "skill_id": "embeddings",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "embeddings"
     },
     {
       "skill_id": "fastapi",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Tech stack includes: FastAPI"
     },
     {
       "skill_id": "gcp",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "AWS/Azure/GCP"
     },
     {
       "skill_id": "git",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Git"
     },
     {
       "skill_id": "kubernetes",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Kubernetes"
     },
     {
       "skill_id": "llms",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "LLM APIs"
     },
     {
@@ -92,17 +92,17 @@
     },
     {
       "skill_id": "nosql",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "SQL/NoSQL"
     },
     {
       "skill_id": "pyspark",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Spark/PySpark"
     },
     {
       "skill_id": "python",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Tech stack includes: Python"
     },
     {
@@ -112,7 +112,7 @@
     },
     {
       "skill_id": "sql",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "SQL/NoSQL"
     }
   ]

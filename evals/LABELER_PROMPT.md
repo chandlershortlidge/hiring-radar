@@ -40,8 +40,10 @@ Work in this order:
    tech-stack sections; examples in "e.g." / "such as" / parentheses count). Skip skills that
    appear only in responsibilities or the company description.
 3. Map each to a taxonomy `id`. If nothing fits, put it in `unmapped`; never invent an id.
-4. Set `requirement` with the guide's three precedence rules; collapse duplicates (any
-   `required` wins).
+4. Set `requirement` with the guide's precedence rules; collapse duplicates (any
+   `required` wins). A tool named only in the company's own tech stack or in its opening
+   description of what it runs is `nice_to_have` unless the stack section itself says
+   "must" / "you'll need" (guide rule 4).
 5. Copy `raw_text` as the shortest verbatim phrase that supports the skill. Check it appears
    in the posting character for character (whitespace aside).
 6. Label seniority, German and degree per their sections. Every `stated` label and every

@@ -51,82 +51,82 @@
     },
     {
       "skill_id": "aws",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Moving to AWS"
     },
     {
       "skill_id": "aws-s3",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "AWS S3"
     },
     {
       "skill_id": "azure",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Azure"
     },
     {
       "skill_id": "backend-development",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Backend"
     },
     {
       "skill_id": "evaluation",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Eval."
     },
     {
       "skill_id": "fastify",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Fastify"
     },
     {
       "skill_id": "gemini",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Gemini"
     },
     {
       "skill_id": "langfuse",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Langfuse"
     },
     {
       "skill_id": "observability",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Obsv."
     },
     {
       "skill_id": "openai-api",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "OpenAI"
     },
     {
       "skill_id": "postgresql",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "postgress"
     },
     {
       "skill_id": "python",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Python"
     },
     {
       "skill_id": "serverless",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Cloud Functions"
     },
     {
       "skill_id": "typescript",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Typescript"
     },
     {
       "skill_id": "vector-databases",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Vector DB"
     },
     {
       "skill_id": "weaviate",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Weaviate"
     }
   ],

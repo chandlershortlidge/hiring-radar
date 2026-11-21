@@ -336,7 +336,45 @@ def test_guide_lists_the_appetite_rule_in_the_precedence_list():
     section = guide.split("## requirement:")[1].split("\n## ")[0]
     assert "Four rules, in order of precedence" in section
     assert "3. **Wanting a skill is not having it.**" in section
-    assert "4. **An unmarked item in a tech-stack list is `required`.**" in section
+    assert "4. **A tool named only in the company's own tech stack is `nice_to_have`.**" in section
+
+
+# --- the stack-section rule (HIR-389) --------------------------------------------
+
+STACK_JD = """Requirements:
+- Strong Python
+- Experience with LangChain
+Our tech stack: Python, Kubernetes, LLMs"""
+
+
+def test_stack_rule_is_in_the_prompt_and_the_old_required_rule_is_gone():
+    """The prompt and the guide must give stack-only tools the same label, or the answer
+    keys and the extractor are judged by two rules (HIR-389)."""
+    flat = " ".join(ex.PRINCIPLES.split())
+    assert 'An unmarked entry in a tech-stack list is "required"' not in flat
+    assert 'company\'s own tools or stack' in flat
+    block = flat.split("company's own tools or stack")[1]
+    assert '"nice_to_have"' in block.split(".")[0] + block.split(".")[1]
+    assert "that ask decides its label" in flat
+    guide = " ".join((ROOT / "evals" / "LABELING.md").read_text().split())
+    assert "unmarked item in a tech-stack list is `required`" not in guide
+
+
+def test_stack_only_tools_are_stored_nice_to_have_and_a_tool_also_required_stays_required(tax):
+    """A posting with a stack section: what the model reads as stack-only stays
+    nice-to-have, and a tool both asked for and in the stack keeps its required label even
+    when the model also reports the stack mention (one mention per skill, required wins)."""
+    client = FakeClient(response([
+        item("python", "Strong Python"),
+        item("python", "Python, Kubernetes", "nice_to_have"),
+        item("langchain", "Experience with LangChain"),
+        item("kubernetes", "Kubernetes", "nice_to_have"),
+        item("llms", "LLMs", "nice_to_have"),
+    ]))
+    out = ex.extract(STACK_JD, tax, client, model="m")
+    got = {m.skill_id: m.requirement for m in out.mentions}
+    assert got == {"python": "required", "langchain": "required",
+                   "kubernetes": "nice_to_have", "llms": "nice_to_have"}
 
 
 # --- seniority -------------------------------------------------------------------

@@ -45,7 +45,7 @@
     },
     {
       "skill_id": "llms",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "LLM APIs"
     },
     {

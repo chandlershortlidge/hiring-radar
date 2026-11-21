@@ -39,8 +39,8 @@
     },
     {
       "skill_id": "aws",
-      "requirement": "required",
-      "raw_text": "AWS (Lambda, S3, ECS, and more)"
+      "requirement": "nice_to_have",
+      "raw_text": "ideally using AWS services"
     },
     {
       "skill_id": "aws-bedrock",
@@ -55,7 +55,7 @@
     },
     {
       "skill_id": "docling",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Docling"
     },
     {
@@ -70,12 +70,12 @@
     },
     {
       "skill_id": "langgraph",
-      "requirement": "required",
-      "raw_text": "LangGraph & related LLM orchestration tools"
+      "requirement": "nice_to_have",
+      "raw_text": "preferably with LangGraph"
     },
     {
       "skill_id": "litellm",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "LiteLLM"
     },
     {
@@ -106,7 +106,7 @@
     },
     {
       "skill_id": "phoenix",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Phoenix"
     },
     {
