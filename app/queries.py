@@ -15,17 +15,27 @@ Open rule (the one the UI states in a tooltip): a job with at least one feed sig
 open while a feed listed it within FEED_OPEN_DAYS of now; a job known only from manual
 adds is assumed open for MANUAL_OPEN_DAYS after it was last seen.
 
-Invariants: pure functions of (connection, filters, now); every count is a count of
-distinct jobs; percentages are over the filtered set, never the whole table.
+Public rule (HIR-395): every read here answers for the public, so it leaves out what is
+still incubating (app/scope.py): a job on an incubating career track, and a job posted
+only for incubating places. A job posted for a live place as well is shown, as a job in
+its live places only. `public_clause` is that rule; the reads that take
+`include_incubating` exist for the tools that work behind the site (labelling, the add
+paths, evals), and no public route or MCP tool passes it.
+
+Invariants: pure functions of (connection, filters, now, and the states in app/scope.py);
+every count is a count of distinct jobs; percentages are over the filtered set, never the
+whole table; with `include_incubating` left off, nothing returned names an incubating
+place or belongs to an incubating track.
 """
 
 import sqlite3
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
+from app import scope
 from app.extract import SENIORITY_LEVELS
-from app.geo import ACTIVE_CITIES, CITIES, COLLECTING_SINCE, REMOTE_EU
-from app.ingest import FAMILIES as ingest_families, SALES_TITLE_PHRASES
+from app.geo import CITIES, COLLECTING_SINCE, REMOTE_EU
+from app.ingest import SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
 from app.sources import registry
 
@@ -45,9 +55,11 @@ REQUIREMENTS = ("required", "all")
 # The seniority levels are the ones the model's form allows (HIR-311): one list, so a new
 # level cannot reach the model and be refused by the filter.
 SENIORITIES = SENIORITY_LEVELS
-# The five job families (HIR-186). Defined in ingest, which assigns one to every new job
-# from its title; re-exported here so the API validates against one list.
-FAMILIES = ingest_families
+# The job families a visitor may filter by (HIR-186): the live career tracks of
+# app/scope.py, as they stood when the process started. Ingest assigns one to every new job
+# from its title. `make_filters` asks scope again on every request, so a track that is
+# incubating is refused as a filter value exactly like a name nobody ever defined (HIR-395).
+FAMILIES = scope.live_tracks()
 # Single-choice filters over the German / degree / production attributes. "open" on degree
 # means a person without one can still apply: no degree named, marked optional, or
 # equivalent experience accepted.
@@ -133,7 +145,7 @@ def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requir
         if s not in SENIORITIES:
             raise ValueError(f"bad seniority {s!r}")
     for s in families:
-        if s not in FAMILIES:
+        if s not in scope.live_tracks():
             raise ValueError(f"bad family {s!r}")
     if requirement not in REQUIREMENTS:
         raise ValueError(f"bad requirement {requirement!r}")
@@ -166,19 +178,67 @@ def open_clause(now: str) -> tuple[str, list]:
             [_days_ago(now, FEED_OPEN_DAYS), _days_ago(now, MANUAL_OPEN_DAYS)])
 
 
-def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[str, list]:
+def _marks(values) -> str:
+    return ",".join("?" * len(values))
+
+
+def public_clause() -> tuple[str, list]:
+    """SQL (over alias j) true for the jobs the public may see (HIR-395): not on an
+    incubating track, and not posted only for incubating places. A job with no place at
+    all (some hand-added ones) is shown as before. "1=1" while nothing is incubating, so
+    the queries then run exactly as they did."""
+    parts, params = [], []
+    tracks, places = list(scope.incubating_tracks()), list(scope.incubating_places())
+    if tracks:
+        parts.append(f"(j.family IS NULL OR j.family NOT IN ({_marks(tracks)}))")
+        params += tracks
+    if places:
+        parts.append(f"(NOT EXISTS (SELECT 1 FROM job_place ipl WHERE ipl.job_id = j.id"
+                     f" AND ipl.place IN ({_marks(places)}))"
+                     f" OR EXISTS (SELECT 1 FROM job_place lpl WHERE lpl.job_id = j.id"
+                     f" AND lpl.place NOT IN ({_marks(places)})))")
+        params += places + places
+    return (" AND ".join(parts) or "1=1"), params
+
+
+def _public_place(column: str) -> tuple[str, list]:
+    """SQL true when `column` holds a place the public may see: per-place counts never
+    carry an incubating place, even for a job that is shown under its live place."""
+    places = list(scope.incubating_places())
+    return (f"{column} NOT IN ({_marks(places)})", places) if places else ("1=1", [])
+
+
+def is_public(conn: sqlite3.Connection, job_id: int) -> bool:
+    """Does this job exist and may the public see it?"""
+    pc, pp = public_clause()
+    return conn.execute(f"SELECT 1 FROM job j WHERE j.id = ? AND {pc}", [job_id] + pp).fetchone() is not None
+
+
+def job_set_clause(f: Filters, now: str, include_legacy: bool = False,
+                   include_incubating: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs the filters describe.
+
+    Unless include_incubating, only jobs the public may see (`public_clause`), and a city
+    filter never matches through an incubating place.
 
     Unless include_legacy, three kinds of job are out of the chart (the job list shows them):
     legacy imports, whose skills never came from the evaluated extractor, jobs whose
     text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting, and jobs whose
     title names a sales role, which are outside the market the chart measures (HIR-246)."""
     parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH, _NOT_SALES]), []
-    if f.cities:
+    cities = f.cities
+    if not include_incubating:
+        pc, pp = public_clause()
+        if pp:
+            parts.append(pc); params += pp
+        cities = tuple(c for c in f.cities if c not in scope.incubating_places())
+    if f.cities and not cities:
+        parts.append("0=1")      # only incubating places were asked for: no job, as for a place we do not collect
+    elif cities:
         # Any of the job's places, not only its first: a Berlin + Munich job is in both (HIR-289).
         parts.append(f"EXISTS (SELECT 1 FROM job_place jpl WHERE jpl.job_id = j.id"
-                     f" AND jpl.place IN ({','.join('?' * len(f.cities))}))")
-        params += list(f.cities)
+                     f" AND jpl.place IN ({_marks(cities)}))")
+        params += list(cities)
     if f.seniorities:
         parts.append(f"j.seniority IN ({','.join('?' * len(f.seniorities))})")
         params += list(f.seniorities)
@@ -244,19 +304,30 @@ _FTS_CLAUSE = "j.id IN (SELECT rowid FROM job_fts WHERE job_fts MATCH ?)"
 # --- stats ------------------------------------------------------------------------------
 
 def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
+    """The header's counts. Every one is over the jobs the public may see (HIR-395): an
+    incubating place or track adds to none of them, and is no key of the two breakdowns."""
+    # The public rule rides inside the open clause and stands alone for the all-time counts.
+    pc, pp = public_clause()
     oc, op = open_clause(now)
-    total = conn.execute("SELECT count(*) FROM job").fetchone()[0]
+    oc, op = f"{pc} AND {oc}", pp + op
+    plc, plp = _public_place("jpl.place")
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {pc}", pp).fetchone()[0]
     open_total = conn.execute(f"SELECT count(*) FROM job j WHERE {oc}", op).fetchone()[0]
     by_city = {r["place"]: r["n"] for r in conn.execute(
-        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {oc}"
-        f" GROUP BY jpl.place", op)}
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {oc} AND {plc}"
+        f" GROUP BY jpl.place", op + plp)}
     by_family = {r["family"]: r["n"] for r in conn.execute(
         f"SELECT j.family, count(*) n FROM job j WHERE {oc} AND j.family IS NOT NULL GROUP BY j.family", op)}
-    companies = conn.execute("SELECT count(DISTINCT lower(company)) FROM job WHERE company IS NOT NULL").fetchone()[0]
-    last = conn.execute("SELECT max(last_seen) FROM job").fetchone()[0]
-    pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
-    legacy = conn.execute("SELECT count(*) FROM job WHERE extracted_version = ?", (LEGACY_VERSION,)).fetchone()[0]
-    too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH}").fetchone()[0]
+    companies = conn.execute(
+        f"SELECT count(DISTINCT lower(j.company)) FROM job j WHERE j.company IS NOT NULL AND {pc}", pp).fetchone()[0]
+    last = conn.execute(f"SELECT max(j.last_seen) FROM job j WHERE {pc}", pp).fetchone()[0]
+    pending = conn.execute(
+        f"SELECT count(*) FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status='pending' AND {pc}",
+        pp).fetchone()[0]
+    legacy = conn.execute(f"SELECT count(*) FROM job j WHERE j.extracted_version = ? AND {pc}",
+                          [LEGACY_VERSION] + pp).fetchone()[0]
+    too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH} AND {pc}",
+                             pp).fetchone()[0]
     open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {GERMAN_FILTERS['required']}", op).fetchone()[0]
     open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {DEGREE_FILTERS['required']}", op).fetchone()[0]
     open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {PRODUCTION_FILTERS['required']}", op).fetchone()[0]
@@ -307,11 +378,12 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     # Per place on a query of its own: a job in two places counts once in `count` and once
     # in each place's `by_city` (HIR-289), so the two cannot come from one grouping.
     by_place: dict[str, dict] = {}
+    plc, plp = _public_place("jpl.place")
     for r in conn.execute(
             f"{js} SELECT m.skill_id, jpl.place, count(DISTINCT m.job_id) n FROM js"
             f" CROSS JOIN skill_mention m ON m.job_id = js.id"
             f" CROSS JOIN job_place jpl ON jpl.job_id = js.id"
-            f" WHERE {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
+            f" WHERE {mc} AND {plc} GROUP BY m.skill_id, jpl.place", jp + mp + plp):
         by_place.setdefault(r["skill_id"], {})[r["place"]] = r["n"]
     skills = _skill_rows(rows, total, with_cities=False)
     for s in skills:
@@ -380,9 +452,10 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
 def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int]:
     """Jobs per city in the filtered set — the denominators for compare mode."""
     jc, jp = job_set_clause(f, now)
+    plc, plp = _public_place("jpl.place")
     return {r["place"]: r["n"] for r in conn.execute(
-        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {jc}"
-        f" GROUP BY jpl.place", jp)}
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {jc} AND {plc}"
+        f" GROUP BY jpl.place", jp + plp)}
 
 
 # --- what's rising ----------------------------------------------------------------------
@@ -409,7 +482,10 @@ def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: d
     """Skills asked for by a larger or smaller share of open jobs in the last RISING_DAYS
     days than in the RISING_DAYS before (HIR-232), for f's cities and families.
 
-    Reads only `cities` (none = every active place), `families` and `requirement` from f.
+    Reads only `cities` (none = every live place), `families` and `requirement` from f.
+    An incubating place is no part of the answer (HIR-395): it is not among "every live
+    place", so its recent start date cannot hold the whole comparison back, and asked for
+    by name it answers like a place we do not collect.
     The shares, the change and whether a change can be trusted are app.rising's
     `skill_change_calculation`, with its own thresholds; nothing here repeats them.
 
@@ -431,7 +507,8 @@ def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: d
            "current": {"start": cur_start, "end": now, "open_jobs": None},
            "previous": {"start": prev_start, "end": cur_start, "open_jobs": None},
            "risers": [], "fallers": []}
-    since = [collecting_since.get(c) for c in (f.cities or ACTIVE_CITIES)]
+    hidden = scope.incubating_places()
+    since = [None if c in hidden else collecting_since.get(c) for c in (f.cities or scope.live_places())]
     if None in since:
         return out
     if max(since) > prev_start[:10]:
@@ -467,17 +544,26 @@ def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: d
 _PLACE_ORDER = {p: i for i, p in enumerate([*CITIES, REMOTE_EU])}
 
 
-def _places(conn: sqlite3.Connection, ids: list[int]) -> dict[int, list[str]]:
+def _places(conn: sqlite3.Connection, ids: list[int], include_incubating: bool = False) -> dict[int, list[str]]:
     """{job id: every place it is posted for}, in geo's order, so the job's own city (the
-    first place) leads (HIR-289)."""
+    first place) leads (HIR-289). Incubating places are left out unless asked for."""
     out: dict[int, list[str]] = {i: [] for i in ids}
+    plc, plp = ("1=1", []) if include_incubating else _public_place("place")
     if ids:
-        for r in conn.execute(f"SELECT job_id, place FROM job_place WHERE job_id IN ({','.join('?' * len(ids))})",
-                              ids):
+        for r in conn.execute(f"SELECT job_id, place FROM job_place WHERE job_id IN ({_marks(ids)}) AND {plc}",
+                              ids + plp):
             out[r["job_id"]].append(r["place"])
     for v in out.values():
         v.sort(key=lambda p: (_PLACE_ORDER.get(p, len(_PLACE_ORDER)), p))
     return out
+
+
+def _shown_city(city: str | None, places: list[str], include_incubating: bool) -> str | None:
+    """The job's own city, unless that city is incubating: then the first place the public
+    may see, so a job shown for its live place never names its incubating one."""
+    if include_incubating or city not in scope.incubating_places():
+        return city
+    return places[0] if places else None
 
 
 SORTS = {
@@ -497,7 +583,7 @@ def _status(row, now: str, sources: list[dict]) -> str:
 
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
-              limit: int = 20, offset: int = 0) -> dict:
+              limit: int = 20, offset: int = 0, include_incubating: bool = False) -> dict:
     """Find the jobs that match a set of filters, one page at a time.
 
     This is the dashboard's job list and the search_jobs tool's search: both call it,
@@ -515,6 +601,8 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             "company". An unknown value falls back to "newest".
         limit: how many jobs to return.
         offset: how many matching jobs to skip, to reach the next page.
+        include_incubating: also return jobs from incubating places and tracks. Off for
+            everything public; only tools behind the site turn it on (HIR-395).
 
     Returns:
         A dict with:
@@ -527,7 +615,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             limit, offset: as passed in.
         When nothing matches, total is 0 and jobs is an empty list.
     """
-    jc, jp = job_set_clause(f, now, include_legacy=True)
+    jc, jp = job_set_clause(f, now, include_legacy=True, include_incubating=include_incubating)
     params = list(jp)
     where = [jc]
     if f.skill_ids:
@@ -570,11 +658,12 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             (required if s["requirement"] == "required" else nice)[s["job_id"]].append(s["skill_id"])
             if s["requirement"] == "required" and s["alternative_group"] is not None:
                 groups[s["job_id"]].setdefault(s["alternative_group"], []).append(s["skill_id"])
-    places = _places(conn, ids)
+    places = _places(conn, ids, include_incubating)
     jobs = []
     for r in rows:
         d = dict(r)
         d["places"] = places[r["id"]]
+        d["city"] = _shown_city(d["city"], d["places"], include_incubating)
         d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
         d["too_short"] = not d["legacy"] and d.pop("text_len") < MIN_TEXT_CHARS
         d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
@@ -594,7 +683,11 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     return {"total": total, "jobs": jobs, "limit": limit, "offset": offset}
 
 
-def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
+def job_detail(conn: sqlite3.Connection, job_id: int, now: str, include_incubating: bool = False) -> dict | None:
+    """One job in full, or None when there is no such job. A job the public may not see
+    yet (`public_clause`) is "no such job" too, unless include_incubating (HIR-395)."""
+    if not include_incubating and not is_public(conn, job_id):
+        return None
     r = conn.execute(
         "SELECT id, company, title, city, location_raw, family, seniority, seniority_basis, seniority_signal,"
         " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
@@ -604,7 +697,8 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     if not r:
         return None
     d = dict(r)
-    d["places"] = _places(conn, [job_id])[job_id]
+    d["places"] = _places(conn, [job_id], include_incubating)[job_id]
+    d["city"] = _shown_city(d["city"], d["places"], include_incubating)
     d["sources"] = [dict(s) for s in conn.execute(
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
@@ -623,11 +717,15 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
 
 # --- proposed skills ------------------------------------------------------------------
 
-def proposed_skills(conn: sqlite3.Connection, status: str = "pending") -> list[dict]:
-    """Grouped by label (case-insensitive): one row per label with every job that proposed it."""
+def proposed_skills(conn: sqlite3.Connection, status: str = "pending", include_incubating: bool = False) -> list[dict]:
+    """Grouped by label (case-insensitive): one row per label with every job that proposed it.
+    Jobs the public may not see yet, and what only they proposed, are left out unless
+    include_incubating (HIR-395): the review queue names each job's company and title."""
+    pc, pp = ("1=1", []) if include_incubating else public_clause()
     rows = conn.execute(
         "SELECT p.id, p.label, p.raw_text, p.status, p.resolved_skill_id, j.id job_id, j.company, j.title, j.city, j.first_seen"
-        " FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status = ? ORDER BY p.id", (status,)).fetchall()
+        f" FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status = ? AND {pc} ORDER BY p.id",
+        [status] + pp).fetchall()
     groups: dict[str, dict] = {}
     for r in rows:
         key = r["label"].strip().lower()
