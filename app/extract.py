@@ -66,8 +66,14 @@ You extract the technical skills a job description asks candidates to have.
 6. requirement is "nice_to_have" only when the wording marks it optional (preferred, plus,
    bonus, nice to have, ideally, is an advantage). Otherwise "required". A section heading
    that marks its section optional sets the default for every item under it, until the next
-   heading; a marker on the item itself overrides that default either way. An unmarked entry
-   in a tech-stack list is "required".
+   heading; a marker on the item itself overrides that default either way.
+   A tool named only in a section describing the company's own tools or stack ("Our stack",
+   "Tech stack", "We work with", "Our tools") is "nice_to_have": it says what the company
+   runs, not what the candidate must bring. The same holds for a tool named only where the
+   company's opening describes what it runs. If the tool is also asked for elsewhere, that
+   ask decides its label. The stack section's own explicit words still decide ("you'll
+   need", "must" make it "required"), and a stack line inside a requirements list
+   ("Experience with our stack: X, Y") is a requirement like any other.
    Wanting a skill is not having it: wording that asks only for appetite toward the skill
    ("eager to", "eagerness to", "interest in", "interested in", "keen to", "curious about",
    "excited by", "hungry to", "willing to learn", German "Interesse an", "Lust auf") makes
