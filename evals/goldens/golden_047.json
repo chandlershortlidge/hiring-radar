@@ -107,12 +107,14 @@
     {
       "skill_id": "langchain",
       "requirement": "required",
-      "raw_text": "LangChain"
+      "raw_text": "LangChain",
+      "alternative_group": 1
     },
     {
       "skill_id": "langgraph",
       "requirement": "required",
-      "raw_text": "LangGraph"
+      "raw_text": "LangGraph",
+      "alternative_group": 1
     },
     {
       "skill_id": "llm-orchestration",

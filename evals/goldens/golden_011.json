@@ -38,12 +38,14 @@
     {
       "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "AWS/Azure/GCP"
+      "raw_text": "AWS/Azure/GCP",
+      "alternative_group": 2
     },
     {
       "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "AWS/Azure/GCP"
+      "raw_text": "AWS/Azure/GCP",
+      "alternative_group": 2
     },
     {
       "skill_id": "ci-cd",
@@ -68,7 +70,8 @@
     {
       "skill_id": "gcp",
       "requirement": "required",
-      "raw_text": "AWS/Azure/GCP"
+      "raw_text": "AWS/Azure/GCP",
+      "alternative_group": 2
     },
     {
       "skill_id": "git",
@@ -93,7 +96,8 @@
     {
       "skill_id": "nosql",
       "requirement": "required",
-      "raw_text": "SQL/NoSQL"
+      "raw_text": "SQL/NoSQL",
+      "alternative_group": 1
     },
     {
       "skill_id": "pyspark",
@@ -113,7 +117,8 @@
     {
       "skill_id": "sql",
       "requirement": "required",
-      "raw_text": "SQL/NoSQL"
+      "raw_text": "SQL/NoSQL",
+      "alternative_group": 1
     }
   ]
 }
