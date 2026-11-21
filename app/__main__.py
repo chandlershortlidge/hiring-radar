@@ -5,6 +5,12 @@
                     --region europe|us polls only that region's feeds (the VM's two daily runs, HIR-369).
                     Readings run as one Anthropic Message Batch — half price, waits for it to finish (HIR-222)
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump); batches, as poll does
+  read-pending      the one bulk read of a place or career track whose postings were stored unread
+                    (read: later in app/scope.py): --city X and/or --family Y. Prints the job count and
+                    the cost first; --dry-run stops there, a real run needs --cap EUR and stops above it.
+                    Jobs keep the day they were first collected (HIR-396)
+  sample            draw unread postings to build a skill list from: --family Y and/or --city X, --n 50,
+                    spread across places and employers; --out FILE (default: prints JSON). No model call
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
@@ -77,7 +83,7 @@ from app.check import check_url, checked_coverage, job_coverage, log_check, reac
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
 from app.labels import import_answers  # noqa: E402
-from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
+from app.pipeline import extract_pending, held_line, unlogged_extractions  # noqa: E402
 from app.poll import FEEDS_PATH, load_feeds, poll_feeds, region_line, select_feeds, select_region  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
@@ -127,6 +133,18 @@ def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREA
     return report
 
 
+def current_version() -> str:
+    from app.extract import DEFAULT_MODEL, extractor_version
+    return extractor_version(Taxonomy.load(), DEFAULT_MODEL)
+
+
+def print_held(conn):
+    """One line for the jobs stored unread on purpose, kept apart from anything that
+    failed to read; nothing when no place or track is set to read later (HIR-396)."""
+    if (line := held_line(conn, current_version())):
+        print(line)
+
+
 def cmd_import_labels(args):
     """Load each labeller's own answer from the run folders, so the panel's disagreement is
     data in the database and not only files on someone's disk (HIR-170)."""
@@ -147,6 +165,7 @@ def cmd_poll(args):
     conn = open_db()
     r = poll_feeds(conn, feeds)
     print(f"TOTAL {r.line()}")
+    print_held(conn)
     if args.no_extract:
         return
     if args.launch:   # a launch's first collection reads only the city's new jobs (HIR-380)
@@ -169,7 +188,59 @@ def launch_first_reading(conn, new_job_ids, city):
 
 
 def cmd_extract(args):
-    run_extraction(open_db(), args.limit, run_kind=langsmith_live.REREAD, batch=True)
+    conn = open_db()
+    print_held(conn)
+    run_extraction(conn, args.limit, run_kind=langsmith_live.REREAD, batch=True)
+
+
+def cmd_read_pending(args):
+    """The one bulk read of a place's or track's waiting jobs (HIR-396). The plan, its
+    count and its cost come from app/read_pending.py; this prints it, stops on --dry-run or
+    above the cap, and otherwise reads exactly those jobs as one batch."""
+    from app import read_pending
+    if not args.dry_run:
+        if args.cap is None:
+            sys.exit("read-pending: a real run needs --cap EUR, the most it may spend; "
+                     "--dry-run prints the job count and the cost and reads nothing")
+        require_anthropic_key()
+    conn = open_db()
+    try:
+        plan = read_pending.plan(conn, current_version(), args.city, args.family, args.cap)
+    except ValueError as e:
+        sys.exit(str(e))
+    for line in plan.lines():
+        print(line)
+    if args.dry_run:
+        print("dry run: nothing read")
+        return
+    if plan.over_cap:
+        sys.exit(2)
+    if not plan.to_read:   # never an empty list to the pipeline: it reads the whole queue when given none
+        return
+    run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.BACKFILL, batch=True)
+    print("While this place or track is still set to read later in app/scope.py, postings "
+          "collected from now on wait again; set it to read now so the daily collection reads them.")
+
+
+def cmd_sample(args):
+    """Unread postings for building a skill list (HIR-396). No model call, nothing written
+    to the database."""
+    from app import sample
+    try:
+        pool = sample.unread(open_db(), args.family, args.city)
+    except ValueError as e:
+        sys.exit(str(e))
+    picked = sample.spread(pool, args.n, args.seed)
+    out = json.dumps({"family": args.family, "city": args.city, "seed": args.seed, "asked": args.n,
+                      "available": len(pool), "postings": picked}, indent=2, ensure_ascii=False)
+    summary = (f"sample: {len(picked)} of {len(pool)} unread postings, from "
+               f"{len({p['company'] for p in picked})} employers")
+    if args.out:
+        Path(args.out).write_text(out + "\n")
+        print(f"{summary}, written to {args.out}")
+    else:
+        print(out)
+        print(summary, file=sys.stderr)
 
 
 def cmd_add_text(args):
@@ -436,6 +507,7 @@ def cmd_caretaker(args):
         print(f"{f.action:>16}  {f.subject}: {f.detail}")
     if not found:
         print("every source worked")
+    print_held(conn)   # not a finding: these are unread because their place or track says so (HIR-396)
     linear_key = os.environ.get("LINEAR_API_KEY", "").strip()
     post = None if (args.no_post or not linear_key) else caretaker_run.linear_poster(
         linear_key, os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID))
@@ -481,6 +553,20 @@ def main(argv=None):
                         "priced first and stopped above the launch cap; older jobs are left unread")
     p.set_defaults(fn=cmd_poll)
     p = sub.add_parser("extract"); p.add_argument("--limit", type=int); p.set_defaults(fn=cmd_extract)
+    p = sub.add_parser("read-pending", help="read every waiting job of a place or career track in one batch")
+    p.add_argument("--city", default=None, help="a collected place, e.g. \"New York\"")
+    p.add_argument("--family", default=None, help="a career track, e.g. ai-engineer")
+    p.add_argument("--cap", type=float, default=None, metavar="EUR",
+                   help="the most this read may cost; above it nothing is read. Required unless --dry-run")
+    p.add_argument("--dry-run", action="store_true", help="print the job count and the cost, read nothing")
+    p.set_defaults(fn=cmd_read_pending)
+    p = sub.add_parser("sample", help="draw unread postings to build a skill list from; no model call")
+    p.add_argument("--family", default=None, help="a career track")
+    p.add_argument("--city", default=None, help="a collected place")
+    p.add_argument("--n", type=int, default=50, help="how many postings (default 50)")
+    p.add_argument("--seed", type=int, default=0, help="same seed, same sample (default 0)")
+    p.add_argument("--out", default=None, metavar="FILE", help="write the JSON here instead of printing it")
+    p.set_defaults(fn=cmd_sample)
     p = sub.add_parser("add-text")
     p.add_argument("--company", required=True); p.add_argument("--title", required=True)
     p.add_argument("--location", default=None); p.add_argument("--url", default=None)
