@@ -2168,6 +2168,7 @@ DECISION: []
 - `aws-bedrock` · required · raw_text: "Bedrock agents, tool use"
 - `aws-s3` · required · raw_text: "S3, Glue"
 - `ci-cd` · nice_to_have · raw_text: "Git, CI/CD"
+- `cloudformation` · nice_to_have · raw_text: "CloudFormation"
 - `evaluation` · required · raw_text: "evaluation and guardrails"
 - `git` · nice_to_have · raw_text: "Git, CI/CD"
 - `llm-guardrails` · required · raw_text: "evaluation and guardrails"
@@ -2183,4 +2184,19 @@ Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]
 
 PROPOSED: [] - The posting lists its skills together ("Snowflake, Iceberg, S3, Glue, Athena and IAM", "Terraform/CloudFormation, Git, CI/CD, testing and Jira") with no "or", "at least one of", or example-for-one-ask marker, so under the alternative_group rule these are skills asked for together, not alternatives.
 
-DECISION: []
+DECISION: [["cloudformation", "terraform"]]
+
+## 175. golden_108 - skill `cloudformation` (disagreement)
+
+> ...Power BI/DAX; SAP, JDE and M3 data concepts • Terraform/CloudFormation, Git, CI/CD, testing and Jira • Experience with the Atlan...
+
+- A: (did not label this)
+- B: (did not label this)
+
+Auto-check:
+- Added after labelling (HIR-390): both labelers named AWS CloudFormation, which was not on the skill list until v13. Chandler, 20 Nov: "Terraform/CloudFormation" is an either/or pair, so the two should share a group.
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: {"skill_id": "cloudformation", "requirement": "nice_to_have", "raw_text": "CloudFormation"}
+

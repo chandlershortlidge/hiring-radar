@@ -125,6 +125,11 @@ first such set in the posting, 2 for the next. Every other criterion has no
 - **Markers:** "at least one of", "one or more of", "X, Y or Z", "X and/or Y", and examples
   offered for a single ask ("a language such as X, Y or Z", "a framework like X or Y"). The
   posting wants the ask, and any one example meets it.
+- **A slash between two skills of the same kind** ("Terraform/CloudFormation",
+  "PyTorch/TensorFlow") offers either one: both are labeled and share a group. Added
+  2026-11-21 (HIR-390). Chandler: "“Terraform/CloudFormation” is an either/or pair, so the
+  two should share a group." A slash that does not join two skills of the same kind is not
+  a pair: "CI/CD" is one skill, "Power BI/DAX" is a tool and its formula language.
 - **Each member keeps its own criterion and label.** A group changes no `requirement`:
   every member is labeled by the rules above.
 - **"or other", "or similar", "or comparable" add nothing** — no extra skill, no broad
@@ -138,7 +143,8 @@ first such set in the posting, 2 for the next. Every other criterion has no
 - A Golden whose groups have been checked carries `groups_reviewed: true`. Only those
   Goldens are scored on grouping; the others are not scored on it at all.
 
-This matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`).
+This matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`), except the slash
+marker, which that rule does not name yet.
 
 
 ## Seniority

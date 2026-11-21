@@ -1816,12 +1816,17 @@
       "key": "alternative_group",
       "reason": "groups",
       "mode": "judge",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
       "proposed": "[]",
-      "decision": "[]",
+      "decision": "[[\"cloudformation\", \"terraform\"]]",
       "judge_said": "[]",
-      "why": "All labeled skills are asked for together without alternative markers, and although 'Terraform/CloudFormation' could indicate alternatives, only 'terraform' is labeled and the rule states that a group needs at least two skills."
+      "why": "All labeled skills are asked for together without alternative markers, and although 'Terraform/CloudFormation' could indicate alternatives, only 'terraform' is labeled and the rule states that a group needs at least two skills.",
+      "overridden": {
+        "by": "Chandler, 20 Nov (HIR-390)",
+        "model_decision": "[]",
+        "why": "Added after labelling (HIR-390): both labelers named AWS CloudFormation, which was not on the skill list until v13. Chandler, 20 Nov: \"Terraform/CloudFormation\" is an either/or pair, so the two should share a group."
+      }
     }
   },
   "human_sample": null,

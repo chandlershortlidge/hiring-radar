@@ -501,6 +501,17 @@ def test_hir386_the_old_display_name_still_resolves():
         assert t.resolve(label) == "structured-data-extraction", label
 
 
+def test_hir390_cloudformation_is_a_skill_under_infrastructure_as_code():
+    # Chandler, 20 Nov: "Terraform/CloudFormation" is an either/or pair, so CloudFormation
+    # needs an entry of its own to share a group with Terraform.
+    t = Taxonomy.load()
+    s = t.skills["cloudformation"]
+    assert s.display == "AWS CloudFormation"
+    assert s.parents == t.skills["terraform"].parents == ("infrastructure-as-code",)
+    for label in ("CloudFormation", "cloudformation", "AWS CloudFormation", "aws cloudformation"):
+        assert t.resolve(label) == "cloudformation", label
+
+
 def test_hir386_genai_does_not_swallow_genai_coding_tools():
     # The longer spelling still lands on AI Coding Tools, both when a label is resolved and
     # when a posting's text is searched for the new spellings.

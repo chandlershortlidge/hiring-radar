@@ -140,7 +140,8 @@
     {
       "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "PyTorch",
+      "alternative_group": 1
     },
     {
       "skill_id": "quantization",
@@ -160,7 +161,8 @@
     {
       "skill_id": "tensorflow",
       "requirement": "required",
-      "raw_text": "TensorFlow"
+      "raw_text": "TensorFlow",
+      "alternative_group": 1
     },
     {
       "skill_id": "tensorrt",

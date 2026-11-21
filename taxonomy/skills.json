@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "skills": [
     {
       "id": "a-b-testing",
@@ -366,6 +366,18 @@
         "cloud platforms"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "cloudformation",
+      "display": "AWS CloudFormation",
+      "aliases": [
+        "cloudformation",
+        "aws cloudformation"
+      ],
+      "parents": [
+        "infrastructure-as-code"
+      ],
       "reviewed": true
     },
     {
