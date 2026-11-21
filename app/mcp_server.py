@@ -32,7 +32,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 
-from app import db, queries as q
+from app import db, queries as q, scope
 from app.geo import CITIES, REMOTE_EU
 from app.taxonomy import Taxonomy
 
@@ -43,7 +43,9 @@ READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotent
 
 # The accepted values, as types the tool's schema shows the model. Built from the same
 # constants the API validates against; tests/test_mcp_server.py checks they stay equal.
-Place = Literal[*CITIES, REMOTE_EU]  # type: ignore[valid-type]
+# A place or career track that is still incubating (app/scope.py, HIR-395) is not offered:
+# no tool names it, and app/queries.py returns none of its jobs.
+Place = Literal[*(p for p in (*CITIES, REMOTE_EU) if p not in scope.incubating_places())]  # type: ignore[valid-type]
 Seniority = Literal[*q.SENIORITIES]  # type: ignore[valid-type]
 Family = Literal[*q.FAMILIES]  # type: ignore[valid-type]
 Requirement = Literal[*q.REQUIREMENTS]  # type: ignore[valid-type]

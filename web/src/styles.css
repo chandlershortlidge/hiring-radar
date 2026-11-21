@@ -70,9 +70,25 @@ mark { background: none; color: inherit; box-shadow: inset 0 -0.3em 0 var(--butt
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
 /* a city page: the chart and what hangs under it on the left, the jobs on the right */
 .stack { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
-.main.split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: start; }
+.main.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+.below:empty { display: none; }
+/* The chart stays in view while the jobs scroll past (HIR-345). Never taller than the
+   window: a longer column scrolls inside itself. "What's rising" is under the jobs, in
+   their column, so the column that stays in view never has anything to slide over. */
+@media (min-width: 1100px) {
+  .main.split > .lead { position: sticky; top: 16px; max-height: calc(100vh - 32px); overflow-y: auto; }
+}
 /* below this the chart's scale has no room for its five markers beside a jobs column */
 @media (max-width: 1099px) { .main.split { grid-template-columns: minmax(0, 1fr); } }
+/* Stacked, the order is the one it always was: chart, what's rising, related skills, jobs.
+   Both columns' cards join the page's own column so "What's rising" can sit between them. */
+@media (max-width: 1099px) {
+  .main.split > .stack { display: contents; }
+  .main.split > .lead > * { order: 3; }
+  .main.split > .lead > :first-child { order: 1; }
+  .main.split > .side > .below { order: 2; }
+  .main.split > .side > :first-child { order: 4; }
+}
 .chart { padding: 22px; display: flex; flex-direction: column; gap: 16px; }
 .chart h1 { margin: 0; font-size: 21px; font-weight: 600; letter-spacing: -0.01em; }
 .chart .lede { margin: 4px 0 0; color: var(--ink-2); font-size: 13px; }

@@ -22,6 +22,40 @@ def test_is_german():
     assert not ng.is_german("Python, und")  # too short to call
 
 
+# The two postings of HIR-355, as stored: short German summaries under English titles.
+SHORT_DE_ENGLISH_TITLE = (
+    "AI Inference Engineer (all genders)\n\nAls **AI Inference Engineer** konzipierst und "
+    "betreibst du produktive **LLM-Inferenzplattformen** on-premises und in privaten Clouds. "
+    "Du optimierst **GPU-Ressourcen**, Quantisierung und Latenz und integrierst "
+    "**Kubernetes**, Docker sowie Observability in sichere, skalierbare AI-Systeme für "
+    "regulierte Produktivumgebungen.")
+SHORT_DE_FREELANCE = (
+    "Agentic AI Software Engineer (m/w/d) | Frankfurt | 80% Remote | JBA15245\n\n"
+    "Start: Dezember 2026\r\nDauer: 36 Monate\r\nOrt: Frankfurt am Main / 80% Remote\r\n"
+    "Projekt-ID: 15245\r\nBewerbungsfrist: 27.11.2026\r\n\r\nLiebes Netzwerk, \r\n"
+    "für unseren Kunden in Frankfurt suchen wir einen Agentic AI Software Engineer (m/w/d)."
+    "\r\n\r\nAufgaben:\r\n• Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows")
+SHORT_EN = ("Cortex AI Engineer — Scale AI on the Snowflake Data Cloud\n\nCogniify, Inc. is "
+            "hiring a Snowflake Cortex engineer to build and ship LLM features for our "
+            "customers. You own the pipelines and work with the data team on evaluation.")
+
+
+def test_a_short_german_posting_with_an_english_title_is_german():
+    """A flat minimum of 20 German function words called every short posting English,
+    whatever it was written in (HIR-355)."""
+    assert ng.is_german(SHORT_DE_ENGLISH_TITLE)
+    assert ng.is_german(SHORT_DE_FREELANCE)
+    assert not ng.is_german(SHORT_EN)
+
+
+def test_a_long_posting_still_needs_twenty_german_words():
+    """The minimum only shrinks for short postings: a long list of tools with a few German
+    words in it is not enough to call."""
+    tools = "Python PyTorch Kubernetes Docker Terraform LangGraph Airflow Spark " * 60
+    assert not ng.is_german(tools + "und mit für der die das wir")
+    assert ng.is_german(tools + "und mit für der die das wir " * 3)
+
+
 def test_drafts_are_empty_heldout_and_skipped_by_the_eval(tmp_path, monkeypatch):
     goldens = tmp_path / "evals" / "goldens"; goldens.mkdir(parents=True)
     (goldens / "golden_007.json").write_text(json.dumps({"id": "golden_007", "split": "dev", "job_description": "x",

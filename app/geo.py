@@ -7,7 +7,10 @@ returns all of them, `place_of` the first, which is what `job.city` holds (HIR-2
 
 A city can be tracked without being active. `city_of` recognizes every tracked city (manual
 adds keep their real city). Only ACTIVE_CITIES pass the ingest and discover-boards filters
-(`active_place`). The scope is Germany, EU-remote, and the cities Chandler has turned on:
+(`active_place`). Active means collected: the list is app/scope.py's, and it holds the
+live places and the incubating ones alike (HIR-395). Nothing in this module tells the two
+apart, because collection does not; what the public may see is app/queries.py's business.
+The scope is Germany, EU-remote, and the cities Chandler has turned on:
 San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIONS
 2026-11-03, HIR-12), and New York on 2026-11-03 as the first city launched end to end
 without a human step (DECISIONS 2026-11-03, HIR-132). Hamburg, Frankfurt and Munich became
@@ -36,6 +39,8 @@ Invariant: pure; matching is case-insensitive on whole words.
 
 import re
 
+from app import scope
+
 # "new york" already covers "New York City" and "New York, NY" (whole-word match inside a
 # longer string), so only the spellings it does not cover are listed. Bare "ny" is
 # deliberately absent: it would tag the whole state, so "Rochester, NY" would read as NYC.
@@ -61,9 +66,9 @@ CITIES: dict[str, tuple[str, ...]] = {
 
 REMOTE_EU = "Remote (EU)"
 
-ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich", "Austin", "Boston", "London", "Amsterdam",
-                                  "Seattle", "Los Angeles", "Chicago", "San Jose")
+# Every collected place, live or incubating (HIR-395). The list and each place's state are
+# app/scope.py's; a city is switched on, in either state, there.
+ACTIVE_CITIES: tuple[str, ...] = scope.places()
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing

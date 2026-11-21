@@ -30,8 +30,8 @@ to app.ingest), call a model, or fetch LinkedIn (its pages are not readable with
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` reads the DB and never writes it, and does network I/O
-only through the injected fetchers, so tests never touch the network. Coverage counts only
+`diagnose`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
+only through the injected fetchers and `check_posting` does none, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
 Text matching here is one-directional containment (how much of the *stored* JD appears on
@@ -583,6 +583,15 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
             f"either posted since the last poll (run `poll`) or a feed bug; job id {ref.job_id}")
 
 
+def board_not_added(ref: AtsRef | None, feeds: list[dict]) -> tuple[str, str] | None:
+    """Pure: the board `diagnose` reports as "not in config/feeds.json", as (source, token),
+    or None. The structured form of that sentence, so nothing has to read the board back
+    out of prose (HIR-324)."""
+    if ref is None or ref.token is None or (ref.source, ref.token) in polled_boards(feeds):
+        return None
+    return ref.source, ref.token
+
+
 @dataclass
 class CheckResult:
     url: str
@@ -594,6 +603,7 @@ class CheckResult:
     diagnosis: str = ""
     posting: Posting | None = None    # resolved posting, for --add
     notes: list[str] = field(default_factory=list)
+    missing_board: tuple[str, str] | None = None   # (source, token) when the miss is "board not in feeds.json"
 
     def line(self) -> str:
         if self.verdict == "found":
@@ -686,6 +696,27 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
         result.notes.append("company unknown — pass --company to enable the text match")
 
     result.diagnosis = diagnose(posting, ref, feeds, board_had_it)
+    result.missing_board = board_not_added(ref, feeds)
+    return result
+
+
+def check_posting(conn: sqlite3.Connection, url: str, posting: Posting, feeds: list[dict]) -> CheckResult:
+    """The check for a posting a person supplied the text of (pasted, or read off a
+    screenshot) together with its link (HIR-324): the same lookup and the same diagnosis as
+    `check_url`, with nothing fetched. The text is already here, and the link is often one
+    no fetch can read, which is why it was pasted. Reads the DB, never writes it."""
+    ref = parse_ats_url(url)
+    result = CheckResult(url=url, verdict="not_found", how="", posting=posting)
+    if ref is not None:
+        row = conn.execute("SELECT job_id FROM job_source WHERE source=? AND source_job_id=?",
+                           (ref.source, ref.job_id)).fetchone()
+        if row:
+            return _found(conn, result, row["job_id"], "ats id")
+    m = best_text_match(conn, posting.company, posting.description_text)
+    if m:
+        return _found(conn, result, m.job_id, f"text {m.score:.2f}")
+    result.diagnosis = diagnose(posting, ref, feeds, None)
+    result.missing_board = board_not_added(ref, feeds)
     return result
 
 
