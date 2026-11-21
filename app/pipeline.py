@@ -41,6 +41,10 @@ twice, and its jobs stay pending for the next run. A version bump re-reads only 
 still open (the dashboard's open rule, queries.open_clause): closed jobs keep the skills and
 version stamp of their day, and a repost seen again counts as open and re-enters the queue
 (HIR-195). A job never read at all is read whatever its status — a first read is not a re-read.
+A job whose place or track is set to read later (app/scope.py, HIR-396) is in no queue this
+module builds on its own: not a poll's, not a re-read's, not the count a re-read is priced
+from. It is read only when a caller names it (`job_ids`): `read-pending`'s one bulk read,
+or a person adding that posting by hand.
 """
 
 import contextlib
@@ -51,7 +55,7 @@ import sqlite3
 import time
 from dataclasses import dataclass, field
 
-from app import langsmith_live, targeted_reread
+from app import langsmith_live, scope, targeted_reread
 from app.extract import (
     DEFAULT_MODEL, EmptyExtractionError, Extraction, ExtractionError, build_request, extract,
     extraction_from_message, extraction_input, extractor_version, make_client)
@@ -157,14 +161,67 @@ def _extraction_lock(conn: sqlite3.Connection):
             fcntl.flock(fh, fcntl.LOCK_UN)
 
 
-def _pending_clause(version: str, now: str | None = None) -> tuple[str, list]:
+def held_clause() -> tuple[str, list]:
+    """WHERE fragment (over alias j) selecting the jobs whose reading waits on purpose
+    (HIR-396): a job on a read-later track, or one all of whose places read later.
+
+    A job also posted for a read-now place is not held: it is shown in that place
+    (HIR-395's rule for a job in a live and an incubating city), so it needs its skills.
+    A job with no place at all is held only by its track. With nothing set to read later
+    the fragment is false for every job."""
+    tracks, places = scope.read_later_tracks(), scope.read_later_places()
+    parts: list[str] = []
+    params: list = []
+    if tracks:
+        parts.append(f"j.family IN ({','.join('?' * len(tracks))})")
+        params += tracks
+    if places:
+        parts.append("(EXISTS (SELECT 1 FROM job_place hp WHERE hp.job_id = j.id)"
+                     " AND NOT EXISTS (SELECT 1 FROM job_place hp WHERE hp.job_id = j.id"
+                     f" AND hp.place NOT IN ({','.join('?' * len(places))})))")
+        params += places
+    if not parts:
+        return "0", []
+    return "(" + " OR ".join(parts) + ")", params
+
+
+def _pending_clause(version: str, now: str | None = None, include_held: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs that need an extraction at `version`.
 
     The one definition of the queue's membership, so a count of it and the queue itself can
-    never disagree (HIR-221)."""
+    never disagree (HIR-221). Jobs held back by a read-later setting (`held_clause`) are
+    left out unless `include_held`, which only a caller naming its jobs passes (HIR-396)."""
     open_sql, open_params = open_clause(now or now_iso())
-    return (f"(j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
-            " AND j.extracted_version IS NOT 'legacy'", [version, *open_params])
+    sql = (f"(j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
+           " AND j.extracted_version IS NOT 'legacy'")
+    params = [version, *open_params]
+    if not include_held:
+        held_sql, held_params = held_clause()
+        sql += f" AND NOT {held_sql}"
+        params += held_params
+    return sql, params
+
+
+def held_count(conn: sqlite3.Connection, version: str, now: str | None = None) -> int:
+    """How many jobs are waiting unread on purpose: in the queue but for a read-later
+    setting (HIR-396). Counted apart from the queue, so a report can tell "not read yet,
+    as asked" from "should have been read and was not"."""
+    held_sql, held_params = held_clause()
+    if not held_params:   # nothing is set to read later: no job can be held, so no query
+        return 0
+    where, params = _pending_clause(version, now, include_held=True)
+    return conn.execute(f"SELECT count(*) FROM job j WHERE {where} AND {held_sql}",
+                        [*params, *held_params]).fetchone()[0]
+
+
+def held_line(conn: sqlite3.Connection, version: str, now: str | None = None) -> str | None:
+    """The report's line for the jobs stored unread on purpose, or None when there are none."""
+    n = held_count(conn, version, now)
+    if not n:
+        return None
+    names = ", ".join((*scope.read_later_places(), *scope.read_later_tracks()))
+    return (f"stored unread on purpose: {n} job{'' if n == 1 else 's'} (read later: {names});"
+            f" `python -m app read-pending` reads them")
 
 
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
@@ -178,8 +235,11 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     older version) only while the job is still open: closed jobs keep the skills of their
     day, and nobody browses them, so a version bump must not pay to re-read them (HIR-195).
     A repost the poll sees again gets its last_seen bumped by ingest, counts as open, and
-    re-enters the queue on its own."""
-    where, params = _pending_clause(version, now)
+    re-enters the queue on its own.
+
+    A job held back by a read-later setting is left out of the queue, unless `job_ids`
+    names it: the bulk read and a posting added by hand are both asked for (HIR-396)."""
+    where, params = _pending_clause(version, now, include_held=bool(job_ids))
     sql = f"SELECT id, extracted_version, title, description_text FROM job j WHERE {where}"
     if job_ids:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
