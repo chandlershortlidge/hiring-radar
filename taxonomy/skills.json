@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "skills": [
     {
       "id": "a-b-testing",
@@ -32,6 +32,20 @@
       "id": "agent-architecture",
       "display": "Agent architecture",
       "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "agent-harnesses",
+      "display": "Agent harnesses",
+      "aliases": [
+        "agent harness",
+        "agent harnesses",
+        "agentic harness",
+        "agentic harnesses"
+      ],
       "parents": [
         "agents"
       ],
