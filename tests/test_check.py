@@ -1,4 +1,6 @@
 import json
+import urllib.error
+from email.message import Message
 from pathlib import Path
 
 import pytest
@@ -669,6 +671,157 @@ def test_workable_locations_and_remote():
     assert check.posting_from_workable("u", payload).location_raw == "Paris, France"
     del payload["location"]
     assert check.posting_from_workable("u", payload).location_raw is None
+
+
+# --- Workday links are read through Workday's API; a 429 is retried (HIR-329) ---------------
+
+WORKDAY_URL = ("https://digitalturbine.wd501.myworkdayjobs.com/Digital_Turbine_External_Careers"
+               "/job/United-States---New-York/Lead-Data-Scientist_JR101093")
+WORKDAY_API = ("https://digitalturbine.wd501.myworkdayjobs.com/wday/cxs/digitalturbine"
+               "/Digital_Turbine_External_Careers/job/United-States---New-York/Lead-Data-Scientist_JR101093")
+
+
+def too_many_requests(url, retry_after=None):
+    headers = Message()
+    if retry_after is not None:
+        headers["Retry-After"] = retry_after
+    return urllib.error.HTTPError(url, 429, "Too Many Requests", headers, None)
+
+
+def workday_fetch(api=None, calls=None):
+    """A fetcher where the Workday page answers 429, as it did on 17 Nov, and the API serves
+    tests/fixtures/pages/workday_api.json. That file is written by hand in the API's shape,
+    with the title and the two locations the ticket recorded: the real answer could not be
+    fetched from the session that built this. `api` replaces the answer (a string to
+    serve, or an exception to raise)."""
+    def fetch(url):
+        if calls is not None:
+            calls.append(url)
+        if url == WORKDAY_URL:
+            raise too_many_requests(url)
+        assert url == WORKDAY_API, url
+        if isinstance(api, Exception):
+            raise api
+        return saved_page("workday_api.json") if api is None else api
+    return fetch
+
+
+@pytest.mark.parametrize("url,expected", [
+    (WORKDAY_URL, WORKDAY_API),
+    (WORKDAY_URL + "/", WORKDAY_API),
+    (WORKDAY_URL + "/apply?source=LinkedIn", WORKDAY_API),
+    (WORKDAY_URL.replace("/Digital_Turbine_External_Careers/", "/en-US/Digital_Turbine_External_Careers/")
+     + "?utm_source=x", WORKDAY_API),
+    ("https://ACME.myworkdayjobs.com/Careers/job/Berlin/AI-Engineer_R1",
+     "https://acme.myworkdayjobs.com/wday/cxs/acme/Careers/job/Berlin/AI-Engineer_R1"),
+    ("https://digitalturbine.wd501.myworkdayjobs.com/Digital_Turbine_External_Careers", None),  # the job list
+    ("https://digitalturbine.wd501.myworkdayjobs.com/", None),
+    ("https://acme.com/Careers/job/Berlin/AI-Engineer_R1", None),
+    ("https://myworkdayjobs.com.evil.example/Careers/job/Berlin/AI-Engineer_R1", None),
+])
+def test_workday_api_url(url, expected):
+    assert check.workday_api_url(url) == expected
+
+
+def test_workday_link_is_read_through_the_api_without_touching_the_page(conn):
+    """HIR-329: the page answered 429 on every try, so the job could not be checked or
+    added. The API is asked instead, and the job comes back with both of its cities."""
+    calls = []
+    r = check_url(conn, WORKDAY_URL, FEEDS, fetch_page=workday_fetch(calls=calls), fetch_board=no_fetch)
+    assert calls == [WORKDAY_API]                 # the page that answers 429 is never asked
+    p = r.posting
+    assert (p.source, p.company, p.title) == ("url", "Digital Turbine", "Lead Data Scientist")
+    assert p.location_raw == "United States - New York; Germany - Berlin"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+    assert p.posted_at == "2026-11-12"
+    assert p.description_text.startswith("About the role")
+    assert "gradient boosted trees" in p.description_text and "<" not in p.description_text
+    assert r.notes == ["read posting from the Workday API"]
+    assert r.verdict == "not_found" and r.diagnosis.startswith("not a hosted ATS page")
+    assert "location" not in r.diagnosis          # Berlin passes the city filter
+
+
+def test_workday_link_finds_the_job_already_stored(conn):
+    api = json.loads(saved_page("workday_api.json"))
+    stored = check.posting_from_workday(WORKDAY_URL, api)
+    ingest_one(conn, stored)
+    r = check_url(conn, WORKDAY_URL, FEEDS, fetch_page=workday_fetch(), fetch_board=no_fetch)
+    assert r.verdict == "found" and r.how.startswith("text ")
+
+
+def test_workday_flags_override_the_api(conn):
+    r = check_url(conn, WORKDAY_URL, FEEDS, company="Told Co", title="ML Engineer", location="Munich",
+                  fetch_page=workday_fetch(), fetch_board=no_fetch)
+    assert (r.posting.company, r.posting.title, r.posting.location_raw) == ("Told Co", "ML Engineer", "Munich")
+
+
+def test_workday_company_falls_back_to_the_tenant_and_locations_are_deduplicated():
+    payload = {"jobPostingInfo": {"title": " AI Engineer ", "jobDescription": "<p>Build agents.</p>",
+                                  "location": "Germany - Berlin",
+                                  "additionalLocations": ["Germany - Berlin", " Germany - Munich ", None, ""]}}
+    p = check.posting_from_workday(WORKDAY_URL, payload)
+    assert (p.company, p.title) == ("digitalturbine", "AI Engineer")
+    assert p.location_raw == "Germany - Berlin; Germany - Munich"
+    assert p.posted_at is None
+    del payload["jobPostingInfo"]["location"], payload["jobPostingInfo"]["additionalLocations"]
+    assert check.posting_from_workday(WORKDAY_URL, payload).location_raw is None
+
+
+@pytest.mark.parametrize("api", [OSError("HTTP Error 404: Not Found"), "<html>not json</html>", "[]",
+                                 json.dumps({"jobPostingInfo": None}),
+                                 json.dumps({"jobPostingInfo": {"title": "AI Engineer", "jobDescription": ""}}),
+                                 json.dumps({"jobPostingInfo": {"title": "", "jobDescription": "<p>x</p>"}})])
+def test_workday_api_failure_falls_back_to_the_page_and_is_noted(conn, api):
+    def fetch(url):
+        if url == WORKDAY_URL:
+            return page(title="Lead Data Scientist")
+        return workday_fetch(api)(url)
+    r = check_url(conn, WORKDAY_URL, FEEDS, fetch_page=fetch, fetch_board=no_fetch)
+    assert r.posting.title == "Lead Data Scientist"
+    assert r.notes[0].startswith("Workday API read failed:")
+    assert any(n.startswith("read posting from ") and "Workday" not in n for n in r.notes)
+
+
+def test_a_429_is_retried_after_a_wait_then_read():
+    answers = [too_many_requests("u"), too_many_requests("u", retry_after="3"), "the page"]
+    waits = []
+
+    def fetch(url):
+        a = answers.pop(0)
+        if isinstance(a, Exception):
+            raise a
+        return a
+    assert check.fetch_patiently("u", fetch=fetch, sleep=waits.append) == "the page"
+    assert waits == [check.RETRY_WAITS[0], 3]     # the site's own Retry-After wins when given
+
+
+def test_a_429_on_every_try_is_raised_after_the_last_wait_and_a_long_retry_after_is_capped():
+    calls, waits = [], []
+
+    def fetch(url):
+        calls.append(url)
+        raise too_many_requests(url, retry_after="3600" if len(calls) == 1 else "soon")
+    with pytest.raises(urllib.error.HTTPError) as e:
+        check.fetch_patiently("u", fetch=fetch, sleep=waits.append)
+    assert e.value.code == 429
+    assert len(calls) == len(check.RETRY_WAITS) + 1
+    assert waits == [check.MAX_RETRY_WAIT, check.RETRY_WAITS[1]]   # "soon" is not a number of seconds
+
+
+def test_other_errors_are_not_retried():
+    calls = []
+
+    def fetch(url):
+        calls.append(url)
+        raise urllib.error.HTTPError(url, 404, "Not Found", Message(), None)
+    with pytest.raises(urllib.error.HTTPError):
+        check.fetch_patiently("u", fetch=fetch, sleep=no_fetch)
+    assert len(calls) == 1
+
+
+def test_check_url_retries_a_429_by_default():
+    import inspect
+    assert inspect.signature(check_url).parameters["fetch_page"].default is check.fetch_patiently
 
 
 def test_non_workable_page_makes_one_fetch(conn):
