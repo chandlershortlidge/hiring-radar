@@ -46,3 +46,20 @@ def test_a_state_is_read_when_asked_not_when_imported(monkeypatch):
     assert "Chicago" in scope.places() and "research" in scope.tracks()
     with pytest.raises(ValueError, match="bad family 'research'"):
         queries.make_filters({}, families=["research"])
+
+
+# --- read now or later (HIR-396) -----------------------------------------------------------
+
+def test_every_read_setting_is_now_or_later_and_names_a_collected_place():
+    assert set(scope.PLACE_READ.values()) <= set(scope.READS)
+    assert {t.read for t in scope.TRACKS.values()} <= set(scope.READS)
+    unknown = sorted(set(scope.PLACE_READ) - set(scope.PLACE_STATE))
+    assert not unknown, f"{unknown} are in app/scope.py's PLACE_READ but not in PLACE_STATE"
+
+
+def test_only_an_incubating_place_or_track_reads_later():
+    """A live one set to read later would put jobs with no skills on the dashboard."""
+    live = sorted({*scope.read_later_places()} & {*scope.live_places()}
+                  | {*scope.read_later_tracks()} & {*scope.live_tracks()})
+    assert not live, (f"{live} are live and set to read later in app/scope.py: run "
+                      f"`python -m app read-pending` for each and set it to read now before it goes live")
