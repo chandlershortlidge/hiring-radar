@@ -6,18 +6,17 @@
   "reason": "groups",
   "provider": "google",
   "model": "gemini-4-argon",
-  "proposed": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
-  "key_sha256": "216c13341ac9bfdc69daec332971d4b35bd0d2855d756c05f79da91093dde8b5",
-  "raw": "{\"decision\": [[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]], \"why\": \"The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups.\"}",
+  "proposed": "[[\"langgraph\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+  "key_sha256": "2d6ee7a0cf9dda78bcdae543e5c7ddccb6e5098b487947e79c7764aeb5b94bd8",
+  "raw": "{\"decision\": [[\"langgraph\", \"google-adk\", \"autogen\", \"llamaindex\"]], \"why\": \"The examples in 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' form an alternative group, except `mcp` leaves the group because it is asked for on its own under responsibilities ('MCP integrations'), while the members of the Python/Java/TypeScript and Claude Code/GitHub Copilot lists leave their groups because they also appear as unmarked tech-stack entries.\"}",
   "decision": [
     [
       "langgraph",
-      "mcp",
       "google-adk",
       "autogen",
       "llamaindex"
     ]
   ],
-  "why": "The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups.",
+  "why": "The examples in 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' form an alternative group, except `mcp` leaves the group because it is asked for on its own under responsibilities ('MCP integrations'), while the members of the Python/Java/TypeScript and Claude Code/GitHub Copilot lists leave their groups because they also appear as unmarked tech-stack entries.",
   "error": null
 }
