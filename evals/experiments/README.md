@@ -36,6 +36,9 @@ would otherwise look identical afterwards.
 | `20261119T155329Z_dev_x2-8425c19abb` | Claude Haiku 5.5 at an 8192-token output cap, no failures. The comparison against the Claude Sonnet 5.5 baseline of the same day. | HIR-223 |
 | `20261120T060535Z_dev_x2-e9c713ffc3` | Claude Haiku 5.5 at an 8192-token cap with the trial rule in `trials/hir-368-broad-skills.md` (report a broad skill whenever its name is written). Broad-skill misses (cloud, machine learning, agents, LLMs) fell from 56 to 26 over 213 readings. | HIR-368 |
 | `20261120T070628Z_dev_x2-6644e02806` | The same, with the round-3 trial rule in `trials/hir-368-round-3.md` (broad skill reported before its examples and inside compound words; years of experience in words, other languages, or as a range). Broad-skill misses 20; seniority 0.958, level with Sonnet. | HIR-368 |
+| `20261120T171942Z_dev_x2-9b923cba1e` | Claude Sonnet 5.5 at the live cap with the round-3 trial rule, so both models have a dev score under the same instructions. F1 0.906, unchanged from without the rule. | HIR-383 |
+| `20261120T174218Z_heldout_x2-9b923cba1e` | Release check, sealed postings: Claude Sonnet 5.5 at the live cap with the round-3 rule. F1 0.922; one posting cut off at the cap in two of three readings. | HIR-383 |
+| `20261120T174216Z_heldout_x2-848aaff6a5` | Release check, sealed postings: Claude Haiku 5.5 at an 8192 cap with the round-3 rule. F1 0.945; the lead over Sonnet holds. | HIR-383 |
 
 ## Prompt trials
 
