@@ -229,7 +229,7 @@ export default function App() {
       onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
       onRequestCity={requestCity}
       right={stats && market.view !== "home"
-        ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
+        ? <span className="mono dim">updated {timeAgo(stats.last_updated)}</span>
         : null} />
   );
 
