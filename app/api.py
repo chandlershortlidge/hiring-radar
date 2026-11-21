@@ -10,6 +10,10 @@ Serves web/dist/ at / when it exists.
 Does NOT: compute the profile match (the profile lives in the browser; the frontend
 computes coverage from /api/skills and job detail), edit the taxonomy, or poll feeds.
 
+Every read route answers for the public: app/queries.py leaves out the places and career
+tracks that are still incubating (app/scope.py, HIR-395), and no route here asks it not to,
+except the count an add reports about the job it has just stored.
+
 Invariants: every filter is validated against the allowed values and rejected with 422
 otherwise; DB connections are per request; model clients are created lazily so the API
 boots without credentials and only the add endpoints need them; all three add paths store
@@ -244,7 +248,9 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         if res.is_new:
             report = extract_pending(conn, tax, client=client(), log=lambda *_: None,
                                      job_ids=[res.job_id], run_kind=langsmith_live.ADD)
-            d = q.job_detail(conn, res.job_id, now_iso())
+            # A job added by hand may be for an incubating place or track (HIR-395): it is
+            # stored and read like any other, and only its two counts go back, never the job.
+            d = q.job_detail(conn, res.job_id, now_iso(), include_incubating=True)
             return {"outcome": "added", "job_id": res.job_id, "skills_found": len(d["skills"]),
                     "proposed": len(d["proposed"]), "failed": [f for f in report.failed if f[0] == res.job_id]}
         return {"outcome": res.kind, "job_id": None}
