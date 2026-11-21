@@ -1785,20 +1785,6 @@
       "judge_said": "[]",
       "why": "All labeled skills in the posting are requested together using 'and' (such as 'Python and SQL' and 'time series forecasting, probabilistic models, and deep learning models'), so under the 'Not alternatives: skills asked for together' rule, no alternative groups apply."
     },
-    "170": {
-      "n": 170,
-      "golden_id": "golden_095",
-      "kind": "groups",
-      "key": "alternative_group",
-      "reason": "groups",
-      "mode": "judge",
-      "by": "model",
-      "model": "gemini-4-argon",
-      "proposed": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
-      "decision": "[[\"autogen\", \"google-adk\", \"langgraph\", \"llamaindex\", \"mcp\"]]",
-      "judge_said": "[[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
-      "why": "The posting offers 'frameworks and protocols such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' as examples meeting a single ask, while other potential alternatives (Java, TypeScript, Claude Code, GitHub Copilot) also appear as standalone entries in the tech stack and therefore leave their groups."
-    },
     "172": {
       "n": 172,
       "golden_id": "golden_097",
@@ -1952,6 +1938,34 @@
       "decision": "[]",
       "judge_said": "[]",
       "why": "None of the labeled skills are presented with alternative markers (like 'X, Y or Z') offering one in place of another; rather, they are independent requirements or skills asked for together."
+    },
+    "184": {
+      "n": 184,
+      "golden_id": "golden_095",
+      "kind": "skill",
+      "key": "agent-harnesses",
+      "reason": "disagreement",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "B",
+      "decision": "B",
+      "judge_said": "B",
+      "why": "Under Rule 1, the nice-to-have qualification bullet explicitly asks for experience 'building customized agent harnesses', making B correct."
+    },
+    "170": {
+      "n": 170,
+      "golden_id": "golden_095",
+      "kind": "groups",
+      "key": "alternative_group",
+      "reason": "groups",
+      "mode": "judge",
+      "by": "model",
+      "model": "gemini-4-argon",
+      "proposed": "[[\"langgraph\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+      "decision": "[[\"autogen\", \"google-adk\", \"langgraph\", \"llamaindex\"]]",
+      "judge_said": "[[\"langgraph\", \"google-adk\", \"autogen\", \"llamaindex\"]]",
+      "why": "The examples in 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' form an alternative group, except `mcp` leaves the group because it is asked for on its own under responsibilities ('MCP integrations'), while the members of the Python/Java/TypeScript and Claude Code/GitHub Copilot lists leave their groups because they also appear as unmarked tech-stack entries."
     }
   },
   "human_sample": null,
@@ -2001,14 +2015,36 @@
       "rules": [
         "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`)."
       ]
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 1,
+      "agreed": 1,
+      "disagreed": 0,
+      "unusable": 0
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 1,
+      "agreed": 1,
+      "disagreed": 0,
+      "unusable": 0,
+      "keys": [
+        "alternative_group"
+      ],
+      "rules": [
+        "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **A slash between two skills of the same kind** (\"Terraform/CloudFormation\",\n  \"PyTorch/TensorFlow\") offers either one: both are labeled and share a group. Added\n  2026-11-21 (HIR-390). Chandler: \"“Terraform/CloudFormation” is an either/or pair, so the\n  two should share a group.\" A slash that does not join two skills of the same kind is not\n  a pair: \"CI/CD\" is one skill, \"Power BI/DAX\" is a tool and its formula language.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`), except the slash\nmarker, which that rule does not name yet."
+      ]
     }
   ],
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",
-    "ruled": 78,
-    "agreed": 76,
-    "open": 2,
+    "ruled": 77,
+    "agreed": 77,
+    "open": 0,
     "rules": "1. A qualification bullet or sentence that names a skill counts; a job title or a\n   years-of-experience line (\"experience as a software engineer\") does not.\n2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.\n3. Any required mention wins; raw_text quotes the determining mention.\n4. Responsibilities do not count unless the candidate is also asked for it.\n5. Do not add a broad or parent skill the text does not name."
   },
   "third_labeler": {
@@ -2075,6 +2111,16 @@
         167,
         168
       ]
+    },
+    {
+      "key": "agent-harnesses",
+      "rule": "skill list v14 adds agent-harnesses (HIR-392); from the labelers' unmapped flags",
+      "items": [
+        184
+      ],
+      "groups_reopened": [
+        170
+      ]
     }
   ],
   "proposer_passes": [
@@ -2101,6 +2147,31 @@
       "rules": [
         "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`)."
       ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "keys": [
+        "alternative_group"
+      ],
+      "proposed": 1,
+      "unusable": 0,
+      "rules": [
+        "Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several\nskills** for one ask, each of them gets the same `alternative_group` number — 1 for the\nfirst such set in the posting, 2 for the next. Every other criterion has no\n`alternative_group`.\n\n- **Markers:** \"at least one of\", \"one or more of\", \"X, Y or Z\", \"X and/or Y\", and examples\n  offered for a single ask (\"a language such as X, Y or Z\", \"a framework like X or Y\"). The\n  posting wants the ask, and any one example meets it.\n- **A slash between two skills of the same kind** (\"Terraform/CloudFormation\",\n  \"PyTorch/TensorFlow\") offers either one: both are labeled and share a group. Added\n  2026-11-21 (HIR-390). Chandler: \"“Terraform/CloudFormation” is an either/or pair, so the\n  two should share a group.\" A slash that does not join two skills of the same kind is not\n  a pair: \"CI/CD\" is one skill, \"Power BI/DAX\" is a tool and its formula language.\n- **Each member keeps its own criterion and label.** A group changes no `requirement`:\n  every member is labeled by the rules above.\n- **\"or other\", \"or similar\", \"or comparable\" add nothing** — no extra skill, no broad\n  parent.\n- **Not alternatives:** skills asked for together (\"X and Y\", \"X, Y and Z\"), and a broad\n  skill named alongside its examples. \"cloud platforms (GCP, AWS or Azure)\" groups `gcp`,\n  `aws` and `azure`; `cloud` stays out of the group.\n- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the\n  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves\n  the group.\n- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those\n  Goldens are scored on grouping; the others are not scored on it at all.\n\nThis matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`), except the slash\nmarker, which that rule does not name yet."
+      ]
+    },
+    {
+      "model": "claude-haiku-5-5",
+      "provider": "anthropic",
+      "keys": [
+        "agent-harnesses"
+      ],
+      "items": [
+        184
+      ],
+      "proposed": 1,
+      "unusable": 0,
+      "note": "HIR-392: the new agent-harnesses items; the run-wide proposer record above is the first pass, kept as it was"
     }
   ],
   "groups": {

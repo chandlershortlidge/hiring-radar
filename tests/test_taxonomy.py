@@ -512,6 +512,27 @@ def test_hir390_cloudformation_is_a_skill_under_infrastructure_as_code():
         assert t.resolve(label) == "cloudformation", label
 
 
+def test_hir392_agent_harnesses_is_a_skill_under_agents():
+    # Chandler, 20 Nov: "yes, agent harnesses, add it". Its own entry, under Agents.
+    t = Taxonomy.load()
+    s = t.skills["agent-harnesses"]
+    assert s.display == "Agent harnesses"
+    assert s.parents == ("agents",)
+    for label in ("Agent harnesses", "agent harness", "agent harnesses",
+                  "agentic harness", "Agentic harnesses"):
+        assert t.resolve(label) == "agent-harnesses", label
+
+
+def test_hir392_an_evaluation_harness_is_not_an_agent_harness():
+    # An evaluation harness is a different thing (it stays under Evaluation), and a bare
+    # "harness" names neither, so neither spelling reaches the new skill.
+    t = Taxonomy.load()
+    for label in ("evaluation harness", "evaluation harnesses", "harness", "harnesses"):
+        assert t.resolve(label) != "agent-harnesses", label
+    assert "harness" not in t.skills["agent-harnesses"].aliases
+    assert "harnesses" not in t.skills["agent-harnesses"].aliases
+
+
 def test_hir386_genai_does_not_swallow_genai_coding_tools():
     # The longer spelling still lands on AI Coding Tools, both when a label is resolved and
     # when a posting's text is searched for the new spellings.

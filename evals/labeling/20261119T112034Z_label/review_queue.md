@@ -418,7 +418,7 @@ PROPOSED: A - Under rule 1, the signal "Member of Technical Staff" is a job titl
 
 DECISION: A
 
-## 33. golden_103 - skill `agent-architecture` (disagreement)
+## 33. golden_103 - skill `agent-harnesses` (disagreement)
 
 > ...- Multi-agent training, coordination, or evaluation. - Building agent harnesses, distributed training systems, or scalable inference...
 
@@ -429,7 +429,7 @@ Options: `A` / `B` / `both` / `drop`
 
 PROPOSED: A - Under rule 1, the nice-to-have bullet "Building agent harnesses" names agent system design directly, so labeler A's nice_to_have tag with that raw_text stands, and labeler B's omission does not remove it.
 
-DECISION: A
+DECISION: {"skill_id": "agent-harnesses"}
 
 ## 34. golden_103 - skill `ai-infrastructure` (disagreement)
 
@@ -2114,7 +2114,7 @@ DECISION: []
 
 > Member of Technical Staff (Machine Learning Engineer, Search Agent RL)
 
-- `agent-architecture` · nice_to_have · raw_text: "Building agent harnesses"
+- `agent-harnesses` · nice_to_have · raw_text: "Building agent harnesses"
 - `agents` · required · raw_text: "or agent systems"
 - `ai-infrastructure` · nice_to_have · raw_text: "scalable inference infrastructure"
 - `distributed-training` · nice_to_have · raw_text: "distributed training systems"

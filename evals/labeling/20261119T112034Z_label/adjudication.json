@@ -159,15 +159,16 @@
       "n": 33,
       "golden_id": "golden_103",
       "kind": "skill",
-      "key": "agent-architecture",
+      "key": "agent-harnesses",
       "reason": "disagreement",
       "mode": "judge",
       "by": "model",
       "model": "gemini-4-argon",
       "proposed": "A",
-      "decision": "A",
+      "decision": "{\"skill_id\": \"agent-harnesses\"}",
       "judge_said": "A",
-      "why": "Under rule 1, the nice-to-have qualification bullet explicitly mentions 'Building agent harnesses' (as well as multi-agent coordination), which supports the agent-architecture skill."
+      "why": "Under rule 1, the nice-to-have qualification bullet explicitly mentions 'Building agent harnesses' (as well as multi-agent coordination), which supports the agent-architecture skill.",
+      "relabelled": "HIR-392: id moved to agent-harnesses, which did not exist when the judge ruled; requirement and quote are the judge's"
     },
     "35": {
       "n": 35,

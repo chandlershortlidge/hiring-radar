@@ -3211,6 +3211,11 @@
         "raw_text": "architecting and deploying agentic AI systems"
       },
       {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "building customized agent harnesses"
+      },
+      {
         "skill_id": "agents",
         "requirement": "required",
         "raw_text": "agentic AI systems"
@@ -4408,6 +4413,21 @@
     "a": null,
     "b": null,
     "excerpt": "Research Engineer, Climate Modeling",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "agent-harnesses",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "agent-harnesses",
+      "requirement": "nice_to_have",
+      "raw_text": "building customized agent harnesses"
+    },
+    "excerpt": "...Machine Learning, or related technical field - Experience building customized agent harnesses, fine-tuning models, or implementing RLHF/RLAIF...",
     "problems": [],
     "decision": "?"
   }

@@ -1,0 +1,14 @@
+{
+  "item": 140,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agent-harnesses",
+  "reason": "rule-change",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f1a14e8a04fb48cd573c3996165c34201681cf501ac19e3d5ebc6c16aaf86f17",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"Familiarity with sandboxed code execution and agent harness development\\\" names the skill directly, so `agent-harnesses` as nice_to_have with the quoted raw_text is correct under rule 5, which adds no broader skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred-qualifications bullet \"Familiarity with sandboxed code execution and agent harness development\" names the skill directly, so `agent-harnesses` as nice_to_have with the quoted raw_text is correct under rule 5, which adds no broader skill.",
+  "error": null
+}

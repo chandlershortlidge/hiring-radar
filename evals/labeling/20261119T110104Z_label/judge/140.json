@@ -1,0 +1,15 @@
+{
+  "item": 140,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agent-harnesses",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b9268b40125e35091e5b3778d0adda9aaecacf695df43a1bbf7ebad1e611106b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'agent harness development' is explicitly named in a preferred qualification bullet, making it a nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'agent harness development' is explicitly named in a preferred qualification bullet, making it a nice_to_have skill.",
+  "error": null
+}
