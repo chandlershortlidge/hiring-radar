@@ -268,6 +268,22 @@ For the PR you are given:
      above €10 is CHANDLER (his list, item 5). Merge at most **one** such PR per calendar day; if one already merged
      today, leave this one open with a comment "waits for tomorrow's window", no label.
 4. **Merge** when everything holds — never at all for a PR that trips the rules gate.
+
+   **First, is fixes-only mode on?** (HIR-341, AGENTS.md "The lead agent".) Before any
+   label: `git fetch origin main`, then
+   `git show origin/main:config/lead_agent.json | uv run python -m app.fixes_only --config -`.
+   - `off` → carry on below.
+   - `on: …`, and the ticket you read in step 1 carries the label `Bug` → add the PR
+     label `fix` (step 0's label command), then carry on below. While the mode is on,
+     GitHub's merger merges nothing without that label. You add it only from the
+     ticket's own `Bug` label, never from the PR's account of itself.
+   - `on: …`, and the ticket has no `Bug` label → this PR does not merge now. Add no
+     label and run no merge command. Post one PR comment that starts with the line
+     `**Review: passed, held for fixes-only mode**` and says in plain words that it
+     passed and stays open until Chandler turns the mode off. Start your reply to your
+     caller with `HELD`. When the mode ends, a fresh reviewer reviews it again.
+   - The command fails (the setting cannot be read) → treat the mode as on.
+
    **Label it `review-passed` first** (step 0's label command), every
    time, before any merge command (HIR-262). That label is the handover to GitHub's own
    merger (`.github/workflows/merge-reviewed.yml`), which merges the PR once it is clean

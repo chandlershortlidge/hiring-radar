@@ -200,6 +200,33 @@ micro-averaged precision/recall/F1 plus requirement accuracy, Spearman rank corr
 and top-10 overlap of skill frequencies. Held-out Goldens are read only at release
 points.
 
+## The lead agent, and fixes-only mode
+
+A scheduled run, several times a day, picks the tickets agents work on and gets them
+built, reviewed and merged ([AGENTS.md](AGENTS.md), "The lead agent"). Its limits are in
+`config/lead_agent.json`.
+
+One of them is **fixes-only mode**, for the Christmas break: from 16 December 2026 agents
+only repair what breaks (tickets labelled `Bug`, and the repair for a failing check) and
+ship nothing new. Feature tickets stay in Todo and feature pull requests stay open. The
+Monday summary's first line says the mode is on. It is this one line:
+
+```json
+"fixes_only": {"from": "2026-12-16", "until": null}
+```
+
+`until: null` means it stays on until it is turned off. **To turn it off**, change that
+line to
+
+```json
+"fixes_only": null
+```
+
+and merge the change yourself (edit the file on GitHub, or ask an agent to open the pull
+request). Agents will not merge it for you: while the mode is on, it is not a fix. To end
+it on a set day instead, put that day in `until`, as the last day in the mode:
+`"until": "2027-01-10"`. `uv run python -m app.fixes_only` says whether it is on today.
+
 ## Layout
 
 | path | what lives there |
@@ -213,6 +240,7 @@ points.
 | `taxonomy/skills.json` | the skill list — source of truth (v10, 217 entries) |
 | `evals/goldens/` | labeled JDs with a `dev` / `heldout` split |
 | `config/feeds.json` | which boards get polled |
+| `config/lead_agent.json` | the lead agent's limits, and fixes-only mode |
 | `web/src/profile.js` | the local profile and skill-overlap coverage (never sent to the server) |
 | `web/src/` | the rest of the frontend |
 
