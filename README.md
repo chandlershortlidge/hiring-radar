@@ -236,7 +236,7 @@ it on a set day instead, put that day in `until`, as the last day in the mode:
 | `app/extract.py` | JD text → skill mentions and per-job attributes |
 | `app/evaluation.py` | scoring and the eval suite runner |
 | `app/queries.py` | the read queries behind the dashboard |
-| `app/api.py` | FastAPI routes plus the add-a-job paths |
+| `app/api.py` | FastAPI routes: the reads and the job flag |
 | `taxonomy/skills.json` | the skill list — source of truth (v10, 217 entries) |
 | `evals/goldens/` | labeled JDs with a `dev` / `heldout` split |
 | `config/feeds.json` | which boards get polled |

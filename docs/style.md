@@ -48,13 +48,13 @@ missing skills; a full-width Connect-Claude band ("very distracting").
 
 | Control | Fill | Outline | Text | Class |
 |---|---|---|---|---|
-| Main button ("+ Add a job", the city picker, a drawer's submit) | Peach | Coral | Ink | `.btn.primary`, `.btn.outline`, `.qb-btn` on the city picker |
+| Main button (the city picker, a drawer's submit) | Peach | Coral | Ink | `.btn.primary`, `.btn.outline`, `.qb-btn` on the city picker |
 | Job-family picker | White | Coral, 2px | Ink | `select.qb-sel` |
 | Secondary button ("Show 15 more", "Load 20 more") | White | Plum | Plum | `.btn` |
 | Filter pill, off | White | Warm grey | Ink | `.fpill` |
 | Filter pill, on | Plum | Plum | White | `.fpill[aria-pressed="true"]`, `.fpill.on` |
 | "Add" control ("+ Compare with…", "More filters", "+ Add skill") | White | Warm grey, dashed | Secondary text | `.qb-btn.add`, `.fpill.more`, `.chip-add` |
-| Header pill (profile, proposed skills) | White | Warm grey | Ink | `.pill` |
+| Header pill (All markets, profile) | White | Warm grey | Ink | `.pill` |
 | Connect-Claude pill | White | Coral, 2px | Ink | `.pill.connect` |
 
 - Anything a finger presses on its own is 44px high: header pills, buttons, filter pills,
