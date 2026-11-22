@@ -1096,6 +1096,19 @@ agent touches it. `parked`: not before launch; only Chandler removes the label.
 everything the lead agent does. Adding the label `attended` to a ticket takes that one
 ticket away from agents.
 
+**Fixes-only mode: over the Christmas break agents repair and ship nothing new**
+(HIR-341, Chandler 2026-11-17; `decisions/2026-11-20-hir-341-fixes-only-over-the-christmas-break.md`). One line in
+`config/lead_agent.json`, `"fixes_only": {"from": "2026-12-16", "until": null}`, read by
+everything through `app/fixes_only.py`. While it is on: `scripts/lead_pick.py` picks only a
+ticket labelled `Bug` or the repair for a red check; the reviewer leaves a passed pull
+request open, with no label and the reply `HELD`, unless its ticket is labelled `Bug`,
+and labels that one `fix`; `scripts/merge_reviewed.py` merges nothing without the `fix`
+label; the Monday summary, Monday's pace and each run's log open with the sentence saying
+so. The caretaker, the robot visitor and the rollback run as always. Only the reviewer
+adds `fix`, and only from the ticket's `Bug` label. **Only Chandler turns the mode off**
+(the line becomes `"fixes_only": null`, README "The lead agent, and fixes-only mode"):
+no agent changes that line unless he asks in that session, and he merges the change.
+
 **It is the one exception to "every merge follows a review from the run that opened the
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
 pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose

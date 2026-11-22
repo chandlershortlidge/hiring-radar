@@ -27,6 +27,9 @@ It answers no to:
 - a second ticket in one day that makes the model re-read the stored jobs;
 - every ticket that is not a repair, while the main branch's checks or the robot visitor
   are red;
+- every ticket that is not a fix, while fixes-only mode is on (HIR-341): the Christmas
+  break, one line in config/lead_agent.json, read through app/fixes_only.py. A fix is a
+  ticket labelled `Bug`, or the repair for a red check;
 - everything, when the daily cap is zero or already spent, or when a run earlier today
   hit the Claude plan's usage limit.
 
@@ -112,6 +115,9 @@ Chandler, so no reviewer follows the repair), and `skipped`, each with why. It s
 - everything, when `stop` is set (the cap, the usage limit).
 
 A red check does not hold a repair back: it is not new work, and it spends nothing.
+Fixes-only mode does not hold one back either, but then no reviewer follows the repair of
+a pull request whose ticket is not a fix (`review` false): it is brought up to date and
+left open.
 
 The log lines it reads, one per ticket, written by the lead agent:
 
@@ -125,10 +131,11 @@ and, anywhere in a log comment, a line starting `Usage limit: reached`.
 
 Output: JSON with `stop` (null, or why nothing may start), `picked` and `skipped`, each
 entry with the ticket id and a plain-words reason, plus `spent_eur`, `cap_eur`,
-`decisions_waiting`, `queue` (how many tickets that can run alone are in Todo, how many
+`decisions_waiting`, `fixes_only` (null, or the sentence saying fixes-only mode is on),
+`queue` (how many tickets that can run alone are in Todo, how many
 of those are still there after this pick, and how many more to pull into Todo to keep 5
 waiting) and, when `today` is a Monday, `monday`: the three numbers for the weekly
-summary as plain sentences. When the state has `decisions`, also `monday_decisions`:
+summary as plain sentences, after that sentence when the mode is on. When the state has `decisions`, also `monday_decisions`:
 `think` (the ticket ids for the heading "To think about", in order, at most 3), `approve`
 (the ids for "To approve", in order: the rest of the 10), `ask` (the two together),
 `more` (how many did not fit, with `more_think` and `more_approve` saying which kind),
@@ -142,7 +149,7 @@ does not judge what a ticket's area, milestone or spend is, whether it may add a
 decision, how many decisions are waiting or which kind each is; the agent supplies those
 (the kind is the senior agent's to say). It does not write
 the questions either: it only says which tickets, in what order, and how many. Standard
-library only.
+library only (app/fixes_only.py is too).
 
     python scripts/lead_pick.py state.json            # limits from config/lead_agent.json
     python scripts/lead_pick.py state.json --cap 0    # the "cap set to zero" check
@@ -154,6 +161,9 @@ import json
 import re
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from app import fixes_only as fixes  # noqa: E402
 
 CONFIG = Path(__file__).resolve().parent.parent / "config" / "lead_agent.json"
 
@@ -219,10 +229,11 @@ def repair_failures(log):
     return counts
 
 
-def repairs(collided, log, stop=None):
+def repairs(collided, log, stop=None, fixes_only=False):
     """Which pull requests that collide with main may be given a repair worker in this
     run (HIR-305), and why the others may not. The worker only brings main into the
-    branch; what it may resolve alone is scripts/collision.py's to say, not this."""
+    branch; what it may resolve alone is scripts/collision.py's to say, not this.
+    `fixes_only`: the mode is on (HIR-341), so only a fix is reviewed after its repair."""
     failed = repair_failures(log)
     start, skipped = [], []
     for item in sorted(collided, key=lambda item: item["pr"]):
@@ -243,9 +254,11 @@ def repairs(collided, log, stop=None):
         elif item.get("live", True):
             why = "a run may still be working on it; the next run looks again"
         else:
-            start.append({"pr": item["pr"], "ticket": item["ticket"], "review": not waiting,
+            held = bool(fixes_only) and not waiting and not fixes.is_fix(item.get("labels"))
+            start.append({"pr": item["pr"], "ticket": item["ticket"], "review": not waiting and not held,
                           "why": "collides with main" + (
-                              "; waiting for Chandler, so it is repaired and left for him" if waiting else "")})
+                              "; waiting for Chandler, so it is repaired and left for him" if waiting else
+                              "; not a fix, so in fixes-only mode it is repaired and left open" if held else "")})
             continue
         skipped.append({"pr": item["pr"], "ticket": item.get("ticket"), "why": why})
     return {"start": start, "skipped": skipped}
@@ -456,20 +469,23 @@ def _why(ticket):
 
 def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5,
          decisions=None, max_questions=10, max_yours=3, answers=None, max_think=3,
-         approvals_waiting=None, collided=None):
-    """The run's answer: what may start, what may not and why."""
+         approvals_waiting=None, collided=None, fixes_only=None):
+    """The run's answer: what may start, what may not and why. `fixes_only` is the
+    setting from config/lead_agent.json (HIR-341); None means there is no such mode."""
+    frozen = fixes.sentence(fixes_only, today)
     spent = spent_on(log, today)
     failed = failures(log)
     alone = [t for t in tickets if t.get("state") == "Todo" and runs_alone(t, failed)]
     result = {
         "stop": None, "picked": [], "skipped": [], "spent_eur": spent, "cap_eur": cap_eur,
         "decisions_waiting": decisions_waiting,
+        "fixes_only": frozen,
         "queue": {"run_alone_in_todo": len(alone), "left_after_pick": len(alone),
                   "pull": max(0, queue_min - len(alone))},
     }
     if datetime.date.fromisoformat(today).weekday() == 0:
-        result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min,
-                                       approvals_waiting)
+        result["monday"] = (frozen + " " if frozen else "") + monday_text(
+            log, today, tickets, decisions_waiting, queue_min, approvals_waiting)
     if decisions is not None:
         decide, his = to_decide(decisions, today)
         result["monday_decisions"] = monday_decisions(his, max_questions, max_yours, max_think)
@@ -481,7 +497,7 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
             for item in answers]
     def done():
         if collided is not None:
-            result["repairs"] = repairs(collided, log, result["stop"])
+            result["repairs"] = repairs(collided, log, result["stop"], bool(frozen))
         return result
 
     if cap_eur <= 0:
@@ -522,6 +538,9 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
             skip(ticket, "blocked by an open ticket")
         elif failed.get(ticket["id"], 0) >= MAX_FAILURES:
             skip(ticket, "failed twice already; it goes to Monday's summary, not a third try")
+        elif frozen and not fixes.is_fix(labels, ticket.get("repair")):
+            skip(ticket, "fixes-only mode is on; only a ticket labelled Bug, or the repair "
+                         "for a red check, is started")
         elif red and not ticket.get("repair"):
             skip(ticket, f"{' and '.join(red)} must be green first; only the repair is started")
         elif est is None:
@@ -581,6 +600,7 @@ def main(argv=None):
         max_think=config["monday_think_max"],
         approvals_waiting=state.get("approvals_waiting"),
         collided=state.get("collided"),
+        fixes_only=config.get(fixes.KEY),
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))
     return 0
