@@ -217,6 +217,17 @@ def test_job_detail(conn):
     assert q.job_detail(conn, 999, NOW) is None
 
 
+def test_job_detail_shows_a_posting_stored_as_markup_as_text(conn):
+    """A posting stored before ingest cleaned markup still has it on its row (job 1679,
+    HIR-420). The page and the MCP read the text from here, so here it is text."""
+    jid = q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]["id"]
+    stored = ('<div><p><span style="font-size: 12pt; font-family: helvetica">RAG &amp; agents&nbsp;team</span></p>'
+              '<ul><li>Python</li></ul><script>alert(1)</script></div>')
+    conn.execute("UPDATE job SET description_text = ? WHERE id = ?", (stored, jid))
+    assert q.job_detail(conn, jid, NOW)["description_text"] == "RAG & agents\xa0team\n\n- Python"
+    assert conn.execute("SELECT description_text FROM job WHERE id = ?", (jid,)).fetchone()[0] == stored
+
+
 def test_german_and_degree_filters(conn):
     # Acme: German required, master's or equivalent. Gamma: German nice, bachelor required. Beta: nothing.
     conn.execute("UPDATE job SET german='required', german_basis='stated', german_signal='German', degree='master',"
