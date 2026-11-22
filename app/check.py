@@ -18,9 +18,11 @@ Does:
     API, because its page turns the checker away with "429 Too Many Requests" and the API
     names every location of the job (HIR-329); and wait and retry, twice, when any site
     answers 429 (`fetch_patiently`);
-  - diagnose a miss: board not in config/feeds.json; board polled but the title or city
-    filter would have dropped it; board polled and it would have passed (a feed bug, or
-    posted since the last poll); not a feed-reachable page at all.
+  - diagnose a miss: board not in config/feeds.json; board polled but one of the
+    collector's checks would have dropped it; board polled and it would have passed (a feed
+    bug, or posted since the last poll); not a feed-reachable page at all. Which checks
+    would drop a posting is asked of the collector (`ingest.stops`, `ingest.was_dropped`),
+    never re-applied here (HIR-427).
 
   - log each check (`log_check`) and report coverage over the logged checks
     (`checked_coverage`): of the URLs a person checked, how many a feed already had;
@@ -49,13 +51,12 @@ import sqlite3
 import time
 import urllib.error
 import urllib.parse
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from html.parser import HTMLParser
 
-from app import dedup
-from app.geo import ACTIVE_CITIES, active_place, city_of, place_of
+from app import dedup, ingest
+from app.geo import ACTIVE_CITIES, city_of, place_of
 from app.html_text import html_to_text
-from app.ingest import in_scope_title
 from app.sources import Posting, fetch_text, registry
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
@@ -624,17 +625,50 @@ def polled_boards(feeds: list[dict]) -> set[tuple[str, str]]:
     return {(f["type"], f["token"]) for f in feeds if f.get("token")}
 
 
-def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None) -> str:
-    """Why no feed stored this posting. Pure; one sentence, phrased as what to do about it."""
-    reasons = []
-    if not in_scope_title(posting.title):
-        reasons.append(f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)")
-    if active_place(posting.location_raw, posting.title, posting.description_text) is None:
+DROPPED_UNREADABLE = ("the posting was already dropped as unreadable (its text read blank twice), "
+                      "so the collector passes over the feed's copy")
+
+
+def _why_stopped(stop: str, posting: Posting) -> str:
+    """One clause for one of the collector's checks (a name from `ingest.stops`). Pure.
+    No "; " inside a clause: `miss_reason` splits the clauses on it. The title and location
+    clauses start with those words because `miss_reason` files a miss by them."""
+    if stop == ingest.SKIPPED_TITLE:
+        return f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)"
+    if stop == ingest.SKIPPED_CITY:
         city = city_of(posting.location_raw)
-        reasons.append(f"location {posting.location_raw!r} maps to {city}, which is tracked but not active "
-                       f"(active: {', '.join(ACTIVE_CITIES)})" if city else
-                       f"location {posting.location_raw!r} is neither a tracked city nor EU-remote "
-                       f"(remote tied to a non-EU country, or no remote signal)")
+        return (f"location {posting.location_raw!r} maps to {city}, which is tracked but not active "
+                f"(active: {', '.join(ACTIVE_CITIES)})" if city else
+                f"location {posting.location_raw!r} is neither a tracked city nor EU-remote "
+                f"(remote tied to a non-EU country, or no remote signal)")
+    if stop == ingest.SKIPPED_COMPANY:
+        return (f"company {posting.company!r} is blank or not a usable name "
+                f"(a posting is never stored without a company)")
+    if stop == ingest.SKIPPED_AGENCY:
+        return (f"company {posting.company!r} reads as a recruitment agency or job portal "
+                f"({ingest.agency_name_word(posting.company)!r}), which the country-wide sources screen out")
+    # A check added to the collector since: reported under its own name until it gets a
+    # sentence here, never passed over in silence (HIR-427).
+    return f"the collector's check {stop!r} stops it"
+
+
+def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
+             dropped: bool = False) -> str:
+    """Why no feed stored this posting. Pure; one sentence, phrased as what to do about it.
+
+    Which checks would stop it is the collector's own answer (`ingest.stops`), never a copy
+    kept here. `dropped` is the one check that reads the database (`ingest.was_dropped`),
+    looked up by the caller."""
+    # A board need not name the company on each posting (Lever and Ashby never do): the
+    # collector gets the name from the board's entry in config/feeds.json. So for a link
+    # that names its board, a company the collector could not use is filled from the board
+    # token, as `check_url` does for a posting it read off the board.
+    asked = posting
+    if ref is not None and ref.token and not dedup.company_key(posting.company):
+        asked = replace(posting, company=ref.token)
+    reasons = [_why_stopped(stop, asked) for stop in ingest.stops(asked)]
+    if dropped:
+        reasons.append(DROPPED_UNREADABLE)
     if ref is None:
         base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
         return base + ("; it would also be dropped: " + "; ".join(reasons) if reasons else "")
@@ -782,7 +816,7 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if not dedup.company_key(posting.company):
         result.notes.append("company unknown — pass --company to enable the text match")
 
-    result.diagnosis = diagnose(posting, ref, feeds, board_had_it)
+    result.diagnosis = diagnose(posting, ref, feeds, board_had_it, _dropped(conn, ref))
     result.missing_board = board_not_added(ref, feeds)
     return result
 
@@ -802,9 +836,15 @@ def check_posting(conn: sqlite3.Connection, url: str, posting: Posting, feeds: l
     m = best_text_match(conn, posting.company, posting.description_text)
     if m:
         return _found(conn, result, m.job_id, f"text {m.score:.2f}")
-    result.diagnosis = diagnose(posting, ref, feeds, None)
+    result.diagnosis = diagnose(posting, ref, feeds, None, _dropped(conn, ref))
     result.missing_board = board_not_added(ref, feeds)
     return result
+
+
+def _dropped(conn: sqlite3.Connection, ref: AtsRef | None) -> bool:
+    """Was the job this link names dropped as unreadable? Asked only after the lookup by
+    the feed's own id found nothing, which is the order the collector asks in."""
+    return ref is not None and ingest.was_dropped(conn, ref.source, ref.job_id)
 
 
 def _found(conn, result: CheckResult, job_id: int, how: str) -> CheckResult:
@@ -917,7 +957,14 @@ def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> 
         title = [c for c in clauses if c.startswith("title ")]
         if title:
             return TITLE_FILTER, "; ".join(title + [c for c in clauses if c not in title])
-        return LOCATION_FILTER, "; ".join(clauses)
+        if any(c.startswith("location ") for c in clauses):
+            return LOCATION_FILTER, "; ".join(clauses)
+        # Stopped by a check that is neither the title nor the location (no usable company,
+        # an agency, dropped as unreadable). Before HIR-427 the link checker did not know
+        # these checks and such a miss read "passes both filters", which is filed as OTHER;
+        # it stays there, with what really stopped it.
+        return OTHER, (f"board {board['board']} is polled and the collector drops the job on purpose: "
+                       + "; ".join(clauses))
     if board and "passes both filters" in d:
         return OTHER, f"board {board['board']} is polled and the job passes both filters: posted since the last poll, or a feed bug"
     if "via an embed URL" in d:
