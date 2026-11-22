@@ -1,7 +1,8 @@
 """Which tickets the lead agent may start in this run (HIR-266, HIR-280), which of
 the decisions waiting for Chandler go into Monday's comment (HIR-277), under which of its
-two headings (HIR-297), which of them are decided for him instead of asked (HIR-315), and
-which pull requests that collide with main it may have repaired (HIR-305).
+two headings (HIR-297), which of them are decided for him instead of asked (HIR-315),
+which pull requests that collide with main it may have repaired (HIR-305), and which
+pull requests that were sent back and then fixed get a fresh reviewer (HIR-358).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
@@ -119,6 +120,33 @@ Fixes-only mode does not hold one back either, but then no reviewer follows the 
 a pull request whose ticket is not a fix (`review` false): it is brought up to date and
 left open.
 
+`sent_back` is optional too: the open pull requests labelled `sent-back` and not
+`review-passed` (HIR-358), each as `{"pr": 196, "ticket": "HIR-246", "labels": [the
+ticket's], "pr_labels": [the pull request's], "rules": false, "live": false,
+"sent_back_at": "2026-11-17T05:57:00Z", "last_commit_at": "2026-11-17T06:04:00Z",
+"repair_at": null}`. `sent_back_at` is when it was last sent back: the newest of the time
+the `sent-back` label was added and the time of its newest `**Review: sent back**`
+comment (the label stays on after a fix, so the label alone would make a second send-back
+look answered). `last_commit_at` is the committer date of the branch's last commit;
+`repair_at` is the time of its newest comment starting `**Repair:`, null when it has
+none. `rules` and `live` are as for `collided`. The answer then has `rereviews`: `start`,
+the pull requests a fresh reviewer is started on because something was done to them
+after the send-back, and `skipped`, each with why. It says no to:
+
+- a pull request with no commit and no repair comment newer than its send-back: the
+  fixes are still its author's to do;
+- one whose send-back time cannot be read: in doubt it is not reviewed, because a review
+  of unfixed work uses up one of its three;
+- one that is waiting for Chandler (labelled `needs-chandler`, or a change to the agents'
+  own rules), and a ticket labelled `attended`, `hands-on` or `parked`;
+- one with no ticket (a reviewer checks the work against the ticket), or one a run may
+  still be working on: that run starts its own reviewer, and two on one pull request is
+  worse than none;
+- one whose ticket is not a fix, while fixes-only mode is on;
+- everything, when `stop` is set (the cap, the usage limit).
+
+A red check does not hold a second review back: it is not new work.
+
 The log lines it reads, one per ticket, written by the lead agent:
 
     - HIR-197 | picked: always on; a bug a visitor would notice | result: merged | spend: €0.00
@@ -143,6 +171,7 @@ summary as plain sentences, after that sentence when the mode is on. When the st
 questions: how many more are waiting, or "No decisions waiting") and `decide` (the ids
 the lead agent hands to the senior agent to be decided on its recommendation, in the same
 order; none of them is in `ask`). When the state has `collided`, also `repairs` (above).
+When it has `sent_back`, also `rereviews` (above).
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
 does not judge what a ticket's area, milestone or spend is, whether it may add a
@@ -259,6 +288,57 @@ def repairs(collided, log, stop=None, fixes_only=False):
                           "why": "collides with main" + (
                               "; waiting for Chandler, so it is repaired and left for him" if waiting else
                               "; not a fix, so in fixes-only mode it is repaired and left open" if held else "")})
+            continue
+        skipped.append({"pr": item["pr"], "ticket": item.get("ticket"), "why": why})
+    return {"start": start, "skipped": skipped}
+
+
+def _when(text):
+    """A time as GitHub or Linear writes it, or None when it cannot be read. One with no
+    zone is read as UTC, so every time compares with every other."""
+    try:
+        when = datetime.datetime.fromisoformat(str(text or "").strip().replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return when if when.tzinfo else when.replace(tzinfo=datetime.timezone.utc)
+
+
+def rereviews(sent_back, stop=None, fixes_only=False):
+    """Which pull requests that a reviewer sent back get a fresh reviewer in this run
+    (HIR-358), and why the others do not. One is picked when its author did something
+    after the send-back: a commit, or a comment saying a collision was repaired. Until
+    this, a fixed pull request whose author's run was gone was nobody's turn.
+    `fixes_only`: the mode is on (HIR-341), so only a fix is reviewed."""
+    start, skipped = [], []
+    for item in sorted(sent_back, key=lambda item: item["pr"]):
+        labels = {str(name).lower() for name in item.get("labels") or []}
+        pr_labels = {str(name).lower() for name in item.get("pr_labels") or []}
+        his = [name for name in NEVER_LABELS if name in labels]
+        sent = _when(item.get("sent_back_at"))
+        commit, repair = _when(item.get("last_commit_at")), _when(item.get("repair_at"))
+        if stop:
+            why = stop
+        elif "review-passed" in pr_labels:
+            why = "it has passed review since; it is waiting to merge, not for a review"
+        elif NEEDS_CHANDLER in pr_labels or item.get("rules"):
+            why = "it is waiting for Chandler, not for a reviewer"
+        elif not item.get("ticket"):
+            why = "no ticket could be found for its branch"
+        elif his:
+            why = f"its ticket is labelled {his[0]}; that work is Chandler's"
+        elif sent is None:
+            why = "when it was sent back cannot be read, so it cannot be told whether it was fixed"
+        elif not ((commit and commit > sent) or (repair and repair > sent)):
+            why = "nothing new since it was sent back; the fixes are still its author's to do"
+        elif item.get("live", True):
+            why = "a run may still be working on it; the next run looks again"
+        elif fixes_only and not fixes.is_fix(item.get("labels")):
+            why = "not a fix, so in fixes-only mode it stays open and unreviewed"
+        else:
+            start.append({"pr": item["pr"], "ticket": item["ticket"],
+                          "why": "sent back, then " + (
+                              "changed by a new commit" if commit and commit > sent else
+                              "repaired after a collision with main")})
             continue
         skipped.append({"pr": item["pr"], "ticket": item.get("ticket"), "why": why})
     return {"start": start, "skipped": skipped}
@@ -469,7 +549,7 @@ def _why(ticket):
 
 def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5,
          decisions=None, max_questions=10, max_yours=3, answers=None, max_think=3,
-         approvals_waiting=None, collided=None, fixes_only=None):
+         approvals_waiting=None, collided=None, fixes_only=None, sent_back=None):
     """The run's answer: what may start, what may not and why. `fixes_only` is the
     setting from config/lead_agent.json (HIR-341); None means there is no such mode."""
     frozen = fixes.sentence(fixes_only, today)
@@ -498,6 +578,8 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
     def done():
         if collided is not None:
             result["repairs"] = repairs(collided, log, result["stop"], bool(frozen))
+        if sent_back is not None:
+            result["rereviews"] = rereviews(sent_back, result["stop"], bool(frozen))
         return result
 
     if cap_eur <= 0:
@@ -600,6 +682,7 @@ def main(argv=None):
         max_think=config["monday_think_max"],
         approvals_waiting=state.get("approvals_waiting"),
         collided=state.get("collided"),
+        sent_back=state.get("sent_back"),
         fixes_only=config.get(fixes.KEY),
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))

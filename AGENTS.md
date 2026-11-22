@@ -1112,7 +1112,8 @@ no agent changes that line unless he asks in that session, and he merges the cha
 **It is the one exception to "every merge follows a review from the run that opened the
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
 pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
-reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
+reviewers could not open the ticket (above, HIR-306) and one whose author changed or
+repaired it after it was sent back (HIR-358). The reviewer still does the merging.
 It also starts the repair of a pull request that collides with main ("Who merges", above,
 HIR-305), whether or not the run that opened it is still alive.
 
