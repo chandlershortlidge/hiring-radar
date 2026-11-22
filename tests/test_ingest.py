@@ -522,3 +522,34 @@ def test_a_job_written_without_ingest_still_has_its_city_as_a_place(conn):
     assert places(conn) == {"Berlin"}
     conn.execute("DELETE FROM job")
     assert conn.execute("SELECT count(*) FROM job_place").fetchone()[0] == 0
+
+
+def test_a_posting_whose_text_is_markup_is_stored_as_text(conn):
+    """Whatever the source promised: JSearch says "plain text" and is stored unconverted,
+    and a pasted posting is whatever was pasted (HIR-420). Written out or escaped."""
+    import html
+    body = ("<div><p><span style=\"font-size: 12pt; font-family: helvetica\">" + JD + "</span></p>"
+            "<ul><li>Python &amp; SQL</li></ul><script>alert(1)</script></div>")
+    a = ingest_one(conn, posting(source="jsearch", sid="j1", text=body))
+    b = ingest_one(conn, posting(source="paste", sid=None, company="Other GmbH", text=html.escape(body)),
+                   trust_title=True)
+    assert a.is_new and b.is_new
+    for job_id in (a.job_id, b.job_id):
+        stored = conn.execute("SELECT description_text FROM job WHERE id = ?", (job_id,)).fetchone()[0]
+        assert stored == JD + "\n\n- Python & SQL"
+
+
+def test_a_plain_posting_is_stored_exactly_as_it_came(conn):
+    text = JD + "\n\n\nExperience < 3 years?   Fine. Generics like List<String> welcome."
+    job_id = ingest_one(conn, posting(text=text)).job_id
+    assert conn.execute("SELECT description_text FROM job WHERE id = ?", (job_id,)).fetchone()[0] == text
+
+
+def test_a_job_stored_as_markup_still_merges_with_its_posting_arriving_as_text(conn):
+    """Stored before ingest cleaned markup (HIR-420): the same posting from a second
+    source, as text, must land on that job and not become a second one."""
+    job_id = ingest_one(conn, posting()).job_id
+    conn.execute("UPDATE job SET description_text = ? WHERE id = ?",
+                 ("<div><p><span style=\"font-size: 12pt\">" + JD + "</span></p></div>", job_id))
+    again = ingest_one(conn, posting(source="greenhouse", sid="g1", url="https://x/g1"))
+    assert again.job_id == job_id and count(conn, "job") == 1
