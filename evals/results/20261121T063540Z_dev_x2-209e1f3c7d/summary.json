@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "run_id": "20261121T063540Z_dev_x2-209e1f3c7d",
+    "split": "dev",
+    "n_goldens": 71,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-209e1f3c7d",
+    "taxonomy_version": 13,
+    "max_tokens": 4096
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.9119754989080168,
+      "min": 0.9108409321175278,
+      "max": 0.9131736526946108,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.8993399339933994,
+      "min": 0.8900990099009901,
+      "max": 0.905940594059406,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9056040448114896,
+      "min": 0.900350525788683,
+      "max": 0.9095427435387675,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9504900320691938,
+      "min": 0.9473106476399561,
+      "max": 0.9566184649610678,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 0.9577464788732394,
+      "min": 0.9436619718309859,
+      "max": 0.971830985915493,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.9671361502347419,
+      "min": 0.9577464788732394,
+      "max": 0.971830985915493,
+      "n": 3
+    },
+    "production_accuracy": {
+      "mean": 0.9666666666666667,
+      "min": 0.95,
+      "max": 1.0,
+      "n": 3
+    },
+    "production_signal_agreement": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "grounding_accuracy": {
+      "mean": 0.9993418881378747,
+      "min": 0.9990118577075099,
+      "max": 1.0,
+      "n": 3
+    },
+    "group_f1": {
+      "mean": 0.6735740261009289,
+      "min": 0.6347305389221557,
+      "max": 0.7039106145251397,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.9319613639258947,
+      "min": 0.9227496202301173,
+      "max": 0.9391826634340419,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.9,
+      "min": 0.9,
+      "max": 0.9,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 71,
+      "n_errors": 0,
+      "tp": 899,
+      "fp": 88,
+      "fn": 111,
+      "precision": 0.9108409321175278,
+      "recall": 0.8900990099009901,
+      "f1": 0.900350525788683,
+      "requirement_accuracy": 0.9566184649610678,
+      "seniority_accuracy": 0.971830985915493,
+      "seniority_n": 71,
+      "german_accuracy": 1.0,
+      "german_n": 71,
+      "degree_accuracy": 0.971830985915493,
+      "degree_n": 71,
+      "production_accuracy": 0.95,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9166666666666666,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 8,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 1
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 8,
+      "grounding_accuracy": 1.0,
+      "grounding_n": 997,
+      "group_f1": 0.6347305389221557,
+      "group_n": 19,
+      "rank_spearman": 0.9227496202301173,
+      "top10_overlap": 0.9,
+      "gold_top": [
+        "python",
+        "llms",
+        "software-engineering",
+        "agents",
+        "evaluation",
+        "cloud",
+        "rag",
+        "machine-learning",
+        "aws",
+        "ai-ml"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "agents",
+        "rag",
+        "ci-cd",
+        "cloud",
+        "evaluation",
+        "machine-learning",
+        "software-engineering",
+        "aws"
+      ]
+    },
+    {
+      "n_goldens": 71,
+      "n_errors": 0,
+      "tp": 915,
+      "fp": 87,
+      "fn": 95,
+      "precision": 0.9131736526946108,
+      "recall": 0.905940594059406,
+      "f1": 0.9095427435387675,
+      "requirement_accuracy": 0.9475409836065574,
+      "seniority_accuracy": 0.9577464788732394,
+      "seniority_n": 71,
+      "german_accuracy": 1.0,
+      "german_n": 71,
+      "degree_accuracy": 0.9577464788732394,
+      "degree_n": 71,
+      "production_accuracy": 0.95,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 7,
+          "fp": 0,
+          "fn": 1,
+          "precision": 1.0,
+          "recall": 0.875
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9166666666666666,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 7,
+          "nice_to_have": 0,
+          "none": 1
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 8,
+      "grounding_accuracy": 0.9990138067061144,
+      "grounding_n": 1014,
+      "group_f1": 0.7039106145251397,
+      "group_n": 19,
+      "rank_spearman": 0.9391826634340419,
+      "top10_overlap": 0.9,
+      "gold_top": [
+        "python",
+        "llms",
+        "software-engineering",
+        "agents",
+        "evaluation",
+        "cloud",
+        "rag",
+        "machine-learning",
+        "aws",
+        "ai-ml"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "agents",
+        "rag",
+        "evaluation",
+        "cloud",
+        "machine-learning",
+        "ci-cd",
+        "aws",
+        "software-engineering"
+      ]
+    },
+    {
+      "n_goldens": 71,
+      "n_errors": 0,
+      "tp": 911,
+      "fp": 88,
+      "fn": 99,
+      "precision": 0.9119119119119119,
+      "recall": 0.901980198019802,
+      "f1": 0.9069188651070184,
+      "requirement_accuracy": 0.9473106476399561,
+      "seniority_accuracy": 0.9436619718309859,
+      "seniority_n": 71,
+      "german_accuracy": 1.0,
+      "german_n": 71,
+      "degree_accuracy": 0.971830985915493,
+      "degree_n": 71,
+      "production_accuracy": 1.0,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 8,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 9,
+      "grounding_accuracy": 0.9990118577075099,
+      "grounding_n": 1012,
+      "group_f1": 0.6820809248554913,
+      "group_n": 19,
+      "rank_spearman": 0.9339518081135249,
+      "top10_overlap": 0.9,
+      "gold_top": [
+        "python",
+        "llms",
+        "software-engineering",
+        "agents",
+        "evaluation",
+        "cloud",
+        "rag",
+        "machine-learning",
+        "aws",
+        "ai-ml"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "agents",
+        "rag",
+        "evaluation",
+        "cloud",
+        "ci-cd",
+        "machine-learning",
+        "software-engineering",
+        "aws"
+      ]
+    }
+  ]
+}

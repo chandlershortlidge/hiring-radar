@@ -345,7 +345,8 @@ def test_the_config_holds_the_starting_limits():
     assert config["monday_questions_max"] == 10 and config["monday_yours_max"] == 3
     assert config["monday_think_max"] == 3  # HIR-297: at most 3 a week to think about
     assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min",
-                           "monday_questions_max", "monday_yours_max", "monday_think_max"}
+                           "monday_questions_max", "monday_yours_max", "monday_think_max",
+                           "fixes_only"}  # HIR-341, tests/test_fixes_only.py
 
 
 @pytest.mark.parametrize("left_out", ["decisions_waiting", "red"])
