@@ -320,7 +320,7 @@ def check_one(conn, url, feeds, args):
         print(f"  note: {n}")
     if not args.add or r.posting is None:
         return
-    # Every add-by-link rule lives in app/add.py, so the CLI and /api/add/url cannot drift.
+    # Every add-by-link rule lives in app/add.py, so no caller can drift from another.
     d = add.decide(r)
     if d.action == add.EXISTS:
         print(f"add: skipped — already job {d.job_id}")

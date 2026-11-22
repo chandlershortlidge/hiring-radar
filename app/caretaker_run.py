@@ -17,8 +17,8 @@ Does:
     per misses.TICKET_QUIET_DAYS per reason. Below it, the 8-week trend (HIR-321): whether
     the share of checked links a feed already had is rising, overall and per city;
   - file the ticket for company boards "Add a job" found we do not collect and no ticket
-    names yet (app/boards_to_add.py, HIR-324). The dashboard files it right after the add,
-    so this is the retry for a post that did not reach Linear.
+    names yet (app/boards_to_add.py, HIR-324). The dashboard recorded those boards until
+    "Add a job" left the site (HIR-346); this files whatever is still waiting.
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
 report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).

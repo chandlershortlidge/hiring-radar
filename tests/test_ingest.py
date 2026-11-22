@@ -347,7 +347,7 @@ def test_new_job_gets_a_family_on_insert(conn):
 
 
 def test_a_hand_added_job_gets_a_family_too(conn):
-    """Manual adds (/api/add/url, /add/text, /add/screenshot) go through ingest_one with
+    """Manual adds (the CLI's check --add, add-text, add-screenshot) go through ingest_one with
     trust_title, skipping the title filter — they must still be labelled."""
     assert ingest_one(conn, posting(title="Head of Analytics"), when="2026-10-16T00:00:00Z",
                       trust_title=True) == Stored("new", 1)

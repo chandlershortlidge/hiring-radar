@@ -49,7 +49,7 @@ def test_open_rule_feed_vs_manual(conn):
     s = q.stats(conn, NOW, skills_tracked=143)
     assert s["jobs"] == 5 and s["open"] == 3  # Acme, Gamma, Delta
     assert s["open_by_city"] == {"Berlin": 2, "San Francisco": 1}
-    assert s["companies"] == 5 and s["proposed_pending"] == 3
+    assert s["companies"] == 5
 
 
 def test_search_sources_use_the_manual_rule_and_never_keep_a_closed_feed_job_open(conn):
