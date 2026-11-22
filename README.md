@@ -35,13 +35,15 @@ what `/api/skills` returns with no filters set, which is what the dashboard open
 A chart built by an LLM is only as good as the extraction behind it, so extraction is
 measured, not assumed:
 
-- **46 job descriptions are hand-labeled** with the skills they truly ask for. Scoring the
-  current extractor against the 20 development ones gives **F1 0.920** (precision 0.876,
-  recall 0.968) — `evals/results/20261105T105022Z_dev_x2-7873e921da`.
-- **The other 26 labeled ads are held out** and never looked at while tuning, so the score
+- **131 job descriptions are labeled** with the skills they truly ask for. Two models label
+  each one blind, and a person settles their disagreements. Scoring
+  the current extractor against the 71 development ones gives **F1 0.906** (precision 0.912,
+  recall 0.899) — `evals/results/20261121T063540Z_dev_x2-209e1f3c7d`.
+- **The other 60 labeled ads are held out** and never looked at while tuning, so the score
   can't quietly become a score of how well the test was memorized. They are read only at
-  release points; the last held-out run scored F1 0.919 on the extractor as it stood on
-  30 October (`evals/results/20261030T123219Z_heldout_x2-2e0cac6944`).
+  release points; the last held-out run scored **F1 0.928** (precision 0.957, recall 0.901)
+  on the same extractor on 22 November
+  (`evals/results/20261122T152055Z_heldout_x2-209e1f3c7d`).
 - **Skills live in a versioned list**, not in the prompt. A skill the list doesn't know
   never reaches the chart — it goes to a review queue instead. 139 different labels are
   waiting there now, and one earns a permanent entry once three separate jobs ask for it.
