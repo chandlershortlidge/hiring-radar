@@ -34,6 +34,10 @@ with live in app/add.py, which is the one entry point for those (HIR-210).
 `in_scope_title` and `agency_name_word` are the two pure screens that decide what may be
 stored, and both live here so there is one copy of each: app/discover.py imports
 `agency_name_word` for its board screen rather than keeping its own word list (HIR-220).
+The whole set of checks and their order has one copy too: `stops` (and `screen`, its first
+answer), which `ingest_one`, the link checker (app/check.py) and the board search
+(app/discover.py) all ask, with `was_dropped` for the one check that reads the database
+(HIR-427).
 
 Invariants: one DB transaction per posting, and a screenshot passed in shares it — the
 image and the job it belongs to are both stored or neither is, because the "have I added
@@ -300,6 +304,55 @@ class Report:
                 f"skipped_unreadable={self.skipped_unreadable}")
 
 
+def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
+    """Every check that stops this posting from being stored, as the SKIPPED_* names, in
+    the order the collector applies them. Nothing yielded means it would be kept. Pure.
+
+    This is the one copy of "would we collect this posting?" (HIR-427). `ingest_one` stores
+    by it, the link checker (app/check.py) explains a miss by it and the board search
+    (app/discover.py) counts a board's roles by it, so a check added here reaches all three
+    with no further edit. Add a check at the end: the counts of the ones above it then keep
+    meaning what they did.
+
+    The one check that is not here is "was this posting already dropped as unreadable?"
+    (`was_dropped`): it needs the database, and it only applies to a feed's fetch.
+
+    require_city and trust_title are `ingest_one`'s, for a posting a person added by hand;
+    a feed's posting is screened with the defaults.
+    """
+    if not trust_title and not in_scope_title(p.title):
+        yield SKIPPED_TITLE
+    if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
+        yield SKIPPED_CITY
+    # No trust_title-style escape: this is the invariant of DECISIONS 2026-11-06 "A job is
+    # never stored without a company". Blank means blank *to dedup* — the same company_key
+    # that would have to match it — so punctuation alone ("-", "—") and a bare legal suffix
+    # ("GmbH") are refused too: they key to the empty string and so could never match
+    # anything either.
+    if not dedup.company_key(p.company):
+        yield SKIPPED_COMPANY
+    # Country-wide sources only; see SCREENED_SOURCES for why boards and hand-added
+    # postings are left out. HIR-220.
+    if p.source in SCREENED_SOURCES and agency_name_word(p.company):
+        yield SKIPPED_AGENCY
+
+
+def screen(p: Posting, *, require_city: bool = True, trust_title: bool = False) -> str | None:
+    """The first check that stops this posting (see `stops`), or None when it would be
+    kept. Pure. The first is the one the collector counts the posting under."""
+    return next(stops(p, require_city=require_city, trust_title=trust_title), None)
+
+
+def was_dropped(conn: sqlite3.Connection, source: str, source_job_id: str | None) -> bool:
+    """Was this feed posting dropped for reading blank twice (HIR-176)? Reads one row and
+    writes nothing. Only a feed's fetch is passed over for it (`skip_dropped`), and only
+    when the posting is not stored again since: `ingest_one` asks after its still-listed
+    check, and a caller outside it should look the posting up first as well."""
+    return bool(source_job_id) and conn.execute(
+        "SELECT 1 FROM dropped_posting WHERE source=? AND source_job_id=?",
+        (source, source_job_id)).fetchone() is not None
+
+
 def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Candidate]:
     # Pull same-company rows only; company_key is applied again in dedup for safety.
     rows = conn.execute(
@@ -337,23 +390,10 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     text = clean_posting_text(p.description_text)
     if text != p.description_text:
         p = replace(p, description_text=text)
-    if not trust_title and not in_scope_title(p.title):
-        return Stored(SKIPPED_TITLE)
+    stopped_by = screen(p, require_city=require_city, trust_title=trust_title)
+    if stopped_by:
+        return Stored(stopped_by)
     city = place_of(p.location_raw, p.title, p.description_text)
-    if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
-        return Stored(SKIPPED_CITY)
-    # Last, so the title and city counts keep meaning what they did. No trust_title-style
-    # escape: this is the invariant of DECISIONS 2026-11-06 "A job is never stored without
-    # a company". Blank means blank *to dedup* — the same company_key that would have to
-    # match it — so punctuation alone ("-", "—") and a bare legal suffix ("GmbH") are
-    # refused too: they key to the empty string and so could never match anything either.
-    if not dedup.company_key(p.company):
-        return Stored(SKIPPED_COMPANY)
-    # Last of all, so every count above keeps meaning what it did and this one holds only
-    # postings that would otherwise have been stored. Country-wide sources only; see
-    # SCREENED_SOURCES for why boards and hand-added postings are left out. HIR-220.
-    if p.source in SCREENED_SOURCES and agency_name_word(p.company):
-        return Stored(SKIPPED_AGENCY)
 
     with conn:
         if p.source_job_id:
@@ -366,9 +406,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 return Stored(STILL_LISTED, row["job_id"])
             # After the still-listed check, so a posting a person stored again by hand is
             # followed like any other; before dedup, so nothing about it is written.
-            if skip_dropped and conn.execute(
-                    "SELECT 1 FROM dropped_posting WHERE source=? AND source_job_id=?",
-                    (p.source, p.source_job_id)).fetchone():
+            if skip_dropped and was_dropped(conn, p.source, p.source_job_id):
                 return Stored(SKIPPED_UNREADABLE)
 
         match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))
