@@ -41,9 +41,16 @@ _EN = re.compile(r"\b(and|the|we|with|for|or|you|your|our|a|at|of|to|on|is)\b", 
 
 
 def is_german(text: str) -> bool:
-    """True when German function words clearly outnumber English ones."""
+    """True when German function words clearly outnumber English ones.
+
+    How many German words that takes grows with the posting: one in every twenty words,
+    at least 3 and at most 20. A flat 20 called every short posting English, because a
+    50-word summary cannot hold 20 function words in any language (HIR-355). An English
+    title or English technical terms in a German posting do not count against it: they
+    are not function words."""
     de, en = len(_DE.findall(text)), len(_EN.findall(text))
-    return de >= 20 and de > 2 * en
+    need = min(20, max(3, len(text.split()) // 20))
+    return de >= need and de > 2 * en
 
 
 def sha(text: str) -> str:

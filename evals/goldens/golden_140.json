@@ -44,12 +44,14 @@
     {
       "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "AWS"
+      "raw_text": "AWS",
+      "alternative_group": 2
     },
     {
       "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "Azure"
+      "raw_text": "Azure",
+      "alternative_group": 2
     },
     {
       "skill_id": "ci-cd",
@@ -79,12 +81,14 @@
     {
       "skill_id": "github-actions",
       "requirement": "required",
-      "raw_text": "GitHub Actions/GitLab CI"
+      "raw_text": "GitHub Actions/GitLab CI",
+      "alternative_group": 1
     },
     {
       "skill_id": "gitlab-ci",
       "requirement": "required",
-      "raw_text": "GitHub Actions/GitLab CI"
+      "raw_text": "GitHub Actions/GitLab CI",
+      "alternative_group": 1
     },
     {
       "skill_id": "infrastructure-as-code",

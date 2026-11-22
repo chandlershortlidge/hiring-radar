@@ -30,7 +30,8 @@
     {
       "skill_id": "cuda",
       "requirement": "required",
-      "raw_text": "CUDA"
+      "raw_text": "CUDA",
+      "alternative_group": 1
     },
     {
       "skill_id": "deep-learning",
@@ -40,7 +41,8 @@
     {
       "skill_id": "jax",
       "requirement": "required",
-      "raw_text": "JAX"
+      "raw_text": "JAX",
+      "alternative_group": 1
     },
     {
       "skill_id": "llms",
@@ -50,7 +52,8 @@
     {
       "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "PyTorch",
+      "alternative_group": 1
     }
   ]
 }

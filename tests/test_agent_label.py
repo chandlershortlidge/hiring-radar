@@ -2226,6 +2226,23 @@ def test_number_groups_drops_members_that_left_the_key_and_numbers_in_posting_or
     assert al.number_groups([["aws", "azure"]], skills, posting) == {}
 
 
+def test_a_slash_pair_of_two_skills_is_one_group():
+    # HIR-390, Chandler: "“Terraform/CloudFormation” is an either/or pair, so the two
+    # should share a group." The grouping models read the guide's section word for word.
+    rules = al.guide_section(al.GUIDE_FILE.read_text(), al.GROUPS_HEADING)
+    assert "A slash between two skills of the same kind" in rules
+    assert '"CI/CD" is one skill' in rules
+    item = dict(GROUPS_ITEM, skills=[
+        {"skill_id": "terraform", "requirement": "nice_to_have", "raw_text": "Terraform/CloudFormation"},
+        {"skill_id": "cloudformation", "requirement": "nice_to_have", "raw_text": "CloudFormation"},
+        {"skill_id": "git", "requirement": "nice_to_have", "raw_text": "Git, CI/CD"}])
+    groups = al.parse_groups(item, '[["terraform", "cloudformation"]]')
+    assert groups == [["cloudformation", "terraform"]]
+    skills = {s["skill_id"]: s for s in item["skills"]}
+    posting = "Preferred: Terraform/CloudFormation, Git, CI/CD, testing and Jira"
+    assert al.number_groups(groups, skills, posting) == {"cloudformation": 1, "terraform": 1}
+
+
 def groups_run(tmp_path, monkeypatch):
     run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0,
                                        posting=GROUP_POSTING)

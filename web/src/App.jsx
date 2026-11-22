@@ -229,7 +229,7 @@ export default function App() {
       onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
       onRequestCity={requestCity}
       right={stats && market.view !== "home"
-        ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
+        ? <span className="mono dim">updated {timeAgo(stats.last_updated)}</span>
         : null} />
   );
 
@@ -288,9 +288,11 @@ export default function App() {
       </main> : <main className={`main${market.view === "city" ? " split" : ""}`}>
         {/* A city page is two columns (HIR-285): the chart, and what hangs off it, on the
             left; the jobs on the right, so a click on a bar filters a list already in
-            view. They stack below 1100px. A comparison keeps one column: its chart needs
+            view. The left column stays in view while the jobs scroll (HIR-345); the
+            stylesheet does that, and puts "What's rising" back under the chart where the
+            columns stack, below 1100px. A comparison keeps one column: its chart needs
             the width for a column per city. */}
-        <div className="stack">
+        <div className="stack lead">
         <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
           <div>
             <h1 id="chart-title">{filters.compare
@@ -332,18 +334,22 @@ export default function App() {
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section></Panel>
 
-        {/* One place at a time: a comparison of cities has no single market to follow. */}
-        {market.view === "city" && (
-          <Panel label="What's rising"><RisingSkills cities={placeCities(market.place)} family={market.family}
-            place={placeName || "this market"} role={roleLabel} refreshKey={refresh} /></Panel>
-        )}
-
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
         </div>
 
+        <div className="stack side">
         <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters} connect={market.view === "city"}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} market={market} /></Panel>
+
+        {/* One place at a time: a comparison of cities has no single market to follow.
+            Under the jobs, in their column: in the left column it made the part that
+            stays in view taller than a laptop screen (HIR-345). */}
+        {market.view === "city" && (
+          <div className="below"><Panel label="What's rising"><RisingSkills cities={placeCities(market.place)} family={market.family}
+            place={placeName || "this market"} role={roleLabel} refreshKey={refresh} /></Panel></div>
+        )}
+        </div>
 
         {/* The skill tree card stood here. Off the MVP page by HIR-187; SkillTree.jsx, api.skillTree
             and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}

@@ -11,8 +11,11 @@ This is the cheaper half of HIR-203, and the same answer HIR-200 gave the open-j
 and its SQL twin: no endpoint, one test that fails until both sides agree.
 
 The list of places is held to the same standard (HIR-312). A city launch edits three lists
-that do not know about each other: the collector's switched-on places (`geo.ACTIVE_CITIES`),
-the dashboard's `PLACES`, and the board-search phrases in config/discover.json. Miss the
+that do not know about each other: the collector's switched-on places (app/scope.py, read
+as `geo.ACTIVE_CITIES`), the dashboard's `PLACES`, and the board-search phrases in
+config/discover.json. Since HIR-395 a switched-on place is live or incubating: the
+dashboard lists exactly the live ones, so an incubating city is never offered, and the
+board search covers both, because both are collected. Miss the
 dashboard and the city's jobs are collected but nobody can pick it; miss the collector and
 the home grid shows a card that never fills; miss the phrases and the weekly search for
 new boards never looks there. The checks below fail on each, naming the city.
@@ -28,7 +31,7 @@ from pathlib import Path
 
 import pytest
 
-from app import discover, geo, queries
+from app import discover, geo, queries, scope
 
 WEB = Path(__file__).resolve().parent.parent / "web" / "src"
 
@@ -126,17 +129,18 @@ def test_the_readers_notice_a_declaration_that_is_gone():
 # --- places: the collector, the dashboard and the board search (HIR-312) -----------------
 
 def check_places(dashboard, collected) -> None:
-    """The dashboard offers exactly the places the collector has switched on."""
+    """The dashboard offers exactly the places the collector has switched on and live."""
     missing = sorted(set(collected) - set(dashboard))
     extra = sorted(set(dashboard) - set(collected))
     assert not missing, (
-        f"the collector has {missing} switched on (app/geo.py ACTIVE_CITIES) but "
+        f"the collector has {missing} switched on and live (app/scope.py PLACE_STATE) but "
         f"web/src/format.js's PLACES does not list them, so their jobs are collected and "
         f"nobody can pick them — add each one to PLACES")
     assert not extra, (
         f"web/src/format.js's PLACES lists {extra} but the collector does not have them "
-        f"switched on (app/geo.py ACTIVE_CITIES), so the dashboard shows a place that never "
-        f"fills — remove them from PLACES, or switch them on")
+        f"switched on and live (app/scope.py PLACE_STATE), so the dashboard shows a place that "
+        f"never fills — remove them from PLACES, or switch them on (an incubating place is "
+        f"collected but must not be listed until it is live)")
 
 
 def check_search_phrases(collected, queries_) -> None:
@@ -157,7 +161,15 @@ def _search_phrases() -> list[str]:
 
 
 def test_dashboard_lists_exactly_the_places_the_collector_has_switched_on():
-    check_places(js_names("format.js", "PLACES"), geo.ACTIVE_CITIES)
+    check_places(js_names("format.js", "PLACES"), scope.live_places())
+
+
+def test_an_incubating_place_listed_on_the_dashboard_fails_by_name(monkeypatch):
+    """The dashboard's pickers and the robot visitor read PLACES, so this is what keeps
+    both off an incubating city (HIR-395); switching it to live then asks for its entry."""
+    monkeypatch.setitem(scope.PLACE_STATE, "Chicago", scope.INCUBATING)
+    with pytest.raises(AssertionError, match=r"PLACES lists \['Chicago'\]"):
+        check_places(js_names("format.js", "PLACES"), scope.live_places())
 
 
 def test_every_switched_on_city_has_a_board_search_phrase():
@@ -166,12 +178,12 @@ def test_every_switched_on_city_has_a_board_search_phrase():
 
 def test_a_city_switched_on_but_missing_from_the_dashboard_fails_by_name():
     with pytest.raises(AssertionError, match=r"\['Atlantis'\] switched on .* does not list them"):
-        check_places(js_names("format.js", "PLACES"), geo.ACTIVE_CITIES + ("Atlantis",))
+        check_places(js_names("format.js", "PLACES"), scope.live_places() + ("Atlantis",))
 
 
 def test_a_dashboard_place_the_collector_has_not_switched_on_fails_by_name():
     with pytest.raises(AssertionError, match=r"PLACES lists \['Atlantis'\]"):
-        check_places(js_names("format.js", "PLACES") + ("Atlantis",), geo.ACTIVE_CITIES)
+        check_places(js_names("format.js", "PLACES") + ("Atlantis",), scope.live_places())
 
 
 def test_a_switched_on_city_with_no_search_phrase_fails_by_name():

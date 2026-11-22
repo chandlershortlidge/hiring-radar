@@ -111,8 +111,8 @@ def test_cities_come_from_the_labelling_runs_picks(tmp_path, monkeypatch):
     assert ebc.cities() == {"golden_107": "Hamburg", "golden_108": ebc.NOT_RECORDED}
 
 
-# Long enough for the language test to fire: it wants at least 20 German function words
-# before it will call a posting German at all (scripts/new_goldens.py).
+# Long enough for the language test to fire: it wants one German function word in every
+# twenty words, at least 3, before it will call a posting German (scripts/new_goldens.py).
 DE_POSTING = ("Wir suchen eine Data Scientist für unser Team in Berlin. Du arbeitest mit "
               "Python und der Cloud, bist für die Modelle zuständig und bringst Erfahrung "
               "mit Daten mit. ") * 4

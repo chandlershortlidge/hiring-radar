@@ -260,6 +260,25 @@ export function rankJobs(profile, jobs, demand = null) {
   return keyed.map((x) => x.job);
 }
 
+// --- Best fit only ranks recent jobs (HIR-391) ------------------------------------------
+
+// How old a job may be and still be ranked by Best fit, in days since we first saw the
+// posting. One number the menu label, the line under the list and the filter all read, so
+// they cannot disagree. Why a limit at all: a great match first seen seven weeks ago is
+// probably filled, and it used to sit at the top.
+export const FIT_DAYS = 30;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// The jobs first seen in the last `days` days, in the order given. `now` is the moment
+// "last 30 days" is counted back from (milliseconds, as Date.now() gives); it is a
+// parameter so a test can pin the day. A job first seen exactly `days` days ago is still
+// in; one with a missing or unreadable date is out, since nothing shows it is recent.
+// Returns a new array and never mutates its input. Does NOT rank: rankJobs does, on what
+// this returns, so the ranking itself is unchanged and never scores a job it would drop.
+export function recentJobs(jobs, now = Date.now(), days = FIT_DAYS) {
+  return jobs.filter((job) => now - new Date(job.first_seen).getTime() <= days * DAY_MS);
+}
+
 // --- matches per city (HIR-16) ----------------------------------------------------------
 
 // What "you match this job" means when jobs are *counted*: at least this share of the
