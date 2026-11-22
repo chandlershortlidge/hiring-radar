@@ -45,11 +45,12 @@ the title, city and company counts mean what they always did); no row in `job` i
 
 import re
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 
 from app import dedup, scope
 from app.geo import active_place, place_of, places_of
+from app.html_text import clean_posting_text
 from app.sources import Posting, registry
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
@@ -304,7 +305,9 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
     rows = conn.execute(
         "SELECT id, company, title, description_text FROM job WHERE company IS NOT NULL").fetchall()
     ck = dedup.company_key(company)
-    return [dedup.Candidate(r["id"], r["company"], r["title"], r["description_text"])
+    # Cleaned like the incoming posting, so a job stored as markup before HIR-420 still
+    # matches its own posting arriving as text from another source.
+    return [dedup.Candidate(r["id"], r["company"], r["title"], clean_posting_text(r["description_text"]))
             for r in rows if dedup.company_key(r["company"]) == ck]
 
 
@@ -329,6 +332,11 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     not a posting this function can report on (check_timestamp).
     """
     when = check_timestamp(when or now_iso())
+    # Every way a posting gets in passes here, so this is the one place that keeps markup
+    # out of the stored text whatever the source promised (HIR-420). Plain text is untouched.
+    text = clean_posting_text(p.description_text)
+    if text != p.description_text:
+        p = replace(p, description_text=text)
     if not trust_title and not in_scope_title(p.title):
         return Stored(SKIPPED_TITLE)
     city = place_of(p.location_raw, p.title, p.description_text)

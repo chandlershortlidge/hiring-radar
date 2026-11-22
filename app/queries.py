@@ -35,6 +35,7 @@ from datetime import datetime, timedelta, timezone
 from app import scope
 from app.extract import SENIORITY_LEVELS
 from app.geo import CITIES, COLLECTING_SINCE, REMOTE_EU
+from app.html_text import clean_posting_text
 from app.ingest import SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
 from app.sources import registry
@@ -704,6 +705,9 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str, include_incubati
     if not row:
         return None
     job = dict(row)
+    # A posting stored as markup before ingest cleaned it is shown as text all the same
+    # (HIR-420). Never the other way round: nothing here hands a reader the posting's HTML.
+    job["description_text"] = clean_posting_text(job["description_text"] or "")
     job["places"] = _places(conn, [job_id], include_incubating)[job_id]
     job["city"] = _shown_city(job["city"], job["places"], include_incubating)
     job["sources"] = [dict(source) for source in conn.execute(
