@@ -63,3 +63,41 @@ describe("what the drawer says when a posting was turned away", () => {
     expect(html).toContain("500 Internal Server Error");
   });
 });
+
+// HIR-324: adding a job stored the one posting and said nothing about the company's other
+// jobs. The reply now carries where the company's job board stands, and the drawer says in
+// one line whether those jobs will arrive on their own.
+describe("what the drawer says about the company's other jobs after an add", () => {
+  const say = (board) => renderToStaticMarkup(
+    <Result r={{ outcome: "added", job_id: 7, skills_found: 3, proposed: 0, failed: [], board }} onViewJob={() => {}} onText={() => {}} />);
+  const WILL = "We&#x27;ll also collect this company&#x27;s other jobs from tomorrow.";
+  const CANNOT = "This company&#x27;s jobs can&#x27;t be collected automatically yet.";
+
+  it("says the other jobs will be collected when the board was just queued", () => {
+    const html = say("queued");
+    expect(html).toContain(WILL);
+    expect(html).not.toContain(CANNOT);
+    expect(html).toContain("3 skills found");   // the line it joins is still there
+    expect(html).toContain("View row");
+  });
+
+  it("says they cannot be collected when there is no board we can read", () => {
+    const html = say("none");
+    expect(html).toContain(CANNOT);
+    expect(html).not.toContain(WILL);
+  });
+
+  it("says we already collect them when the board is in the list", () => {
+    const html = say("collected");
+    expect(html).toContain("We already collect this company&#x27;s other jobs.");
+    expect(html).not.toContain("from tomorrow");
+  });
+
+  it("says nothing either way when the add came with no link", () => {
+    for (const board of [null, undefined]) {
+      const html = say(board);
+      expect(html).not.toContain("other jobs");
+      expect(html).not.toContain("collected automatically");
+    }
+  });
+});

@@ -12,8 +12,10 @@ Every place a sighting names is recorded against its job in `job_place`, on all 
 paths, so a posting for Berlin and Munich — or a Munich copy merged into a Berlin job —
 counts under both (HIR-289); `job.city` stays the first place.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
-a title needs both an AI/ML domain term and a technical role term, and must not name a
-sales role (sales_title, HIR-246). A posting with no
+a title needs both an AI/ML domain term and a technical role term, or to match the title
+pattern of a career track added in app/scope.py (HIR-395), and must not name a
+sales role (sales_title, HIR-246). Live and incubating places and tracks are stored
+alike: what the public may see is decided when it is read (app/queries.py). A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
 row can never be recognised as a duplicate and every repost of it from another source
 becomes a second row. A feed posting that was already dropped for reading blank twice is
@@ -46,7 +48,7 @@ import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
-from app import dedup
+from app import dedup, scope
 from app.geo import active_place, place_of, places_of
 from app.sources import Posting, registry
 
@@ -124,8 +126,26 @@ def sales_title(title: str | None) -> bool:
     return any(p in low for p in SALES_TITLE_PHRASES)
 
 
+def _ai_ml_title(title: str) -> bool:
+    """The built-in rule the five original tracks share: an AI/ML domain AND a technical role."""
+    return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title))
+
+
+def added_track(title: str | None) -> str | None:
+    """The first track with a title pattern of its own (app/scope.py) that this title
+    matches, or None. Read at call time, so a track added to the list is collected from the
+    next posting on. Pure."""
+    for name, track in scope.TRACKS.items():
+        if track.title_pattern and re.search(track.title_pattern, title or "", re.I):
+            return name
+    return None
+
+
 def in_scope_title(title: str) -> bool:
-    return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title)) and not sales_title(title)
+    """May a posting with this title be stored? The built-in AI/ML rule, or the pattern of
+    a track added since (HIR-395); never a sales title. Whether the track is live or
+    incubating makes no difference here: both are collected."""
+    return (_ai_ml_title(title) or added_track(title) is not None) and not sales_title(title)
 
 
 # A conservative screen for "recruitment agency or job aggregator": its postings are not
@@ -180,7 +200,12 @@ SCREENED_SOURCES = registry.of_kind("feed", "search")
 # rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql;
 # tests/test_ingest.py asserts the two agree. See DECISIONS.md "Job family is a title rule
 # (v1)" for the accepted misfiles.
-FAMILIES = ("ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research")
+#
+# Every collected track, live or incubating; the list and each track's state are
+# app/scope.py's (HIR-395). A track added there carries a title pattern of its own, and
+# takes only titles the built-in AI/ML rule does not pass: the five tracks below keep
+# exactly the titles they had, so an added track cannot widen or narrow what they show.
+FAMILIES = scope.tracks()
 
 # Punctuation becomes a space before the whole-word `mle` test, so "(MLE)" and "MLE, Berlin"
 # count. The SQL backfill normalises exactly this set of characters.
@@ -195,6 +220,10 @@ _FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
 
 
 def family_of(title: str) -> str:
+    if not _ai_ml_title(title or ""):
+        added = added_track(title)
+        if added:
+            return added
     low = (title or "").lower()
     padded = low
     for ch in _FAMILY_PUNCT:

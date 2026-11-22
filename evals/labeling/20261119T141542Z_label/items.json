@@ -3978,6 +3978,11 @@
         "raw_text": "Git, CI/CD"
       },
       {
+        "skill_id": "cloudformation",
+        "requirement": "nice_to_have",
+        "raw_text": "CloudFormation"
+      },
+      {
         "skill_id": "evaluation",
         "requirement": "required",
         "raw_text": "evaluation and guardrails"
@@ -4033,5 +4038,18 @@
     "excerpt": "Slalom Flex (Project Based) AWS Agentic AI Engineer – Amazon Quick Suite",
     "problems": [],
     "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "cloudformation",
+    "reason": "disagreement",
+    "a": null,
+    "b": null,
+    "excerpt": "...Power BI/DAX; SAP, JDE and M3 data concepts • Terraform/CloudFormation, Git, CI/CD, testing and Jira • Experience with the Atlan...",
+    "problems": [
+      "Added after labelling (HIR-390): both labelers named AWS CloudFormation, which was not on the skill list until v13. Chandler, 20 Nov: \"Terraform/CloudFormation\" is an either/or pair, so the two should share a group."
+    ],
+    "decision": "{\"skill_id\": \"cloudformation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CloudFormation\"}"
   }
 ]

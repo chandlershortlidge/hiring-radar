@@ -852,6 +852,7 @@ Which of a posting's skills it accepts *any one of* ("Python, or Bash scripting"
 - skill: `streamlit` · nice_to_have · raw_text: "Streamlit/React"
 - skill: `structured-data-extraction` · required · raw_text: "unstructured document parsing"
 - proposer: no usable answer (its reply was not in the form asked for), so the judge never saw it
+- new rule since the models read it (HIR-390): a slash between two skills of the same kind offers either one, so "Streamlit/React" (in "Bonus: Experience with MCP servers/connectors, Streamlit/React, financial/tax automation, or mentoring offshore teams") puts `streamlit` and `react` in one group.
 
 ### 20261119T141542Z_label item 170 - golden_101 `alternative_group` (groups)
 > AI DevOps Engineer Azure and GenAI
@@ -899,6 +900,7 @@ Which of a posting's skills it accepts *any one of* ("Python, or Bash scripting"
 - skill: `vector-search` · nice_to_have · raw_text: "vector search"
 - proposer: [] - The only candidate is the certifications list ('Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering'), but after removing azure, kubernetes and terraform (each asked on its own elsewhere) and mlops (listed on its own in the nice-to-haves), fewer than two skills remain, and the rule requires at least two; the other 'and/or' and example lists either name skills with no labeled id or are required together.
 - judge: [["ai-deployment", "llms", "vector-search"]] - The nice-to-have list 'Deploying/operating GenAI apps, LLM-powered services, AI agents, RAG, vector search, or shared enterprise AI platforms' uses the 'X, Y or Z' marker, and after excluding `agents` and `rag` because they are also asked for on their own elsewhere in the posting, `ai-deployment`, `llms`, and `vector-search` remain as a valid group of at least two skills.
+- new rule since the models read it (HIR-390): a slash between two skills of the same kind offers either one, so "Snowflake/Databricks familiarity" puts `snowflake` and `databricks` in one group.
 
 ### 20261119T142629Z_label item 159 - golden_097 `alternative_group` (groups)
 > Senior Machine Learning Engineer, E-Commerce

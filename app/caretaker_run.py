@@ -15,7 +15,10 @@ Does:
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
     misses.WEEKLY_TICKET_THRESHOLD in 7 days gets a Linear ticket of its own, at most once
     per misses.TICKET_QUIET_DAYS per reason. Below it, the 8-week trend (HIR-321): whether
-    the share of checked links a feed already had is rising, overall and per city.
+    the share of checked links a feed already had is rising, overall and per city;
+  - file the ticket for company boards "Add a job" found we do not collect and no ticket
+    names yet (app/boards_to_add.py, HIR-324). The dashboard files it right after the add,
+    so this is the retry for a post that did not reach Linear.
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
 report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).
@@ -32,7 +35,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import geo, misses, poll
+from app import boards_to_add, geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
@@ -240,6 +243,8 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
         write_log(conn, [Finding("caretaker", "weekly_summary", "none", "Weekly summary made.",
                                  {"posted": posted, "week_start": start})], day)
     miss_tickets(conn, day, post, log)
+    boards_to_add.file_ticket(conn, boards_to_add.load_config()[0], post,
+                              datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), log)
 
 
 def miss_tickets(conn: sqlite3.Connection, day: str, post=None, log=print) -> list[str]:

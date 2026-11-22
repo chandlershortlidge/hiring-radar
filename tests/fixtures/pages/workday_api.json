@@ -1,0 +1,21 @@
+{
+  "jobPostingInfo": {
+    "id": "0f3c1d2e4b5a1001f2a3b4c5d6e70000",
+    "title": "Lead Data Scientist",
+    "jobDescription": "<p><b>About the role</b></p><p>As Lead Data Scientist you will own the machine learning models behind our ad marketplace, from research to production.</p><p><b>What you will do</b></p><ul><li>Design, train and ship ranking and bidding models that serve billions of requests a day.</li><li>Lead a small team of data scientists and set the modelling roadmap.</li><li>Work with engineering on feature pipelines in Spark and Python.</li></ul><p><b>What you bring</b></p><ul><li>7+ years in applied machine learning, some of them leading a team.</li><li>Deep experience with gradient boosted trees and deep learning (PyTorch or TensorFlow).</li><li>Strong SQL and Python.</li></ul>",
+    "location": "United States - New York",
+    "additionalLocations": ["Germany - Berlin"],
+    "postedOn": "Posted 5 Days Ago",
+    "startDate": "2026-11-12",
+    "timeType": "Full time",
+    "jobReqId": "JR101093",
+    "jobPostingId": "Lead-Data-Scientist_JR101093",
+    "country": {"descriptor": "United States of America", "id": "bc33aa3152ec42d4995f4791a106ed09"},
+    "canApply": true,
+    "posted": true,
+    "externalUrl": "https://digitalturbine.wd501.myworkdayjobs.com/Digital_Turbine_External_Careers/job/United-States---New-York/Lead-Data-Scientist_JR101093"
+  },
+  "hiringOrganization": {"name": "Digital Turbine", "url": ""},
+  "similarJobs": [],
+  "userAuthenticated": false
+}

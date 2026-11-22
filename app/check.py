@@ -14,6 +14,10 @@ Does:
     with neither gives a location when its text has a "Location:" / "Standort:" line;
   - read a Workable job link (apply.workable.com) through Workable's public job API,
     because its page is built in the browser and holds no posting text (HIR-268);
+  - read a Workday job link (<company>.wdN.myworkdayjobs.com) through Workday's public job
+    API, because its page turns the checker away with "429 Too Many Requests" and the API
+    names every location of the job (HIR-329); and wait and retry, twice, when any site
+    answers 429 (`fetch_patiently`);
   - diagnose a miss: board not in config/feeds.json; board polled but the title or city
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
@@ -30,8 +34,8 @@ to app.ingest), call a model, or fetch LinkedIn (its pages are not readable with
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` reads the DB and never writes it, and does network I/O
-only through the injected fetchers, so tests never touch the network. Coverage counts only
+`diagnose`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
+only through the injected fetchers and `check_posting` does none, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
 Text matching here is one-directional containment (how much of the *stored* JD appears on
@@ -42,6 +46,8 @@ listings, which would sink a symmetric score for the same posting.
 import json
 import re
 import sqlite3
+import time
+import urllib.error
 import urllib.parse
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
@@ -87,6 +93,18 @@ _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 # (source=url) — but read through Workable's public job API, see `posting_from_workable`.
 _WORKABLE_HOST = "apply.workable.com"
 _WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
+
+# Workday job links: https://<tenant>.wd501.myworkdayjobs.com/[en-US/]<site>/job/<place>/<Title_ReqId>
+# (optional /apply). Like Workable, read through the vendor's public job API rather than
+# the page, and stored as a page (source=url) — see `posting_from_workday` (HIR-329).
+_WORKDAY_HOST_RE = re.compile(r"^(?P<tenant>[a-z0-9_-]+)\.(?:wd\d+\.)?myworkdayjobs\.com$")
+_WORKDAY_PATH_RE = re.compile(r"^/(?:[a-z]{2}-[A-Z]{2}/)?(?P<site>[^/]+)/job/(?P<job>.+?)(?:/apply(?:/.*)?)?/?$")
+
+# "429 Too Many Requests": how long to wait before each further try, in seconds. A site's
+# own Retry-After is used instead when it gives one, up to the cap — the checker is run by
+# a person waiting for the answer, so it never sleeps for minutes.
+RETRY_WAITS = (2, 5)
+MAX_RETRY_WAIT = 20
 
 # Platform names that can sit in a page's site name, title tail or hostname without naming
 # the employer: the job boards and ATS vendors this project meets. A page declaring one of
@@ -510,6 +528,63 @@ def posting_from_workable(url: str, payload: dict, company: str | None = None,
     )
 
 
+def workday_api_url(url: str) -> str | None:
+    """A Workday job link (`<tenant>.wdN.myworkdayjobs.com/<site>/job/...`) → the public API
+    address that returns that posting as JSON. Anything else → None."""
+    u = urllib.parse.urlsplit(url.strip())
+    host = (u.hostname or "").lower()
+    h, m = _WORKDAY_HOST_RE.match(host), _WORKDAY_PATH_RE.match(u.path)
+    return f"https://{host}/wday/cxs/{h['tenant']}/{m['site']}/job/{m['job']}" if h and m else None
+
+
+def posting_from_workday(url: str, payload: dict, company: str | None = None,
+                         title: str | None = None, location: str | None = None) -> Posting:
+    """Build a Posting from Workday's public job API (HIR-329). Pure.
+
+    The API holds the title, the posting text and every location the job is posted for:
+    one `location` plus `additionalLocations`, joined with "; " so a job in New York and
+    Berlin counts under both. The company is the hiring organization the API names, else
+    the tenant in the address (`digitalturbine`). `company`/`title`/`location` override.
+
+    Raises ValueError when the payload has no title or no text, so the caller can fall
+    back to the page.
+    """
+    info = payload.get("jobPostingInfo") if isinstance(payload, dict) else None
+    if not isinstance(info, dict):
+        raise ValueError("Workday API returned no job")
+    text = html_to_text(info.get("jobDescription") or "")
+    api_title = (info.get("title") or "").strip()
+    if not text or not (title or api_title):
+        raise ValueError("Workday API returned no title or no text")
+    places = [info.get("location"), *(info.get("additionalLocations") or [])]
+    places = [p.strip() for p in places if isinstance(p, str) and p.strip()]
+    org = payload.get("hiringOrganization")
+    org_name = (org.get("name") or "").strip() if isinstance(org, dict) else ""
+    tenant = _WORKDAY_HOST_RE.match((urllib.parse.urlsplit(url.strip()).hostname or "").lower())
+    return Posting(
+        source="url", source_job_id="", url=url,
+        company=company or org_name or (tenant["tenant"] if tenant else None),
+        title=title or api_title,
+        location_raw=location or "; ".join(dict.fromkeys(places)) or None,
+        description_text=text,
+        posted_at=info.get("startDate"),
+    )
+
+
+def fetch_patiently(url: str, fetch=fetch_text, sleep=time.sleep, waits=RETRY_WAITS) -> str:
+    """`fetch(url)`, tried again after a wait each time the site answers 429 Too Many
+    Requests (HIR-329); the last 429 is raised. Any other error is raised at once."""
+    for wait in waits:
+        try:
+            return fetch(url)
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                raise
+            asked = (e.headers.get("Retry-After") or "").strip() if e.headers else ""
+            sleep(min(int(asked), MAX_RETRY_WAIT) if asked.isdigit() else wait)
+    return fetch(url)
+
+
 def containment(stored: str, page: str) -> float:
     """Share of `stored`'s shingles present in `page`. 1.0 = the whole stored JD is on the page."""
     a = dedup.shingles(stored)
@@ -583,6 +658,15 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
             f"either posted since the last poll (run `poll`) or a feed bug; job id {ref.job_id}")
 
 
+def board_not_added(ref: AtsRef | None, feeds: list[dict]) -> tuple[str, str] | None:
+    """Pure: the board `diagnose` reports as "not in config/feeds.json", as (source, token),
+    or None. The structured form of that sentence, so nothing has to read the board back
+    out of prose (HIR-324)."""
+    if ref is None or ref.token is None or (ref.source, ref.token) in polled_boards(feeds):
+        return None
+    return ref.source, ref.token
+
+
 @dataclass
 class CheckResult:
     url: str
@@ -594,6 +678,7 @@ class CheckResult:
     diagnosis: str = ""
     posting: Posting | None = None    # resolved posting, for --add
     notes: list[str] = field(default_factory=list)
+    missing_board: tuple[str, str] | None = None   # (source, token) when the miss is "board not in feeds.json"
 
     def line(self) -> str:
         if self.verdict == "found":
@@ -619,7 +704,7 @@ def default_fetch_board(source: str, token: str) -> list[Posting]:
 
 def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: str | None = None,
               title: str | None = None, location: str | None = None,
-              fetch_page=fetch_text, fetch_board=default_fetch_board) -> CheckResult:
+              fetch_page=fetch_patiently, fetch_board=default_fetch_board) -> CheckResult:
     """The whole check. Reads the DB, never writes it."""
     ref = parse_ats_url(url)
     result = CheckResult(url=url, verdict="not_found", how="")
@@ -652,7 +737,19 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
             board_had_it = posting is not None
         except Exception as e:  # board unreachable → fall back to the page itself
             result.notes.append(f"board fetch failed: {type(e).__name__}: {str(e)[:120]}")
-    if posting is None:
+    # A Workday page answers the checker with 429; Workday's own API answers and names
+    # every location, so it is asked first and the page only if it fails (HIR-329).
+    workday_api = workday_api_url(url) if posting is None else None
+    if workday_api:
+        try:
+            posting = posting_from_workday(url, json.loads(fetch_page(workday_api)),
+                                           company, title, location)
+            result.notes.append("read posting from the Workday API")
+        except Exception as e:  # API unreachable or empty → read the page instead
+            result.notes.append(f"Workday API read failed: {type(e).__name__}: {str(e)[:120]}")
+    if posting is not None and ref is None:
+        pass                                    # read from the Workday API, nothing to add
+    elif posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
                                          company, title, location, notes=result.notes)
         # A Workable page is built in the browser, so the page gave the company (its title
@@ -686,6 +783,27 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
         result.notes.append("company unknown — pass --company to enable the text match")
 
     result.diagnosis = diagnose(posting, ref, feeds, board_had_it)
+    result.missing_board = board_not_added(ref, feeds)
+    return result
+
+
+def check_posting(conn: sqlite3.Connection, url: str, posting: Posting, feeds: list[dict]) -> CheckResult:
+    """The check for a posting a person supplied the text of (pasted, or read off a
+    screenshot) together with its link (HIR-324): the same lookup and the same diagnosis as
+    `check_url`, with nothing fetched. The text is already here, and the link is often one
+    no fetch can read, which is why it was pasted. Reads the DB, never writes it."""
+    ref = parse_ats_url(url)
+    result = CheckResult(url=url, verdict="not_found", how="", posting=posting)
+    if ref is not None:
+        row = conn.execute("SELECT job_id FROM job_source WHERE source=? AND source_job_id=?",
+                           (ref.source, ref.job_id)).fetchone()
+        if row:
+            return _found(conn, result, row["job_id"], "ats id")
+    m = best_text_match(conn, posting.company, posting.description_text)
+    if m:
+        return _found(conn, result, m.job_id, f"text {m.score:.2f}")
+    result.diagnosis = diagnose(posting, ref, feeds, None)
+    result.missing_board = board_not_added(ref, feeds)
     return result
 
 

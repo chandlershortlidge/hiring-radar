@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "skills": [
     {
       "id": "a-b-testing",
@@ -115,7 +115,9 @@
     {
       "id": "ai-infrastructure",
       "display": "AI Infrastructure",
-      "aliases": [],
+      "aliases": [
+        "scalable inference infrastructure"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -367,6 +369,18 @@
       "reviewed": true
     },
     {
+      "id": "cloudformation",
+      "display": "AWS CloudFormation",
+      "aliases": [
+        "cloudformation",
+        "aws cloudformation"
+      ],
+      "parents": [
+        "infrastructure-as-code"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "codex",
       "display": "Codex",
       "aliases": [
@@ -508,7 +522,10 @@
     {
       "id": "data-privacy-and-security",
       "display": "Data Privacy & Security",
-      "aliases": [],
+      "aliases": [
+        "secure healthcare application development",
+        "hipaa-compliant application development"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -882,7 +899,9 @@
     {
       "id": "hallucination-detection",
       "display": "Hallucination detection",
-      "aliases": [],
+      "aliases": [
+        "hallucination risk"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1147,7 +1166,8 @@
         "generative ai solutions",
         "large language models",
         "llm",
-        "llm apis"
+        "llm apis",
+        "genai"
       ],
       "parents": [],
       "reviewed": true
@@ -1249,7 +1269,8 @@
         "produktiver betrieb von ki-modellen",
         "deploying and maintaining machine learning systems in production",
         "operating ml models in production",
-        "building and operating production ml systems"
+        "building and operating production ml systems",
+        "model and endpoint operations"
       ],
       "parents": [],
       "reviewed": true
@@ -1263,7 +1284,8 @@
         "language-model training",
         "training and deploying language models",
         "developing ml training code",
-        "training workflows for large-scale datasets"
+        "training workflows for large-scale datasets",
+        "training ml models"
       ],
       "parents": [],
       "reviewed": true
@@ -1779,7 +1801,8 @@
         "softwarearchitektur",
         "architekturdesign",
         "designing scalable, maintainable systems",
-        "designed software systems end to end"
+        "designed software systems end to end",
+        "make architecture decisions"
       ],
       "parents": [
         "software-engineering"
@@ -1866,8 +1889,15 @@
     },
     {
       "id": "structured-data-extraction",
-      "display": "Structured data extraction",
-      "aliases": [],
+      "display": "Document processing & extraction",
+      "aliases": [
+        "structured data extraction",
+        "unstructured document parsing",
+        "document parsing",
+        "document processing",
+        "information extraction",
+        "intelligent document processing"
+      ],
       "parents": [],
       "reviewed": true
     },

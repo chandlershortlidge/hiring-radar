@@ -17,7 +17,7 @@ from pathlib import Path
 
 import pytest
 
-from app import db, extract, ingest, queries
+from app import db, extract, ingest, queries, scope
 
 ROOT = Path(__file__).resolve().parent.parent
 _spec = importlib.util.spec_from_file_location("agent_label", ROOT / "scripts" / "agent_label.py")
@@ -134,7 +134,10 @@ def test_the_form_the_model_fills_in_offers_exactly_these_lists():
 def test_filter_and_labelling_tool_read_the_one_list():
     """The server's filter list and the labelling tool hold the form's lists, not copies."""
     assert queries.SENIORITIES is extract.SENIORITY_LEVELS
-    assert queries.FAMILIES is ingest.FAMILIES
+    # Both read app/scope.py: ingest holds every collected track (what may be stored), the
+    # filter only the live ones (what a visitor may ask for). HIR-395.
+    assert ingest.FAMILIES == scope.tracks()
+    assert queries.FAMILIES == scope.live_tracks()
     assert agent_label.SENIORITIES is extract.SENIORITY_LEVELS
     assert agent_label.DEGREES is extract.DEGREE_LEVELS
     assert agent_label.REQUIREMENTS is extract.REQUIREMENT_LEVELS
