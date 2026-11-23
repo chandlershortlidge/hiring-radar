@@ -1,0 +1,2816 @@
+{
+ "_about": [
+  "The fit logic's shared answers (HIR-435): web/src/profile.js and app/fit.py must both give exactly these.",
+  "web/src/fitCases.test.js and tests/test_fit_cases.py read this file, so a change to how fit, gates or ranking work on one side fails the other side's tests until both agree again.",
+  "Jobs are list rows as /api/jobs returns them (job 18 is a job detail, with skills). now is the moment recent_jobs counts back from.",
+  "The expected answers were produced by profile.js when this file was made and checked by hand on the cases named in the tests. Change one only on purpose, with the code change on both sides in the same pull request."
+ ],
+ "now": "2026-10-17T12:00:00Z",
+ "fit_days": 30,
+ "demand": {
+  "python": 500,
+  "rag": 300,
+  "aws": 200,
+  "docker": 200,
+  "sql": 120,
+  "kafka": 50,
+  "go": 40,
+  "java": 40,
+  "langchain": 90,
+  "kubernetes": 80,
+  "spark": 30,
+  "rust": 10,
+  "airflow": 15
+ },
+ "profiles": {
+  "mid_python_rag": {
+   "seniority": "mid",
+   "german": false,
+   "production": false,
+   "degree": "",
+   "skills": [
+    "python",
+    "rag",
+    "langchain"
+   ]
+  },
+  "senior_all_round": {
+   "seniority": "senior",
+   "german": true,
+   "production": true,
+   "degree": "master",
+   "skills": [
+    "python",
+    "rag",
+    "aws",
+    "docker",
+    "kafka",
+    "go",
+    "langchain",
+    "sql"
+   ]
+  },
+  "blank": {
+   "seniority": "",
+   "german": false,
+   "production": false,
+   "degree": "",
+   "skills": []
+  },
+  "junior_bachelor": {
+   "seniority": "junior",
+   "german": false,
+   "production": true,
+   "degree": "bachelor",
+   "skills": [
+    "python",
+    "aws",
+    "docker",
+    "sql",
+    "spark",
+    "kafka",
+    "go",
+    "java"
+   ]
+  }
+ },
+ "jobs": [
+  {
+   "id": 1,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-16T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "aws",
+    "docker"
+   ],
+   "nice_skills": [
+    "langchain"
+   ],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 2,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-15T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 3,
+   "title": "AI Engineer",
+   "seniority": "mid",
+   "first_seen": "2026-10-14T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "langchain",
+    "aws",
+    "docker",
+    "kafka",
+    "sql",
+    "spark",
+    "pytorch",
+    "kubernetes",
+    "airflow",
+    "go",
+    "java",
+    "rust"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 4,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-13T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "langchain",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": "required",
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 5,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-12T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "aws",
+    "kubernetes"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": "required",
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 6,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-11T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "aws",
+    "docker"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": "master",
+   "degree_requirement": "required",
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 7,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-11T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "aws",
+    "docker"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": "master",
+   "degree_requirement": "required",
+   "degree_or_equivalent": true
+  },
+  {
+   "id": 8,
+   "title": "Senior AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-10T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 9,
+   "title": "Junior Lead ML Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-10T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 10,
+   "title": "Lead AI Engineer",
+   "seniority": "mid",
+   "first_seen": "2026-10-09T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 11,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-09T12:00:00Z",
+   "required_skills": [
+    "docker",
+    "go",
+    "java",
+    "python"
+   ],
+   "nice_skills": [],
+   "required_groups": [
+    [
+     "go",
+     "java",
+     "python"
+    ]
+   ],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 12,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-08T12:00:00Z",
+   "required_skills": [
+    "aws",
+    "docker",
+    "go",
+    "kafka",
+    "rust",
+    "sql"
+   ],
+   "nice_skills": [],
+   "required_groups": [
+    [
+     "go",
+     "rust"
+    ]
+   ],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 13,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-08T12:00:00Z",
+   "required_skills": [],
+   "nice_skills": [
+    "python"
+   ],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 14,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-07T12:00:00Z",
+   "required_skills": [
+    "aws",
+    "docker",
+    "kafka",
+    "sql",
+    "spark"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 15,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-07T12:00:00Z",
+   "required_skills": [
+    "airflow",
+    "aws",
+    "docker",
+    "go",
+    "java",
+    "kafka",
+    "kubernetes",
+    "rust",
+    "spark",
+    "sql",
+    "pytorch"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 16,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-06T12:00:00Z",
+   "required_skills": [
+    "python",
+    "aws",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 17,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-05T12:00:00Z",
+   "required_skills": [
+    "python",
+    "aws",
+    "docker",
+    "kafka"
+   ],
+   "nice_skills": [
+    "rag",
+    "langchain"
+   ],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 18,
+   "title": "ML Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-05T12:00:00Z",
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false,
+   "skills": [
+    {
+     "skill_id": "python",
+     "requirement": "required",
+     "alternative_group": 1
+    },
+    {
+     "skill_id": "go",
+     "requirement": "required",
+     "alternative_group": 1
+    },
+    {
+     "skill_id": "rag",
+     "requirement": "required",
+     "alternative_group": null
+    },
+    {
+     "skill_id": "docker",
+     "requirement": "required",
+     "alternative_group": null
+    },
+    {
+     "skill_id": "aws",
+     "requirement": "nice_to_have",
+     "alternative_group": null
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "title": "Internal Tools Engineer",
+   "seniority": null,
+   "first_seen": "2026-09-17T12:00:00Z",
+   "required_skills": [
+    "python",
+    "sql",
+    "docker",
+    "aws"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 20,
+   "title": "Working Student AI",
+   "seniority": null,
+   "first_seen": "2026-09-17T11:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "langchain",
+    "aws",
+    "docker",
+    "kafka",
+    "sql",
+    "spark",
+    "go",
+    "java"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 21,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": null,
+   "required_skills": [
+    "python",
+    "rag",
+    "langchain",
+    "aws",
+    "docker",
+    "kafka",
+    "sql"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": null,
+   "production": null,
+   "degree": null,
+   "degree_requirement": null,
+   "degree_or_equivalent": false
+  },
+  {
+   "id": 22,
+   "title": "AI Engineer",
+   "seniority": null,
+   "first_seen": "2026-10-04T12:00:00Z",
+   "required_skills": [
+    "python",
+    "rag",
+    "langchain"
+   ],
+   "nice_skills": [],
+   "required_groups": [],
+   "german": "nice_to_have",
+   "production": null,
+   "degree": "phd",
+   "degree_requirement": "nice_to_have",
+   "degree_or_equivalent": false
+  }
+ ],
+ "job_seniority": {
+  "1": null,
+  "2": null,
+  "3": "mid",
+  "4": null,
+  "5": null,
+  "6": null,
+  "7": null,
+  "8": "senior",
+  "9": null,
+  "10": "mid",
+  "11": null,
+  "12": null,
+  "13": null,
+  "14": null,
+  "15": null,
+  "16": null,
+  "17": null,
+  "18": null,
+  "19": null,
+  "20": "junior",
+  "21": null,
+  "22": null
+ },
+ "recent": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  22
+ ],
+ "expected": {
+  "mid_python_rag": {
+   "fit": {
+    "1": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "2": {
+     "score": 1,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 2,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    },
+    "3": {
+     "score": 0.21428571428571427,
+     "rank_score": 0.07571248336916371,
+     "covered": 3,
+     "total": 14,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kubernetes",
+      "kafka",
+      "go",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "4": {
+     "score": 0.6,
+     "rank_score": 0.23071993220883702,
+     "covered": 3,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "docker",
+      "kafka"
+     ],
+     "gated_by": "german"
+    },
+    "5": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "kubernetes"
+     ],
+     "gated_by": "production"
+    },
+    "6": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker"
+     ],
+     "gated_by": "degree"
+    },
+    "7": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "8": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "docker",
+      "kafka"
+     ],
+     "gated_by": "seniority"
+    },
+    "9": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "10": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "11": {
+     "score": 0.5,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 2,
+     "thin": true,
+     "missing": [
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "12": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka",
+      [
+       "go",
+       "rust"
+      ]
+     ],
+     "gated_by": null
+    },
+    "13": {
+     "score": null,
+     "rank_score": null,
+     "covered": 0,
+     "total": 0,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "14": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka",
+      "spark"
+     ],
+     "gated_by": null
+    },
+    "15": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 11,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kubernetes",
+      "kafka",
+      "go",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "16": {
+     "score": 0.25,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "17": {
+     "score": 0.25,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "18": {
+     "score": 0.6666666666666666,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 3,
+     "thin": true,
+     "missing": [
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "19": {
+     "score": 0.25,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql"
+     ],
+     "gated_by": null
+    },
+    "20": {
+     "score": 0.3,
+     "rank_score": 0.10778928748621182,
+     "covered": 3,
+     "total": 10,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka",
+      "go",
+      "java",
+      "spark"
+     ],
+     "gated_by": "seniority"
+    },
+    "21": {
+     "score": 0.42857142857142855,
+     "rank_score": 0.1582169222626268,
+     "covered": 3,
+     "total": 7,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "22": {
+     "score": 1,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 3,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    }
+   },
+   "fit_without_demand_missing": {
+    "1": [
+     "aws",
+     "docker"
+    ],
+    "2": [],
+    "3": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark",
+     "pytorch",
+     "kubernetes",
+     "airflow",
+     "go",
+     "java",
+     "rust"
+    ],
+    "4": [
+     "docker",
+     "kafka"
+    ],
+    "5": [
+     "aws",
+     "kubernetes"
+    ],
+    "6": [
+     "aws",
+     "docker"
+    ],
+    "7": [
+     "aws",
+     "docker"
+    ],
+    "8": [
+     "docker",
+     "kafka"
+    ],
+    "9": [
+     "docker",
+     "kafka"
+    ],
+    "10": [
+     "docker",
+     "kafka"
+    ],
+    "11": [
+     "docker"
+    ],
+    "12": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     [
+      "go",
+      "rust"
+     ]
+    ],
+    "13": [],
+    "14": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark"
+    ],
+    "15": [
+     "airflow",
+     "aws",
+     "docker",
+     "go",
+     "java",
+     "kafka",
+     "kubernetes",
+     "rust",
+     "spark",
+     "sql",
+     "pytorch"
+    ],
+    "16": [
+     "aws",
+     "docker",
+     "kafka"
+    ],
+    "17": [
+     "aws",
+     "docker",
+     "kafka"
+    ],
+    "18": [
+     "docker"
+    ],
+    "19": [
+     "sql",
+     "docker",
+     "aws"
+    ],
+    "20": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark",
+     "go",
+     "java"
+    ],
+    "21": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql"
+    ],
+    "22": []
+   },
+   "gates": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [
+     "german"
+    ],
+    "5": [
+     "production"
+    ],
+    "6": [
+     "degree"
+    ],
+    "7": [],
+    "8": [
+     "seniority"
+    ],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [
+     "seniority"
+    ],
+    "21": [],
+    "22": []
+   },
+   "met_skills": {
+    "1": [
+     "python",
+     "rag"
+    ],
+    "2": [
+     "python",
+     "rag"
+    ],
+    "3": [
+     "langchain",
+     "python",
+     "rag"
+    ],
+    "4": [
+     "langchain",
+     "python",
+     "rag"
+    ],
+    "5": [
+     "python",
+     "rag"
+    ],
+    "6": [
+     "python",
+     "rag"
+    ],
+    "7": [
+     "python",
+     "rag"
+    ],
+    "8": [
+     "python",
+     "rag"
+    ],
+    "9": [
+     "python",
+     "rag"
+    ],
+    "10": [
+     "python",
+     "rag"
+    ],
+    "11": [
+     "go",
+     "java",
+     "python"
+    ],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [
+     "python"
+    ],
+    "17": [
+     "python"
+    ],
+    "18": [
+     "go",
+     "python",
+     "rag"
+    ],
+    "19": [
+     "python"
+    ],
+    "20": [
+     "langchain",
+     "python",
+     "rag"
+    ],
+    "21": [
+     "langchain",
+     "python",
+     "rag"
+    ],
+    "22": [
+     "langchain",
+     "python",
+     "rag"
+    ]
+   },
+   "order": [
+    22,
+    21,
+    1,
+    2,
+    7,
+    9,
+    10,
+    18,
+    3,
+    17,
+    11,
+    16,
+    19,
+    12,
+    14,
+    15,
+    13,
+    4,
+    5,
+    6,
+    8,
+    20
+   ],
+   "order_recent": [
+    22,
+    1,
+    2,
+    7,
+    9,
+    10,
+    18,
+    3,
+    17,
+    11,
+    16,
+    19,
+    12,
+    14,
+    15,
+    13,
+    4,
+    5,
+    6,
+    8
+   ],
+   "matches": []
+  },
+  "senior_all_round": {
+   "fit": {
+    "1": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "2": {
+     "score": 1,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 2,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    },
+    "3": {
+     "score": 0.5714285714285714,
+     "rank_score": 0.3259026690286935,
+     "covered": 8,
+     "total": 14,
+     "thin": false,
+     "missing": [
+      "kubernetes",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": "seniority"
+    },
+    "4": {
+     "score": 1,
+     "rank_score": 0.565508505247919,
+     "covered": 5,
+     "total": 5,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "5": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "kubernetes"
+     ],
+     "gated_by": null
+    },
+    "6": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "7": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "8": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "9": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "10": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": "seniority"
+    },
+    "11": {
+     "score": 1,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 2,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    },
+    "12": {
+     "score": 1,
+     "rank_score": 0.565508505247919,
+     "covered": 5,
+     "total": 5,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "13": {
+     "score": null,
+     "rank_score": null,
+     "covered": 0,
+     "total": 0,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "14": {
+     "score": 0.8,
+     "rank_score": 0.37552826411853885,
+     "covered": 4,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "spark"
+     ],
+     "gated_by": null
+    },
+    "15": {
+     "score": 0.45454545454545453,
+     "rank_score": 0.21270957543988048,
+     "covered": 5,
+     "total": 11,
+     "thin": false,
+     "missing": [
+      "kubernetes",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "16": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "17": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "18": {
+     "score": 1,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 3,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    },
+    "19": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "20": {
+     "score": 0.8,
+     "rank_score": 0.49015684672072346,
+     "covered": 8,
+     "total": 10,
+     "thin": false,
+     "missing": [
+      "java",
+      "spark"
+     ],
+     "gated_by": "seniority"
+    },
+    "21": {
+     "score": 1,
+     "rank_score": 0.6456611570247934,
+     "covered": 7,
+     "total": 7,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "22": {
+     "score": 1,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 3,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    }
+   },
+   "fit_without_demand_missing": {
+    "1": [],
+    "2": [],
+    "3": [
+     "spark",
+     "pytorch",
+     "kubernetes",
+     "airflow",
+     "java",
+     "rust"
+    ],
+    "4": [],
+    "5": [
+     "kubernetes"
+    ],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [
+     "spark"
+    ],
+    "15": [
+     "airflow",
+     "java",
+     "kubernetes",
+     "rust",
+     "spark",
+     "pytorch"
+    ],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [
+     "spark",
+     "java"
+    ],
+    "21": [],
+    "22": []
+   },
+   "gates": {
+    "1": [],
+    "2": [],
+    "3": [
+     "seniority"
+    ],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [
+     "seniority"
+    ],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [
+     "seniority"
+    ],
+    "21": [],
+    "22": []
+   },
+   "met_skills": {
+    "1": [
+     "aws",
+     "docker",
+     "python",
+     "rag"
+    ],
+    "2": [
+     "python",
+     "rag"
+    ],
+    "3": [
+     "aws",
+     "docker",
+     "go",
+     "kafka",
+     "langchain",
+     "python",
+     "rag",
+     "sql"
+    ],
+    "4": [
+     "docker",
+     "kafka",
+     "langchain",
+     "python",
+     "rag"
+    ],
+    "5": [
+     "aws",
+     "python",
+     "rag"
+    ],
+    "6": [
+     "aws",
+     "docker",
+     "python",
+     "rag"
+    ],
+    "7": [
+     "aws",
+     "docker",
+     "python",
+     "rag"
+    ],
+    "8": [
+     "docker",
+     "kafka",
+     "python",
+     "rag"
+    ],
+    "9": [
+     "docker",
+     "kafka",
+     "python",
+     "rag"
+    ],
+    "10": [
+     "docker",
+     "kafka",
+     "python",
+     "rag"
+    ],
+    "11": [
+     "docker",
+     "go",
+     "java",
+     "python"
+    ],
+    "12": [
+     "aws",
+     "docker",
+     "go",
+     "kafka",
+     "rust",
+     "sql"
+    ],
+    "13": [],
+    "14": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql"
+    ],
+    "15": [
+     "aws",
+     "docker",
+     "go",
+     "kafka",
+     "sql"
+    ],
+    "16": [
+     "aws",
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "17": [
+     "aws",
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "18": [
+     "docker",
+     "go",
+     "python",
+     "rag"
+    ],
+    "19": [
+     "aws",
+     "docker",
+     "python",
+     "sql"
+    ],
+    "20": [
+     "aws",
+     "docker",
+     "go",
+     "kafka",
+     "langchain",
+     "python",
+     "rag",
+     "sql"
+    ],
+    "21": [
+     "aws",
+     "docker",
+     "kafka",
+     "langchain",
+     "python",
+     "rag",
+     "sql"
+    ],
+    "22": [
+     "langchain",
+     "python",
+     "rag"
+    ]
+   },
+   "order": [
+    21,
+    4,
+    12,
+    17,
+    1,
+    6,
+    7,
+    8,
+    9,
+    16,
+    19,
+    14,
+    18,
+    5,
+    22,
+    15,
+    2,
+    11,
+    13,
+    10,
+    20,
+    3
+   ],
+   "order_recent": [
+    4,
+    12,
+    17,
+    1,
+    6,
+    7,
+    8,
+    9,
+    16,
+    19,
+    14,
+    18,
+    5,
+    22,
+    15,
+    2,
+    11,
+    13,
+    10,
+    3
+   ],
+   "matches": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16,
+    17,
+    19,
+    20,
+    21
+   ]
+  },
+  "blank": {
+   "fit": {
+    "1": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "2": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 2,
+     "thin": true,
+     "missing": [
+      "python",
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "3": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 14,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker",
+      "sql",
+      "langchain",
+      "kubernetes",
+      "kafka",
+      "go",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "4": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "docker",
+      "langchain",
+      "kafka"
+     ],
+     "gated_by": "german"
+    },
+    "5": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "kubernetes"
+     ],
+     "gated_by": "production"
+    },
+    "6": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker"
+     ],
+     "gated_by": "degree"
+    },
+    "7": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "8": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "9": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "10": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "11": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 2,
+     "thin": true,
+     "missing": [
+      [
+       "go",
+       "java",
+       "python"
+      ],
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "12": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka",
+      [
+       "go",
+       "rust"
+      ]
+     ],
+     "gated_by": null
+    },
+    "13": {
+     "score": null,
+     "rank_score": null,
+     "covered": 0,
+     "total": 0,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "14": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kafka",
+      "spark"
+     ],
+     "gated_by": null
+    },
+    "15": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 11,
+     "thin": false,
+     "missing": [
+      "aws",
+      "docker",
+      "sql",
+      "kubernetes",
+      "kafka",
+      "go",
+      "java",
+      "spark",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "16": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "aws",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "17": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "aws",
+      "docker",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "18": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 3,
+     "thin": true,
+     "missing": [
+      [
+       "python",
+       "go"
+      ],
+      "rag",
+      "docker"
+     ],
+     "gated_by": null
+    },
+    "19": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "python",
+      "aws",
+      "docker",
+      "sql"
+     ],
+     "gated_by": null
+    },
+    "20": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 10,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker",
+      "sql",
+      "langchain",
+      "kafka",
+      "go",
+      "java",
+      "spark"
+     ],
+     "gated_by": null
+    },
+    "21": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 7,
+     "thin": false,
+     "missing": [
+      "python",
+      "rag",
+      "aws",
+      "docker",
+      "sql",
+      "langchain",
+      "kafka"
+     ],
+     "gated_by": null
+    },
+    "22": {
+     "score": 0,
+     "rank_score": 0,
+     "covered": 0,
+     "total": 3,
+     "thin": true,
+     "missing": [
+      "python",
+      "rag",
+      "langchain"
+     ],
+     "gated_by": null
+    }
+   },
+   "fit_without_demand_missing": {
+    "1": [
+     "python",
+     "rag",
+     "aws",
+     "docker"
+    ],
+    "2": [
+     "python",
+     "rag"
+    ],
+    "3": [
+     "python",
+     "rag",
+     "langchain",
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark",
+     "pytorch",
+     "kubernetes",
+     "airflow",
+     "go",
+     "java",
+     "rust"
+    ],
+    "4": [
+     "python",
+     "rag",
+     "langchain",
+     "docker",
+     "kafka"
+    ],
+    "5": [
+     "python",
+     "rag",
+     "aws",
+     "kubernetes"
+    ],
+    "6": [
+     "python",
+     "rag",
+     "aws",
+     "docker"
+    ],
+    "7": [
+     "python",
+     "rag",
+     "aws",
+     "docker"
+    ],
+    "8": [
+     "python",
+     "rag",
+     "docker",
+     "kafka"
+    ],
+    "9": [
+     "python",
+     "rag",
+     "docker",
+     "kafka"
+    ],
+    "10": [
+     "python",
+     "rag",
+     "docker",
+     "kafka"
+    ],
+    "11": [
+     "docker",
+     [
+      "go",
+      "java",
+      "python"
+     ]
+    ],
+    "12": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     [
+      "go",
+      "rust"
+     ]
+    ],
+    "13": [],
+    "14": [
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark"
+    ],
+    "15": [
+     "airflow",
+     "aws",
+     "docker",
+     "go",
+     "java",
+     "kafka",
+     "kubernetes",
+     "rust",
+     "spark",
+     "sql",
+     "pytorch"
+    ],
+    "16": [
+     "python",
+     "aws",
+     "docker",
+     "kafka"
+    ],
+    "17": [
+     "python",
+     "aws",
+     "docker",
+     "kafka"
+    ],
+    "18": [
+     "rag",
+     "docker",
+     [
+      "python",
+      "go"
+     ]
+    ],
+    "19": [
+     "python",
+     "sql",
+     "docker",
+     "aws"
+    ],
+    "20": [
+     "python",
+     "rag",
+     "langchain",
+     "aws",
+     "docker",
+     "kafka",
+     "sql",
+     "spark",
+     "go",
+     "java"
+    ],
+    "21": [
+     "python",
+     "rag",
+     "langchain",
+     "aws",
+     "docker",
+     "kafka",
+     "sql"
+    ],
+    "22": [
+     "python",
+     "rag",
+     "langchain"
+    ]
+   },
+   "gates": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [
+     "german"
+    ],
+    "5": [
+     "production"
+    ],
+    "6": [
+     "degree"
+    ],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [],
+    "21": [],
+    "22": []
+   },
+   "met_skills": {
+    "1": [],
+    "2": [],
+    "3": [],
+    "4": [],
+    "5": [],
+    "6": [],
+    "7": [],
+    "8": [],
+    "9": [],
+    "10": [],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [],
+    "21": [],
+    "22": []
+   },
+   "order": [
+    1,
+    2,
+    3,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    13,
+    4,
+    5,
+    6
+   ],
+   "order_recent": [
+    1,
+    2,
+    3,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    22,
+    13,
+    4,
+    5,
+    6
+   ],
+   "matches": []
+  },
+  "junior_bachelor": {
+   "fit": {
+    "1": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "2": {
+     "score": 0.5,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 2,
+     "thin": true,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "3": {
+     "score": 0.5714285714285714,
+     "rank_score": 0.3259026690286935,
+     "covered": 8,
+     "total": 14,
+     "thin": false,
+     "missing": [
+      "rag",
+      "langchain",
+      "kubernetes",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": "seniority"
+    },
+    "4": {
+     "score": 0.6,
+     "rank_score": 0.23071993220883702,
+     "covered": 3,
+     "total": 5,
+     "thin": false,
+     "missing": [
+      "rag",
+      "langchain"
+     ],
+     "gated_by": "german"
+    },
+    "5": {
+     "score": 0.5,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag",
+      "kubernetes"
+     ],
+     "gated_by": null
+    },
+    "6": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": "degree"
+    },
+    "7": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "8": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": "seniority"
+    },
+    "9": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "10": {
+     "score": 0.75,
+     "rank_score": 0.30063605244263664,
+     "covered": 3,
+     "total": 4,
+     "thin": false,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": "seniority"
+    },
+    "11": {
+     "score": 1,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 2,
+     "thin": true,
+     "missing": [],
+     "gated_by": null
+    },
+    "12": {
+     "score": 1,
+     "rank_score": 0.565508505247919,
+     "covered": 5,
+     "total": 5,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "13": {
+     "score": null,
+     "rank_score": null,
+     "covered": 0,
+     "total": 0,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "14": {
+     "score": 1,
+     "rank_score": 0.565508505247919,
+     "covered": 5,
+     "total": 5,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "15": {
+     "score": 0.6363636363636364,
+     "rank_score": 0.35379677689163724,
+     "covered": 7,
+     "total": 11,
+     "thin": false,
+     "missing": [
+      "kubernetes",
+      "airflow",
+      "rust",
+      "pytorch"
+     ],
+     "gated_by": null
+    },
+    "16": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "17": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "18": {
+     "score": 0.6666666666666666,
+     "rank_score": 0.15003570882017145,
+     "covered": 2,
+     "total": 3,
+     "thin": true,
+     "missing": [
+      "rag"
+     ],
+     "gated_by": null
+    },
+    "19": {
+     "score": 1,
+     "rank_score": 0.5100999795960008,
+     "covered": 4,
+     "total": 4,
+     "thin": false,
+     "missing": [],
+     "gated_by": null
+    },
+    "20": {
+     "score": 0.8,
+     "rank_score": 0.49015684672072346,
+     "covered": 8,
+     "total": 10,
+     "thin": false,
+     "missing": [
+      "rag",
+      "langchain"
+     ],
+     "gated_by": null
+    },
+    "21": {
+     "score": 0.7142857142857143,
+     "rank_score": 0.35892909014821267,
+     "covered": 5,
+     "total": 7,
+     "thin": false,
+     "missing": [
+      "rag",
+      "langchain"
+     ],
+     "gated_by": null
+    },
+    "22": {
+     "score": 0.3333333333333333,
+     "rank_score": 0.045586062644636216,
+     "covered": 1,
+     "total": 3,
+     "thin": true,
+     "missing": [
+      "rag",
+      "langchain"
+     ],
+     "gated_by": null
+    }
+   },
+   "fit_without_demand_missing": {
+    "1": [
+     "rag"
+    ],
+    "2": [
+     "rag"
+    ],
+    "3": [
+     "rag",
+     "langchain",
+     "pytorch",
+     "kubernetes",
+     "airflow",
+     "rust"
+    ],
+    "4": [
+     "rag",
+     "langchain"
+    ],
+    "5": [
+     "rag",
+     "kubernetes"
+    ],
+    "6": [
+     "rag"
+    ],
+    "7": [
+     "rag"
+    ],
+    "8": [
+     "rag"
+    ],
+    "9": [
+     "rag"
+    ],
+    "10": [
+     "rag"
+    ],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [
+     "airflow",
+     "kubernetes",
+     "rust",
+     "pytorch"
+    ],
+    "16": [],
+    "17": [],
+    "18": [
+     "rag"
+    ],
+    "19": [],
+    "20": [
+     "rag",
+     "langchain"
+    ],
+    "21": [
+     "rag",
+     "langchain"
+    ],
+    "22": [
+     "rag",
+     "langchain"
+    ]
+   },
+   "gates": {
+    "1": [],
+    "2": [],
+    "3": [
+     "seniority"
+    ],
+    "4": [
+     "german"
+    ],
+    "5": [],
+    "6": [
+     "degree"
+    ],
+    "7": [],
+    "8": [
+     "seniority"
+    ],
+    "9": [],
+    "10": [
+     "seniority"
+    ],
+    "11": [],
+    "12": [],
+    "13": [],
+    "14": [],
+    "15": [],
+    "16": [],
+    "17": [],
+    "18": [],
+    "19": [],
+    "20": [],
+    "21": [],
+    "22": []
+   },
+   "met_skills": {
+    "1": [
+     "aws",
+     "docker",
+     "python"
+    ],
+    "2": [
+     "python"
+    ],
+    "3": [
+     "aws",
+     "docker",
+     "go",
+     "java",
+     "kafka",
+     "python",
+     "spark",
+     "sql"
+    ],
+    "4": [
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "5": [
+     "aws",
+     "python"
+    ],
+    "6": [
+     "aws",
+     "docker",
+     "python"
+    ],
+    "7": [
+     "aws",
+     "docker",
+     "python"
+    ],
+    "8": [
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "9": [
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "10": [
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "11": [
+     "docker",
+     "go",
+     "java",
+     "python"
+    ],
+    "12": [
+     "aws",
+     "docker",
+     "go",
+     "kafka",
+     "rust",
+     "sql"
+    ],
+    "13": [],
+    "14": [
+     "aws",
+     "docker",
+     "kafka",
+     "spark",
+     "sql"
+    ],
+    "15": [
+     "aws",
+     "docker",
+     "go",
+     "java",
+     "kafka",
+     "spark",
+     "sql"
+    ],
+    "16": [
+     "aws",
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "17": [
+     "aws",
+     "docker",
+     "kafka",
+     "python"
+    ],
+    "18": [
+     "docker",
+     "go",
+     "python"
+    ],
+    "19": [
+     "aws",
+     "docker",
+     "python",
+     "sql"
+    ],
+    "20": [
+     "aws",
+     "docker",
+     "go",
+     "java",
+     "kafka",
+     "python",
+     "spark",
+     "sql"
+    ],
+    "21": [
+     "aws",
+     "docker",
+     "kafka",
+     "python",
+     "sql"
+    ],
+    "22": [
+     "python"
+    ]
+   },
+   "order": [
+    12,
+    14,
+    16,
+    17,
+    19,
+    20,
+    21,
+    15,
+    1,
+    7,
+    9,
+    18,
+    5,
+    11,
+    2,
+    22,
+    13,
+    3,
+    6,
+    8,
+    10,
+    4
+   ],
+   "order_recent": [
+    12,
+    14,
+    16,
+    17,
+    19,
+    15,
+    1,
+    7,
+    9,
+    18,
+    5,
+    11,
+    2,
+    22,
+    13,
+    3,
+    6,
+    8,
+    10,
+    4
+   ],
+   "matches": [
+    1,
+    6,
+    7,
+    8,
+    9,
+    10,
+    12,
+    14,
+    16,
+    17,
+    19,
+    20,
+    21
+   ]
+  }
+ }
+}

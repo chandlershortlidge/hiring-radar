@@ -30,6 +30,7 @@ import math
 import time
 from collections.abc import Callable
 from contextlib import contextmanager
+from datetime import date
 from pathlib import Path
 from typing import Any, Literal
 
@@ -38,7 +39,7 @@ from mcp.server.mcpserver.exceptions import ToolError
 from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 
-from app import db, queries as q, scope
+from app import db, fit, queries as q, scope
 from app.geo import CITIES, REMOTE_EU
 from app.taxonomy import Taxonomy, load_added
 
@@ -62,6 +63,11 @@ Production = Literal[*q.PRODUCTION_FILTERS]  # type: ignore[valid-type]
 Sort = Literal[*q.SORTS]  # type: ignore[valid-type]
 
 MAX_JOBS = 50  # per call; page with `offset` for more
+
+# The degree a person holds, for match_profile: the dashboard profile's values, with "none"
+# in place of its empty string. tests/test_mcp_server.py checks they stay equal.
+ProfileDegree = Literal["none", "bachelor", "master", "phd"]
+FIT_PAGE = 200  # match_profile reads the jobs to rank this many at a time, as the dashboard does
 
 INSTRUCTIONS = """\
 hiring-radar tracks AI and ML job postings (Berlin, Hamburg, Frankfurt, Munich, Remote (EU),
@@ -374,6 +380,106 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         with connect() as conn:
             return q.rising_skills(conn, f, now(), added)
 
+    @server.tool(annotations=READ_ONLY)
+    def match_profile(
+        skills: list[str],
+        seniority: Seniority | None = None,
+        german: bool = False,
+        production: bool = False,
+        degree: ProfileDegree = "none",
+        city: list[Place] | None = None,
+        family: list[Family] | None = None,
+        since: str | None = None,
+        limit: int = 20,
+    ) -> dict[str, Any]:
+        """Rank open jobs by how well they fit one person, best fit first, in the same order
+        as the hiring-radar dashboard's "Best fit" sort. Answers "I know Python, RAG and
+        LangChain, I'm mid-level, no German: which jobs fit me?", and with `since`, "what's
+        new for me since yesterday?". Nothing about the person is stored; pass the profile
+        on every call.
+
+        The profile:
+        - skills (required): the person's skills, as skill ids or names, e.g. ["python",
+          "rag", "langchain"]. Matched to our skill list like search_jobs; an unknown name is
+          an error that suggests ids.
+        - seniority: junior, mid or senior, the level the person is applying at. Leave it
+          out to never rule a job out on level.
+        - german: true if the person works in professional German.
+        - production: true if the person has shipped software to production.
+        - degree: the highest degree the person holds: none (default), bachelor, master, phd.
+
+        Which jobs are ranked:
+        - only open jobs first seen in the last 30 days, as on the dashboard: an older
+          posting is probably filled.
+        - city: any of these places; family: ai-engineer, ml-engineer, data-scientist,
+          ml-platform or research, assigned from the job title. Both optional.
+        - since: an ISO date, e.g. "2026-11-22": only jobs we first saw on or after that
+          day (UTC). For a morning digest pass yesterday's date. A date more than 30 days
+          back changes nothing.
+        - limit: jobs returned, 1 to 50 (default 20).
+
+        The score: a job's required skills are its requirements, and a group of
+        alternatives ("Python, Go or Java") is one requirement, met by any one of them.
+        - covered / total: requirements the person meets, out of the job's requirements.
+        - score: covered / total, from 0 to 1, what the dashboard's badge shows; null when
+          the job lists no required skill (unknown, not a bad fit).
+        - rank_score: what jobs are ordered by. The same ratio made cautious about thin
+          evidence: a job listing fewer than 4 required skills is scored as if it listed 4,
+          so 2 of 2 (0.15) ranks below 10 of 14 (0.45). few_skills_listed is true for such
+          a job: its score says more about what we read than about the fit.
+        - missing_required: the requirements not met, most asked-for across jobs first; a
+          group of alternatives appears as a list of ids.
+        - gated_by: the hard asks the person fails, in this order: "german" (German is
+          required), "production" (production experience is required), "degree" (a higher
+          degree is required, with no "or equivalent experience"), "seniority" (the job
+          names a different level, from the posting or its title). A nice-to-have never
+          gates, and a job that names no level never gates on seniority. A gate does not
+          change the score, but every gated job ranks below every job that is not.
+        Ties keep newest first; a covered nice-to-have skill only breaks ties.
+
+        Returns ranked (how many jobs were ranked, before limit) and per job, best fit
+        first: id, company, title, places, url (the posting), first_seen, score,
+        rank_score, covered, total, few_skills_listed, missing_required and gated_by.
+        Use get_job for a job's full text.
+
+        Example: the best-fitting Berlin jobs for a mid-level Python, RAG and LangChain
+        engineer without German, new since 22 November:
+        match_profile(skills=["python", "rag", "langchain"], seniority="mid",
+                      city=["Berlin"], since="2026-11-22")
+        """
+        if not skills:
+            raise ToolError("skills must name at least one skill, e.g. [\"python\", \"rag\"]")
+        if not 1 <= limit <= MAX_JOBS:
+            raise ToolError(f"limit must be between 1 and {MAX_JOBS}")
+        try:
+            day = None if since is None else date.fromisoformat(since).isoformat()
+        except ValueError:
+            raise ToolError(f"since must be an ISO date like \"2026-11-22\", not {since!r}") from None
+        profile = {"skills": skill_ids(skills), "seniority": seniority or "", "german": german,
+                   "production": production, "degree": "" if degree == "none" else degree}
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), families=family or ())
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        at = now()
+        with connect() as conn:
+            # Skill demand only orders missing_required, as the dashboard's skill counts do.
+            demand = {s["skill_id"]: s["count"] for s in q.skill_frequency(conn, f, at)["skills"]}
+            # Newest first, as the dashboard's Best fit asks for them, page by page until the
+            # pages reach jobs older than 30 days. Unlike the dashboard it never stops at 200.
+            jobs, offset = [], 0
+            while True:
+                page = q.list_jobs(conn, f, at, "newest", FIT_PAGE, offset)["jobs"]
+                recent = fit.recent_jobs(page, at)
+                jobs += recent
+                if len(page) < FIT_PAGE or len(recent) < len(page):
+                    break
+                offset += FIT_PAGE
+        if day is not None:
+            jobs = [j for j in jobs if j["first_seen"][:10] >= day]
+        ranked = fit.rank_jobs(profile, jobs, demand)
+        return {"ranked": len(ranked), "jobs": [_match(j, fit.fit(profile, j, demand), profile) for j in ranked[:limit]]}
+
     # --- resources ------------------------------------------------------------------
 
     @server.resource(SKILLS_URI, name="skills", title="The skill list", mime_type="application/json",
@@ -386,6 +492,16 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             for s in sorted(tax.skills.values(), key=lambda s: s.id)]})
 
     return server
+
+
+def _match(j: dict, f: dict, profile: dict) -> dict:
+    """One job as match_profile returns it: who and where, then how the profile fits it."""
+    return {
+        "id": j["id"], "company": j["company"], "title": j["title"], "places": j["places"],
+        "url": next((s["url"] for s in j["sources"] if s["url"]), None), "first_seen": j["first_seen"][:10],
+        "score": f["score"], "rank_score": f["rank_score"], "covered": f["covered"], "total": f["total"],
+        "few_skills_listed": f["thin"], "missing_required": f["missing"], "gated_by": fit.gates(profile, j),
+    }
 
 
 def _job(j: dict) -> dict:

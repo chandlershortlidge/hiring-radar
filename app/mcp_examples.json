@@ -31,5 +31,10 @@
     "ask": "which skills are rising and falling in Berlin jobs",
     "arguments": {"city": ["Berlin"]},
     "expect": ["status", "window_days", "current.start", "previous.start"]
+  },
+  "match_profile": {
+    "ask": "rank recent Berlin jobs for a mid-level Python and RAG engineer",
+    "arguments": {"skills": ["python", "rag"], "seniority": "mid", "city": ["Berlin"], "limit": 5},
+    "expect": ["ranked", "jobs[].id", "jobs[].title", "jobs[].company", "jobs[].places"]
   }
 }

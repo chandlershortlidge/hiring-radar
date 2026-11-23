@@ -305,9 +305,18 @@ def _check_rising_skills(server, hidden_id, hidden_company, hidden_place):
     assert r["current"]["open_jobs"] == r["previous"]["open_jobs"] == 3   # the hidden job is not counted
 
 
+def _check_match_profile(server, hidden_id, hidden_company, hidden_place):
+    with pytest.MonkeyPatch.context() as mp:             # every job counts as recent, so a leak would show
+        mp.setattr(mcp_server.fit, "recent_jobs", lambda jobs, now: jobs)
+        r = _tool(server, "match_profile", skills=["python"])
+    assert r["ranked"] == 3 and hidden_company not in {j["company"] for j in r["jobs"]}
+    assert all(hidden_place not in j["places"] for j in r["jobs"])
+
+
 # One check per tool: what the tool must not give away about an incubating job.
 TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
-               "related_skills": _check_related_skills, "rising_skills": _check_rising_skills}
+               "related_skills": _check_related_skills, "rising_skills": _check_rising_skills,
+               "match_profile": _check_match_profile}
 
 
 def test_every_mcp_tool_has_an_incubating_check(path):
