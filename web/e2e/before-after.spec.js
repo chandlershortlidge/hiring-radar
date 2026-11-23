@@ -95,7 +95,9 @@ async function shot(page, path, button, profile) {
 
   let problem = null;
   try {
-    await page.getByRole("button", { name: button }).click({ timeout: 10_000 });
+    // Exactly that name: a loose match also finds any control whose name contains it, and
+    // the gaps line names its chips "... not in your profile" (HIR-430).
+    await page.getByRole("button", { name: button, exact: true }).click({ timeout: 10_000 });
     await page.getByRole("dialog").waitFor({ state: "visible", timeout: 10_000 });
     // What the drawer fetches for itself (skill counts) has arrived.
     await page.waitForTimeout(300);
