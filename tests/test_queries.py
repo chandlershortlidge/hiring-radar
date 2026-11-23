@@ -314,6 +314,49 @@ def test_stored_sales_jobs_stay_out_of_the_charts_but_in_the_list(conn):
     assert conn.execute("SELECT count(*) FROM skill_mention WHERE job_id=?", (jid,)).fetchone()[0] == 2
 
 
+def _stored_before_the_block(conn, url, company="Northwind Intelligence"):
+    """A job as it was stored before ingest refused its site: added with a harmless link,
+    which is then set to the one it really had (ingest would not store it today)."""
+    jid = add(conn, company, "AI/ML Engineer, LLM Applications", "Berlin", "jsearch", ts(0),
+              [("python", "required"), ("kubernetes", "required")], sid="scam-1", proposed=["Keyword Dump"])
+    conn.execute("UPDATE job_source SET url = ? WHERE job_id = ?", (url, jid))
+    conn.commit()
+    return jid
+
+
+def test_a_stored_job_from_a_fake_posting_site_is_in_no_public_read(conn):
+    """HIR-441: the fake posting stored before its site was blocked is not deleted, and is
+    out of the job list, the charts, the counts, its own page and the suggested skills."""
+    from app import skill_tree
+    from app.ingest import BLOCKED_SITES
+    everything, chart = q.Filters(window="all"), q.Filters(window="all", requirement="all")
+    before = (q.list_jobs(conn, everything, NOW), q.skill_frequency(conn, chart, NOW), q.stats(conn, NOW, 0),
+              q.city_totals(conn, chart, NOW), skill_tree.fetch_jobs(conn, chart, NOW), q.proposed_skills(conn),
+              q.text_counts(conn, q.Filters(window="all", text="posting"), NOW))
+    jid = _stored_before_the_block(conn, "https://kerjainti.web.id/?jobs=en-job-ai-ml-engineer-llm-applications-1")
+    after = (q.list_jobs(conn, everything, NOW), q.skill_frequency(conn, chart, NOW), q.stats(conn, NOW, 0),
+             q.city_totals(conn, chart, NOW), skill_tree.fetch_jobs(conn, chart, NOW), q.proposed_skills(conn),
+             q.text_counts(conn, q.Filters(window="all", text="posting"), NOW))
+    assert after == before
+    assert q.job_detail(conn, jid, NOW) is None and not q.is_public(conn, jid)
+    # Nothing was deleted, and the tools that work behind the site can still read it.
+    assert conn.execute("SELECT count(*) FROM skill_mention WHERE job_id=?", (jid,)).fetchone()[0] == 2
+    assert q.job_detail(conn, jid, NOW, include_incubating=True)["company"] == "Northwind Intelligence"
+    # Every blocked site hides, in any spelling of the link; a job with no link is shown.
+    for i, site in enumerate(BLOCKED_SITES):
+        other = add(conn, f"Fake{i}", "AI Engineer", "Berlin", "paste", ts(0), [("python", "required")])
+        assert q.is_public(conn, other)
+        conn.execute("INSERT INTO job_source (job_id, source, url, first_seen, last_seen) VALUES (?, 'url', ?, ?, ?)",
+                     (other, f"HTTP://Sub.{site.upper()}/x", ts(0), ts(0)))
+        assert not q.is_public(conn, other)
+
+
+def test_a_job_whose_link_is_on_another_site_is_still_shown(conn):
+    jid = _stored_before_the_block(conn, "https://lowongan.web.id/jobs/1", company="Real Employer")
+    assert q.is_public(conn, jid) and q.job_detail(conn, jid, NOW)["company"] == "Real Employer"
+    assert q.list_jobs(conn, q.Filters(window="all"), NOW)["total"] == 6
+
+
 def test_the_chart_hides_exactly_the_titles_ingest_refuses_as_sales(conn):
     """One list, two readers: the SQL built from it and ingest.sales_title must agree."""
     from app.ingest import sales_title

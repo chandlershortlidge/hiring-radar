@@ -651,6 +651,9 @@ def _why_stopped(stop: str, posting: Posting) -> str:
                 f"({ingest.agency_name_word(posting.company)!r}), which the country-wide sources screen out")
     if stop == ingest.SKIPPED_UNREADABLE:
         return DROPPED_UNREADABLE
+    if stop == ingest.SKIPPED_BLOCKED:
+        return (f"it links to {ingest.blocked_site(posting.url, posting.description_text)}, "
+                f"a site known to publish fake postings")
     # A check added to the collector since: reported under its own name until it gets a
     # sentence here, never passed over in silence (HIR-427).
     return f"the collector's check {stop!r} stops it"
