@@ -210,6 +210,99 @@ def test_weekly_summary_groups_by_latest_finding_and_says_report_only():
     assert "report-only" in text and "## What it would have fixed" in text
     assert text.index("Doctolib moved") < text.index("Pipedrive is quiet") < text.index("Arbeitnow is low")
     assert ct.weekly_summary([], "a", "b", acting=True).endswith("Every source worked all week.")
+    acted = ct.weekly_summary(rows, "2026-11-09", "2026-11-15", acting=True)        # HIR-261
+    assert "report-only" not in acted and "would have" not in acted
+    assert "## What it fixed or filed to fix" in acted and "## What it filed to pause" in acted
+
+
+# --- the day's fixes as a ticket, and back (HIR-261) --------------------------------------
+
+def fix_rows():
+    return [ct.as_row(Finding("lever:pipedrive", "board_dead", "pause", "lever:pipedrive is quiet, so pause it.",
+                              {"last_seen": "2026-10-23T08:00:00Z"}), DAY, "act", False),
+            ct.as_row(Finding("greenhouse:doctolib", "board_moved", "switch", "Doctolib moved to ashby:doctolib.",
+                              {"to": ["ashby", "doctolib"], "relevant": 3, "company": "Doctolib"}), DAY, "act", False)]
+
+
+def test_a_fix_ticket_reads_back_as_the_same_fixes_and_applies_only_them():
+    title, body = ct.fix_ticket_text(fix_rows(), DAY)
+    assert title == f"Caretaker: job-source fixes for {DAY}"
+    assert "found 2 fixes" in body and "- lever:pipedrive is quiet, so pause it." in body
+    assert ct.NO_SPEND_LINE in body
+    assert body.index("+++ Agent notes") < body.index("```json") < body.rindex("+++")
+    back = ct.fixes_from_text(body)
+    assert back == [Finding(r["subject"], r["finding"], r["action"], r["detail"], r["data"]) for r in fix_rows()]
+    doc = feeds_doc()
+    after = ct.apply_fixes(doc, body)
+    assert after["feeds"][0] == doc["feeds"][0] and after["feeds"][3] == doc["feeds"][3]
+    assert after["feeds"][1] == {"type": "ashby", "enabled": True, "token": "doctolib", "company": "Doctolib",
+                                 "moved_from": "greenhouse:doctolib"}
+    assert after["feeds"][2]["enabled"] is False and after["feeds"][2]["paused"]["since"] == DAY
+    assert after["_comment"] == "x" and doc["feeds"][2]["enabled"] is True          # input not mutated
+
+
+def test_a_fix_ticket_carries_only_edits_of_the_job_source_list():
+    rerun = ct.as_row(Finding("collection", "collection_missing", "rerun_collection", "x"), DAY, "act", False)
+    with pytest.raises(Refused):
+        ct.fix_ticket_text([rerun], DAY)
+    _, body = ct.fix_ticket_text(fix_rows(), DAY)
+    for tampered in (body.replace('"action": "pause"', '"action": "rerun_collection"'),
+                     body.replace('"action": "pause"', '"action": "delete"'),
+                     body.replace('"day": "2026-11-12"', '"day": "soon"'),
+                     body.replace('"subject": "lever:pipedrive",', ""),
+                     body + body,                                   # two blocks: which one?
+                     "no block at all",
+                     '```json\n{"caretaker_fixes": []}\n```'):
+        with pytest.raises(Refused):
+            ct.fixes_from_text(tampered)
+
+
+def test_applying_a_ticket_is_all_or_nothing_and_keeps_every_never_does_line():
+    _, body = ct.fix_ticket_text(fix_rows(), DAY)
+    doc = feeds_doc()
+    once = ct.apply_fixes(doc, body)
+    with pytest.raises(Refused):                 # the switch was already made: nothing to match
+        ct.apply_fixes(once, body)
+    other_company = body.replace('"doctolib"\n', '"acme"\n').replace('"company": "Doctolib"', '"company": "Acme"')
+    assert other_company != body
+    with pytest.raises(Refused):
+        ct.apply_fixes(doc, other_company)
+    person_disabled = ct.fix_ticket_text([ct.as_row(
+        Finding("ashby:turnedoff", "board_back", "unpause", "x"), DAY, "act", False)], DAY)[1]
+    with pytest.raises(Refused):
+        ct.apply_fixes(doc, person_disabled)
+    no_target = body.replace('"to": [', '"elsewhere": [')
+    with pytest.raises(Refused):
+        ct.apply_fixes(doc, no_target)
+
+
+def test_apply_fixes_refuses_anything_but_the_feeds_file(tmp_path, monkeypatch, capsys):
+    """The command a pull request runs: it writes the feeds file and nothing else, and a
+    refused fix leaves the file as it was."""
+    import argparse
+
+    import app.__main__ as cli
+    _, body = ct.fix_ticket_text(fix_rows(), DAY)
+    ticket = tmp_path / "ticket.md"
+    ticket.write_text(body)
+    feeds = tmp_path / "feeds.json"
+    ct.write_feeds(feeds_doc(), feeds)
+    monkeypatch.setattr(cli, "FEEDS_PATH", feeds)
+    cli.cmd_caretaker_apply_fixes(argparse.Namespace(file=str(ticket)))
+    written = json.loads(feeds.read_text())
+    assert written == ct.apply_fixes(feeds_doc(), body)
+    assert "2 fixes written to feeds.json" in capsys.readouterr().out
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["feeds.json", "ticket.md"]
+
+    with pytest.raises(SystemExit, match="refused, nothing was written"):   # a second time: already made
+        cli.cmd_caretaker_apply_fixes(argparse.Namespace(file=str(ticket)))
+    assert json.loads(feeds.read_text()) == written
+
+    monkeypatch.setattr(cli, "FEEDS_PATH", tmp_path / "skills.json")        # any other file name
+    (tmp_path / "skills.json").write_text(json.dumps(feeds_doc()))
+    with pytest.raises(SystemExit, match="writes only feeds.json"):
+        cli.cmd_caretaker_apply_fixes(argparse.Namespace(file=str(ticket)))
+    assert json.loads((tmp_path / "skills.json").read_text()) == feeds_doc()
 
 
 def test_urgent_only_for_two_failed_days_or_the_cap():

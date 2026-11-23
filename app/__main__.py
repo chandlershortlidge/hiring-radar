@@ -34,8 +34,11 @@
                     the jobs it would re-read x what a reading has actually cost. Makes no
                     model call. Put its figure in the PR body (HIR-221). Opens the database
                     read-only and never applies migrations (HIR-265)
-  caretaker         the morning check of every job source after the poll: logs what is broken and
-                    what it would fix (report-only); Mondays, posts the Monday summary to Linear
+  caretaker         the morning check of every job source after the poll: logs what is broken, files
+                    the day's fixes to the list of job sources as one Linear ticket (never edits
+                    feeds.json itself) and re-runs a collection that failed, once (HIR-261);
+                    `caretaker apply-fixes FILE|-` makes a filed ticket's fixes in feeds.json, for
+                    the pull request that carries the ticket out; Mondays, posts the Monday summary to Linear
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
                     sent back and fixed, what broke on the live site (read from the robot
                     visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
@@ -508,15 +511,46 @@ def cmd_reread_cost(args):
         print(line)
 
 
+def cmd_caretaker_apply_fixes(args):
+    """Make the fixes a caretaker ticket carries, in config/feeds.json (HIR-261). Run in
+    the pull request that carries the ticket out, never on the server. All or nothing."""
+    from app import caretaker
+    if not args.file:
+        sys.exit("caretaker apply-fixes: name the file holding the ticket's text, or - for standard input")
+    text = sys.stdin.read() if args.file == "-" else Path(args.file).read_text()
+    try:
+        fixes = caretaker.fixes_from_text(text)
+        doc = caretaker.apply_fixes(json.loads(FEEDS_PATH.read_text()), text)
+        caretaker.write_feeds(doc, FEEDS_PATH)
+    except caretaker.Refused as e:
+        sys.exit(f"caretaker apply-fixes: refused, nothing was written: {e}")
+    for f in fixes:
+        print(f"{f.action:>16}  {f.subject}: {f.detail}")
+    print(f"{len(fixes)} fix{'es' if len(fixes) != 1 else ''} written to {FEEDS_PATH.name}; commit that one file")
+
+
 def cmd_caretaker(args):
-    """Report-only morning run (HIR-257). Reads feeds.json, never writes it."""
+    """The morning run (HIR-257), acting since HIR-261. Reads feeds.json and never writes
+    it: the day's fixes are filed as a ticket, and `caretaker apply-fixes` makes them in
+    the pull request that follows. A failed collection is re-run here, once."""
+    if getattr(args, "action", None) == "apply-fixes":
+        return cmd_caretaker_apply_fixes(args)
+    import subprocess
     from datetime import datetime, timezone
 
     from app import caretaker_run
     from app.discover import REJECTED_PATH, rejected_boards
     from app.sources import brave
     conn = open_db()
-    day = args.day or datetime.now(timezone.utc).date().isoformat()
+    today = datetime.now(timezone.utc).date().isoformat()
+    day = args.day or today
+    # The same command, user, virtualenv and settings as the 07:00 collection
+    # (deploy/hiring-radar-poll.service), so it needs no extra rights on the server. Only
+    # for today: looking back at an earlier day, or a look that posts nothing, re-runs nothing.
+    rerun = None
+    if day == today and not args.no_post:
+        rerun = lambda: subprocess.run([sys.executable, "-m", "app", "poll", "--region", "europe"],  # noqa: E731
+                                       check=False)
     try:
         key = brave.api_key()
         search = lambda q: brave.fetch(q, key)  # noqa: E731
@@ -535,7 +569,7 @@ def cmd_caretaker(args):
     from app import merged_work, site_watch_week
     team = os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID)
     caretaker_run.report(
-        conn, day, post, changes=merged_work.week_text,
+        conn, day, post, changes=merged_work.week_text, rerun=rerun,
         site_watch=lambda start, end: site_watch_week.week_text(start, end, linear_key, team, caretaker_run.post_json))
 
 
@@ -636,9 +670,15 @@ def main(argv=None):
     sub.add_parser("reread-cost",
                    help="what merging an extractor or skill-list change would spend on re-reading"
                    ).set_defaults(fn=cmd_reread_cost)
-    p = sub.add_parser("caretaker", help="morning check of every job source; report-only (HIR-257)")
+    p = sub.add_parser("caretaker", help="morning check of every job source; files its fixes as a ticket, "
+                                         "re-runs a failed collection once (HIR-257, HIR-261). "
+                                         "`caretaker apply-fixes FILE` makes a filed ticket's fixes in feeds.json")
+    p.add_argument("action", nargs="?", choices=["apply-fixes"], default=None,
+                   help="apply-fixes: make the fixes in a caretaker ticket's text; without it, the morning check")
+    p.add_argument("file", nargs="?", default=None, help="for apply-fixes: the file holding the ticket's text, or -")
     p.add_argument("--day", default=None, help="judge this day's poll (YYYY-MM-DD, UTC); default today")
-    p.add_argument("--no-post", action="store_true", help="print the summaries, post nothing to Linear")
+    p.add_argument("--no-post", action="store_true",
+                   help="print the summaries, post nothing to Linear and re-run nothing")
     p.set_defaults(fn=cmd_caretaker)
     p = sub.add_parser("flags", help="why each job flagged \"doesn't belong here\" showed, grouped by cause")
     p.add_argument("--fixed", nargs="+", type=int, metavar="ID", default=[],
