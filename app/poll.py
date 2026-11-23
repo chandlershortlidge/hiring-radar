@@ -170,7 +170,7 @@ def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, lo
             log(f"{label}: WARNING seen=0 but {known} postings from this board are already in the "
                 f"database; the board may have changed its page format (adapter needs checking)")
         for k in ("seen", "still_listed", "merged", "reposts", "new", "skipped_title", "skipped_city",
-                  "skipped_company", "skipped_agency", "skipped_unreadable"):
+                  "skipped_company", "skipped_agency", "skipped_unreadable", "skipped_blocked"):
             setattr(total, k, getattr(total, k) + getattr(r, k))
         total.new_job_ids += r.new_job_ids
     return total
