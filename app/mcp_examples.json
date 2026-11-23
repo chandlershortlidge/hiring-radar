@@ -26,5 +26,10 @@
     "ask": "what else open jobs that require Python ask for",
     "arguments": {"skills": ["python"]},
     "expect": ["total", "selected_count", "skills[].skill_id", "skills[].pct", "skills[].lift"]
+  },
+  "rising_skills": {
+    "ask": "which skills are rising and falling in Berlin jobs",
+    "arguments": {"city": ["Berlin"]},
+    "expect": ["status", "window_days", "current.start", "previous.start"]
   }
 }

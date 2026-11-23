@@ -36,7 +36,7 @@ from mcp.types import ToolAnnotations
 
 from app import db, queries as q, scope
 from app.geo import CITIES, REMOTE_EU
-from app.taxonomy import Taxonomy
+from app.taxonomy import Taxonomy, load_added
 
 PATH = "/mcp"
 
@@ -66,10 +66,13 @@ required or nice-to-have, plus seniority, German, degree and production-experien
 requirements. All tools are read-only."""
 
 
-def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPServer:
+def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
+                 skill_added: dict[str, str] | None = None) -> MCPServer:
     """The MCP server with every tool registered. `now` is injected so tests can fix the
-    clock, exactly as the API's routes do."""
+    clock, exactly as the API's routes do; `skill_added` (the day each skill joined the
+    list, read only by rising_skills) likewise, defaulting to the recorded dates."""
     server = MCPServer("hiring-radar", instructions=INSTRUCTIONS)
+    added = load_added() if skill_added is None else skill_added
 
     @contextmanager
     def connect():
@@ -302,6 +305,57 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
             raise ToolError(str(e)) from None
         with connect() as conn:
             return q.related_skills(conn, f, now())
+
+    @server.tool(annotations=READ_ONLY)
+    def rising_skills(
+        city: list[Place] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+    ) -> dict[str, Any]:
+        """Find which skills are being asked for by a larger or smaller share of open jobs
+        lately, with the same answer as the hiring-radar dashboard's "What's rising" panel.
+        Answers "what's getting hotter in Berlin AI jobs?". skill_demand is one snapshot;
+        this compares two periods.
+
+        The two periods: "current" is the last 28 days, "previous" the 28 days before that.
+        A job counts in every period it was open during.
+
+        - city: any of these places; leave it out for every place we collect.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
+          assigned from the job title.
+        - requirement: "required" (default) counts a skill only where the posting requires
+          it; "all" also counts it where it is only nice-to-have.
+        Only these three filters apply, so both periods have as many jobs behind them as
+        possible.
+
+        Returns:
+        - status: "ok", or "not_enough_data" when no comparison can be trusted yet.
+        - reason (null when ok): "new_city" = we started collecting a chosen place too
+          recently to cover both periods (its first day would make every skill look as if
+          it rose); "few_jobs" = no skill had enough jobs behind it in both periods.
+        - ready_from: with reason "new_city", the first day both periods are covered
+          (null if that place is not collected at all). Say "not enough data yet, ready
+          from <date>", not "nothing is rising".
+        - window_days (28); current and previous: start, end and open_jobs (jobs open in
+          that period; null when not compared).
+        - risers and fallers: up to 5 skills each, largest move first, and only moves
+          of at least 1 point. Per skill: skill_id, current_count / previous_count (jobs asking
+          for it in each period), current_share / previous_share (those counts as a
+          percent of the period's open jobs) and change = current_share - previous_share,
+          in percentage points of open jobs: 3.5 means 3.5 more of every 100 open jobs ask
+          for it than in the previous period. Positive in risers, negative in fallers.
+        A skill added to our skill list during the two periods is left out, as its early
+        numbers would show a rise from zero.
+
+        Example: what is rising and falling in Berlin AI engineer jobs:
+        rising_skills(city=["Berlin"], family=["ai-engineer"])
+        """
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), families=family or (), requirement=requirement)
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        with connect() as conn:
+            return q.rising_skills(conn, f, now(), added)
 
     return server
 
