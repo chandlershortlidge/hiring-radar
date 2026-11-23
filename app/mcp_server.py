@@ -15,7 +15,9 @@ is public job-market data (Chandler, 17 Nov, HIR-338), and the rate limit is the
 Adding a tool: write a function under "--- tools ---" inside `build_server` (typed
 arguments, a docstring written for a model that has never seen the dashboard, the query
 call), decorated with `@server.tool(annotations=READ_ONLY)`. Copy `search_jobs` and its
-tests in tests/test_mcp_server.py. Which tools come next, and which query each wraps:
+tests in tests/test_mcp_server.py. Give it an example request in app/mcp_examples.json:
+the robot visitor calls it on the live site after every deploy and every morning
+(HIR-366), and tests/test_mcp_examples.py fails until it has one. Which tools come next, and which query each wraps:
 the tool table in HIR-103.
 """
 
