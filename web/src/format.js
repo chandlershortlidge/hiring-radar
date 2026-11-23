@@ -143,6 +143,9 @@ export const axisMax = (maxPct) => Math.min(100, Math.max(20, Math.ceil((maxPct 
 export const GERMAN_FILTERS = { any: "Any", not_required: "Not required", none: "Not mentioned", required: "Required" };
 export const PRODUCTION_FILTERS = { any: "Any", not_required: "Not required", none: "Not asked for", required: "Required" };
 export const DEGREE_FILTERS = { any: "Any", open: "Open without one", none: "Not mentioned", required: "Degree required" };
+// The names of the three filters under "More filters", as their labels above the chart and
+// the chips in the jobs card both read them (HIR-415).
+export const EXTRA_FILTER_NAMES = { production: "Production experience", degree: "Degree", window: "Time window" };
 export const DEGREE_NAMES = { bachelor: "Bachelor's", master: "Master's", phd: "PhD" };
 export const DEGREE_RANK = { "": 0, bachelor: 1, master: 2, phd: 3 };
 
