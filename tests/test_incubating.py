@@ -13,7 +13,7 @@ import pytest
 from fastapi.testclient import TestClient
 from mcp.server.mcpserver.exceptions import ToolError
 
-from app import db, ingest, mcp_server, queries as q, scope
+from app import db, geo, ingest, mcp_server, queries as q, scope
 from app.api import create_app
 from app.extract import Extraction, Mention, Proposed, Seniority
 from app.pipeline import store_extraction
@@ -294,9 +294,20 @@ def _check_related_skills(server, hidden_id, hidden_company, hidden_place):
     assert (r["total"], r["selected_count"]) == (3, 3)   # every job lists python; the hidden one is not counted
 
 
+def _check_rising_skills(server, hidden_id, hidden_company, hidden_place):
+    if hidden_place:                                     # asked for by name: like a place we do not collect
+        r = _tool(server, "rising_skills", city=[hidden_place])
+        assert (r["status"], r["reason"], r["ready_from"]) == ("not_enough_data", "new_city", None)
+    with pytest.MonkeyPatch.context() as mp:             # every place collected long enough to compare
+        for place in scope.places():
+            mp.setitem(geo.COLLECTING_SINCE, place, "2020-01-01")
+        r = _tool(server, "rising_skills")
+    assert r["current"]["open_jobs"] == r["previous"]["open_jobs"] == 3   # the hidden job is not counted
+
+
 # One check per tool: what the tool must not give away about an incubating job.
 TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
-               "related_skills": _check_related_skills}
+               "related_skills": _check_related_skills, "rising_skills": _check_rising_skills}
 
 
 def test_every_mcp_tool_has_an_incubating_check(path):

@@ -326,6 +326,103 @@ def test_related_skills_description_states_the_real_cutoffs(server):
 
 
 
+# --- rising_skills -----------------------------------------------------------------------
+# The two-period market of tests/test_rising_skills.py, at its clock, so the comparison has
+# enough jobs behind it to answer "ok". The calculation itself is tested there.
+
+from tests import test_rising_skills as rs  # noqa: E402
+
+
+@pytest.fixture
+def rising_db(tmp_path, monkeypatch):
+    path = tmp_path / "rising.db"
+    c = db.connect(path)
+    db.migrate(c)
+    rs.market(c)
+    c.close()
+    monkeypatch.setattr("app.api.now_iso", lambda: rs.NOW)
+    return path
+
+
+@pytest.fixture
+def rising_server(rising_db):
+    return mcp_server.build_server(rising_db, rs.TAX, lambda: rs.NOW, rs.ADDED)
+
+
+def rising(server, **args) -> dict:
+    return call(server, "rising_skills", **args).structured_content
+
+
+def test_rising_skills_lists_risers_and_fallers(rising_server):
+    r = rising(rising_server, city=["Berlin"], family=["ai-engineer"])
+    assert (r["status"], r["reason"], r["window_days"]) == ("ok", None, q.RISING_DAYS)
+    assert r["current"]["open_jobs"] == r["previous"]["open_jobs"] == 30
+    assert r["risers"] == [{"skill_id": "agents", "current_count": 8, "previous_count": 0,
+                            "current_share": 26.7, "previous_share": 0.0, "change": 26.7}]
+    assert [s["skill_id"] for s in r["fallers"]] == ["docker"]
+
+
+@pytest.mark.parametrize("args, params", [
+    ({}, {}),
+    ({"city": ["Berlin"], "family": ["ai-engineer"]}, {"city": "Berlin", "family": "ai-engineer"}),
+    ({"city": ["Berlin"], "requirement": "all"}, {"city": "Berlin", "requirement": "all"}),
+    ({"city": ["San Francisco"]}, {"city": "San Francisco"}),             # no jobs there: few_jobs
+    ({"city": ["Berlin", "Munich"]}, {"city": ["Berlin", "Munich"]}),     # Munich too new: new_city
+])
+def test_rising_skills_matches_the_dashboard_rising_panel(rising_db, rising_server, args, params):
+    """Same filters -> the same answer as /api/skills/rising, less the display names it adds."""
+    api = TestClient(create_app(rising_db, rs.TAX, skill_added=rs.ADDED)).get("/api/skills/rising", params=params).json()
+    for row in api["risers"] + api["fallers"]:
+        row.pop("display")
+    assert rising(rising_server, **args) == api
+
+
+def test_rising_skills_says_when_there_is_not_enough_data_yet(db_path, server):
+    """At the test clock Berlin's collection has not begun: not enough data, with the day it will be."""
+    r = rising(server, city=["Berlin"])
+    assert (r["status"], r["reason"], r["risers"], r["fallers"]) == ("not_enough_data", "new_city", [], [])
+    assert r["ready_from"] == "2026-12-13"                         # 18 Oct + 2 x 28 days
+    api = TestClient(create_app(db_path, TAX, skill_added={})).get("/api/skills/rising", params={"city": "Berlin"}).json()
+    assert r == api
+
+
+def test_rising_skills_reads_the_api_skill_added_dates_by_default(rising_db):
+    """Without injected dates the server reads the recorded ones, as create_app does."""
+    tool = mcp_server.build_server(rising_db, rs.TAX, lambda: rs.NOW)
+    api = TestClient(create_app(rising_db, rs.TAX)).get("/api/skills/rising", params={"city": "Berlin"}).json()
+    for row in api["risers"] + api["fallers"]:
+        row.pop("display")
+    assert rising(tool, city=["Berlin"]) == api
+
+
+def test_rising_skills_rejects_what_the_api_rejects(rising_server):
+    with pytest.raises(ToolError):
+        call(rising_server, "rising_skills", family=["plumber"])
+    with pytest.raises(ToolError):
+        call(rising_server, "rising_skills", requirement="sometimes")
+    with pytest.raises(ToolError):
+        call(rising_server, "rising_skills", city=["Paris"])          # a place we do not offer
+
+
+def test_rising_skills_offers_only_the_three_filters_it_reads(rising_server):
+    """Only city, family and requirement, with exactly the API's values: an ignored filter
+    would let a model believe it had narrowed the answer."""
+    tool = next(t for t in asyncio.run(rising_server.list_tools()) if t.name == "rising_skills")
+    assert set(tool.input_schema["properties"]) == {"city", "family", "requirement"}
+    hints = typing.get_type_hints(rising_server._tool_manager.get_tool("rising_skills").fn)
+    expected = {"city": {*CITIES, REMOTE_EU}, "family": set(q.FAMILIES), "requirement": set(q.REQUIREMENTS)}
+    for name, values in expected.items():
+        assert _enum(hints[name]) == values, name
+    assert tool.annotations.read_only_hint is True
+
+
+def test_rising_skills_description_states_the_real_thresholds(rising_server):
+    """The description names the period length, the row cap and the smallest move in words."""
+    doc = next(t for t in asyncio.run(rising_server.list_tools()) if t.name == "rising_skills").description
+    assert f"last {q.RISING_DAYS} days" in doc and f"{q.RISING_DAYS} days before" in doc
+    assert f"up to {q.RISING_LIMIT} skills each" in doc
+    assert f"at least {q.RISING_MIN_CHANGE:g} point" in doc
+
 
 def _enum(arg) -> set:
     """The values a tool argument's type allows: Literal, list[Literal], or either | None."""
@@ -372,7 +469,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result
 
     names, result = asyncio.run(run())
-    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills"]
+    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills", "rising_skills"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
 
