@@ -2,7 +2,7 @@
 
 Does: build an MCP server (Streamable HTTP, stateless, JSON answers) whose tools read the
 same queries the dashboard reads, and give the FastAPI app one endpoint, `/mcp`, that serves
-it behind a per-visitor rate limit. Mounted by `app/api.py::create_app`.
+it behind a rate limit per connection. Mounted by `app/api.py::create_app`.
 
 Does NOT: write anything, call a model, or run a query of its own. Every tool is a thin
 wrapper over a function in app/queries.py, given filters built by `queries.make_filters`,
@@ -27,15 +27,19 @@ the tool table in HIR-103.
 import difflib
 import json
 import math
+import re
 import time
 from collections.abc import Callable
 from contextlib import contextmanager
 from datetime import date
 from pathlib import Path
 from typing import Any, Literal
+from uuid import uuid4
 
 from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
+# The protocol versions that have sessions, from the module that routes requests on it.
+from mcp.server.streamable_http_manager import HANDSHAKE_PROTOCOL_VERSIONS
 from mcp.server.transport_security import TransportSecuritySettings
 from mcp.types import ToolAnnotations
 
@@ -590,26 +594,29 @@ def _job(j: dict) -> dict:
 
 # --- serving -------------------------------------------------------------------------
 
-# Per visitor (IP address): bursts of up to BURST requests, refilled at RATE a second,
-# so 60 a minute sustained. One MCP tool call is one or two requests. Numbers recorded in
-# decisions/2026-11-17-hir-338-mcp-open-read-only-rate-limit.md.
-BURST = 30
-RATE = 1.0
-_MAX_VISITORS = 10_000  # forget idle visitors past this, so the table cannot grow forever
+# The rate limit (HIR-444; numbers and reasons in
+# decisions/2026-11-23-hir-444-mcp-rate-limit-per-connection.md). Each allowance is a token
+# bucket: bursts of up to its BURST requests, refilled at its RATE a second.
+BURST, RATE = 30, 1.0           # one connection (MCP session): 60 a minute sustained
+IP_BURST, IP_RATE = 300, 5.0    # everything from one address: the ceiling against abuse
+NEW_BURST, NEW_RATE = 60, 1.0   # new connections from one address
+_MAX_VISITORS = 10_000  # forget idle visitors past this, so a table cannot grow forever
 MAX_SKILLS_TO_RETURN = 50
+_SESSION_ID = re.compile(r"[0-9a-f]{32}")  # the ids `RateLimit` hands out; nothing else is taken on
 
-class RateLimit:
-    """A token bucket per client address in front of an ASGI app; 429 when empty.
 
-    The client address is uvicorn's: the API listens on 127.0.0.1 behind Caddy, and
-    uvicorn takes the visitor's address from Caddy's X-Forwarded-For header."""
+class Buckets:
+    """Token buckets by name: `burst` requests at once, refilled at `rate` a second."""
 
-    def __init__(self, app, burst: int = BURST, rate: float = RATE, clock: Callable[[], float] = time.monotonic):
-        self.app, self.burst, self.rate, self.clock = app, burst, rate, clock
-        self.buckets: dict[str, tuple[float, float]] = {}  # address -> (tokens, last time)
+    def __init__(self, burst: float, rate: float, clock: Callable[[], float]):
+        self.burst, self.rate, self.clock = burst, rate, clock
+        self.buckets: dict[str, tuple[float, float]] = {}  # name -> (tokens, last time)
 
-    def allow(self, who: str) -> float:
-        """0 if the request may go ahead, else the seconds until it may."""
+    def __contains__(self, who: str) -> bool:
+        return who in self.buckets
+
+    def take(self, who: str) -> float:
+        """0 if the request may go ahead (and is counted), else the seconds until it may."""
         now = self.clock()
         tokens, last = self.buckets.get(who, (self.burst, now))
         tokens = min(self.burst, tokens + (now - last) * self.rate)
@@ -623,16 +630,79 @@ class RateLimit:
         self.buckets[who] = (tokens - 1, now)
         return 0.0
 
+
+class RateLimit:
+    """The rate limit in front of the MCP's ASGI app; 429 when an allowance is empty.
+
+    Counts per connection, not per address: every user of one web assistant (claude.ai,
+    ChatGPT, Gemini) arrives from that vendor's servers, so a per-address limit made them
+    share one allowance (HIR-444). A connection is an MCP session. The server itself is
+    stateless and issues no session id, so this class does: a request without one is a new
+    connection and its answer carries a fresh `Mcp-Session-Id`, which the client sends
+    back from then on. The id names a bucket and nothing else.
+
+    Three allowances, checked in this order so that a connection that hammers is refused
+    on its own bucket and cannot empty the address it shares with other people:
+    - `sessions`: one bucket per connection (BURST, RATE).
+    - `new_sessions`: new connections per address (NEW_BURST, NEW_RATE), so opening a
+      fresh connection per request does not step around the first. An id this process
+      does not know (after a deploy, or made up) is taken on as a new connection.
+    - `addresses`: every request from one address (IP_BURST, IP_RATE), the ceiling.
+
+    A request in the newest protocol version (2026-07-28) has no session by design: it is
+    held to the address ceiling alone. GET, the listening stream a client with a session id
+    may ask for, is answered 405 here and not counted: the server has nothing to push, and
+    the stateless transport behind this would hold the stream open for nothing.
+
+    The address is uvicorn's: the API listens on 127.0.0.1 behind Caddy, and uvicorn takes
+    the visitor's address from Caddy's X-Forwarded-For header."""
+
+    def __init__(self, app, burst: int = BURST, rate: float = RATE, clock: Callable[[], float] = time.monotonic,
+                 ip_burst: int = IP_BURST, ip_rate: float = IP_RATE,
+                 new_burst: int = NEW_BURST, new_rate: float = NEW_RATE):
+        self.app = app
+        self.sessions = Buckets(burst, rate, clock)
+        self.new_sessions = Buckets(new_burst, new_rate, clock)
+        self.addresses = Buckets(ip_burst, ip_rate, clock)
+
+    def allow(self, address: str, session: str, version: str) -> tuple[float, str | None]:
+        """(0 if the request may go ahead, else the seconds until it may; the session id to
+        hand the client, if this request began a connection and brought no usable id)."""
+        if version and version not in HANDSHAKE_PROTOCOL_VERSIONS:
+            return self.addresses.take(address), None
+        if session in self.sessions:
+            return self.sessions.take(session) or self.addresses.take(address), None
+        issued = None if _SESSION_ID.fullmatch(session) else uuid4().hex
+        wait = self.new_sessions.take(address) or self.addresses.take(address)
+        if wait:
+            return wait, None
+        return self.sessions.take(issued or session), issued
+
     async def __call__(self, scope, receive, send):
-        if scope["type"] == "http":
-            wait = self.allow((scope.get("client") or ("unknown",))[0])
-            if wait:
-                await send({"type": "http.response.start", "status": 429,
-                            "headers": [(b"retry-after", str(math.ceil(wait)).encode()),
-                                        (b"content-type", b"text/plain")]})
-                await send({"type": "http.response.body", "body": b"Too many requests: slow down.\n"})
-                return
-        await self.app(scope, receive, send)
+        if scope["type"] != "http":
+            return await self.app(scope, receive, send)
+        if scope.get("method") == "GET":  # before the count: a client's retries cost its user nothing
+            return await _plain(send, 405, b"This server offers no listening stream: POST only.\n",
+                                (b"allow", b"POST"))
+        headers = {k: v.decode("latin-1") for k, v in scope.get("headers") or []}
+        wait, issued = self.allow((scope.get("client") or ("unknown",))[0],
+                                  headers.get(b"mcp-session-id", ""), headers.get(b"mcp-protocol-version", ""))
+        if wait:
+            return await _plain(send, 429, b"Too many requests: slow down.\n",
+                                (b"retry-after", str(math.ceil(wait)).encode()))
+
+        async def send_with_id(message):
+            if issued and message["type"] == "http.response.start":
+                message = {**message, "headers": [*message.get("headers", []), (b"mcp-session-id", issued.encode())]}
+            await send(message)
+
+        await self.app(scope, receive, send_with_id)
+
+
+async def _plain(send, status: int, body: bytes, header: tuple[bytes, bytes]) -> None:
+    await send({"type": "http.response.start", "status": status,
+                "headers": [header, (b"content-type", b"text/plain")]})
+    await send({"type": "http.response.body", "body": body})
 
 
 def endpoint(server: MCPServer) -> RateLimit:

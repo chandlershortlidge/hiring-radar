@@ -193,7 +193,8 @@ The rules are in [AGENTS.md](AGENTS.md).
 hiring-radar has an MCP server: a way for any Claude (claude.ai, the desktop app, Claude
 Code) to call it as a set of tools. The tools read the same queries as the dashboard, so
 the two cannot disagree. They only read: no tool writes or calls a model. There is no
-sign-in, and each visitor is rate limited (about 60 requests a minute).
+sign-in, and each connection is rate limited (about 60 requests a minute; an address that
+many connections share, such as an assistant's own servers, about 300).
 
 The tools today:
 

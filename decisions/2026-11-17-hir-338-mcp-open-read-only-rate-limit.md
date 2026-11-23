@@ -1,5 +1,8 @@
 ## 2026-11-17 — The MCP server is open, read-only and rate limited per visitor (HIR-338)
 
+> **Partly replaced, 23 Nov (HIR-444):** the limit now counts per connection, with new
+> numbers: `2026-11-23-hir-444-mcp-rate-limit-per-connection.md`. The rest stands.
+
 **What was decided.** Chandler, 17 Nov, in the ticket: the MCP server (anyone's Claude
 connects to it at `/mcp` on the live site) is **open and read-only** in its first version.
 No sign-in; a rate limit per visitor. The data is public job-market data with nothing

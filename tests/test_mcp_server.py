@@ -726,41 +726,175 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
     assert [s["id"] for s in json.loads(content.text)["skills"]] == sorted(TAX.skills)
 
 
-def test_rate_limit_answers_429_once_a_visitor_runs_out():
+def test_an_older_mcp_client_keeps_one_connection_through_the_rate_limit(db_path):
+    """A real MCP client on the handshake protocol (before 2026-07-28), through the whole app:
+    it is handed a session id on `initialize`, sends it back on every later request, and so
+    all its requests land in one bucket. Its listening stream is refused and it works anyway."""
+    app = create_app(db_path, TAX)
+    (route,) = [r for r in app.router.routes if getattr(r, "path", None) == "/mcp"]
+
+    async def run():
+        async with app.router.lifespan_context(app):
+            http = httpx2.AsyncClient(transport=httpx2.ASGITransport(app=app), base_url="http://hiring-radar.test")
+            url = "http://hiring-radar.test/mcp"
+            async with http, Client(streamable_http_client(url, http_client=http), mode="legacy") as client:
+                await client.list_tools()
+                return await client.call_tool("search_jobs", {"skills": ["rag"], "city": ["Berlin"]})
+
+    result = asyncio.run(run())
+    assert not result.is_error
+    limit = route.app
+    (tokens, _), = limit.sessions.buckets.values()       # one connection, however many requests
+    assert tokens <= mcp_server.BURST - 4                # initialize, initialized, list_tools, call_tool
+    assert len(limit.new_sessions.buckets) == 1
+
+
+# The rate limit (HIR-444): per connection (MCP session), with a ceiling per address and a
+# cap on new connections per address.
+
+def limiter(**numbers):
+    """A RateLimit over an app that answers 200, a clock to move by hand, and `hit(ip, session,
+    version, method)` -> (status, the response's headers as a dict)."""
     t = [0.0]
 
     async def app(scope, receive, send):
-        pass
+        await send({"type": "http.response.start", "status": 200, "headers": [(b"content-type", b"text/plain")]})
+        await send({"type": "http.response.body", "body": b""})
 
-    limit = mcp_server.RateLimit(app, burst=2, rate=1.0, clock=lambda: t[0])
-    sent = []
+    limit = mcp_server.RateLimit(app, clock=lambda: t[0], **numbers)
 
-    async def send(m):
-        sent.append(m)
+    def hit(ip, session=None, version=None, method="POST"):
+        sent = []
 
-    async def hit(ip):
-        sent.clear()
-        await limit({"type": "http", "client": (ip, 1)}, None, send)
-        return sent[0]["status"] if sent else 200
+        async def send(m):
+            sent.append(m)
 
-    async def run():
-        out = [await hit("1.1.1.1") for _ in range(3)]
-        out.append(await hit("2.2.2.2"))     # another visitor has their own bucket
-        t[0] += 1.0                          # one second refills one request
-        out.append(await hit("1.1.1.1"))
-        return out
+        headers = [(b"mcp-session-id", session.encode())] if session else []
+        headers += [(b"mcp-protocol-version", version.encode())] if version else []
+        asyncio.run(limit({"type": "http", "method": method, "client": (ip, 1), "headers": headers}, None, send))
+        return sent[0]["status"], {k.decode(): v.decode() for k, v in sent[0]["headers"]}
 
-    assert asyncio.run(run()) == [200, 200, 429, 200, 200]
+    return limit, t, hit
+
+
+def connect(hit, ip="1.1.1.1"):
+    """Open a connection the way a client's first request does: no session id. -> the id handed out."""
+    status, headers = hit(ip)
+    assert status == 200
+    return headers["mcp-session-id"]
+
+
+def test_rate_limit_gives_each_connection_from_one_address_its_own_bucket():
+    """Two users of one assistant arrive from the same address: one running out of
+    requests does not slow the other."""
+    _, t, hit = limiter(burst=3, rate=1.0)
+    a, b = connect(hit), connect(hit)                    # opening a connection takes one of its 3
+    assert a != b
+    assert [hit("1.1.1.1", a)[0] for _ in range(3)] == [200, 200, 429]
+    assert [hit("1.1.1.1", b)[0] for _ in range(2)] == [200, 200]
+    status, headers = hit("1.1.1.1", a)
+    assert status == 429 and headers["retry-after"] == "1"
+    t[0] += 1.0                                          # one second refills one request
+    assert hit("1.1.1.1", a)[0] == 200
+
+
+def test_rate_limit_follows_a_connection_across_addresses():
+    """A vendor sends one user's requests from several of its addresses: the bucket is the connection's."""
+    _, _, hit = limiter(burst=2, rate=1.0)
+    a = connect(hit, "1.1.1.1")
+    assert [hit("2.2.2.2", a)[0], hit("3.3.3.3", a)[0]] == [200, 429]
+
+
+def test_rate_limit_hands_a_session_id_to_a_request_without_one_only():
+    _, _, hit = limiter()
+    a = connect(hit)
+    assert mcp_server._SESSION_ID.fullmatch(a)
+    status, headers = hit("1.1.1.1", a)
+    assert status == 200 and "mcp-session-id" not in headers
+
+
+def test_rate_limit_ceiling_per_address_answers_429_whatever_the_connection():
+    _, t, hit = limiter(ip_burst=4, ip_rate=1.0)
+    a, b = connect(hit), connect(hit)                    # 2 of the address's 4
+    assert [hit("1.1.1.1", a)[0], hit("1.1.1.1", b)[0]] == [200, 200]
+    status, headers = hit("1.1.1.1", a)
+    assert status == 429 and headers["retry-after"] == "1"
+    assert hit("1.1.1.1")[0] == 429                      # and no new connection either
+    assert hit("2.2.2.2", a)[0] == 200                   # another address has its own ceiling
+    t[0] += 1.0
+    assert hit("1.1.1.1", b)[0] == 200
+
+
+def test_rate_limit_caps_new_connections_per_address():
+    """Opening a fresh connection for every request does not step around the limit."""
+    _, t, hit = limiter(new_burst=2, new_rate=1.0)
+    a = connect(hit)
+    connect(hit)
+    status, headers = hit("1.1.1.1")
+    assert status == 429 and headers["retry-after"] == "1" and "mcp-session-id" not in headers
+    assert hit("1.1.1.1", a)[0] == 200                   # a connection already open carries on
+    assert hit("2.2.2.2")[0] == 200                      # another address opens its own
+    t[0] += 1.0
+    assert hit("1.1.1.1")[0] == 200
+
+
+def test_rate_limit_counts_an_unknown_session_id_as_a_new_connection():
+    """After a deploy the table is empty: a client's old id is taken on, at the price of one
+    new connection. A made-up id that is not in our form gets a fresh one instead."""
+    limit, _, hit = limiter(burst=2, rate=1.0, new_burst=2, new_rate=1.0)
+    old = "0123456789abcdef0123456789abcdef"
+    status, headers = hit("1.1.1.1", old)
+    assert status == 200 and "mcp-session-id" not in headers and old in limit.sessions
+    assert [hit("1.1.1.1", old)[0] for _ in range(2)] == [200, 429]      # its own bucket from here on
+    status, headers = hit("1.1.1.1", "x" * 5000)
+    assert status == 200 and "x" * 5000 not in limit.sessions
+    assert mcp_server._SESSION_ID.fullmatch(headers["mcp-session-id"])
+    assert hit("1.1.1.1", "fedcba9876543210fedcba9876543210")[0] == 429  # the third new connection
+
+
+def test_rate_limit_a_hammering_connection_does_not_use_up_its_address():
+    """The point of HIR-444: one busy user must not throttle the others on the same address."""
+    _, _, hit = limiter(burst=2, rate=1.0, ip_burst=10, ip_rate=1.0)
+    a, b = connect(hit), connect(hit)
+    assert [hit("1.1.1.1", a)[0] for _ in range(50)] == [200] + [429] * 49
+    assert hit("1.1.1.1", b)[0] == 200
+
+
+def test_rate_limit_holds_the_sessionless_protocol_version_to_the_address_ceiling():
+    """A 2026-07-28 request has no handshake and no session id: nothing to key a connection on."""
+    limit, _, hit = limiter(new_burst=1, ip_burst=3, ip_rate=1.0)
+    results = [hit("1.1.1.1", version="2026-07-28") for _ in range(4)]
+    assert [status for status, _ in results] == [200, 200, 200, 429]
+    assert all("mcp-session-id" not in headers for _, headers in results)
+    assert not limit.sessions.buckets and not limit.new_sessions.buckets
+
+
+def test_rate_limit_answers_405_to_a_listening_stream():
+    """A client holding a session id may open a GET stream; the stateless server has nothing to push."""
+    _, _, hit = limiter()
+    status, headers = hit("1.1.1.1", connect(hit), method="GET")
+    assert status == 405 and headers["allow"] == "POST"
 
 
 def test_the_app_serves_mcp_behind_the_rate_limit(db_path):
-    """/mcp on the dashboard's app goes through the rate limit, and a visitor over it gets 429."""
+    """/mcp on the dashboard's app goes through the rate limit: `initialize`, which has no
+    session id yet, is answered with one; that connection over its allowance gets 429 while a
+    second connection from the same address is still served."""
     app = create_app(db_path, TAX)
     (route,) = [r for r in app.router.routes if getattr(r, "path", None) == "/mcp"]
     assert isinstance(route.app, mcp_server.RateLimit)
-    route.app.burst = 1
+    route.app.sessions.burst = 2
+    initialize = {"jsonrpc": "2.0", "id": 0, "method": "initialize", "params": {
+        "protocolVersion": "2025-06-18", "capabilities": {}, "clientInfo": {"name": "test", "version": "1"}}}
     ping = {"jsonrpc": "2.0", "id": 1, "method": "ping", "params": {}}
     headers = {"accept": "application/json, text/event-stream", "mcp-protocol-version": "2025-06-18"}
     with TestClient(app) as c:
-        first, second = (c.post("/mcp", json=ping, headers=headers) for _ in range(2))
-    assert first.status_code == 200 and second.status_code == 429 and second.headers["retry-after"] == "1"
+        def connect_and_ping():
+            hello = c.post("/mcp", json=initialize, headers=headers)
+            assert hello.status_code == 200 and hello.json()["result"]["serverInfo"]
+            mine = {**headers, "mcp-session-id": hello.headers["mcp-session-id"]}
+            return [c.post("/mcp", json=ping, headers=mine) for _ in range(2)]
+
+        first, second = connect_and_ping()
+        assert first.status_code == 200 and second.status_code == 429 and second.headers["retry-after"] == "1"
+        assert connect_and_ping()[0].status_code == 200
