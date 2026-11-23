@@ -198,6 +198,7 @@ The tools today:
 | tool | what it answers |
 |---|---|
 | `search_jobs` | open jobs, with every dashboard filter (skills, city, seniority, German, degree, production experience, job family, time window), up to 50 per call |
+| `search_postings` | how many jobs mention some words in their posting text ("Claude", "visa sponsorship"), split by city and job family, with the matching jobs |
 | `get_job` | one job in full: its text, required and nice-to-have skills, and attributes |
 | `skill_demand` | the chart: share of open jobs asking for each skill |
 | `related_skills` | the related-skills panel: what else the jobs asking for given skills ask for, with how much more common each is there than overall |
