@@ -59,9 +59,11 @@ reading is measured, not assumed.
 whether each is required or nice-to-have, and the exact words that say so. Two models
 from two companies (Claude Opus 5.5 and GPT-6.1) label each posting without seeing each
 other's answer. Where they agree, the label stands. Where they disagree, a third model
-(Gemini 4) judges the item, and a person settles what is still split. People also
-spot-check labels the models agreed on, chosen at random and shown without the models'
-answers. The labelling rules are in [evals/LABELING.md](evals/LABELING.md).
+(Gemini 4) judges the item, and I settle what is still split by hand: 453 labels across
+101 of the 131 postings. I also ran a blind spot-check of 30 labels the models agreed on,
+drawn at random from the sealed held-out set and shown without the models' answers: 0
+errors (95% interval 0–11%, so it bounds the error rate rather than proving it zero). The
+labelling rules and the spot-check protocol are in [evals/LABELING.md](evals/LABELING.md).
 
 **A held-out split.** 71 of the labelled postings are used to tune the extractor. The
 other 60 are sealed: nobody tunes against them, and they are read only at release points.
