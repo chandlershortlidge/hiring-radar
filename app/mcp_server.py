@@ -178,6 +178,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
         Example: the details of job 42:
         get_job(job_id=42)
         """
+        raise ToolError("HIR-366 drill: get_job broken on purpose; never merge")
         with connect() as conn:
             detail = q.job_detail(conn, job_id, now())
             if detail is None:
