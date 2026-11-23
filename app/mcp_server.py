@@ -12,6 +12,9 @@ Invariants: tools only read and never call a model (AGENTS.md "The MCP server");
 database connection per tool call; the route is open, with no password, because the data
 is public job-market data (Chandler, 17 Nov, HIR-338), and the rate limit is the only gate.
 
+Resources (reference data a client reads once, no arguments) sit under "--- resources ---";
+the one today is the skill list (HIR-434).
+
 Adding a tool: write a function under "--- tools ---" inside `build_server` (typed
 arguments, a docstring written for a model that has never seen the dashboard, the query
 call), decorated with `@server.tool(annotations=READ_ONLY)`. Copy `search_jobs` and its
@@ -22,6 +25,7 @@ the tool table in HIR-103.
 """
 
 import difflib
+import json
 import math
 import time
 from collections.abc import Callable
@@ -64,6 +68,19 @@ hiring-radar tracks AI and ML job postings (Berlin, Hamburg, Frankfurt, Munich, 
 San Francisco, New York, Austin, Boston, Seattle, Los Angeles, Chicago, San Jose, London, Amsterdam) and reads each posting into a fixed list of skills, each marked
 required or nice-to-have, plus seniority, German, degree and production-experience
 requirements. All tools are read-only."""
+
+# The skill list as an MCP resource (HIR-434): reference data a client loads once, in place
+# of a tool. The dashboard's radial skill tree is not offered: its drawing coordinates are
+# noise to a model, and the hierarchy it draws is the `parents` here.
+SKILLS_URI = "hiring-radar://skills"
+SKILLS_DESCRIPTION = """\
+Every skill hiring-radar tracks, as JSON: {"version", "skills": [{"id", "display",
+"aliases", "parents"}]}. Use it to turn a user's words into skill ids for search_jobs,
+skill_demand and related_skills (match display or any alias, ignoring case; the tools also
+accept names, but an id is exact), and to read the hierarchy: parents are the ids of the
+broader skills a skill sits under (e.g. aws under cloud, autogen under agents). A skill not
+listed here is not tracked, so no tool can count it; search_jobs' `text` filter can still
+find it in posting text."""
 
 
 def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
@@ -356,6 +373,17 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             raise ToolError(str(e)) from None
         with connect() as conn:
             return q.rising_skills(conn, f, now(), added)
+
+    # --- resources ------------------------------------------------------------------
+
+    @server.resource(SKILLS_URI, name="skills", title="The skill list", mime_type="application/json",
+                     description=SKILLS_DESCRIPTION)
+    def skills() -> str:
+        # Every skill, as the dashboard's /api/taxonomy lists them. Skills belong to no
+        # place or career track, so nothing here is incubating and nothing is left out.
+        return json.dumps({"version": tax.version, "skills": [
+            {"id": s.id, "display": s.display, "aliases": list(s.aliases), "parents": list(s.parents)}
+            for s in sorted(tax.skills.values(), key=lambda s: s.id)]})
 
     return server
 

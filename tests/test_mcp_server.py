@@ -4,6 +4,7 @@ tool accepts exactly the API's values. The end-to-end test at the bottom goes th
 real MCP client over HTTP and covers every tool at once."""
 
 import asyncio
+import json
 import types
 import typing
 
@@ -451,6 +452,37 @@ def test_search_jobs_accepts_exactly_the_api_values(server):
     assert tool.annotations.read_only_hint is True
 
 
+# --- the skill list (a resource) -----------------------------------------------------
+
+def test_the_skill_list_is_a_resource_with_every_skill(server):
+    """One resource, read without arguments: every skill with its id, name, spellings and
+    parents, and nothing else (no `reviewed`, which is our own bookkeeping)."""
+    (res,) = asyncio.run(server.list_resources())
+    assert (str(res.uri), res.name, res.mime_type) == (mcp_server.SKILLS_URI, "skills", "application/json")
+    for tool in ("search_jobs", "skill_demand", "related_skills", "parents"):
+        assert tool in res.description, tool
+    (content,) = asyncio.run(server.read_resource(mcp_server.SKILLS_URI))
+    body = json.loads(content.content)
+    assert body["version"] == TAX.version
+    assert [s["id"] for s in body["skills"]] == sorted(TAX.skills)
+    for s in body["skills"]:
+        t = TAX.skills[s["id"]]
+        assert s == {"id": t.id, "display": t.display, "aliases": list(t.aliases), "parents": list(t.parents)}
+
+
+def test_the_skill_list_matches_the_dashboard_taxonomy(db_path, server):
+    """Same list as /api/taxonomy, which the dashboard's skill picker reads."""
+    (content,) = asyncio.run(server.read_resource(mcp_server.SKILLS_URI))
+    api = TestClient(create_app(db_path, TAX)).get("/api/taxonomy").json()
+    assert json.loads(content.content) == api
+
+
+def test_no_skill_tree_tool(server):
+    """The dashboard's radial chart is not offered: its coordinates are noise to a model,
+    and the hierarchy is in the skill list's parents (HIR-434)."""
+    assert "skill_tree" not in {t.name for t in asyncio.run(server.list_tools())}
+
+
 # --- the server over HTTP ------------------------------------------------------------
 
 def test_an_mcp_client_calls_search_jobs_over_http(db_path):
@@ -466,12 +498,17 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 names = [t.name for t in (await client.list_tools()).tools]
                 result = await client.call_tool("search_jobs", {"skills": ["rag"], "city": ["Berlin"],
                                                                  "family": ["ai-engineer"]})
-                return names, result
+                resources = [str(r.uri) for r in (await client.list_resources()).resources]
+                skills = await client.read_resource(mcp_server.SKILLS_URI)
+                return names, result, resources, skills
 
-    names, result = asyncio.run(run())
+    names, result, resources, skills = asyncio.run(run())
     assert names == ["search_jobs", "get_job", "skill_demand", "related_skills", "rising_skills"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
+    assert resources == [mcp_server.SKILLS_URI]
+    (content,) = skills.contents
+    assert [s["id"] for s in json.loads(content.text)["skills"]] == sorted(TAX.skills)
 
 
 def test_rate_limit_answers_429_once_a_visitor_runs_out():
