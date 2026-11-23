@@ -28,15 +28,18 @@ Does:
     (`checked_coverage`): of the URLs a person checked, how many a feed already had;
     `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
   - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports;
-  - file each check under one reason from a fixed list (`miss_reason`, HIR-290) and log it
-    with the company, city and careers system, so misses can be counted (app/misses.py).
+  - file each check under one reason from a fixed list (HIR-290) and log it with the
+    company, city and careers system, so misses can be counted (app/misses.py). The reason
+    comes from what the check worked out, as data (`diagnose_miss` → `filed`, HIR-428);
+    the sentence a person reads is written from the same data and is never read back.
+    `miss_reason` reads a sentence only for checks logged before reasons were stored.
 
 Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
+`diagnose`, `diagnose_miss`, `filed`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
 only through the injected fetchers and `check_posting` does none, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -631,8 +634,7 @@ DROPPED_UNREADABLE = ("the posting was already dropped as unreadable (its text r
 
 def _why_stopped(stop: str, posting: Posting) -> str:
     """One clause for one of the collector's checks (a name from `ingest.stops`). Pure.
-    No "; " inside a clause: `miss_reason` splits the clauses on it. The title and location
-    clauses start with those words because `miss_reason` files a miss by them."""
+    Wording only: a miss is filed by the check's name (`Stop.name`), never by this text."""
     if stop == ingest.SKIPPED_TITLE:
         return f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)"
     if stop == ingest.SKIPPED_CITY:
@@ -647,14 +649,76 @@ def _why_stopped(stop: str, posting: Posting) -> str:
     if stop == ingest.SKIPPED_AGENCY:
         return (f"company {posting.company!r} reads as a recruitment agency or job portal "
                 f"({ingest.agency_name_word(posting.company)!r}), which the country-wide sources screen out")
+    if stop == ingest.SKIPPED_UNREADABLE:
+        return DROPPED_UNREADABLE
     # A check added to the collector since: reported under its own name until it gets a
     # sentence here, never passed over in silence (HIR-427).
     return f"the collector's check {stop!r} stops it"
 
 
-def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
-             dropped: bool = False) -> str:
-    """Why no feed stored this posting. Pure; one sentence, phrased as what to do about it.
+# What a check that found nothing in the database worked out, as data (HIR-428). Every
+# such check ends in exactly one of these; the reason it is filed under (`filed`) and the
+# sentence a person reads (`_sentence`) are both written from it, so neither is read back
+# out of the other.
+OFF_BOARD, EMBED, BOARD_NOT_COLLECTED, BOARD_DROPPED_IT, WOULD_BE_DROPPED, NOTHING_STOPS_IT = (
+    "off_board",             # not a page on a careers system we read: no feed can reach it
+    "embed",                 # a Greenhouse job embedded on a company page that names no board
+    "board_not_collected",   # the board is not one we collect
+    "board_dropped_it",      # the board is collected and no longer lists the job
+    "would_be_dropped",      # the board is collected and the collector would drop the job
+    "nothing_stops_it")      # the board is collected and nothing stops the job
+OUTCOMES = (OFF_BOARD, EMBED, BOARD_NOT_COLLECTED, BOARD_DROPPED_IT, WOULD_BE_DROPPED, NOTHING_STOPS_IT)
+
+
+@dataclass(frozen=True)
+class Stop:
+    name: str      # the collector's name for the check (ingest.SKIPPED_*); "" when unknown
+    clause: str    # the same check in words, for a person
+
+
+@dataclass(frozen=True)
+class Diagnosis:
+    outcome: str                     # one of OUTCOMES
+    board: str = ""                  # "source:token", when the link names its board
+    stops: tuple[Stop, ...] = ()     # the collector's checks that would drop the posting
+    sentence: str = ""               # for a person; nothing reads it back
+
+    @property
+    def clauses(self) -> list[str]:
+        return [s.clause for s in self.stops]
+
+
+def _sentence(outcome: str, ref: AtsRef | None, posting: Posting, clauses: list[str]) -> str:
+    """The one sentence a person reads for a miss, phrased as what to do about it. Pure.
+    Free to reword: the reason a miss is filed under does not depend on it."""
+    why = "; ".join(clauses)
+    if outcome == OFF_BOARD:
+        base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
+        return base + ("; it would also be dropped: " + why if clauses else "")
+    if outcome == EMBED:
+        return (f"{ref.source} job {ref.job_id} via an embed URL — board token unknown "
+                f"(the page carries no Greenhouse embed script); re-run with the "
+                f"boards.greenhouse.io link to check the board")
+    board = f"board {ref.source}:{ref.token}"
+    if outcome == BOARD_NOT_COLLECTED:
+        hint = json.dumps({"type": ref.source, "enabled": True, "token": ref.token,
+                           "company": posting.company or ""})
+        # Say the drop here too (HIR-325): adding the board alone would not bring this
+        # posting in, and a first check that only says "add the board" hides that.
+        dropped = (", and the posting would be dropped even with the board collected: " + why
+                   if clauses else "")
+        return f"{board} is not in config/feeds.json{dropped} — add {hint}"
+    if outcome == BOARD_DROPPED_IT:
+        return f"{board} is polled but no longer lists job {ref.job_id} (closed or re-posted under a new id)"
+    if outcome == WOULD_BE_DROPPED:
+        return f"{board} is polled; ingest would drop it: " + why
+    return (f"{board} is polled and the posting passes both filters — "
+            f"either posted since the last poll (run `poll`) or a feed bug; job id {ref.job_id}")
+
+
+def diagnose_miss(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
+                  dropped: bool = False) -> Diagnosis:
+    """Why no feed stored this posting, as data plus the sentence written from it. Pure.
 
     Which checks would stop it is the collector's own answer (`ingest.stops`), never a copy
     kept here. `dropped` is the one check that reads the database (`ingest.was_dropped`),
@@ -666,30 +730,27 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
     asked = posting
     if ref is not None and ref.token and not dedup.company_key(posting.company):
         asked = replace(posting, company=ref.token)
-    reasons = [_why_stopped(stop, asked) for stop in ingest.stops(asked)]
-    if dropped:
-        reasons.append(DROPPED_UNREADABLE)
+    names = list(ingest.stops(asked)) + ([ingest.SKIPPED_UNREADABLE] if dropped else [])
+    stops = tuple(Stop(name, _why_stopped(name, asked)) for name in names)
+    board = f"{ref.source}:{ref.token}" if ref is not None and ref.token is not None else ""
     if ref is None:
-        base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
-        return base + ("; it would also be dropped: " + "; ".join(reasons) if reasons else "")
-    if ref.token is None:
-        return (f"{ref.source} job {ref.job_id} via an embed URL — board token unknown "
-                f"(the page carries no Greenhouse embed script); re-run with the "
-                f"boards.greenhouse.io link to check the board")
-    if (ref.source, ref.token) not in polled_boards(feeds):
-        hint = json.dumps({"type": ref.source, "enabled": True, "token": ref.token,
-                           "company": posting.company or ""})
-        # Say the drop here too (HIR-325): adding the board alone would not bring this
-        # posting in, and a first check that only says "add the board" hides that.
-        dropped = (", and the posting would be dropped even with the board collected: " + "; ".join(reasons)
-                   if reasons else "")
-        return f"board {ref.source}:{ref.token} is not in config/feeds.json{dropped} — add {hint}"
-    if board_had_it is False:
-        return f"board {ref.source}:{ref.token} is polled but no longer lists job {ref.job_id} (closed or re-posted under a new id)"
-    if reasons:
-        return f"board {ref.source}:{ref.token} is polled; ingest would drop it: " + "; ".join(reasons)
-    return (f"board {ref.source}:{ref.token} is polled and the posting passes both filters — "
-            f"either posted since the last poll (run `poll`) or a feed bug; job id {ref.job_id}")
+        outcome = OFF_BOARD
+    elif ref.token is None:
+        outcome, stops = EMBED, ()
+    elif (ref.source, ref.token) not in polled_boards(feeds):
+        outcome = BOARD_NOT_COLLECTED
+    elif board_had_it is False:
+        outcome, stops = BOARD_DROPPED_IT, ()
+    else:
+        outcome = WOULD_BE_DROPPED if stops else NOTHING_STOPS_IT
+    return Diagnosis(outcome, board, stops,
+                     _sentence(outcome, ref, posting, [s.clause for s in stops]))
+
+
+def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
+             dropped: bool = False) -> str:
+    """`diagnose_miss`'s sentence alone: why no feed stored this posting. Pure."""
+    return diagnose_miss(posting, ref, feeds, board_had_it, dropped).sentence
 
 
 def board_not_added(ref: AtsRef | None, feeds: list[dict]) -> tuple[str, str] | None:
@@ -713,6 +774,7 @@ class CheckResult:
     posting: Posting | None = None    # resolved posting, for --add
     notes: list[str] = field(default_factory=list)
     missing_board: tuple[str, str] | None = None   # (source, token) when the miss is "board not in feeds.json"
+    miss: Diagnosis | None = None     # what a not-found check worked out; `diagnosis` is its sentence
 
     def line(self) -> str:
         if self.verdict == "found":
@@ -816,7 +878,8 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if not dedup.company_key(posting.company):
         result.notes.append("company unknown — pass --company to enable the text match")
 
-    result.diagnosis = diagnose(posting, ref, feeds, board_had_it, _dropped(conn, ref))
+    result.miss = diagnose_miss(posting, ref, feeds, board_had_it, _dropped(conn, ref))
+    result.diagnosis = result.miss.sentence
     result.missing_board = board_not_added(ref, feeds)
     return result
 
@@ -836,7 +899,8 @@ def check_posting(conn: sqlite3.Connection, url: str, posting: Posting, feeds: l
     m = best_text_match(conn, posting.company, posting.description_text)
     if m:
         return _found(conn, result, m.job_id, f"text {m.score:.2f}")
-    result.diagnosis = diagnose(posting, ref, feeds, None, _dropped(conn, ref))
+    result.miss = diagnose_miss(posting, ref, feeds, None, _dropped(conn, ref))
+    result.diagnosis = result.miss.sentence
     result.missing_board = board_not_added(ref, feeds)
     return result
 
@@ -923,18 +987,88 @@ def careers_system(url: str) -> str:
     return JOB_BOARD if _JOB_BOARD_HOST_RE.search(host) else OWN_SITE
 
 
-_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
-
-
-_ALSO_DROPPED = re.compile(r"would be dropped even with the board collected: (.*) — add \{")
-
-
-def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
-    """Pure: (reason, detail) for one check. `diagnosis` is `diagnose`'s sentence, so a
-    check logged before reasons were recorded gets the same answer as a new one.
+def filed(url: str, d: Diagnosis) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check that found nothing, from what it worked out.
+    The one copy of the rules: a new check comes here with `diagnose_miss`'s data, an old
+    log entry with what `_read_sentence` recovered from its sentence.
 
     The detail names what a fix ticket needs: the board for a missing source, the filter
     and the field it read for a dropped job, the system or host for one we cannot read."""
+    also = "; ".join(d.clauses)
+    if d.outcome == BOARD_NOT_COLLECTED:
+        return NOT_IN_SOURCES, f"board {d.board}" + (f"; would also be dropped: {also}" if also else "")
+    if d.outcome == BOARD_DROPPED_IT:
+        return OTHER, f"closed or re-posted under a new id on board {d.board}"
+    if d.outcome == WOULD_BE_DROPPED:
+        title = [s.clause for s in d.stops if s.name == ingest.SKIPPED_TITLE]
+        if title:
+            return TITLE_FILTER, "; ".join(title + [s.clause for s in d.stops if s.name != ingest.SKIPPED_TITLE])
+        if any(s.name == ingest.SKIPPED_CITY for s in d.stops):
+            return LOCATION_FILTER, also
+        # Stopped by a check that is neither the title nor the location (no usable company,
+        # an agency, dropped as unreadable). Before HIR-427 the link checker did not know
+        # these checks and such a miss read "passes both filters", which is filed as OTHER;
+        # it stays there, with what really stopped it.
+        return OTHER, f"board {d.board} is polled and the collector drops the job on purpose: {also}"
+    if d.outcome == NOTHING_STOPS_IT:
+        return OTHER, f"board {d.board} is polled and the job passes both filters: posted since the last poll, or a feed bug"
+    if d.outcome == EMBED:
+        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
+    system = careers_system(url)
+    host = urllib.parse.urlsplit(url.strip()).hostname or ""
+    if system == "linkedin":
+        return LINKEDIN_ONLY, ""
+    if system == JOB_BOARD:
+        return OTHER, f"posted on a job board or recruiter site ({host})"
+    if system in dict(_SUPPORTED_HOSTS):
+        # A link on a system we poll, in a form the checker could not read as one job
+        # (a company page, or a link format it did not know when it was checked).
+        return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
+    where = host if system == OWN_SITE else system
+    return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {also}" if also else "")
+
+
+# --- checks logged before reasons were stored: all they hold is their sentence -----------
+#
+# The only place a sentence is read back. It reads the wording the sentences had when those
+# checks were logged, which is frozen in the log: rewording `_sentence` today changes
+# nothing here, and must not be followed by an edit here.
+_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
+_ALSO_DROPPED = re.compile(r"would be dropped even with the board collected: (.*) — add \{")
+
+
+def _old_stops(clauses: str) -> tuple[Stop, ...]:
+    """The clauses of an old sentence, each under the check its first word names."""
+    names = {"title": ingest.SKIPPED_TITLE, "location": ingest.SKIPPED_CITY}
+    return tuple(Stop(names.get(c.split(" ", 1)[0], ""), c) for c in clauses.split("; "))
+
+
+def _read_sentence(d: str) -> Diagnosis | None:
+    """Pure: what an old check's sentence says it worked out, or None when it is not one
+    of the sentences the checker wrote."""
+    m = _BOARD_RE.match(d)
+    board = m["board"] if m else ""
+    if board and "is not in config/feeds.json" in d:
+        dropped = _ALSO_DROPPED.search(d)
+        return Diagnosis(BOARD_NOT_COLLECTED, board, _old_stops(dropped[1]) if dropped else ())
+    if board and "no longer lists job" in d:
+        return Diagnosis(BOARD_DROPPED_IT, board)
+    if board and "ingest would drop it: " in d:
+        return Diagnosis(WOULD_BE_DROPPED, board, _old_stops(d.split("ingest would drop it: ", 1)[1]))
+    if board and "passes both filters" in d:
+        return Diagnosis(NOTHING_STOPS_IT, board)
+    if "via an embed URL" in d:
+        return Diagnosis(EMBED)
+    if d.startswith("not a hosted ATS page"):
+        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
+        return Diagnosis(OFF_BOARD, "", _old_stops(dropped) if dropped else ())
+    return None
+
+
+def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check from what an old log entry holds: its verdict
+    and `diagnosis`, the sentence it printed. A check made today is filed from its data
+    (`miss_fields`), not through here, unless it found the job."""
     if verdict == "found":
         if had_it:
             return ALREADY_HAD, ""
@@ -943,54 +1077,22 @@ def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> 
         ref = parse_ats_url(url)
         if ref is not None and ref.token:
             return NOT_IN_SOURCES, f"board {ref.source}:{ref.token} (job was added by hand before this check)"
-        d = "not a hosted ATS page"
-    else:
-        d = diagnosis or ""
-    board = _BOARD_RE.match(d)
-    if board and "is not in config/feeds.json" in d:
-        dropped = _ALSO_DROPPED.search(d)
-        return NOT_IN_SOURCES, f"board {board['board']}" + (f"; would also be dropped: {dropped[1]}" if dropped else "")
-    if board and "no longer lists job" in d:
-        return OTHER, f"closed or re-posted under a new id on board {board['board']}"
-    if board and "ingest would drop it: " in d:
-        clauses = d.split("ingest would drop it: ", 1)[1].split("; ")
-        title = [c for c in clauses if c.startswith("title ")]
-        if title:
-            return TITLE_FILTER, "; ".join(title + [c for c in clauses if c not in title])
-        if any(c.startswith("location ") for c in clauses):
-            return LOCATION_FILTER, "; ".join(clauses)
-        # Stopped by a check that is neither the title nor the location (no usable company,
-        # an agency, dropped as unreadable). Before HIR-427 the link checker did not know
-        # these checks and such a miss read "passes both filters", which is filed as OTHER;
-        # it stays there, with what really stopped it.
-        return OTHER, (f"board {board['board']} is polled and the collector drops the job on purpose: "
-                       + "; ".join(clauses))
-    if board and "passes both filters" in d:
-        return OTHER, f"board {board['board']} is polled and the job passes both filters: posted since the last poll, or a feed bug"
-    if "via an embed URL" in d:
-        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
-    if d.startswith("not a hosted ATS page"):
-        system = careers_system(url)
-        host = urllib.parse.urlsplit(url.strip()).hostname or ""
-        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
-        if system == "linkedin":
-            return LINKEDIN_ONLY, ""
-        if system == JOB_BOARD:
-            return OTHER, f"posted on a job board or recruiter site ({host})"
-        if system in dict(_SUPPORTED_HOSTS):
-            # A link on a system we poll, in a form the checker could not read as one job
-            # (a company page, or a link format it did not know when it was checked).
-            return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
-        where = host if system == OWN_SITE else system
-        return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {dropped}" if dropped else "")
-    return OTHER, f"unrecognised check result: {d[:120]}"
+        return filed(url, Diagnosis(OFF_BOARD))
+    read = _read_sentence(diagnosis or "")
+    if read is None:
+        return OTHER, f"unrecognised check result: {(diagnosis or '')[:120]}"
+    return filed(url, read)
 
 
 def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
     """The miss record for one check: company, city, careers system, reason and its detail.
     The company and city come from the stored job when the check found one, else from the
-    posting the check read."""
-    reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
+    posting the check read. The reason comes from what the check worked out (`result.miss`),
+    never from its sentence; only a result that carries no such data is read by sentence."""
+    if result.verdict != "found" and result.miss is not None:
+        reason, detail = filed(result.url, result.miss)
+    else:
+        reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
     company = city = None
     if result.job_id is not None:
         row = conn.execute("SELECT company, city FROM job WHERE id=?", (result.job_id,)).fetchone()
