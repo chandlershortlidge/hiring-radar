@@ -185,6 +185,17 @@ cd web && HYPOTHESIS_PROFILE=sweep npm test -- property && cd ..      # the same
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # a routine change → evals/results/<run_id>/
 uv run python scripts/run_eval.py                 # 3 repeats: a release, or 1 repeat tripped the gate
+# Three optional flags on run_eval.py (HIR-78):
+#   --no-langsmith     do not report this run to LangSmith, even with LANGSMITH_API_KEY set
+#   --extras-judge     after the runs, ask a model whether each extra skill (one the extractor
+#                      returned and the Golden does not list) means the gold label missed it or
+#                      the extractor is wrong. One extra call per Golden that has extras, run 1
+#                      only. Off by default; it changes no score and no label.
+#   --judge-model M    which model does that judging (default: the one in app/extras_judge.py)
+# Tracing: with LANGSMITH_API_KEY set, a dev run sends the dev Goldens' job-ad text and gold labels, the
+# extractions and the scores to LangSmith as an experiment named after the extractor_version;
+# held-out text is never uploaded and nothing is sent without a key. LangSmith is the view:
+# the committed evals/results/<run_id>/ directory is still the gate.
 
 # Required before a PR that touches app/extract.py or taxonomy/skills.json can merge
 # (AGENTS.md "The eval gate"): run the dev eval above, then
