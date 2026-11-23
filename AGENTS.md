@@ -303,6 +303,13 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   only thing a visitor can write. It adds no job and calls no model (HIR-346: jobs are
   added from the CLI). Validates every filter value (422), one SQLite connection per
   request; an unknown path under `/api` is 404.
+- `app/merged_work.py` — the pull-request half of the Monday summary (HIR-264): "Needs
+  you" (every open PR labelled `needs-chandler`), what merged last week grouped by where a
+  visitor would notice it (a guess from file paths, not a judgment), what was sent back
+  and then fixed, and the "Decided for you" lines copied from merged PR bodies. Reads
+  GitHub's public API unsigned and the server's own git checkout; posts nothing, labels
+  nothing, calls no model. `app/caretaker_run.py` takes its text and posts the whole
+  Monday summary from the VM.
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
@@ -1015,8 +1022,11 @@ that stops before a review passes leaves its PR labelled `needs-chandler` **with
 **How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
 in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
 short "needs you" list; and "Decided for you", the small calls the senior agent made, each
-with how to undo it (HIR-278), and the recommendations it took for him (HIR-315). No message for work that merged. Until that summary exists
-(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list. The summary's
+with how to undo it (HIR-278), and the recommendations it took for him (HIR-315). No message for work that merged. That summary exists
+(HIR-264, DECISIONS 2026-11-12): `app/merged_work.py` writes its pull-request half, and the
+caretaker's Monday run on the VM (`app/caretaker_run.py`) posts it as one Linear issue
+titled "Monday summary: <start> to <end>", next to the job-source report. Its "needs you"
+list is every open PR labelled `needs-chandler`. The summary's
 "needs you" part covers pull requests only; the decisions waiting in tickets reach him in
 the same Monday post, in a comment the lead agent adds ("The lead agent", below; HIR-277).
 
