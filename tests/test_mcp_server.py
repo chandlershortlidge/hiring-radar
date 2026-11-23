@@ -222,6 +222,108 @@ def test_skill_demand_is_empty_when_nothing_matches(server):
     assert r["total"] == 0 and r["skills"] == []
 
 
+# --- related_skills ----------------------------------------------------------------------
+# The test data has too few jobs for any skill to reach queries.MIN_CO_JOBS, so the tests
+# that need rows lower it to 1; the tool and the dashboard read the same constant.
+
+def related(server, **args) -> dict:
+    return call(server, "related_skills", **args).structured_content
+
+
+@pytest.fixture
+def every_row(monkeypatch):
+    monkeypatch.setattr(q, "MIN_CO_JOBS", 1)
+
+
+def test_related_skills_lists_what_the_jobs_with_a_skill_also_list(server, every_row):
+    r = related(server, skills=["rag"], city=["Berlin"])
+    # Berlin's three open jobs all list rag (Beta only as nice-to-have, so not by default).
+    assert (r["total"], r["selected_count"]) == (3, 2)
+    rows = {s["skill_id"]: s for s in r["skills"]}
+    assert set(rows) == {"python", "aws"}                         # rag itself is left out
+    assert (rows["python"]["count"], rows["python"]["pct"], rows["python"]["base_pct"]) == (1, 50.0, 66.7)
+    assert rows["aws"]["lift"] == 1.5                             # (1/2) / (1/3)
+
+
+def test_related_skills_ands_several_skills(server, every_row):
+    r = related(server, skills=["rag", "python"], city=["Berlin"])
+    assert r["selected_count"] == 1 and r["skills"] == []         # only Acme; it lists nothing else
+
+
+@pytest.mark.parametrize("args, params", [
+    ({"skills": ["rag"]}, {"skill": "rag"}),
+    ({"skills": ["rag"], "city": ["Berlin"]}, {"skill": "rag", "city": "Berlin"}),
+    ({"skills": ["python", "rag"], "requirement": "all"}, {"skill": ["python", "rag"], "requirement": "all"}),
+    ({"skills": ["rag"], "seniority": ["mid", "junior"], "window": "all"},
+     {"skill": "rag", "seniority": ["mid", "junior"], "window": "all"}),
+    ({"skills": ["rag"], "family": ["ai-engineer"], "german": "none", "degree": "open", "production": "any"},
+     {"skill": "rag", "family": "ai-engineer", "german": "none", "degree": "open", "production": "any"}),
+])
+def test_related_skills_matches_the_dashboard_related_panel(db_path, server, every_row, args, params):
+    """Same skills and filters -> the same numbers as /api/skills/related."""
+    api = TestClient(create_app(db_path, TAX)).get("/api/skills/related", params=params).json()
+    tool = related(server, **args)
+    assert (tool["total"], tool["selected_count"]) == (api["total"], api["selected_count"])
+    keys = ("skill_id", "count", "pct", "base_pct", "lift")
+    assert [tuple(s[k] for k in keys) for s in tool["skills"]] == [tuple(s[k] for k in keys) for s in api["skills"]]
+
+
+def test_related_skills_matches_the_dashboard_with_the_real_cutoff(db_path, server):
+    """Without the lowered cut-off every row here is too rare: both answer with none."""
+    api = TestClient(create_app(db_path, TAX)).get("/api/skills/related", params={"skill": "rag"}).json()
+    tool = related(server, skills=["rag"])
+    assert tool == {"selected_count": api["selected_count"], "total": api["total"], "skills": []}
+    assert tool["selected_count"] > 0
+
+
+def test_related_skills_accepts_skill_names_and_aliases(server, every_row):
+    by_id = related(server, skills=["rag"])
+    assert related(server, skills=["Retrieval Augmented Generation"]) == by_id == related(server, skills=["RAG"])
+    assert by_id["skills"]                                        # not two empty answers
+
+
+def test_related_skills_suggests_ids_for_an_unknown_skill(server):
+    with pytest.raises(ToolError, match=r"unknown skill 'pythn'; did you mean python"):
+        call(server, "related_skills", skills=["pythn"])
+
+
+def test_related_skills_needs_at_least_one_skill(server):
+    with pytest.raises(ToolError, match="at least one skill"):
+        call(server, "related_skills", skills=[])
+    with pytest.raises(ToolError):                                # missing: the schema requires it
+        call(server, "related_skills", city=["Berlin"])
+    tool = next(t for t in asyncio.run(server.list_tools()) if t.name == "related_skills")
+    assert "skills" in tool.input_schema["required"]
+
+
+def test_related_skills_rejects_what_the_api_rejects(server):
+    with pytest.raises(ToolError):
+        call(server, "related_skills", skills=["rag"], seniority=["intern"])
+    with pytest.raises(ToolError):
+        call(server, "related_skills", skills=["rag"], window="forever")
+
+
+def test_related_skills_accepts_exactly_the_api_values(server):
+    """The schema a model sees offers the values the dashboard's API accepts, no more, no fewer."""
+    tool = next(t for t in asyncio.run(server.list_tools()) if t.name == "related_skills")
+    props = tool.input_schema["properties"]
+    hints = typing.get_type_hints(server._tool_manager.get_tool("related_skills").fn)
+    expected = {"city": {*CITIES, REMOTE_EU}, "seniority": set(q.SENIORITIES), "family": set(q.FAMILIES),
+                "requirement": set(q.REQUIREMENTS), "window": set(q.WINDOWS), "german": set(q.GERMAN_FILTERS),
+                "degree": set(q.DEGREE_FILTERS), "production": set(q.PRODUCTION_FILTERS)}
+    for name, values in expected.items():
+        assert _enum(hints[name]) == values, name
+        assert name in props, name
+    assert tool.annotations.read_only_hint is True
+
+
+def test_related_skills_description_states_the_real_cutoffs(server):
+    """The tool's description names the top-10 and 5-job rules in words; they must stay true."""
+    doc = next(t for t in asyncio.run(server.list_tools()) if t.name == "related_skills").description
+    assert f"up to {q.RELATED_LIMIT} other skills" in doc
+    assert f"fewer than {q.MIN_CO_JOBS} of the selected jobs" in doc
+
+
 
 
 
@@ -270,7 +372,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result
 
     names, result = asyncio.run(run())
-    assert names == ["search_jobs", "get_job", "skill_demand"]
+    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
 

@@ -26,8 +26,11 @@ EXAMPLES_FILE = Path(mcp_server.__file__).with_name("mcp_examples.json")
 EXAMPLES = {k: v for k, v in json.loads(EXAMPLES_FILE.read_text()).items() if not k.startswith("_")}
 
 # The test data of tests/test_mcp_server.py, plus a job in every place the examples name,
-# so each example has something to find, as it does on the live site.
-EXTRA = [("Muc", "AI Engineer", "Munich", ts(1), [("python", "required")], "mid")]
+# so each example has something to find, as it does on the live site. Five Munich jobs with
+# python and docker give the related_skills example a skill seen in enough Python jobs to
+# be listed (queries.MIN_CO_JOBS).
+EXTRA = [(f"Muc{n}", "AI Engineer", "Munich", ts(1), [("python", "required"), ("docker", "required")], "mid")
+         for n in range(5)]
 
 
 @pytest.fixture
