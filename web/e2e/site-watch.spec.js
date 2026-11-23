@@ -167,17 +167,22 @@ test("a job card, its permanent page, and the original posting link", async ({ p
   }
 });
 
+// `exact: true` on every name below, because a name without it matches any control whose
+// own name merely contains it (HIR-430): once a profile exists, each chip on the gaps line
+// is named "... not in your profile. Filter job list", so a loose "Your profile" resolved
+// to four buttons and the visitor failed on a site that was working. tests/test_site_watch_names.py
+// is what keeps that from coming back.
 test("the profile drawer opens, a skill can be added, fit numbers show", async ({ page, problems }) => {
   await openBusiestCity(page);
-  await page.getByRole("button", { name: "Your profile" }).click();
+  await page.getByRole("button", { name: "Your profile", exact: true }).click();
   const drawer = page.getByRole("dialog");
   await expect(drawer).toBeVisible();
   // The most-asked-for skill is first; with it, most jobs in the busiest city get a score.
   const skill = drawer.locator(".pchips .pchip").first();
   await skill.click();
   await expect(skill).toHaveAttribute("aria-pressed", "true");
-  await drawer.getByRole("button", { name: "Save" }).click();
+  await drawer.getByRole("button", { name: "Save", exact: true }).click();
   await expect(drawer).toBeHidden();
-  await expect(page.getByRole("button", { name: "Your profile" })).toContainText("1 skills in your profile");
+  await expect(page.getByRole("button", { name: "Your profile", exact: true })).toContainText("1 skills in your profile");
   await expect(page.locator(".jobs .row .fit").first()).toBeVisible();
 });
