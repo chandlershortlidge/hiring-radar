@@ -10,6 +10,8 @@ Does:
     text and goes first, so the week is one message, not two; the robot visitor's week
     (app/site_watch_week.py, HIR-260) is handed in the same way and goes after it, except
     a break that came back after two fixes, which goes above everything;
+  - on Mondays, add one line per place or career track that is collected in the background
+    and not shown yet, from the admin page's own rows (app/admin.py, HIR-398);
   - post at once only what cannot wait a week (collection down two days running, spend cap);
   - count the job links checked by hand that we had missed, by reason (app/misses.py,
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
@@ -201,6 +203,18 @@ def jsearch_usage_text(conn: sqlite3.Connection, end: str) -> str:
     return line + "\n"
 
 
+def incubating_text(conn: sqlite3.Connection, now: str | None = None) -> str:
+    """The Monday lines for the places and career tracks collected in the background and
+    not shown yet (HIR-398): one each, from the rows the admin page shows (app/admin.py),
+    so the two print the same numbers. "" when nothing is incubating."""
+    from app import admin
+    from app.extract import DEFAULT_MODEL, extractor_version
+    from app.ingest import now_iso
+    from app.taxonomy import Taxonomy
+    rows = admin.overview(conn, now or now_iso(), extractor_version(Taxonomy.load(), DEFAULT_MODEL))
+    return admin.incubating_section(rows)
+
+
 def post_json(url: str, payload: dict, headers: dict) -> dict:
     req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -239,6 +253,7 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
                 + "\n" + jsearch_usage_text(conn, end)
+                + (("\n" + background) if (background := incubating_text(conn)) else "")
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
                 + "\n" + misses.trend_section(misses.records(conn), end,
                                                poll.load_feeds() if feeds is None else feeds))
