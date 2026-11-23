@@ -73,6 +73,17 @@ must run the evaluation on the tuning set before it can merge. The result is com
 with the change, and the next change is measured against it. A CI check stops a pull
 request that skips this.
 
+What it caught: on 17 Nov an evaluation run showed six degree misses with the same
+shape. The posting said "a bachelor's or master's degree" and the model recorded a
+master's. On the dashboard, that hid the job from anyone filtering by a bachelor's. The
+fix told the model to record the lowest level named, as the answer keys do. Degree
+accuracy on the tuning set went from 0.887 to 0.972: 7 postings went from wrong to right,
+none from right to wrong. ([PR #224](https://github.com/chandlershortlidge/hiring-radar/pull/224))
+
+The gate has also paused three changes because one score fell past its stop line. Each
+time a person looked, and the drop was within that score's normal swing between runs, so
+the change merged and the paused run became the new baseline.
+
 **A quote behind every skill.** Each extracted skill stores the sentence it came from.
 Open a job on the dashboard and click a skill to see the quote, so any number on the
 chart can be traced back to the posting's own words.
