@@ -116,7 +116,9 @@ def test_broken_board_is_paused_and_moved_board_is_switched_in_the_log(conn):
     logged = run.log_rows(conn, DAY, DAY)
     assert {(r["subject"], r["action"]) for r in logged} >= {("lever:pipedrive", "pause"),
                                                              ("greenhouse:doctolib", "switch")}
-    assert all(r["mode"] == "report" and not r["done"] for r in logged)
+    # Acting (HIR-261): logged as act; `done` stays 0 because the log is append-only and
+    # "filed" is a row of its own.
+    assert all(r["mode"] == "act" and not r["done"] for r in logged)
 
 
 def test_both_fixes_appear_in_the_next_weekly_summary(conn):
@@ -124,10 +126,23 @@ def test_both_fixes_appear_in_the_next_weekly_summary(conn):
     run.morning(conn, "2026-11-12", feeds_doc(), set(), moved_board_search, fetch_board,
                 now=datetime(2026, 11, 12, 9, tzinfo=timezone.utc))
     text = run.weekly_text(conn, "2026-11-09", "2026-11-15")
-    assert "report-only" in text
-    assert "## What it would have fixed" in text and "ashby:doctolib" in text
-    assert "## What it would have paused" in text and "lever:pipedrive" in text
+    assert "report-only" not in text and "would have" not in text      # acting (HIR-261)
+    assert "## What it fixed or filed to fix" in text and "ashby:doctolib" in text
+    assert "## What it filed to pause" in text and "lever:pipedrive" in text
     assert "Spent" not in text                                 # bookkeeping is not a finding
+    run.report(conn, "2026-11-12", lambda t, b: "HIR-900", log=lambda *_: None)
+    assert run.weekly_text(conn, "2026-11-09", "2026-11-15") == text   # nor is "ticket filed"
+
+
+def test_a_week_logged_before_acting_was_switched_on_still_says_would_have(conn, monkeypatch):
+    # The first Monday after HIR-261 merges looks back at a week in which nothing was filed.
+    monkeypatch.setattr(run, "MODE", "report")
+    poll_today(conn, feeds_doc()["feeds"], day="2026-11-12")
+    run.morning(conn, "2026-11-12", feeds_doc(), set(), moved_board_search, fetch_board,
+                now=datetime(2026, 11, 12, 9, tzinfo=timezone.utc))
+    monkeypatch.setattr(run, "MODE", "act")
+    text = run.weekly_text(conn, "2026-11-09", "2026-11-15")
+    assert "report-only" in text and "## What it would have fixed" in text
 
 
 def test_a_us_search_is_judged_on_yesterdays_run_and_a_europe_one_on_todays(conn):
@@ -144,14 +159,161 @@ def test_a_us_search_is_judged_on_yesterdays_run_and_a_europe_one_on_todays(conn
     assert "jsearch:AI engineer in Berlin" not in errors
 
 
-def test_report_only_never_writes_the_feeds_file(conn, tmp_path, monkeypatch):
+def test_the_morning_run_never_writes_the_feeds_file_even_in_acting_mode(conn, tmp_path, monkeypatch):
+    # HIR-261: the write happens in a pull request (`caretaker apply-fixes`), never on the server.
     from app import caretaker
+    assert run.MODE == "act"
     monkeypatch.setattr(caretaker, "write_feeds", lambda *a, **k: pytest.fail("wrote feeds.json"))
     doc = feeds_doc()
     before = json.dumps(doc)
     poll_today(conn, doc["feeds"])
     morning(conn, doc=doc)
+    run.report(conn, DAY, lambda t, b: "HIR-900", log=lambda *_: None, rerun=lambda: None)
     assert json.dumps(doc) == before
+
+
+# --- acting (HIR-261) --------------------------------------------------------------------
+
+def only_the_dead_board(q):
+    return []          # no new home is found for anyone: Pipedrive's dead board is paused
+
+
+def test_fixes_are_filed_as_one_ticket_a_day_with_the_exact_edits(conn):
+    """The ticket's first "Done when": a fix decided on a database copy becomes a ticket
+    whose text, fed to the applier, edits only that one entry of the list of job sources."""
+    doc = feeds_doc()
+    poll_today(conn, doc["feeds"])
+    morning(conn, search=only_the_dead_board)
+    posted = []
+    post = lambda t, b: posted.append((t, b)) or "HIR-900"  # noqa: E731
+    run.report(conn, "2026-11-17", post, log=lambda *_: None)          # a Tuesday: no Monday summary
+    assert posted == []                                                # nothing was found that day
+    run.report(conn, DAY, post, log=lambda *_: None)
+    fix_posts = [(t, b) for t, b in posted if t.startswith("Caretaker: job-source fixes")]
+    [(title, body)] = fix_posts
+    assert title == f"Caretaker: job-source fixes for {DAY}"
+    assert "- lever:pipedrive has returned nothing we keep since 2026-10-23" in body
+    assert "Model-call spend: none. Changes only the list of job sources (config/feeds.json)." in body
+    assert "+++ Agent notes" in body and "uv run python -m app caretaker apply-fixes" in body
+
+    # Both dead boards (Doctolib's answers 404, Pipedrive's is empty) and nothing else.
+    fixes = run.ct.fixes_from_text(body)
+    assert [(f.subject, f.action) for f in fixes] == [("greenhouse:doctolib", "pause"), ("lever:pipedrive", "pause")]
+    after = run.ct.apply_fixes(doc, body)
+    changed = [(a, b) for a, b in zip(doc["feeds"], after["feeds"]) if a != b]
+    assert [was["token"] for was, _ in changed] == ["doctolib", "pipedrive"]     # nothing else changed
+    for was, now in changed:
+        assert now == {**was, "enabled": False, "paused": now["paused"]} and now["paused"]["since"] == DAY
+    assert len(after["feeds"]) == len(doc["feeds"])
+
+    run.report(conn, DAY, post, log=lambda *_: None)                   # a second run the same day
+    assert [t for t, _ in posted if t.startswith("Caretaker: job-source fixes")] == [title]
+    [row] = [r for r in run.log_rows(conn, DAY, DAY) if r["finding"] == "fix_ticket"]
+    assert row["data"] == {"posted": "HIR-900", "fixes": [["greenhouse:doctolib", "pause", None],
+                                                          ["lever:pipedrive", "pause", None]]}
+
+
+def test_a_moved_board_and_a_dead_one_travel_in_the_same_ticket(conn):
+    doc = feeds_doc()
+    poll_today(conn, doc["feeds"])
+    morning(conn)
+    posted = []
+    run.fix_ticket(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None)
+    after = run.ct.apply_fixes(doc, posted[0])
+    by_company = {f.get("company"): f for f in after["feeds"]}
+    assert (by_company["Doctolib"]["type"], by_company["Doctolib"]["token"]) == ("ashby", "doctolib")
+    assert by_company["Doctolib"]["moved_from"] == "greenhouse:doctolib"
+    assert by_company["Pipedrive"]["enabled"] is False
+    assert by_company["Healthy"] == doc["feeds"][2] and after["feeds"][3] == doc["feeds"][3]
+
+
+def test_a_fix_already_filed_is_not_filed_again_until_a_week_has_passed(conn):
+    # The board stays dead every morning until the pull request is merged and deployed.
+    posted = []
+    post = lambda t, b: posted.append(t) or "HIR-900"  # noqa: E731
+    for day in ("2026-11-16", "2026-11-17", "2026-11-22", "2026-11-23"):
+        poll_today(conn, feeds_doc()["feeds"], day=day)
+        run.morning(conn, day, feeds_doc(), set(), only_the_dead_board, fetch_board,
+                    now=datetime.fromisoformat(day + "T09:00:00+00:00"))
+        run.fix_ticket(conn, day, post, log=lambda *_: None)
+    assert posted == ["Caretaker: job-source fixes for 2026-11-16", "Caretaker: job-source fixes for 2026-11-23"]
+
+
+def test_without_a_linear_key_the_fix_goes_to_the_journal_and_is_filed_once_the_key_is_there(conn):
+    poll_today(conn, feeds_doc()["feeds"])
+    morning(conn, search=only_the_dead_board)
+    out = []
+    assert run.fix_ticket(conn, DAY, None, log=out.append) == f"Caretaker: job-source fixes for {DAY}"
+    assert "lever:pipedrive" in out[-1] and "not posted" in out[-1]
+    poll_today(conn, feeds_doc()["feeds"], day="2026-11-17")
+    run.morning(conn, "2026-11-17", feeds_doc(), set(), only_the_dead_board, fetch_board,
+                now=datetime(2026, 11, 17, 9, tzinfo=timezone.utc))
+    posted = []
+    run.fix_ticket(conn, "2026-11-17", lambda t, b: posted.append(t) or "HIR-900", log=lambda *_: None)
+    assert posted == ["Caretaker: job-source fixes for 2026-11-17"]
+
+
+def test_report_mode_files_nothing_and_reruns_nothing(conn, monkeypatch):
+    # The undo: one line puts the caretaker back to writing down what it would do.
+    monkeypatch.setattr(run, "MODE", "report")
+    morning(conn, search=only_the_dead_board)                          # no poll today
+    posted, reruns = [], []
+    run.report(conn, DAY, lambda t, b: posted.append(t) or "HIR-900", log=lambda *_: None,
+               rerun=lambda: reruns.append(1))
+    assert reruns == [] and not any(t.startswith("Caretaker: job-source fixes") for t in posted)
+
+
+def test_failed_collection_is_rerun_once(conn):
+    """The ticket's second "Done when": the re-run happens on the server, with no pull
+    request and no ticket, once per day."""
+    reruns, posted = [], []
+    rerun = lambda: reruns.append(1)  # noqa: E731
+    post = lambda t, b: posted.append(t) or "HIR-900"  # noqa: E731
+    morning(conn)                                                      # no poll today
+    run.report(conn, DAY, post, log=lambda *_: None, rerun=rerun)
+    assert reruns == [1]
+    morning(conn)                                                      # a second run the same day
+    run.report(conn, DAY, post, log=lambda *_: None, rerun=rerun)
+    assert reruns == [1]
+    assert not any(t.startswith("Caretaker: job-source fixes") for t in posted)
+    assert [r["finding"] for r in run.log_rows(conn, DAY, DAY)].count("rerun_done") == 1
+
+    poll_today(conn, feeds_doc()["feeds"], day="2026-11-17")           # a day whose poll ran
+    run.morning(conn, "2026-11-17", feeds_doc(), set(), only_the_dead_board, fetch_board,
+                now=datetime(2026, 11, 17, 9, tzinfo=timezone.utc))
+    run.report(conn, "2026-11-17", post, log=lambda *_: None, rerun=rerun)
+    assert reruns == [1]
+
+
+def test_the_command_line_reruns_with_the_morning_collections_own_command_and_only_for_today(tmp_path, monkeypatch):
+    import argparse
+    import subprocess
+    import sys
+
+    import app.__main__ as cli
+    seen, ran = {}, []
+    monkeypatch.setattr(cli, "open_db", lambda: db.connect(tmp_path / "t.db"))
+    monkeypatch.setattr(run, "morning", lambda *a, **k: [])
+    monkeypatch.setattr(run, "report", lambda conn, day, post, **kw: seen.update(kw))
+    monkeypatch.setattr(subprocess, "run", lambda cmd, **kw: ran.append((cmd, kw)))
+    monkeypatch.delenv("LINEAR_API_KEY", raising=False)
+    cli.cmd_caretaker(argparse.Namespace(day=None, no_post=False))
+    seen["rerun"]()
+    assert ran == [([sys.executable, "-m", "app", "poll", "--region", "europe"], {"check": False})]
+    cli.cmd_caretaker(argparse.Namespace(day="2026-11-10", no_post=False))   # looking back at an earlier day
+    assert seen["rerun"] is None
+    cli.cmd_caretaker(argparse.Namespace(day=None, no_post=True))            # a look that posts nothing
+    assert seen["rerun"] is None
+
+
+def test_a_collection_in_which_every_source_failed_is_rerun_too(conn):
+    for feed in feeds_doc()["feeds"]:
+        poll.record_run(conn, feed, None, "URLError: timed out", day=DAY)
+    morning(conn, search=only_the_dead_board)
+    reruns = []
+    assert run.rerun_once(conn, DAY, lambda: reruns.append(1), log=lambda *_: None) is True
+    assert run.rerun_once(conn, DAY, lambda: reruns.append(1), log=lambda *_: None) is False
+    assert reruns == [1]
 
 
 def test_no_poll_today_means_rerun_the_collection(conn):
@@ -198,7 +360,8 @@ def test_monday_summary_posts_once(conn):
     posted = []
     run.report(conn, DAY, lambda t, b: posted.append((t, b)) or "HIR-900", log=lambda *_: None)
     run.report(conn, DAY, lambda t, b: posted.append((t, b)) or "HIR-901", log=lambda *_: None)
-    assert [t for t, _ in posted] == ["Monday summary: 2026-11-09 to 2026-11-15"]
+    assert [t for t, _ in posted] == ["Monday summary: 2026-11-09 to 2026-11-15",
+                                      f"Caretaker: job-source fixes for {DAY}"]   # each once
 
 
 def test_monday_summary_puts_the_robot_visitors_needs_you_first_and_its_week_after_the_pull_requests(conn):
@@ -214,7 +377,7 @@ def test_monday_summary_puts_the_robot_visitors_needs_you_first_and_its_week_aft
 
     run.report(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None,
                changes=lambda s, e: "# Needs you\n\nNothing.\n", site_watch=site_watch)
-    [body] = posted
+    body = posted[0]                      # the summary; the day's fix ticket follows it
     assert asked == [("2026-11-09", "2026-11-15")]
     order = [body.index(h) for h in ("# The live site: needs you", "# Needs you", "# The robot visitor", "# Caretaker")]
     assert order == sorted(order) and order[0] == 0
