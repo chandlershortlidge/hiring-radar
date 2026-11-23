@@ -411,14 +411,17 @@ select.sel { padding-right: 28px; }
 .mcp-wrap { max-width: 1200px; margin: 0 auto; padding: 16px 24px 0; }
 .jobs > .mcp { border-radius: 7px 7px 0 0; }
 
-/* a city page with a profile: "You have 12 of the 15 skills Berlin asks for most" */
-.fitline { background: var(--paper); border-bottom: 1px solid var(--line); }
-.fitline-in { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-.fitline h2 { margin: 4px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
-.fitline .eyebrow { font-size: 11.5px; }
-.gaps { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-2); }
-.gap-chip { padding: 5px 10px; border-radius: 6px; background: var(--plum-tint); color: var(--ink); font-size: 13px; }
+/* a city page with a profile: one small line in the chart card, under the find box, naming
+   the biggest gaps (HIR-411). Its text is the size of the legend under the chart. A chip is
+   a button: small to look at, with a 44px-tall area to press, which the chip's own margin
+   makes room for so two wrapped lines of chips never overlap. */
+.gaps { display: flex; flex-wrap: wrap; align-items: center; gap: 0 6px; min-height: 44px; margin-top: -8px; font-size: 12.5px; color: var(--ink-2); }
+.gap-chip { position: relative; display: inline-flex; align-items: center; gap: 5px; margin: 9px 0; padding: 4px 9px; border: 0; border-radius: 6px; background: var(--plum-tint); color: var(--ink); font-size: 12.5px; line-height: 18px; white-space: nowrap; }
+.gap-chip::before { content: ""; position: absolute; inset: -9px 0; }
+.gap-chip:hover { box-shadow: inset 0 0 0 1px var(--plum); }
+.gap-chip[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--plum); font-weight: 600; }
 .gap-chip .mono { font-size: 12px; }
+.gaps-count { margin-left: 4px; }
 
 /* query bar: the band that says which market you are looking at (HIR-188) */
 .qbar { background: var(--paper); border-bottom: 1px solid var(--line); }
@@ -539,7 +542,8 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
   .hero-in { padding: 28px 16px; gap: 24px; } .hero-l { gap: 16px; } .hero h1 { font-size: 30px; }
   .hero-chart { padding: 16px; } .hero-row { grid-template-columns: 110px minmax(0, 1fr) 40px; }
   .mcp-wrap { padding: 16px 16px 0; } .mcp { padding: 12px 16px; }
-  .fitline-in { padding: 16px; } .fitline h2 { font-size: 20px; }
+  /* the gaps line's count drops under the chips here; keep it clear of the bars */
+  .gaps { padding-bottom: 8px; } .gaps-count { margin-left: 0; }
   /* a market takes two lines: the city and its open jobs, then its three skills */
   .market-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 12px; padding: 12px 16px; }
   .mk-city { grid-column: 1 / 3; } .mk-open { grid-column: 3; justify-self: end; }

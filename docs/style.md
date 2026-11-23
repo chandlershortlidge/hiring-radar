@@ -72,7 +72,7 @@ Two families, both already loaded: **IBM Plex Sans** for everything a person rea
 | Role | Size / line height | Weight | Notes |
 |---|---|---|---|
 | Home headline | 46px / 1.12 (30px on a phone) | 700 | letter-spacing -0.02em; headline numbers get a butter underline |
-| Fit line ("You have 12 of the 15…") | 26px / 1.2 (20px on a phone) | 700 | letter-spacing -0.015em |
+| Gaps line in the chart card ("Gaps: … 10 of 15 in your profile") | 12.5px, the size of the chart's legend | 400 (600 on a chip whose filter is on) | replaced the 26px fit headline, 21 Nov 2026 |
 | Card title (the chart's heading, a job's title on its page) | 21px (17px on a phone) | 600 | letter-spacing -0.01em |
 | Section heading ("All 7 markets") | 18px | 600 | |
 | Small card heading (jobs list, related skills) | 15–16px | 600 | |
@@ -92,7 +92,11 @@ Nothing smaller than 10.5px. No third font family.
 - **Home:** a white band holding the headline and the pickers on the left and the
   top-skills chart on the right; under it the Connect-Claude strip; under that every
   market as one ranked table. The band's two halves stack on a narrow screen.
-- **City page:** the fit line (only once a profile has skills) in a white band; then the
+- **City page:** no headline band (Chandler, 21 Nov 2026: the big "You have 10 of the 15
+  skills" headline restated the bars and was cut). Once a profile has skills, the chart
+  card carries one small line under its find box and above the bars: "Gaps:", up to three
+  chips for the most-asked-for skills not in the profile, then "10 of 15 in your profile"
+  in muted text. A chip is a button that filters the jobs as its bar does. The
   chart on the left and the jobs on the right, side by side from 1100px up, stacked below
   that, in equal halves. Side by side, the left column stays in view while the jobs
   scroll, never taller than the window (a longer one scrolls inside itself). Related
