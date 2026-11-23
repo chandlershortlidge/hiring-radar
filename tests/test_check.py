@@ -114,6 +114,17 @@ def test_json_ld_job_posting_wins_over_page_text():
     assert p.description_text == JD          # not the nav/footer
     assert "Imprint" not in p.description_text
 
+def test_json_ld_description_with_escaped_tags_becomes_text():
+    """Career pages often escape the markup inside JSON-LD (`&lt;p&gt;`). That has no `<`
+    in it, and it was stored with its tags showing (HIR-420)."""
+    ld = {"@context": "https://schema.org", "@type": "JobPosting", "title": "AI Engineer",
+          "hiringOrganization": {"@type": "Organization", "name": "Acme GmbH"},
+          "description": "&lt;div&gt;&lt;p&gt;&lt;span style=&quot;font-size: 12pt&quot;&gt;" + JD
+                         + "&lt;/span&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;R&amp;amp;D&amp;nbsp;team&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;"}
+    p, how = posting_from_html("https://acme.com/j/1", page(ld=ld))
+    assert how == "json-ld" and p.description_text == JD + "\n\n- R&D\xa0team"
+
+
 def test_company_name_missing_from_page():
     ld = {"@context": "https://schema.org", "@type": "JobPosting", "title": "AI Engineer",
           "hiringOrganization": {"@type": "Organization", "name": " "},

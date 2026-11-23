@@ -116,12 +116,12 @@ def fetch_jobs(conn: sqlite3.Connection, f: Filters, now: str) -> tuple[int, lis
     The thin I/O half: `total` counts every job in the set, including the ones with no
     mentions at all, because it is the denominator both percentages are taken over.
     """
-    jc, jp = job_set_clause(f, now)
-    total = conn.execute(f"SELECT count(*) FROM job j WHERE {jc}", jp).fetchone()[0]
+    job_clause, job_params = job_set_clause(f, now)
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {job_clause}", job_params).fetchone()[0]
     per: dict[int, tuple[set, set]] = {}
     for r in conn.execute(
             f"SELECT m.job_id, m.skill_id, m.requirement FROM skill_mention m"
-            f" JOIN job j ON j.id = m.job_id WHERE {jc}", jp):
+            f" JOIN job j ON j.id = m.job_id WHERE {job_clause}", job_params):
         mentioned, required = per.setdefault(r["job_id"], (set(), set()))
         mentioned.add(r["skill_id"])
         if r["requirement"] == "required":

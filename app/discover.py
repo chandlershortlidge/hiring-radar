@@ -11,8 +11,8 @@ Does:
     counting the URLs that are not a board job page;
   - drop boards already in config/feeds.json (enabled or not) or in
     config/boards_rejected.json;
-  - fetch each remaining board live and keep the postings that pass ingest's title filter
-    and map to an active place (geo.ACTIVE_CITIES), or to one named city for a launch;
+  - fetch each remaining board live and keep the postings the collector would keep
+    (`ingest.screen`: its checks, in its order), or those in one named city for a launch;
   - append a board to feeds.json (`add_board`) or boards_rejected.json (`reject_board`)
     when the person says so;
   - or, launching a city (`--launch <city>`, HIR-132), apply Chandler's written board
@@ -40,14 +40,15 @@ all, rather than adding boards up to the limit: a half-launched city is worse th
 """
 
 import json
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 
 from app import reread_cost
 from app.check import default_fetch_board, parse_ats_url
 from app.extract import DEFAULT_MODEL
+from app import ingest
 from app.geo import active_place
-from app.ingest import AGENCY_WORDS, agency_name_word, in_scope_title
+from app.ingest import AGENCY_WORDS, agency_name_word
 from app.poll import FEEDS_PATH
 from app.sources import registry
 
@@ -88,16 +89,29 @@ def new_boards(found: list[Board], known: set[Board], rejected: set[Board]) -> l
     return [b for b in found if b not in known and b not in rejected]
 
 
-def relevant_roles(postings, city: str | None = None) -> list[str]:
-    """Titles (with city) of postings that would pass ingest's title and active-city filters.
+# The company a board's postings are collected under is the one in the board's entry in
+# config/feeds.json, never the posting's own: every board adapter puts the entry's name
+# first, `feeds_entry` always fills it, and Lever and Ashby postings carry no name at all.
+# So the collector's company check is asked about that name. A caller that knows it passes
+# it; one that does not gets this stand-in, which passes the check as a real entry's name
+# does, so a whole board is never refused for a name its postings were not going to supply.
+NAMED_BY_ITS_ENTRY = "named by its feeds.json entry"
+
+
+def relevant_roles(postings, city: str | None = None, company: str | None = None) -> list[str]:
+    """Titles (with city) of the postings the collector would keep: `ingest.screen`, the
+    collector's own answer, never a copy of its checks kept here (HIR-427).
 
     With `city`, only roles in that one city count — what a launch needs, because a board
-    full of Berlin roles is not evidence that it hires in New York.
+    full of Berlin roles is not evidence that it hires in New York. `company` is the name
+    the board's feeds.json entry carries or would carry, which is the name its postings
+    are collected under (see NAMED_BY_ITS_ENTRY).
     """
     out = []
     for p in postings:
+        asked = replace(p, company=company or NAMED_BY_ITS_ENTRY)
         place = active_place(p.location_raw, p.title, p.description_text)
-        if in_scope_title(p.title) and place and (city is None or place == city):
+        if ingest.screen(asked) is None and place and (city is None or place == city):
             out.append(f"{p.title} ({place})")
     return out
 
@@ -158,7 +172,7 @@ def run(config: dict, feeds_doc: dict, rejected_doc: dict, search,
         c = Candidate(board)
         try:
             postings = fetch_board(*board)
-            c.total, c.relevant = len(postings), relevant_roles(postings, city)
+            c.total, c.relevant = len(postings), relevant_roles(postings, city, company=board[1])
         except Exception as e:  # one dead board must not stop the run
             c.error = f"{type(e).__name__}: {str(e)[:160]}"
         r.candidates.append(c)

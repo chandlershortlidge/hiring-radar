@@ -53,6 +53,7 @@ import argparse
 import json
 import os
 import sys
+import urllib.parse
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -429,6 +430,26 @@ def cmd_backfill_places(args):
         print(line)
 
 
+def cmd_markup_postings(args):
+    """Count the stored postings whose text is web-page markup, by where they came from
+    (HIR-420). Reads only. The job page shows them as text already; the model read the
+    markup, which is what the list is for."""
+    from app.html_text import looks_like_markup
+    conn = open_db()
+    ids = [r["id"] for r in conn.execute("SELECT id, description_text FROM job ORDER BY id")
+           if looks_like_markup(r["description_text"] or "")]
+    print(f"stored postings whose text is markup: {len(ids)}")
+    by_source: dict[str, list[int]] = {}
+    for job_id in ids:
+        first = conn.execute("SELECT source, url FROM job_source WHERE job_id = ? ORDER BY first_seen, id"
+                             " LIMIT 1", (job_id,)).fetchone()
+        name = "(no source)" if first is None else " ".join(
+            x for x in (first["source"], urllib.parse.urlsplit(first["url"] or "").hostname) if x)
+        by_source.setdefault(name, []).append(job_id)
+    for name, jobs in sorted(by_source.items(), key=lambda kv: -len(kv[1])):
+        print(f"  {name:<44}{len(jobs):>5}   job ids: {', '.join(map(str, jobs[:10]))}{' ...' if len(jobs) > 10 else ''}")
+
+
 def cmd_repair_companies(args):
     from app.repair import repair_companies
     conn = open_db()
@@ -607,6 +628,8 @@ def main(argv=None):
     p.add_argument("--city", default=None, help="only this tracked city (default: all of them)")
     p.add_argument("--dry-run", action="store_true", help="count and show, write nothing")
     p.set_defaults(fn=cmd_backfill_places)
+    sub.add_parser("markup-postings", help="count stored postings whose text is web-page markup, by source; reads only"
+                   ).set_defaults(fn=cmd_markup_postings)
     p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
     p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
     p.set_defaults(fn=cmd_repair_companies)
