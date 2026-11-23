@@ -329,9 +329,6 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     companies = conn.execute(
         f"SELECT count(DISTINCT lower(j.company)) FROM job j WHERE j.company IS NOT NULL AND {public_rule}", public_params).fetchone()[0]
     last = conn.execute(f"SELECT max(j.last_seen) FROM job j WHERE {public_rule}", public_params).fetchone()[0]
-    pending = conn.execute(
-        f"SELECT count(*) FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status='pending' AND {public_rule}",
-        public_params).fetchone()[0]
     legacy = conn.execute(f"SELECT count(*) FROM job j WHERE j.extracted_version = ? AND {public_rule}",
                           [LEGACY_VERSION] + public_params).fetchone()[0]
     too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH} AND {public_rule}",
@@ -341,7 +338,7 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {open_rule} AND {PRODUCTION_FILTERS['required']}", open_params).fetchone()[0]
     return {"jobs": total, "open": open_total, "open_by_city": by_city, "open_by_family": by_family,
             "companies": companies,
-            "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy, "too_short": too_short,
+            "skills_tracked": skills_tracked, "last_updated": last, "legacy": legacy, "too_short": too_short,
             "open_german_required": open_german, "open_degree_required": open_degree,
             "open_production_required": open_production,
             "open_rule": {"feed_days": FEED_OPEN_DAYS, "manual_days": MANUAL_OPEN_DAYS}}

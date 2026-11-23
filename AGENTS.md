@@ -288,9 +288,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Two job-list searches that never blur: `query` over company and title, `text` over the
   posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
   kept in step with `job.description_text` by triggers, so writers need not know of it).
-- `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
-  screenshot), which run intake + extraction for the one job added. Validates every filter
-  value (422), one SQLite connection per request, model client created lazily.
+- `app/api.py` — FastAPI routes over `queries`, plus the "doesn't belong here" flag, the
+  only thing a visitor can write. It adds no job and calls no model (HIR-346: jobs are
+  added from the CLI). Validates every filter value (422), one SQLite connection per
+  request; an unknown path under `/api` is 404.
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
@@ -298,8 +299,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   of its own, and the card is collapsed by default so it is not fetched until opened),
   `RelatedSkills.jsx` (what the jobs requiring the selected skill also
   require; renders only with a skill selected and computes nothing itself),
-  `JobList.jsx` (rows + expanded detail with quotes), the three drawers
-  (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
+  `JobList.jsx` (rows + expanded detail with quotes), the one drawer
+  (`ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
 - `web/src/cvSkills.js` + `cvText.js` — "Fill from your CV" in `ProfileDrawer` (HIR-14).
   `cvSkills.js` is the pure matcher (CV text → taxonomy ids: literal, word-boundary,
