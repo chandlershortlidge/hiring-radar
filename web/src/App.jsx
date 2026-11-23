@@ -10,7 +10,6 @@ import HomeGrid from "./HomeGrid.jsx";
 import { Eyebrow, Headline, HeroChart, heroFacts, heroPlace } from "./HomeHero.jsx";
 import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
 import FilterPills from "./FilterPills.jsx";
-import FitLine from "./FitLine.jsx";
 import SkillChart, { ChartStatus } from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import CityFit from "./CityFit.jsx";
@@ -264,9 +263,6 @@ export default function App() {
         </>
       ) : queryBar}
 
-      {/* Once there is a profile, a city page opens on how much of the market it covers. */}
-      {market.view === "city" && placeName && <Panel label="Your fit"><FitLine profile={profile} data={skills} place={placeName} /></Panel>}
-
       {market.view === "home" ? <main className="main landing">
         {recent.length > 0 && (
           <p className="recents"><span className="dim">Recent:</span>
@@ -323,7 +319,8 @@ export default function App() {
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
-                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
+                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases}
+                gaps={market.view === "city" && !!placeName} />}
         </section></Panel>
 
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>

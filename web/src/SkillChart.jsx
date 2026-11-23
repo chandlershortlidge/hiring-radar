@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { axisMax, pct, pctInt } from "./format.js";
+import FitLine from "./FitLine.jsx";
 import { Search } from "./icons.jsx";
 import { filterSkills } from "./skillMatch.js";
 
@@ -34,7 +35,10 @@ export function ChartStatus({ failed, onRetry }) {
 // typing its name. It is pure display: it never changes the selection and never asks the
 // server for anything. Ranks and the axis keep the values they have in the whole chart, so
 // a filtered row still says where it sits overall and bar widths do not jump while typing.
-export default function SkillChart({ data, selected, onSelect, profile, cityLabel, aliases = {} }) {
+//
+// `gaps` (HIR-411) puts the line naming the visitor's biggest gaps between the find box and
+// the bars. App turns it on for a single city's page; FitLine.jsx says when it draws.
+export default function SkillChart({ data, selected, onSelect, profile, cityLabel, aliases = {}, gaps = false }) {
   const [shown, setShown] = useState(PAGE);
   const [hover, setHover] = useState(null);
   const [find, setFind] = useState("");
@@ -58,6 +62,7 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
         </div>
         {find.trim() && <span className="muted">{rows.length} of {skills.length} skills match “{find.trim()}”</span>}
       </div>
+      {gaps && <FitLine profile={profile} data={data} selected={selected} onSelect={onSelect} />}
       <div className="bars-head">
         <span>Skill</span>
         <div className="axis">
