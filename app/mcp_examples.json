@@ -12,6 +12,11 @@
     "arguments": {"city": ["Berlin"], "family": ["ai-engineer"], "limit": 5},
     "expect": ["total", "jobs[].id", "jobs[].title", "jobs[].company", "jobs[].places"]
   },
+  "search_postings": {
+    "ask": "count open Berlin jobs whose posting mentions Python, per city and career track",
+    "arguments": {"text": "Python", "city": ["Berlin"], "limit": 5},
+    "expect": ["total", "by_city.Berlin", "by_family", "jobs[].id", "jobs[].title"]
+  },
   "get_job": {
     "ask": "get the full details of one job from that search",
     "arguments": {"job_id": {"from": "search_jobs", "path": "jobs.0.id"}},

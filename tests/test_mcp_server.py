@@ -114,6 +114,85 @@ def test_search_jobs_matches_the_dashboard_job_list(db_path, server, args, param
                (a["required_skills"], a["nice_skills"], a["status"])
 
 
+# --- search_postings ------------------------------------------------------------------
+# Each JOBS posting's text names its company, title and skills ("Acme AI Engineer wants
+# python, rag ..."), so a skill id doubles as a word to search for.
+
+def postings(server, **args) -> dict:
+    return call(server, "search_postings", **args).structured_content
+
+
+def test_search_postings_counts_matches_per_city_and_career_track(server):
+    r = postings(server, text="rag")
+    assert r["total"] == 4                                   # Old mentions rag too, but is closed
+    assert r["by_city"] == {"Berlin": 3, "San Francisco": 1}
+    assert r["by_family"] == {"ai-engineer": 3, "ml-engineer": 1}
+    assert list(r["by_city"]) == ["Berlin", "San Francisco"]  # largest first
+    assert {j["company"] for j in r["jobs"]} == {"Acme", "Beta", "Gamma", "Delta"}
+    assert r["jobs"][0].keys() == search(server)["jobs"][0].keys()   # the same shape as search_jobs
+    # Every word must appear; window "all" reaches closed jobs.
+    assert postings(server, text="rag python")["total"] == 2
+    assert postings(server, text="RAG", window="all")["total"] == 5
+
+
+def test_search_postings_counts_only_the_chosen_places(db_path, server):
+    """A job posted for several places counts in each; a city filter keeps only those."""
+    c = db.connect(db_path)
+    c.execute("INSERT INTO job_place (job_id, place) VALUES (?, 'Munich')", (acme_id(server),))
+    c.commit()
+    c.close()
+    everywhere = postings(server, text="python")
+    assert everywhere["total"] == 2 and everywhere["by_city"] == {"Berlin": 2, "Munich": 1}
+    assert postings(server, text="python", city=["Munich"])["by_city"] == {"Munich": 1}
+    assert postings(server, text="python", city=["Berlin"])["by_city"] == {"Berlin": 2}
+
+
+def test_search_postings_with_limit_zero_returns_only_the_counts(server):
+    r = postings(server, text="rag", limit=0)
+    assert r["total"] == 4 and r["jobs"] == [] and r["by_city"]["Berlin"] == 3
+
+
+def test_search_postings_finds_nothing_for_a_word_no_posting_has(server):
+    assert postings(server, text="kubernetes") == {"total": 0, "by_city": {}, "by_family": {}, "offset": 0, "jobs": []}
+
+
+def test_search_postings_rejects_what_search_jobs_rejects_and_an_empty_text(server):
+    for text in ("", "   ", '""'):
+        with pytest.raises(ToolError, match="text must name at least one word"):
+            call(server, "search_postings", text=text)
+    with pytest.raises(ToolError, match=r"unknown skill 'ragg'"):
+        call(server, "search_postings", text="rag", skills=["ragg"])
+    with pytest.raises(ToolError, match="limit"):
+        call(server, "search_postings", text="rag", limit=51)
+    with pytest.raises(ToolError, match="offset"):
+        call(server, "search_postings", text="rag", offset=-1)
+    with pytest.raises(ToolError):  # not one of the schema's values
+        call(server, "search_postings", text="rag", seniority=["intern"])
+
+
+@pytest.mark.parametrize("args", [
+    {"text": "rag"},
+    {"text": "rag", "city": ["Berlin"], "family": ["ai-engineer"]},
+    {"text": "rag", "skills": ["python"], "requirement": "all", "sort": "company"},
+    {"text": "posting body", "window": "all", "seniority": ["mid"], "company_or_title": "a"},
+    {"text": "rag", "limit": 2, "offset": 1, "window": "all"},
+])
+def test_search_postings_lists_what_search_jobs_lists(server, args):
+    """The same filters give the same total and the same jobs, in the same order, as
+    search_jobs with the same text, so the counts and the list cannot disagree."""
+    tool, jobs = postings(server, **args), search(server, **args)
+    assert tool["total"] == jobs["total"] and tool["jobs"] == jobs["jobs"]
+    assert sum(tool["by_family"].values()) == tool["total"]          # every JOBS posting has a track
+
+
+def test_search_postings_accepts_exactly_the_search_jobs_values(server):
+    hints = typing.get_type_hints(server._tool_manager.get_tool("search_postings").fn)
+    jobs = typing.get_type_hints(server._tool_manager.get_tool("search_jobs").fn)
+    assert hints == jobs | {"text": str}
+    tool = next(t for t in asyncio.run(server.list_tools()) if t.name == "search_postings")
+    assert tool.input_schema["required"] == ["text"] and tool.annotations.read_only_hint is True
+
+
 # --- get_job ------------------------------------------------------------------------
 
 def acme_id(server) -> int:
@@ -639,7 +718,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result, resources, skills
 
     names, result, resources, skills = asyncio.run(run())
-    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills", "rising_skills", "match_profile"]
+    assert names == ["search_jobs", "search_postings", "get_job", "skill_demand", "related_skills", "rising_skills", "match_profile"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
     assert resources == [mcp_server.SKILLS_URI]

@@ -159,7 +159,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           "required" = a degree is required with no alternative.
         - company_or_title: words that must appear in the company name or job title.
         - text: words that must appear in the posting text, for anything not on the
-          skill list (e.g. "on-call", "visa sponsorship").
+          skill list (e.g. "on-call", "visa sponsorship"). For how many jobs mention
+          them per city and career track, use search_postings.
         - sort: newest (default), oldest, reposts (most re-advertised first), company.
         - limit: jobs per call, 1 to 50 (default 20); offset: skip that many, to page.
 
@@ -186,7 +187,75 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             r = q.list_jobs(conn, f, now(), sort, limit, offset)
         return {"total": r["total"], "offset": offset, "jobs": [_job(j) for j in r["jobs"]]}
 
-  
+    @server.tool(annotations=READ_ONLY)
+    def search_postings(
+        text: str,
+        skills: list[str] | None = None,
+        city: list[Place] | None = None,
+        seniority: list[Seniority] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+        window: Window = "open",
+        german: German = "any",
+        degree: Degree = "any",
+        production: Production = "any",
+        company_or_title: str = "",
+        sort: Sort = "newest",
+        limit: int = 20,
+        offset: int = 0,
+    ) -> dict[str, Any]:
+        """Count the job postings whose text mentions some words, split by city and by
+        career track, and list them. Answers "how many Berlin jobs mention Claude?" or "how
+        many jobs ask for Kubernetes and German, per city?" in one call, for anything our
+        skill list does not track: a product, a company, a tool, a phrase.
+
+        - text (required): the words to find in the posting text, e.g. "Claude" or
+          "visa sponsorship". Every word must appear somewhere in the posting, in any order
+          and not necessarily together; case and accents do not matter. Words are matched
+          whole, so "Claude" does not find "Claudette", and punctuation splits words, so
+          "C++" searches for "C".
+        - skills, city, seniority, family, requirement, window, german, degree, production,
+          company_or_title, sort: the same filters as search_jobs, with the same values and
+          defaults. Every count below is over the jobs these filters keep; by default, only
+          open jobs.
+        - limit: jobs listed, 0 to 50 (default 20); 0 returns only the counts. offset: skip
+          that many, to page.
+
+        Returns:
+        - total: every matching job, not just those listed.
+        - by_city: matching jobs per place, largest first. A job posted for several places
+          counts in each, so these can add up to more than total. With a city filter, only
+          the chosen places appear.
+        - by_family: matching jobs per career track (ai-engineer, ml-engineer,
+          data-scientist, ml-platform, research), largest first. A job with no track counts
+          in total only. Places and tracks with no match are left out.
+        - offset, and jobs: the matching jobs, in the same shape as search_jobs (id,
+          company, title, places, family, seniority, first_seen, last_seen, status, url,
+          required_skills, nice_to_have_skills, german, degree, production). Use get_job
+          for a job's full text.
+
+        Example: how many open jobs mention Claude, per city and career track:
+        search_postings(text="Claude", limit=0)
+        """
+        if not q.fts_query(text):
+            raise ToolError("text must name at least one word to find, e.g. \"Claude\"")
+        if not 0 <= limit <= MAX_JOBS:
+            raise ToolError(f"limit must be between 0 and {MAX_JOBS}")
+        if offset < 0:
+            raise ToolError("offset must be 0 or more")
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
+                               families=family or (), requirement=requirement, window=window,
+                               german=german, degree=degree, production=production,
+                               skill_ids=skill_ids(skills or []), query=company_or_title, text=text)
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        at = now()
+        with connect() as conn:
+            counts = q.text_counts(conn, f, at)
+            jobs = q.list_jobs(conn, f, at, sort, limit, offset)["jobs"] if limit else []
+        return {**counts, "offset": offset, "jobs": [_job(j) for j in jobs]}
+
     @server.tool(annotations=READ_ONLY)
     def get_job(job_id: int) -> dict[str, Any]:
         """Get one job posting in full, with the same details as the hiring-radar

@@ -280,6 +280,17 @@ def _check_search_jobs(server, hidden_id, hidden_company, hidden_place):
     assert all(hidden_place not in j["places"] for j in found["jobs"])
 
 
+def _check_search_postings(server, hidden_id, hidden_company, hidden_place):
+    found = _tool(server, "search_postings", text="production", window="all", limit=50)   # in every posting
+    assert hidden_company not in {j["company"] for j in found["jobs"]} and found["total"] == 3
+    assert _tool(server, "search_postings", text=hidden_company, window="all")["total"] == 0
+    assert sum(found["by_family"].values()) == 3                 # the hidden job is in no track's count
+    if hidden_place:
+        assert hidden_place not in found["by_city"] and all(hidden_place not in j["places"] for j in found["jobs"])
+    else:
+        assert "research" not in found["by_family"]
+
+
 def _check_get_job(server, hidden_id, hidden_company, hidden_place):
     with pytest.raises(ToolError, match=f"no job with id {hidden_id}"):
         asyncio.run(server.call_tool("get_job", {"job_id": hidden_id}))
@@ -314,7 +325,7 @@ def _check_match_profile(server, hidden_id, hidden_company, hidden_place):
 
 
 # One check per tool: what the tool must not give away about an incubating job.
-TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
+TOOL_CHECKS = {"search_jobs": _check_search_jobs, "search_postings": _check_search_postings, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
                "related_skills": _check_related_skills, "rising_skills": _check_rising_skills,
                "match_profile": _check_match_profile}
 
