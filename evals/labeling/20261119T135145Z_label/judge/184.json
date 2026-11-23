@@ -1,0 +1,15 @@
+{
+  "item": 184,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agent-harnesses",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "b55c77b9be50d906aaf652233b5f13f3ca79fbb2613e8e2523c46fede27edd64",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the nice-to-have qualification bullet explicitly asks for experience 'building customized agent harnesses', making B correct.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the nice-to-have qualification bullet explicitly asks for experience 'building customized agent harnesses', making B correct.",
+  "error": null
+}

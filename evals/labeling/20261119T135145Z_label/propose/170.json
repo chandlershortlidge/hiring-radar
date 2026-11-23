@@ -6,17 +6,16 @@
   "reason": "groups",
   "provider": "anthropic",
   "model": "claude-haiku-5-5",
-  "key_sha256": "845ca0fb897f84e375308c3df01aa0e5d9e4c39f58f3c98231bb263f9df58e33",
-  "raw": "{\"decision\": [[\"langgraph\", \"mcp\", \"google-adk\", \"autogen\", \"llamaindex\"]], \"why\": \"The framework list 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' offers one ask with any one example meeting it, and none of these five appears elsewhere as a standalone requirement, while python/java/typescript, claude-code/github-copilot, mysql/postgresql and kafka are each also named unmarked in the stack or left with fewer than two group members, so they stay out.\"}",
+  "key_sha256": "ba99ee5f615fcb8b2d06f2ebb6824aaedd69abd2f750949fdf1ae5fb9cd3ea7e",
+  "raw": "{\"decision\": [[\"langgraph\", \"google-adk\", \"autogen\", \"llamaindex\"]], \"why\": \"The 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' list is one ask with examples, so the labeled members form a group. MCP is left out because the responsibilities separately ask for 'MCP integrations', and the Python/Java/TypeScript and Claude Code/Copilot sets are dropped because their members also appear as unmarked stack entries, which the rule says leaves a group.\"}",
   "decision": [
     [
       "langgraph",
-      "mcp",
       "google-adk",
       "autogen",
       "llamaindex"
     ]
   ],
-  "why": "The framework list 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' offers one ask with any one example meeting it, and none of these five appears elsewhere as a standalone requirement, while python/java/typescript, claude-code/github-copilot, mysql/postgresql and kafka are each also named unmarked in the stack or left with fewer than two group members, so they stay out.",
+  "why": "The 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' list is one ask with examples, so the labeled members form a group. MCP is left out because the responsibilities separately ask for 'MCP integrations', and the Python/Java/TypeScript and Claude Code/Copilot sets are dropped because their members also appear as unmarked stack entries, which the rule says leaves a group.",
   "error": null
 }

@@ -663,7 +663,7 @@ Which of a posting's skills it accepts *any one of* ("Python, or Bash scripting"
 
 ### 20261119T112034Z_label item 175 - golden_103 `alternative_group` (groups)
 > Member of Technical Staff (Machine Learning Engineer, Search Agent RL)
-- skill: `agent-architecture` · nice_to_have · raw_text: "Building agent harnesses"
+- skill: `agent-harnesses` · nice_to_have · raw_text: "Building agent harnesses" (was `agent-architecture` when the models read it; moved to the new skill, HIR-392)
 - skill: `agents` · required · raw_text: "or agent systems"
 - skill: `ai-infrastructure` · nice_to_have · raw_text: "scalable inference infrastructure"
 - skill: `distributed-training` · nice_to_have · raw_text: "distributed training systems"

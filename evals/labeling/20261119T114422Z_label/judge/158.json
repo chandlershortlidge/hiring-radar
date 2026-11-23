@@ -7,9 +7,9 @@
   "provider": "google",
   "model": "gemini-4-argon",
   "proposed": "[]",
-  "key_sha256": "e69ca4deb3eb5dc82c63a33598359517653b1c7b7cba9a6a3c21374a56c1c78d",
-  "raw": "{\"decision\": [], \"why\": \"The labeled skills are asked for together (e.g., \\\"LLMs, agents, and harnesses\\\"), which the rule excludes under 'Not alternatives: skills asked for together (\\\"X and Y\\\", \\\"X, Y and Z\\\")'.\"}",
+  "key_sha256": "d067b25dd89c7a6a825e4417bcd23fd7b994319023f7e2cc1cd05d103957dce6",
+  "raw": "{\"decision\": [], \"why\": \"The labeled skills are asked for together (\\\"LLMs, agents, and harnesses\\\") rather than with alternative markers, and under the \\\"Not alternatives\\\" rule skills asked for together as \\\"X, Y and Z\\\" are not grouped.\"}",
   "decision": [],
-  "why": "The labeled skills are asked for together (e.g., \"LLMs, agents, and harnesses\"), which the rule excludes under 'Not alternatives: skills asked for together (\"X and Y\", \"X, Y and Z\")'.",
+  "why": "The labeled skills are asked for together (\"LLMs, agents, and harnesses\") rather than with alternative markers, and under the \"Not alternatives\" rule skills asked for together as \"X, Y and Z\" are not grouped.",
   "error": null
 }

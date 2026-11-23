@@ -7,8 +7,8 @@
   "provider": "google",
   "model": "gemini-4-argon",
   "proposed": "[[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]]",
-  "key_sha256": "032b8b1fa903f4cc726681cd849c99fa01955d2df8e5e7e7c8218096a428538e",
-  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The posting offers examples for a single ask ('agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)'), so the five example skills form an alternative group while the broad skills ('agents' and 'llm-orchestration') stay out of the group.\"}",
+  "key_sha256": "cda26b01e3bbe7d06e734e3d373053260fdf7fd821b4703f4d2631d8a81c778b",
+  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The posting offers 'Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen' as examples ('e.g.') for a single ask of agentic AI and orchestration frameworks, so those five share a group while the broad skills (`agents` and `llm-orchestration`) and the 'X, Y, and Z' model platforms list stay out.\"}",
   "decision": [
     [
       "pydanticai",
@@ -18,6 +18,6 @@
       "autogen"
     ]
   ],
-  "why": "The posting offers examples for a single ask ('agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)'), so the five example skills form an alternative group while the broad skills ('agents' and 'llm-orchestration') stay out of the group.",
+  "why": "The posting offers 'Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen' as examples ('e.g.') for a single ask of agentic AI and orchestration frameworks, so those five share a group while the broad skills (`agents` and `llm-orchestration`) and the 'X, Y, and Z' model platforms list stay out.",
   "error": null
 }

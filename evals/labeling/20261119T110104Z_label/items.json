@@ -2542,6 +2542,11 @@
     "reason": "groups",
     "skills": [
       {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "agent harness development"
+      },
+      {
         "skill_id": "agents",
         "requirement": "nice_to_have",
         "raw_text": "agentic AI and orchestration frameworks"
@@ -2697,6 +2702,11 @@
     "key": "alternative_group",
     "reason": "groups",
     "skills": [
+      {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "agent harness development"
+      },
       {
         "skill_id": "agents",
         "requirement": "nice_to_have",
@@ -3148,6 +3158,44 @@
     "a": null,
     "b": null,
     "excerpt": "Senior Machine Learning Scientist, Climate & Hydrology",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "agent-harnesses",
+    "reason": "rule-change",
+    "a": {
+      "skill_id": "agent-harnesses",
+      "requirement": "nice_to_have",
+      "raw_text": "agent harness development"
+    },
+    "b": {
+      "skill_id": "agent-harnesses",
+      "requirement": "nice_to_have",
+      "raw_text": "agent harness development"
+    },
+    "excerpt": "...systems. - Familiarity with sandboxed code execution and agent harness development. - Experience with LLM observability and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "agent-harnesses",
+    "reason": "rule-change",
+    "a": {
+      "skill_id": "agent-harnesses",
+      "requirement": "nice_to_have",
+      "raw_text": "agent harness development"
+    },
+    "b": {
+      "skill_id": "agent-harnesses",
+      "requirement": "nice_to_have",
+      "raw_text": "agent harness development"
+    },
+    "excerpt": "...- Familiarity with sandboxed code execution and agent harness development. - Experience with LLM observability and monitoring...",
     "problems": [],
     "decision": "?"
   }

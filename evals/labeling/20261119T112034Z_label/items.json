@@ -524,7 +524,7 @@
   {
     "golden_id": "golden_103",
     "kind": "skill",
-    "key": "agent-architecture",
+    "key": "agent-harnesses",
     "reason": "disagreement",
     "a": {
       "skill_id": "agent-architecture",
@@ -3659,7 +3659,7 @@
     "reason": "groups",
     "skills": [
       {
-        "skill_id": "agent-architecture",
+        "skill_id": "agent-harnesses",
         "requirement": "nice_to_have",
         "raw_text": "Building agent harnesses"
       },

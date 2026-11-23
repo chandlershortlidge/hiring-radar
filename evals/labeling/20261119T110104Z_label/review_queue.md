@@ -1504,6 +1504,7 @@ DECISION: []
 
 > Principal Software Engineer - Agentic Platform
 
+- `agent-harnesses` · nice_to_have · raw_text: "agent harness development"
 - `agents` · nice_to_have · raw_text: "agentic AI and orchestration frameworks"
 - `ai-infrastructure` · nice_to_have · raw_text: "FinOps for AI infrastructure"
 - `anthropic-api` · nice_to_have · raw_text: "Anthropic"
@@ -1531,7 +1532,7 @@ DECISION: []
 
 Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
 
-PROPOSED: [["pydanticai", "langgraph", "langchain", "crewai", "autogen"]] - The preferred-qualifications line 'Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' offers examples for a single ask, so these five form one group, while the broad parents 'agents' and 'llm-orchestration' stay out and the model platforms listed with 'and' are asked together, not as alternatives.
+PROPOSED: [["pydanticai", "langgraph", "langchain", "crewai", "autogen"]] - The Preferred Qualifications ask for hands-on experience with agentic AI and orchestration frameworks, with "e.g." giving five examples for that single ask, so any one meets it; the broad parents `agents` and `llm-orchestration` stay out, and the model platforms (Anthropic, OpenAI, Vertex AI, Bedrock) are joined by "including ... and" rather than offered as alternatives, so they form no group.
 
 DECISION: [["autogen", "crewai", "langchain", "langgraph", "pydanticai"]]
 
@@ -1552,6 +1553,7 @@ DECISION: []
 
 > Principal Scientist, Machine Learning
 
+- `agent-harnesses` · nice_to_have · raw_text: "agent harness development"
 - `agents` · nice_to_have · raw_text: "agentic AI"
 - `ai-infrastructure` · nice_to_have · raw_text: "FinOps for AI infrastructure"
 - `ai-ml` · required · raw_text: "high impact, cross disciplinary AI/ML projects"
@@ -1579,7 +1581,7 @@ DECISION: []
 
 Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
 
-PROPOSED: [["pytorch", "jax", "tensorflow"], ["pydanticai", "langgraph", "langchain", "crewai", "autogen"]] - Under the alternative_group rule, "modern ML frameworks (PyTorch or JAX/TensorFlow)" and "orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)" each offer examples for a single ask, so any one meets it, while the broad parents (machine-learning, llm-orchestration) stay out. The model-platform list ("Anthropic, OpenAI, Vertex AI, and Amazon Bedrock") is joined by "and" and so counts as skills asked together, not alternatives.
+PROPOSED: [["pytorch", "jax", "tensorflow"], ["pydanticai", "langgraph", "langchain", "crewai", "autogen"]] - The 'modern ML frameworks (PyTorch or JAX/TensorFlow)' ask and the 'orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' example list each offer any one skill for a single ask, so each forms a group, while the broad parents 'machine-learning' and 'llm-orchestration' stay out and the 'Anthropic, OpenAI, Vertex AI, and Amazon Bedrock' list is joined by 'and' under 'including' and so is not grouped.
 
 DECISION: [["autogen", "crewai", "langchain", "langgraph", "pydanticai"], ["jax", "pytorch", "tensorflow"]]
 
@@ -1681,3 +1683,27 @@ Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]
 PROPOSED: [] - The posting names only one framework (PyTorch, labeled as its own skill) and asks for Python and AWS together or as a preference, with no 'at least one of', 'X or Y', or example set for a single ask, so no two skills are alternatives under the rule.
 
 DECISION: []
+
+## 139. golden_096 - skill `agent-harnesses` (rule-change)
+
+> ...systems. - Familiarity with sandboxed code execution and agent harness development. - Experience with LLM observability and...
+
+- agreed label: `agent-harnesses` · nice_to_have · raw_text: "agent harness development"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: ok - Under rule 1, the Preferred Qualifications bullet names agent harness development as a skill, and the agreed nice_to_have requirement and verbatim raw_text "agent harness development" both match that bullet.
+
+DECISION: ok
+
+## 140. golden_098 - skill `agent-harnesses` (rule-change)
+
+> ...- Familiarity with sandboxed code execution and agent harness development. - Experience with LLM observability and monitoring...
+
+- agreed label: `agent-harnesses` · nice_to_have · raw_text: "agent harness development"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: ok - Under rule 1, the preferred-qualifications bullet "Familiarity with sandboxed code execution and agent harness development" names the skill directly, so `agent-harnesses` as nice_to_have with the quoted raw_text is correct under rule 5, which adds no broader skill.
+
+DECISION: ok
