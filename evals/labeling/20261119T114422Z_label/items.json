@@ -2953,6 +2953,11 @@
     "reason": "groups",
     "skills": [
       {
+        "skill_id": "agent-harnesses",
+        "requirement": "required",
+        "raw_text": "agents, and harnesses"
+      },
+      {
         "skill_id": "agents",
         "requirement": "required",
         "raw_text": "agents, and harnesses"
@@ -3999,6 +4004,25 @@
     "a": null,
     "b": null,
     "excerpt": "Senior Applied AI Scientist, Commerce Foundation Models",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "agent-harnesses",
+    "reason": "rule-change",
+    "a": {
+      "skill_id": "agent-harnesses",
+      "requirement": "required",
+      "raw_text": "agents, and harnesses"
+    },
+    "b": {
+      "skill_id": "agent-harnesses",
+      "requirement": "required",
+      "raw_text": "agents, and harnesses"
+    },
+    "excerpt": "...least 6 months of practical experience with LLMs, agents, and harnesses. - Comfort designing evaluation and feedback loops that...",
     "problems": [],
     "decision": "?"
   }

@@ -1,0 +1,15 @@
+{
+  "item": 139,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "agent-harnesses",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ba69a9260afd76ce8a4a917f2c79bb669e6470a5c2a11fffa21e168c703ee89f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for familiarity with \\\"agent harness development\\\", supporting the agreed nice_to_have label and raw_text.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for familiarity with \"agent harness development\", supporting the agreed nice_to_have label and raw_text.",
+  "error": null
+}

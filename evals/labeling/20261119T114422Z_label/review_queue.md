@@ -1829,6 +1829,7 @@ DECISION: [["knowledge-distillation", "recommender-systems"]]
 
 > AI Quantitative Researcher | Internship | '27
 
+- `agent-harnesses` · required · raw_text: "agents, and harnesses"
 - `agents` · required · raw_text: "agents, and harnesses"
 - `ai-ml` · required · raw_text: "focus on AI"
 - `evaluation` · required · raw_text: "designing evaluation and feedback loops"
@@ -1837,7 +1838,7 @@ DECISION: [["knowledge-distillation", "recommender-systems"]]
 
 Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
 
-PROPOSED: [] - The labelled skills are asked together, not offered in place of each other: "at least 6 months of practical experience with LLMs, agents, and harnesses" is an "X, Y and Z" list, which the rule excludes, and no other labelled skill sits in an "at least one of" or "such as" construction.
+PROPOSED: [] - The posting asks for 'at least 6 months of practical experience with LLMs, agents, and harnesses', which is skills asked together ('X, Y and Z'), not an either/or set, and no 'at least one of', slash or 'such as' marker offers any of the labeled skills in place of another.
 
 DECISION: []
 
@@ -2134,3 +2135,15 @@ Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]
 PROPOSED: [["megatron-lm", "deepspeed"]] - The preferred qualification offers frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF as examples for one ask (implementing and debugging training methods), so the two labeled members form one group, and the other listed frameworks are unlabeled and add nothing.
 
 DECISION: [["deepspeed", "megatron-lm"]]
+
+## 170. golden_095 - skill `agent-harnesses` (rule-change)
+
+> ...least 6 months of practical experience with LLMs, agents, and harnesses. - Comfort designing evaluation and feedback loops that...
+
+- agreed label: `agent-harnesses` · required · raw_text: "agents, and harnesses"
+
+Options: `ok` (right under today's rule) / `drop` / JSON (what it should be)
+
+PROPOSED: ok - Under rule 1, the required qualification bullet "At least 6 months of practical experience with LLMs, agents, and harnesses" names the skill, and rule 3 keeps its required status, with raw_text "agents, and harnesses" appearing verbatim in that bullet.
+
+DECISION: ok
