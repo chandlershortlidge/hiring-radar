@@ -7,6 +7,11 @@
 // desktop scale is what it was), and the rule that hides two of them exists only inside the
 // phone block and only for the skill chart's scale — the compare chart has its own
 // three-marker scale and must not lose its middle one.
+//
+// HIR-393: since the chart sits beside the jobs list at desktop width (HIR-345) it has half
+// the page, and the same two markers touched there ("60%80% of jobs"). Same fix, in the
+// desktop block and only for a city page's two columns. So the rule now exists in exactly
+// two places, and between the two widths, where the chart has the full page, all five show.
 import { describe, it, expect, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -16,9 +21,9 @@ import { fetchSkills } from "./api.js";
 
 const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 
-// The body of the `@media (max-width: 720px)` block, found by matching braces.
-function phoneBlock(sheet) {
-  const start = sheet.indexOf("@media (max-width: 720px)");
+// The body of the first `@media (<query>)` block, found by matching braces.
+function mediaBlock(sheet, query) {
+  const start = sheet.indexOf(`@media (${query})`);
   if (start < 0) return null;
   const open = sheet.indexOf("{", start);
   let depth = 0;
@@ -28,8 +33,12 @@ function phoneBlock(sheet) {
   }
   return null;
 }
+const phoneBlock = (sheet) => mediaBlock(sheet, "max-width: 720px");
+// the block that also keeps the chart in view beside the jobs: the two-column widths
+const besideJobsBlock = (sheet) => mediaBlock(sheet, "min-width: 1100px");
 
 const HIDE = /\.bars-head \.axis span:nth-child\(even\)\s*\{\s*display:\s*none;?\s*\}/;
+const HIDE_BESIDE_JOBS = /\.main\.split \.bars-head \.axis span:nth-child\(even\)\s*\{\s*display:\s*none;?\s*\}/;
 
 describe("the skill chart's scale", () => {
   it("still writes five markers, the last one saying what the scale measures", () => {
@@ -48,14 +57,23 @@ describe("the skill chart's scale", () => {
     expect(phone.body).toMatch(HIDE);
   });
 
-  it("hides no marker outside the phone block, and none of the compare chart's", () => {
-    const phone = phoneBlock(css);
-    const rest = css.slice(0, phone.start) + css.slice(phone.end);
+  it("hides every second marker beside the jobs list too, where the chart has half the page", () => {
+    const beside = besideJobsBlock(css);
+    expect(beside).not.toBeNull();
+    expect(beside.body).toMatch(HIDE_BESIDE_JOBS);
+    // the rule sits with the two columns: below that width the page is one column again
+    expect(beside.body).toMatch(/\.main\.split > \.lead\s*\{[^}]*position:\s*sticky/);
+    expect(css).toMatch(/@media \(max-width: 1099px\)\s*\{\s*\.main\.split\s*\{\s*grid-template-columns:\s*minmax\(0, 1fr\);\s*\}\s*\}/);
+  });
+
+  it("hides markers at those two widths only, and none of the compare chart's", () => {
+    const [first, second] = [phoneBlock(css), besideJobsBlock(css)].sort((x, y) => x.start - y.start);
+    const rest = css.slice(0, first.start) + css.slice(first.end, second.start) + css.slice(second.end);
     expect(rest).not.toMatch(/\.axis span[^{]*\{[^}]*display:\s*none/);
     // every rule in the sheet that hides a scale marker names the skill chart's head row
     const hiders = css.match(/[^{}]*\.axis span[^{]*\{[^}]*display:\s*none[^}]*\}/g) || [];
-    expect(hiders).toHaveLength(1);
-    expect(hiders[0]).toMatch(HIDE);
+    expect(hiders).toHaveLength(2);
+    for (const h of hiders) expect(h).toMatch(HIDE);
   });
 });
 

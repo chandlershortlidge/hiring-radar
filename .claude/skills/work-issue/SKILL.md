@@ -313,6 +313,10 @@ does.
      the rounds; after the second send-back a third failure comes back as `NEEDS
      CHANDLER` with no @mention.
    - **`NEEDS CHANDLER`** — leave the label alone and say so in your final reply.
+   - **`HELD`** — fixes-only mode is on (HIR-341, AGENTS.md "The lead agent") and this
+     ticket is not a bug. The PR passed review and stays open with no label until
+     Chandler turns the mode off; the lead agent then starts a fresh reviewer. Add no
+     label, start no second reviewer, and say so in your final reply.
    - **`NO TICKET`** — the reviewer's session had no way to open the ticket, so no review
      took place (HIR-306). Start **one** fresh reviewer, with the PR number and nothing
      else. You never hand it the ticket's text, labels or "Done when" list yourself: you

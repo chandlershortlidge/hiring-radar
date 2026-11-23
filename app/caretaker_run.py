@@ -10,6 +10,8 @@ Does:
     text and goes first, so the week is one message, not two; the robot visitor's week
     (app/site_watch_week.py, HIR-260) is handed in the same way and goes after it, except
     a break that came back after two fixes, which goes above everything;
+  - on Mondays, add one line per place or career track that is collected in the background
+    and not shown yet, from the admin page's own rows (app/admin.py, HIR-398);
   - post at once only what cannot wait a week (collection down two days running, spend cap);
   - count the job links checked by hand that we had missed, by reason (app/misses.py,
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
@@ -17,8 +19,8 @@ Does:
     per misses.TICKET_QUIET_DAYS per reason. Below it, the 8-week trend (HIR-321): whether
     the share of checked links a feed already had is rising, overall and per city;
   - file the ticket for company boards "Add a job" found we do not collect and no ticket
-    names yet (app/boards_to_add.py, HIR-324). The dashboard files it right after the add,
-    so this is the retry for a post that did not reach Linear.
+    names yet (app/boards_to_add.py, HIR-324). The dashboard recorded those boards until
+    "Add a job" left the site (HIR-346); this files whatever is still waiting.
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
 report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).
@@ -35,7 +37,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import boards_to_add, geo, misses, poll
+from app import boards_to_add, fixes_only, geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
@@ -201,6 +203,18 @@ def jsearch_usage_text(conn: sqlite3.Connection, end: str) -> str:
     return line + "\n"
 
 
+def incubating_text(conn: sqlite3.Connection, now: str | None = None) -> str:
+    """The Monday lines for the places and career tracks collected in the background and
+    not shown yet (HIR-398): one each, from the rows the admin page shows (app/admin.py),
+    so the two print the same numbers. "" when nothing is incubating."""
+    from app import admin
+    from app.extract import DEFAULT_MODEL, extractor_version
+    from app.ingest import now_iso
+    from app.taxonomy import Taxonomy
+    rows = admin.overview(conn, now or now_iso(), extractor_version(Taxonomy.load(), DEFAULT_MODEL))
+    return admin.incubating_section(rows)
+
+
 def post_json(url: str, payload: dict, headers: dict) -> dict:
     req = urllib.request.Request(url, data=json.dumps(payload).encode(), headers=headers, method="POST")
     with urllib.request.urlopen(req, timeout=30) as r:
@@ -208,7 +222,7 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
 
 
 def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None,
-           feeds: list[dict] | None = None) -> None:
+           feeds: list[dict] | None = None, mode: dict | None | bool = False) -> None:
     """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
     journal only. Each send is logged so a second run the same day does not repeat it.
@@ -219,7 +233,9 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
     `site_watch(start, end)` returns the
     robot visitor's two pieces (app/site_watch_week.week_text, HIR-260): what waits for
     Chandler, which goes above everything else, and the week's report, which goes after the
-    pull requests; injected so tests never reach Linear, and None leaves both out."""
+    pull requests; injected so tests never reach Linear, and None leaves both out.
+    `mode` is the fixes-only setting (app/fixes_only.py, HIR-341): while it is on, the
+    summary's first line says so. False reads config/lead_agent.json; None is "no mode"."""
     if (items := urgent_now(conn, day)):
         body = "The caretaker found something that cannot wait for Monday:\n\n" + \
                "\n".join(f"- {i}" for i in items) + "\n"
@@ -230,11 +246,14 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
     if (week := weekly_due(conn, day)):
         start, end = week
         robot_first, robot_week = site_watch(start, end) if site_watch else ("", "")
-        body = ((robot_first + "\n" if robot_first else "")
+        frozen = fixes_only.sentence(fixes_only.load() if mode is False else mode, day)
+        body = ((frozen + "\n\n" if frozen else "")
+                + (robot_first + "\n" if robot_first else "")
                 + (changes(start, end) + "\n" if changes else "")
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
                 + "\n" + jsearch_usage_text(conn, end)
+                + (("\n" + background) if (background := incubating_text(conn)) else "")
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
                 + "\n" + misses.trend_section(misses.records(conn), end,
                                                poll.load_feeds() if feeds is None else feeds))

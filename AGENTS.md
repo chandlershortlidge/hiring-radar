@@ -185,6 +185,17 @@ cd web && HYPOTHESIS_PROFILE=sweep npm test -- property && cd ..      # the same
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # a routine change → evals/results/<run_id>/
 uv run python scripts/run_eval.py                 # 3 repeats: a release, or 1 repeat tripped the gate
+# Three optional flags on run_eval.py (HIR-78):
+#   --no-langsmith     do not report this run to LangSmith, even with LANGSMITH_API_KEY set
+#   --extras-judge     after the runs, ask a model whether each extra skill (one the extractor
+#                      returned and the Golden does not list) means the gold label missed it or
+#                      the extractor is wrong. One extra call per Golden that has extras, run 1
+#                      only. Off by default; it changes no score and no label.
+#   --judge-model M    which model does that judging (default: the one in app/extras_judge.py)
+# Tracing: with LANGSMITH_API_KEY set, a dev run sends the dev Goldens' job-ad text and gold labels, the
+# extractions and the scores to LangSmith as an experiment named after the extractor_version;
+# held-out text is never uploaded and nothing is sent without a key. LangSmith is the view:
+# the committed evals/results/<run_id>/ directory is still the gate.
 
 # Required before a PR that touches app/extract.py or taxonomy/skills.json can merge
 # (AGENTS.md "The eval gate"): run the dev eval above, then
@@ -288,9 +299,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Two job-list searches that never blur: `query` over company and title, `text` over the
   posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
   kept in step with `job.description_text` by triggers, so writers need not know of it).
-- `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
-  screenshot), which run intake + extraction for the one job added. Validates every filter
-  value (422), one SQLite connection per request, model client created lazily.
+- `app/api.py` — FastAPI routes over `queries`, plus the "doesn't belong here" flag, the
+  only thing a visitor can write. It adds no job and calls no model (HIR-346: jobs are
+  added from the CLI). Validates every filter value (422), one SQLite connection per
+  request; an unknown path under `/api` is 404.
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
@@ -298,8 +310,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   of its own, and the card is collapsed by default so it is not fetched until opened),
   `RelatedSkills.jsx` (what the jobs requiring the selected skill also
   require; renders only with a skill selected and computes nothing itself),
-  `JobList.jsx` (rows + expanded detail with quotes), the three drawers
-  (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
+  `JobList.jsx` (rows + expanded detail with quotes), the one drawer
+  (`ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
 - `web/src/cvSkills.js` + `cvText.js` — "Fill from your CV" in `ProfileDrawer` (HIR-14).
   `cvSkills.js` is the pure matcher (CV text → taxonomy ids: literal, word-boundary,
@@ -1096,10 +1108,24 @@ agent touches it. `parked`: not before launch; only Chandler removes the label.
 everything the lead agent does. Adding the label `attended` to a ticket takes that one
 ticket away from agents.
 
+**Fixes-only mode: over the Christmas break agents repair and ship nothing new**
+(HIR-341, Chandler 2026-11-17; `decisions/2026-11-20-hir-341-fixes-only-over-the-christmas-break.md`). One line in
+`config/lead_agent.json`, `"fixes_only": {"from": "2026-12-16", "until": null}`, read by
+everything through `app/fixes_only.py`. While it is on: `scripts/lead_pick.py` picks only a
+ticket labelled `Bug` or the repair for a red check; the reviewer leaves a passed pull
+request open, with no label and the reply `HELD`, unless its ticket is labelled `Bug`,
+and labels that one `fix`; `scripts/merge_reviewed.py` merges nothing without the `fix`
+label; the Monday summary, Monday's pace and each run's log open with the sentence saying
+so. The caretaker, the robot visitor and the rollback run as always. Only the reviewer
+adds `fix`, and only from the ticket's `Bug` label. **Only Chandler turns the mode off**
+(the line becomes `"fixes_only": null`, README "The lead agent, and fixes-only mode"):
+no agent changes that line unless he asks in that session, and he merges the change.
+
 **It is the one exception to "every merge follows a review from the run that opened the
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
 pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
-reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
+reviewers could not open the ticket (above, HIR-306) and one whose author changed or
+repaired it after it was sent back (HIR-358). The reviewer still does the merging.
 It also starts the repair of a pull request that collides with main ("Who merges", above,
 HIR-305), whether or not the run that opened it is still alive.
 

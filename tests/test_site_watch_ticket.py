@@ -108,6 +108,21 @@ def test_deploy_failure_files_an_autopilot_ticket_saying_it_was_rolled_back(tmp_
         assert needle in issue["description"]
 
 
+def test_a_broken_mcp_tool_is_named_as_a_tool_not_a_screen_width(tmp_path):
+    """HIR-366: the MCP checks run as their own project, "mcp", which is not a width."""
+    fake = FakeLinear()
+    title = "MCP tool get_job: get the full details of one job from that search"
+    rep = write_report(tmp_path, report(spec(title, ("mcp", "unexpected"))))
+    assert run(["--kind", "deploy", "--report", rep, "--change", "abc1234 Merge pull request #150",
+                "--rolled-back-to", "def5678"], fake) == 0
+    [issue] = fake.created()
+    assert issue["title"] == f'Site watch: "{title}" fails'
+    assert issue["labelIds"] == ["label-autopilot"]
+    body = issue["description"]
+    assert f"**Failing MCP tool:** {title}." in body and "what the tool answered" in body
+    assert "width" not in body and "The deploy was rolled back" in body
+
+
 def test_a_break_already_ticketed_gets_a_comment_not_a_second_ticket(tmp_path):
     fake = FakeLinear(open_title='Site watch: "compare mode" fails')
     rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))

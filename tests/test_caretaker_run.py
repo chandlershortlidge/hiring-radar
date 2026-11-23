@@ -230,6 +230,20 @@ def test_monday_summary_with_nothing_waiting_from_the_robot_starts_with_the_pull
     assert posted[0].startswith("# Needs you") and "Nothing broke on the live site all week." in posted[0]
 
 
+def test_monday_summary_starts_with_fixes_only_mode_while_it_is_on_and_only_then(conn):
+    # HIR-341: over the Christmas break the summary's first line says agents only repair.
+    changes = lambda s, e: "# Needs you\n\nNothing.\n"  # noqa: E731
+    for day, mode, first in (
+        ("2026-12-21", {"from": "2026-12-16", "until": None}, "The site is in fixes-only mode: since 16 December 2026"),
+        ("2026-12-28", None, "# Needs you"),                                    # turned off
+        ("2026-12-14", {"from": "2026-12-16", "until": None}, "# Needs you"),   # not begun
+    ):
+        posted = []
+        run.report(conn, day, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None,
+                   changes=changes, mode=mode)
+        assert posted[0].startswith(first) and "# Needs you" in posted[0]
+
+
 def test_no_summary_on_other_days_and_no_post_without_a_key(conn):
     assert run.weekly_due(conn, "2026-11-17") is None
     out = []

@@ -258,7 +258,7 @@ def client(tmp_path, monkeypatch):
     market(c)
     c.close()
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    return TestClient(create_app(path, TAX, client_factory=lambda: None, skill_added=ADDED))
+    return TestClient(create_app(path, TAX, skill_added=ADDED))
 
 
 def test_the_endpoint_returns_risers_and_fallers_for_berlin_ai_engineers(client):

@@ -1,24 +1,21 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api, fetchSkills } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, EXTRA_FILTER_NAMES, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
-import { Person, Plus, Radar } from "./icons.jsx";
+import { Person, Radar } from "./icons.jsx";
 import QueryBar from "./QueryBar.jsx";
 import HomeGrid from "./HomeGrid.jsx";
 import { Eyebrow, Headline, HeroChart, heroFacts, heroPlace } from "./HomeHero.jsx";
 import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
 import FilterPills from "./FilterPills.jsx";
-import FitLine from "./FitLine.jsx";
 import SkillChart, { ChartStatus } from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import CityFit from "./CityFit.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
 import RisingSkills from "./RisingSkills.jsx";
-import AddJobDrawer from "./AddJobDrawer.jsx";
-import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
 import JobPage from "./JobPage.jsx";
 import Panel from "./Panel.jsx";
@@ -49,9 +46,8 @@ export default function App() {
   const [skillsFailed, setSkillsFailed] = useState(false);
   const [tax, setTax] = useState({ version: 0, skills: [] });
   const [related, setRelated] = useState(null);
-  const [drawer, setDrawer] = useState(null); // 'add' | 'review' | 'profile'
+  const [drawer, setDrawer] = useState(null); // 'profile'
   const [refresh, setRefresh] = useState(0);
-  const [jumpTo, setJumpTo] = useState(null);
   const [profile, saveProfile] = useProfile();
   const [recent, setRecent] = useState(readRecent);
 
@@ -152,7 +148,6 @@ export default function App() {
   [filters.skillIds, related, skills]);
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
-  const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", text: "", window: "all" }); setJumpTo(id); };
 
   // Everything the query bar can do, as moves between addresses.
   const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
@@ -229,7 +224,7 @@ export default function App() {
       onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
       onRequestCity={requestCity}
       right={stats && market.view !== "home"
-        ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
+        ? <span className="mono dim">updated {timeAgo(stats.last_updated)}</span>
         : null} />
   );
 
@@ -242,12 +237,8 @@ export default function App() {
           <button type="button" className={`pill${profile ? " on" : ""}`} onClick={() => setDrawer("profile")} aria-label="Your profile">
             <Person /><span className="lbl">{profile ? `${profile.skills.length} skills in your profile` : "Set up your profile"}</span>
           </button>
-          <button type="button" className="pill" onClick={() => setDrawer("review")} aria-label={`${stats?.proposed_pending ?? 0} proposed skills to review`}>
-            <span className="count">{stats?.proposed_pending ?? 0}</span><span className="lbl">proposed skills</span>
-          </button>
           {/* Not a button: there is nothing to connect to yet (ConnectClaude.jsx). */}
           <ConnectPill />
-          <button type="button" className="btn outline" onClick={() => setDrawer("add")} aria-label="Add a job"><Plus /><span className="lbl">Add a job</span></button>
         </div>
       </div><div className="brand-rule" aria-hidden="true" /></header>
 
@@ -271,9 +262,6 @@ export default function App() {
           <div className="mcp-wrap"><ConnectStrip /></div>
         </>
       ) : queryBar}
-
-      {/* Once there is a profile, a city page opens on how much of the market it covers. */}
-      {market.view === "city" && placeName && <Panel label="Your fit"><FitLine profile={profile} data={skills} place={placeName} /></Panel>}
 
       {market.view === "home" ? <main className="main landing">
         {recent.length > 0 && (
@@ -305,17 +293,17 @@ export default function App() {
             </p>
           </div>
           <FilterPills filters={filters} set={set} toggleSeniority={toggleSen} requiredLabel={REQUIREMENTS.required} extraOn={extraOn}>
-            <div className="ctl"><label htmlFor="prod">Production experience</label>
+            <div className="ctl"><label htmlFor="prod">{EXTRA_FILTER_NAMES.production}</label>
               <select id="prod" className="sel" value={filters.production} onChange={(e) => set({ production: e.target.value })}>
                 {Object.entries(PRODUCTION_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </div>
-            <div className="ctl"><label htmlFor="deg">Degree</label>
+            <div className="ctl"><label htmlFor="deg">{EXTRA_FILTER_NAMES.degree}</label>
               <select id="deg" className="sel" value={filters.degree} onChange={(e) => set({ degree: e.target.value })}>
                 {Object.entries(DEGREE_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </div>
-            <div className="ctl"><label htmlFor="win">Time window</label>
+            <div className="ctl"><label htmlFor="win">{EXTRA_FILTER_NAMES.window}</label>
               <select id="win" className="sel" value={filters.window} onChange={(e) => set({ window: e.target.value })}>
                 {Object.entries(WINDOWS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
@@ -331,7 +319,8 @@ export default function App() {
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
-                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
+                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases}
+                gaps={market.view === "city" && !!placeName} />}
         </section></Panel>
 
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
@@ -339,7 +328,8 @@ export default function App() {
 
         <div className="stack side">
         <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters} connect={market.view === "city"}
-          profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
+          defaults={DEFAULT} windows={WINDOWS} requirements={REQUIREMENTS}
+          profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} market={market} /></Panel>
 
         {/* One place at a time: a comparison of cities has no single market to follow.
@@ -355,8 +345,6 @@ export default function App() {
             and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}
       </main>}</>}
 
-      {drawer === "add" && <Panel label="The add-a-job drawer"><AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} /></Panel>}
-      {drawer === "review" && <Panel label="The proposed-skills drawer"><ReviewDrawer onClose={() => setDrawer(null)} taxonomyList={tax.skills} skillsTracked={stats?.skills_tracked ?? tax.skills.length} onChanged={reload} onViewJob={viewJob} /></Panel>}
       {drawer === "profile" && <Panel label="The profile drawer"><ProfileDrawer onClose={() => setDrawer(null)} profile={profile} save={saveProfile} taxonomyList={tax.skills} /></Panel>}
     </>
   );

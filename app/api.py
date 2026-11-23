@@ -1,48 +1,42 @@
 """HTTP API for the dashboard, plus static serving of the built frontend.
 
-Does: expose read endpoints over app/queries.py, the MCP server at /mcp (app/mcp_server.py), the review-queue actions, the three
-add-a-job paths (url / text / screenshot) which run intake + extraction synchronously, and
-the "doesn't belong here" flag on a job (app/flags.py: flag, note, un-flag). An add that
-came with a link also records the link check, and notes the company's board when it is one
-we do not collect (app/boards_to_add.py), so the company's later jobs stop being missed.
-Serves web/dist/ at / when it exists.
+Does: expose read endpoints over app/queries.py, the MCP server at /mcp (app/mcp_server.py),
+and the "doesn't belong here" flag on a job (app/flags.py: flag, note, un-flag), which is
+the only thing a visitor can write. Serves web/dist/ at / when it exists.
 
-Does NOT: compute the profile match (the profile lives in the browser; the frontend
-computes coverage from /api/skills and job detail), edit the taxonomy, or poll feeds.
+Does NOT: add a job or settle a proposed skill (HIR-346 removed both from the site: jobs
+are added from the command line through app/add.py, proposed skills are settled in
+skill-list pull requests), call a model, compute the profile match (the profile lives in
+the browser; the frontend computes coverage from /api/skills and job detail), edit the
+taxonomy, or poll feeds.
 
-Every read route answers for the public: app/queries.py leaves out the places and career
-tracks that are still incubating (app/scope.py, HIR-395), and no route here asks it not to,
-except the count an add reports about the job it has just stored.
+Every read route under /api answers for the public: app/queries.py leaves out the places
+and career tracks that are still incubating (app/scope.py, HIR-395), and no route there asks
+it not to. The one exception is /admin (app/admin.py, HIR-398), a read-only page that lists
+every place and track, incubating ones included. It is not under /api, nothing on the site
+links to it, and the web server keeps it behind the password (tests/test_admin.py).
 
 Invariants: every filter is validated against the allowed values and rejected with 422
-otherwise; DB connections are per request; model clients are created lazily so the API
-boots without credentials and only the add endpoints need them; all three add paths store
-through app/add.py, so none of them can store a hand-added job under feed rules.
+otherwise; DB connections are per request; the API boots without model credentials.
 """
 
-import hashlib
 import json
 import os
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Literal
 
-from fastapi import BackgroundTasks, Depends, FastAPI, HTTPException, Query, UploadFile
-from fastapi.responses import FileResponse
+from fastapi import Depends, FastAPI, HTTPException, Query
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
-from app import add, boards_to_add, db, flags, langsmith_live, mcp_server, queries as q
-from app.check import check_posting, check_url, log_check
-from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, make_client
-from app.ingest import Screenshot, Stored, job_id_for_screenshot, now_iso
-from app.pipeline import extract_pending
-from app.poll import load_feeds
+from app import admin, db, flags, mcp_server, queries as q
+from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, extractor_version
+from app.ingest import now_iso
 from app.skill_tree import skill_tree
-from app.sources import Posting
 from app.taxonomy import Taxonomy, load_added
 from app.targeted_reread import record_snapshot
-from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
 ROOT = Path(__file__).resolve().parent.parent
 DB_PATH = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
@@ -68,14 +62,13 @@ def _record_snapshot(db_path: Path, tax: Taxonomy) -> None:
         print(f"warning: could not record the extractor snapshot: {type(e).__name__}: {e}")
 
 
-def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client,
-               skill_added: dict[str, str] | None = None, board_poster=None) -> FastAPI:
-    """`board_poster(title, body)` files a Linear ticket and returns its identifier; it is
-    how a board the dashboard found missing reaches an agent (app/boards_to_add.py). None,
-    the default and what every test gets, files nothing: the boards wait for the caretaker."""
+def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
+               skill_added: dict[str, str] | None = None) -> FastAPI:
     tax = taxonomy or Taxonomy.load()
+    # The day each skill joined the list; only "what's rising" (here and in the MCP) reads it.
+    added = load_added() if skill_added is None else skill_added
     # The MCP server (app/mcp_server.py): the same reads as tools for anyone's Claude, at /mcp.
-    mcp = mcp_server.build_server(db_path, tax, lambda: now_iso())
+    mcp = mcp_server.build_server(db_path, tax, lambda: now_iso(), added)
 
     @asynccontextmanager
     async def lifespan(_app):
@@ -84,15 +77,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     app = FastAPI(title="hiring-radar", version="0.1.0", lifespan=lifespan)
     app.add_route(mcp_server.PATH, mcp_server.endpoint(mcp), include_in_schema=False)
-    # The day each skill joined the list; only "what's rising" reads it.
-    added = load_added() if skill_added is None else skill_added
-    state = {"client": None}
     _record_snapshot(db_path, tax)
-
-    def client():
-        if state["client"] is None:
-            state["client"] = client_factory()
-        return state["client"]
 
     def conn_dep():
         db_path.parent.mkdir(parents=True, exist_ok=True)
@@ -229,131 +214,24 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             raise HTTPException(422, "bad status")
         return {"groups": q.proposed_skills(conn, status)}
 
-    class Resolve(BaseModel):
-        ids: list[int] = Field(min_length=1)
-        status: Literal["accepted", "rejected"]
-        resolved_skill_id: str | None = None
+    # Nothing else lives under /api: an unknown path there is 404 for every method, so it
+    # never falls through to the pages below (which would answer a POST with 405 and a GET
+    # with the home page). Registered after every real /api route, so it shadows none.
+    @app.api_route("/api/{path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)
+    def no_such_api_route(path: str):
+        raise HTTPException(404, "no such route")
 
-    @app.post("/api/proposed/resolve")
-    def post_resolve(body: Resolve, conn=Depends(conn_dep)):
-        if body.status == "accepted":
-            if not body.resolved_skill_id or body.resolved_skill_id not in tax.skills:
-                raise HTTPException(422, "accepting needs resolved_skill_id, an existing taxonomy id")
-        n = q.resolve_proposed(conn, body.ids, body.status, body.resolved_skill_id, tax.version)
-        return {"resolved": n}
+    # --- the admin page (HIR-398) -----------------------------------------------------
+    # Read-only, and the only route that shows incubating places and tracks. The app does
+    # not check who asks: the web server's password does (deploy/Caddyfile), and
+    # tests/test_admin.py fails when that file would answer this address without it.
 
-    # --- adds -----------------------------------------------------------------------
-
-    def finish_add(conn, res: Stored) -> dict:
-        if res.is_new:
-            report = extract_pending(conn, tax, client=client(), log=lambda *_: None,
-                                     job_ids=[res.job_id], run_kind=langsmith_live.ADD)
-            # A job added by hand may be for an incubating place or track (HIR-395): it is
-            # stored and read like any other, and only its two counts go back, never the job.
-            d = q.job_detail(conn, res.job_id, now_iso(), include_incubating=True)
-            return {"outcome": "added", "job_id": res.job_id, "skills_found": len(d["skills"]),
-                    "proposed": len(d["proposed"]), "failed": [f for f in report.failed if f[0] == res.job_id]}
-        return {"outcome": res.kind, "job_id": None}
-
-    def record_check(conn, r, found_via: str, background: BackgroundTasks) -> str:
-        """Log one link check and note the company's board when it is one we do not
-        collect. Returns where that board stands (boards_to_add: queued / collected /
-        none), which is what the drawer's one line after adding is written from."""
-        log_check(conn, r, found_via, now_iso())
-        feeds, rejected = boards_to_add.load_config()
-        where = boards_to_add.note(conn, r, feeds, rejected, now_iso())
-        if where == boards_to_add.QUEUED and board_poster is not None:
-            background.add_task(file_boards)
-        return where
-
-    def file_boards() -> None:
-        """After the reply has gone: file the ticket for the boards waiting. Never raises;
-        a board that could not be filed now is filed by the caretaker's next morning run."""
-        try:
-            c = db.connect(db_path)
-            try:
-                boards_to_add.file_ticket(c, boards_to_add.load_config()[0], board_poster, now_iso(),
-                                          log=lambda *_: None)
-            finally:
-                c.close()
-        except Exception as e:  # noqa: BLE001 — the add itself already succeeded
-            print(f"warning: could not file the boards-to-add ticket: {type(e).__name__}: {e}")
-
-    def checked_link(conn, url: str | None, p: Posting, found_via: str, background: BackgroundTasks) -> str | None:
-        """Pasted text and screenshots count in the missed-job numbers too, when their link
-        was given (HIR-324). Nothing is fetched: the posting's text is already here."""
-        url = (url or "").strip()
-        if not url.lower().startswith(("http://", "https://")):
-            return None
-        return record_check(conn, check_posting(conn, url, p, load_feeds()), found_via, background)
-
-    class AddUrl(BaseModel):
-        url: str
-        found_via: FoundVia = "linkedin"
-        company: str | None = None
-        title: str | None = None
-        location: str | None = None
-
-    @app.post("/api/add/url")
-    def add_url(body: AddUrl, background: BackgroundTasks, conn=Depends(conn_dep)):
-        r = check_url(conn, body.url, load_feeds(), body.company, body.title, body.location)
-        board = record_check(conn, r, body.found_via, background)
-        if r.job_id:
-            d = q.job_detail(conn, r.job_id, now_iso())
-            return {"outcome": "exists", "job_id": r.job_id, "job": d, "verdict": r.line(), "board": board}
-        # Every add-by-link rule lives in app/add.py, so this endpoint and the CLI's
-        # `check --add` cannot drift. min_text=0 keeps this endpoint's behaviour as it is: the
-        # CLI refuses a page under 200 characters, the dashboard stores it and the chart leaves
-        # it out as "short" (DECISIONS 2026-10-21). Which of the two is right is HIR-205.
-        decision = add.decide(r, min_text=0)
-        if decision.action == add.UNREADABLE:
-            return {"outcome": "unreadable", "job_id": None, "verdict": r.line(), "notes": r.notes, "board": board}
-        if decision.action == add.NEEDS_COMPANY:
-            return {"outcome": "needs_company", "job_id": None, "verdict": r.line(), "notes": r.notes,
-                    "board": board}
-        out = finish_add(conn, add.add_by_hand(conn, r.posting, body.found_via,
-                                               require_city=decision.require_city))
-        out["verdict"], out["board"] = r.line(), board
-        return out
-
-    class AddText(BaseModel):
-        text: str = Field(min_length=40)
-        company: str
-        title: str
-        location: str | None = None
-        url: str | None = None
-        found_via: FoundVia = "linkedin"
-
-    @app.post("/api/add/text")
-    def add_text(body: AddText, background: BackgroundTasks, conn=Depends(conn_dep)):
-        p = Posting(source="paste", source_job_id="", url=body.url or "", company=body.company, title=body.title,
-                    location_raw=body.location, description_text=body.text.strip())
-        # Checked before it is stored, so the check cannot find the job this very add stores.
-        board = checked_link(conn, body.url, p, body.found_via, background)
-        return {**finish_add(conn, add.add_by_hand(conn, p, body.found_via)), "board": board}
-
-    @app.post("/api/add/screenshot")
-    def add_screenshot(file: UploadFile, background: BackgroundTasks, company: str, title: str,
-                       location: str | None = None, url: str | None = None, found_via: FoundVia = "linkedin",
-                       conn=Depends(conn_dep)):
-        data = file.file.read()
-        if len(data) > 8 * 1024 * 1024:
-            raise HTTPException(413, "image over 8 MB")
-        existing = job_id_for_screenshot(conn, hashlib.sha256(data).hexdigest())
-        if existing:
-            return {"outcome": "exists", "job_id": existing, "job": q.job_detail(conn, existing, now_iso())}
-        try:
-            t = transcribe(data, client(), VISION_MODEL)
-        except TranscriptionError as e:
-            raise HTTPException(422, f"could not read the screenshot: {e}")
-        p = Posting(source="screenshot", source_job_id="", url=url or "", company=company, title=title,
-                    location_raw=location, description_text=t.text)
-        # The image rides the same transaction as the job: if it could not be stored, the
-        # job is not stored either, so the next upload of this file recognises it instead
-        # of adding a second copy (HIR-210).
-        board = checked_link(conn, url, p, found_via, background)
-        res = add.add_by_hand(conn, p, found_via, screenshot=Screenshot(data, t.sha256, t.media_type))
-        return {**finish_add(conn, res), "board": board}
+    @app.get("/admin", include_in_schema=False, response_class=HTMLResponse)
+    def get_admin(conn=Depends(conn_dep)):
+        now = now_iso()
+        rows = admin.overview(conn, now, extractor_version(tax, EXTRACT_MODEL))
+        return HTMLResponse(admin.page(rows, admin.spend(conn, now[:7]), now),
+                            headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"})
 
     # --- frontend -------------------------------------------------------------------
 
@@ -374,9 +252,4 @@ app = None  # created lazily by `python -m app serve` or uvicorn factory
 
 
 def factory() -> FastAPI:
-    # The live site files a ticket for a board it found missing, with the key the caretaker
-    # already uses; without the key the boards wait in the table and nothing is filed.
-    from app import caretaker_run
-    key = os.environ.get("LINEAR_API_KEY", "").strip()
-    team = os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID)
-    return create_app(board_poster=caretaker_run.linear_poster(key, team) if key else None)
+    return create_app()

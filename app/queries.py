@@ -35,6 +35,7 @@ from datetime import datetime, timedelta, timezone
 from app import scope
 from app.extract import SENIORITY_LEVELS
 from app.geo import CITIES, COLLECTING_SINCE, REMOTE_EU
+from app.html_text import clean_posting_text
 from app.ingest import SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
 from app.sources import registry
@@ -95,7 +96,7 @@ _LONG_ENOUGH = f"length(j.description_text) >= {MIN_TEXT_CHARS}"
 # HIR-246). Built from ingest's own tuple so the two cannot drift; tests/test_queries.py
 # checks this SQL and ingest.sales_title agree title by title.
 _NOT_SALES = "(" + " AND ".join(
-    f"lower(coalesce(j.title, '')) NOT LIKE '%{p}%'" for p in SALES_TITLE_PHRASES) + ")"
+    f"lower(coalesce(j.title, '')) NOT LIKE '%{phrase}%'" for phrase in SALES_TITLE_PHRASES) + ")"
 # related_skills: how many of the selected skill's jobs a skill must share before it is
 # worth showing (below that, one odd stack of skills reads as a 4x lift), and how many of
 # the ranked rows the panel gets. DECISIONS 2026-10-28.
@@ -111,8 +112,8 @@ RISING_MIN_CHANGE = 1.0
 
 
 def _days_ago(now: str, days: int) -> str:
-    t = datetime.strptime(now, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    return (t - timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
+    current_time = datetime.strptime(now, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    return (current_time - timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 @dataclass(frozen=True)
@@ -141,12 +142,12 @@ def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requir
     shared by the dashboard API and the MCP tools, so both accept exactly the same values.
     Cities are not checked: a place we don't collect matches no jobs. Several skill ids
     mean AND; deduplicated, order kept, so a skill sent twice adds no redundant clause."""
-    for s in seniorities:
-        if s not in SENIORITIES:
-            raise ValueError(f"bad seniority {s!r}")
-    for s in families:
-        if s not in scope.live_tracks():
-            raise ValueError(f"bad family {s!r}")
+    for seniority in seniorities:
+        if seniority not in SENIORITIES:
+            raise ValueError(f"bad seniority {seniority!r}")
+    for family in families:
+        if family not in scope.live_tracks():
+            raise ValueError(f"bad family {family!r}")
     if requirement not in REQUIREMENTS:
         raise ValueError(f"bad requirement {requirement!r}")
     if window not in WINDOWS:
@@ -157,9 +158,9 @@ def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requir
         raise ValueError(f"bad degree {degree!r}")
     if production not in PRODUCTION_FILTERS:
         raise ValueError(f"bad production {production!r}")
-    for s in skill_ids:
-        if s not in known_skills:
-            raise ValueError(f"unknown skill {s!r}")
+    for skill_id in skill_ids:
+        if skill_id not in known_skills:
+            raise ValueError(f"unknown skill {skill_id!r}")
     return Filters(cities=tuple(cities), seniorities=tuple(seniorities), families=tuple(families),
                    requirement=requirement, window=window, german=german, degree=degree,
                    production=production, skill_ids=tuple(dict.fromkeys(skill_ids)), query=query, text=text)
@@ -210,11 +211,11 @@ def _public_place(column: str) -> tuple[str, list]:
 
 def is_public(conn: sqlite3.Connection, job_id: int) -> bool:
     """Does this job exist and may the public see it?"""
-    pc, pp = public_clause()
-    return conn.execute(f"SELECT 1 FROM job j WHERE j.id = ? AND {pc}", [job_id] + pp).fetchone() is not None
+    public_rule, public_params = public_clause()
+    return conn.execute(f"SELECT 1 FROM job j WHERE j.id = ? AND {public_rule}", [job_id] + public_params).fetchone() is not None
 
 
-def job_set_clause(f: Filters, now: str, include_legacy: bool = False,
+def job_set_clause(filters: Filters, now: str, include_legacy: bool = False,
                    include_incubating: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs the filters describe.
 
@@ -224,62 +225,69 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False,
     Unless include_legacy, three kinds of job are out of the chart (the job list shows them):
     legacy imports, whose skills never came from the evaluated extractor, jobs whose
     text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting, and jobs whose
-    title names a sales role, which are outside the market the chart measures (HIR-246)."""
+    title names a sales role, which are outside the market the chart measures (HIR-246).
+
+    Returns (job_clause, job_params): the SQL text, and the values for its ? slots, in
+    order. Callers name them that way and pass the params to the query beside the clause.
+    """
     parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH, _NOT_SALES]), []
-    cities = f.cities
+    cities = filters.cities
     if not include_incubating:
-        pc, pp = public_clause()
-        if pp:
-            parts.append(pc); params += pp
-        cities = tuple(c for c in f.cities if c not in scope.incubating_places())
-    if f.cities and not cities:
+        public_rule, public_params = public_clause()
+        if public_params:
+            parts.append(public_rule); params += public_params
+        cities = tuple(city for city in filters.cities if city not in scope.incubating_places())
+    if filters.cities and not cities:
         parts.append("0=1")      # only incubating places were asked for: no job, as for a place we do not collect
     elif cities:
         # Any of the job's places, not only its first: a Berlin + Munich job is in both (HIR-289).
         parts.append(f"EXISTS (SELECT 1 FROM job_place jpl WHERE jpl.job_id = j.id"
                      f" AND jpl.place IN ({_marks(cities)}))")
         params += list(cities)
-    if f.seniorities:
-        parts.append(f"j.seniority IN ({','.join('?' * len(f.seniorities))})")
-        params += list(f.seniorities)
-    if f.families:
-        parts.append(f"j.family IN ({','.join('?' * len(f.families))})")
-        params += list(f.families)
-    if GERMAN_FILTERS.get(f.german):
-        parts.append(GERMAN_FILTERS[f.german])
-    if DEGREE_FILTERS.get(f.degree):
-        parts.append(DEGREE_FILTERS[f.degree])
-    if PRODUCTION_FILTERS.get(f.production):
-        parts.append(PRODUCTION_FILTERS[f.production])
-    if f.window == "open":
-        c, p = open_clause(now)
-        parts.append(c); params += p
-    elif f.window in ("30d", "90d"):
+    if filters.seniorities:
+        parts.append(f"j.seniority IN ({','.join('?' * len(filters.seniorities))})")
+        params += list(filters.seniorities)
+    if filters.families:
+        parts.append(f"j.family IN ({','.join('?' * len(filters.families))})")
+        params += list(filters.families)
+    if GERMAN_FILTERS.get(filters.german):
+        parts.append(GERMAN_FILTERS[filters.german])
+    if DEGREE_FILTERS.get(filters.degree):
+        parts.append(DEGREE_FILTERS[filters.degree])
+    if PRODUCTION_FILTERS.get(filters.production):
+        parts.append(PRODUCTION_FILTERS[filters.production])
+    if filters.window == "open":
+        open_rule, open_params = open_clause(now)
+        parts.append(open_rule); params += open_params
+    elif filters.window in ("30d", "90d"):
         parts.append("j.last_seen >= ?")
-        params.append(_days_ago(now, 30 if f.window == "30d" else 90))
+        params.append(_days_ago(now, 30 if filters.window == "30d" else 90))
     return (" AND ".join(parts) or "1=1"), params
 
 
-def _mention_clause(f: Filters, alias: str = "m") -> tuple[str, list]:
-    if f.requirement == "required":
+def _mention_clause(filters: Filters, alias: str = "m") -> tuple[str, list]:
+    if filters.requirement == "required":
         return f"{alias}.requirement = 'required'", []
     return "1=1", []
 
 
-def _skills_clause(f: Filters, prefix: str = "sm") -> tuple[str, list]:
-    """SQL (over alias j) true for the jobs that list *every* skill in f.skill_ids.
+def _skills_clause(filters: Filters, prefix: str = "sm") -> tuple[str, list]:
+    """SQL (over alias j) true for the jobs that list *every* skill in filters.skill_ids.
 
     One EXISTS per selected skill, ANDed: a skill set of two is read as "and", not "or".
     Each subquery gets its own alias, so the requirement filter applies per skill and the
     clause can sit beside an aggregate's own mention row. No skills selected: "1=1".
+
+    Returns (skill_clause, skill_params): the SQL text, and the values for its ? slots,
+    in order. The skills' counterpart of job_set_clause's (job_clause, job_params).
     """
     parts, params = [], []
-    for i, sid in enumerate(f.skill_ids):
-        a = f"{prefix}{i}"
-        mc, mp = _mention_clause(f, a)
-        parts.append(f"EXISTS (SELECT 1 FROM skill_mention {a}"
-                     f" WHERE {a}.job_id = j.id AND {a}.skill_id = ? AND {mc})")
-        params += [sid] + mp
+    for index, skill_id in enumerate(filters.skill_ids):
+        alias = f"{prefix}{index}"
+        mention_clause, mention_params = _mention_clause(filters, alias)
+        parts.append(f"EXISTS (SELECT 1 FROM skill_mention {alias}"
+                     f" WHERE {alias}.job_id = j.id AND {alias}.skill_id = ? AND {mention_clause})")
+        params += [skill_id] + mention_params
     return (" AND ".join(parts) or "1=1"), params
 
 
@@ -294,8 +302,8 @@ def fts_query(text: str) -> str:
     makes it a literal string token, and the quoted words are ANDed. Returns "" when
     nothing is left to search for, which the caller reads as "no text filter".
     """
-    words = [w.replace('"', "") for w in text.split()]
-    return " AND ".join(f'"{w}"' for w in words if w)
+    words = [word.replace('"', "") for word in text.split()]
+    return " AND ".join(f'"{word}"' for word in words if word)
 
 
 _FTS_CLAUSE = "j.id IN (SELECT rowid FROM job_fts WHERE job_fts MATCH ?)"
@@ -307,33 +315,30 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     """The header's counts. Every one is over the jobs the public may see (HIR-395): an
     incubating place or track adds to none of them, and is no key of the two breakdowns."""
     # The public rule rides inside the open clause and stands alone for the all-time counts.
-    pc, pp = public_clause()
-    oc, op = open_clause(now)
-    oc, op = f"{pc} AND {oc}", pp + op
-    plc, plp = _public_place("jpl.place")
-    total = conn.execute(f"SELECT count(*) FROM job j WHERE {pc}", pp).fetchone()[0]
-    open_total = conn.execute(f"SELECT count(*) FROM job j WHERE {oc}", op).fetchone()[0]
-    by_city = {r["place"]: r["n"] for r in conn.execute(
-        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {oc} AND {plc}"
-        f" GROUP BY jpl.place", op + plp)}
-    by_family = {r["family"]: r["n"] for r in conn.execute(
-        f"SELECT j.family, count(*) n FROM job j WHERE {oc} AND j.family IS NOT NULL GROUP BY j.family", op)}
+    public_rule, public_params = public_clause()
+    open_rule, open_params = open_clause(now)
+    open_rule, open_params = f"{public_rule} AND {open_rule}", public_params + open_params
+    place_clause, place_params = _public_place("jpl.place")
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {public_rule}", public_params).fetchone()[0]
+    open_total = conn.execute(f"SELECT count(*) FROM job j WHERE {open_rule}", open_params).fetchone()[0]
+    by_city = {row["place"]: row["n"] for row in conn.execute(
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {open_rule} AND {place_clause}"
+        f" GROUP BY jpl.place", open_params + place_params)}
+    by_family = {row["family"]: row["n"] for row in conn.execute(
+        f"SELECT j.family, count(*) n FROM job j WHERE {open_rule} AND j.family IS NOT NULL GROUP BY j.family", open_params)}
     companies = conn.execute(
-        f"SELECT count(DISTINCT lower(j.company)) FROM job j WHERE j.company IS NOT NULL AND {pc}", pp).fetchone()[0]
-    last = conn.execute(f"SELECT max(j.last_seen) FROM job j WHERE {pc}", pp).fetchone()[0]
-    pending = conn.execute(
-        f"SELECT count(*) FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status='pending' AND {pc}",
-        pp).fetchone()[0]
-    legacy = conn.execute(f"SELECT count(*) FROM job j WHERE j.extracted_version = ? AND {pc}",
-                          [LEGACY_VERSION] + pp).fetchone()[0]
-    too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH} AND {pc}",
-                             pp).fetchone()[0]
-    open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {GERMAN_FILTERS['required']}", op).fetchone()[0]
-    open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {DEGREE_FILTERS['required']}", op).fetchone()[0]
-    open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {PRODUCTION_FILTERS['required']}", op).fetchone()[0]
+        f"SELECT count(DISTINCT lower(j.company)) FROM job j WHERE j.company IS NOT NULL AND {public_rule}", public_params).fetchone()[0]
+    last = conn.execute(f"SELECT max(j.last_seen) FROM job j WHERE {public_rule}", public_params).fetchone()[0]
+    legacy = conn.execute(f"SELECT count(*) FROM job j WHERE j.extracted_version = ? AND {public_rule}",
+                          [LEGACY_VERSION] + public_params).fetchone()[0]
+    too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH} AND {public_rule}",
+                             public_params).fetchone()[0]
+    open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {open_rule} AND {GERMAN_FILTERS['required']}", open_params).fetchone()[0]
+    open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {open_rule} AND {DEGREE_FILTERS['required']}", open_params).fetchone()[0]
+    open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {open_rule} AND {PRODUCTION_FILTERS['required']}", open_params).fetchone()[0]
     return {"jobs": total, "open": open_total, "open_by_city": by_city, "open_by_family": by_family,
             "companies": companies,
-            "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy, "too_short": too_short,
+            "skills_tracked": skills_tracked, "last_updated": last, "legacy": legacy, "too_short": too_short,
             "open_german_required": open_german, "open_degree_required": open_degree,
             "open_production_required": open_production,
             "open_rule": {"feed_days": FEED_OPEN_DAYS, "manual_days": MANUAL_OPEN_DAYS}}
@@ -348,51 +353,51 @@ def _skill_rows(rows, total: int, with_cities: bool = True) -> list[dict]:
     id, divide by the denominator the caller chose. with_cities=False skips the per-city
     breakdown (and the rows then need no city column).
     """
-    agg: dict[str, dict] = {}
-    for r in rows:
-        s = agg.setdefault(r["skill_id"], {"skill_id": r["skill_id"], "count": 0}
+    by_skill: dict[str, dict] = {}
+    for row in rows:
+        skill = by_skill.setdefault(row["skill_id"], {"skill_id": row["skill_id"], "count": 0}
                            | ({"by_city": {}} if with_cities else {}))
-        s["count"] += r["n"]
-        if with_cities and r["city"]:
-            s["by_city"][r["city"]] = s["by_city"].get(r["city"], 0) + r["n"]
-    skills = sorted(agg.values(), key=lambda s: (-s["count"], s["skill_id"]))
-    for s in skills:
-        s["pct"] = round(100 * s["count"] / total, 1) if total else 0.0
+        skill["count"] += row["n"]
+        if with_cities and row["city"]:
+            skill["by_city"][row["city"]] = skill["by_city"].get(row["city"], 0) + row["n"]
+    skills = sorted(by_skill.values(), key=lambda skill: (-skill["count"], skill["skill_id"]))
+    for skill in skills:
+        skill["pct"] = round(100 * skill["count"] / total, 1) if total else 0.0
     return skills
 
 
-def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
+def skill_frequency(conn: sqlite3.Connection, filters: Filters, now: str) -> dict:
     """{'total': n_jobs, 'skills': [{skill_id, count, pct, by_city: {city: count}}...]} sorted by count desc."""
-    jc, jp = job_set_clause(f, now)
-    mc, mp = _mention_clause(f)
-    total = conn.execute(f"SELECT count(*) FROM job j WHERE {jc}", jp).fetchone()[0]
+    job_clause, job_params = job_set_clause(filters, now)
+    mention_clause, mention_params = _mention_clause(filters)
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {job_clause}", job_params).fetchone()[0]
     # The jobs are picked first, once, and only their mentions are read (HIR-372). Joined
     # the other way round, SQLite walked every stored mention and re-checked the whole job
     # filter for each one, posting text included: many times the work, on the request
     # every page makes. CROSS JOIN is SQLite's way of fixing the join order as written.
-    js = f"WITH js AS MATERIALIZED (SELECT j.id FROM job j WHERE {jc})"
+    jobs_cte = f"WITH js AS MATERIALIZED (SELECT j.id FROM job j WHERE {job_clause})"
     rows = conn.execute(
-        f"{js} SELECT m.skill_id, count(DISTINCT m.job_id) n FROM js"
+        f"{jobs_cte} SELECT m.skill_id, count(DISTINCT m.job_id) n FROM js"
         f" CROSS JOIN skill_mention m ON m.job_id = js.id"
-        f" WHERE {mc} GROUP BY m.skill_id", jp + mp).fetchall()
+        f" WHERE {mention_clause} GROUP BY m.skill_id", job_params + mention_params).fetchall()
     # Per place on a query of its own: a job in two places counts once in `count` and once
     # in each place's `by_city` (HIR-289), so the two cannot come from one grouping.
     by_place: dict[str, dict] = {}
-    plc, plp = _public_place("jpl.place")
-    for r in conn.execute(
-            f"{js} SELECT m.skill_id, jpl.place, count(DISTINCT m.job_id) n FROM js"
+    place_clause, place_params = _public_place("jpl.place")
+    for row in conn.execute(
+            f"{jobs_cte} SELECT m.skill_id, jpl.place, count(DISTINCT m.job_id) n FROM js"
             f" CROSS JOIN skill_mention m ON m.job_id = js.id"
             f" CROSS JOIN job_place jpl ON jpl.job_id = js.id"
-            f" WHERE {mc} AND {plc} GROUP BY m.skill_id, jpl.place", jp + mp + plp):
-        by_place.setdefault(r["skill_id"], {})[r["place"]] = r["n"]
+            f" WHERE {mention_clause} AND {place_clause} GROUP BY m.skill_id, jpl.place", job_params + mention_params + place_params):
+        by_place.setdefault(row["skill_id"], {})[row["place"]] = row["n"]
     skills = _skill_rows(rows, total, with_cities=False)
-    for s in skills:
-        s["by_city"] = by_place.get(s["skill_id"], {})
+    for skill in skills:
+        skill["by_city"] = by_place.get(skill["skill_id"], {})
     return {"total": total, "skills": skills}
 
 
-def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
-    """What the jobs listing every skill in f.skill_ids also list.
+def related_skills(conn: sqlite3.Connection, filters: Filters, now: str) -> dict:
+    """What the jobs listing every skill in filters.skill_ids also list.
 
     Returns {'selected_count', 'total', 'skills': [...]}; with one skill selected the
     answer is identical to the single-skill version this grew out of.
@@ -415,74 +420,74 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     so `selected_count` shrinks as skills are added and MIN_CO_JOBS prunes the rows
     faster; `selected_count > 0` with no rows is that pruning, and the UI says so.
     """
-    base = skill_frequency(conn, f, now)      # the baseline, by construction the same filter set
+    base = skill_frequency(conn, filters, now)      # the baseline, by construction the same filter set
     total = base["total"]
-    base_count = {s["skill_id"]: s for s in base["skills"]}
+    base_count = {skill["skill_id"]: skill for skill in base["skills"]}
     empty = {"selected_count": 0, "total": total, "skills": []}
-    if not f.skill_ids or not total:
+    if not filters.skill_ids or not total:
         return empty
-    jc, jp = job_set_clause(f, now)
-    mc, mp = _mention_clause(f)
+    job_clause, job_params = job_set_clause(filters, now)
+    mention_clause, mention_params = _mention_clause(filters)
     # The same clause list_jobs uses to narrow to the jobs listing every selected skill.
-    sel, sel_params = _skills_clause(f)
-    selected_count = conn.execute(f"SELECT count(*) FROM job j WHERE {jc} AND {sel}", jp + sel_params).fetchone()[0]
+    selected_clause, selected_params = _skills_clause(filters)
+    selected_count = conn.execute(f"SELECT count(*) FROM job j WHERE {job_clause} AND {selected_clause}", job_params + selected_params).fetchone()[0]
     if not selected_count:
         return empty
-    excl = f"m.skill_id NOT IN ({','.join('?' * len(f.skill_ids))})"
+    exclude_clause = f"m.skill_id NOT IN ({','.join('?' * len(filters.skill_ids))})"
     rows = conn.execute(
         f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {jc} AND {mc} AND {sel} AND {excl} GROUP BY m.skill_id",
-        jp + mp + sel_params + list(f.skill_ids)).fetchall()
+        f" WHERE {job_clause} AND {mention_clause} AND {selected_clause} AND {exclude_clause} GROUP BY m.skill_id",
+        job_params + mention_params + selected_params + list(filters.skill_ids)).fetchall()
     skills = []
-    for s in _skill_rows(rows, selected_count, with_cities=False):
-        if s["count"] < MIN_CO_JOBS:
+    for skill in _skill_rows(rows, selected_count, with_cities=False):
+        if skill["count"] < MIN_CO_JOBS:
             continue
-        b = base_count[s["skill_id"]]["count"]   # a subset's skill is always in the baseline
-        s["base_pct"] = base_count[s["skill_id"]]["pct"]
-        s["lift"] = round((s["count"] / selected_count) / (b / total), 3)
-        skills.append(s)
-    skills.sort(key=lambda s: (-s["lift"], -s["count"], s["skill_id"]))
+        base_job_count = base_count[skill["skill_id"]]["count"]   # a subset's skill is always in the baseline
+        skill["base_pct"] = base_count[skill["skill_id"]]["pct"]
+        skill["lift"] = round((skill["count"] / selected_count) / (base_job_count / total), 3)
+        skills.append(skill)
+    skills.sort(key=lambda skill: (-skill["lift"], -skill["count"], skill["skill_id"]))
     top = skills[:RELATED_LIMIT]
     # Lift picks the ten; the panel then reads top-down by the number it shows. (Every row
     # here shares the denominator selected_count, so pct ranks exactly as count does.)
-    top.sort(key=lambda s: (-s["pct"], -s["count"], s["skill_id"]))
+    top.sort(key=lambda skill: (-skill["pct"], -skill["count"], skill["skill_id"]))
     return {"selected_count": selected_count, "total": total, "skills": top}
 
 
-def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int]:
+def city_totals(conn: sqlite3.Connection, filters: Filters, now: str) -> dict[str, int]:
     """Jobs per city in the filtered set — the denominators for compare mode."""
-    jc, jp = job_set_clause(f, now)
-    plc, plp = _public_place("jpl.place")
-    return {r["place"]: r["n"] for r in conn.execute(
-        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {jc} AND {plc}"
-        f" GROUP BY jpl.place", jp + plp)}
+    job_clause, job_params = job_set_clause(filters, now)
+    place_clause, place_params = _public_place("jpl.place")
+    return {row["place"]: row["n"] for row in conn.execute(
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {job_clause} AND {place_clause}"
+        f" GROUP BY jpl.place", job_params + place_params)}
 
 
 # --- what's rising ----------------------------------------------------------------------
 
-def _open_during(conn: sqlite3.Connection, f: Filters, start: str, end: str) -> tuple[int, dict[str, int]]:
+def _open_during(conn: sqlite3.Connection, filters: Filters, start: str, end: str) -> tuple[int, dict[str, int]]:
     """(jobs open at any moment between start and end, {skill_id: how many of them list it}).
 
     Open during a period = first seen by its end, and still open at its start by the
     dashboard's own open rule (`open_clause`, asked as of `start`): so a job counts in every
     period it was open in, and a job that stays open counts in both periods compared."""
-    base, bp = job_set_clause(replace(f, window="all"), end)
-    oc, op = open_clause(start)
-    where, params = f"{base} AND j.first_seen <= ? AND {oc}", bp + [end] + op
-    mc, mp = _mention_clause(f)
+    base_clause, base_params = job_set_clause(replace(filters, window="all"), end)
+    open_rule, open_params = open_clause(start)
+    where, params = f"{base_clause} AND j.first_seen <= ? AND {open_rule}", base_params + [end] + open_params
+    mention_clause, mention_params = _mention_clause(filters)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
     rows = conn.execute(
         f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {where} AND {mc} GROUP BY m.skill_id", params + mp)
-    return total, {r["skill_id"]: r["n"] for r in rows}
+        f" WHERE {where} AND {mention_clause} GROUP BY m.skill_id", params + mention_params)
+    return total, {row["skill_id"]: row["n"] for row in rows}
 
 
-def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: dict[str, str],
+def rising_skills(conn: sqlite3.Connection, filters: Filters, now: str, skill_added: dict[str, str],
                   collecting_since: dict[str, str] = COLLECTING_SINCE) -> dict:
     """Skills asked for by a larger or smaller share of open jobs in the last RISING_DAYS
-    days than in the RISING_DAYS before (HIR-232), for f's cities and families.
+    days than in the RISING_DAYS before (HIR-232), for the filters' cities and families.
 
-    Reads only `cities` (none = every live place), `families` and `requirement` from f.
+    Reads only `cities` (none = every live place), `families` and `requirement` from filters.
     An incubating place is no part of the answer (HIR-395): it is not among "every live
     place", so its recent start date cannot hold the whole comparison back, and asked for
     by name it answers like a place we do not collect.
@@ -502,60 +507,60 @@ def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: d
     RISING_LIMIT rows, largest move first, and only moves of RISING_MIN_CHANGE points or
     more; each row carries both counts and both shares.
     """
-    cur_start, prev_start = _days_ago(now, RISING_DAYS), _days_ago(now, 2 * RISING_DAYS)
-    out = {"status": "not_enough_data", "reason": "new_city", "ready_from": None, "window_days": RISING_DAYS,
-           "current": {"start": cur_start, "end": now, "open_jobs": None},
-           "previous": {"start": prev_start, "end": cur_start, "open_jobs": None},
+    current_start, previous_start = _days_ago(now, RISING_DAYS), _days_ago(now, 2 * RISING_DAYS)
+    result = {"status": "not_enough_data", "reason": "new_city", "ready_from": None, "window_days": RISING_DAYS,
+           "current": {"start": current_start, "end": now, "open_jobs": None},
+           "previous": {"start": previous_start, "end": current_start, "open_jobs": None},
            "risers": [], "fallers": []}
     hidden = scope.incubating_places()
-    since = [None if c in hidden else collecting_since.get(c) for c in (f.cities or scope.live_places())]
+    since = [None if place in hidden else collecting_since.get(place) for place in (filters.cities or scope.live_places())]
     if None in since:
-        return out
-    if max(since) > prev_start[:10]:
+        return result
+    if max(since) > previous_start[:10]:
         newest = datetime.strptime(max(since), "%Y-%m-%d") + timedelta(days=2 * RISING_DAYS)
-        return {**out, "ready_from": newest.strftime("%Y-%m-%d")}
+        return {**result, "ready_from": newest.strftime("%Y-%m-%d")}
 
-    cur_total, cur = _open_during(conn, f, cur_start, now)
-    prev_total, prev = _open_during(conn, f, prev_start, cur_start)
-    out["current"]["open_jobs"], out["previous"]["open_jobs"] = cur_total, prev_total
+    current_total, current_counts = _open_during(conn, filters, current_start, now)
+    previous_total, previous_counts = _open_during(conn, filters, previous_start, current_start)
+    result["current"]["open_jobs"], result["previous"]["open_jobs"] = current_total, previous_total
     rows, comparable = [], False
-    for sid in sorted(set(cur) | set(prev)):
-        if skill_added.get(sid, "9999-12-31") > prev_start[:10]:
+    for skill_id in sorted(set(current_counts) | set(previous_counts)):
+        if skill_added.get(skill_id, "9999-12-31") > previous_start[:10]:
             continue
-        r = skill_change_calculation(cur.get(sid, 0), cur_total, prev.get(sid, 0), prev_total)
-        if r is None:
+        calculation = skill_change_calculation(current_counts.get(skill_id, 0), current_total, previous_counts.get(skill_id, 0), previous_total)
+        if calculation is None:
             continue
         comparable = True
-        if abs(r["total_change"]) >= RISING_MIN_CHANGE:
-            rows.append({"skill_id": sid, "current_count": cur.get(sid, 0), "previous_count": prev.get(sid, 0),
-                         "current_share": round(r["current_share"], 1),
-                         "previous_share": round(r["previous_share"], 1),
-                         "change": round(r["total_change"], 1)})
+        if abs(calculation["total_change"]) >= RISING_MIN_CHANGE:
+            rows.append({"skill_id": skill_id, "current_count": current_counts.get(skill_id, 0), "previous_count": previous_counts.get(skill_id, 0),
+                         "current_share": round(calculation["current_share"], 1),
+                         "previous_share": round(calculation["previous_share"], 1),
+                         "change": round(calculation["total_change"], 1)})
     if not comparable:
-        return {**out, "reason": "few_jobs"}
-    rows.sort(key=lambda s: (-abs(s["change"]), s["skill_id"]))
-    return {**out, "status": "ok", "reason": None,
-            "risers": [s for s in rows if s["change"] > 0][:RISING_LIMIT],
-            "fallers": [s for s in rows if s["change"] < 0][:RISING_LIMIT]}
+        return {**result, "reason": "few_jobs"}
+    rows.sort(key=lambda row: (-abs(row["change"]), row["skill_id"]))
+    return {**result, "status": "ok", "reason": None,
+            "risers": [row for row in rows if row["change"] > 0][:RISING_LIMIT],
+            "fallers": [row for row in rows if row["change"] < 0][:RISING_LIMIT]}
 
 
 # --- jobs -------------------------------------------------------------------------------
 
-_PLACE_ORDER = {p: i for i, p in enumerate([*CITIES, REMOTE_EU])}
+_PLACE_ORDER = {place: position for position, place in enumerate([*CITIES, REMOTE_EU])}
 
 
-def _places(conn: sqlite3.Connection, ids: list[int], include_incubating: bool = False) -> dict[int, list[str]]:
+def _places(conn: sqlite3.Connection, job_ids: list[int], include_incubating: bool = False) -> dict[int, list[str]]:
     """{job id: every place it is posted for}, in geo's order, so the job's own city (the
     first place) leads (HIR-289). Incubating places are left out unless asked for."""
-    out: dict[int, list[str]] = {i: [] for i in ids}
-    plc, plp = ("1=1", []) if include_incubating else _public_place("place")
-    if ids:
-        for r in conn.execute(f"SELECT job_id, place FROM job_place WHERE job_id IN ({_marks(ids)}) AND {plc}",
-                              ids + plp):
-            out[r["job_id"]].append(r["place"])
-    for v in out.values():
-        v.sort(key=lambda p: (_PLACE_ORDER.get(p, len(_PLACE_ORDER)), p))
-    return out
+    places_by_job: dict[int, list[str]] = {job_id: [] for job_id in job_ids}
+    place_clause, place_params = ("1=1", []) if include_incubating else _public_place("place")
+    if job_ids:
+        for row in conn.execute(f"SELECT job_id, place FROM job_place WHERE job_id IN ({_marks(job_ids)}) AND {place_clause}",
+                              job_ids + place_params):
+            places_by_job[row["job_id"]].append(row["place"])
+    for job_places in places_by_job.values():
+        job_places.sort(key=lambda place: (_PLACE_ORDER.get(place, len(_PLACE_ORDER)), place))
+    return places_by_job
 
 
 def _shown_city(city: str | None, places: list[str], include_incubating: bool) -> str | None:
@@ -576,13 +581,13 @@ SORTS = {
 
 def _status(row, now: str, sources: list[dict]) -> str:
     """Python twin of open_clause, over a job row and its job_source rows (need last_seen)."""
-    feed_seen = [s["last_seen"] for s in sources if s["source"] in FEED_SOURCES]
+    feed_seen = [source["last_seen"] for source in sources if source["source"] in FEED_SOURCES]
     if feed_seen:
         return "open" if max(feed_seen) >= _days_ago(now, FEED_OPEN_DAYS) else "closed"
     return "open" if row["last_seen"] >= _days_ago(now, MANUAL_OPEN_DAYS) else "closed"
 
 
-def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
+def list_jobs(conn: sqlite3.Connection, filters: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0, include_incubating: bool = False) -> dict:
     """Find the jobs that match a set of filters, one page at a time.
 
@@ -594,8 +599,8 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
 
     Args:
         conn: an open database connection.
-        f: the filters: which window of jobs, which skills, city, seniority and so
-            on, and any words to find in the company, title or posting text.
+        filters: which window of jobs, which skills, city, seniority and so on, and
+            any words to find in the company, title or posting text.
         now: the current time, as an ISO string. A job is open or closed relative to it.
         sort: "newest" (default), "oldest", "reposts" (most re-advertised first) or
             "company". An unknown value falls back to "newest".
@@ -615,71 +620,71 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             limit, offset: as passed in.
         When nothing matches, total is 0 and jobs is an empty list.
     """
-    jc, jp = job_set_clause(f, now, include_legacy=True, include_incubating=include_incubating)
-    params = list(jp)
-    where = [jc]
-    if f.skill_ids:
-        sc, sp = _skills_clause(f, "m")      # every selected skill, ANDed
-        where.append(sc)
-        params += sp
-    if f.query.strip():
-        q = f"%{f.query.strip().lower()}%"
+    job_clause, job_params = job_set_clause(filters, now, include_legacy=True, include_incubating=include_incubating)
+    params = list(job_params)
+    where = [job_clause]
+    if filters.skill_ids:
+        skill_clause, skill_params = _skills_clause(filters, "m")      # every selected skill, ANDed
+        where.append(skill_clause)
+        params += skill_params
+    if filters.query.strip():
+        like_pattern = f"%{filters.query.strip().lower()}%"
         where.append("(lower(j.company) LIKE ? OR lower(j.title) LIKE ?)")
-        params += [q, q]
-    match = fts_query(f.text)
+        params += [like_pattern, like_pattern]
+    match = fts_query(filters.text)
     if match:
         where.append(_FTS_CLAUSE)
         params.append(match)
-    w = " AND ".join(where)
-    total = conn.execute(f"SELECT count(*) FROM job j WHERE {w}", params).fetchone()[0]
+    where_sql = " AND ".join(where)
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {where_sql}", params).fetchone()[0]
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(
         f"SELECT j.id, j.company, j.title, j.city, j.family, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
         f" j.repost_count, j.extracted_version, length(j.description_text) AS text_len, j.german, j.degree, j.degree_requirement, j.degree_or_equivalent, j.production"
-        f" FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
+        f" FROM job j WHERE {where_sql} ORDER BY {order} LIMIT ? OFFSET ?",
         params + [limit, offset]).fetchall()
-    ids = [r["id"] for r in rows]
-    srcs: dict[int, list] = {i: [] for i in ids}
-    if ids:
-        for s in conn.execute(
+    job_ids = [row["id"] for row in rows]
+    sources_by_job: dict[int, list] = {job_id: [] for job_id in job_ids}
+    if job_ids:
+        for source_row in conn.execute(
                 f"SELECT job_id, source, url, first_seen, last_seen, found_via FROM job_source"
-                f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY first_seen", ids):
-            srcs[s["job_id"]].append({"source": s["source"], "url": s["url"], "first_seen": s["first_seen"],
-                                      "last_seen": s["last_seen"], "found_via": s["found_via"]})
-    skill_counts: dict[int, dict] = {i: {"required": 0, "nice_to_have": 0} for i in ids}
-    required: dict[int, list] = {i: [] for i in ids}
-    nice: dict[int, list] = {i: [] for i in ids}
-    groups: dict[int, dict] = {i: {} for i in ids}
-    if ids:
-        for s in conn.execute(
+                f" WHERE job_id IN ({','.join('?' * len(job_ids))}) ORDER BY first_seen", job_ids):
+            sources_by_job[source_row["job_id"]].append({"source": source_row["source"], "url": source_row["url"], "first_seen": source_row["first_seen"],
+                                      "last_seen": source_row["last_seen"], "found_via": source_row["found_via"]})
+    skill_counts: dict[int, dict] = {job_id: {"required": 0, "nice_to_have": 0} for job_id in job_ids}
+    required: dict[int, list] = {job_id: [] for job_id in job_ids}
+    nice: dict[int, list] = {job_id: [] for job_id in job_ids}
+    groups: dict[int, dict] = {job_id: {} for job_id in job_ids}
+    if job_ids:
+        for mention in conn.execute(
                 f"SELECT job_id, skill_id, requirement, alternative_group FROM skill_mention"
-                f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY skill_id", ids):
-            skill_counts[s["job_id"]][s["requirement"]] += 1
-            (required if s["requirement"] == "required" else nice)[s["job_id"]].append(s["skill_id"])
-            if s["requirement"] == "required" and s["alternative_group"] is not None:
-                groups[s["job_id"]].setdefault(s["alternative_group"], []).append(s["skill_id"])
-    places = _places(conn, ids, include_incubating)
+                f" WHERE job_id IN ({','.join('?' * len(job_ids))}) ORDER BY skill_id", job_ids):
+            skill_counts[mention["job_id"]][mention["requirement"]] += 1
+            (required if mention["requirement"] == "required" else nice)[mention["job_id"]].append(mention["skill_id"])
+            if mention["requirement"] == "required" and mention["alternative_group"] is not None:
+                groups[mention["job_id"]].setdefault(mention["alternative_group"], []).append(mention["skill_id"])
+    places = _places(conn, job_ids, include_incubating)
     jobs = []
-    for r in rows:
-        d = dict(r)
-        d["places"] = places[r["id"]]
-        d["city"] = _shown_city(d["city"], d["places"], include_incubating)
-        d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
-        d["too_short"] = not d["legacy"] and d.pop("text_len") < MIN_TEXT_CHARS
-        d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
-        d["sources"] = srcs[r["id"]]
-        d["status"] = _status(r, now, d["sources"])
-        d["skill_counts"] = skill_counts[r["id"]]
+    for row in rows:
+        job = dict(row)
+        job["places"] = places[row["id"]]
+        job["city"] = _shown_city(job["city"], job["places"], include_incubating)
+        job["legacy"] = job.pop("extracted_version") == LEGACY_VERSION
+        job["too_short"] = not job["legacy"] and job.pop("text_len") < MIN_TEXT_CHARS
+        job["degree_or_equivalent"] = bool(job["degree_or_equivalent"])
+        job["sources"] = sources_by_job[row["id"]]
+        job["status"] = _status(row, now, job["sources"])
+        job["skill_counts"] = skill_counts[row["id"]]
         # Ids only, both lists. The browser-side profile match scores a job on the required
         # ones and breaks ties on the nice-to-have ones (HIR-51); the profile itself never
         # reaches this process, so the ranking cannot happen here.
-        d["required_skills"] = required[r["id"]]
-        d["nice_skills"] = nice[r["id"]]
+        job["required_skills"] = required[row["id"]]
+        job["nice_skills"] = nice[row["id"]]
         # Required skills that are alternatives to each other ("Python, Go or Java"): the
         # match counts each list as one requirement, met by any member (HIR-251). Lists of
         # two or more ids, in group-number order; every id is also in required_skills.
-        d["required_groups"] = [g for _, g in sorted(groups[r["id"]].items()) if len(g) > 1]
-        jobs.append(d)
+        job["required_groups"] = [group for _, group in sorted(groups[row["id"]].items()) if len(group) > 1]
+        jobs.append(job)
     return {"total": total, "jobs": jobs, "limit": limit, "offset": offset}
 
 
@@ -688,31 +693,34 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str, include_incubati
     yet (`public_clause`) is "no such job" too, unless include_incubating (HIR-395)."""
     if not include_incubating and not is_public(conn, job_id):
         return None
-    r = conn.execute(
+    row = conn.execute(
         "SELECT id, company, title, city, location_raw, family, seniority, seniority_basis, seniority_signal,"
         " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
         " production, production_basis, production_signal,"
         " first_seen, last_seen, repost_count, extracted_version, description_text, length(description_text) AS text_len"
         " FROM job WHERE id = ?", (job_id,)).fetchone()
-    if not r:
+    if not row:
         return None
-    d = dict(r)
-    d["places"] = _places(conn, [job_id], include_incubating)[job_id]
-    d["city"] = _shown_city(d["city"], d["places"], include_incubating)
-    d["sources"] = [dict(s) for s in conn.execute(
+    job = dict(row)
+    # A posting stored as markup before ingest cleaned it is shown as text all the same
+    # (HIR-420). Never the other way round: nothing here hands a reader the posting's HTML.
+    job["description_text"] = clean_posting_text(job["description_text"] or "")
+    job["places"] = _places(conn, [job_id], include_incubating)[job_id]
+    job["city"] = _shown_city(job["city"], job["places"], include_incubating)
+    job["sources"] = [dict(source) for source in conn.execute(
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
-    d["status"] = _status(r, now, d["sources"])
-    d["legacy"] = d["extracted_version"] == LEGACY_VERSION
-    d["too_short"] = not d["legacy"] and (d.pop("text_len") or 0) < MIN_TEXT_CHARS
-    d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
-    d["skills"] = [dict(m) for m in conn.execute(
+    job["status"] = _status(row, now, job["sources"])
+    job["legacy"] = job["extracted_version"] == LEGACY_VERSION
+    job["too_short"] = not job["legacy"] and (job.pop("text_len") or 0) < MIN_TEXT_CHARS
+    job["degree_or_equivalent"] = bool(job["degree_or_equivalent"])
+    job["skills"] = [dict(mention) for mention in conn.execute(
         "SELECT skill_id, requirement, raw_text, alternative_group FROM skill_mention WHERE job_id = ?"
         " ORDER BY requirement = 'required' DESC, skill_id", (job_id,))]
-    d["proposed"] = [dict(p) for p in conn.execute(
+    job["proposed"] = [dict(proposal) for proposal in conn.execute(
         "SELECT id, label, raw_text, status FROM proposed_skill WHERE job_id = ? ORDER BY id", (job_id,))]
-    d["has_screenshot"] = conn.execute("SELECT 1 FROM screenshot WHERE job_id = ?", (job_id,)).fetchone() is not None
-    return d
+    job["has_screenshot"] = conn.execute("SELECT 1 FROM screenshot WHERE job_id = ?", (job_id,)).fetchone() is not None
+    return job
 
 
 # --- proposed skills ------------------------------------------------------------------
@@ -721,27 +729,27 @@ def proposed_skills(conn: sqlite3.Connection, status: str = "pending", include_i
     """Grouped by label (case-insensitive): one row per label with every job that proposed it.
     Jobs the public may not see yet, and what only they proposed, are left out unless
     include_incubating (HIR-395): the review queue names each job's company and title."""
-    pc, pp = ("1=1", []) if include_incubating else public_clause()
+    public_rule, public_params = ("1=1", []) if include_incubating else public_clause()
     rows = conn.execute(
         "SELECT p.id, p.label, p.raw_text, p.status, p.resolved_skill_id, j.id job_id, j.company, j.title, j.city, j.first_seen"
-        f" FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status = ? AND {pc} ORDER BY p.id",
-        [status] + pp).fetchall()
+        f" FROM proposed_skill p JOIN job j ON j.id = p.job_id WHERE p.status = ? AND {public_rule} ORDER BY p.id",
+        [status] + public_params).fetchall()
     groups: dict[str, dict] = {}
-    for r in rows:
-        key = r["label"].strip().lower()
-        g = groups.setdefault(key, {"label": r["label"], "status": r["status"], "ids": [], "jobs": [],
-                                    "resolved_skill_id": r["resolved_skill_id"]})
-        g["ids"].append(r["id"])
-        g["jobs"].append({"job_id": r["job_id"], "company": r["company"], "title": r["title"], "city": r["city"],
-                          "raw_text": r["raw_text"], "first_seen": r["first_seen"]})
-    out = list(groups.values())
-    out.sort(key=lambda g: (-len(g["jobs"]), g["label"].lower()))
-    for g in out:
-        g["count"] = len(g["jobs"])
-    return out
+    for row in rows:
+        key = row["label"].strip().lower()
+        group = groups.setdefault(key, {"label": row["label"], "status": row["status"], "ids": [], "jobs": [],
+                                    "resolved_skill_id": row["resolved_skill_id"]})
+        group["ids"].append(row["id"])
+        group["jobs"].append({"job_id": row["job_id"], "company": row["company"], "title": row["title"], "city": row["city"],
+                          "raw_text": row["raw_text"], "first_seen": row["first_seen"]})
+    sorted_groups = list(groups.values())
+    sorted_groups.sort(key=lambda group: (-len(group["jobs"]), group["label"].lower()))
+    for group in sorted_groups:
+        group["count"] = len(group["jobs"])
+    return sorted_groups
 
 
-def resolve_proposed(conn: sqlite3.Connection, ids: list[int], status: str, resolved_skill_id: str | None,
+def resolve_proposed(conn: sqlite3.Connection, proposal_ids: list[int], status: str, resolved_skill_id: str | None,
                      taxonomy_version: int, extractor_version: str = "review") -> int:
     """Reject, or accept as an alias of an existing taxonomy skill (adds the mention to each job).
 
@@ -752,22 +760,22 @@ def resolve_proposed(conn: sqlite3.Connection, ids: list[int], status: str, reso
         raise ValueError("status must be accepted or rejected")
     if status == "accepted" and not resolved_skill_id:
         raise ValueError("accepting needs resolved_skill_id (an existing taxonomy id)")
-    if not ids:
+    if not proposal_ids:
         return 0
-    q = ",".join("?" * len(ids))
+    placeholders = ",".join("?" * len(proposal_ids))
     with conn:
         if status == "accepted":
             rows = conn.execute(
                 f"SELECT p.job_id, p.raw_text, m.requirement req FROM proposed_skill p"
                 f" LEFT JOIN skill_mention m ON m.job_id = p.job_id AND m.skill_id = ?"
-                f" WHERE p.id IN ({q}) AND p.status = 'pending'", [resolved_skill_id] + ids).fetchall()
-            for r in rows:
-                if r["req"] is None:  # not already on the job
+                f" WHERE p.id IN ({placeholders}) AND p.status = 'pending'", [resolved_skill_id] + proposal_ids).fetchall()
+            for row in rows:
+                if row["req"] is None:  # not already on the job
                     conn.execute(
                         "INSERT OR IGNORE INTO skill_mention (job_id, skill_id, requirement, raw_text, taxonomy_version, extractor_version)"
                         " VALUES (?,?,?,?,?,?)",
-                        (r["job_id"], resolved_skill_id, "required", r["raw_text"], taxonomy_version, extractor_version))
-        cur = conn.execute(
-            f"UPDATE proposed_skill SET status = ?, resolved_skill_id = ? WHERE id IN ({q}) AND status = 'pending'",
-            [status, resolved_skill_id] + ids)
-        return cur.rowcount
+                        (row["job_id"], resolved_skill_id, "required", row["raw_text"], taxonomy_version, extractor_version))
+        cursor = conn.execute(
+            f"UPDATE proposed_skill SET status = ?, resolved_skill_id = ? WHERE id IN ({placeholders}) AND status = 'pending'",
+            [status, resolved_skill_id] + proposal_ids)
+        return cursor.rowcount

@@ -14,8 +14,8 @@ app/ingest.py's typed result.
 
 Does NOT: check the link (app/check.py), read a screenshot (app/transcribe.py), extract
 skills (app/pipeline.py), or format a message. Its callers do that: the CLI's `check --add`,
-`add-text` and `add-screenshot` (app/__main__.py), the dashboard's three `POST /api/add/*`
-endpoints (app/api.py), and the one-off legacy import (scripts/import_legacy.py). They
+`add-text` and `add-screenshot` (app/__main__.py), and the one-off legacy import
+(scripts/import_legacy.py); the dashboard's own add endpoints are gone (HIR-346). They
 differ only in how they report an outcome, which is why the rules live here and the wording
 does not.
 
