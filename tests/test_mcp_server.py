@@ -452,6 +452,142 @@ def test_search_jobs_accepts_exactly_the_api_values(server):
     assert tool.annotations.read_only_hint is True
 
 
+# --- match_profile -----------------------------------------------------------------------
+# The fit rules themselves are checked against the browser's in tests/test_fit_cases.py;
+# these check the tool around them: which jobs it ranks, the order, and what it returns.
+
+MATCH_JOBS = [  # company, title, city, when, skills, seniority
+    ("Alpha", "AI Engineer", "Berlin", ts(1), [("python", "required"), ("rag", "required"),
+                                               ("llms", "required"), ("docker", "required")], "mid"),
+    ("German", "AI Engineer", "Berlin", ts(2), [("python", "required"), ("rag", "required")], "mid"),
+    ("Senior", "Senior AI Engineer", "Berlin", ts(3), [("python", "required"), ("rag", "required"),
+                                                      ("aws", "required"), ("docker", "required")], None),
+    ("Nice", "AI Engineer", "Berlin", ts(4), [("python", "required"), ("rag", "required"), ("llms", "nice_to_have")], None),
+    ("Plain", "AI Engineer", "Berlin", ts(5), [("python", "required"), ("rag", "required")], None),
+    ("Munich", "ML Engineer", "Munich", ts(6), [("python", "required"), ("aws", "required"), ("docker", "required"),
+                                                 ("rust-lang", "required"), ("rag", "required")], None),
+    ("Unknown", "AI Engineer", "Berlin", ts(7), [("python", "nice_to_have")], None),
+    ("Stale", "AI Engineer", "Berlin", ts(31), [("python", "required"), ("rag", "required")], None),
+]
+MID = {"skills": ["Python", "RAG", "llms"], "seniority": "mid"}
+
+
+@pytest.fixture
+def match_db(tmp_path, monkeypatch):
+    path = tmp_path / "match.db"
+    c = db.connect(path)
+    db.migrate(c)
+    for company, title, city, when, skills, seniority in MATCH_JOBS:
+        add(c, company, title, city, "greenhouse", when, skills, seniority)
+    c.execute("UPDATE job SET german='required', german_basis='stated', german_signal='Deutsch' WHERE company='German'")
+    # Every job is still being advertised today, so the 30-day rule, not the open window,
+    # is what leaves Stale out.
+    c.execute("UPDATE job SET last_seen=?", (ts(0),))
+    c.execute("UPDATE job_source SET last_seen=?", (ts(0),))
+    c.commit()
+    c.close()
+    monkeypatch.setattr("app.api.now_iso", lambda: NOW)
+    return path
+
+
+@pytest.fixture
+def match_server(match_db):
+    return mcp_server.build_server(match_db, TAX, lambda: NOW)
+
+
+def match(server, **args) -> dict:
+    return call(server, "match_profile", **args).structured_content
+
+
+def companies_of(r) -> list[str]:
+    return [j["company"] for j in r["jobs"]]
+
+
+def test_match_profile_ranks_best_fit_first_and_gated_jobs_last(match_server):
+    r = match(match_server, **MID)
+    # Alpha: 3 of 4. Nice and Plain: 2 of 2, scored as 2 of 4; Nice's covered nice-to-have
+    # breaks the tie. Munich: 2 of 5. Unknown lists no required skill. Then the gated jobs,
+    # newest first: German (German required) and Senior (the title names another level).
+    assert companies_of(r) == ["Alpha", "Nice", "Plain", "Munich", "Unknown", "German", "Senior"]
+    assert r["ranked"] == 7
+    # Stale is open, but first seen 31 days ago: left out, as Best fit leaves it out.
+    assert "Stale" in [j["company"] for j in search(match_server)["jobs"]]
+    alpha = r["jobs"][0]
+    assert (alpha["covered"], alpha["total"], alpha["score"]) == (3, 4, 0.75)
+    assert alpha["missing_required"] == ["docker"] and alpha["gated_by"] == []
+    assert alpha["rank_score"] == pytest.approx(0.3006, abs=1e-4) and alpha["few_skills_listed"] is False
+    assert alpha["places"] == ["Berlin"] and alpha["first_seen"] == ts(1)[:10] and alpha["url"] is None
+    by = {j["company"]: j for j in r["jobs"]}
+    assert by["Plain"]["few_skills_listed"] is True and by["Plain"]["score"] == 1
+    assert by["Unknown"]["score"] is None and by["Unknown"]["total"] == 0
+    assert by["German"]["gated_by"] == ["german"] and by["Senior"]["gated_by"] == ["seniority"]
+
+
+def test_match_profile_profile_fields_lift_the_gates(match_server):
+    r = match(match_server, skills=["python", "rag", "llms"], german=True)
+    assert all(j["gated_by"] == [] for j in r["jobs"])     # no level given: no seniority gate
+    assert companies_of(r)[:3] == ["Alpha", "Nice", "German"]
+
+
+def test_match_profile_lists_missing_skills_most_asked_for_first(match_server):
+    munich = next(j for j in match(match_server, **MID)["jobs"] if j["company"] == "Munich")
+    # Of the open jobs, 3 require docker, 2 aws and 1 rust-lang: the order is that, not
+    # the order the posting listed them in.
+    assert munich["missing_required"] == ["docker", "aws", "rust-lang"]
+
+
+def test_match_profile_since_and_filters_narrow_what_is_ranked(match_server):
+    assert companies_of(match(match_server, **MID, since=ts(2)[:10])) == ["Alpha", "German"]
+    assert companies_of(match(match_server, **MID, city=["Munich"])) == ["Munich"]
+    assert "Munich" not in companies_of(match(match_server, **MID, family=["ai-engineer"]))
+    # A date further back than 30 days changes nothing: the stale job stays out.
+    assert match(match_server, **MID, since=ts(60)[:10]) == match(match_server, **MID)
+    assert len(match(match_server, **MID, limit=2)["jobs"]) == 2
+
+
+def test_match_profile_reads_past_one_page_of_jobs(match_server, monkeypatch):
+    whole = match(match_server, **MID)
+    monkeypatch.setattr(mcp_server, "FIT_PAGE", 2)
+    assert match(match_server, **MID) == whole
+
+
+def test_match_profile_order_matches_the_dashboard_best_fit(match_db, match_server):
+    """The dashboard's Best fit: /api/jobs newest first, the last 30 days, ranked by
+    web/src/profile.js. app/fit.py gives profile.js's answers (tests/test_fit_cases.py), so
+    running it over /api/jobs is the dashboard's ranking."""
+    from app import fit
+    for city in ([], ["Berlin"], ["Munich"]):
+        api = TestClient(create_app(match_db, TAX)).get(
+            "/api/jobs", params={"city": city, "sort": "newest", "limit": 200}).json()
+        profile = {"skills": ["python", "rag", "llms"], "seniority": "mid", "german": False,
+                   "production": False, "degree": ""}
+        dashboard = [j["id"] for j in fit.rank_jobs(profile, fit.recent_jobs(api["jobs"], NOW))]
+        assert [j["id"] for j in match(match_server, **MID, city=city or None)["jobs"]] == dashboard
+
+
+def test_match_profile_rejects_bad_input(match_server):
+    for bad in ({"skills": []}, {"skills": ["telepathy"]}, {"skills": ["python"], "since": "yesterday"},
+                {"skills": ["python"], "limit": 0}, {"skills": ["python"], "limit": 51},
+                {"skills": ["python"], "degree": "diploma"}, {"skills": ["python"], "seniority": "lead"},
+                {"skills": ["python"], "city": ["Paris"]}):
+        with pytest.raises(ToolError):
+            call(match_server, "match_profile", **bad)
+
+
+def test_match_profile_offers_the_dashboard_profile_values(match_server):
+    from app import fit
+    hints = typing.get_type_hints(match_server._tool_manager.get_tool("match_profile").fn)
+    assert _enum(hints["seniority"]) == set(q.SENIORITIES)
+    # The profile's degrees, with "none" for the dashboard's empty string.
+    assert _enum(hints["degree"]) == {"none", *(d for d in fit.DEGREE_RANK if d)}
+    assert _enum(hints["city"]) == {*CITIES, REMOTE_EU} and _enum(hints["family"]) == set(q.FAMILIES)
+    tool = next(t for t in asyncio.run(match_server.list_tools()) if t.name == "match_profile")
+    assert tool.annotations.read_only_hint is True
+    for gate in fit.GATES:
+        assert f'"{gate}"' in tool.description, gate
+    assert f"fewer than {fit.SKILLS_FLOOR} required skills" in tool.description
+
+
 # --- the skill list (a resource) -----------------------------------------------------
 
 def test_the_skill_list_is_a_resource_with_every_skill(server):
@@ -503,7 +639,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result, resources, skills
 
     names, result, resources, skills = asyncio.run(run())
-    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills", "rising_skills"]
+    assert names == ["search_jobs", "get_job", "skill_demand", "related_skills", "rising_skills", "match_profile"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
     assert resources == [mcp_server.SKILLS_URI]
