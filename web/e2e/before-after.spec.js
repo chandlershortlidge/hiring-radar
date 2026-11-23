@@ -1,4 +1,5 @@
-// PR before/after screenshots (HIR-231), including the three drawers, open (HIR-230).
+// PR before/after screenshots (HIR-231), including the profile drawer, open (HIR-230;
+// the add-a-job and proposed-skills drawers left the site with HIR-346).
 //
 // Does: for each view, render main's build ("before") and the branch's build ("after")
 // in the same browser, seconds apart, against the same live data; save both screenshots
@@ -78,7 +79,7 @@ async function shot(page, path, button) {
   try {
     await page.getByRole("button", { name: button }).click({ timeout: 10_000 });
     await page.getByRole("dialog").waitFor({ state: "visible", timeout: 10_000 });
-    // What the drawer fetches for itself (proposed skills, skill counts) has arrived.
+    // What the drawer fetches for itself (skill counts) has arrived.
     await page.waitForTimeout(300);
     for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
     await page.evaluate(() => document.fonts.ready).catch(() => {});
@@ -107,11 +108,9 @@ test("before and after", async ({ page, request }, info) => {
     ["city-family", "/berlin/ai-engineer"],
     ["compare", "/compare/berlin+san-francisco"],
     ...(jobId ? [["job", `/jobs/${jobId}`]] : []),
-    // The drawers, opened from a city by their button's name: the name is on the button at
+    // The drawer, opened from a city by its button's name: the name is on the button at
     // both widths, also where a phone hides its words (HIR-263).
-    ["add-job", "/berlin", "Add a job"],
     ["profile", "/berlin", "Your profile"],
-    ["proposed-skills", "/berlin", /proposed skills to review/],
   ];
 
   const dir = `${OUT}/${info.project.name}`;

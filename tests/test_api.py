@@ -1,6 +1,5 @@
 import json
 from pathlib import Path
-from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
@@ -17,26 +16,6 @@ TAX = Taxonomy({"version": 3, "skills": [
     {"id": "rust-lang", "display": "Rust"}]})
 
 
-class FakeClient:
-    """Answers every extraction with python+rag required; never touches the network."""
-    def __init__(self):
-        self.messages = self
-        self.calls = 0
-
-    def create(self, **kw):
-        self.calls += 1
-        text = kw["messages"][0]["content"] if isinstance(kw["messages"][0]["content"], str) else ""
-        if "<job_description>" in text:
-            tool = SimpleNamespace(type="tool_use", name="record_skills", input={
-                "skills": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"},
-                           {"skill_id": "new:DSPy", "requirement": "nice_to_have", "raw_text": "DSPy"}],
-                "seniority": "mid", "seniority_basis": "inferred", "seniority_signal": None})
-            return SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)
-        # vision transcription
-        return SimpleNamespace(stop_reason="end_turn", content=[SimpleNamespace(type="text", text="Acme AI Engineer. Python and DSPy required.")],
-                               usage=SimpleNamespace(input_tokens=1, output_tokens=1))
-
-
 @pytest.fixture
 def api(tmp_path, monkeypatch):
     path = tmp_path / "t.db"
@@ -46,16 +25,15 @@ def api(tmp_path, monkeypatch):
     add(c, "Gamma", "AI Engineer", "San Francisco", "greenhouse", ts(0), [("python", "required"), ("aws", "required")], "junior",
         proposed=["Rust"])
     c.close()
-    fake = FakeClient()
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    app = create_app(path, TAX, client_factory=lambda: fake)
-    return TestClient(app), fake
+    app = create_app(path, TAX)
+    return TestClient(app)
 
 
 def test_stats_and_skills(api):
-    client, _ = api
+    client = api
     s = client.get("/api/stats").json()
-    assert s["jobs"] == 2 and s["open"] == 2 and s["skills_tracked"] == 6 and s["proposed_pending"] == 1
+    assert s["jobs"] == 2 and s["open"] == 2 and s["skills_tracked"] == 6
     r = client.get("/api/skills").json()
     assert r["total"] == 2 and r["skills"][0] == {"skill_id": "python", "count": 2, "by_city": {"Berlin": 1, "San Francisco": 1},
                                                    "pct": 100.0, "display": "Python"}
@@ -65,7 +43,7 @@ def test_stats_and_skills(api):
 
 
 def test_filter_validation(api):
-    client, _ = api
+    client = api
     assert client.get("/api/skills", params={"window": "yesterday"}).status_code == 422
     assert client.get("/api/skills", params={"skill": "cobol"}).status_code == 422
     assert client.get("/api/jobs", params={"sort": "random"}).status_code == 422
@@ -85,7 +63,7 @@ def test_filter_validation(api):
 
 
 def test_jobs_and_detail(api):
-    client, _ = api
+    client = api
     r = client.get("/api/jobs", params={"skill": "rag"}).json()
     assert r["total"] == 1 and r["jobs"][0]["company"] == "Acme" and r["jobs"][0]["status"] == "open"
     d = client.get(f"/api/jobs/{r['jobs'][0]['id']}").json()
@@ -98,7 +76,7 @@ def test_jobs_and_detail(api):
 
 def test_jobs_text_search(api):
     """`text` searches the posting text, `q` the company and title; neither touches the other."""
-    client, _ = api
+    client = api
     r = client.get("/api/jobs", params={"text": "rag aws"}).json()
     assert r["total"] == 1 and r["jobs"][0]["company"] == "Acme"
     assert client.get("/api/jobs", params={"text": "kubernetes"}).json()["total"] == 0
@@ -111,97 +89,13 @@ def test_jobs_text_search(api):
 
 
 def test_taxonomy_endpoint(api):
-    client, _ = api
+    client = api
     t = client.get("/api/taxonomy").json()
     # aliases ride along: the chart's filter box matches on them (HIR-67A).
     assert t["version"] == 3 and {"id": "rag", "display": "RAG",
                                   "aliases": ["Retrieval Augmented Generation"],
                                   "parents": ["llms"]} in t["skills"]
     assert {"id": "python", "display": "Python", "aliases": [], "parents": []} in t["skills"]
-
-
-def test_proposed_resolve(api):
-    client, _ = api
-    g = client.get("/api/proposed").json()["groups"]
-    assert g[0]["label"] == "Rust" and g[0]["count"] == 1
-    assert client.post("/api/proposed/resolve", json={"ids": g[0]["ids"], "status": "accepted"}).status_code == 422
-    assert client.post("/api/proposed/resolve", json={"ids": g[0]["ids"], "status": "accepted", "resolved_skill_id": "nope"}).status_code == 422
-    r = client.post("/api/proposed/resolve", json={"ids": g[0]["ids"], "status": "accepted", "resolved_skill_id": "rust-lang"})
-    assert r.json() == {"resolved": 1}
-    assert client.get("/api/proposed").json()["groups"] == []
-    assert "rust-lang" in {s["skill_id"] for s in client.get("/api/skills").json()["skills"]}
-
-
-def test_add_text_runs_extraction_and_dedups(api):
-    client, fake = api
-    body = {"text": "Zeta GmbH is hiring an AI Engineer in Berlin. Requirements: Python and DSPy. " * 2,
-            "company": "Zeta GmbH", "title": "AI Engineer", "location": "Berlin", "found_via": "linkedin"}
-    r = client.post("/api/add/text", json=body).json()
-    assert r["outcome"] == "added" and r["skills_found"] == 1 and r["proposed"] == 1 and fake.calls == 1
-    d = client.get(f"/api/jobs/{r['job_id']}").json()
-    assert d["seniority"] == "mid" and d["sources"][0]["found_via"] == "linkedin"
-    r2 = client.post("/api/add/text", json=body).json()
-    assert r2["outcome"] in ("merged", "repost") and r2["job_id"] is None and fake.calls == 1  # no second model call
-    assert client.post("/api/add/text", json={**body, "text": "too short"}).status_code == 422
-
-
-def test_add_screenshot_transcribes_then_extracts(api):
-    client, fake = api
-    png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 32
-    # A different title from the fixture's seeded "Acme" / "AI Engineer" job (HIR-108: an
-    # exact company+title match now merges regardless of text, so a colliding title here
-    # would merge instead of adding, which is not what this test is about).
-    r = client.post("/api/add/screenshot", params={"company": "Acme", "title": "Senior AI Engineer", "location": "Berlin"},
-                    files={"file": ("shot.png", png, "image/png")}).json()
-    assert r["outcome"] == "added" and r["skills_found"] == 1 and fake.calls == 2
-    r2 = client.post("/api/add/screenshot", params={"company": "Acme", "title": "Senior AI Engineer"},
-                     files={"file": ("shot.png", png, "image/png")}).json()
-    assert r2["outcome"] == "exists" and r2["job_id"] == r["job_id"] and fake.calls == 2
-
-
-def test_add_url_exists_path(api, monkeypatch):
-    client, _ = api
-    from app.check import CheckResult
-    found = CheckResult(url="https://x", verdict="found", how="ats id", job_id=1, job_title="AI Engineer", sources=["arbeitnow"])
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: found)
-    monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
-    r = client.post("/api/add/url", json={"url": "https://x"}).json()
-    assert r["outcome"] == "exists" and r["job_id"] == 1
-
-
-def test_add_url_with_no_company_is_refused_and_stores_nothing(api, monkeypatch):
-    # HIR-198: a blank company can never dedup, so the posting is not ingested; the drawer
-    # shows the needs_company message instead.
-    client, fake = api
-    from app.check import CheckResult
-    from app.sources import Posting
-    p = Posting("url", "", "https://acto.jobs.personio.com/job/1", None, "AI Engineer", "Berlin", "text " * 50)
-    r_blank = CheckResult(url=p.url, verdict="not_found", how="", posting=p,
-                          notes=["company unknown — pass --company to enable the text match"])
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: r_blank)
-    monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
-    before = client.get("/api/stats").json()["jobs"]
-    r = client.post("/api/add/url", json={"url": p.url}).json()
-    assert r["outcome"] == "needs_company" and r["job_id"] is None
-    assert "company unknown" in r["notes"][0]
-    assert client.get("/api/stats").json()["jobs"] == before   # nothing ingested
-    assert fake.calls == 0                                     # and nothing extracted
-
-
-def test_add_url_still_stores_a_page_with_almost_no_text(api, monkeypatch):
-    """HIR-204: the CLI refuses a page under 200 characters, this endpoint stores it and the
-    chart leaves it out as "short" (DECISIONS 2026-10-21). Both now read one rule set, which
-    could have quietly given the endpoint the CLI's refusal; it keeps its own behaviour until
-    HIR-205 decides which is right."""
-    client, _ = api
-    from app.check import CheckResult
-    from app.sources import Posting
-    p = Posting("url", "", "https://acme.com/careers/5", "Acme", "Staff AI Engineer", "Berlin", "Python.")
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: CheckResult(
-        url=p.url, verdict="not_found", how="", posting=p))
-    monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
-    r = client.post("/api/add/url", json={"url": p.url}).json()
-    assert r["outcome"] == "added" and r["job_id"]
 
 
 # --- several skills at once (HIR-75) -----------------------------------------------------
@@ -223,7 +117,7 @@ def wide_api(tmp_path, monkeypatch):
         add(c, company, "AI Engineer", city, "arbeitnow", ts(1), [(s, "required") for s in skills])
     c.close()
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    return TestClient(create_app(path, WIDE_TAX, client_factory=lambda: FakeClient()))
+    return TestClient(create_app(path, WIDE_TAX))
 
 
 def test_repeated_skill_params_are_anded(wide_api):
@@ -264,7 +158,7 @@ def test_related_skills_over_a_skill_set(wide_api):
 
 
 def test_skill_validation_over_a_list(api):
-    client, _ = api
+    client = api
     assert client.get("/api/jobs", params={"skill": ["python", "rag"]}).status_code == 200
     r = client.get("/api/jobs", params={"skill": ["python", "cobol"]})
     assert r.status_code == 422 and r.json()["detail"] == "unknown skill 'cobol'"
@@ -288,7 +182,7 @@ SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_sn
 
 
 def test_single_skill_responses_are_unchanged(api, wide_api):
-    clients = {"small": api[0], "wide": wide_api}
+    clients = {"small": api, "wide": wide_api}
     assert len(SNAPSHOT) == 9
     for key, case in SNAPSHOT.items():
         dataset, _ = key.split(":", 1)
@@ -299,7 +193,7 @@ def test_single_skill_responses_are_unchanged(api, wide_api):
 
 def test_family_filter_and_per_family_counts(api):
     """Both fixture jobs are AI Engineer, so the family filter either keeps or drops them."""
-    client, _ = api
+    client = api
     assert client.get("/api/stats").json()["open_by_family"] == {"ai-engineer": 2}
     # The related panel needs a skill of its own; the other three take the filter alone.
     extra = {"/api/skills/related": {"skill": "python"}}
@@ -316,19 +210,27 @@ def test_family_filter_and_per_family_counts(api):
     assert client.get("/api/jobs", params=[("family", "ai-engineer"), ("family", "research")]).json()["total"] == 2
 
 
-def test_add_by_link_works_when_langsmith_cannot_be_imported(api, monkeypatch):
-    """The dashboard's add-a-job path goes through the same tracing as the poll, so the
-    missing-package crash (HIR-233) has to be harmless here too."""
-    import sys
+# --- adding a job and settling a proposed skill are not on the site (HIR-346) -----------------
 
-    from app import langsmith_live
+@pytest.mark.parametrize("path", ["/api/add/url", "/api/add/text", "/api/add/screenshot", "/api/proposed/resolve"])
+def test_the_removed_write_routes_answer_404(api, path):
+    assert api.post(path, json={"url": "https://x", "ids": [1], "status": "rejected"}).status_code == 404
 
-    monkeypatch.setattr(langsmith_live, "enabled", lambda: True)
-    monkeypatch.setattr(langsmith_live, "_import_warned", False)
-    for name in ("langsmith", "langsmith.wrappers"):
-        monkeypatch.setitem(sys.modules, name, None)
-    client, fake = api
-    body = {"text": "Zeta GmbH is hiring an AI Engineer in Berlin. Requirements: Python and DSPy. " * 2,
-            "company": "Zeta GmbH", "title": "AI Engineer", "location": "Berlin", "found_via": "linkedin"}
-    r = client.post("/api/add/text", json=body).json()
-    assert r["outcome"] == "added" and r["skills_found"] == 1 and fake.calls == 1
+
+def test_the_removed_write_routes_answer_404_when_the_built_site_is_served(tmp_path, monkeypatch):
+    """The live site serves the built pages from a catch-all GET route, which would answer a
+    POST to any unknown path with 405 and a GET with the home page; under /api it is 404."""
+    dist = tmp_path / "dist"
+    (dist / "assets").mkdir(parents=True)
+    (dist / "index.html").write_text("<html>home</html>")
+    monkeypatch.setattr("app.api.WEB_DIST", dist)
+    client = TestClient(create_app(tmp_path / "t.db", TAX))
+    for path in ("/api/add/url", "/api/add/text", "/api/add/screenshot", "/api/proposed/resolve"):
+        assert client.post(path, json={}).status_code == 404
+    assert client.get("/api/nothing-here").status_code == 404
+    assert client.get("/api/stats").status_code == 200          # the real routes are untouched
+    assert client.get("/berlin").text == "<html>home</html>"    # and so are the pages
+
+
+def test_stats_no_longer_carries_the_proposed_count(api):
+    assert "proposed_pending" not in api.get("/api/stats").json()

@@ -5,6 +5,9 @@ config/feeds.json, that fills one gap and leaves the hole open: the company's ne
 is missed again (HIR-324). The /check-url skill closes the hole by adding the board to the
 file; the server cannot, because the file lives in the repository. So:
 
+Since HIR-346 the site has no "Add a job", so nothing in the product calls `note` any
+more and no new board is recorded; the caretaker still files the boards already waiting.
+
 Does:
   - `note`: after a check (app/check.py), say where the posting's company board stands,
     and record the board when it is one we do not collect and may add. The answer is one
@@ -14,8 +17,7 @@ Does:
   - `waiting`: the recorded boards no ticket names yet and the list still lacks;
   - `file_ticket`: put every waiting board in one Linear ticket, written so an agent can
     carry it out with no access to this database, and mark the boards as asked for. The
-    dashboard calls it right after an add, and the caretaker's morning run calls it again,
-    which is the retry when Linear could not be reached.
+    caretaker's morning run calls it.
 
 Does NOT: change config/feeds.json, fetch a board, open a pull request, or decide what a
 check found. The pull request is an agent's ordinary work on the ticket filed here.

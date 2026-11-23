@@ -20,7 +20,7 @@ const PAGE = 20;
 // in the last FIT_DAYS days are ranked and shown (HIR-391); the foot says that too.
 const FIT_MAX = 200;
 
-export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, openJobId, onOpened, onOpenPage,
+export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, onOpenPage,
   taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null, connect = false }) {
   // Newest first is the default for everyone, profile or not (HIR-391). Best fit is a
   // choice in the menu, not where the list opens.
@@ -57,8 +57,6 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
       .then((r) => { if (live) { setPage(r); setLoading(false); } });
     return () => { live = false; };
   }, [filters, sort, byFit, refreshKey]);
-
-  useEffect(() => { if (openJobId) { setOpen(openJobId); onOpened?.(); } }, [openJobId, onOpened]);
 
   // A saved id whose job the server no longer has (deleted by hand) is dropped from the
   // view rather than crashing it; un-starring filters below without waiting for a refetch.

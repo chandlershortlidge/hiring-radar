@@ -10,16 +10,13 @@ boards, the three add paths, and what the reply tells the drawer.
 import json
 
 import pytest
-from fastapi.testclient import TestClient
 
 from app import boards_to_add as bta
 from app import db, misses
-from app.api import create_app
-from app.check import (LINKEDIN_ONLY, NOT_IN_SOURCES, AtsRef, CheckResult, board_not_added,
+from app.check import (LINKEDIN_ONLY, AtsRef, CheckResult, board_not_added,
                        check_posting, check_url, diagnose, log_check, parse_ats_url)
 from app.ingest import ingest_one
 from app.sources import Posting
-from tests.test_api import TAX, FakeClient
 
 NOW = "2026-11-20T10:00:00Z"
 FEEDS = [{"type": "greenhouse", "enabled": True, "token": "acme", "company": "Acme"},
@@ -199,122 +196,6 @@ def test_without_a_linear_key_or_when_linear_fails_the_board_keeps_waiting(conn)
         bta.file_ticket(conn, FEEDS, down, NOW, log=lambda *_: None)
     assert len(bta.waiting(conn, FEEDS)) == 1            # still there for the morning retry
     assert bta.file_ticket(conn, FEEDS, lambda *a: "HIR-901", NOW, log=lambda *_: None) == "HIR-901"
-
-
-# --- the three ways to add a job -------------------------------------------------------------
-
-@pytest.fixture
-def site(tmp_path, monkeypatch):
-    path = tmp_path / "t.db"
-    posts = []
-
-    def post(title, body):
-        posts.append(title)
-        return f"HIR-9{len(posts):02d}"
-
-    monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    monkeypatch.setattr("app.api.load_feeds", lambda: ON)
-    monkeypatch.setattr("app.api.boards_to_add.load_config", lambda: (FEEDS, set()))
-    client = TestClient(create_app(path, TAX, client_factory=FakeClient, board_poster=post))
-    return client, posts, lambda: db.connect(path)
-
-
-def boards(connect):
-    return [tuple(r) for r in connect().execute("SELECT source, token, ticket FROM board_to_add")]
-
-
-def test_adding_by_link_from_a_board_we_do_not_collect_records_it_and_files_the_ticket(site, monkeypatch):
-    client, posts, connect = site
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: missing())
-    r = client.post("/api/add/url", json={"url": NEW}).json()
-    assert r["outcome"] == "added" and r["board"] == "queued"
-    assert boards(connect) == [("ashby", "Nordlicht", "HIR-901")]
-    assert len(posts) == 1 and "Nordlicht" in posts[0]
-    # The check is in the missed-job count, under "company was not in our sources".
-    assert [(m.url, m.reason) for m in misses.records(connect())] == [(NEW, NOT_IN_SOURCES)]
-
-
-def test_a_second_job_from_the_same_company_files_no_second_ticket(site, monkeypatch):
-    client, posts, connect = site
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: missing())
-    client.post("/api/add/url", json={"url": NEW})
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: missing(NEW_2))
-    r = client.post("/api/add/url", json={"url": NEW_2}).json()
-    assert r["board"] == "queued" and len(posts) == 1 and len(boards(connect)) == 1
-
-
-def test_adding_by_link_from_a_page_with_no_board_says_it_cannot_be_collected(site, monkeypatch):
-    client, posts, connect = site
-    url = "https://nordlicht.example/careers/ai-engineer"
-    p = posting(url=url, source="url")
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: CheckResult(
-        url=url, verdict="not_found", how="", posting=p, diagnosis=diagnose(p, None, ON, None)))
-    r = client.post("/api/add/url", json={"url": url}).json()
-    assert r["outcome"] == "added" and r["board"] == "none"
-    assert boards(connect) == [] and posts == []
-
-
-def test_a_failed_ticket_never_fails_the_add(tmp_path, monkeypatch, capsys):
-    def down(title, body):
-        raise RuntimeError("Linear is down")
-
-    monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    monkeypatch.setattr("app.api.load_feeds", lambda: ON)
-    monkeypatch.setattr("app.api.boards_to_add.load_config", lambda: (FEEDS, set()))
-    monkeypatch.setattr("app.api.check_url", lambda *a, **k: missing())
-    path = tmp_path / "t.db"
-    client = TestClient(create_app(path, TAX, client_factory=FakeClient, board_poster=down))
-    r = client.post("/api/add/url", json={"url": NEW})
-    assert r.status_code == 200 and r.json()["outcome"] == "added" and r.json()["board"] == "queued"
-    assert "could not file the boards-to-add ticket" in capsys.readouterr().out
-    assert len(bta.waiting(db.connect(path), FEEDS)) == 1     # the morning run files it
-
-
-PASTE = {"text": JD, "company": "Nordlicht", "title": "AI Engineer", "location": "Berlin", "found_via": "linkedin"}
-
-
-def test_a_pasted_job_with_a_link_counts_as_a_miss_and_one_without_does_not(site):
-    client, posts, connect = site
-    r = client.post("/api/add/text", json=PASTE).json()
-    assert r["outcome"] == "added" and r["board"] is None
-    assert misses.records(connect()) == []                 # no link: nothing recorded, as before
-
-    other = {**PASTE, "company": "Südwind", "text": JD.replace("Nordlicht", "Südwind"),
-             "url": "https://www.linkedin.com/jobs/view/123"}
-    r = client.post("/api/add/text", json=other).json()
-    assert r["outcome"] == "added" and r["board"] == "none"
-    (m,) = misses.records(connect())
-    assert (m.url, m.reason, m.company) == (other["url"], LINKEDIN_ONLY, "Südwind")
-    assert connect().execute("SELECT found_via, verdict FROM url_check").fetchone()[:] == ("linkedin", "not_found")
-
-
-def test_a_pasted_job_whose_link_is_on_a_board_we_do_not_collect_queues_the_board(site):
-    client, posts, connect = site
-    r = client.post("/api/add/text", json={**PASTE, "url": NEW}).json()
-    assert r["outcome"] == "added" and r["board"] == "queued"
-    assert boards(connect) == [("ashby", "Nordlicht", "HIR-901")]
-    assert [m.reason for m in misses.records(connect())] == [NOT_IN_SOURCES]
-
-
-def test_a_link_that_is_not_a_link_records_nothing(site):
-    client, posts, connect = site
-    r = client.post("/api/add/text", json={**PASTE, "url": "see linkedin"}).json()
-    assert r["outcome"] == "added" and r["board"] is None and misses.records(connect()) == []
-
-
-def test_a_screenshot_with_a_link_counts_as_a_miss_and_one_without_does_not(site):
-    client, posts, connect = site
-    png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 32
-    meta = {"company": "Nordlicht", "title": "AI Engineer", "location": "Berlin"}
-    r = client.post("/api/add/screenshot", params={**meta, "url": NEW},
-                    files={"file": ("shot.png", png, "image/png")}).json()
-    assert r["outcome"] == "added" and r["board"] == "queued"
-    assert [m.reason for m in misses.records(connect())] == [NOT_IN_SOURCES]
-
-    r = client.post("/api/add/screenshot", params={**meta, "company": "Südwind"},
-                    files={"file": ("shot2.png", png + b"\x01", "image/png")}).json()
-    assert r["outcome"] == "added" and r["board"] is None
-    assert len(misses.records(connect())) == 1
 
 
 # --- the morning retry -----------------------------------------------------------------------

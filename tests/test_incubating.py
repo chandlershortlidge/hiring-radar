@@ -127,7 +127,6 @@ def test_an_incubating_citys_jobs_are_stored_but_absent_from_the_public_api(api,
     stats = api.get("/api/stats").json()
     assert stats["jobs"] == 3 and stats["open"] == 3 and stats["companies"] == 3
     assert stats["open_by_city"] == {"Berlin": 3}
-    assert stats["proposed_pending"] == 1                                # Lab's, not Windy's
 
     # The chart, compare mode's per-city numbers, the tree, the related panel.
     skills = api.get("/api/skills", params={"window": "all"}).json()
@@ -349,18 +348,6 @@ def test_labelling_and_eval_tools_can_still_read_incubating_jobs(conn, monkeypat
     # The stored rows themselves are what the sampling scripts read: untouched.
     assert conn.execute("SELECT count(*) FROM job j JOIN job_place p ON p.job_id = j.id"
                         " WHERE p.place = 'Chicago'").fetchone()[0] == 2
-
-
-def test_a_job_added_by_hand_for_an_incubating_city_is_stored_and_reported(path, monkeypatch):
-    """The add path counts what it found on the job it just stored, shown or not."""
-    from tests.test_api import FakeClient
-    incubate_city(monkeypatch)
-    fake = FakeClient()
-    api = TestClient(create_app(path, TAX, client_factory=lambda: fake))
-    r = api.post("/api/add/text", json={"text": "We need Python and DSPy. " * 30, "company": "Loop",
-                                        "title": "AI Engineer", "location": "Chicago, IL"}).json()
-    assert r["outcome"] == "added" and r["skills_found"] == 1
-    assert api.get(f"/api/jobs/{r['job_id']}").status_code == 404
 
 
 def test_with_nothing_incubating_the_public_rule_adds_nothing_to_a_query(monkeypatch):

@@ -334,7 +334,7 @@ mode is on. To end it on a set day, put that day in `until` as the last day in t
 | `app/scope.py` | which cities and job families are collected, and which are shown |
 | `app/evaluation.py` | scoring and the evaluation runner |
 | `app/queries.py` | the read queries behind the dashboard and the MCP tools |
-| `app/api.py` | FastAPI routes, plus the add-a-job paths |
+| `app/api.py` | FastAPI routes: the reads and the job flag |
 | `app/mcp_server.py` | the MCP server and its rate limit |
 | `app/caretaker.py` | the daily job-source check |
 | `taxonomy/skills.json` | the skill list, source of truth (v13, 254 skills) |
