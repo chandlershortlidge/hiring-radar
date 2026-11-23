@@ -159,8 +159,11 @@ def test_a_us_search_is_judged_on_yesterdays_run_and_a_europe_one_on_todays(conn
     assert "jsearch:AI engineer in Berlin" not in errors
 
 
-def test_the_morning_run_never_writes_the_feeds_file_even_in_acting_mode(conn, tmp_path, monkeypatch):
-    # HIR-261: the write happens in a pull request (`caretaker apply-fixes`), never on the server.
+def test_report_only_never_writes_the_feeds_file(conn, tmp_path, monkeypatch):
+    # The name is from the report-only week and is kept on purpose: the check that holds a
+    # pull request which removes a test reads a rename as a removal. Since HIR-261 this
+    # runs in acting mode and proves more: the morning run never writes the feeds file even
+    # then. The write happens in a pull request (`caretaker apply-fixes`), never on the server.
     from app import caretaker
     assert run.MODE == "act"
     monkeypatch.setattr(caretaker, "write_feeds", lambda *a, **k: pytest.fail("wrote feeds.json"))
