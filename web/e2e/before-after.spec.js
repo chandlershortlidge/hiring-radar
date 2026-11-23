@@ -6,6 +6,8 @@
 // only when they differ, and write changed.json listing those views. A drawer view opens
 // a city, clicks the drawer's button and captures the drawer with the page behind it. One
 // view is a city as a visitor with a profile sees it (HIR-411); the rest have no profile.
+// One view is a city with two of the chart's filters switched on (HIR-415), set by
+// clicking the chart's own controls on both builds.
 // Fails when a drawer does not open on the branch's build: no drawer, a blank page, or the
 // "couldn't load" box a part of the page shows when it crashed (Panel.jsx). Those views
 // are saved whether or not they differ, and the failure message names the drawer and what
@@ -78,7 +80,9 @@ const PROFILE = { role: "AI engineer", seniority: "", german: false, degree: "",
 // Returns the screenshot and, for a drawer view, why the drawer did not open (else null).
 // `profile` is the profile the view is taken with; without one the view is taken with none,
 // whatever an earlier view left in the browser.
-async function shot(page, path, button, profile) {
+// `setup`, when given, is run on the loaded page before the picture is taken: the clicks
+// that put the page in the state the view is about.
+async function shot(page, path, button, profile, setup) {
   await page.goto(path);
   const stored = profile ? JSON.stringify(profile) : null;
   const changed = await page.evaluate(([key, value]) => {
@@ -91,6 +95,13 @@ async function shot(page, path, button, profile) {
   // Text laid out before the web font arrives sits a pixel or two off; wait for the fonts.
   await page.evaluate(() => document.fonts.ready).catch(() => {});
   await page.waitForTimeout(800);
+  if (setup) {
+    await setup(page);
+    // What the clicks made the page fetch has arrived.
+    await page.waitForTimeout(300);
+    for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
+    await page.waitForTimeout(800);
+  }
   if (!button) return { png: await page.screenshot({ fullPage: true, animations: "disabled" }), problem: null };
 
   let problem = null;
@@ -114,6 +125,16 @@ async function shot(page, path, button, profile) {
   return { png: await page.screenshot({ animations: "disabled" }), problem };
 }
 
+// Switches on two of the chart's filters: the Junior level, from the seniority pill's
+// menu, and German "not required", from the German pill's dropdown.
+async function pickFilters(page) {
+  const filters = page.getByRole("group", { name: "Filters" });
+  await filters.getByRole("button", { name: "Any seniority" }).click({ timeout: 10_000 });
+  await page.getByRole("group", { name: "Seniority" }).getByRole("button", { name: "Junior", exact: true }).click();
+  await page.keyboard.press("Escape"); // closes the menu, so it is not in the picture
+  await filters.getByRole("combobox").selectOption("not_required");
+}
+
 test("before and after", async ({ page, request }, info) => {
   test.skip(!LIVE || !AUTH, "SHOT_LIVE / SHOT_AUTH not set");
   test.setTimeout(360_000); // every view differing means every view is taken twice
@@ -133,13 +154,16 @@ test("before and after", async ({ page, request }, info) => {
     ["profile", "/berlin", "Your profile"],
     // A city as a visitor with a profile sees it: bars in two shades, and the gaps line.
     ["city-with-profile", "/berlin", undefined, PROFILE],
+    // A city with two of the chart's filters on, Junior and "German: not required": the
+    // jobs card names both (HIR-415). Set with the chart's own controls, as a visitor would.
+    ["city-filtered", "/berlin", undefined, undefined, pickFilters],
   ];
 
   const dir = `${OUT}/${info.project.name}`;
   mkdirSync(dir, { recursive: true });
   const changed = [];
   const broken = [];
-  for (const [name, path, button, profile] of views) {
+  for (const [name, path, button, profile, setup] of views) {
     const png = {};
     let problem = null;
     // A pair that differs is taken once more before it counts. On the first run of this
@@ -149,7 +173,7 @@ test("before and after", async ({ page, request }, info) => {
     for (let attempt = 0; attempt < 2; attempt++) {
       for (const side of ["before", "after"]) {
         await serve(page, SIDES[side]);
-        const got = await shot(page, path, button, profile);
+        const got = await shot(page, path, button, profile, setup);
         png[side] = got.png;
         // Only the branch's build is judged: a PR that repairs a drawer broken on main must pass.
         if (side === "after") problem = got.problem;

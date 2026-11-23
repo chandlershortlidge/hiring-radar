@@ -257,6 +257,7 @@ select.sel { padding-right: 28px; }
 .jobs-head .search input { width: 100%; min-width: 0; }
 .chip-filter { display: inline-flex; align-items: center; gap: 4px; height: 26px; padding: 0 4px 0 10px; border-radius: 13px; background: var(--plum); color: #fff; font-size: 12.5px; }
 .chip-filter button { width: 22px; height: 22px; border: 0; border-radius: 50%; background: transparent; color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+.jobs-head .clear-filters { padding: 0 4px; font-size: 12.5px; }
 /* "+ Add skill" in the chip row, and its typeahead popover (HIR-79) */
 .add-skill { position: relative; display: inline-flex; }
 .chip-add { height: 26px; padding: 0 10px; border: 1px dashed var(--line-3); border-radius: 13px; background: var(--paper); color: var(--ink-2); font-size: 12.5px; display: inline-flex; align-items: center; gap: 5px; }

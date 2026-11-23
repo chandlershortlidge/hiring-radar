@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api, fetchSkills } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, EXTRA_FILTER_NAMES, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
@@ -293,17 +293,17 @@ export default function App() {
             </p>
           </div>
           <FilterPills filters={filters} set={set} toggleSeniority={toggleSen} requiredLabel={REQUIREMENTS.required} extraOn={extraOn}>
-            <div className="ctl"><label htmlFor="prod">Production experience</label>
+            <div className="ctl"><label htmlFor="prod">{EXTRA_FILTER_NAMES.production}</label>
               <select id="prod" className="sel" value={filters.production} onChange={(e) => set({ production: e.target.value })}>
                 {Object.entries(PRODUCTION_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </div>
-            <div className="ctl"><label htmlFor="deg">Degree</label>
+            <div className="ctl"><label htmlFor="deg">{EXTRA_FILTER_NAMES.degree}</label>
               <select id="deg" className="sel" value={filters.degree} onChange={(e) => set({ degree: e.target.value })}>
                 {Object.entries(DEGREE_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </div>
-            <div className="ctl"><label htmlFor="win">Time window</label>
+            <div className="ctl"><label htmlFor="win">{EXTRA_FILTER_NAMES.window}</label>
               <select id="win" className="sel" value={filters.window} onChange={(e) => set({ window: e.target.value })}>
                 {Object.entries(WINDOWS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
@@ -328,6 +328,7 @@ export default function App() {
 
         <div className="stack side">
         <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters} connect={market.view === "city"}
+          defaults={DEFAULT} windows={WINDOWS} requirements={REQUIREMENTS}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} market={market} /></Panel>
 
