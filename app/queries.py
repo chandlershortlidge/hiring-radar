@@ -7,6 +7,7 @@ the selected ones (share against the same set's baseline), and the open/closed s
 counts to app.rising, which owns the comparison and its thresholds.
 The job list also searches two ways that do not blur: `query` over company and title,
 `text` over the posting text itself (the FTS5 index migration 014 keeps in step with it).
+`text_counts` counts the same matches per place and per career track.
 
 Does NOT: write anything, know about HTTP, or call a model. Frontend-only concerns
 (profile match, chip ordering) are computed from these results elsewhere.
@@ -587,6 +588,60 @@ def _status(row, now: str, sources: list[dict]) -> str:
     return "open" if row["last_seen"] >= _days_ago(now, MANUAL_OPEN_DAYS) else "closed"
 
 
+def _job_list_clause(filters: Filters, now: str, include_incubating: bool = False) -> tuple[str, list]:
+    """WHERE fragment (over alias j) for the job list's jobs: the job set (legacy and short
+    postings included, as the list shows them), every selected skill, the company/title
+    words and the posting-text words. One clause for list_jobs and text_counts, so a
+    count and the page of jobs behind it cannot disagree."""
+    job_clause, job_params = job_set_clause(filters, now, include_legacy=True, include_incubating=include_incubating)
+    params = list(job_params)
+    where = [job_clause]
+    if filters.skill_ids:
+        skill_clause, skill_params = _skills_clause(filters, "m")      # every selected skill, ANDed
+        where.append(skill_clause)
+        params += skill_params
+    if filters.query.strip():
+        like_pattern = f"%{filters.query.strip().lower()}%"
+        where.append("(lower(j.company) LIKE ? OR lower(j.title) LIKE ?)")
+        params += [like_pattern, like_pattern]
+    match = fts_query(filters.text)
+    if match:
+        where.append(_FTS_CLAUSE)
+        params.append(match)
+    return " AND ".join(where), params
+
+
+def text_counts(conn: sqlite3.Connection, filters: Filters, now: str) -> dict:
+    """How many jobs match the job list's filters, in all, per place and per career track:
+    the numbers behind "how many Berlin AI engineer jobs mention Claude?" (HIR-400).
+
+    The same jobs list_jobs returns for these filters, so `total` equals its total. A job
+    posted for several places counts once in each of them; with a city filter, only the
+    chosen places are counted. A job with no career track counts in total only. Never an
+    incubating place or track (HIR-395).
+
+    Returns {"total": n, "by_city": {place: n}, "by_family": {family: n}}, each split
+    largest first, ties in the dashboard's place order or by name; places and tracks with
+    no matching job are left out.
+    """
+    where_sql, params = _job_list_clause(filters, now)
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {where_sql}", params).fetchone()[0]
+    place_clause, place_params = _public_place("jpl.place")
+    if filters.cities:
+        place_clause += f" AND jpl.place IN ({_marks(filters.cities)})"
+        place_params = place_params + list(filters.cities)
+    places = conn.execute(
+        f"SELECT jpl.place, count(DISTINCT j.id) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id"
+        f" WHERE {where_sql} AND {place_clause} GROUP BY jpl.place", params + place_params).fetchall()
+    families = conn.execute(
+        f"SELECT j.family, count(*) n FROM job j WHERE {where_sql} AND j.family IS NOT NULL GROUP BY j.family",
+        params).fetchall()
+    by_city = sorted(places, key=lambda r: (-r["n"], _PLACE_ORDER.get(r["place"], len(_PLACE_ORDER)), r["place"]))
+    by_family = sorted(families, key=lambda r: (-r["n"], r["family"]))
+    return {"total": total, "by_city": {r["place"]: r["n"] for r in by_city},
+            "by_family": {r["family"]: r["n"] for r in by_family}}
+
+
 def list_jobs(conn: sqlite3.Connection, filters: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0, include_incubating: bool = False) -> dict:
     """Find the jobs that match a set of filters, one page at a time.
@@ -620,22 +675,7 @@ def list_jobs(conn: sqlite3.Connection, filters: Filters, now: str, sort: str = 
             limit, offset: as passed in.
         When nothing matches, total is 0 and jobs is an empty list.
     """
-    job_clause, job_params = job_set_clause(filters, now, include_legacy=True, include_incubating=include_incubating)
-    params = list(job_params)
-    where = [job_clause]
-    if filters.skill_ids:
-        skill_clause, skill_params = _skills_clause(filters, "m")      # every selected skill, ANDed
-        where.append(skill_clause)
-        params += skill_params
-    if filters.query.strip():
-        like_pattern = f"%{filters.query.strip().lower()}%"
-        where.append("(lower(j.company) LIKE ? OR lower(j.title) LIKE ?)")
-        params += [like_pattern, like_pattern]
-    match = fts_query(filters.text)
-    if match:
-        where.append(_FTS_CLAUSE)
-        params.append(match)
-    where_sql = " AND ".join(where)
+    where_sql, params = _job_list_clause(filters, now, include_incubating)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {where_sql}", params).fetchone()[0]
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(

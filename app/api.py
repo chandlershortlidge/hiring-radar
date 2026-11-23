@@ -65,8 +65,10 @@ def _record_snapshot(db_path: Path, tax: Taxonomy) -> None:
 def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
                skill_added: dict[str, str] | None = None) -> FastAPI:
     tax = taxonomy or Taxonomy.load()
+    # The day each skill joined the list; only "what's rising" (here and in the MCP) reads it.
+    added = load_added() if skill_added is None else skill_added
     # The MCP server (app/mcp_server.py): the same reads as tools for anyone's Claude, at /mcp.
-    mcp = mcp_server.build_server(db_path, tax, lambda: now_iso())
+    mcp = mcp_server.build_server(db_path, tax, lambda: now_iso(), added)
 
     @asynccontextmanager
     async def lifespan(_app):
@@ -75,8 +77,6 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
 
     app = FastAPI(title="hiring-radar", version="0.1.0", lifespan=lifespan)
     app.add_route(mcp_server.PATH, mcp_server.endpoint(mcp), include_in_schema=False)
-    # The day each skill joined the list; only "what's rising" reads it.
-    added = load_added() if skill_added is None else skill_added
     _record_snapshot(db_path, tax)
 
     def conn_dep():

@@ -6,9 +6,9 @@
   "reason": "groups",
   "provider": "anthropic",
   "model": "claude-haiku-5-5",
-  "key_sha256": "c15a0ed9c795a2ba1ac404e3161f2967c701005902d68216963e67606c4b111e",
-  "raw": "{\"decision\": [], \"why\": \"The labelled skills are asked together, not offered in place of each other: \\\"at least 6 months of practical experience with LLMs, agents, and harnesses\\\" is an \\\"X, Y and Z\\\" list, which the rule excludes, and no other labelled skill sits in an \\\"at least one of\\\" or \\\"such as\\\" construction.\"}",
+  "key_sha256": "24259ffc8006cb21fe0c71787a848098ff74194b5ff03bbaed455c6b354346c3",
+  "raw": "{\"decision\": [], \"why\": \"The posting asks for 'at least 6 months of practical experience with LLMs, agents, and harnesses', which is skills asked together ('X, Y and Z'), not an either/or set, and no 'at least one of', slash or 'such as' marker offers any of the labeled skills in place of another.\"}",
   "decision": [],
-  "why": "The labelled skills are asked together, not offered in place of each other: \"at least 6 months of practical experience with LLMs, agents, and harnesses\" is an \"X, Y and Z\" list, which the rule excludes, and no other labelled skill sits in an \"at least one of\" or \"such as\" construction.",
+  "why": "The posting asks for 'at least 6 months of practical experience with LLMs, agents, and harnesses', which is skills asked together ('X, Y and Z'), not an either/or set, and no 'at least one of', slash or 'such as' marker offers any of the labeled skills in place of another.",
   "error": null
 }

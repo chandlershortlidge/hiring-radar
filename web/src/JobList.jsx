@@ -4,6 +4,7 @@ import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
 import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
 import { FIT_DAYS, fails, fit, gates, jobSeniority, metSkills, rankJobs, recentJobs, skillSides } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
+import { clearChips, filterChips, requirementChip } from "./filterChips.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 import { FlagNote, FlagToggle, useFlag } from "./FlagButton.jsx";
 import { ConnectStrip } from "./ConnectClaude.jsx";
@@ -21,7 +22,8 @@ const PAGE = 20;
 const FIT_MAX = 200;
 
 export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, onOpenPage,
-  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null, connect = false }) {
+  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null, connect = false,
+  defaults = {}, windows = {}, requirements = {} }) {
   // Newest first is the default for everyone, profile or not (HIR-391). Best fit is a
   // choice in the menu, not where the list opens.
   const [sort, setSort] = useState("newest");
@@ -95,6 +97,18 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   // What a "doesn't belong here" flag records about this screen (HIR-226): read at the
   // click, so it is the state the row was showing under, not the state at first render.
   const getView = () => flagView({ filters, sort: byFit ? FIT : sort, saved: savedOn, market });
+  // The chart's filters that are switched on, as removable chips (HIR-415): the list is
+  // narrowed by them too, so the card says so. `defaults` is the page's own starting
+  // filters; with none handed in, or every filter at its default, there are no chips and
+  // the header is as it was.
+  const chips = filterChips(filters, defaults, windows);
+  const reqChip = requirementChip(filters, defaults, requirements);
+  const chipFor = (c) => (
+    <span key={c.key} className="chip-filter">{c.label}
+      <button type="button" aria-label={`Remove the ${c.label} filter`} onClick={() => setFilters(c.reset)}><X size={12} /></button>
+    </span>
+  );
+  const allChips = reqChip ? [...chips, reqChip] : chips;
   return (
     <section className="card jobs" aria-labelledby="jobs-title">
       {/* On a city page the Connect-Claude strip sits on top of the list (HIR-285). */}
@@ -106,6 +120,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
             onClick={() => setSavedOn((v) => !v)} title="Only the jobs you starred. Saved jobs live in this browser; the server never sees them.">
             <Star />Saved · {savedIds.length}
           </button>
+          {!savedOn && chips.map(chipFor)}
           {!savedOn && filters.skillIds.length > 0 && <span className="muted" style={{ fontSize: 12.5 }}>Requires</span>}
           {savedOn && <span className="muted" style={{ fontSize: 13 }}>in the current sort · a saved job that closed stays listed</span>}
           {!savedOn && <>
@@ -117,6 +132,10 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
             ))}
             <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
               aliases={aliases} onAdd={onAddSkill} />
+            {reqChip && chipFor(reqChip)}
+            {allChips.length + filters.skillIds.length >= 2 && (
+              <button type="button" className="btn ghost clear-filters" onClick={() => setFilters(clearChips(allChips))}>Clear filters</button>
+            )}
           </>}
         </div>
         <div className="r">
