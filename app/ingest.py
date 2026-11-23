@@ -24,7 +24,8 @@ passed over as well (HIR-176): dropping deletes the job, so without the memory i
 again every day. A posting whose company name reads as a recruitment agency or a job
 portal is dropped as well, but only when it came from a country-wide source (HIR-220):
 board sources are screened before the board is ever added, and a posting a person added by
-hand was chosen deliberately. A new job is labelled with its job family (family_of, from the title
+hand was chosen deliberately. A posting that links to a site known to publish fake
+postings is dropped whatever its source (HIR-441). A new job is labelled with its job family (family_of, from the title
 alone) as it is inserted.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows. It does
@@ -187,6 +188,25 @@ def agency_name_word(*parts: str | None) -> str | None:
     return next((w for w in AGENCY_WORDS if w in text), None)
 
 
+# Sites seen publishing fake postings that send applicants to a data-harvesting form
+# (HIR-441: "Northwind Intelligence", an invented employer, listed on kerjainti.web.id with
+# an application form on infolokerupdate.web.id; it reached us through JSearch, the one
+# source whose links point anywhere on the web). A posting that names one of these in its
+# link or anywhere in its text is not stored, from any source, hand-added ones included:
+# unlike an agency's posting, there is no reading of it a person could have meant to keep.
+# Plain lowercase names, matched as substrings, so a subdomain or a path makes no
+# difference; app/queries.py hides already-stored jobs by this same tuple, on their link.
+# Add a name only from a posting actually seen, never from a guess at a whole class of
+# sites: a false positive silently drops a real employer.
+BLOCKED_SITES = ("kerjainti.web.id", "infolokerupdate.web.id")
+
+
+def blocked_site(url: str | None, text: str | None = None) -> str | None:
+    """The blocked site this link or posting text names, or None. Pure."""
+    low = f"{url or ''}\n{text or ''}".lower()
+    return next((site for site in BLOCKED_SITES if site in low), None)
+
+
 # The sources the agency screen applies to at ingest: the country-wide ones — the
 # Bundesagentur für Arbeit, arbeitnow, JSearch, Startup Jobs — which hand us whoever
 # published the posting (DECISIONS 2026-11-09, HIR-220). Derived from the registry's kinds,
@@ -252,6 +272,7 @@ SKIPPED_CITY = "skipped_city"
 SKIPPED_COMPANY = "skipped_company"
 SKIPPED_AGENCY = "skipped_agency"    # a country-wide source published an agency's posting
 SKIPPED_UNREADABLE = "skipped_unreadable"   # a feed re-listed a posting dropped for reading blank twice
+SKIPPED_BLOCKED = "skipped_blocked"  # the posting links to a site known for fake postings (HIR-441)
 
 
 @dataclass(frozen=True)
@@ -267,8 +288,8 @@ class Screenshot:
 class Stored:
     """What storing one posting did, so no caller has to read it out of a string.
 
-    `kind` is one of the nine constants above. `job_id` is the job the posting ended up
-    on, and is None only for the five skipped kinds, where no job was touched.
+    `kind` is one of the ten constants above. `job_id` is the job the posting ended up
+    on, and is None only for the six skipped kinds, where no job was touched.
     """
 
     kind: str
@@ -295,13 +316,14 @@ class Report:
     skipped_company: int = 0
     skipped_agency: int = 0
     skipped_unreadable: int = 0
+    skipped_blocked: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
                 f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
                 f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency} "
-                f"skipped_unreadable={self.skipped_unreadable}")
+                f"skipped_unreadable={self.skipped_unreadable} skipped_blocked={self.skipped_blocked}")
 
 
 def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
@@ -335,6 +357,9 @@ def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
     # postings are left out. HIR-220.
     if p.source in SCREENED_SOURCES and agency_name_word(p.company):
         yield SKIPPED_AGENCY
+    # Every source, and no hand-added escape: see BLOCKED_SITES. HIR-441.
+    if blocked_site(p.url, p.description_text):
+        yield SKIPPED_BLOCKED
 
 
 def screen(p: Posting, *, require_city: bool = True, trust_title: bool = False) -> str | None:

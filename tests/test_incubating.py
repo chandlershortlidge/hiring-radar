@@ -391,5 +391,9 @@ def test_with_nothing_incubating_the_public_rule_adds_nothing_to_a_query(monkeyp
     """Every place and track live: each query runs exactly as it did before this rule existed."""
     monkeypatch.setattr(scope, "PLACE_STATE", {p: scope.LIVE for p in scope.PLACE_STATE})
     monkeypatch.setattr(scope, "TRACKS", {t: scope.Track(scope.LIVE, v.title_pattern) for t, v in scope.TRACKS.items()})
-    assert q.public_clause() == ("1=1", [])
-    assert q.job_set_clause(q.Filters(window="all"), NOW, include_legacy=True) == ("1=1", [])
+    # What is left is the one rule that has nothing to do with incubating: no job whose
+    # link goes to a site known for fake postings (HIR-441).
+    rule, params = q.public_clause()
+    assert params == list(ingest.BLOCKED_SITES) and rule.startswith("NOT EXISTS (SELECT 1 FROM job_source")
+    assert "job_place" not in rule and "family" not in rule
+    assert q.job_set_clause(q.Filters(window="all"), NOW, include_legacy=True) == (rule, params)

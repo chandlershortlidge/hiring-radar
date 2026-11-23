@@ -19,8 +19,14 @@ JD = "Build LLM agents in Python and ship them to production."
 WHEN = "2026-11-22T07:00:00Z"
 
 
-def posting(source="greenhouse", sid="1", company="Acme", title="AI Engineer", location="Berlin"):
-    return Posting(source, sid, GH, company, title, location, JD)
+# The fake posting of HIR-441, as the ticket records it: the link it was listed under, and
+# the application form its text ended with.
+SCAM_LINK = "https://kerjainti.web.id/?jobs=en-job-ai-ml-engineer-llm-applications-1794610010364"
+SCAM_FORM = "requiredApply Link Form Jobs : https://globaljob.infolokerupdate.web.id/form/jobs"
+
+
+def posting(source="greenhouse", sid="1", company="Acme", title="AI Engineer", location="Berlin", url=GH, text=JD):
+    return Posting(source, sid, url, company, title, location, text)
 
 
 @pytest.fixture
@@ -36,6 +42,7 @@ STOPPED = {
     ingest.SKIPPED_CITY: posting(location="Lagos, Nigeria"),
     ingest.SKIPPED_COMPANY: posting(company="GmbH"),
     ingest.SKIPPED_AGENCY: posting(source="arbeitnow", company="Hays Recruiting"),
+    ingest.SKIPPED_BLOCKED: posting(source="jsearch", company="Northwind Intelligence", url=SCAM_LINK),
 }
 
 
@@ -66,6 +73,31 @@ def test_the_hand_added_settings_switch_off_only_their_own_check():
 def test_the_agency_check_leaves_board_and_hand_added_postings_alone():
     for source in ("greenhouse", "url", "paste"):
         assert ingest.screen(posting(source=source, company="Hays Recruiting")) is None
+
+
+def test_a_posting_that_names_a_fake_posting_site_is_stopped_from_any_source(conn):
+    """HIR-441: the site in the link, or the application form in the text, is enough, and
+    unlike the agency check there is no escape for a board or a hand-added posting."""
+    for source in ("jsearch", "arbeitnow", "greenhouse", "url", "paste"):
+        assert ingest.screen(posting(source=source, url=SCAM_LINK), trust_title=True) == ingest.SKIPPED_BLOCKED
+        assert ingest.screen(posting(source=source, text=JD + SCAM_FORM), require_city=False) == ingest.SKIPPED_BLOCKED
+    assert ingest.blocked_site(SCAM_LINK) == "kerjainti.web.id"
+    assert ingest.blocked_site("HTTPS://WWW.Kerjainti.Web.ID/x") == "kerjainti.web.id"      # case, subdomain
+    assert ingest.blocked_site(GH, JD + SCAM_FORM) == "infolokerupdate.web.id"
+    # A real employer's link, another .web.id site, and a posting with no link at all pass.
+    assert ingest.blocked_site(GH, JD) is None
+    assert ingest.blocked_site("https://lowongan.web.id/jobs/1", JD) is None
+    assert ingest.blocked_site(None, None) is None and ingest.blocked_site("", "") is None
+    assert ingest.screen(posting(source="jsearch", url="https://lowongan.web.id/jobs/1")) is None
+
+
+def test_a_blocked_posting_is_counted_in_the_collectors_report_and_explained_by_the_link_checker(conn):
+    r = ingest.ingest(conn, [posting(source="jsearch", sid="s1", company="Northwind Intelligence", url=SCAM_LINK),
+                             posting(source="jsearch", sid="s2")], WHEN)
+    assert (r.seen, r.new, r.skipped_blocked) == (2, 1, 1) and "skipped_blocked=1" in r.line()
+    assert [row["company"] for row in conn.execute("SELECT company FROM job")] == ["Acme"]
+    assert check._why_stopped(ingest.SKIPPED_BLOCKED, posting(url=SCAM_LINK)) == (
+        "it links to kerjainti.web.id, a site known to publish fake postings")
 
 
 def test_was_dropped_reads_the_dropped_list_and_nothing_else(conn):
