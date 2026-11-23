@@ -289,8 +289,14 @@ def _check_skill_demand(server, hidden_id, hidden_company, hidden_place):
     assert _tool(server, "skill_demand", window="all")["total"] == 3
 
 
+def _check_related_skills(server, hidden_id, hidden_company, hidden_place):
+    r = _tool(server, "related_skills", skills=["python"], window="all")
+    assert (r["total"], r["selected_count"]) == (3, 3)   # every job lists python; the hidden one is not counted
+
+
 # One check per tool: what the tool must not give away about an incubating job.
-TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand}
+TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
+               "related_skills": _check_related_skills}
 
 
 def test_every_mcp_tool_has_an_incubating_check(path):

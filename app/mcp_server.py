@@ -248,9 +248,61 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
         for skill in demand["skills"]:
             skill.pop("by_city")
         return {"total": demand["total"], "skills": demand["skills"][:MAX_SKILLS_TO_RETURN]}
-        
 
-            
+    @server.tool(annotations=READ_ONLY)
+    def related_skills(
+        skills: list[str],
+        city: list[Place] | None = None,
+        seniority: list[Seniority] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+        window: Window = "open",
+        german: German = "any",
+        degree: Degree = "any",
+        production: Production = "any",
+    ) -> dict[str, Any]:
+        """Find what else the jobs asking for given skills ask for, with the same numbers as
+        the hiring-radar dashboard's related-skills panel. Answers "I know RAG, what else do
+        those jobs want?". Use skill_demand for the most asked-for skills overall.
+
+        - skills (required): one or more skill ids or names, e.g. ["rag"]. With several,
+          only jobs that list every one of them count (AND), so fewer jobs match and fewer
+          skills come back. Names are matched to our skill list; an unknown name is an
+          error that suggests ids.
+        - city, seniority, family, requirement, window, german, degree, production: the
+          same filters as skill_demand, with the same values and defaults. Every number
+          below is over the jobs these filters keep.
+
+        Returns total (all jobs matching the filters), selected_count (those of them that
+        list every skill in `skills`) and skills: up to 10 other skills those jobs list,
+        most common first. The given skills themselves are left out. Per skill:
+        - skill_id, and count: how many of the selected_count jobs list it.
+        - pct: count as a percent of selected_count, the share of these jobs that ask for it.
+        - base_pct: the same skill as a percent of total, how common it is in all the
+          filtered jobs.
+        - lift: pct / base_pct. 2.5 means "2.5 times as common in these jobs as in jobs
+          overall"; 1 means no more common than anywhere. The 10 skills are the ones with
+          the highest lift, so the list shows what is specific to these jobs rather than
+          what every job asks for (Python), and is then ordered by pct.
+        A skill listed by fewer than 5 of the selected jobs is left out, as too few to
+        trust. So skills can be an empty list even when selected_count is above zero: the
+        sample is too small. Drop a filter or a skill to widen it.
+
+        Example: what Berlin jobs that require RAG also ask for:
+        related_skills(skills=["rag"], city=["Berlin"])
+        """
+        if not skills:
+            raise ToolError("skills must name at least one skill, e.g. [\"rag\"]")
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
+                               families=family or (), requirement=requirement, window=window,
+                               german=german, degree=degree, production=production,
+                               skill_ids=skill_ids(skills))
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        with connect() as conn:
+            return q.related_skills(conn, f, now())
+
     return server
 
 

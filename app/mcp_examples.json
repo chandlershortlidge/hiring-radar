@@ -21,5 +21,10 @@
     "ask": "which skills Munich jobs ask for most",
     "arguments": {"city": ["Munich"]},
     "expect": ["total", "skills[].skill_id", "skills[].count"]
+  },
+  "related_skills": {
+    "ask": "what else open jobs that require Python ask for",
+    "arguments": {"skills": ["python"]},
+    "expect": ["total", "selected_count", "skills[].skill_id", "skills[].pct", "skills[].lift"]
   }
 }
