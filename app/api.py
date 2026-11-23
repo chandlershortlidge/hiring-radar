@@ -10,8 +10,11 @@ skill-list pull requests), call a model, compute the profile match (the profile 
 the browser; the frontend computes coverage from /api/skills and job detail), edit the
 taxonomy, or poll feeds.
 
-Every read route answers for the public: app/queries.py leaves out the places and career
-tracks that are still incubating (app/scope.py, HIR-395), and no route here asks it not to.
+Every read route under /api answers for the public: app/queries.py leaves out the places
+and career tracks that are still incubating (app/scope.py, HIR-395), and no route there asks
+it not to. The one exception is /admin (app/admin.py, HIR-398), a read-only page that lists
+every place and track, incubating ones included. It is not under /api, nothing on the site
+links to it, and the web server keeps it behind the password (tests/test_admin.py).
 
 Invariants: every filter is validated against the allowed values and rejected with 422
 otherwise; DB connections are per request; the API boots without model credentials.
@@ -24,12 +27,12 @@ from pathlib import Path
 from typing import Literal
 
 from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from app import db, flags, mcp_server, queries as q
-from app.extract import DEFAULT_MODEL as EXTRACT_MODEL
+from app import admin, db, flags, mcp_server, queries as q
+from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, extractor_version
 from app.ingest import now_iso
 from app.skill_tree import skill_tree
 from app.taxonomy import Taxonomy, load_added
@@ -217,6 +220,18 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
     @app.api_route("/api/{path:path}", methods=["GET", "POST", "PUT", "PATCH", "DELETE"], include_in_schema=False)
     def no_such_api_route(path: str):
         raise HTTPException(404, "no such route")
+
+    # --- the admin page (HIR-398) -----------------------------------------------------
+    # Read-only, and the only route that shows incubating places and tracks. The app does
+    # not check who asks: the web server's password does (deploy/Caddyfile), and
+    # tests/test_admin.py fails when that file would answer this address without it.
+
+    @app.get("/admin", include_in_schema=False, response_class=HTMLResponse)
+    def get_admin(conn=Depends(conn_dep)):
+        now = now_iso()
+        rows = admin.overview(conn, now, extractor_version(tax, EXTRACT_MODEL))
+        return HTMLResponse(admin.page(rows, admin.spend(conn, now[:7]), now),
+                            headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"})
 
     # --- frontend -------------------------------------------------------------------
 
