@@ -307,6 +307,16 @@ FAMILY_CASES = [
     ("LLM Engineer", "ai-engineer"),
     ("Senior Data Scientist / Machine Learning Engineer", "data-scientist"),  # first match wins
     ("Samler AI Engineer", "ai-engineer"),                 # `mle` inside a word does not count
+    # HIR-452: the five titles Chandler reported under ai-engineer, by the kind of scientist.
+    ("Senior Machine Learning Scientist", "ml-engineer"),                    # Intercom
+    ("Senior Machine Learning Scientist / Data Engineer", "ml-engineer"),    # Zalando
+    ("AI Scientist", "research"),                                            # mistral.ai, three roles
+    ("AI Scientist, Audio", "research"),                   # the same title with a team after it
+    ("Senior AI Scientist (Paris)", "research"),           # and with a level and a place
+    ("ML Scientist (f/m/d)", "ml-engineer"),
+    ("Machine-Learning Scientist", "ml-engineer"),
+    ("Research Scientist, Machine Learning", "research"),  # the phrase reversed is not an ML scientist
+    ("Senior Data Scientist / Machine Learning Scientist", "data-scientist"),  # earlier row wins
 ]
 
 
@@ -321,7 +331,9 @@ def test_family_of_only_returns_known_families():
 
 
 def test_migration_backfill_agrees_with_family_of(tmp_path):
-    """The SQL CASE in 017 and family_of must label the same titles the same way."""
+    """The SQL CASE that labels stored rows and family_of must label the same titles the
+    same way. 017 first gave every row a family; 027 re-labels every row once the scientist
+    titles are sorted (HIR-452), so a database is checked at the end of all migrations."""
     import shutil
     old = tmp_path / "old"
     old.mkdir()
@@ -334,10 +346,39 @@ def test_migration_backfill_agrees_with_family_of(tmp_path):
         c.execute("INSERT INTO job (title, description_text, first_seen, last_seen)"
                   " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')", (title,))
     c.commit()
-    assert 17 in db.migrate(c)
-    rows = c.execute("SELECT title, family FROM job").fetchall()
+    ran = db.migrate(c)
+    assert 17 in ran and 27 in ran
+    rows = c.execute("SELECT title, family FROM job ORDER BY id").fetchall()
     assert len(rows) == len(FAMILY_CASES)
     assert [(r["title"], r["family"]) for r in rows] == [(t, family_of(t)) for t, _ in FAMILY_CASES]
+
+
+def test_027_moves_only_the_scientist_titles(tmp_path):
+    """027 re-labels every stored row, so it must leave a row alone unless its title is a
+    scientist title the old rule dropped into ai-engineer (HIR-452)."""
+    import shutil
+    old = tmp_path / "old"
+    old.mkdir()
+    for m in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if int(m.name[:3]) < 27:
+            shutil.copy(m, old / m.name)
+    c = db.connect(tmp_path / "t.db")
+    db.migrate(c, old)
+    for title, _ in FAMILY_CASES:
+        c.execute("INSERT INTO job (title, description_text, first_seen, last_seen, family)"
+                  " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z', ?)",
+                  (title, family_of(title)))
+    c.commit()
+    before = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
+    # Put the reported titles back where the old rule had them.
+    c.execute("UPDATE job SET family = 'ai-engineer' WHERE lower(title) LIKE '%scientist%'"
+              " AND lower(title) NOT LIKE '%data scien%' AND lower(title) NOT LIKE '%research%'"
+              " AND lower(title) NOT LIKE '%applied scientist%'")
+    c.commit()
+    assert c.execute("SELECT family FROM job WHERE title = 'AI Scientist'").fetchone()[0] == "ai-engineer"
+    assert db.migrate(c) == [27]
+    after = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
+    assert after == before
 
 
 def test_new_job_gets_a_family_on_insert(conn):

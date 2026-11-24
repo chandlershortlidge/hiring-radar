@@ -222,9 +222,16 @@ SCREENED_SOURCES = registry.of_kind("feed", "search")
 # model cost; a model-assigned family can replace this later without the column changing.
 # First match wins, in list order: `ml-platform` before `ml-engineer` so "ML Platform
 # Engineer" is platform, and a title naming two families takes the earlier entry. The same
-# rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql;
-# tests/test_ingest.py asserts the two agree. See DECISIONS.md "Job family is a title rule
-# (v1)" for the accepted misfiles.
+# rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql and,
+# since the scientist titles were sorted (HIR-452), re-labels every row in
+# 027_job_family_scientist.sql; tests/test_ingest.py asserts all three agree. See
+# DECISIONS.md "Job family is a title rule (v1)" for the accepted misfiles.
+#
+# A title with "scientist" in it is sorted by the kind of scientist (HIR-452,
+# decisions/2026-11-24-hir-452-scientist-titles.md): a data scientist by the first row, a
+# machine-learning scientist by the `ml-engineer` row, and any other scientist ("AI
+# Scientist", "Research Scientist", "Applied Scientist") by the `research` row. Before, no
+# row named them and they fell through to `ai-engineer`.
 #
 # Every collected track, live or incubating; the list and each track's state are
 # app/scope.py's (HIR-395). A track added there carries a title pattern of its own, and
@@ -239,8 +246,10 @@ _FAMILY_PUNCT = "-/(),."
 _FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("data-scientist", ("data scien", "datenwissenschaft")),
     ("ml-platform", ("mlops", "ml platform", "ml-platform", "ml infra", "platform engineer")),
-    ("ml-engineer", ("machine learning engineer", "machine-learning engineer", "ml engineer", "ml-engineer")),
-    ("research", ("research", "applied scientist")),
+    ("ml-engineer", ("machine learning engineer", "machine-learning engineer", "ml engineer", "ml-engineer",
+                     "machine learning scientist", "machine-learning scientist", "ml scientist",
+                     "ml-scientist")),
+    ("research", ("research", "scientist")),
 )
 
 
