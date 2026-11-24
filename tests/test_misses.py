@@ -137,6 +137,54 @@ def test_a_found_check_takes_company_and_city_from_the_stored_job(conn):
     assert dict(row) == {"company": "Acme", "city": "Berlin", "reason": ALREADY_HAD}
 
 
+# --- a link whose page gives no location: the city the check was run for (HIR-322) ---------
+
+OWN_SITE_URL = "https://careers.bcg.com/job/1"
+NO_CITY_TEXT = "Build LLM agents in Python and ship them to production."
+
+
+def unread(url=OWN_SITE_URL, location=None, text=NO_CITY_TEXT, title="AI Engineer"):
+    p = Posting("url", "", url, "BCG", title, location, text)
+    return CheckResult(url=url, verdict="not_found", how="", posting=p,
+                       diagnosis=diagnose(p, None, FEEDS, None))
+
+
+def city_logged(conn, result, run_for="Berlin"):
+    log_check(conn, result, None, "2026-11-24T10:00:00Z", run_for=run_for)
+    return conn.execute("SELECT city FROM url_check ORDER BY id DESC LIMIT 1").fetchone()["city"]
+
+
+def test_a_miss_on_a_page_with_no_location_is_stored_with_the_city_the_check_was_run_for(conn):
+    assert city_logged(conn, unread()) == "Berlin"
+    assert city_logged(conn, unread(location="  "), run_for="New York") == "New York"
+    # a check that produced no posting at all (a LinkedIn link, never fetched)
+    bare = CheckResult(url="https://www.linkedin.com/jobs/view/1", verdict="not_found", how="",
+                       diagnosis="not a hosted ATS page")
+    assert city_logged(conn, bare) == "Berlin"
+
+
+def test_the_city_the_check_was_run_for_changes_neither_the_reason_nor_the_detail(conn):
+    log_check(conn, unread(), None, "2026-11-24T10:00:00Z")
+    log_check(conn, unread(), None, "2026-11-24T10:00:01Z", run_for="Berlin")
+    rows = conn.execute("SELECT city, reason, reason_detail, company FROM url_check ORDER BY id").fetchall()
+    assert [r["city"] for r in rows] == [None, "Berlin"]
+    assert tuple(rows[0])[1:] == tuple(rows[1])[1:]
+
+
+def test_a_city_the_posting_names_is_never_replaced_by_the_one_the_check_was_run_for(conn):
+    assert city_logged(conn, unread(location="New York, NY")) == "New York"
+    # no location on the page, but the title says the job is remote in the EU
+    assert city_logged(conn, unread(title="AI Engineer (Remote, EU)")) == "Remote (EU)"
+    # a location that was read and is not a tracked city stays unknown: it is not Berlin
+    assert city_logged(conn, unread(location="Paris, France")) is None
+
+
+def test_a_found_job_keeps_its_stored_city_whatever_the_check_was_run_for(conn):
+    res = ingest_one(conn, Posting("greenhouse", "1", GH, "Acme", "AI Engineer", "Berlin", JD), when="2026-11-01T00:00:00Z")
+    r = CheckResult(url=GH, verdict="found", how="ats id", job_id=res.job_id, sources=["greenhouse"])
+    assert city_logged(conn, r, run_for="New York") == "Berlin"
+
+
 def test_the_reason_column_refuses_a_reason_off_the_list(conn):
     import sqlite3
     with pytest.raises(sqlite3.IntegrityError):

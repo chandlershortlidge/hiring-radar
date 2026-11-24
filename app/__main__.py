@@ -15,6 +15,8 @@
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
                     every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt.
+                    --city is the city the links were collected for (default Berlin): logged for a link
+                    whose page gives no location (HIR-322).
                     Ends by copying the check log to the server, where misses are counted (HIR-294)
   receive-checks    the server's end of that copy: reads check records on stdin, stores the new ones
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
@@ -83,7 +85,8 @@ if (_shared_env := main_checkout_env(ROOT)):
     load_dotenv(_shared_env)
 
 from app import add, db, geo, langsmith_live, send_checks  # noqa: E402
-from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
+from app.check import (assumed_city, check_url, checked_coverage, job_coverage, log_check,  # noqa: E402
+                       reach_breakdown)
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
 from app.labels import import_answers  # noqa: E402
@@ -318,10 +321,13 @@ def cmd_receive_checks(args):
 
 def check_one(conn, url, feeds, args):
     r = check_url(conn, url, feeds, args.company, args.title, args.location)
-    log_check(conn, r, args.found_via, now_iso())
+    log_check(conn, r, args.found_via, now_iso(), run_for=args.city)
     print(r.line())
     for n in r.notes:
         print(f"  note: {n}")
+    if assumed_city(r, args.city):
+        print(f"  note: no location on the page; city recorded as {args.city}, "
+              f"the city this check is run for (--city)")
     if not args.add or r.posting is None:
         return
     # Every add-by-link rule lives in app/add.py, so no caller can drift from another.
@@ -638,6 +644,10 @@ def main(argv=None):
     p.add_argument("--file", default=None, help="more URLs, one per line; - reads stdin")
     p.add_argument("--company", default=None); p.add_argument("--title", default=None)
     p.add_argument("--location", default=None)
+    p.add_argument("--city", default="Berlin", choices=geo.ACTIVE_CITIES,
+                   help="the city these links were collected for: recorded for a link whose page "
+                        "gives no location (default: Berlin). Unlike --location it describes the "
+                        "whole batch and never changes the verdict")
     p.add_argument("--add", action="store_true", help="ingest the posting if not already stored (and extract)")
     p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
