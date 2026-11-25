@@ -40,8 +40,13 @@ from dataclasses import dataclass, field
 from app.grounding import UNGROUNDED_REASON
 from app.taxonomy import Taxonomy
 
-DEFAULT_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-sonnet-5-5")
-MAX_TOKENS = 4096
+# The live reader is Claude Haiku 5.5 (HIR-409): on the 60 sealed postings it scored at
+# least as well as Sonnet 5.5 at about an eighth of the cost per posting (HIR-383). To go
+# back, set HIRING_RADAR_MODEL=claude-sonnet-5-5 (it fits the 4096 cap below as well).
+DEFAULT_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-haiku-5-5")
+# Haiku writes longer answers than Sonnet and a reading cut off at the cap returns nothing,
+# so it was measured at 8192 (HIR-223, HIR-368) and runs live at 8192.
+MAX_TOKENS = 8192
 NEW_PREFIX = "new:"
 # What the model is sent, beyond the prompt. Part of extractor_version, so changing how the
 # input is built re-extracts every job, the same as a prompt or taxonomy change.
@@ -179,7 +184,24 @@ Also report whether the posting demands production work of the candidate:
 - production_basis is "stated" whenever a value is set; there is nothing to infer.
 - production_signal is the verbatim phrase, or null when not mentioned.
 
-Always respond by calling the record_skills tool exactly once. Do not reply with text."""
+Always respond by calling the record_skills tool exactly once. Do not reply with text.
+
+10. A broad skill is asked for whenever its name is written in an ask, in any form: as a
+    noun, as a modifier of another word ("B platforms", "B libraries", "B infrastructure",
+    "B workloads", "B-based", "B-powered"), inside a hyphenated or compound word, as its
+    adjective, abbreviated, or in another language. When an ask names a broad skill and then
+    gives examples of it, report the broad skill first, then each example: they are separate
+    skills (rules 3 and 4). Before you finish, reread each ask for a broad term you have not
+    reported. This adds nothing the text does not write: a list of specific skills alone
+    never implies the broad skill they belong to.
+11. For seniority, years of experience count however they are written: in digits, in words,
+    or in another language ("several years" and its translations are years of experience).
+    A range or an open-ended count ("X–Y years", "X or more years", "X+ years") is read at
+    its lowest number.
+"""
+# Rules 10 and 11 are HIR-368's round-3 trial (evals/experiments/trials/hir-368-round-3.md),
+# placed where the trial placed them, after the closing line, so the live prompt is the one
+# measured on the dev and sealed sets (HIR-383) rather than a rearrangement of it (HIR-409).
 
 SENIORITY_LEVELS = ("junior", "mid", "senior")
 REQUIREMENT_LEVELS = ("required", "nice_to_have")

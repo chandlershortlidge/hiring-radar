@@ -738,3 +738,36 @@ def test_degree_rule_is_the_lowest_level_in_both_prompt_and_guide():
     assert "highest level named" not in prompt
     for example in ("MS or PhD", "Master's degree (or above)"):
         assert example in prompt and example in guide
+
+
+# --- the live reader is the one measured (HIR-409) -----------------------------------------
+
+def _model_and_cap(env_model):
+    """DEFAULT_MODEL and MAX_TOKENS as a fresh process sees them, so no reload leaks here."""
+    import os
+    import subprocess
+    import sys
+    env = {k: v for k, v in os.environ.items() if k != "HIRING_RADAR_MODEL"}
+    if env_model:
+        env["HIRING_RADAR_MODEL"] = env_model
+    out = subprocess.run([sys.executable, "-c",
+                          "from app.extract import DEFAULT_MODEL, MAX_TOKENS; print(DEFAULT_MODEL, MAX_TOKENS)"],
+                         env=env, capture_output=True, text=True, check=True,
+                         cwd=Path(__file__).parent.parent).stdout.split()
+    return out[0], int(out[1])
+
+
+def test_the_live_reader_is_haiku_at_the_cap_it_was_measured_at():
+    """HIR-383 released Haiku 5.5 at an 8192-token cap; a lower cap cuts its readings off."""
+    assert _model_and_cap(None) == ("claude-haiku-5-5", 8192)
+
+
+def test_going_back_is_one_setting():
+    assert _model_and_cap("claude-sonnet-5-5")[0] == "claude-sonnet-5-5"
+
+
+def test_the_live_rules_carry_round_3_verbatim_where_the_trial_put_them():
+    """The sealed check (HIR-383) scored the rules with round 3 placed after the closing line.
+    A reworded or moved copy is an unmeasured prompt."""
+    trial = (Path(__file__).parent.parent / "evals/experiments/trials/hir-368-round-3.md").read_text()
+    assert ex.PRINCIPLES.endswith("Do not reply with text.\n\n" + trial.strip() + "\n")
