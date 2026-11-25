@@ -1,0 +1,252 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience deploying AI/ML models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML models\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python and SQL skills\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python and SQL skills\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"sound software engineering practices\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"proficiency in the Data Science ecosystem\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"numpy\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NumPy\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"A solid understanding of LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience developing or evaluating LLM-powered /Agentic applications\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluating LLM-powered /Agentic applications\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring models\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM orchestration\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic workflows or LLM orchestration using tools such as LangGraph, CrewAI, or Google ADK.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"crewai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic workflows or LLM orchestration using tools such as LangGraph, CrewAI, or Google ADK.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"google-adk\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google ADK\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure as code\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps platforms\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"development tools (Git, Docker, Terraform)\"\n    },\n    {\n      \"skill_id\": \"jenkins\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines (Jenkins, CircleCI)\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps platforms (Vertex AI, MLflow, DVC)\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience working within cloud environments\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud Platform (GCP)\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps platforms (Vertex AI, MLflow, DVC)\"\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience working within cloud environments, particularly Google Cloud Platform (GCP) and Databricks.\"\n    },\n    {\n      \"skill_id\": \"gemini\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gemini\"\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Familiarity with building agentic workflows (e.g., using LangGraph, CrewAI, AutoGen) or chaining LLMs for complex reasoning tasks is highly desirable.\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Object-oriented programming\",\n      \"raw_text\": \"object-oriented programming\"\n    },\n    {\n      \"label\": \"SciPy\",\n      \"raw_text\": \"SciPy\"\n    },\n    {\n      \"label\": \"Diffusion models\",\n      \"raw_text\": \"Deep understanding of Large Language Models (GPT, Claude, Llama, Gemini) and Diffusion Models.\"\n    },\n    {\n      \"label\": \"DVC\",\n      \"raw_text\": \"MLOps platforms (Vertex AI, MLflow, DVC)\"\n    },\n    {\n      \"label\": \"GPT\",\n      \"raw_text\": \"GPT\"\n    },\n    {\n      \"label\": \"Claude\",\n      \"raw_text\": \"Claude\"\n    },\n    {\n      \"label\": \"Llama\",\n      \"raw_text\": \"Llama\"\n    },\n    {\n      \"label\": \"CircleCI\",\n      \"raw_text\": \"CircleCI\"\n    },\n    {\n      \"label\": \"Data platforms\",\n      \"raw_text\": \"data platforms\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Proven real-world experience deploying AI/ML models (internships, co-ops, or full-time roles) (2+ years).\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or Bachelor’s degree in Computer Science, Statistics, Machine Learning, or a related quantitative field.\",\n  \"notes\": \"Read “Additional experience we value” literally as an unmarked qualifications heading, not an explicitly optional heading; affected skills without another required mention are flagged for review.\\nThe later “highly desirable” sentence makes AutoGen optional; it does not override earlier required mentions of LangGraph, CrewAI, or LLM orchestration.\\nAlternative grouping needs review: the orchestration examples overlap across two differently qualified lists, and the heterogeneous tool examples recur under separate technical categories; no groups are asserted here.\\nThe data-science library lists use inclusive wording and are not treated as alternatives.\\nSeniority follows the guide’s explicit “proven experience” inference to mid; the 2+ years minimum alone does not establish seniority beyond that.\\nGPT, Claude, and Llama are model names here, not requests for OpenAI API, Anthropic API, or open-source LLM experience.\\nCompany-description technologies and technologies mentioned only in responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "experience deploying AI/ML models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python and SQL skills"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Strong Python and SQL skills"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "sound software engineering practices"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "proficiency in the Data Science ecosystem"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "A solid understanding of LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "experience developing or evaluating LLM-powered /Agentic applications"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating LLM-powered /Agentic applications"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring models"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "Agentic workflows or LLM orchestration using tools such as LangGraph, CrewAI, or Google ADK.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "Agentic workflows or LLM orchestration using tools such as LangGraph, CrewAI, or Google ADK.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "required",
+        "raw_text": "Google ADK",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure as code",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps platforms"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "development tools (Git, Docker, Terraform)"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines (Jenkins, CircleCI)"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLOps platforms (Vertex AI, MLflow, DVC)"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Experience working within cloud environments"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform (GCP)"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "MLOps platforms (Vertex AI, MLflow, DVC)"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Experience working within cloud environments, particularly Google Cloud Platform (GCP) and Databricks."
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with building agentic workflows (e.g., using LangGraph, CrewAI, AutoGen) or chaining LLMs for complex reasoning tasks is highly desirable."
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object-oriented programming",
+        "raw_text": "object-oriented programming"
+      },
+      {
+        "label": "SciPy",
+        "raw_text": "SciPy"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "Deep understanding of Large Language Models (GPT, Claude, Llama, Gemini) and Diffusion Models."
+      },
+      {
+        "label": "DVC",
+        "raw_text": "MLOps platforms (Vertex AI, MLflow, DVC)"
+      },
+      {
+        "label": "GPT",
+        "raw_text": "GPT"
+      },
+      {
+        "label": "Claude",
+        "raw_text": "Claude"
+      },
+      {
+        "label": "Llama",
+        "raw_text": "Llama"
+      },
+      {
+        "label": "CircleCI",
+        "raw_text": "CircleCI"
+      },
+      {
+        "label": "Data platforms",
+        "raw_text": "data platforms"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Proven real-world experience deploying AI/ML models (internships, co-ops, or full-time roles) (2+ years).",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or Bachelor’s degree in Computer Science, Statistics, Machine Learning, or a related quantitative field.",
+    "notes": "Read “Additional experience we value” literally as an unmarked qualifications heading, not an explicitly optional heading; affected skills without another required mention are flagged for review.\nThe later “highly desirable” sentence makes AutoGen optional; it does not override earlier required mentions of LangGraph, CrewAI, or LLM orchestration.\nAlternative grouping needs review: the orchestration examples overlap across two differently qualified lists, and the heterogeneous tool examples recur under separate technical categories; no groups are asserted here.\nThe data-science library lists use inclusive wording and are not treated as alternatives.\nSeniority follows the guide’s explicit “proven experience” inference to mid; the 2+ years minimum alone does not establish seniority beyond that.\nGPT, Claude, and Llama are model names here, not requests for OpenAI API, Anthropic API, or open-source LLM experience.\nCompany-description technologies and technologies mentioned only in responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "df02477474faecff2765cdcafdbdf4c54262099ca92e60d001c01f3bd542c93c",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

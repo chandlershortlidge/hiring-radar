@@ -1,0 +1,175 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud Infrastructure\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps\", \"alternative_group\": 1},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"LLMOps\", \"alternative_group\": 1},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps\", \"alternative_group\": 1},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend Engineering\", \"alternative_group\": 1},\n    {\"skill_id\": \"ml-engineering\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning Engineering\", \"alternative_group\": 1},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"required\", \"raw_text\": \"Inference Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"Model-Serving\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"required\", \"raw_text\": \"über Quantisierung\", \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Docker, Kubernetes\"},\n    {\"skill_id\": \"helm\", \"requirement\": \"required\", \"raw_text\": \"Helm\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"sowie Observability\"},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"Transformer-basierte Modelle\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"Identitäten, Berechtigungen\", \"uncertain\": true},\n    {\"skill_id\": \"secrets-management\", \"requirement\": \"required\", \"raw_text\": \"Berechtigungen, Secrets\", \"uncertain\": true},\n    {\"skill_id\": \"vllm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vLLM\", \"alternative_group\": 2},\n    {\"skill_id\": \"sglang\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SGLang\", \"alternative_group\": 2}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Platform Engineering\", \"raw_text\": \"Platform Engineering\"},\n    {\"label\": \"Batching\", \"raw_text\": \"Batching\"},\n    {\"label\": \"KV-cache management\", \"raw_text\": \"KV-Cache-Management\"},\n    {\"label\": \"GPU clusters\", \"raw_text\": \"GPU-Clustern\"},\n    {\"label\": \"Logging / auditing / compliance\", \"raw_text\": \"Logging, Auditierung und Compliance\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Du sprichst fließend Deutsch und Englisch\",\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Background list 'Erfahrung in Platform Engineering, Cloud Infrastructure, MLOps, LLMOps, DevOps, Backend Engineering oder Machine Learning Engineering' is one either/or ask, so it forms group 1. Platform Engineering is unmapped.\\ncloud stays in group 1. Its only other mention is the optional 'Private-Cloud-Umgebungen' under Pluspunkt, which is not a separate requirement, and the 'Cloud & Plattformen:' subheading asks for nothing itself.\\ninference-optimization is read from the 'Inference Engineering:' subheading, whose content (quantization, batching, KV cache, latency, throughput, cost) describes it. Marked uncertain; if kept, the phrase should be added as an alias.\\nquantization is labeled from the German 'Quantisierung', a direct translation of the skill name. That is not in the aliases yet and may need adding.\\naccess-control comes from 'Identitäten, Berechtigungen' (identities, permissions = IAM). secrets-management comes from 'Secrets'. Both German/short phrasings are not current aliases, hence uncertain.\\nKubernetes, Observability and Secrets also appear in the responsibilities, so each quote is taken from the requirement mention.\\n'Pluspunkt:' is an optional heading, so vLLM and SGLang are nice_to_have, grouped by 'oder vergleichbaren'. 'oder vergleichbaren' adds no skill.\\nAPIs, containers and Kubernetes integration in 'Was erwartet dich' are responsibilities only, so they are not labeled from there.\\nGerman is required: an unmarked item in the requirements list. 'super, dann findest du dich… zurecht' is company enthusiasm and changes nothing.\\nNo years, level words or lead/mentoring duty, so seniority is null. No degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Infrastructure",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "Machine Learning Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "Inference Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "Model-Serving"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "über Quantisierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Docker, Kubernetes"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "sowie Observability"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformer-basierte Modelle"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "Identitäten, Berechtigungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "Berechtigungen, Secrets",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "nice_to_have",
+        "raw_text": "SGLang",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "label": "Batching",
+        "raw_text": "Batching"
+      },
+      {
+        "label": "KV-cache management",
+        "raw_text": "KV-Cache-Management"
+      },
+      {
+        "label": "GPU clusters",
+        "raw_text": "GPU-Clustern"
+      },
+      {
+        "label": "Logging / auditing / compliance",
+        "raw_text": "Logging, Auditierung und Compliance"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Du sprichst fließend Deutsch und Englisch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Background list 'Erfahrung in Platform Engineering, Cloud Infrastructure, MLOps, LLMOps, DevOps, Backend Engineering oder Machine Learning Engineering' is one either/or ask, so it forms group 1. Platform Engineering is unmapped.\ncloud stays in group 1. Its only other mention is the optional 'Private-Cloud-Umgebungen' under Pluspunkt, which is not a separate requirement, and the 'Cloud & Plattformen:' subheading asks for nothing itself.\ninference-optimization is read from the 'Inference Engineering:' subheading, whose content (quantization, batching, KV cache, latency, throughput, cost) describes it. Marked uncertain; if kept, the phrase should be added as an alias.\nquantization is labeled from the German 'Quantisierung', a direct translation of the skill name. That is not in the aliases yet and may need adding.\naccess-control comes from 'Identitäten, Berechtigungen' (identities, permissions = IAM). secrets-management comes from 'Secrets'. Both German/short phrasings are not current aliases, hence uncertain.\nKubernetes, Observability and Secrets also appear in the responsibilities, so each quote is taken from the requirement mention.\n'Pluspunkt:' is an optional heading, so vLLM and SGLang are nice_to_have, grouped by 'oder vergleichbaren'. 'oder vergleichbaren' adds no skill.\nAPIs, containers and Kubernetes integration in 'Was erwartet dich' are responsibilities only, so they are not labeled from there.\nGerman is required: an unmarked item in the requirements list. 'super, dann findest du dich… zurecht' is company enthusiasm and changes nothing.\nNo years, level words or lead/mentoring duty, so seniority is null. No degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e13a5eb00e5cff7627044816352fa364ea8636890488c953ff1b0656f2b4bb12",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

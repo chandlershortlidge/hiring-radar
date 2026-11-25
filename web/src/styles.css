@@ -54,13 +54,11 @@ mark { background: none; color: inherit; box-shadow: inset 0 -0.3em 0 var(--butt
 /* "Connect Claude": coral outline, and not a button until there is something to connect to */
 .pill.connect { border: 2px solid var(--coral); font-weight: 600; cursor: default; }
 .pill.connect small { font: 10.5px var(--mono); letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); }
-.count { display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--butter); color: var(--ink); font: 600 11px/1 var(--mono); }
 /* secondary by default: white, plum outline, plum text. Main buttons are peach with a coral outline. */
 .btn { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border: 1px solid var(--plum); border-radius: 6px; background: var(--paper); color: var(--plum); font-size: 13px; font-weight: 500; }
 .btn:hover:not(:disabled) { background: var(--ground); }
-.btn.primary, .btn.outline { border-color: var(--coral); background: var(--peach); color: var(--ink); font-weight: 600; }
-.btn.primary:hover:not(:disabled), .btn.outline:hover:not(:disabled) { background: var(--peach); }
-.btn.lg { height: 48px; padding: 0 18px; font-size: 13.5px; }
+.btn.primary { border-color: var(--coral); background: var(--peach); color: var(--ink); font-weight: 600; }
+.btn.primary:hover:not(:disabled) { background: var(--peach); }
 .btn:disabled { opacity: .5; cursor: default; }
 .btn.ghost { height: auto; min-height: 32px; border: 0; background: transparent; color: var(--plum); }
 .btn.ghost:hover:not(:disabled) { background: transparent; color: var(--ink); }
@@ -259,6 +257,7 @@ select.sel { padding-right: 28px; }
 .jobs-head .search input { width: 100%; min-width: 0; }
 .chip-filter { display: inline-flex; align-items: center; gap: 4px; height: 26px; padding: 0 4px 0 10px; border-radius: 13px; background: var(--plum); color: #fff; font-size: 12.5px; }
 .chip-filter button { width: 22px; height: 22px; border: 0; border-radius: 50%; background: transparent; color: #fff; display: inline-flex; align-items: center; justify-content: center; }
+.jobs-head .clear-filters { padding: 0 4px; font-size: 12.5px; }
 /* "+ Add skill" in the chip row, and its typeahead popover (HIR-79) */
 .add-skill { position: relative; display: inline-flex; }
 .chip-add { height: 26px; padding: 0 10px; border: 1px dashed var(--line-3); border-radius: 13px; background: var(--paper); color: var(--ink-2); font-size: 12.5px; display: inline-flex; align-items: center; gap: 5px; }
@@ -375,30 +374,15 @@ select.sel { padding-right: 28px; }
 .x { width: 36px; height: 36px; border: 0; border-radius: 6px; background: transparent; display: inline-flex; align-items: center; justify-content: center; flex: none; }
 .drawer-body { padding: 20px 24px; display: flex; flex-direction: column; gap: 20px; overflow-y: auto; }
 .drawer-foot { padding: 12px 24px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-2); }
-.tabs { display: flex; border-bottom: 1px solid var(--line); }
-.tabs button { flex: 1; height: 40px; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; background: transparent; color: var(--ink-2); font-size: 13.5px; }
-.tabs button[aria-selected="true"] { border-bottom-color: var(--plum); color: var(--ink); font-weight: 600; }
 .field { display: flex; flex-direction: column; gap: 6px; }
 .field label { font-size: 13px; font-weight: 500; }
 .field .help { font-size: 12.5px; color: var(--ink-2); line-height: 1.45; }
 .field input, .field select, .field textarea { height: 40px; padding: 0 12px; border: 1px solid var(--line-3); border-radius: 6px; background: var(--paper); }
-.field input.mono { font: 12.5px var(--mono); }
-.field textarea { height: 180px; padding: 10px 12px; resize: vertical; font-size: 13px; line-height: 1.4; }
 .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 8px; }
 .actions { display: flex; align-items: center; gap: 10px; }
 .note { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; border: 1px solid var(--plum); border-radius: 6px; font-size: 13.5px; line-height: 1.45; }
-.note.soft { border-color: var(--line-3); background: var(--ground); }
 .note.warn { border-style: dashed; border-color: var(--coral); }
 .note svg { flex: none; margin-top: 2px; }
-.rq { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-.rq li { padding: 16px 0; border-bottom: 1px solid var(--line-2); display: flex; flex-direction: column; gap: 8px; }
-.rq .t { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-.rq .t b { font-weight: 600; } .rq .t span { font-size: 12.5px; color: var(--ink-2); }
-.rq blockquote { margin: 0; padding: 0 0 0 12px; border-left: 2px solid var(--line-3); font-size: 13px; line-height: 1.45; color: var(--ink-2); }
-.rq .jl { font-size: 12.5px; }
-.rq .act { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.rq .act select { height: 36px; max-width: 220px; }
-.rq .act .btn { height: 36px; }
 .pchips { display: flex; flex-wrap: wrap; gap: 6px; }
 .pchip { height: 28px; padding: 0 11px; border: 1px solid var(--line-3); border-radius: 14px; background: var(--paper); font-size: 12.5px; color: var(--ink); }
 .pchip[aria-pressed="true"] { background: var(--plum); border-color: var(--plum); color: #fff; }
@@ -409,7 +393,6 @@ select.sel { padding-right: 28px; }
 .hero-in { max-width: 1200px; margin: 0 auto; padding: 44px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 32px 48px; }
 .hero-l { flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 22px; }
 .hero h1 { margin: 0; font-size: 46px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; }
-.hero .lede { margin: 0; max-width: 46ch; color: var(--ink-2); font-size: 16px; }
 .hero-chart { flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 22px; background: var(--ground); border: 1px solid var(--line); border-radius: 10px; }
 .hero-chart-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
 .hero-chart h2 { margin: 0; font-size: 15px; font-weight: 600; }
@@ -428,14 +411,17 @@ select.sel { padding-right: 28px; }
 .mcp-wrap { max-width: 1200px; margin: 0 auto; padding: 16px 24px 0; }
 .jobs > .mcp { border-radius: 7px 7px 0 0; }
 
-/* a city page with a profile: "You have 12 of the 15 skills Berlin asks for most" */
-.fitline { background: var(--paper); border-bottom: 1px solid var(--line); }
-.fitline-in { max-width: 1200px; margin: 0 auto; padding: 20px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-.fitline h2 { margin: 4px 0 0; font-size: 26px; font-weight: 700; letter-spacing: -0.015em; line-height: 1.2; }
-.fitline .eyebrow { font-size: 11.5px; }
-.gaps { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: 12.5px; color: var(--ink-2); }
-.gap-chip { padding: 5px 10px; border-radius: 6px; background: var(--plum-tint); color: var(--ink); font-size: 13px; }
+/* a city page with a profile: one small line in the chart card, under the find box, naming
+   the biggest gaps (HIR-411). Its text is the size of the legend under the chart. A chip is
+   a button: small to look at, with a 44px-tall area to press, which the chip's own margin
+   makes room for so two wrapped lines of chips never overlap. */
+.gaps { display: flex; flex-wrap: wrap; align-items: center; gap: 0 6px; min-height: 44px; margin-top: -8px; font-size: 12.5px; color: var(--ink-2); }
+.gap-chip { position: relative; display: inline-flex; align-items: center; gap: 5px; margin: 9px 0; padding: 4px 9px; border: 0; border-radius: 6px; background: var(--plum-tint); color: var(--ink); font-size: 12.5px; line-height: 18px; white-space: nowrap; }
+.gap-chip::before { content: ""; position: absolute; inset: -9px 0; }
+.gap-chip:hover { box-shadow: inset 0 0 0 1px var(--plum); }
+.gap-chip[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--plum); font-weight: 600; }
 .gap-chip .mono { font-size: 12px; }
+.gaps-count { margin-left: 4px; }
 
 /* query bar: the band that says which market you are looking at (HIR-188) */
 .qbar { background: var(--paper); border-bottom: 1px solid var(--line); }
@@ -461,11 +447,23 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
 .token.col-1 { background: var(--peach); color: var(--ink); } .token.col-2 { background: var(--warm-grey); color: var(--ink); }
 /* on the home page the pickers sit inside the hero, under the headline, a size up */
 .qbar.landing { background: none; border: 0; }
-.qbar.landing .qbar-in { max-width: none; margin: 0; padding: 0; justify-content: flex-start; }
-.qbar.landing .qb-btn { height: 48px; padding: 0 16px; font-size: 17px; }
+/* HIR-474: one search box, "View jobs" its main button at the right, compare a link under it */
+.qbar.landing .qbar-in { max-width: none; margin: 0; padding: 0; flex-direction: column; align-items: stretch; gap: 10px; }
+.qbar.landing .qb { flex-wrap: wrap; padding: 8px; border: 2px solid var(--warm-grey); border-radius: 12px; background: var(--ground); }
+.qbar.landing .qb-btn { height: 56px; padding: 0 16px; font-size: 17px; }
 .qbar.landing .qb-in { font-size: 16px; }
 /* the caret is drawn with background gradients, so its offset is the button's height */
-.qbar.landing select.qb-sel { padding-right: 34px; background-position: calc(100% - 17px) 21px, calc(100% - 12px) 21px; }
+.qbar.landing select.qb-sel { padding-right: 34px; background-position: calc(100% - 17px) 25px, calc(100% - 12px) 25px; }
+/* the role picker as wide as the role it shows, not its longest option, so View jobs fits
+   beside the pickers; a browser without field-sizing puts View jobs on a row of its own */
+.qbar.landing .qb-picks select.qb-sel { field-sizing: content; }
+/* the pickers' group takes the spare room on a shared row, so View jobs keeps its own width
+   at the right; alone on its row (a narrow column) View jobs fills it */
+.qb-picks { flex: 9999 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.qb-go { flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 22px; border: 0; border-radius: 8px; background: var(--plum); color: #fff; font-size: 17px; font-weight: 600; white-space: nowrap; }
+.qb-go:hover { background: var(--ink); }
+.qb-compare { align-self: flex-start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--plum); font-size: 14px; text-decoration: underline; }
+.qb-compare:hover { color: var(--ink); }
 
 /* city picker */
 .picker { position: relative; }
@@ -553,10 +551,14 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
   .qb-in { display: none; }
   .qb > .picker, .qb .qb-btn, .qb .qb-add, .qb .token { width: 100%; }
   .qb-sel, .qb .picker .qb-btn { width: 100%; justify-content: space-between; }
+  .qbar.landing .qb, .qb-picks { flex-direction: column; align-items: stretch; }
+  .qb-picks { gap: 8px; } .qb-picks > .picker { width: 100%; }
+  .qb-go { width: 100%; }
   .hero-in { padding: 28px 16px; gap: 24px; } .hero-l { gap: 16px; } .hero h1 { font-size: 30px; }
   .hero-chart { padding: 16px; } .hero-row { grid-template-columns: 110px minmax(0, 1fr) 40px; }
   .mcp-wrap { padding: 16px 16px 0; } .mcp { padding: 12px 16px; }
-  .fitline-in { padding: 16px; } .fitline h2 { font-size: 20px; }
+  /* the gaps line's count drops under the chips here; keep it clear of the bars */
+  .gaps { padding-bottom: 8px; } .gaps-count { margin-left: 0; }
   /* a market takes two lines: the city and its open jobs, then its three skills */
   .market-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 12px; padding: 12px 16px; }
   .mk-city { grid-column: 1 / 3; } .mk-open { grid-column: 3; justify-self: end; }

@@ -1,0 +1,90 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Erste praktische Erfahrung in der Softwareentwicklung\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java und/oder\", \"alternative_group\": 1},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\", \"alternative_group\": 1},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\", \"alternative_group\": 1},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Entwicklung und Integration von APIs\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Erste praktische Erfahrung mit LLMs\", \"alternative_group\": 2},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG, AI Agents\", \"alternative_group\": 2},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"AI Agents\", \"alternative_group\": 2},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool Calling\", \"alternative_group\": 2},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an modernen Cloud-\"}\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior) Forward Deployed Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Erfolgreich abgeschlossenes Studium in Informatik, Software Engineering, Data Science, AI oder einer vergleichbaren technischen Fachrichtung\",\n  \"uncertain\": [],\n  \"notes\": \"Qualifikationen has no optional marker in its heading, so items default to required.\\n\\nGroup 1: 'Python, Java und/oder TypeScript/JavaScript' is one ask offering alternatives. TypeScript/JavaScript is a same-kind slash pair, so both join the group.\\n\\nGroup 2: 'LLMs, RAG, AI Agents oder Tool Calling' is an X, Y or Z alternative set.\\n\\nThe 'idealerweise' in that bullet attaches to how the experience was gained ('über konkrete eigene Projekte'), not to the skills. So the skills stay required.\\n\\nCloud is nice_to_have under rule 3 because of the appetite phrase 'Interesse an'. 'AI-Technologien' in the same line is too vague to map, so it is left out rather than forced to ai-ml.\\n\\nLLM workflows, RAG, Agenten, Evaluation, Security and Observability in Aufgaben are responsibilities only. They add nothing beyond the qualification asks; Evaluation, Security and Observability are not labeled.\\n\\nThe degree fields Data Science and AI are fields of study, not skill asks. 'Vergleichbare technische Fachrichtung' widens the field, so degree_or_equivalent is false.\\n\\nCloud Computing and KI in the company paragraph are a description of Reply, not tools it runs, and are not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erste praktische Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java und/oder",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Entwicklung und Integration von APIs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erste praktische Erfahrung mit LLMs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG, AI Agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an modernen Cloud-"
+      }
+    ],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior) Forward Deployed Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Erfolgreich abgeschlossenes Studium in Informatik, Software Engineering, Data Science, AI oder einer vergleichbaren technischen Fachrichtung",
+    "uncertain": [],
+    "notes": "Qualifikationen has no optional marker in its heading, so items default to required.\n\nGroup 1: 'Python, Java und/oder TypeScript/JavaScript' is one ask offering alternatives. TypeScript/JavaScript is a same-kind slash pair, so both join the group.\n\nGroup 2: 'LLMs, RAG, AI Agents oder Tool Calling' is an X, Y or Z alternative set.\n\nThe 'idealerweise' in that bullet attaches to how the experience was gained ('über konkrete eigene Projekte'), not to the skills. So the skills stay required.\n\nCloud is nice_to_have under rule 3 because of the appetite phrase 'Interesse an'. 'AI-Technologien' in the same line is too vague to map, so it is left out rather than forced to ai-ml.\n\nLLM workflows, RAG, Agenten, Evaluation, Security and Observability in Aufgaben are responsibilities only. They add nothing beyond the qualification asks; Evaluation, Security and Observability are not labeled.\n\nThe degree fields Data Science and AI are fields of study, not skill asks. 'Vergleichbare technische Fachrichtung' widens the field, so degree_or_equivalent is false.\n\nCloud Computing and KI in the company paragraph are a description of Reply, not tools it runs, and are not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "295a680747080bb78a0354847238e9c61d7d8ea7ad08e24c0e3bc5e5fbcbb62d",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

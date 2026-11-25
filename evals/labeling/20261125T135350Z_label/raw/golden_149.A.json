@@ -1,0 +1,88 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Sehr gute Python-Kenntnisse\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Machine Learning\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"Deep Learning\"},\n    {\"skill_id\": \"speech-recognition\", \"requirement\": \"required\", \"raw_text\": \"Praktische Erfahrung mit Speech-to-Text\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Large Language Models\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"oder PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"sowie MLOps\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise in Cloud-Umgebungen\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise in Cloud-Umgebungen (z. B. AWS)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Speech AI\", \"raw_text\": \"Speech AI\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior-Level-Rolle\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Requirements section is 'Anforderungsprofil', so its items default to required. RAG, Retrieval and 'ML- und MLOps-Pipelines' appear only under 'Aufgabengebiet' (responsibilities) and are not labeled.\\n'idealerweise' (ideally) attaches to the cloud ask, so cloud and its example AWS are both nice_to_have.\\n'TensorFlow oder PyTorch' is an either/or ask, so the two form alternative_group 1.\\n'Deployment-Prozessen' is generic and does not clearly mean ai-deployment ('model deployment'), so it is left out.\\n'Erfahrung mit produktiven KI-Systemen' is close to mlops, which is already labeled via 'MLOps'.\\n'Speech AI' is broader than speech recognition and has no taxonomy entry, so it goes to unmapped.\\nSeniority is stated as senior from 'Senior-Level-Rolle' in the benefits section; it is also consistent with 'Mehrjährige Erfahrung'.\\nNo degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Sehr gute Python-Kenntnisse"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Machine Learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "Deep Learning"
+      },
+      {
+        "skill_id": "speech-recognition",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung mit Speech-to-Text"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "oder PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "sowie MLOps"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen (z. B. AWS)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Speech AI",
+        "raw_text": "Speech AI"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior-Level-Rolle",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Requirements section is 'Anforderungsprofil', so its items default to required. RAG, Retrieval and 'ML- und MLOps-Pipelines' appear only under 'Aufgabengebiet' (responsibilities) and are not labeled.\n'idealerweise' (ideally) attaches to the cloud ask, so cloud and its example AWS are both nice_to_have.\n'TensorFlow oder PyTorch' is an either/or ask, so the two form alternative_group 1.\n'Deployment-Prozessen' is generic and does not clearly mean ai-deployment ('model deployment'), so it is left out.\n'Erfahrung mit produktiven KI-Systemen' is close to mlops, which is already labeled via 'MLOps'.\n'Speech AI' is broader than speech recognition and has no taxonomy entry, so it goes to unmapped.\nSeniority is stated as senior from 'Senior-Level-Rolle' in the benefits section; it is also consistent with 'Mehrjährige Erfahrung'.\nNo degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "02e2fd842c7e8ab755403f181e34344f8e0a49341124102b4d70bc65b23e05d6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

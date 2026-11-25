@@ -9,8 +9,9 @@ import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
 import App from "./App.jsx";
 import FitLine, { cityFit } from "./FitLine.jsx";
+import SkillChart from "./SkillChart.jsx";
 import FilterPills, { germanLabel, seniorityLabel } from "./FilterPills.jsx";
-import { Headline, HeroChart, heroFacts, heroPlace, heroRoles } from "./HomeHero.jsx";
+import { HeroChart, Tagline, heroFacts, heroPlace, heroRoles } from "./HomeHero.jsx";
 import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
 import { isBestFit } from "./JobList.jsx";
 import { placeBySlug } from "./format.js";
@@ -68,12 +69,11 @@ describe("the home page's headline and chart", () => {
     expect(heroPlace(["atlantis"]).name).toBe("Berlin");
   });
 
-  it("names the two most-asked-for skills, in order, with that market's own shares", () => {
+  it("ranks the chart's skills, most asked for first, with that market's own shares", () => {
     const { top, open, roles } = heroFacts(data, { Berlin: 120 }, placeBySlug("berlin"));
     expect(open).toBe(120);
+    expect(roles).toBe("AI & data jobs");
     expect(top.map((s) => [s.name, s.pct])).toEqual([["PYTHON", 67], ["LLMS", 41], ["AGENTS", 29]]);
-    const html = renderToStaticMarkup(<Headline top={top} place="Berlin" roles={roles} />);
-    expect(html).toBe("<h1><mark>67%</mark> of AI &amp; data jobs in Berlin ask for PYTHON. <mark>41%</mark> ask for LLMS.</h1>");
   });
 
   it("says which roles the numbers are for once a job family is chosen", () => {
@@ -83,12 +83,16 @@ describe("the home page's headline and chart", () => {
     expect(facts.open).toBe(100); // the family's own count, not every role's
   });
 
-  it("falls back to saying what the page is for when there are not two skills to name", () => {
-    for (const top of [undefined, [], [{ name: "Python", pct: 50 }]]) {
-      expect(renderToStaticMarkup(<Headline top={top} place="Hamburg" roles="AI & data jobs" />))
-        .toBe("<h1>What are employers actually asking for?</h1>");
-    }
-    expect(firstPaint("/")).toContain("What are employers actually asking for?"); // before any numbers
+  // HIR-474: the headline is the site's tagline, with "actually" marked; the numbers
+  // headline, the line above it and the grey line under it are gone.
+  it("leads with the tagline, as the page's one h1, and none of the removed lines", () => {
+    expect(renderToStaticMarkup(<Tagline />)).toBe("<h1>See what skills employers <mark>actually</mark> want.</h1>");
+    const html = firstPaint("/");
+    expect(html).toContain("See what skills employers <mark>actually</mark> want.");
+    expect(html.match(/<h1/g)).toHaveLength(1);
+    expect(html).not.toContain('class="eyebrow"');
+    expect(html).not.toContain("Live skill demand from every open");
+    expect(html).not.toContain("What are employers actually asking for?"); // the old headline before numbers
   });
 
   it("links the chart to that market's full page, keeping the job family", () => {
@@ -105,10 +109,30 @@ describe("the home page's headline and chart", () => {
     expect(at(false)).toContain("No jobs here yet");
   });
 
-  it("starts the pickers on the lead market, so compare is one pick away", () => {
+  it("starts the pickers on the lead market, so View jobs is one press away", () => {
     const html = firstPaint("/");
     expect(html).toMatch(/<button[^>]*class="qb-btn"[^>]*>Berlin</);
     expect(html).not.toContain("Pick a city");
+  });
+
+  it("puts View jobs inside the search box and compare as a link under it, not a dashed picker", () => {
+    const html = firstPaint("/");
+    expect(html).toMatch(/<div class="qb">.*<button type="button" class="qb-go">View jobs →<\/button><\/div>/s);
+    expect(html).toContain('<button type="button" class="qb-compare">or compare with another city</button>');
+    expect(html).not.toContain("+ Compare with…");
+  });
+
+  it("keeps the dashed compare picker, and no View jobs, on a city page", () => {
+    const html = firstPaint("/berlin");
+    expect(html).toContain("+ Compare with…");
+    expect(html).not.toContain("View jobs");
+    expect(html).not.toContain("or compare with another city");
+  });
+
+  it("styles View jobs plum with white text, the box in the palette's ground and warm grey", () => {
+    expect(css).toMatch(/\.qb-go \{[^}]*height: 56px;[^}]*background: var\(--plum\); color: #fff;/);
+    expect(css).toMatch(/\.qbar\.landing \.qb \{[^}]*border: 2px solid var\(--warm-grey\); border-radius: 12px; background: var\(--ground\);/);
+    expect(css).toMatch(/\.qbar\.landing \.qb-btn \{ height: 56px;/);
   });
 });
 
@@ -136,18 +160,65 @@ describe("the fit line on a city page", () => {
     expect(cityFit({ skills: ["s1", "s2"] }, ROWS.slice(0, 2), 10)).toEqual({ have: 2, of: 2, gaps: [] });
   });
 
-  it("reads as one sentence with the place in it", () => {
-    const html = renderToStaticMarkup(<FitLine profile={profile} data={{ total: 200, skills: ROWS }} place="Berlin" />);
-    expect(html).toContain("You have <mark>3 of the 15</mark> skills Berlin asks for most.");
-    expect(html).toContain('<span class="gap-chip">S3 <span class="mono">45%</span></span>');
+  // HIR-411: the headline band is gone; the gaps are one small line inside the chart card.
+  const data = { total: 200, skills: ROWS };
+  const chart = (props) => renderToStaticMarkup(<SkillChart data={data} selected={[]} onSelect={() => {}} {...props} />);
+  // The line's buttons, as React elements, so a click can be made without a browser.
+  const chips = (props) => {
+    const line = FitLine({ profile, data, ...props });
+    return [line.props.children].flat(Infinity).filter((c) => c?.type === "button");
+  };
+
+  it("is one line of gap chips and a short count, with no headline", () => {
+    const html = renderToStaticMarkup(<FitLine profile={profile} data={data} />);
+    expect(html).toMatch(/^<div class="gaps"><span>Gaps:<\/span><button /);
+    expect(html.match(/<button /g)).toHaveLength(3);
+    expect(html).toContain('>S3 <span class="mono">45%</span></button>');
+    expect(html).toContain('<span class="gaps-count">3 of 15 in your profile</span>');
+    expect(html).not.toMatch(/You have|<h2|<mark|eyebrow/);
+  });
+
+  it("sits inside the chart card, after the find box and before the bars", () => {
+    const html = chart({ profile, gaps: true });
+    const [find, line, bars] = ['class="chart-find"', 'class="gaps"', 'class="bars-head"'].map((s) => html.indexOf(s));
+    expect(find).toBeGreaterThan(-1);
+    expect(line).toBeGreaterThan(find);
+    expect(bars).toBeGreaterThan(line);
+  });
+
+  it("filters the jobs as a click on that skill's bar does", () => {
+    const onSelect = vi.fn();
+    const [first, second] = chips({ onSelect });
+    first.props.onClick({ shiftKey: false, metaKey: false });
+    second.props.onClick({ shiftKey: true, metaKey: false });
+    expect(onSelect.mock.calls).toEqual([["s3", false], ["s5", true]]);
+  });
+
+  it("shows a chip as active while its skill is filtering the jobs", () => {
+    expect(chips({ selected: ["s5"] }).map((c) => c.props["aria-pressed"])).toEqual([false, true, false]);
+    expect(css).toMatch(/\.gap-chip\[aria-pressed="true"\]\s*\{/);
+  });
+
+  it("says only the count when the profile has all of the top skills", () => {
+    const html = renderToStaticMarkup(<FitLine profile={{ skills: ["s1", "s2"] }} data={{ total: 10, skills: ROWS.slice(0, 2) }} />);
+    expect(html).toBe('<div class="gaps"><span class="gaps-count">2 of 2 in your profile</span></div>');
   });
 
   it("is not shown without profile skills, or before the chart's numbers are in", () => {
-    const data = { total: 200, skills: ROWS };
     for (const [p, d] of [[null, data], [{ skills: [] }, data], [profile, null], [profile, { total: 0, skills: [] }]]) {
-      expect(renderToStaticMarkup(<FitLine profile={p} data={d} place="Berlin" />)).toBe("");
+      expect(renderToStaticMarkup(<FitLine profile={p} data={d} />)).toBe("");
     }
-    expect(firstPaint("/berlin")).not.toContain("fitline");
+  });
+
+  it("leaves the chart card as it was with no profile, and off a single city's page", () => {
+    expect(chart({ gaps: true })).toBe(chart({}));
+    expect(chart({ profile: { skills: [] }, gaps: true })).toBe(chart({ profile: { skills: [] } }));
+    expect(chart({ profile })).not.toContain('class="gaps"');
+  });
+
+  it("has left no headline band on the page or in the stylesheet", () => {
+    expect(firstPaint("/berlin")).not.toMatch(/fitline|You have/);
+    expect(css).not.toContain("fitline");
   });
 });
 

@@ -23,7 +23,7 @@ DB_DIR=/var/lib/hiring-radar
 DB_PATH=$DB_DIR/hiring-radar.db
 ENV_FILE=/etc/hiring-radar.env
 REPO_URL=https://github.com/chandlershortlidge/hiring-radar.git
-SITE_HOST=34-159-223-190.sslip.io   # the static IP with dots as dashes; see README step 1
+SITE_HOST=hiringradar.app   # the domain (HIR-458); its DNS points at the static IP, see README step 1
 BASICAUTH_USER=chandler
 SWAP_FILE=/swapfile
 SWAP_SIZE=1G
@@ -134,7 +134,7 @@ if [ -n "$DASHBOARD_PASSWORD" ]; then
   hash=$(caddy hash-password --plaintext "$DASHBOARD_PASSWORD")
   tmp=$(mktemp)
   sed -e "s|REPLACE_WITH_BCRYPT_HASH|$hash|" \
-      -e "s|^34-159-223-190\.sslip\.io|$SITE_HOST|" \
+      -e "s|^hiringradar\.app {|$SITE_HOST {|" \
       -e "s|^\([[:space:]]*\)chandler |\1$BASICAUTH_USER |" "$HERE/Caddyfile" > "$tmp"
   if grep -q REPLACE_WITH_BCRYPT_HASH "$tmp"; then
     echo "the placeholder hash was not substituted -- refusing to install" >&2

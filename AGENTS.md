@@ -185,6 +185,17 @@ cd web && HYPOTHESIS_PROFILE=sweep npm test -- property && cd ..      # the same
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # a routine change → evals/results/<run_id>/
 uv run python scripts/run_eval.py                 # 3 repeats: a release, or 1 repeat tripped the gate
+# Three optional flags on run_eval.py (HIR-78):
+#   --no-langsmith     do not report this run to LangSmith, even with LANGSMITH_API_KEY set
+#   --extras-judge     after the runs, ask a model whether each extra skill (one the extractor
+#                      returned and the Golden does not list) means the gold label missed it or
+#                      the extractor is wrong. One extra call per Golden that has extras, run 1
+#                      only. Off by default; it changes no score and no label.
+#   --judge-model M    which model does that judging (default: the one in app/extras_judge.py)
+# Tracing: with LANGSMITH_API_KEY set, a dev run sends the dev Goldens' job-ad text and gold labels, the
+# extractions and the scores to LangSmith as an experiment named after the extractor_version;
+# held-out text is never uploaded and nothing is sent without a key. LangSmith is the view:
+# the committed evals/results/<run_id>/ directory is still the gate.
 
 # Required before a PR that touches app/extract.py or taxonomy/skills.json can merge
 # (AGENTS.md "The eval gate"): run the dev eval above, then
@@ -288,9 +299,17 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Two job-list searches that never blur: `query` over company and title, `text` over the
   posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
   kept in step with `job.description_text` by triggers, so writers need not know of it).
-- `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
-  screenshot), which run intake + extraction for the one job added. Validates every filter
-  value (422), one SQLite connection per request, model client created lazily.
+- `app/api.py` — FastAPI routes over `queries`, plus the "doesn't belong here" flag, the
+  only thing a visitor can write. It adds no job and calls no model (HIR-346: jobs are
+  added from the CLI). Validates every filter value (422), one SQLite connection per
+  request; an unknown path under `/api` is 404.
+- `app/merged_work.py` — the pull-request half of the Monday summary (HIR-264): "Needs
+  you" (every open PR labelled `needs-chandler`), what merged last week grouped by where a
+  visitor would notice it (a guess from file paths, not a judgment), what was sent back
+  and then fixed, and the "Decided for you" lines copied from merged PR bodies. Reads
+  GitHub's public API unsigned and the server's own git checkout; posts nothing, labels
+  nothing, calls no model. `app/caretaker_run.py` takes its text and posts the whole
+  Monday summary from the VM.
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
@@ -298,8 +317,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   of its own, and the card is collapsed by default so it is not fetched until opened),
   `RelatedSkills.jsx` (what the jobs requiring the selected skill also
   require; renders only with a skill selected and computes nothing itself),
-  `JobList.jsx` (rows + expanded detail with quotes), the three drawers
-  (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
+  `JobList.jsx` (rows + expanded detail with quotes), the one drawer
+  (`ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
 - `web/src/cvSkills.js` + `cvText.js` — "Fill from your CV" in `ProfileDrawer` (HIR-14).
   `cvSkills.js` is the pure matcher (CV text → taxonomy ids: literal, word-boundary,
@@ -1003,8 +1022,11 @@ that stops before a review passes leaves its PR labelled `needs-chandler` **with
 **How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
 in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
 short "needs you" list; and "Decided for you", the small calls the senior agent made, each
-with how to undo it (HIR-278), and the recommendations it took for him (HIR-315). No message for work that merged. Until that summary exists
-(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list. The summary's
+with how to undo it (HIR-278), and the recommendations it took for him (HIR-315). No message for work that merged. That summary exists
+(HIR-264, DECISIONS 2026-11-12): `app/merged_work.py` writes its pull-request half, and the
+caretaker's Monday run on the VM (`app/caretaker_run.py`) posts it as one Linear issue
+titled "Monday summary: <start> to <end>", next to the job-source report. Its "needs you"
+list is every open PR labelled `needs-chandler`. The summary's
 "needs you" part covers pull requests only; the decisions waiting in tickets reach him in
 the same Monday post, in a comment the lead agent adds ("The lead agent", below; HIR-277).
 
@@ -1112,7 +1134,8 @@ no agent changes that line unless he asks in that session, and he merges the cha
 **It is the one exception to "every merge follows a review from the run that opened the
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
 pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
-reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
+reviewers could not open the ticket (above, HIR-306) and one whose author changed or
+repaired it after it was sent back (HIR-358). The reviewer still does the merging.
 It also starts the repair of a pull request that collides with main ("Who merges", above,
 HIR-305), whether or not the run that opened it is still alive.
 

@@ -1,18 +1,17 @@
-import { ALL_GERMANY, axisMax, familyLabel, placeBySlug, timeAgo } from "./format.js";
+import { ALL_GERMANY, axisMax, familyLabel, placeBySlug } from "./format.js";
 import { pathFor } from "./routes.js";
 import { cardCounts, topSkills } from "./HomeGrid.jsx";
 
-// The top of the home page (HIR-285, the layout Chandler chose on 17 Nov): a headline made
-// from live numbers on the left, with the pickers under it, and one market's real
-// top-skills chart on the right.
+// The top of the home page (HIR-285, the layout Chandler chose on 17 Nov; the left side as
+// he redrew it on 25 Nov, HIR-474): the site's tagline on the left, with the search box
+// under it, and one market's real top-skills chart on the right.
 //
 // Every number comes from the one /api/skills request the home page already makes with no
 // city filter, the same one the markets table below is drawn from: each skill row carries
 // its count per city and the answer carries the job total per city. Nothing new is fetched
 // and nothing is counted that the table does not also show.
 //
-// Does NOT pick an "interesting" finding. The headline names the two most-asked-for
-// skills, in order; its wording is a placeholder until the launch wording is settled.
+// Does NOT pick an "interesting" finding: the chart shows the most-asked-for skills, in order.
 
 // The market the home page leads with when the visitor has not looked at one yet: the
 // site's launch audience is Berlin.
@@ -28,7 +27,7 @@ export function heroPlace(recent = []) {
   return seen || placeBySlug(HERO_DEFAULT);
 }
 
-// What the headline calls the jobs: the chosen family, or every role we track.
+// What the hero's numbers call the jobs: the chosen family, or every role we track.
 export const heroRoles = (family) => (family ? `${familyLabel(family)} jobs` : "AI & data jobs");
 
 // The hero's numbers for one market: its open-job count as the table shows it, and its
@@ -40,24 +39,13 @@ export function heroFacts(data, counts, place) {
   return { open, top, roles: heroRoles(data?.family) };
 }
 
-// Two skills are the least the sentence needs. Before the numbers arrive, and for a market
-// too small to have two, the page says what it is for instead.
-export function Headline({ top, place, roles }) {
-  if (!top || top.length < 2) return <h1>What are employers actually asking for?</h1>;
-  const [a, b] = top;
-  return (
-    <h1>
-      <mark>{a.pct}%</mark> of {roles} in {place} ask for {a.name}. <mark>{b.pct}%</mark> ask for {b.name}.
-    </h1>
-  );
+// The headline: what the site is for, in Chandler's words (HIR-474). It replaced a sentence
+// built from the lead market's two top shares, which the chart beside it already shows.
+export function Tagline() {
+  return <h1>See what skills employers <mark>actually</mark> want.</h1>;
 }
 
-// The line above the headline: which market, how many open jobs, how fresh.
-export function Eyebrow({ place, open, roles, updated }) {
-  return <p className="eyebrow">{place} · {open} open {roles}{updated ? ` · updated ${timeAgo(updated)}` : ""}</p>;
-}
-
-// The chart beside the headline: the same bars the city page opens with, cut to the top
+// The chart beside the tagline: the same bars the city page opens with, cut to the top
 // few, and the way in to the full page.
 export function HeroChart({ place, family, top, open, loading, onOpen }) {
   const max = axisMax(top[0]?.pct || 0);

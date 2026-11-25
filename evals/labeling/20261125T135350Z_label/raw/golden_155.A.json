@@ -1,0 +1,193 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\", \"uncertain\": true},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"testing techniques\", \"uncertain\": true},\n    {\"skill_id\": \"go\", \"requirement\": \"nice_to_have\", \"raw_text\": \"languages like Scala and Go\", \"uncertain\": true},\n    {\"skill_id\": \"kafka\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kafka\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"required\", \"raw_text\": \"data engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL and large-scale data systems\"},\n    {\"skill_id\": \"data-warehousing\", \"requirement\": \"required\", \"raw_text\": \"data warehouses\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake\", \"alternative_group\": 2},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"required\", \"raw_text\": \"BigQuery\", \"alternative_group\": 2},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend development\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 3},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\", \"alternative_group\": 3},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Python, Java, Scala or similar\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"AI/LLM-based applications\"},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"required\", \"raw_text\": \"conversational interfaces\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"cursor\", \"alternative_group\": 4},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"copilots\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data observability\", \"uncertain\": true},\n    {\"skill_id\": \"dbt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"dbt\", \"alternative_group\": 5},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\", \"alternative_group\": 5},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Spark\", \"alternative_group\": 5}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Aerospike\", \"raw_text\": \"Aerospike\"},\n    {\"label\": \"StarRocks\", \"raw_text\": \"StarRocks\"},\n    {\"label\": \"ClickHouse\", \"raw_text\": \"ClickHouse\"},\n    {\"label\": \"text-to-SQL\", \"raw_text\": \"text-to-SQL\"},\n    {\"label\": \"agile development\", \"raw_text\": \"agile development practices\"},\n    {\"label\": \"query execution / performance optimization\", \"raw_text\": \"query execution, and performance optimization\"},\n    {\"label\": \"data quality / governance frameworks\", \"raw_text\": \"quality, or governance frameworks\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Requirement labels: the 'What you'll Need to Succeed' list is labeled required and the 'It's Great if you have' list is labeled nice_to_have.\\nTeam description: 'we use ... Scala and Go, data technologies like Kafka and Aerospike' is treated as the company describing what it runs (rule 4), so go and kafka are nice_to_have.\\nCI/CD and testing: these appear only in the team description ('we must employ ... CI/CD and testing techniques'). They are labeled nice_to_have under rule 4 and flagged, because they could instead be excluded as company description only.\\nGroup 1 is software-engineering and data-engineering, from '10+ years of experience in software engineering, data engineering, or related fields'. These are fields of experience rather than clear skills, so both are flagged.\\nScala stays in group 3 despite also appearing in the team description. That mention is not a candidate ask, but it is flagged because of the guide's 'unmarked tech-stack entry leaves the group' clause.\\nThe 'copilots' example is mapped to github-copilot via its 'copilot' alias. It may instead mean AI coding tools generally, so it is flagged.\\n'conversational interfaces' is mapped to conversational-ai as an other-words description and flagged. No alias exists yet; if accepted, it should be added to the taxonomy.\\nai-ml is not labeled: 'AI/LLM-based applications' names LLMs. The broad AI/ML entry is not clearly named.\\n'data observability' is mapped to observability and flagged as loosely related.\\nStarRocks appears in both the requirements and the nice-to-have list but is unmapped. The groups (snowflake and bigquery; dbt, airflow and spark) contain only the mapped members.\\nSeniority is stated by 'Principal' in the title. The 10+ years and mentoring duty agree with it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing techniques",
+        "uncertain": true
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "languages like Scala and Go",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "nice_to_have",
+        "raw_text": "Kafka",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "data engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL and large-scale data systems"
+      },
+      {
+        "skill_id": "data-warehousing",
+        "requirement": "required",
+        "raw_text": "data warehouses"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend development"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Python, Java, Scala or similar",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "AI/LLM-based applications"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "conversational interfaces",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "cursor",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "copilots",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "data observability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 5
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Aerospike",
+        "raw_text": "Aerospike"
+      },
+      {
+        "label": "StarRocks",
+        "raw_text": "StarRocks"
+      },
+      {
+        "label": "ClickHouse",
+        "raw_text": "ClickHouse"
+      },
+      {
+        "label": "text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "agile development",
+        "raw_text": "agile development practices"
+      },
+      {
+        "label": "query execution / performance optimization",
+        "raw_text": "query execution, and performance optimization"
+      },
+      {
+        "label": "data quality / governance frameworks",
+        "raw_text": "quality, or governance frameworks"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Requirement labels: the 'What you'll Need to Succeed' list is labeled required and the 'It's Great if you have' list is labeled nice_to_have.\nTeam description: 'we use ... Scala and Go, data technologies like Kafka and Aerospike' is treated as the company describing what it runs (rule 4), so go and kafka are nice_to_have.\nCI/CD and testing: these appear only in the team description ('we must employ ... CI/CD and testing techniques'). They are labeled nice_to_have under rule 4 and flagged, because they could instead be excluded as company description only.\nGroup 1 is software-engineering and data-engineering, from '10+ years of experience in software engineering, data engineering, or related fields'. These are fields of experience rather than clear skills, so both are flagged.\nScala stays in group 3 despite also appearing in the team description. That mention is not a candidate ask, but it is flagged because of the guide's 'unmarked tech-stack entry leaves the group' clause.\nThe 'copilots' example is mapped to github-copilot via its 'copilot' alias. It may instead mean AI coding tools generally, so it is flagged.\n'conversational interfaces' is mapped to conversational-ai as an other-words description and flagged. No alias exists yet; if accepted, it should be added to the taxonomy.\nai-ml is not labeled: 'AI/LLM-based applications' names LLMs. The broad AI/ML entry is not clearly named.\n'data observability' is mapped to observability and flagged as loosely related.\nStarRocks appears in both the requirements and the nice-to-have list but is unmapped. The groups (snowflake and bigquery; dbt, airflow and spark) contain only the mapped members.\nSeniority is stated by 'Principal' in the title. The 10+ years and mentoring duty agree with it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d68b0bcc160aebe2fce3f70eff8443013200df81754c17a5ea5f578b881e194f",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

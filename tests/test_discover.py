@@ -257,9 +257,20 @@ def test_a_dead_board_is_reported_not_counted_as_too_few():
     assert d.verdict == "failed" and "404" in d.why
 
 
+@pytest.fixture
+def sonnet_prices(monkeypatch):
+    """Price readings at Sonnet 5.5's rates, so a cap test checks the cap, not the model.
+
+    At Haiku's rates (the live reader since HIR-409) 600 postings cost about €0.56, and no
+    board count the daily-download cap allows would reach €10.
+    """
+    monkeypatch.setattr(discover, "USD_PER_MTOK_IN", 2.00)
+    monkeypatch.setattr(discover, "USD_PER_MTOK_OUT", 10.00)
+
+
 def test_cost_estimate_tracks_the_postings_actually_read():
     one = discover.estimate_extraction_cost_eur(1)
-    assert 0.005 < one < 0.05                      # a couple of cents a posting
+    assert 0.0002 < one < 0.005                    # about a tenth of a cent a posting (Haiku)
     assert discover.estimate_extraction_cost_eur(10) == pytest.approx(one * 10)
     assert discover.estimate_extraction_cost_eur(0) == 0
 
@@ -270,7 +281,7 @@ def test_caps_pass_for_an_ordinary_launch():
     assert breach is None and daily == 70 and cost < discover.MAX_LAUNCH_COST_EUR
 
 
-def test_the_cost_cap_stops_the_launch_and_adds_nothing():
+def test_the_cost_cap_stops_the_launch_and_adds_nothing(sonnet_prices):
     many = [cand(f"co{i}", relevant=60, total=80) for i in range(10)]   # 600 postings to read
     cost, _, breach = discover.launch_caps(discover.launch_decisions(many))
     assert cost > discover.MAX_LAUNCH_COST_EUR
@@ -285,7 +296,7 @@ def test_the_daily_download_cap_stops_the_launch():
     assert breach and "6000" in breach
 
 
-def test_a_breached_cap_names_itself_in_the_report_and_writes_nothing():
+def test_a_breached_cap_names_itself_in_the_report_and_writes_nothing(sonnet_prices):
     ds = discover.launch_decisions([cand(f"co{i}", relevant=60, total=80) for i in range(10)])
     cost, daily, breach = discover.launch_caps(ds)
     lines = "\n".join(discover.launch_report_lines("New York", ds, cost, daily, breach, applied=False))

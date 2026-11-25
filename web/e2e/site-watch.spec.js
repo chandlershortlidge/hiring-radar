@@ -6,8 +6,8 @@
 // projects in playwright.watch.config.js). Each test is one visitor path, so a failure names
 // the path that broke; the ticket filed by scripts/site_watch_ticket.py is titled after it.
 // Does NOT: write anything. Every request to /api that is not a GET is refused before it
-// leaves the browser and fails the test — so the add-a-job drawer is opened, never
-// submitted, and no click here can start a model call. The profile it sets up lives in this
+// leaves the browser and fails the test — so no click here can change the site or start
+// a model call. The profile it sets up lives in this
 // test browser's own storage, which is thrown away after each test.
 //
 // Real data, so "a filter changes the results" is checked as "the filter reaches the server
@@ -82,27 +82,36 @@ async function expectChartAndJobs(page) {
 
 test("home loads; pick a city and a job type; chart and job list have data", async ({ page, problems }) => {
   await page.goto("/");
-  // The headline is built from live numbers (HIR-285), so it is found by where it is, and
-  // the chart beside it has to have drawn its bars.
-  await expect(page.locator(".hero h1")).toBeVisible();
+  // The tagline (HIR-474), and the chart beside it has to have drawn its bars.
+  await expect(page.locator(".hero h1")).toHaveText("See what skills employers actually want.");
   await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
   const cards = page.locator("a.market-row");
   await expect(cards.first()).toBeVisible();
   await expect(cards.first().locator(".mk-skill").first()).toBeVisible(); // its top skills drew
 
-  // The city picker under the headline: it starts on the market the page leads with.
+  // The search box (HIR-474): a job family and a city other than the one it starts on are
+  // choices, not moves; "View jobs" opens that city and family, on its job list. The city
+  // is the second-busiest market, so it is never the one the box already shows.
+  const shown = (await page.locator(".hero .picker .qb-btn").first().innerText()).replace("▾", "").trim();
+  const other = cards.filter({ hasNotText: shown }).first();
+  const name = (await other.locator(".mk-city h3").innerText()).trim();
+  const slug = new URL(await other.getAttribute("href"), page.url()).pathname.split("/")[1];
+  const fam = await page.locator("#qb-family option").nth(1).getAttribute("value");
+  await page.locator("#qb-family").selectOption(fam);
   await page.locator(".hero .picker").first().getByRole("button").first().click();
-  await page.getByRole("listbox", { name: "Cities" }).getByRole("option").first().click();
-  await expect(page).not.toHaveURL(/\/$/);
-  await expectChartAndJobs(page);
+  await page.getByRole("listbox", { name: "Cities" }).getByRole("option", { name: new RegExp(`^${name}\\b`) }).first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await page.getByRole("button", { name: "View jobs →" }).click();
+  await expect(page).toHaveURL(new RegExp(`/${slug}/${fam}$`));
+  await expect(page.locator(".card.jobs")).toBeInViewport();
 
-  const family = page.locator("#qb-family");
-  const first = await family.locator("option").nth(1).getAttribute("value");
-  const wait = page.waitForResponse((r) => r.url().includes("/api/skills") && r.url().includes(`family=${first}`));
-  await family.selectOption(first);
+  // On the city page the family picker is a move: back to every role, the address and the
+  // chart follow, and the chart and job list have data.
+  const wait = page.waitForResponse((r) => r.url().includes("/api/skills") && !r.url().includes("family="));
+  await page.locator("#qb-family").selectOption("");
   expect((await wait).status()).toBe(200);
-  await expect(page).toHaveURL(new RegExp(`/${first}$`));
-  await expect(page.locator(".chart .bars")).toBeVisible();
+  await expect(page).toHaveURL(new RegExp(`/${slug}$`));
+  await expectChartAndJobs(page);
 });
 
 test("each filter reaches the server and the page redraws", async ({ page, problems }) => {
@@ -136,6 +145,30 @@ test("each filter reaches the server and the page redraws", async ({ page, probl
   }
 });
 
+// HIR-474 review: at a medium desktop width the search box once ran under the chart beside
+// it. The box has to end before the chart starts, with View jobs wholly inside the box.
+test.describe("desktop width only", () => {
+  test.skip(({ isMobile }) => isMobile, "a desktop width");
+  test("the home search box fits beside the chart at 1024px", async ({ page, problems }) => {
+    await page.setViewportSize({ width: 1024, height: 800 });
+    await page.goto("/");
+    await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
+    const box = await page.locator(".qbar.landing .qb").boundingBox();
+    const go = await page.locator(".qb-go").boundingBox();
+    const chart = await page.locator(".hero-chart").boundingBox();
+    if (chart.y < box.y + box.height && chart.y + chart.height > box.y) expect(box.x + box.width).toBeLessThanOrEqual(chart.x);
+    expect(go.x + go.width).toBeLessThanOrEqual(box.x + box.width);
+  });
+});
+
+test("the home page's compare link opens a comparison", async ({ page, problems }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "or compare with another city" }).click();
+  await expect(page).toHaveURL(/\/compare\/[^/]+\+[^/]+/);
+  await expect(page.locator(".qbar .token")).toHaveCount(2);
+  await expect(page.locator(".chart .bars").first()).toBeVisible();
+});
+
 test("compare mode with a second city", async ({ page, problems }) => {
   await openBusiestCity(page);
   await page.getByRole("button", { name: /Compare with/ }).click();
@@ -167,29 +200,22 @@ test("a job card, its permanent page, and the original posting link", async ({ p
   }
 });
 
-test("the add-a-job drawer opens (never submitted)", async ({ page, problems }) => {
-  await openBusiestCity(page);
-  // By name, at both widths: the button carries its name even where a phone hides its
-  // words (HIR-263). If this stops finding it, a screen reader has lost it too.
-  await page.getByRole("button", { name: "Add a job", exact: true }).click();
-  const drawer = page.getByRole("dialog");
-  await expect(drawer).toBeVisible();
-  await expect(drawer.locator("#url")).toBeVisible();
-  await drawer.getByRole("button", { name: "Close" }).click();
-  await expect(drawer).toBeHidden();
-});
-
+// `exact: true` on every name below, because a name without it matches any control whose
+// own name merely contains it (HIR-430): once a profile exists, each chip on the gaps line
+// is named "... not in your profile. Filter job list", so a loose "Your profile" resolved
+// to four buttons and the visitor failed on a site that was working. tests/test_site_watch_names.py
+// is what keeps that from coming back.
 test("the profile drawer opens, a skill can be added, fit numbers show", async ({ page, problems }) => {
   await openBusiestCity(page);
-  await page.getByRole("button", { name: "Your profile" }).click();
+  await page.getByRole("button", { name: "Your profile", exact: true }).click();
   const drawer = page.getByRole("dialog");
   await expect(drawer).toBeVisible();
   // The most-asked-for skill is first; with it, most jobs in the busiest city get a score.
   const skill = drawer.locator(".pchips .pchip").first();
   await skill.click();
   await expect(skill).toHaveAttribute("aria-pressed", "true");
-  await drawer.getByRole("button", { name: "Save" }).click();
+  await drawer.getByRole("button", { name: "Save", exact: true }).click();
   await expect(drawer).toBeHidden();
-  await expect(page.getByRole("button", { name: "Your profile" })).toContainText("1 skills in your profile");
+  await expect(page.getByRole("button", { name: "Your profile", exact: true })).toContainText("1 skills in your profile");
   await expect(page.locator(".jobs .row .fit").first()).toBeVisible();
 });

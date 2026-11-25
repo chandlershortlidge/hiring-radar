@@ -1300,6 +1300,21 @@ def test_propose_refuses_a_model_with_a_stake(tmp_path, monkeypatch, model):
         al.main(["propose", "--run", run_dir.name, "--model", model])
 
 
+def test_default_proposer_has_no_stake():
+    """HIR-409: Haiku became the extractor, so the default proposer had to move off it."""
+    assert al.DEFAULT_PROPOSER not in {al.EXTRACTOR_MODEL, al.DEFAULT_MODEL_A,
+                                       al.DEFAULT_MODEL_B, al.DEFAULT_MODEL_C}
+
+
+def test_propose_runs_with_its_default_model(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["propose", "--run", run_dir.name])
+    assert len(al.parse_proposals(queue.read_text())) >= 1
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["proposer"]["model"] == al.DEFAULT_PROPOSER
+
+
 def test_judge_refuses_the_model_that_wrote_the_proposals(tmp_path, monkeypatch):
     run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
     judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
@@ -1856,6 +1871,18 @@ def test_narrowing_the_pool_to_one_city_keeps_only_that_city(tmp_path):
     assert {al.describe(r)["place"] for r in picks} == {"Remote (EU)"}
 
 
+def test_narrowing_the_pool_to_one_track_keeps_only_that_track():
+    """A track launch samples that track alone (HIR-408), read off the stored family."""
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    conn.executescript("CREATE TABLE job (id INTEGER PRIMARY KEY, family TEXT);"
+                       "INSERT INTO job VALUES (1, 'ai-engineer'), (2, 'forward-deployed-engineer'),"
+                       " (3, 'forward-deployed-engineer'), (4, NULL);")
+    rows = [{"id": i, "title": f"t{i}"} for i in (1, 2, 3, 4)]
+    assert [r["id"] for r in al.only_track(conn, rows, "forward-deployed-engineer")] == [2, 3]
+    assert al.only_track(conn, rows, "research") == []
+
+
 # --- which split a batch joins (HIR-164) ------------------------------------------
 #
 # New Goldens went to held-out unconditionally, which is why dev never grew past 20 while
@@ -2331,3 +2358,74 @@ def test_apply_marks_a_posting_with_nothing_to_group_as_reviewed(tmp_path, monke
     golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
     assert golden["groups_reviewed"] is True
     assert "alternative_group" not in golden["adjudicated_by_model"]
+
+
+# --- HIR-392: the agent-harnesses labels in the 19 Nov batches ---------------------------
+
+HARNESS = {"skill_id": "agent-harnesses", "requirement": "nice_to_have",
+           "raw_text": "agent harness development"}
+
+
+def test_hir392_a_queued_new_skill_label_is_read_by_apply():
+    # Both labelers flagged the phrase while the skill did not exist: an agreed draft, `ok`.
+    agreed = {"kind": "skill", "key": "agent-harnesses", "reason": "rule-change",
+              "a": dict(HARNESS), "b": dict(HARNESS)}
+    assert al.apply_decision(agreed, "ok") == ([HARNESS], None)
+    assert al.apply_decision(agreed, "drop") == ([], None)
+    # Only one labeler flagged it: B or drop.
+    one = {"kind": "skill", "key": "agent-harnesses", "reason": "disagreement",
+           "a": None, "b": dict(HARNESS)}
+    assert al.apply_decision(one, "B") == ([HARNESS], None)
+
+
+def test_hir392_an_override_moves_a_decided_label_to_the_new_skill():
+    # golden_103: the judge kept A's label under agent-architecture; the id moves, the
+    # requirement and the quote stay the judge's.
+    item = {"kind": "skill", "key": "agent-harnesses", "reason": "disagreement",
+            "a": {"skill_id": "agent-architecture", "requirement": "nice_to_have",
+                  "raw_text": "Building agent harnesses"}, "b": None}
+    assert al.apply_decision(item, '{"skill_id": "agent-harnesses"}') == ([
+        {"skill_id": "agent-harnesses", "requirement": "nice_to_have",
+         "raw_text": "Building agent harnesses"}], None)
+    groups = {"kind": "groups", "key": "alternative_group", "reason": "groups",
+              "skills": [{"skill_id": s} for s in
+                         ("agent-harnesses", "ai-infrastructure", "distributed-training")]}
+    answer = '[["agent-harnesses", "ai-infrastructure", "distributed-training"]]'
+    assert al.parse_groups(groups, answer) == [
+        ["agent-harnesses", "ai-infrastructure", "distributed-training"]]
+    with pytest.raises(ValueError, match="not labeled with"):
+        al.parse_groups(groups, '[["agent-architecture", "ai-infrastructure"]]')
+
+
+HIR392_RUNS = ("20261119T110104Z_label", "20261119T112034Z_label",
+               "20261119T114422Z_label", "20261119T135145Z_label")
+
+
+@pytest.mark.parametrize("run", HIR392_RUNS)
+def test_hir392_batch_queues_stay_whole_and_every_harness_item_is_recorded(run):
+    run_dir, items, picks, _, text = al.load_run(run)
+    decisions = al.parse_queue(text)
+    # One decision per item, numbered 1..N: a hand-appended item apply would miss or count twice.
+    assert [n for n, _ in decisions] == list(range(1, len(items) + 1))
+    decided = dict(decisions)
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    recorded = {n for r in adj.get("rule_change", []) if r["key"] == "agent-harnesses"
+                for n in r["items"]}
+    harness = [n for n, i in enumerate(items, 1) if i["key"] == "agent-harnesses"]
+    assert harness
+    for n in harness:
+        item = items[n - 1]
+        if run == "20261119T112034Z_label":
+            assert n == 33 and n not in recorded          # moved, not appended
+        else:
+            assert n in recorded
+        if decided[n] != "?":
+            added, _ = al.apply_decision(item, decided[n])
+            assert [s["skill_id"] for s in added] == ["agent-harnesses"]
+            posting = picks[item["golden_id"]]["job_description"]
+            assert al.norm_text(added[0]["raw_text"]) in al.norm_text(posting)
+        # The posting's "any one of" question offers the new skill, so an answer can name it.
+        offered = [s["skill_id"] for i in items
+                   if i["kind"] == "groups" and i["golden_id"] == item["golden_id"]
+                   for s in i["skills"]]
+        assert offered.count("agent-harnesses") == 1

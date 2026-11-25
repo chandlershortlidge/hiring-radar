@@ -76,16 +76,19 @@ export const SENIORITIES = ["junior", "mid", "senior"];
 // wording a person reads, so they are not generated; tests/test_frontend_lists.py fails
 // whenever a key here and one on the server stop matching (HIR-203).
 //
-// The five job families every posting is sorted into from its title (HIR-186). The order is
-// the order of the buttons; the server validates against the same five. FAMILY_LABELS is
+// The job families every posting is sorted into from its title (HIR-186; the sixth,
+// Forward Deployed Engineer, HIR-408). The order is the order of the buttons; the server
+// validates against the same list. FAMILY_LABELS is
 // what a person reads — the stored value is the hyphenated id.
-export const FAMILIES = ["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"];
+export const FAMILIES = ["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research",
+  "forward-deployed-engineer"];
 export const FAMILY_LABELS = {
   "ai-engineer": "AI Engineer",
   "ml-engineer": "ML Engineer",
   "data-scientist": "Data Scientist",
   "ml-platform": "ML Platform",
   research: "Research",
+  "forward-deployed-engineer": "Forward Deployed Engineer",
 };
 export const familyLabel = (f) => FAMILY_LABELS[f] || f;
 
@@ -143,6 +146,9 @@ export const axisMax = (maxPct) => Math.min(100, Math.max(20, Math.ceil((maxPct 
 export const GERMAN_FILTERS = { any: "Any", not_required: "Not required", none: "Not mentioned", required: "Required" };
 export const PRODUCTION_FILTERS = { any: "Any", not_required: "Not required", none: "Not asked for", required: "Required" };
 export const DEGREE_FILTERS = { any: "Any", open: "Open without one", none: "Not mentioned", required: "Degree required" };
+// The names of the three filters under "More filters", as their labels above the chart and
+// the chips in the jobs card both read them (HIR-415).
+export const EXTRA_FILTER_NAMES = { production: "Production experience", degree: "Degree", window: "Time window" };
 export const DEGREE_NAMES = { bachelor: "Bachelor's", master: "Master's", phd: "PhD" };
 export const DEGREE_RANK = { "": 0, bachelor: 1, master: 2, phd: 3 };
 

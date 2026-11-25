@@ -33,7 +33,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SHOT_LIVE: https://34-159-223-190.sslip.io
+  SHOT_LIVE: https://hiringradar.app
 
 jobs:
   shots:

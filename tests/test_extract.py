@@ -336,7 +336,45 @@ def test_guide_lists_the_appetite_rule_in_the_precedence_list():
     section = guide.split("## requirement:")[1].split("\n## ")[0]
     assert "Four rules, in order of precedence" in section
     assert "3. **Wanting a skill is not having it.**" in section
-    assert "4. **An unmarked item in a tech-stack list is `required`.**" in section
+    assert "4. **A tool named only in the company's own tech stack is `nice_to_have`.**" in section
+
+
+# --- the stack-section rule (HIR-389) --------------------------------------------
+
+STACK_JD = """Requirements:
+- Strong Python
+- Experience with LangChain
+Our tech stack: Python, Kubernetes, LLMs"""
+
+
+def test_stack_rule_is_in_the_prompt_and_the_old_required_rule_is_gone():
+    """The prompt and the guide must give stack-only tools the same label, or the answer
+    keys and the extractor are judged by two rules (HIR-389)."""
+    flat = " ".join(ex.PRINCIPLES.split())
+    assert 'An unmarked entry in a tech-stack list is "required"' not in flat
+    assert 'company\'s own tools or stack' in flat
+    block = flat.split("company's own tools or stack")[1]
+    assert '"nice_to_have"' in block.split(".")[0] + block.split(".")[1]
+    assert "that ask decides its label" in flat
+    guide = " ".join((ROOT / "evals" / "LABELING.md").read_text().split())
+    assert "unmarked item in a tech-stack list is `required`" not in guide
+
+
+def test_stack_only_tools_are_stored_nice_to_have_and_a_tool_also_required_stays_required(tax):
+    """A posting with a stack section: what the model reads as stack-only stays
+    nice-to-have, and a tool both asked for and in the stack keeps its required label even
+    when the model also reports the stack mention (one mention per skill, required wins)."""
+    client = FakeClient(response([
+        item("python", "Strong Python"),
+        item("python", "Python, Kubernetes", "nice_to_have"),
+        item("langchain", "Experience with LangChain"),
+        item("kubernetes", "Kubernetes", "nice_to_have"),
+        item("llms", "LLMs", "nice_to_have"),
+    ]))
+    out = ex.extract(STACK_JD, tax, client, model="m")
+    got = {m.skill_id: m.requirement for m in out.mentions}
+    assert got == {"python": "required", "langchain": "required",
+                   "kubernetes": "nice_to_have", "llms": "nice_to_have"}
 
 
 # --- seniority -------------------------------------------------------------------
@@ -700,3 +738,36 @@ def test_degree_rule_is_the_lowest_level_in_both_prompt_and_guide():
     assert "highest level named" not in prompt
     for example in ("MS or PhD", "Master's degree (or above)"):
         assert example in prompt and example in guide
+
+
+# --- the live reader is the one measured (HIR-409) -----------------------------------------
+
+def _model_and_cap(env_model):
+    """DEFAULT_MODEL and MAX_TOKENS as a fresh process sees them, so no reload leaks here."""
+    import os
+    import subprocess
+    import sys
+    env = {k: v for k, v in os.environ.items() if k != "HIRING_RADAR_MODEL"}
+    if env_model:
+        env["HIRING_RADAR_MODEL"] = env_model
+    out = subprocess.run([sys.executable, "-c",
+                          "from app.extract import DEFAULT_MODEL, MAX_TOKENS; print(DEFAULT_MODEL, MAX_TOKENS)"],
+                         env=env, capture_output=True, text=True, check=True,
+                         cwd=Path(__file__).parent.parent).stdout.split()
+    return out[0], int(out[1])
+
+
+def test_the_live_reader_is_haiku_at_the_cap_it_was_measured_at():
+    """HIR-383 released Haiku 5.5 at an 8192-token cap; a lower cap cuts its readings off."""
+    assert _model_and_cap(None) == ("claude-haiku-5-5", 8192)
+
+
+def test_going_back_is_one_setting():
+    assert _model_and_cap("claude-sonnet-5-5")[0] == "claude-sonnet-5-5"
+
+
+def test_the_live_rules_carry_round_3_verbatim_where_the_trial_put_them():
+    """The sealed check (HIR-383) scored the rules with round 3 placed after the closing line.
+    A reworded or moved copy is an unmeasured prompt."""
+    trial = (Path(__file__).parent.parent / "evals/experiments/trials/hir-368-round-3.md").read_text()
+    assert ex.PRINCIPLES.endswith("Do not reply with text.\n\n" + trial.strip() + "\n")

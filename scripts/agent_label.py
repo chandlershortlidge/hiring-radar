@@ -40,6 +40,7 @@ Invariants:
 
     uv run python scripts/agent_label.py label --dry-run
     uv run python scripts/agent_label.py label --count 24 --remote-eu 3 --german 6
+    uv run python scripts/agent_label.py label --count 15 --family forward-deployed-engineer
     uv run python scripts/agent_label.py label --run <run_id>      # re-merge from cache
     uv run python scripts/agent_label.py apply --run <run_id>
 """
@@ -129,6 +130,13 @@ ROLE_FAMILIES = (
 
 
 # --- pure parts -------------------------------------------------------------------
+
+def only_track(conn, rows, family: str) -> list:
+    """The candidate rows whose stored career track is `family`. A track launch checks that
+    track's postings alone (HIR-408), narrowing the pool the way --city does."""
+    ids = {r[0] for r in conn.execute("SELECT id FROM job WHERE family = ?", (family,))}
+    return [r for r in rows if r["id"] in ids]
+
 
 def role_family(title: str | None) -> str:
     """A coarse role bucket, for spreading the picks across job kinds."""
@@ -811,9 +819,12 @@ def proposer_system(judge_system: str) -> str:
 PROPOSE_SYSTEM = proposer_system(JUDGE_SYSTEM)
 
 # The proposer must not be the extractor, either labeler, or the judge (the judge refuses the
-# recorded proposer). Haiku: no stake, and about €0.20 for eight batches where Fable measured
-# about €17 (HIR-379); the cross-family judge still has to agree before an item settles.
-DEFAULT_PROPOSER = "claude-haiku-5-5"
+# recorded proposer); the cross-family judge still has to agree before an item settles.
+# HIR-379 chose Haiku (about €0.20 for eight batches, where Fable measured about €17). HIR-409
+# made Haiku the extractor, so it now has a stake: Sonnet replaces it, at 20x Haiku's
+# per-token price, about €0.50 a batch. If HIRING_RADAR_MODEL puts the extractor back on
+# Sonnet, pass --model claude-haiku-5-5.
+DEFAULT_PROPOSER = "claude-sonnet-5-5"
 
 
 # --- degree items: the guide's own Degree rule, not the skill rules (HIR-381) ------------
@@ -1566,6 +1577,10 @@ def cmd_label(args):
             rows = [r for r in rows if r["city"] == args.city]
             if not rows:
                 raise SystemExit(f"no candidate jobs in {args.city!r}")
+        if args.family:
+            rows = only_track(conn, rows, args.family)
+            if not rows:
+                raise SystemExit(f"no candidate jobs in the {args.family!r} track")
         quotas = {"remote_eu": args.remote_eu, "german": args.german}
         quotas |= {f"source:{s}": n for s, n in args.source}
         quotas |= {f"seniority:{s}": n for s, n in args.seniority}
@@ -2690,6 +2705,9 @@ def main(argv=None):
     lab.add_argument("--german", type=int, default=6, help="at least N German-language postings (default 6)")
     lab.add_argument("--city", default=None, metavar="CITY",
                      help="pick only postings in this city (a city launch checks that city alone)")
+    lab.add_argument("--family", default=None, metavar="TRACK",
+                     help="pick only postings in this career track, e.g. forward-deployed-engineer"
+                          " (a track launch checks that track alone)")
     lab.add_argument("--source", type=kv, action="append", default=[], metavar="NAME=N",
                      help="at least N postings from that feed, repeatable")
     lab.add_argument("--seniority", type=kv, action="append", default=[], metavar="LEVEL=N",

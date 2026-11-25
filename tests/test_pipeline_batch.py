@@ -161,8 +161,8 @@ def test_cost_line_is_none_when_nothing_succeeded():
 def test_batch_usage_metadata_is_priced_at_half_the_standard_rate():
     meta = pipeline._batch_usage_metadata(USAGE, "m")
     assert meta["input_tokens"] == 100 and meta["output_tokens"] == 20
-    standard_in = (100 * 2.00 + 80 * 0.20) / 1e6   # claude-sonnet-5-5 falls back to DEFAULT_MODEL rates for "m"
-    standard_out = 20 * 10.00 / 1e6
+    standard_in = (100 * 0.10 + 80 * 0.01) / 1e6   # "m" falls back to DEFAULT_MODEL's rates (claude-haiku-5-5)
+    standard_out = 20 * 0.50 / 1e6
     assert meta["input_cost"] == pytest.approx(standard_in / 2)
     assert meta["output_cost"] == pytest.approx(standard_out / 2)
     assert meta["total_cost"] == pytest.approx(meta["input_cost"] + meta["output_cost"])

@@ -22,7 +22,7 @@ variable, never a hex code, in new CSS.
 | Plum tint | `--plum-tint` | `#CFC4CF` | Skills not yet in the profile: their bars, their chips, the gap chips |
 | Peach | `--peach` | `#FAB995` | The second city in compare; the fill of the main buttons |
 | Coral | `--coral` | `#F38155` | Outlines only: main buttons, the job-family button, the Connect-Claude pill, warning chips on a job; the dot in the logo |
-| Butter | `--butter` | `#FCDEA6` | Highlights: best-fit badges (90% and up), open-job counts, the proposed-skills count, the underline behind a headline number |
+| Butter | `--butter` | `#FCDEA6` | Highlights: best-fit badges (90% and up), open-job counts, the proposed-skills count, the underline behind the marked word of the home headline |
 | Brand gradient | `--brand-gradient` | `#FCDEA6` → `#F89781` → `#6B4769` | One 4px rule under the header. Nowhere else, never behind data |
 
 Rules that follow from the palette:
@@ -48,13 +48,15 @@ missing skills; a full-width Connect-Claude band ("very distracting").
 
 | Control | Fill | Outline | Text | Class |
 |---|---|---|---|---|
-| Main button ("+ Add a job", the city picker, a drawer's submit) | Peach | Coral | Ink | `.btn.primary`, `.btn.outline`, `.qb-btn` on the city picker |
+| Main button (the city picker, a drawer's submit) | Peach | Coral | Ink | `.btn.primary`, `.btn.outline`, `.qb-btn` on the city picker |
 | Job-family picker | White | Coral, 2px | Ink | `select.qb-sel` |
+| "View jobs →", the home page's main action (HIR-474) | Plum | none | White | `.qb-go` |
+| Home search box, holding the pickers and "View jobs" | Ground | Warm grey, 2px, 12px corners | | `.qbar.landing .qb` |
 | Secondary button ("Show 15 more", "Load 20 more") | White | Plum | Plum | `.btn` |
 | Filter pill, off | White | Warm grey | Ink | `.fpill` |
 | Filter pill, on | Plum | Plum | White | `.fpill[aria-pressed="true"]`, `.fpill.on` |
 | "Add" control ("+ Compare with…", "More filters", "+ Add skill") | White | Warm grey, dashed | Secondary text | `.qb-btn.add`, `.fpill.more`, `.chip-add` |
-| Header pill (profile, proposed skills) | White | Warm grey | Ink | `.pill` |
+| Header pill (All markets, profile) | White | Warm grey | Ink | `.pill` |
 | Connect-Claude pill | White | Coral, 2px | Ink | `.pill.connect` |
 
 - Anything a finger presses on its own is 44px high: header pills, buttons, filter pills,
@@ -71,8 +73,8 @@ Two families, both already loaded: **IBM Plex Sans** for everything a person rea
 
 | Role | Size / line height | Weight | Notes |
 |---|---|---|---|
-| Home headline | 46px / 1.12 (30px on a phone) | 700 | letter-spacing -0.02em; headline numbers get a butter underline |
-| Fit line ("You have 12 of the 15…") | 26px / 1.2 (20px on a phone) | 700 | letter-spacing -0.015em |
+| Home headline ("See what skills employers actually want.") | 46px / 1.12 (30px on a phone) | 700 | letter-spacing -0.02em; "actually" gets a butter underline |
+| Gaps line in the chart card ("Gaps: … 10 of 15 in your profile") | 12.5px, the size of the chart's legend | 400 (600 on a chip whose filter is on) | replaced the 26px fit headline, 21 Nov 2026 |
 | Card title (the chart's heading, a job's title on its page) | 21px (17px on a phone) | 600 | letter-spacing -0.01em |
 | Section heading ("All 7 markets") | 18px | 600 | |
 | Small card heading (jobs list, related skills) | 15–16px | 600 | |
@@ -89,10 +91,15 @@ Nothing smaller than 10.5px. No third font family.
   phone). The phone breakpoint is 720px.
 - Spacing steps: 4, 8, 12, 16, 20, 24px. Cards sit 16px apart. A card's padding is
   20–24px (16px on a phone).
-- **Home:** a white band holding the headline and the pickers on the left and the
-  top-skills chart on the right; under it the Connect-Claude strip; under that every
+- **Home:** a white band holding the headline, the search box (the pickers and "View
+  jobs") and a small "or compare with another city" link on the left, and the
+  top-skills chart on the right (HIR-474); under it the Connect-Claude strip; under that every
   market as one ranked table. The band's two halves stack on a narrow screen.
-- **City page:** the fit line (only once a profile has skills) in a white band; then the
+- **City page:** no headline band (Chandler, 21 Nov 2026: the big "You have 10 of the 15
+  skills" headline restated the bars and was cut). Once a profile has skills, the chart
+  card carries one small line under its find box and above the bars: "Gaps:", up to three
+  chips for the most-asked-for skills not in the profile, then "10 of 15 in your profile"
+  in muted text. A chip is a button that filters the jobs as its bar does. The
   chart on the left and the jobs on the right, side by side from 1100px up, stacked below
   that, in equal halves. Side by side, the left column stays in view while the jobs
   scroll, never taller than the window (a longer one scrolls inside itself). Related
@@ -137,4 +144,5 @@ Nothing smaller than 10.5px. No third font family.
 
 - A colour for a third compared city.
 - How compare shows skills that are not in the profile.
-- The final wording of the home headline and the Connect-Claude line (launch wording).
+- The final wording of the Connect-Claude line (launch wording). The home headline was
+  settled by Chandler on 25 Nov 2026 (HIR-474).

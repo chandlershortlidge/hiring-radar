@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Remote Senior AI Agentic Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting is cut off mid-sentence ('while guiding team execution and J-18808-Ljbffr') and has no requirements, qualifications, nice-to-have or tech-stack section, so no skill is asked of the candidate.\\nAI agents, 'LLM orchestration', 'tool-use frameworks' and 'production engineering' appear only in the company/role description and responsibilities ('seeks ... to design, build, and ship', 'You will work at the intersection of'). Under the guide these are not asked of the candidate, so none is labeled. They would map to agents, llm-orchestration and tool-calling if the full posting asked for them.\\nSeniority is stated from 'Senior' in the title. 'Senior Member of Technical Staff' and 'recognized SME' agree with it.\\nGerman: no mention of German, Deutsch or any language requirement, and the posting is in English, so null.\\nDegree: no mention of a degree, Abschluss or studies, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Remote Senior AI Agentic Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting is cut off mid-sentence ('while guiding team execution and J-18808-Ljbffr') and has no requirements, qualifications, nice-to-have or tech-stack section, so no skill is asked of the candidate.\nAI agents, 'LLM orchestration', 'tool-use frameworks' and 'production engineering' appear only in the company/role description and responsibilities ('seeks ... to design, build, and ship', 'You will work at the intersection of'). Under the guide these are not asked of the candidate, so none is labeled. They would map to agents, llm-orchestration and tool-calling if the full posting asked for them.\nSeniority is stated from 'Senior' in the title. 'Senior Member of Technical Staff' and 'recognized SME' agree with it.\nGerman: no mention of German, Deutsch or any language requirement, and the posting is in English, so null.\nDegree: no mention of a degree, Abschluss or studies, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6f36646a6ec00c7ab352c4d302ff3b7ed1dae1734be6a3c2a2d63a948776c875",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -3,7 +3,7 @@
 Where hiring-radar runs: one GCP Compute Engine VM, project `hiring-radar-512318`, zone
 `europe-west3-a`, instance `hiring-radar` (e2-micro, Debian 12, 20 GB disk). Port 22 is
 reachable only from Google's IAP range, so SSH goes through IAP. The dashboard is behind
-Caddy (HTTPS + basic auth) on an `sslip.io` hostname. Merging to `main` deploys.
+Caddy (HTTPS + basic auth) at `hiringradar.app`. Merging to `main` deploys.
 
 Decided in HIR-29; design in [DECISIONS.md](../DECISIONS.md) (2026-10-21), final shape of
 the setup in the 2026-11-01 entry.
@@ -59,7 +59,7 @@ on the VM unless it says otherwise.
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
 | Daily polls | Europe: `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin. US: `hiring-radar-poll-us.timer` → `hiring-radar-poll-us.service`, 07:00 America/New_York (13:00 Berlin). Each fetches only its region's feeds; company boards are in both (HIR-369, DECISIONS 2026-11-19) |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
-| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts the Monday summary to Linear when `LINEAR_API_KEY` is set (HIR-257). The same post starts with the week's pull requests (needs you, merged, sent back and fixed), read from GitHub's public API and the checkout's git history, with no token (HIR-264). Then the robot visitor's week (what broke on the live site, what was rolled back, what was fixed), read from its Linear tickets with the same `LINEAR_API_KEY`, one read-only request a week; a break that came back after two fixes is listed above everything else (HIR-260). Report-only: never edits `config/feeds.json` |
+| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts the Monday summary to Linear when `LINEAR_API_KEY` is set (HIR-257). The same post starts with the week's pull requests (needs you, merged, sent back and fixed), read from GitHub's public API and the checkout's git history, with no token (HIR-264). Then the robot visitor's week (what broke on the live site, what was rolled back, what was fixed), read from its Linear tickets with the same `LINEAR_API_KEY`, one read-only request a week; a break that came back after two fixes is listed above everything else (HIR-260). It never edits `config/feeds.json` on the server and has no GitHub credential: each morning's fixes (pause a dead board, switch a moved one, switch a recovered one back on) are filed as one Linear ticket, "Caretaker: job-source fixes for <day>", which the agents turn into a reviewed pull request with `python -m app caretaker apply-fixes`. A collection that did not run or failed everywhere is re-run once that day, by the caretaker itself, as the same user with the same command as the 07:00 poll (HIR-261) |
 
 `systemctl list-units | grep hiring` shows the exact unit names.
 
@@ -86,6 +86,20 @@ line and an `extracted=` line; a feed line with `FAILED` or `WARNING seen=0` nee
 (the warning means a company board that used to return postings returned none — usually
 the board changed its page format, as JOIN did in October 2026). A `grounding:` line means
 the model quoted evidence that is not in the posting — see [Tracing the poll](#tracing-the-poll).
+
+## Error reports (Sentry)
+
+Errors from the dashboard server and from visitors' browsers go to Sentry, one entry per
+distinct bug, with no visitor details (HIR-259, `decisions/2026-11-25-hir-259-errors-go-to-sentry.md`).
+Each side has its own key, and each is off until its key is set:
+
+| Side | Key | Where it is set |
+|---|---|---|
+| Server | `SENTRY_DSN` | `/etc/hiring-radar.env`, then `sudo systemctl restart hiring-radar` |
+| Browser | `VITE_SENTRY_DSN` | GitHub → repository settings → Actions → **Variables** (not secrets: the key ships in the page). Read by the deploy's frontend build, so it takes effect on the next deploy |
+
+Only the dashboard server reports; the polls and the caretaker do not. A new error group
+reaches Chandler as Sentry's own email alert. To switch either side off, remove its key.
 
 ## Tracing the poll
 
@@ -267,16 +281,16 @@ gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap --com
    sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz'
 ```
 
-## Caddy: open `/mcp` (once, after HIR-338 is deployed)
+## Caddy: apply `deploy/Caddyfile` by hand
 
-No deploy touches the web server's config, so the change that lets anyone's Claude reach
-the MCP server without the dashboard password is applied by hand, once. Run it after the
-deploy of the merge, so the app already answers at `/mcp`. It keeps the VM's current
-password hash and takes the rest from `deploy/Caddyfile`.
+No deploy touches the web server's config (the server's copy holds the password hash; the
+repo's does not), so a change to `deploy/Caddyfile` is applied by hand, after the deploy
+of the merge that needs it. This keeps the VM's current password hash and takes the rest
+from `deploy/Caddyfile`. Back up first, under a name that says what the change was.
 
 ```
 gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap
-sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-mcp
+sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-<change>
 HASH=$(sudo awk '$1 == "chandler" {print $2}' /etc/caddy/Caddyfile)
 sudo sed "s|REPLACE_WITH_BCRYPT_HASH|$HASH|" /opt/hiring-radar/app/deploy/Caddyfile > /tmp/Caddyfile
 sudo caddy validate --config /tmp/Caddyfile --adapter caddyfile \
@@ -288,16 +302,40 @@ rm /tmp/Caddyfile
 Check from the Mac: the dashboard still asks for the password, and `/mcp` answers without it.
 
 ```
-curl -s -o /dev/null -w '%{http_code}\n' https://34-159-223-190.sslip.io/          # 401
-curl -s -o /dev/null -w '%{http_code}\n' -X POST https://34-159-223-190.sslip.io/mcp \
+curl -s -o /dev/null -w '%{http_code}\n' https://hiringradar.app/          # 401
+curl -s -o /dev/null -w '%{http_code}\n' -X POST https://hiringradar.app/mcp \
   -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
   -H 'mcp-protocol-version: 2025-06-18' -d '{"jsonrpc":"2.0","id":1,"method":"ping","params":{}}'   # 200
 ```
 
-Undo: `sudo cp /etc/caddy/Caddyfile.before-mcp /etc/caddy/Caddyfile && sudo systemctl reload caddy`.
+Undo: `sudo cp /etc/caddy/Caddyfile.before-<change> /etc/caddy/Caddyfile && sudo systemctl reload caddy`.
 
-Then add it to Claude: `claude mcp add --transport http hiring-radar https://34-159-223-190.sslip.io/mcp`,
+Add it to Claude: `claude mcp add --transport http hiring-radar https://hiringradar.app/mcp`,
 or in claude.ai, Settings → Connectors → Add custom connector, with that URL.
+
+## The move to hiringradar.app (HIR-458): two stages around the merge
+
+The uptime check and the robot visitor read one address: the old one before the merge, the
+new one after it. So the server answers at both names across the merge.
+
+1. **Before the merge**, the new name is added next to the old one, nothing redirected:
+   ```
+   sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-domain
+   umask 077
+   { sudo sed '1s|^34-159-223-190\.sslip\.io {|hiringradar.app, 34-159-223-190.sslip.io {|' /etc/caddy/Caddyfile
+     printf '\nwww.hiringradar.app {\n\tredir https://hiringradar.app{uri} 301\n}\n'; } > /tmp/Caddyfile
+   grep -q '^hiringradar.app, 34-159-223-190.sslip.io {' /tmp/Caddyfile \
+     && sudo caddy validate --config /tmp/Caddyfile --adapter caddyfile \
+     && sudo install -m 644 -o root -g root /tmp/Caddyfile /etc/caddy/Caddyfile \
+     && sudo systemctl reload caddy
+   rm /tmp/Caddyfile
+   ```
+2. **After the merge's "Deploy and watch" run is green**, apply `deploy/Caddyfile` with the
+   recipe above (`<change>` = `redirect`). The old address then forwards everything to
+   `https://hiringradar.app` with the path kept, except `/mcp`, which it still serves so a
+   Claude connected there keeps working.
+
+The old address stays until 31 Jan 2027 (decisions/2026-11-25-hir-458-hiringradar-app.md).
 
 ## Get the database onto the Mac
 
@@ -398,11 +436,11 @@ gcloud compute firewall-rules create allow-ssh-iap \
   --allow tcp:22 --source-ranges 35.235.240.0/20
 ```
 
-Port 22 is open only to IAP's range; there is no `default-allow-ssh`. The hostname is the
-static IP with dots turned into dashes plus `.sslip.io` — `34.159.223.190` →
-`34-159-223-190.sslip.io`. sslip.io resolves it, which is enough for Caddy to get a Let's
-Encrypt certificate without owning a domain. **The hostname is baked into the Caddyfile: a
-new IP means a new hostname.**
+Port 22 is open only to IAP's range; there is no `default-allow-ssh`. The site's name is
+`hiringradar.app` (Cloudflare Registrar; HIR-458): an `A` record for `@` pointing at the
+static IP and a `CNAME` for `www`, both **DNS only** (grey cloud) so Caddy gets its own
+Let's Encrypt certificate. A new IP means changing the `A` record. Before HIR-458 the
+name was the IP with dots as dashes on sslip.io, which now only forwards.
 
 ### 2. The VM
 

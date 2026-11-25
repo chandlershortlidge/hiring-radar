@@ -259,7 +259,7 @@ def test_the_commands_figure_on_an_up_to_date_database_is_the_one_it_always_gave
     log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
                  {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
     expected = reread_cost.report_lines(reread_cost.reread_cost(conn, tax=cli.Taxonomy.load()))
-    assert "would re-read 3 jobs: about €16.74." in expected[0]
+    assert "would re-read 3 jobs: about €0.84." in expected[0]   # Haiku 5.5 rates (HIR-409)
     conn.close()
     before = schema_state(tmp_path / "t.db")
     monkeypatch.setattr(cli, "DB_PATH", tmp_path / "t.db")

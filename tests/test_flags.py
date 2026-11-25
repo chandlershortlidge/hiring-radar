@@ -269,7 +269,7 @@ def api(tmp_path, monkeypatch):
     db.migrate(c)
     job_id = job(c, "Senior Staff AI Engineer", JUNIOR_TEXT, seniority=Seniority("junior", "stated", "grow"))
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
-    return TestClient(create_app(path, TAX, client_factory=lambda: None)), c, job_id
+    return TestClient(create_app(path, TAX)), c, job_id
 
 
 def test_flag_note_and_unflag_over_the_api(api):

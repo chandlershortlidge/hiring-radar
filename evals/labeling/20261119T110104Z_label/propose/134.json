@@ -6,8 +6,8 @@
   "reason": "groups",
   "provider": "anthropic",
   "model": "claude-haiku-5-5",
-  "key_sha256": "bac9efad590b0484bf5be9d8c49c9322670367260a6f483676ce3537b204f62b",
-  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"Under the alternative_group rule, \\\"modern ML frameworks (PyTorch or JAX/TensorFlow)\\\" and \\\"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\\\" each offer examples for a single ask, so any one meets it, while the broad parents (machine-learning, llm-orchestration) stay out. The model-platform list (\\\"Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\\\") is joined by \\\"and\\\" and so counts as skills asked together, not alternatives.\"}",
+  "key_sha256": "679913bd44bb9035c363c57fb2cdc4700b6533b9029f7be33d3b029979440e8d",
+  "raw": "{\"decision\": [[\"pytorch\", \"jax\", \"tensorflow\"], [\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The 'modern ML frameworks (PyTorch or JAX/TensorFlow)' ask and the 'orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' example list each offer any one skill for a single ask, so each forms a group, while the broad parents 'machine-learning' and 'llm-orchestration' stay out and the 'Anthropic, OpenAI, Vertex AI, and Amazon Bedrock' list is joined by 'and' under 'including' and so is not grouped.\"}",
   "decision": [
     [
       "pytorch",
@@ -22,6 +22,6 @@
       "autogen"
     ]
   ],
-  "why": "Under the alternative_group rule, \"modern ML frameworks (PyTorch or JAX/TensorFlow)\" and \"orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)\" each offer examples for a single ask, so any one meets it, while the broad parents (machine-learning, llm-orchestration) stay out. The model-platform list (\"Anthropic, OpenAI, Vertex AI, and Amazon Bedrock\") is joined by \"and\" and so counts as skills asked together, not alternatives.",
+  "why": "The 'modern ML frameworks (PyTorch or JAX/TensorFlow)' ask and the 'orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' example list each offer any one skill for a single ask, so each forms a group, while the broad parents 'machine-learning' and 'llm-orchestration' stay out and the 'Anthropic, OpenAI, Vertex AI, and Amazon Bedrock' list is joined by 'and' under 'including' and so is not grouped.",
   "error": null
 }

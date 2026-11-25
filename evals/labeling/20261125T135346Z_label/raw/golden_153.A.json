@@ -1,0 +1,252 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"5-8 years of experience in software engineering\", \"alternative_group\": 1},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"enterprise platforms, workflow automation\", \"alternative_group\": 1},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"hands-on experience in full-stack development\", \"alternative_group\": 2},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"scripting, APIs\", \"alternative_group\": 2},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"microservices, enterprise integrations\", \"alternative_group\": 2},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"AI/LLM-powered applications\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in JavaScript\", \"alternative_group\": 3},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript/TypeScript\", \"alternative_group\": 3},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"TypeScript, Python\", \"alternative_group\": 3},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Experience with cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 4},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\", \"alternative_group\": 4},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google Cloud\", \"alternative_group\": 4},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt engineering\"},\n    {\"skill_id\": \"context-engineering\", \"requirement\": \"required\", \"raw_text\": \"context windows\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"token usage, embeddings\"},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"required\", \"raw_text\": \"vector search\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"vector search, RAG\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"RAG, tool use/function calling\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"structured outputs, and model evaluation\"},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"required\", \"raw_text\": \"hallucination mitigation\", \"uncertain\": true},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"identity and access controls\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"secure AI deployment\", \"uncertain\": true},\n    {\"skill_id\": \"anthropic-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hands-on experience with the Anthropic API\", \"alternative_group\": 5},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Claude Code\", \"alternative_group\": 5},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Model Context Protocol (MCP)\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with vector databases\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM orchestration and application frameworks\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangChain\", \"alternative_group\": 6},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangGraph\", \"alternative_group\": 6},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 6},\n    {\"skill_id\": \"semantic-kernel\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Semantic Kernel\", \"alternative_group\": 6},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI observability\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Familiarity with Docker\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"git\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"infrastructure-as-code\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ServiceNow\", \"raw_text\": \"Experience with ServiceNow development\"},\n    {\"label\": \"Structured outputs\", \"raw_text\": \"structured outputs\"},\n    {\"label\": \"Anthropic Console\", \"raw_text\": \"Anthropic Console\"},\n    {\"label\": \"Cloud-native applications\", \"raw_text\": \"cloud-native applications\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Forward Deployed AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The Required Qualifications heading sets required. The Preferred Qualifications heading and 'ServiceNow Experience — Strong Plus' set nice_to_have.\\nSkills named in Key Responsibilities only were not labeled.\\nThe '5-8 years of experience in software engineering ... workflow automation, or related' list is treated as alternatives (group 1).\\n'full-stack development, scripting, APIs, microservices ... or cloud-native applications' is treated as alternatives (group 2). 'cloud-native applications' has no clean taxonomy id, so it is unmapped.\\napis also appears in another 'or' list ('integrating APIs, enterprise applications, data platforms, or workflow systems'). It is never asked alone, so it stays in group 2.\\nllms is not grouped. Of the 'AI/LLM-powered applications ... RAG systems, or agentic workflows' alternatives, rag is asked alone in the LLM concepts list, so it leaves the group. 'conversational experiences' and 'agentic workflows' were not mapped (too loose), so llms has no partner left.\\nJavaScript/TypeScript (a slash pair) and Python share group 3 ('or similar' adds nothing).\\nAWS / Azure / Google Cloud share group 4. 'Google Cloud' is mapped to gcp; cloud stays out of the group.\\nThe LLM concepts list ('including prompt engineering, context windows, ...') is asked together, so each item is required and ungrouped. 'context windows' maps to the context-engineering alias 'context window'.\\nhallucination-detection from 'hallucination mitigation' is uncertain: it is mitigation, not detection. ai-deployment from 'secure AI deployment' is uncertain: it sits in a list of responsible-AI concepts.\\nanthropic-api and claude-code are alternatives in the 'Anthropic API, Claude models, Anthropic Console, Claude Code, or ...' list (group 5).\\nLangChain, LangGraph, LlamaIndex and Semantic Kernel are examples for one ask (group 6). llm-orchestration is the broad skill named, so it stays out of the group.\\nServiceNow 'AI Agents' is a ServiceNow product name and was not mapped to agents. 'agent-based workflows', 'semantic search', 'document ingestion' and 'developer tooling' were not mapped (only loosely related).\\nTravel '25%' in requirements vs '50~75%' in the header is not a skill; ignored.\\nNo German, language, or degree mention in the posting.\\nSeniority is stated in 'Senior Forward Deployed AI Engineer' and consistent with '5-8 years'.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "5-8 years of experience in software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "enterprise platforms, workflow automation",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "hands-on experience in full-stack development",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "scripting, APIs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices, enterprise integrations",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "AI/LLM-powered applications"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "Proficiency in JavaScript",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "JavaScript/TypeScript",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "TypeScript, Python",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Experience with cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "context windows"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "token usage, embeddings"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "required",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "vector search, RAG"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "RAG, tool use/function calling"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "structured outputs, and model evaluation"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "hallucination mitigation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "identity and access controls"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "secure AI deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with the Anthropic API",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Claude Code",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with vector databases"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM orchestration and application frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "semantic-kernel",
+        "requirement": "nice_to_have",
+        "raw_text": "Semantic Kernel",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "AI observability"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure-as-code"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ServiceNow",
+        "raw_text": "Experience with ServiceNow development"
+      },
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "Anthropic Console",
+        "raw_text": "Anthropic Console"
+      },
+      {
+        "label": "Cloud-native applications",
+        "raw_text": "cloud-native applications"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Forward Deployed AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The Required Qualifications heading sets required. The Preferred Qualifications heading and 'ServiceNow Experience — Strong Plus' set nice_to_have.\nSkills named in Key Responsibilities only were not labeled.\nThe '5-8 years of experience in software engineering ... workflow automation, or related' list is treated as alternatives (group 1).\n'full-stack development, scripting, APIs, microservices ... or cloud-native applications' is treated as alternatives (group 2). 'cloud-native applications' has no clean taxonomy id, so it is unmapped.\napis also appears in another 'or' list ('integrating APIs, enterprise applications, data platforms, or workflow systems'). It is never asked alone, so it stays in group 2.\nllms is not grouped. Of the 'AI/LLM-powered applications ... RAG systems, or agentic workflows' alternatives, rag is asked alone in the LLM concepts list, so it leaves the group. 'conversational experiences' and 'agentic workflows' were not mapped (too loose), so llms has no partner left.\nJavaScript/TypeScript (a slash pair) and Python share group 3 ('or similar' adds nothing).\nAWS / Azure / Google Cloud share group 4. 'Google Cloud' is mapped to gcp; cloud stays out of the group.\nThe LLM concepts list ('including prompt engineering, context windows, ...') is asked together, so each item is required and ungrouped. 'context windows' maps to the context-engineering alias 'context window'.\nhallucination-detection from 'hallucination mitigation' is uncertain: it is mitigation, not detection. ai-deployment from 'secure AI deployment' is uncertain: it sits in a list of responsible-AI concepts.\nanthropic-api and claude-code are alternatives in the 'Anthropic API, Claude models, Anthropic Console, Claude Code, or ...' list (group 5).\nLangChain, LangGraph, LlamaIndex and Semantic Kernel are examples for one ask (group 6). llm-orchestration is the broad skill named, so it stays out of the group.\nServiceNow 'AI Agents' is a ServiceNow product name and was not mapped to agents. 'agent-based workflows', 'semantic search', 'document ingestion' and 'developer tooling' were not mapped (only loosely related).\nTravel '25%' in requirements vs '50~75%' in the header is not a skill; ignored.\nNo German, language, or degree mention in the posting.\nSeniority is stated in 'Senior Forward Deployed AI Engineer' and consistent with '5-8 years'."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "70607e31939693a03d3973888aadbff973f51119177691820adc353f2363d5f4",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -31,6 +31,13 @@ not count: it usually needs residence or an employer entity there. A city match 
 JSON-LD), the title and strong phrases in the description ("fully remote", "remote-first")
 stand in for it.
 
+The title outranks the location for one thing (HIR-455): a title that ties the remote job
+to a non-EU country ("... - Remote - USA", "(US only)", "Remote, Canada") is never
+EU-remote, whatever the location says. An aggregator's location is not the employer's:
+JobLeads' German site files a US-only posting under a German town, and the remote flag
+beside it then read as "remote, Germany". A title that also names an EU-wide region
+("Remote, US or Europe") is left to the location as before.
+
 Does NOT: geocode, handle cities we don't track (returns None), or read time-zone overlap
 requirements ("5h overlap with PST" still counts as remote).
 
@@ -174,6 +181,14 @@ _NON_EU_ONLY = re.compile(
     + r"|\b(?:US|U\.S\.) (?:citizens?|residents?|persons?)\b",
     re.I)
 
+# A non-EU country named in a title (HIR-455). The same countries as _NON_EU_COUNTRY, but
+# the short forms are matched in capitals only: a title is not a residence sentence, and
+# "Join us" or "Contact us" must not read as the United States.
+_TITLE_NON_EU_COUNTRY = re.compile(
+    r"(?<![\w.])(?:(?-i:USA|US|U\.S\.A\.|U\.S\.|UK|LATAM)|United States|Canada|North America"
+    r"|Latin America|India|United Kingdom)(?!\w)", re.I)
+_ONLY = re.compile(r"\bonly\b", re.I)
+
 # Description phrases strong enough to stand in for an empty location. Plain "remote" is
 # not: hybrid postings say "remote days".
 _STRONG_REMOTE_TEXT = re.compile(
@@ -247,7 +262,20 @@ def _remote_kind(location_raw: str | None, title: str | None, text: str | None) 
     return None
 
 
+def title_restricts_to_non_eu(title: str | None) -> bool:
+    """Does the title tie a remote job to a country outside the EU? True when it names
+    one ("USA", "Canada", "UK"), beside a remote word or "only" ("Remote - USA",
+    "(US only)"), and names no EU-wide region or Germany. The remote word or "only" is
+    what keeps "AI Engineer, US Market" out of it: that title says who the customers are,
+    not where the engineer may live."""
+    return bool(title and _TITLE_NON_EU_COUNTRY.search(title)
+                and (_REMOTE.search(title) or _ONLY.search(title))
+                and not _EU_WIDE.search(title))
+
+
 def is_remote_eu(location_raw: str | None, title: str | None = None, text: str | None = None) -> bool:
+    if title_restricts_to_non_eu(title):
+        return False
     kind = _remote_kind(location_raw, title, text)
     if kind == "eu":
         return True

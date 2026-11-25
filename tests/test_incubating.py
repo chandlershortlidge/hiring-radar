@@ -8,12 +8,13 @@ which is all a real switch is.
 """
 
 import asyncio
+import dataclasses
 
 import pytest
 from fastapi.testclient import TestClient
 from mcp.server.mcpserver.exceptions import ToolError
 
-from app import db, ingest, mcp_server, queries as q, scope
+from app import db, geo, ingest, mcp_server, queries as q, scope
 from app.api import create_app
 from app.extract import Extraction, Mention, Proposed, Seniority
 from app.pipeline import store_extraction
@@ -127,7 +128,6 @@ def test_an_incubating_citys_jobs_are_stored_but_absent_from_the_public_api(api,
     stats = api.get("/api/stats").json()
     assert stats["jobs"] == 3 and stats["open"] == 3 and stats["companies"] == 3
     assert stats["open_by_city"] == {"Berlin": 3}
-    assert stats["proposed_pending"] == 1                                # Lab's, not Windy's
 
     # The chart, compare mode's per-city numbers, the tree, the related panel.
     skills = api.get("/api/skills", params={"window": "all"}).json()
@@ -281,6 +281,17 @@ def _check_search_jobs(server, hidden_id, hidden_company, hidden_place):
     assert all(hidden_place not in j["places"] for j in found["jobs"])
 
 
+def _check_search_postings(server, hidden_id, hidden_company, hidden_place):
+    found = _tool(server, "search_postings", text="production", window="all", limit=50)   # in every posting
+    assert hidden_company not in {j["company"] for j in found["jobs"]} and found["total"] == 3
+    assert _tool(server, "search_postings", text=hidden_company, window="all")["total"] == 0
+    assert sum(found["by_family"].values()) == 3                 # the hidden job is in no track's count
+    if hidden_place:
+        assert hidden_place not in found["by_city"] and all(hidden_place not in j["places"] for j in found["jobs"])
+    else:
+        assert "research" not in found["by_family"]
+
+
 def _check_get_job(server, hidden_id, hidden_company, hidden_place):
     with pytest.raises(ToolError, match=f"no job with id {hidden_id}"):
         asyncio.run(server.call_tool("get_job", {"job_id": hidden_id}))
@@ -290,8 +301,34 @@ def _check_skill_demand(server, hidden_id, hidden_company, hidden_place):
     assert _tool(server, "skill_demand", window="all")["total"] == 3
 
 
+def _check_related_skills(server, hidden_id, hidden_company, hidden_place):
+    r = _tool(server, "related_skills", skills=["python"], window="all")
+    assert (r["total"], r["selected_count"]) == (3, 3)   # every job lists python; the hidden one is not counted
+
+
+def _check_rising_skills(server, hidden_id, hidden_company, hidden_place):
+    if hidden_place:                                     # asked for by name: like a place we do not collect
+        r = _tool(server, "rising_skills", city=[hidden_place])
+        assert (r["status"], r["reason"], r["ready_from"]) == ("not_enough_data", "new_city", None)
+    with pytest.MonkeyPatch.context() as mp:             # every place collected long enough to compare
+        for place in scope.places():
+            mp.setitem(geo.COLLECTING_SINCE, place, "2020-01-01")
+        r = _tool(server, "rising_skills")
+    assert r["current"]["open_jobs"] == r["previous"]["open_jobs"] == 3   # the hidden job is not counted
+
+
+def _check_match_profile(server, hidden_id, hidden_company, hidden_place):
+    with pytest.MonkeyPatch.context() as mp:             # every job counts as recent, so a leak would show
+        mp.setattr(mcp_server.fit, "recent_jobs", lambda jobs, now: jobs)
+        r = _tool(server, "match_profile", skills=["python"])
+    assert r["ranked"] == 3 and hidden_company not in {j["company"] for j in r["jobs"]}
+    assert all(hidden_place not in j["places"] for j in r["jobs"])
+
+
 # One check per tool: what the tool must not give away about an incubating job.
-TOOL_CHECKS = {"search_jobs": _check_search_jobs, "get_job": _check_get_job, "skill_demand": _check_skill_demand}
+TOOL_CHECKS = {"search_jobs": _check_search_jobs, "search_postings": _check_search_postings, "get_job": _check_get_job, "skill_demand": _check_skill_demand,
+               "related_skills": _check_related_skills, "rising_skills": _check_rising_skills,
+               "match_profile": _check_match_profile}
 
 
 def test_every_mcp_tool_has_an_incubating_check(path):
@@ -351,21 +388,13 @@ def test_labelling_and_eval_tools_can_still_read_incubating_jobs(conn, monkeypat
                         " WHERE p.place = 'Chicago'").fetchone()[0] == 2
 
 
-def test_a_job_added_by_hand_for_an_incubating_city_is_stored_and_reported(path, monkeypatch):
-    """The add path counts what it found on the job it just stored, shown or not."""
-    from tests.test_api import FakeClient
-    incubate_city(monkeypatch)
-    fake = FakeClient()
-    api = TestClient(create_app(path, TAX, client_factory=lambda: fake))
-    r = api.post("/api/add/text", json={"text": "We need Python and DSPy. " * 30, "company": "Loop",
-                                        "title": "AI Engineer", "location": "Chicago, IL"}).json()
-    assert r["outcome"] == "added" and r["skills_found"] == 1
-    assert api.get(f"/api/jobs/{r['job_id']}").status_code == 404
-
-
 def test_with_nothing_incubating_the_public_rule_adds_nothing_to_a_query(monkeypatch):
     """Every place and track live: each query runs exactly as it did before this rule existed."""
     monkeypatch.setattr(scope, "PLACE_STATE", {p: scope.LIVE for p in scope.PLACE_STATE})
-    monkeypatch.setattr(scope, "TRACKS", {t: scope.Track(scope.LIVE, v.title_pattern) for t, v in scope.TRACKS.items()})
-    assert q.public_clause() == ("1=1", [])
-    assert q.job_set_clause(q.Filters(window="all"), NOW, include_legacy=True) == ("1=1", [])
+    monkeypatch.setattr(scope, "TRACKS", {t: dataclasses.replace(v, state=scope.LIVE) for t, v in scope.TRACKS.items()})
+    # What is left is the one rule that has nothing to do with incubating: no job whose
+    # link goes to a site known for fake postings (HIR-441).
+    rule, params = q.public_clause()
+    assert params == list(ingest.BLOCKED_SITES) and rule.startswith("NOT EXISTS (SELECT 1 FROM job_source")
+    assert "job_place" not in rule and "family" not in rule
+    assert q.job_set_clause(q.Filters(window="all"), NOW, include_legacy=True) == (rule, params)

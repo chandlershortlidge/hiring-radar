@@ -1,0 +1,372 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"workflow automation, or related technical delivery roles\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"full-stack development\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience integrating APIs\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern LLM application concepts\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"conversational experiences\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector search, RAG, tool use/function calling\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic workflows\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"context windows\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"token usage, embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector search\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use/function calling\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model evaluation\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"sensitive-data handling\"\n    },\n    {\n      \"skill_id\": \"access-control\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"identity and access controls\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"secure AI deployment\"\n    },\n    {\n      \"skill_id\": \"anthropic-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Anthropic API\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Model Context Protocol (MCP)\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ServiceNow data models\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"document ingestion\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM orchestration\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"semantic-kernel\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Semantic Kernel\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI observability\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"infrastructure-as-code\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Systems and enterprise integration\",\n      \"raw_text\": \"systems integration\"\n    },\n    {\n      \"label\": \"Scripting\",\n      \"raw_text\": \"scripting\"\n    },\n    {\n      \"label\": \"Cloud-native application development\",\n      \"raw_text\": \"cloud-native applications\"\n    },\n    {\n      \"label\": \"Token usage\",\n      \"raw_text\": \"token usage\"\n    },\n    {\n      \"label\": \"Structured outputs\",\n      \"raw_text\": \"structured outputs\"\n    },\n    {\n      \"label\": \"Responsible AI\",\n      \"raw_text\": \"responsible AI concepts\"\n    },\n    {\n      \"label\": \"Hallucination mitigation\",\n      \"raw_text\": \"hallucination mitigation\"\n    },\n    {\n      \"label\": \"Human oversight\",\n      \"raw_text\": \"human oversight\"\n    },\n    {\n      \"label\": \"AI safety\",\n      \"raw_text\": \"AI safety\"\n    },\n    {\n      \"label\": \"Claude models\",\n      \"raw_text\": \"Claude models\"\n    },\n    {\n      \"label\": \"Anthropic Console\",\n      \"raw_text\": \"Anthropic Console\"\n    },\n    {\n      \"label\": \"Anthropic implementation guidance\",\n      \"raw_text\": \"Anthropic implementation guidance\"\n    },\n    {\n      \"label\": \"Document analysis\",\n      \"raw_text\": \"document analysis\"\n    },\n    {\n      \"label\": \"Enterprise knowledge workflows\",\n      \"raw_text\": \"enterprise knowledge workflows\"\n    },\n    {\n      \"label\": \"ServiceNow development and configuration\",\n      \"raw_text\": \"ServiceNow development, configuration\"\n    },\n    {\n      \"label\": \"ServiceNow scripting\",\n      \"raw_text\": \"ServiceNow scripting\"\n    },\n    {\n      \"label\": \"IntegrationHub\",\n      \"raw_text\": \"IntegrationHub\"\n    },\n    {\n      \"label\": \"Flow Designer\",\n      \"raw_text\": \"Flow Designer\"\n    },\n    {\n      \"label\": \"Virtual Agent\",\n      \"raw_text\": \"Virtual Agent\"\n    },\n    {\n      \"label\": \"Now Assist\",\n      \"raw_text\": \"Now Assist\"\n    },\n    {\n      \"label\": \"ServiceNow AI Agents\",\n      \"raw_text\": \"AI Agents\"\n    },\n    {\n      \"label\": \"CMDB\",\n      \"raw_text\": \"CMDB\"\n    },\n    {\n      \"label\": \"ServiceNow workflow and task tables\",\n      \"raw_text\": \"Workflow and task tables\"\n    },\n    {\n      \"label\": \"Knowledge management\",\n      \"raw_text\": \"Knowledge management\"\n    },\n    {\n      \"label\": \"Data exchange patterns\",\n      \"raw_text\": \"data exchange patterns\"\n    },\n    {\n      \"label\": \"Chunking\",\n      \"raw_text\": \"chunking\"\n    },\n    {\n      \"label\": \"Prompt and version management\",\n      \"raw_text\": \"prompt/version management\"\n    },\n    {\n      \"label\": \"AI cost optimization\",\n      \"raw_text\": \"cost optimization\"\n    },\n    {\n      \"label\": \"Developer tooling\",\n      \"raw_text\": \"developer tooling\"\n    },\n    {\n      \"label\": \"Secure cloud deployment practices\",\n      \"raw_text\": \"secure cloud deployment practices\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Forward Deployed AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"notes\": \"Preferred Qualifications is treated as the enclosing optional section; its topic subheadings do not reset requirements to required.\\nTechnologies and practices appearing only in the role overview, responsibilities, or success measures are excluded unless separately requested in qualifications.\\nAlternative groups omit skills independently requested elsewhere, including optional independent requests. Groups 1 and 4 also have alternatives without taxonomy entries, recorded in unmapped.\\nConversational experiences and agentic workflows are read literally as conversational AI and agents. Document ingestion is provisionally mapped to data pipelines and flagged for review.\\nHallucination mitigation is not equated with hallucination detection; document analysis is not equated with document extraction; generic developer tooling is not equated with AI coding tools.\\nServiceNow AI Agents is retained as an unmapped named platform capability, distinct from the general agents criterion.\\nIndustry/process domains such as ITSM, CSM, and HRSD, training completion, and customer-facing role history are not technical skills. No German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "workflow automation, or related technical delivery roles"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "full-stack development",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Experience integrating APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "modern LLM application concepts"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "conversational experiences"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "vector search, RAG, tool use/function calling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic workflows"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "context windows"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "token usage, embeddings"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "required",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use/function calling"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "sensitive-data handling"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "identity and access controls"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "secure AI deployment"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic API",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Claude Code",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "ServiceNow data models"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "document ingestion",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM orchestration"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "semantic-kernel",
+        "requirement": "nice_to_have",
+        "raw_text": "Semantic Kernel",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "AI observability"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure-as-code"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systems and enterprise integration",
+        "raw_text": "systems integration"
+      },
+      {
+        "label": "Scripting",
+        "raw_text": "scripting"
+      },
+      {
+        "label": "Cloud-native application development",
+        "raw_text": "cloud-native applications"
+      },
+      {
+        "label": "Token usage",
+        "raw_text": "token usage"
+      },
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "Responsible AI",
+        "raw_text": "responsible AI concepts"
+      },
+      {
+        "label": "Hallucination mitigation",
+        "raw_text": "hallucination mitigation"
+      },
+      {
+        "label": "Human oversight",
+        "raw_text": "human oversight"
+      },
+      {
+        "label": "AI safety",
+        "raw_text": "AI safety"
+      },
+      {
+        "label": "Claude models",
+        "raw_text": "Claude models"
+      },
+      {
+        "label": "Anthropic Console",
+        "raw_text": "Anthropic Console"
+      },
+      {
+        "label": "Anthropic implementation guidance",
+        "raw_text": "Anthropic implementation guidance"
+      },
+      {
+        "label": "Document analysis",
+        "raw_text": "document analysis"
+      },
+      {
+        "label": "Enterprise knowledge workflows",
+        "raw_text": "enterprise knowledge workflows"
+      },
+      {
+        "label": "ServiceNow development and configuration",
+        "raw_text": "ServiceNow development, configuration"
+      },
+      {
+        "label": "ServiceNow scripting",
+        "raw_text": "ServiceNow scripting"
+      },
+      {
+        "label": "IntegrationHub",
+        "raw_text": "IntegrationHub"
+      },
+      {
+        "label": "Flow Designer",
+        "raw_text": "Flow Designer"
+      },
+      {
+        "label": "Virtual Agent",
+        "raw_text": "Virtual Agent"
+      },
+      {
+        "label": "Now Assist",
+        "raw_text": "Now Assist"
+      },
+      {
+        "label": "ServiceNow AI Agents",
+        "raw_text": "AI Agents"
+      },
+      {
+        "label": "CMDB",
+        "raw_text": "CMDB"
+      },
+      {
+        "label": "ServiceNow workflow and task tables",
+        "raw_text": "Workflow and task tables"
+      },
+      {
+        "label": "Knowledge management",
+        "raw_text": "Knowledge management"
+      },
+      {
+        "label": "Data exchange patterns",
+        "raw_text": "data exchange patterns"
+      },
+      {
+        "label": "Chunking",
+        "raw_text": "chunking"
+      },
+      {
+        "label": "Prompt and version management",
+        "raw_text": "prompt/version management"
+      },
+      {
+        "label": "AI cost optimization",
+        "raw_text": "cost optimization"
+      },
+      {
+        "label": "Developer tooling",
+        "raw_text": "developer tooling"
+      },
+      {
+        "label": "Secure cloud deployment practices",
+        "raw_text": "secure cloud deployment practices"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Forward Deployed AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "notes": "Preferred Qualifications is treated as the enclosing optional section; its topic subheadings do not reset requirements to required.\nTechnologies and practices appearing only in the role overview, responsibilities, or success measures are excluded unless separately requested in qualifications.\nAlternative groups omit skills independently requested elsewhere, including optional independent requests. Groups 1 and 4 also have alternatives without taxonomy entries, recorded in unmapped.\nConversational experiences and agentic workflows are read literally as conversational AI and agents. Document ingestion is provisionally mapped to data pipelines and flagged for review.\nHallucination mitigation is not equated with hallucination detection; document analysis is not equated with document extraction; generic developer tooling is not equated with AI coding tools.\nServiceNow AI Agents is retained as an unmapped named platform capability, distinct from the general agents criterion.\nIndustry/process domains such as ITSM, CSM, and HRSD, training completion, and customer-facing role history are not technical skills. No German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "70607e31939693a03d3973888aadbff973f51119177691820adc353f2363d5f4",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

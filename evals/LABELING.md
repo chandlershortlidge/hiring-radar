@@ -16,7 +16,8 @@ From `taxonomy/README.md`, which is the source of truth:
 > experience, domain knowledge, and soft skills are not skills here.
 
 Label only skills the candidate is asked to have — requirements, qualifications, "nice to
-have" lists, or a dedicated tech-stack section. A technology that appears only in the
+have" lists, or a dedicated tech-stack section (a stack-only tool is `nice_to_have`, rule 4
+below). A technology that appears only in the
 responsibilities or the company description is not labeled unless the candidate is also
 asked for it. Concrete technologies given as examples ("e.g.", "such as", in parentheses)
 are skills in their own right.
@@ -90,9 +91,41 @@ Four rules, in order of precedence:
    Where a label rests on this rule, **`raw_text` must include the appetite phrase**. A
    quote trimmed to the bare skill list hides the words that decide the label, which is
    exactly how four of these criteria were mislabeled before HIR-178.
-4. **An unmarked item in a tech-stack list is `required`.** A "tech stack you will work
-   with" section describes the job, not a wish list, so an entry in it with no marker of
-   its own is a requirement.
+4. **A tool named only in the company's own tech stack is `nice_to_have`.** Changed
+   2026-11-21 (HIR-389, Chandler's decision; it replaces "an unmarked tech-stack item is
+   required"). A section describing the company's tools — "Our stack", "Tech stack", "We
+   work with…", "Our tools", "In unseren Projekten verwenden wir…" — says what the company
+   runs, not what the candidate must bring.
+
+   - **Asked for elsewhere too → the ask decides.** If the tool is also named in a
+     requirements section, that mention sets the label, by rules 1–3; the stack mention
+     adds nothing.
+   - **An explicit word in the stack section still decides:** "you'll need", "must",
+     "required" → `required`.
+   - **A stack line inside a requirements list is a requirement**, not a stack section:
+     "Experience with our stack: Python, Postgres" under a requirements heading is
+     `required`.
+   - **The company's opening paragraph counts the same.** A tool named only where the
+     company describes what it runs ("we work … primarily on AWS") is `nice_to_have`. A
+     sentence describing the candidate sought ("engineers skilled in X") is an ask, not the
+     company's tools.
+
+   Example 1 — stack section after the requirements (golden_072): the requirements ask
+   for TypeScript and/or Python; a later "OUR TECH STACK" lists "Database: MySQL,
+   PostgreSQL". `mysql` and `postgresql` are `nice_to_have`.
+
+   Example 2 — a tool in both places (golden_085): "Very strong software engineering
+   background: Experience in TypeScript and React" is a requirement, and "Tech stack:
+   TypeScript, React, …" repeats them. `typescript` and `react` stay `required`, quoting
+   the requirement. "Bonus if you have an experience working with LLM APIs" plus "LLM APIs"
+   in the stack: the ask is marked optional, so `llms` is `nice_to_have`.
+
+   Example 3 — a stack block that is the only thing under a requirements heading
+   (golden_003): under "Role Requirements" stands only "Tech stack you will work with:"
+   and its list. It names itself a stack and asks for nothing, so it is a stack section,
+   not a requirements list: Docling, LiteLLM and Phoenix are `nice_to_have`. LangGraph and
+   AWS are asked for elsewhere, "preferably" and "ideally", so they are `nice_to_have` too,
+   quoting those asks.
 
 ## raw_text
 
@@ -198,6 +231,21 @@ One label per posting, or none (`null`) when no degree is mentioned.
 - `degree_signal` quotes the phrase, including the "or equivalent" wording when present.
 - `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person.
 
+
+## Career track: not labeled
+
+A posting's career track (AI Engineer, ML Engineer, Data Scientist, ML Platform, Research,
+Forward Deployed Engineer) is decided from its title by a fixed rule, never by a labeler
+or the model, so a Golden carries none. Label a posting's skills the same way whatever its
+track.
+
+For the record of where the tracks end (HIR-408): a forward deployed engineer builds and
+deploys AI systems embedded with a customer, and the title says so ("forward deployed" or
+"forward deployment" with "engineer", or "FDE"). Solutions engineers, solutions
+architects, customer engineers and implementation engineers are **not** forward deployed
+engineers; they are the adjacent, often sales-leaning roles, and are collected only when
+their title names AI or ML work like any other title. A title with the FDE words that also
+names another track ("Forward Deployed AI Engineer") is Forward Deployed Engineer.
 
 ## Verifying a label: the human spot-check
 

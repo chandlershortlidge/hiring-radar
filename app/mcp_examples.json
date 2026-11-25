@@ -1,0 +1,45 @@
+{
+  "_about": [
+    "One example request per MCP tool (HIR-366). The robot visitor (web/e2e/mcp-watch.spec.js) calls every tool listed here on the live site after each deploy and every morning; a tool that errors or answers without what `expect` names fails the check, which rolls back a deploy and files a ticket.",
+    "Adding a tool: add its entry here. tests/test_mcp_examples.py fails until every tool the server offers has one, and runs each example against test data.",
+    "ask: the request in plain words; it becomes the check's name and the ticket's title.",
+    "arguments: the tool's arguments. A value {\"from\": \"<tool>\", \"path\": \"a.0.b\"} is taken from that tool's own example answer, e.g. a job id from a search.",
+    "expect: paths that must hold a value that is not null, zero, empty text or an empty list. \"jobs[].title\": jobs is a non-empty list and every job in it has a title.",
+    "Keep every example cheap and on data that is always there: a busy city, no rare skill. An empty answer here rolls back a deploy."
+  ],
+  "search_jobs": {
+    "ask": "search for open AI engineer jobs in Berlin",
+    "arguments": {"city": ["Berlin"], "family": ["ai-engineer"], "limit": 5},
+    "expect": ["total", "jobs[].id", "jobs[].title", "jobs[].company", "jobs[].places"]
+  },
+  "search_postings": {
+    "ask": "count open Berlin jobs whose posting mentions Python, per city and career track",
+    "arguments": {"text": "Python", "city": ["Berlin"], "limit": 5},
+    "expect": ["total", "by_city.Berlin", "by_family", "jobs[].id", "jobs[].title"]
+  },
+  "get_job": {
+    "ask": "get the full details of one job from that search",
+    "arguments": {"job_id": {"from": "search_jobs", "path": "jobs.0.id"}},
+    "expect": ["title", "company", "places", "status", "description_text"]
+  },
+  "skill_demand": {
+    "ask": "which skills Munich jobs ask for most",
+    "arguments": {"city": ["Munich"]},
+    "expect": ["total", "skills[].skill_id", "skills[].count"]
+  },
+  "related_skills": {
+    "ask": "what else open jobs that require Python ask for",
+    "arguments": {"skills": ["python"]},
+    "expect": ["total", "selected_count", "skills[].skill_id", "skills[].pct", "skills[].lift"]
+  },
+  "rising_skills": {
+    "ask": "which skills are rising and falling in Berlin jobs",
+    "arguments": {"city": ["Berlin"]},
+    "expect": ["status", "window_days", "current.start", "previous.start"]
+  },
+  "match_profile": {
+    "ask": "rank recent Berlin jobs for a mid-level Python and RAG engineer",
+    "arguments": {"skills": ["python", "rag"], "seniority": "mid", "city": ["Berlin"], "limit": 5},
+    "expect": ["ranked", "jobs[].id", "jobs[].title", "jobs[].company", "jobs[].places"]
+  }
+}

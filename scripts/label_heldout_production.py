@@ -38,7 +38,7 @@ MAX_TOKENS = 4096
 
 # Deliberately not imported from app.extract: this script stays free of that module. Keep
 # in step with its DEFAULT_MODEL, which reads the same variable.
-EXTRACTOR_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-sonnet-5-5")
+EXTRACTOR_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-haiku-5-5")
 
 CLASSES = (None, "required", "nice_to_have")
 

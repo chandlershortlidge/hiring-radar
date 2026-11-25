@@ -24,7 +24,8 @@ passed over as well (HIR-176): dropping deletes the job, so without the memory i
 again every day. A posting whose company name reads as a recruitment agency or a job
 portal is dropped as well, but only when it came from a country-wide source (HIR-220):
 board sources are screened before the board is ever added, and a posting a person added by
-hand was chosen deliberately. A new job is labelled with its job family (family_of, from the title
+hand was chosen deliberately. A posting that links to a site known to publish fake
+postings is dropped whatever its source (HIR-441). A new job is labelled with its job family (family_of, from the title
 alone) as it is inserted.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows. It does
@@ -34,6 +35,10 @@ with live in app/add.py, which is the one entry point for those (HIR-210).
 `in_scope_title` and `agency_name_word` are the two pure screens that decide what may be
 stored, and both live here so there is one copy of each: app/discover.py imports
 `agency_name_word` for its board screen rather than keeping its own word list (HIR-220).
+The whole set of checks and their order has one copy too: `stops` (and `screen`, its first
+answer), which `ingest_one`, the link checker (app/check.py) and the board search
+(app/discover.py) all ask, with `was_dropped` for the one check that reads the database
+(HIR-427).
 
 Invariants: one DB transaction per posting, and a screenshot passed in shares it — the
 image and the job it belongs to are both stored or neither is, because the "have I added
@@ -45,11 +50,12 @@ the title, city and company counts mean what they always did); no row in `job` i
 
 import re
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 
 from app import dedup, scope
 from app.geo import active_place, place_of, places_of
+from app.html_text import clean_posting_text
 from app.sources import Posting, registry
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
@@ -182,6 +188,25 @@ def agency_name_word(*parts: str | None) -> str | None:
     return next((w for w in AGENCY_WORDS if w in text), None)
 
 
+# Sites seen publishing fake postings that send applicants to a data-harvesting form
+# (HIR-441: "Northwind Intelligence", an invented employer, listed on kerjainti.web.id with
+# an application form on infolokerupdate.web.id; it reached us through JSearch, the one
+# source whose links point anywhere on the web). A posting that names one of these in its
+# link or anywhere in its text is not stored, from any source, hand-added ones included:
+# unlike an agency's posting, there is no reading of it a person could have meant to keep.
+# Plain lowercase names, matched as substrings, so a subdomain or a path makes no
+# difference; app/queries.py hides already-stored jobs by this same tuple, on their link.
+# Add a name only from a posting actually seen, never from a guess at a whole class of
+# sites: a false positive silently drops a real employer.
+BLOCKED_SITES = ("kerjainti.web.id", "infolokerupdate.web.id")
+
+
+def blocked_site(url: str | None, text: str | None = None) -> str | None:
+    """The blocked site this link or posting text names, or None. Pure."""
+    low = f"{url or ''}\n{text or ''}".lower()
+    return next((site for site in BLOCKED_SITES if site in low), None)
+
+
 # The sources the agency screen applies to at ingest: the country-wide ones — the
 # Bundesagentur für Arbeit, arbeitnow, JSearch, Startup Jobs — which hand us whoever
 # published the posting (DECISIONS 2026-11-09, HIR-220). Derived from the registry's kinds,
@@ -192,19 +217,30 @@ def agency_name_word(*parts: str | None) -> str | None:
 SCREENED_SOURCES = registry.of_kind("feed", "search")
 
 
-# Which of five job families a posting belongs to, from the title alone (HIR-186). Every
+# Which job family a posting belongs to, from the title alone (HIR-186). Every
 # stored job already passed in_scope_title, so the title is enough to bucket the pool at no
 # model cost; a model-assigned family can replace this later without the column changing.
 # First match wins, in list order: `ml-platform` before `ml-engineer` so "ML Platform
 # Engineer" is platform, and a title naming two families takes the earlier entry. The same
-# rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql;
-# tests/test_ingest.py asserts the two agree. See DECISIONS.md "Job family is a title rule
-# (v1)" for the accepted misfiles.
+# rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql and,
+# since the scientist titles were sorted (HIR-452), re-labels every row in
+# 027_job_family_scientist.sql; tests/test_ingest.py asserts all three agree. See
+# DECISIONS.md "Job family is a title rule (v1)" for the accepted misfiles.
+#
+# A title with "scientist" in it is sorted by the kind of scientist (HIR-452,
+# decisions/2026-11-24-hir-452-scientist-titles.md): a data scientist by the first row, a
+# machine-learning scientist by the `ml-engineer` row, and any other scientist ("AI
+# Scientist", "Research Scientist", "Applied Scientist") by the `research` row. Before, no
+# row named them and they fell through to `ai-engineer`.
 #
 # Every collected track, live or incubating; the list and each track's state are
 # app/scope.py's (HIR-395). A track added there carries a title pattern of its own, and
 # takes only titles the built-in AI/ML rule does not pass: the five tracks below keep
 # exactly the titles they had, so an added track cannot widen or narrow what they show.
+# Except a track marked `outranks_built_in`, whose pattern is tried first (HIR-408:
+# Forward Deployed Engineer, decided by the FDE words before any of the rows below, so
+# "Forward Deployed Machine Learning Engineer" is FDE). Its stored jobs are re-labelled
+# by app/migrations/028_forward_deployed_engineer.sql, which holds the whole rule in SQL.
 FAMILIES = scope.tracks()
 
 # Punctuation becomes a space before the whole-word `mle` test, so "(MLE)" and "MLE, Berlin"
@@ -214,16 +250,17 @@ _FAMILY_PUNCT = "-/(),."
 _FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     ("data-scientist", ("data scien", "datenwissenschaft")),
     ("ml-platform", ("mlops", "ml platform", "ml-platform", "ml infra", "platform engineer")),
-    ("ml-engineer", ("machine learning engineer", "machine-learning engineer", "ml engineer", "ml-engineer")),
-    ("research", ("research", "applied scientist")),
+    ("ml-engineer", ("machine learning engineer", "machine-learning engineer", "ml engineer", "ml-engineer",
+                     "machine learning scientist", "machine-learning scientist", "ml scientist",
+                     "ml-scientist")),
+    ("research", ("research", "scientist")),
 )
 
 
 def family_of(title: str) -> str:
-    if not _ai_ml_title(title or ""):
-        added = added_track(title)
-        if added:
-            return added
+    added = added_track(title)
+    if added and (scope.TRACKS[added].outranks_built_in or not _ai_ml_title(title or "")):
+        return added
     low = (title or "").lower()
     padded = low
     for ch in _FAMILY_PUNCT:
@@ -247,6 +284,7 @@ SKIPPED_CITY = "skipped_city"
 SKIPPED_COMPANY = "skipped_company"
 SKIPPED_AGENCY = "skipped_agency"    # a country-wide source published an agency's posting
 SKIPPED_UNREADABLE = "skipped_unreadable"   # a feed re-listed a posting dropped for reading blank twice
+SKIPPED_BLOCKED = "skipped_blocked"  # the posting links to a site known for fake postings (HIR-441)
 
 
 @dataclass(frozen=True)
@@ -262,8 +300,8 @@ class Screenshot:
 class Stored:
     """What storing one posting did, so no caller has to read it out of a string.
 
-    `kind` is one of the nine constants above. `job_id` is the job the posting ended up
-    on, and is None only for the five skipped kinds, where no job was touched.
+    `kind` is one of the ten constants above. `job_id` is the job the posting ended up
+    on, and is None only for the six skipped kinds, where no job was touched.
     """
 
     kind: str
@@ -290,13 +328,66 @@ class Report:
     skipped_company: int = 0
     skipped_agency: int = 0
     skipped_unreadable: int = 0
+    skipped_blocked: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
                 f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
                 f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency} "
-                f"skipped_unreadable={self.skipped_unreadable}")
+                f"skipped_unreadable={self.skipped_unreadable} skipped_blocked={self.skipped_blocked}")
+
+
+def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
+    """Every check that stops this posting from being stored, as the SKIPPED_* names, in
+    the order the collector applies them. Nothing yielded means it would be kept. Pure.
+
+    This is the one copy of "would we collect this posting?" (HIR-427). `ingest_one` stores
+    by it, the link checker (app/check.py) explains a miss by it and the board search
+    (app/discover.py) counts a board's roles by it, so a check added here reaches all three
+    with no further edit. Add a check at the end: the counts of the ones above it then keep
+    meaning what they did.
+
+    The one check that is not here is "was this posting already dropped as unreadable?"
+    (`was_dropped`): it needs the database, and it only applies to a feed's fetch.
+
+    require_city and trust_title are `ingest_one`'s, for a posting a person added by hand;
+    a feed's posting is screened with the defaults.
+    """
+    if not trust_title and not in_scope_title(p.title):
+        yield SKIPPED_TITLE
+    if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
+        yield SKIPPED_CITY
+    # No trust_title-style escape: this is the invariant of DECISIONS 2026-11-06 "A job is
+    # never stored without a company". Blank means blank *to dedup* — the same company_key
+    # that would have to match it — so punctuation alone ("-", "—") and a bare legal suffix
+    # ("GmbH") are refused too: they key to the empty string and so could never match
+    # anything either.
+    if not dedup.company_key(p.company):
+        yield SKIPPED_COMPANY
+    # Country-wide sources only; see SCREENED_SOURCES for why boards and hand-added
+    # postings are left out. HIR-220.
+    if p.source in SCREENED_SOURCES and agency_name_word(p.company):
+        yield SKIPPED_AGENCY
+    # Every source, and no hand-added escape: see BLOCKED_SITES. HIR-441.
+    if blocked_site(p.url, p.description_text):
+        yield SKIPPED_BLOCKED
+
+
+def screen(p: Posting, *, require_city: bool = True, trust_title: bool = False) -> str | None:
+    """The first check that stops this posting (see `stops`), or None when it would be
+    kept. Pure. The first is the one the collector counts the posting under."""
+    return next(stops(p, require_city=require_city, trust_title=trust_title), None)
+
+
+def was_dropped(conn: sqlite3.Connection, source: str, source_job_id: str | None) -> bool:
+    """Was this feed posting dropped for reading blank twice (HIR-176)? Reads one row and
+    writes nothing. Only a feed's fetch is passed over for it (`skip_dropped`), and only
+    when the posting is not stored again since: `ingest_one` asks after its still-listed
+    check, and a caller outside it should look the posting up first as well."""
+    return bool(source_job_id) and conn.execute(
+        "SELECT 1 FROM dropped_posting WHERE source=? AND source_job_id=?",
+        (source, source_job_id)).fetchone() is not None
 
 
 def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Candidate]:
@@ -304,7 +395,9 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
     rows = conn.execute(
         "SELECT id, company, title, description_text FROM job WHERE company IS NOT NULL").fetchall()
     ck = dedup.company_key(company)
-    return [dedup.Candidate(r["id"], r["company"], r["title"], r["description_text"])
+    # Cleaned like the incoming posting, so a job stored as markup before HIR-420 still
+    # matches its own posting arriving as text from another source.
+    return [dedup.Candidate(r["id"], r["company"], r["title"], clean_posting_text(r["description_text"]))
             for r in rows if dedup.company_key(r["company"]) == ck]
 
 
@@ -329,23 +422,15 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     not a posting this function can report on (check_timestamp).
     """
     when = check_timestamp(when or now_iso())
-    if not trust_title and not in_scope_title(p.title):
-        return Stored(SKIPPED_TITLE)
+    # Every way a posting gets in passes here, so this is the one place that keeps markup
+    # out of the stored text whatever the source promised (HIR-420). Plain text is untouched.
+    text = clean_posting_text(p.description_text)
+    if text != p.description_text:
+        p = replace(p, description_text=text)
+    stopped_by = screen(p, require_city=require_city, trust_title=trust_title)
+    if stopped_by:
+        return Stored(stopped_by)
     city = place_of(p.location_raw, p.title, p.description_text)
-    if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
-        return Stored(SKIPPED_CITY)
-    # Last, so the title and city counts keep meaning what they did. No trust_title-style
-    # escape: this is the invariant of DECISIONS 2026-11-06 "A job is never stored without
-    # a company". Blank means blank *to dedup* — the same company_key that would have to
-    # match it — so punctuation alone ("-", "—") and a bare legal suffix ("GmbH") are
-    # refused too: they key to the empty string and so could never match anything either.
-    if not dedup.company_key(p.company):
-        return Stored(SKIPPED_COMPANY)
-    # Last of all, so every count above keeps meaning what it did and this one holds only
-    # postings that would otherwise have been stored. Country-wide sources only; see
-    # SCREENED_SOURCES for why boards and hand-added postings are left out. HIR-220.
-    if p.source in SCREENED_SOURCES and agency_name_word(p.company):
-        return Stored(SKIPPED_AGENCY)
 
     with conn:
         if p.source_job_id:
@@ -358,9 +443,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 return Stored(STILL_LISTED, row["job_id"])
             # After the still-listed check, so a posting a person stored again by hand is
             # followed like any other; before dedup, so nothing about it is written.
-            if skip_dropped and conn.execute(
-                    "SELECT 1 FROM dropped_posting WHERE source=? AND source_job_id=?",
-                    (p.source, p.source_job_id)).fetchone():
+            if skip_dropped and was_dropped(conn, p.source, p.source_job_id):
                 return Stored(SKIPPED_UNREADABLE)
 
         match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))

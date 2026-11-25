@@ -1,0 +1,272 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML-Architektur\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML-Architektur\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Private-Cloud-\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vector Databases\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic AI\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"semantic-kernel\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Semantic Kernel\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Open-Source-Modelle\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"openshift\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenShift\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMOps\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLflow\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubeflow\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"kserve\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KServe\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"ray\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ray\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Evaluation\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tracing\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Infrastrukturen\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Model Serving\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Quantization\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Distributed Inference/Training\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Networking\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Security\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Security, Privacy\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Private AI\",\n      \"raw_text\": \"Hands-on-Erfahrung mit Private AI\"\n    },\n    {\n      \"label\": \"On-premises environments\",\n      \"raw_text\": \"On-Premises-\"\n    },\n    {\n      \"label\": \"Hybrid environments\",\n      \"raw_text\": \"Hybrid-Umgebungen\"\n    },\n    {\n      \"label\": \"Haystack\",\n      \"raw_text\": \"Haystack\"\n    },\n    {\n      \"label\": \"Llama\",\n      \"raw_text\": \"Llama\"\n    },\n    {\n      \"label\": \"Mistral\",\n      \"raw_text\": \"Mistral\"\n    },\n    {\n      \"label\": \"DeepSeek\",\n      \"raw_text\": \"DeepSeek\"\n    },\n    {\n      \"label\": \"Qwen\",\n      \"raw_text\": \"Qwen\"\n    },\n    {\n      \"label\": \"Ollama\",\n      \"raw_text\": \"Ollama\"\n    },\n    {\n      \"label\": \"Drift detection\",\n      \"raw_text\": \"Drift Detection\"\n    },\n    {\n      \"label\": \"Production support\",\n      \"raw_text\": \"Production Support\"\n    },\n    {\n      \"label\": \"GPU infrastructure\",\n      \"raw_text\": \"GPU- und AI-Infrastrukturen\"\n    },\n    {\n      \"label\": \"NVIDIA stack\",\n      \"raw_text\": \"NVIDIA Stack\"\n    },\n    {\n      \"label\": \"NVIDIA MIG\",\n      \"raw_text\": \"MIG\"\n    },\n    {\n      \"label\": \"Distributed inference\",\n      \"raw_text\": \"Distributed Inference/Training\"\n    },\n    {\n      \"label\": \"Storage\",\n      \"raw_text\": \"Storage\"\n    },\n    {\n      \"label\": \"AI workload performance, scalability and availability optimization\",\n      \"raw_text\": \"AI-Workloads hinsichtlich Performance, Skalierbarkeit und Verfügbarkeit optimieren\"\n    },\n    {\n      \"label\": \"Sovereign AI\",\n      \"raw_text\": \"Sovereign AI\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Private AI Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf mindestens C1-Niveau\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Dein Skillset is a requirements section; no optional qualification section appears.\\nOpening role duties, Deine Mission, benefits, company descriptions and search keywords are not independent candidate-skill asks.\\nAI/ML-Architektur is provisionally mapped to software architecture as well as AI/ML; the architecture mapping is flagged for review.\\nOpen-Source-Modelle denotes open-source LLMs in the explicit LLM and named-model context.\\nAlternative groups number the representable taxonomy groups. Haystack also belongs to the framework alternatives, and Ollama to the technology alternatives, but both lack taxonomy IDs. The entirely unmapped model alternatives are Llama, Mistral, DeepSeek and Qwen.\\nDistributed Inference/Training is read literally as distributed inference or distributed training; only training has a taxonomy entry, so no singleton alternative group is emitted.\\nTracing and Monitoring collapse into observability. Security and Privacy support cybersecurity and data privacy/security respectively.\\nPrivate AI, Sovereign AI and deployment-environment experience are retained as unmapped technical asks rather than silently equated with more general practices.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML-Architektur"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "AI/ML-Architektur",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Private-Cloud-"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector Databases"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic AI"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "semantic-kernel",
+        "requirement": "required",
+        "raw_text": "Semantic Kernel",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "required",
+        "raw_text": "Open-Source-Modelle"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "openshift",
+        "requirement": "required",
+        "raw_text": "OpenShift",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "Kubeflow",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "kserve",
+        "requirement": "required",
+        "raw_text": "KServe",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "required",
+        "raw_text": "Ray",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Tracing"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "AI-Infrastrukturen"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "Model Serving"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "Quantization"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "Distributed Inference/Training"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Networking"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Security"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Security, Privacy"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Private AI",
+        "raw_text": "Hands-on-Erfahrung mit Private AI"
+      },
+      {
+        "label": "On-premises environments",
+        "raw_text": "On-Premises-"
+      },
+      {
+        "label": "Hybrid environments",
+        "raw_text": "Hybrid-Umgebungen"
+      },
+      {
+        "label": "Haystack",
+        "raw_text": "Haystack"
+      },
+      {
+        "label": "Llama",
+        "raw_text": "Llama"
+      },
+      {
+        "label": "Mistral",
+        "raw_text": "Mistral"
+      },
+      {
+        "label": "DeepSeek",
+        "raw_text": "DeepSeek"
+      },
+      {
+        "label": "Qwen",
+        "raw_text": "Qwen"
+      },
+      {
+        "label": "Ollama",
+        "raw_text": "Ollama"
+      },
+      {
+        "label": "Drift detection",
+        "raw_text": "Drift Detection"
+      },
+      {
+        "label": "Production support",
+        "raw_text": "Production Support"
+      },
+      {
+        "label": "GPU infrastructure",
+        "raw_text": "GPU- und AI-Infrastrukturen"
+      },
+      {
+        "label": "NVIDIA stack",
+        "raw_text": "NVIDIA Stack"
+      },
+      {
+        "label": "NVIDIA MIG",
+        "raw_text": "MIG"
+      },
+      {
+        "label": "Distributed inference",
+        "raw_text": "Distributed Inference/Training"
+      },
+      {
+        "label": "Storage",
+        "raw_text": "Storage"
+      },
+      {
+        "label": "AI workload performance, scalability and availability optimization",
+        "raw_text": "AI-Workloads hinsichtlich Performance, Skalierbarkeit und Verfügbarkeit optimieren"
+      },
+      {
+        "label": "Sovereign AI",
+        "raw_text": "Sovereign AI"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Private AI Architect",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf mindestens C1-Niveau",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Dein Skillset is a requirements section; no optional qualification section appears.\nOpening role duties, Deine Mission, benefits, company descriptions and search keywords are not independent candidate-skill asks.\nAI/ML-Architektur is provisionally mapped to software architecture as well as AI/ML; the architecture mapping is flagged for review.\nOpen-Source-Modelle denotes open-source LLMs in the explicit LLM and named-model context.\nAlternative groups number the representable taxonomy groups. Haystack also belongs to the framework alternatives, and Ollama to the technology alternatives, but both lack taxonomy IDs. The entirely unmapped model alternatives are Llama, Mistral, DeepSeek and Qwen.\nDistributed Inference/Training is read literally as distributed inference or distributed training; only training has a taxonomy entry, so no singleton alternative group is emitted.\nTracing and Monitoring collapse into observability. Security and Privacy support cybersecurity and data privacy/security respectively.\nPrivate AI, Sovereign AI and deployment-environment experience are retained as unmapped technical asks rather than silently equated with more general practices."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3ec2ab83656d0c5b75e76d1a0c4ba3419640bbd2b2275819f0dc3a2208618cd5",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

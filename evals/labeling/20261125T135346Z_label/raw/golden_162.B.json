@@ -1,0 +1,107 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Model-level machine learning understanding\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience in applied machine learning, reinforcement learning, product engineering, or technical consulting\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on experience deploying AI\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Knowledge of ML evaluation\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML evaluation, training\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software engineering skills\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data science\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Product engineering\",\n      \"raw_text\": \"product engineering\"\n    },\n    {\n      \"label\": \"Technical consulting involving AI system development or deployment\",\n      \"raw_text\": \"technical consulting involving the development or deployment of AI systems\"\n    },\n    {\n      \"label\": \"Problem decomposition\",\n      \"raw_text\": \"problem decomposition\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Lead technical discovery with senior stakeholders and scope solutions to ambiguous business problems.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Reinforcement learning is required because its unmarked experience-list mention overrides the later optional mention; its independent optional mention also removes it from the initial alternative group. Machine learning is independently required, leaving no retained group from that list.\\nThe programming languages form the sole retained alternative group.\\nRead ML training as model development; this wording would need an alias added to the taxonomy.\\nRead the requested background in machine learning and data science as candidate expertise in named taxonomy skills, not as a degree requirement. Computer science, mathematics, and physics are excluded as academic/domain knowledge.\\nProduct engineering, AI-related technical consulting, and problem decomposition are explicit candidate asks without sufficiently exact taxonomy entries.\\nSeniority follows a literal reading of leading technical discovery as a lead duty; flagged because this could instead mean facilitating discovery, in which case the explicit three-year minimum supports mid.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Model-level machine learning understanding"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "experience in applied machine learning, reinforcement learning, product engineering, or technical consulting"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "hands-on experience deploying AI"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Knowledge of ML evaluation"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "ML evaluation, training"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software engineering skills"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Product engineering",
+        "raw_text": "product engineering"
+      },
+      {
+        "label": "Technical consulting involving AI system development or deployment",
+        "raw_text": "technical consulting involving the development or deployment of AI systems"
+      },
+      {
+        "label": "Problem decomposition",
+        "raw_text": "problem decomposition"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Lead technical discovery with senior stakeholders and scope solutions to ambiguous business problems.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Reinforcement learning is required because its unmarked experience-list mention overrides the later optional mention; its independent optional mention also removes it from the initial alternative group. Machine learning is independently required, leaving no retained group from that list.\nThe programming languages form the sole retained alternative group.\nRead ML training as model development; this wording would need an alias added to the taxonomy.\nRead the requested background in machine learning and data science as candidate expertise in named taxonomy skills, not as a degree requirement. Computer science, mathematics, and physics are excluded as academic/domain knowledge.\nProduct engineering, AI-related technical consulting, and problem decomposition are explicit candidate asks without sufficiently exact taxonomy entries.\nSeniority follows a literal reading of leading technical discovery as a lead duty; flagged because this could instead mean facilitating discovery, in which case the explicit three-year minimum supports mid."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6bc12a7785a49e6133e876b1cda4bee6a04856f0019f5652007f252a3a9634be",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

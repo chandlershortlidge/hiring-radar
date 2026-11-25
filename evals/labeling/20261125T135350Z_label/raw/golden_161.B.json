@@ -1,0 +1,282 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\":\"ai-ml\",\"requirement\":\"required\",\"raw_text\":\"Artificial Intelligence (AI)\"},\n    {\"skill_id\":\"machine-learning\",\"requirement\":\"required\",\"raw_text\":\"building and shipping ML systems\"},\n    {\"skill_id\":\"computer-vision\",\"requirement\":\"required\",\"raw_text\":\"computer vision\"},\n    {\"skill_id\":\"model-development\",\"requirement\":\"required\",\"raw_text\":\"training\"},\n    {\"skill_id\":\"ai-deployment\",\"requirement\":\"required\",\"raw_text\":\"production deployment\"},\n    {\"skill_id\":\"fine-tuning\",\"requirement\":\"required\",\"raw_text\":\"fine-tuning\"},\n    {\"skill_id\":\"prompt-engineering\",\"requirement\":\"required\",\"raw_text\":\"prompting\"},\n    {\"skill_id\":\"evaluation\",\"requirement\":\"required\",\"raw_text\":\"evaluation\"},\n    {\"skill_id\":\"pytorch\",\"requirement\":\"required\",\"raw_text\":\"PyTorch\"},\n    {\"skill_id\":\"distributed-training\",\"requirement\":\"required\",\"raw_text\":\"distributed training\"},\n    {\"skill_id\":\"model-serving\",\"requirement\":\"required\",\"raw_text\":\"inference serving\"},\n    {\"skill_id\":\"observability\",\"requirement\":\"required\",\"raw_text\":\"monitoring\"},\n    {\"skill_id\":\"mlops\",\"requirement\":\"required\",\"raw_text\":\"taking models from research to production: model optimization, inference serving, monitoring, and iteration on real-world failures\"},\n    {\"skill_id\":\"reinforcement-learning\",\"requirement\":\"nice_to_have\",\"raw_text\":\"reinforcement and imitation learning\"},\n    {\"skill_id\":\"tensorrt\",\"requirement\":\"nice_to_have\",\"raw_text\":\"TensorRT\"},\n    {\"skill_id\":\"cuda\",\"requirement\":\"required\",\"raw_text\":\"CUDA (Compute Unified Device Architecture)\"},\n    {\"skill_id\":\"quantization\",\"requirement\":\"nice_to_have\",\"raw_text\":\"quantization-aware training\"},\n    {\"skill_id\":\"llms\",\"requirement\":\"nice_to_have\",\"raw_text\":\"LLM tooling\"},\n    {\"skill_id\":\"vllm\",\"requirement\":\"nice_to_have\",\"raw_text\":\"vLLM\"},\n    {\"skill_id\":\"cloud\",\"requirement\":\"required\",\"raw_text\":\"Cloud Computing\"}\n  ],\n  \"unmapped\": [\n    {\"label\":\"Object detection\",\"raw_text\":\"object detection\"},\n    {\"label\":\"Segmentation\",\"raw_text\":\"segmentation\"},\n    {\"label\":\"YOLO\",\"raw_text\":\"YOLO family\"},\n    {\"label\":\"DETR\",\"raw_text\":\"DETR-style models\"},\n    {\"label\":\"Vision-language models\",\"raw_text\":\"VLMs\"},\n    {\"label\":\"LLaVA\",\"raw_text\":\"LLaVA-\"},\n    {\"label\":\"Qwen-VL\",\"raw_text\":\"Qwen-VL-\"},\n    {\"label\":\"PaliGemma\",\"raw_text\":\"PaliGemma-style models\"},\n    {\"label\":\"Grounding\",\"raw_text\":\"grounding\"},\n    {\"label\":\"Vision-language-action models\",\"raw_text\":\"VLAs\"},\n    {\"label\":\"Embodied and robot-learning models\",\"raw_text\":\"embodied and robot-learning models\"},\n    {\"label\":\"OpenVLA\",\"raw_text\":\"OpenVLA-\"},\n    {\"label\":\"RT-2\",\"raw_text\":\"RT-2-\"},\n    {\"label\":\"pi0\",\"raw_text\":\"pi0-style policies\"},\n    {\"label\":\"Multimodal modeling\",\"raw_text\":\"adjacent multimodal work\"},\n    {\"label\":\"Mixed-precision training\",\"raw_text\":\"mixed precision\"},\n    {\"label\":\"GPU profiling\",\"raw_text\":\"GPU profiling\"},\n    {\"label\":\"Model optimization\",\"raw_text\":\"model optimization\"},\n    {\"label\":\"Video understanding\",\"raw_text\":\"video understanding\"},\n    {\"label\":\"Multi-sensor fusion\",\"raw_text\":\"multi-sensor fusion\"},\n    {\"label\":\"Simulation\",\"raw_text\":\"simulation\"},\n    {\"label\":\"Sim-to-real transfer\",\"raw_text\":\"sim-to-real transfer\"},\n    {\"label\":\"Imitation learning\",\"raw_text\":\"imitation learning\"},\n    {\"label\":\"Edge and embedded deployment\",\"raw_text\":\"Edge and embedded deployment\"},\n    {\"label\":\"RLHF\",\"raw_text\":\"RLHF-style post-training\"},\n    {\"label\":\"Code review\",\"raw_text\":\"Code Reviews\"},\n    {\"label\":\"Embedded systems\",\"raw_text\":\"Embedded Systems\"},\n    {\"label\":\"Failure analysis\",\"raw_text\":\"Failure Analysis\"},\n    {\"label\":\"GPU computing\",\"raw_text\":\"GPU (Graphics Processing Unit)\"},\n    {\"label\":\"Internet of Things\",\"raw_text\":\"Internet of Things\"},\n    {\"label\":\"Juniper Networks M-Series\",\"raw_text\":\"Juniper Networks M-Series\"},\n    {\"label\":\"Memory hardware\",\"raw_text\":\"Memory Hardware\"},\n    {\"label\":\"Model review\",\"raw_text\":\"Model Review\"},\n    {\"label\":\"Programmable logic controllers\",\"raw_text\":\"Programmable Logic Controller (PLC)\"},\n    {\"label\":\"Prototyping\",\"raw_text\":\"Prototyping\"},\n    {\"label\":\"RIP routing protocol\",\"raw_text\":\"RIP (Routing Information Protocol)\"},\n    {\"label\":\"Reporting dashboards\",\"raw_text\":\"Reporting Dashboards\"},\n    {\"label\":\"Scalable system development\",\"raw_text\":\"Scalable System Development\"},\n    {\"label\":\"Web analytics\",\"raw_text\":\"Web Analytics\"}\n  ],\n  \"seniority\":\"senior\",\n  \"seniority_basis\":\"stated\",\n  \"seniority_signal\":\"staff-level impact\",\n  \"german\":null,\n  \"german_basis\":null,\n  \"german_signal\":null,\n  \"degree\":\"bachelor\",\n  \"degree_requirement\":\"required\",\n  \"degree_or_equivalent\":true,\n  \"degree_signal\":\"BS/MS/PhD in CS, EE, or a related field, or equivalent experience\",\n  \"notes\":\"The final Skills section is treated literally as an unmarked candidate-skills list, not a company tech stack; consequently CUDA and Cloud Computing are required, and even anomalous technologies such as Juniper Networks M-Series and RIP are retained as unmapped.\\nResponsibilities-only technologies and techniques, including ONNX, Jetson, distillation, and LoRA, are excluded.\\nThe research-to-production requirement explicitly combines serving, monitoring, and iteration, and is interpreted as MLOps.\\nModel optimization is left unmapped rather than assumed to mean inference optimization specifically.\\nPublications, generic open-source participation, manufacturing-domain knowledge, and soft skills are excluded. The optional 3D perception mention collapses into the required computer-vision criterion.\\nAlternative sets involving unmapped technologies cannot be represented using the prescribed unmapped-item schema; no mapped alternative group contains two eligible members.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Artificial Intelligence (AI)"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and shipping ML systems"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "production deployment"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompting"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "inference serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "taking models from research to production: model optimization, inference serving, monitoring, and iteration on real-world failures"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement and imitation learning"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA (Compute Unified Device Architecture)"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization-aware training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM tooling"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Computing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "label": "Segmentation",
+        "raw_text": "segmentation"
+      },
+      {
+        "label": "YOLO",
+        "raw_text": "YOLO family"
+      },
+      {
+        "label": "DETR",
+        "raw_text": "DETR-style models"
+      },
+      {
+        "label": "Vision-language models",
+        "raw_text": "VLMs"
+      },
+      {
+        "label": "LLaVA",
+        "raw_text": "LLaVA-"
+      },
+      {
+        "label": "Qwen-VL",
+        "raw_text": "Qwen-VL-"
+      },
+      {
+        "label": "PaliGemma",
+        "raw_text": "PaliGemma-style models"
+      },
+      {
+        "label": "Grounding",
+        "raw_text": "grounding"
+      },
+      {
+        "label": "Vision-language-action models",
+        "raw_text": "VLAs"
+      },
+      {
+        "label": "Embodied and robot-learning models",
+        "raw_text": "embodied and robot-learning models"
+      },
+      {
+        "label": "OpenVLA",
+        "raw_text": "OpenVLA-"
+      },
+      {
+        "label": "RT-2",
+        "raw_text": "RT-2-"
+      },
+      {
+        "label": "pi0",
+        "raw_text": "pi0-style policies"
+      },
+      {
+        "label": "Multimodal modeling",
+        "raw_text": "adjacent multimodal work"
+      },
+      {
+        "label": "Mixed-precision training",
+        "raw_text": "mixed precision"
+      },
+      {
+        "label": "GPU profiling",
+        "raw_text": "GPU profiling"
+      },
+      {
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "label": "Video understanding",
+        "raw_text": "video understanding"
+      },
+      {
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "label": "Simulation",
+        "raw_text": "simulation"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Edge and embedded deployment",
+        "raw_text": "Edge and embedded deployment"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF-style post-training"
+      },
+      {
+        "label": "Code review",
+        "raw_text": "Code Reviews"
+      },
+      {
+        "label": "Embedded systems",
+        "raw_text": "Embedded Systems"
+      },
+      {
+        "label": "Failure analysis",
+        "raw_text": "Failure Analysis"
+      },
+      {
+        "label": "GPU computing",
+        "raw_text": "GPU (Graphics Processing Unit)"
+      },
+      {
+        "label": "Internet of Things",
+        "raw_text": "Internet of Things"
+      },
+      {
+        "label": "Juniper Networks M-Series",
+        "raw_text": "Juniper Networks M-Series"
+      },
+      {
+        "label": "Memory hardware",
+        "raw_text": "Memory Hardware"
+      },
+      {
+        "label": "Model review",
+        "raw_text": "Model Review"
+      },
+      {
+        "label": "Programmable logic controllers",
+        "raw_text": "Programmable Logic Controller (PLC)"
+      },
+      {
+        "label": "Prototyping",
+        "raw_text": "Prototyping"
+      },
+      {
+        "label": "RIP routing protocol",
+        "raw_text": "RIP (Routing Information Protocol)"
+      },
+      {
+        "label": "Reporting dashboards",
+        "raw_text": "Reporting Dashboards"
+      },
+      {
+        "label": "Scalable system development",
+        "raw_text": "Scalable System Development"
+      },
+      {
+        "label": "Web analytics",
+        "raw_text": "Web Analytics"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "staff-level impact",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience",
+    "notes": "The final Skills section is treated literally as an unmarked candidate-skills list, not a company tech stack; consequently CUDA and Cloud Computing are required, and even anomalous technologies such as Juniper Networks M-Series and RIP are retained as unmapped.\nResponsibilities-only technologies and techniques, including ONNX, Jetson, distillation, and LoRA, are excluded.\nThe research-to-production requirement explicitly combines serving, monitoring, and iteration, and is interpreted as MLOps.\nModel optimization is left unmapped rather than assumed to mean inference optimization specifically.\nPublications, generic open-source participation, manufacturing-domain knowledge, and soft skills are excluded. The optional 3D perception mention collapses into the required computer-vision criterion.\nAlternative sets involving unmapped technologies cannot be represented using the prescribed unmapped-item schema; no mapped alternative group contains two eligible members."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "34b268556fd1dace6f25d22fce17a4fbb9325b568c3a46a02b66e405a6f79e81",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

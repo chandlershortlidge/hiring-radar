@@ -12,6 +12,7 @@ dependencies = [
     "pydantic>=2",
     "python-dotenv>=1.2.4",
     "python-multipart>=0.0.32",
+    "sentry-sdk[fastapi]>=3.0.1",
     "uvicorn[standard]>=0.54.0",
 ]
 

@@ -1,0 +1,221 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing techniques\"\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python, Java, Scala or similar\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"kafka\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kafka\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"data-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"data-warehousing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data warehouses\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BigQuery\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend development\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/LLM-based applications\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based applications\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"conversational interfaces\",\n      \"alternative_group\": 4,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cursor\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"copilots\",\n      \"alternative_group\": 4,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data observability\"\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark\",\n      \"alternative_group\": 5\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Aerospike\",\n      \"raw_text\": \"Aerospike\"\n    },\n    {\n      \"label\": \"Agile development\",\n      \"raw_text\": \"agile development practices\"\n    },\n    {\n      \"label\": \"Large-scale data systems\",\n      \"raw_text\": \"large-scale data systems\"\n    },\n    {\n      \"label\": \"Analytical databases\",\n      \"raw_text\": \"Modern analytical databases\"\n    },\n    {\n      \"label\": \"StarRocks\",\n      \"raw_text\": \"StarRocks\"\n    },\n    {\n      \"label\": \"ClickHouse\",\n      \"raw_text\": \"ClickHouse\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Data platforms\",\n      \"raw_text\": \"Data platforms\"\n    },\n    {\n      \"label\": \"Analytical infrastructure\",\n      \"raw_text\": \"analytical infrastructure at scale\"\n    },\n    {\n      \"label\": \"Query execution\",\n      \"raw_text\": \"query execution\"\n    },\n    {\n      \"label\": \"Performance optimization\",\n      \"raw_text\": \"performance optimization\"\n    },\n    {\n      \"label\": \"AI-driven data interfaces\",\n      \"raw_text\": \"AI-driven data interfaces\"\n    },\n    {\n      \"label\": \"Analytical engine implementation and scaling\",\n      \"raw_text\": \"implementing or scaling analytical engines\"\n    },\n    {\n      \"label\": \"Data quality frameworks\",\n      \"raw_text\": \"data observability, quality, or governance frameworks\"\n    },\n    {\n      \"label\": \"Data governance frameworks\",\n      \"raw_text\": \"data observability, quality, or governance frameworks\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The team's explicit description of technologies and development practices it uses is treated as its own stack; stack-only entries are optional, not candidate requirements.\\nThe required Scala example overrides its optional stack mention and removes Scala from the Python/Java alternative group.\\nStarRocks is required as an example in the requirements, despite also appearing in the optional section; it and ClickHouse lack taxonomy entries.\\nText-to-SQL is likewise a required example despite its later optional mention, but lacks a taxonomy entry.\\nConversational interfaces is provisionally mapped to conversational AI because it occurs specifically among AI/LLM-based application examples; review the alias fit.\\nGeneric copilots is provisionally mapped to AI Coding Tools, not branded GitHub Copilot; the posting does not explicitly establish a coding context.\\nAlternative groups contain only mapped skills. Additional unmapped alternatives include StarRocks/ClickHouse in group 2 and text-to-SQL in group 4. Data platforms versus analytical infrastructure, and observability versus quality/governance, also express alternatives but have fewer than two mapped members.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing techniques"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Python, Java, Scala or similar"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "nice_to_have",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "data engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-warehousing",
+        "requirement": "required",
+        "raw_text": "data warehouses"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend development"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/LLM-based applications"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based applications"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "conversational interfaces",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "cursor",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "copilots",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "data observability"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 5
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Aerospike",
+        "raw_text": "Aerospike"
+      },
+      {
+        "label": "Agile development",
+        "raw_text": "agile development practices"
+      },
+      {
+        "label": "Large-scale data systems",
+        "raw_text": "large-scale data systems"
+      },
+      {
+        "label": "Analytical databases",
+        "raw_text": "Modern analytical databases"
+      },
+      {
+        "label": "StarRocks",
+        "raw_text": "StarRocks"
+      },
+      {
+        "label": "ClickHouse",
+        "raw_text": "ClickHouse"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Data platforms",
+        "raw_text": "Data platforms"
+      },
+      {
+        "label": "Analytical infrastructure",
+        "raw_text": "analytical infrastructure at scale"
+      },
+      {
+        "label": "Query execution",
+        "raw_text": "query execution"
+      },
+      {
+        "label": "Performance optimization",
+        "raw_text": "performance optimization"
+      },
+      {
+        "label": "AI-driven data interfaces",
+        "raw_text": "AI-driven data interfaces"
+      },
+      {
+        "label": "Analytical engine implementation and scaling",
+        "raw_text": "implementing or scaling analytical engines"
+      },
+      {
+        "label": "Data quality frameworks",
+        "raw_text": "data observability, quality, or governance frameworks"
+      },
+      {
+        "label": "Data governance frameworks",
+        "raw_text": "data observability, quality, or governance frameworks"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The team's explicit description of technologies and development practices it uses is treated as its own stack; stack-only entries are optional, not candidate requirements.\nThe required Scala example overrides its optional stack mention and removes Scala from the Python/Java alternative group.\nStarRocks is required as an example in the requirements, despite also appearing in the optional section; it and ClickHouse lack taxonomy entries.\nText-to-SQL is likewise a required example despite its later optional mention, but lacks a taxonomy entry.\nConversational interfaces is provisionally mapped to conversational AI because it occurs specifically among AI/LLM-based application examples; review the alias fit.\nGeneric copilots is provisionally mapped to AI Coding Tools, not branded GitHub Copilot; the posting does not explicitly establish a coding context.\nAlternative groups contain only mapped skills. Additional unmapped alternatives include StarRocks/ClickHouse in group 2 and text-to-SQL in group 4. Data platforms versus analytical infrastructure, and observability versus quality/governance, also express alternatives but have fewer than two mapped members.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d68b0bcc160aebe2fce3f70eff8443013200df81754c17a5ea5f578b881e194f",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}
