@@ -229,3 +229,50 @@ def test_a_folder_that_is_not_a_worktree_has_no_shared_env(tmp_path):
     assert cli.main_checkout_env(tmp_path) is None                  # a .git file that leads nowhere
     (tmp_path / ".git").write_text("not a git file\n")
     assert cli.main_checkout_env(tmp_path) is None
+
+
+def test_markup_postings_counts_stored_markup_by_source_and_changes_nothing(tmp_path, monkeypatch, capsys):
+    """HIR-420: how many stored postings are web-page markup, and from where."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    markup = "<div><p>We build agents.</p><ul><li>Python</li></ul></div>"
+    for job_id, text, source, url in ((1, markup, "jsearch", "https://jobs.example.com/1"),
+                                      (2, "Plain text, with x < 3.", "greenhouse", "https://boards.greenhouse.io/a/2"),
+                                      (3, markup, "jsearch", "https://jobs.example.com/3")):
+        conn.execute("INSERT INTO job (id, company, title, title_key, description_text, first_seen, last_seen)"
+                     " VALUES (?, 'Acme', 'AI Engineer', 'ai engineer', ?, '2026-11-01T00:00:00Z', '2026-11-01T00:00:00Z')",
+                     (job_id, text))
+        conn.execute("INSERT INTO job_source (job_id, source, source_job_id, url, first_seen, last_seen)"
+                     " VALUES (?, ?, ?, ?, '2026-11-01T00:00:00Z', '2026-11-01T00:00:00Z')",
+                     (job_id, source, str(job_id), url))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    cli.main(["markup-postings"])
+    out = capsys.readouterr().out
+    assert "stored postings whose text is markup: 2" in out
+    assert "jsearch jobs.example.com" in out and "job ids: 1, 3" in out and "greenhouse" not in out
+    assert conn.execute("SELECT description_text FROM job WHERE id = 1").fetchone()[0] == markup
+
+
+def test_check_records_the_city_it_is_run_for_and_says_so_when_the_page_gives_none(tmp_path, monkeypatch, capsys):
+    """HIR-322: through the real log, not a stub: a link whose page has no location is
+    stored under --city (Berlin unless told otherwise), and the output says it was assumed."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+
+    def fake_check(conn, url, *a, **k):
+        located = "Berlin" if "located" in url else None
+        page = Posting("url", "", url, "Acme", "AI Engineer", located, "Build LLM agents in Python.")
+        return CheckResult(url=url, verdict="not_found", how="", posting=page, diagnosis="not a hosted ATS page")
+
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "load_feeds", lambda: [])
+    monkeypatch.setattr(cli, "check_url", fake_check)
+    monkeypatch.setattr(cli.send_checks, "after_check", lambda *a, **k: None)
+    cli.main(["check", "https://acme.example/jobs/1", "https://acme.example/located/2"])
+    cli.main(["check", "https://acme.example/jobs/3", "--city", "New York"])
+    out = capsys.readouterr().out
+    cities = dict(conn.execute("SELECT url, city FROM url_check").fetchall())
+    assert cities == {"https://acme.example/jobs/1": "Berlin", "https://acme.example/located/2": "Berlin",
+                      "https://acme.example/jobs/3": "New York"}
+    assert out.count("city recorded as Berlin") == 1          # only the link with no location
+    assert out.count("city recorded as New York") == 1

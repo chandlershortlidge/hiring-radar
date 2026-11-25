@@ -345,7 +345,8 @@ def test_the_config_holds_the_starting_limits():
     assert config["monday_questions_max"] == 10 and config["monday_yours_max"] == 3
     assert config["monday_think_max"] == 3  # HIR-297: at most 3 a week to think about
     assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min",
-                           "monday_questions_max", "monday_yours_max", "monday_think_max"}
+                           "monday_questions_max", "monday_yours_max", "monday_think_max",
+                           "fixes_only"}  # HIR-341, tests/test_fixes_only.py
 
 
 @pytest.mark.parametrize("left_out", ["decisions_waiting", "red"])
@@ -851,3 +852,140 @@ def test_the_rule_files_carry_the_repair_of_a_collided_pull_request():
         assert phrase in work, phrase
     assert "Repairing a collided pull request" in words(".claude", "agents", "reviewer.md")
     assert "Repairing a collided pull request" in words("AGENTS.md")
+
+
+# --- pull requests sent back and then fixed (HIR-358) --------------------------------------
+
+SENT = "2026-11-17T05:57:00Z"      # the reviewer sent it back
+BEFORE = "2026-11-17T05:40:00Z"    # the author's last commit, older than that
+AFTER = "2026-11-17T06:04:00Z"     # something the author did seven minutes later
+
+
+def sent_back(pr=196, **over):
+    base = {"pr": pr, "ticket": f"HIR-{pr}", "labels": ["autopilot"], "pr_labels": ["sent-back"],
+            "rules": False, "live": False, "sent_back_at": SENT, "last_commit_at": BEFORE,
+            "repair_at": None}
+    base.update(over)
+    return base
+
+
+def rereviews(items, log=(), **kw):
+    return run([], log, sent_back=items, **kw)["rereviews"]
+
+
+def test_a_pull_request_fixed_after_it_was_sent_back_gets_a_fresh_reviewer():
+    out = rereviews([sent_back(last_commit_at=AFTER)])
+    assert out["skipped"] == []
+    assert out["start"] == [{"pr": 196, "ticket": "HIR-196", "why": "sent back, then changed by a new commit"}]
+
+
+def test_a_pull_request_sent_back_with_nothing_new_is_still_its_authors():
+    out = rereviews([sent_back(), sent_back(197, last_commit_at=SENT)])
+    assert out["start"] == []
+    assert [s["pr"] for s in out["skipped"]] == [196, 197]
+    assert all("nothing new since it was sent back" in s["why"] for s in out["skipped"])
+
+
+def test_a_repair_comment_after_the_send_back_counts_as_a_fix():
+    """The case that sat for two days: sent back only for a collision, repaired at once."""
+    out = rereviews([sent_back(repair_at=AFTER), sent_back(197, repair_at=BEFORE)])
+    assert out["start"] == [{"pr": 196, "ticket": "HIR-196",
+                             "why": "sent back, then repaired after a collision with main"}]
+    assert [s["pr"] for s in out["skipped"]] == [197]
+
+
+def test_a_second_send_back_is_timed_from_itself_not_from_the_first_fix():
+    """The label stays on, so the run hands over the newest send-back; the fix that
+    answered the first one is older than it and earns no third review."""
+    again = "2026-11-18T09:00:00Z"
+    assert rereviews([sent_back(sent_back_at=again, last_commit_at=AFTER)])["start"] == []
+    assert len(rereviews([sent_back(sent_back_at=again, last_commit_at="2026-11-18T09:30:00Z")])["start"]) == 1
+
+
+def test_times_in_different_zones_are_compared_as_moments():
+    # 07:10 in Berlin is 06:10 UTC, after a send-back at 05:57 UTC.
+    # 06:30 in Berlin is 05:30 UTC, before it, though "06:30" sorts after "05:57" as text.
+    assert len(rereviews([sent_back(last_commit_at="2026-11-17T07:10:00+01:00")])["start"]) == 1
+    assert rereviews([sent_back(last_commit_at="2026-11-17T06:30:00+01:00")])["start"] == []
+
+
+@pytest.mark.parametrize("when", [None, "", "yesterday"])
+def test_a_send_back_whose_time_cannot_be_read_is_not_reviewed(when):
+    out = rereviews([sent_back(sent_back_at=when, last_commit_at=AFTER)])
+    assert out["start"] == []
+    assert "cannot be read" in out["skipped"][0]["why"]
+
+
+@pytest.mark.parametrize("over", [{"pr_labels": ["sent-back", "needs-chandler"]}, {"rules": True}])
+def test_a_fixed_pull_request_waiting_for_chandler_is_left_for_him(over):
+    out = rereviews([sent_back(last_commit_at=AFTER, **over)])
+    assert out["start"] == []
+    assert "waiting for Chandler" in out["skipped"][0]["why"]
+
+
+@pytest.mark.parametrize("label", ["attended", "hands-on", "parked"])
+def test_a_fixed_pull_request_on_chandlers_own_ticket_is_left_alone(label):
+    out = rereviews([sent_back(last_commit_at=AFTER, labels=[label])])
+    assert out["start"] == []
+    assert label in out["skipped"][0]["why"]
+
+
+def test_a_fixed_pull_request_that_already_passed_review_is_not_reviewed_again():
+    out = rereviews([sent_back(last_commit_at=AFTER, pr_labels=["sent-back", "review-passed"])])
+    assert out["start"] == []
+
+
+def test_a_fixed_pull_request_a_run_may_be_working_on_waits_for_the_next_run():
+    live = sent_back(last_commit_at=AFTER, live=True)
+    unknown = sent_back(197, last_commit_at=AFTER)
+    del unknown["live"]
+    out = rereviews([live, unknown])
+    assert out["start"] == []
+    assert all("may still be working on it" in s["why"] for s in out["skipped"])
+
+
+def test_a_fixed_pull_request_with_no_ticket_is_not_reviewed():
+    out = rereviews([sent_back(last_commit_at=AFTER, ticket=None)])
+    assert out["start"] == [] and "no ticket" in out["skipped"][0]["why"]
+
+
+def test_no_second_review_when_the_run_is_stopped_but_a_red_check_does_not_hold_one_back():
+    fixed = sent_back(last_commit_at=AFTER)
+    assert rereviews([fixed], cap=0)["start"] == []
+    assert len(rereviews([fixed], red=["the main branch's checks"])["start"]) == 1
+
+
+def test_in_fixes_only_mode_only_a_fix_gets_its_second_review():
+    on = {"from": "2026-11-01", "until": None}
+    out = rereviews([sent_back(last_commit_at=AFTER),
+                     sent_back(197, last_commit_at=AFTER, labels=["autopilot", "Bug"])], fixes_only=on)
+    assert [s["pr"] for s in out["start"]] == [197]
+    assert "fixes-only mode" in out["skipped"][0]["why"]
+
+
+def test_a_run_that_did_not_look_for_sent_back_pull_requests_gets_no_answer_about_them():
+    assert "rereviews" not in run([ticket(1)])
+    assert run([ticket(1)], sent_back=[])["rereviews"] == {"start": [], "skipped": []}
+
+
+def test_cli_passes_the_sent_back_pull_requests_on(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({"today": TODAY, "decisions_waiting": 0, "red": [], "log": [],
+                                 "tickets": [], "sent_back": [sent_back(last_commit_at=AFTER)]}))
+    assert lp.main([str(state)]) == 0
+    assert json.loads(capsys.readouterr().out)["rereviews"]["start"][0]["pr"] == 196
+
+
+def test_the_lead_agents_procedure_hands_over_the_sent_back_pull_requests_and_logs_them():
+    """The script's answer changes nothing unless the lead agent gathers the three times,
+    starts the reviewer, stops sending a repaired pull request back to Todo, and says so
+    under "Unstuck"."""
+    text = (ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text()
+    lead = " ".join(text.split())
+    for field in ("sent_back", "sent_back_at", "last_commit_at", "repair_at", "rereviews"):
+        assert f"`{field}`" in lead, field
+    assert "### A second review for a pull request fixed after it was sent back" in lead
+    assert 'List each under "Unstuck" in the log' in lead
+    assert "returned to Todo for the fixes" not in lead
+    unstuck = [row for row in text.splitlines() if row.startswith("Unstuck:")]
+    assert len(unstuck) == 1 and "fixed after it was sent back" in unstuck[0]

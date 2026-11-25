@@ -460,6 +460,90 @@ def test_v10_aliases_clear_the_browser_matchers_minimum():
         assert a == a.strip().lower(), a
 
 
+# --- HIR-386: twelve more approved spellings, one display rename, and "genai" ----------
+
+HIR_386_ALIASES = [
+    ("make architecture decisions", "software-architecture"),
+    ("hallucination risk", "hallucination-detection"),
+    ("training ml models", "model-development"),
+    ("scalable inference infrastructure", "ai-infrastructure"),
+    ("secure healthcare application development", "data-privacy-and-security"),
+    ("hipaa-compliant application development", "data-privacy-and-security"),
+    ("model and endpoint operations", "mlops"),
+    ("unstructured document parsing", "structured-data-extraction"),
+    ("document parsing", "structured-data-extraction"),
+    ("document processing", "structured-data-extraction"),
+    ("information extraction", "structured-data-extraction"),
+    ("intelligent document processing", "structured-data-extraction"),
+    ("genai", "llms"),  # Chandler's answer on the ticket, 20 Nov
+]
+
+
+def test_hir386_the_approved_spellings_resolve_to_their_skills():
+    t = Taxonomy.load()
+    for label, sid in HIR_386_ALIASES:
+        assert t.resolve(label) == sid, label
+        assert label in t.skills[sid].aliases, label  # stored lower case, as written
+
+
+def test_hir386_document_processing_is_the_display_name_and_the_id_is_unchanged():
+    # Chandler, 20 Nov: "display only, keep the id".
+    t = Taxonomy.load()
+    assert t.skills["structured-data-extraction"].display == "Document processing & extraction"
+
+
+def test_hir386_the_old_display_name_still_resolves():
+    # Same reason as the v9 and v10 renames above: without it the old name would go down
+    # the model's "new skill" path instead of counting, and a CV saying it would not match.
+    t = Taxonomy.load()
+    for label in ("Structured data extraction", "structured data extraction",
+                  "Document processing & extraction"):
+        assert t.resolve(label) == "structured-data-extraction", label
+
+
+def test_hir390_cloudformation_is_a_skill_under_infrastructure_as_code():
+    # Chandler, 20 Nov: "Terraform/CloudFormation" is an either/or pair, so CloudFormation
+    # needs an entry of its own to share a group with Terraform.
+    t = Taxonomy.load()
+    s = t.skills["cloudformation"]
+    assert s.display == "AWS CloudFormation"
+    assert s.parents == t.skills["terraform"].parents == ("infrastructure-as-code",)
+    for label in ("CloudFormation", "cloudformation", "AWS CloudFormation", "aws cloudformation"):
+        assert t.resolve(label) == "cloudformation", label
+
+
+def test_hir392_agent_harnesses_is_a_skill_under_agents():
+    # Chandler, 20 Nov: "yes, agent harnesses, add it". Its own entry, under Agents.
+    t = Taxonomy.load()
+    s = t.skills["agent-harnesses"]
+    assert s.display == "Agent harnesses"
+    assert s.parents == ("agents",)
+    for label in ("Agent harnesses", "agent harness", "agent harnesses",
+                  "agentic harness", "Agentic harnesses"):
+        assert t.resolve(label) == "agent-harnesses", label
+
+
+def test_hir392_an_evaluation_harness_is_not_an_agent_harness():
+    # An evaluation harness is a different thing (it stays under Evaluation), and a bare
+    # "harness" names neither, so neither spelling reaches the new skill.
+    t = Taxonomy.load()
+    for label in ("evaluation harness", "evaluation harnesses", "harness", "harnesses"):
+        assert t.resolve(label) != "agent-harnesses", label
+    assert "harness" not in t.skills["agent-harnesses"].aliases
+    assert "harnesses" not in t.skills["agent-harnesses"].aliases
+
+
+def test_hir386_genai_does_not_swallow_genai_coding_tools():
+    # The longer spelling still lands on AI Coding Tools, both when a label is resolved and
+    # when a posting's text is searched for the new spellings.
+    from app.targeted_reread import names_pattern
+    t = Taxonomy.load()
+    assert t.resolve("GenAI coding tools") == "ai-developer-tooling"
+    assert t.resolve("GenAI") == "llms"
+    pat = names_pattern(["genai", "genai coding tools"])
+    assert pat.search("experience with GenAI coding tools").group(0) == "GenAI coding tools"
+
+
 # --- a skill id is never removed once rows reference it (HIR-209) ----------------------
 #
 # taxonomy/README.md: an id is "stable; never rename once rows reference it". Nothing

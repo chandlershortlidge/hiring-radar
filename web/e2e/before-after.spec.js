@@ -1,9 +1,13 @@
-// PR before/after screenshots (HIR-231), including the three drawers, open (HIR-230).
+// PR before/after screenshots (HIR-231), including the profile drawer, open (HIR-230;
+// the add-a-job and proposed-skills drawers left the site with HIR-346).
 //
 // Does: for each view, render main's build ("before") and the branch's build ("after")
 // in the same browser, seconds apart, against the same live data; save both screenshots
 // only when they differ, and write changed.json listing those views. A drawer view opens
-// a city, clicks the drawer's button and captures the drawer with the page behind it.
+// a city, clicks the drawer's button and captures the drawer with the page behind it. One
+// view is a city as a visitor with a profile sees it (HIR-411); the rest have no profile.
+// One view is a city with two of the chart's filters switched on (HIR-415), set by
+// clicking the chart's own controls on both builds.
 // Fails when a drawer does not open on the branch's build: no drawer, a blank page, or the
 // "couldn't load" box a part of the page shows when it crashed (Panel.jsx). Those views
 // are saved whether or not they differ, and the failure message names the drawer and what
@@ -65,20 +69,48 @@ async function serve(page, dist) {
   });
 }
 
+// A visitor's profile for the views that only show something once there is one (HIR-411:
+// the gaps line in a city's chart card). The app keeps the profile in the browser under
+// this key (src/profile.js); the skills are common ones, so some of a city's top 15 are in
+// the profile and some are gaps.
+const PROFILE_KEY = "hiring-radar.profile.v1";
+const PROFILE = { role: "AI engineer", seniority: "", german: false, degree: "", production: false,
+  skills: ["python", "sql", "llms", "rag", "machine-learning", "docker", "aws", "git", "pytorch", "ci-cd"] };
+
 // Returns the screenshot and, for a drawer view, why the drawer did not open (else null).
-async function shot(page, path, button) {
+// `profile` is the profile the view is taken with; without one the view is taken with none,
+// whatever an earlier view left in the browser.
+// `setup`, when given, is run on the loaded page before the picture is taken: the clicks
+// that put the page in the state the view is about.
+async function shot(page, path, button, profile, setup) {
   await page.goto(path);
+  const stored = profile ? JSON.stringify(profile) : null;
+  const changed = await page.evaluate(([key, value]) => {
+    if (localStorage.getItem(key) === value) return false;
+    if (value) localStorage.setItem(key, value); else localStorage.removeItem(key);
+    return true;
+  }, [PROFILE_KEY, stored]);
+  if (changed) await page.reload(); // the app reads the profile once, when it starts
   await page.waitForLoadState("networkidle", { timeout: 20_000 }).catch(() => {});
   // Text laid out before the web font arrives sits a pixel or two off; wait for the fonts.
   await page.evaluate(() => document.fonts.ready).catch(() => {});
   await page.waitForTimeout(800);
+  if (setup) {
+    await setup(page);
+    // What the clicks made the page fetch has arrived.
+    await page.waitForTimeout(300);
+    for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
+    await page.waitForTimeout(800);
+  }
   if (!button) return { png: await page.screenshot({ fullPage: true, animations: "disabled" }), problem: null };
 
   let problem = null;
   try {
-    await page.getByRole("button", { name: button }).click({ timeout: 10_000 });
+    // Exactly that name: a loose match also finds any control whose name contains it, and
+    // the gaps line names its chips "... not in your profile" (HIR-430).
+    await page.getByRole("button", { name: button, exact: true }).click({ timeout: 10_000 });
     await page.getByRole("dialog").waitFor({ state: "visible", timeout: 10_000 });
-    // What the drawer fetches for itself (proposed skills, skill counts) has arrived.
+    // What the drawer fetches for itself (skill counts) has arrived.
     await page.waitForTimeout(300);
     for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
     await page.evaluate(() => document.fonts.ready).catch(() => {});
@@ -91,6 +123,16 @@ async function shot(page, path, button) {
   if (!(await page.locator("#root").innerText().catch(() => "")).trim()) problem = "blank page: nothing rendered";
   // The drawer is pinned to the window, so the window is the picture: drawer and page behind it.
   return { png: await page.screenshot({ animations: "disabled" }), problem };
+}
+
+// Switches on two of the chart's filters: the Junior level, from the seniority pill's
+// menu, and German "not required", from the German pill's dropdown.
+async function pickFilters(page) {
+  const filters = page.getByRole("group", { name: "Filters" });
+  await filters.getByRole("button", { name: "Any seniority" }).click({ timeout: 10_000 });
+  await page.getByRole("group", { name: "Seniority" }).getByRole("button", { name: "Junior", exact: true }).click();
+  await page.keyboard.press("Escape"); // closes the menu, so it is not in the picture
+  await filters.getByRole("combobox").selectOption("not_required");
 }
 
 test("before and after", async ({ page, request }, info) => {
@@ -107,18 +149,21 @@ test("before and after", async ({ page, request }, info) => {
     ["city-family", "/berlin/ai-engineer"],
     ["compare", "/compare/berlin+san-francisco"],
     ...(jobId ? [["job", `/jobs/${jobId}`]] : []),
-    // The drawers, opened from a city by their button's name: the name is on the button at
+    // The drawer, opened from a city by its button's name: the name is on the button at
     // both widths, also where a phone hides its words (HIR-263).
-    ["add-job", "/berlin", "Add a job"],
     ["profile", "/berlin", "Your profile"],
-    ["proposed-skills", "/berlin", /proposed skills to review/],
+    // A city as a visitor with a profile sees it: bars in two shades, and the gaps line.
+    ["city-with-profile", "/berlin", undefined, PROFILE],
+    // A city with two of the chart's filters on, Junior and "German: not required": the
+    // jobs card names both (HIR-415). Set with the chart's own controls, as a visitor would.
+    ["city-filtered", "/berlin", undefined, undefined, pickFilters],
   ];
 
   const dir = `${OUT}/${info.project.name}`;
   mkdirSync(dir, { recursive: true });
   const changed = [];
   const broken = [];
-  for (const [name, path, button] of views) {
+  for (const [name, path, button, profile, setup] of views) {
     const png = {};
     let problem = null;
     // A pair that differs is taken once more before it counts. On the first run of this
@@ -128,7 +173,7 @@ test("before and after", async ({ page, request }, info) => {
     for (let attempt = 0; attempt < 2; attempt++) {
       for (const side of ["before", "after"]) {
         await serve(page, SIDES[side]);
-        const got = await shot(page, path, button);
+        const got = await shot(page, path, button, profile, setup);
         png[side] = got.png;
         // Only the branch's build is judged: a PR that repairs a drawer broken on main must pass.
         if (side === "after") problem = got.problem;

@@ -14,23 +14,34 @@ Does:
     with neither gives a location when its text has a "Location:" / "Standort:" line;
   - read a Workable job link (apply.workable.com) through Workable's public job API,
     because its page is built in the browser and holds no posting text (HIR-268);
-  - diagnose a miss: board not in config/feeds.json; board polled but the title or city
-    filter would have dropped it; board polled and it would have passed (a feed bug, or
-    posted since the last poll); not a feed-reachable page at all.
+  - read a Workday job link (<company>.wdN.myworkdayjobs.com) through Workday's public job
+    API, because its page turns the checker away with "429 Too Many Requests" and the API
+    names every location of the job (HIR-329); and wait and retry, twice, when any site
+    answers 429 (`fetch_patiently`);
+  - diagnose a miss: board not in config/feeds.json; board polled but one of the
+    collector's checks would have dropped it; board polled and it would have passed (a feed
+    bug, or posted since the last poll); not a feed-reachable page at all. Which checks
+    would drop a posting is asked of the collector (`ingest.stops`, `ingest.was_dropped`),
+    never re-applied here (HIR-427).
 
   - log each check (`log_check`) and report coverage over the logged checks
     (`checked_coverage`): of the URLs a person checked, how many a feed already had;
     `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
   - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports;
-  - file each check under one reason from a fixed list (`miss_reason`, HIR-290) and log it
-    with the company, city and careers system, so misses can be counted (app/misses.py).
+  - file each check under one reason from a fixed list (HIR-290) and log it with the
+    company, city and careers system, so misses can be counted (app/misses.py). A link
+    whose page gives no location is logged with the city the check was run for
+    (`assumed_city`, HIR-322). The reason
+    comes from what the check worked out, as data (`diagnose_miss` → `filed`, HIR-428);
+    the sentence a person reads is written from the same data and is never read back.
+    `miss_reason` reads a sentence only for checks logged before reasons were stored.
 
 Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
+`diagnose`, `diagnose_miss`, `filed`, `board_not_added`, `feed_had_it`, `careers_system`, `assumed_city` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
 only through the injected fetchers and `check_posting` does none, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -42,14 +53,15 @@ listings, which would sink a symmetric score for the same posting.
 import json
 import re
 import sqlite3
+import time
+import urllib.error
 import urllib.parse
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from html.parser import HTMLParser
 
-from app import dedup
-from app.geo import ACTIVE_CITIES, active_place, city_of, place_of
+from app import dedup, ingest
+from app.geo import ACTIVE_CITIES, city_of, place_of
 from app.html_text import html_to_text
-from app.ingest import in_scope_title
 from app.sources import Posting, fetch_text, registry
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
@@ -87,6 +99,18 @@ _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 # (source=url) — but read through Workable's public job API, see `posting_from_workable`.
 _WORKABLE_HOST = "apply.workable.com"
 _WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
+
+# Workday job links: https://<tenant>.wd501.myworkdayjobs.com/[en-US/]<site>/job/<place>/<Title_ReqId>
+# (optional /apply). Like Workable, read through the vendor's public job API rather than
+# the page, and stored as a page (source=url) — see `posting_from_workday` (HIR-329).
+_WORKDAY_HOST_RE = re.compile(r"^(?P<tenant>[a-z0-9_-]+)\.(?:wd\d+\.)?myworkdayjobs\.com$")
+_WORKDAY_PATH_RE = re.compile(r"^/(?:[a-z]{2}-[A-Z]{2}/)?(?P<site>[^/]+)/job/(?P<job>.+?)(?:/apply(?:/.*)?)?/?$")
+
+# "429 Too Many Requests": how long to wait before each further try, in seconds. A site's
+# own Retry-After is used instead when it gives one, up to the cap — the checker is run by
+# a person waiting for the answer, so it never sleeps for minutes.
+RETRY_WAITS = (2, 5)
+MAX_RETRY_WAIT = 20
 
 # Platform names that can sit in a page's site name, title tail or hostname without naming
 # the employer: the job boards and ATS vendors this project meets. A page declaring one of
@@ -510,6 +534,63 @@ def posting_from_workable(url: str, payload: dict, company: str | None = None,
     )
 
 
+def workday_api_url(url: str) -> str | None:
+    """A Workday job link (`<tenant>.wdN.myworkdayjobs.com/<site>/job/...`) → the public API
+    address that returns that posting as JSON. Anything else → None."""
+    u = urllib.parse.urlsplit(url.strip())
+    host = (u.hostname or "").lower()
+    h, m = _WORKDAY_HOST_RE.match(host), _WORKDAY_PATH_RE.match(u.path)
+    return f"https://{host}/wday/cxs/{h['tenant']}/{m['site']}/job/{m['job']}" if h and m else None
+
+
+def posting_from_workday(url: str, payload: dict, company: str | None = None,
+                         title: str | None = None, location: str | None = None) -> Posting:
+    """Build a Posting from Workday's public job API (HIR-329). Pure.
+
+    The API holds the title, the posting text and every location the job is posted for:
+    one `location` plus `additionalLocations`, joined with "; " so a job in New York and
+    Berlin counts under both. The company is the hiring organization the API names, else
+    the tenant in the address (`digitalturbine`). `company`/`title`/`location` override.
+
+    Raises ValueError when the payload has no title or no text, so the caller can fall
+    back to the page.
+    """
+    info = payload.get("jobPostingInfo") if isinstance(payload, dict) else None
+    if not isinstance(info, dict):
+        raise ValueError("Workday API returned no job")
+    text = html_to_text(info.get("jobDescription") or "")
+    api_title = (info.get("title") or "").strip()
+    if not text or not (title or api_title):
+        raise ValueError("Workday API returned no title or no text")
+    places = [info.get("location"), *(info.get("additionalLocations") or [])]
+    places = [p.strip() for p in places if isinstance(p, str) and p.strip()]
+    org = payload.get("hiringOrganization")
+    org_name = (org.get("name") or "").strip() if isinstance(org, dict) else ""
+    tenant = _WORKDAY_HOST_RE.match((urllib.parse.urlsplit(url.strip()).hostname or "").lower())
+    return Posting(
+        source="url", source_job_id="", url=url,
+        company=company or org_name or (tenant["tenant"] if tenant else None),
+        title=title or api_title,
+        location_raw=location or "; ".join(dict.fromkeys(places)) or None,
+        description_text=text,
+        posted_at=info.get("startDate"),
+    )
+
+
+def fetch_patiently(url: str, fetch=fetch_text, sleep=time.sleep, waits=RETRY_WAITS) -> str:
+    """`fetch(url)`, tried again after a wait each time the site answers 429 Too Many
+    Requests (HIR-329); the last 429 is raised. Any other error is raised at once."""
+    for wait in waits:
+        try:
+            return fetch(url)
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                raise
+            asked = (e.headers.get("Retry-After") or "").strip() if e.headers else ""
+            sleep(min(int(asked), MAX_RETRY_WAIT) if asked.isdigit() else wait)
+    return fetch(url)
+
+
 def containment(stored: str, page: str) -> float:
     """Share of `stored`'s shingles present in `page`. 1.0 = the whole stored JD is on the page."""
     a = dedup.shingles(stored)
@@ -549,38 +630,132 @@ def polled_boards(feeds: list[dict]) -> set[tuple[str, str]]:
     return {(f["type"], f["token"]) for f in feeds if f.get("token")}
 
 
-def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None) -> str:
-    """Why no feed stored this posting. Pure; one sentence, phrased as what to do about it."""
-    reasons = []
-    if not in_scope_title(posting.title):
-        reasons.append(f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)")
-    if active_place(posting.location_raw, posting.title, posting.description_text) is None:
+DROPPED_UNREADABLE = ("the posting was already dropped as unreadable (its text read blank twice), "
+                      "so the collector passes over the feed's copy")
+
+
+def _why_stopped(stop: str, posting: Posting) -> str:
+    """One clause for one of the collector's checks (a name from `ingest.stops`). Pure.
+    Wording only: a miss is filed by the check's name (`Stop.name`), never by this text."""
+    if stop == ingest.SKIPPED_TITLE:
+        return f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)"
+    if stop == ingest.SKIPPED_CITY:
         city = city_of(posting.location_raw)
-        reasons.append(f"location {posting.location_raw!r} maps to {city}, which is tracked but not active "
-                       f"(active: {', '.join(ACTIVE_CITIES)})" if city else
-                       f"location {posting.location_raw!r} is neither a tracked city nor EU-remote "
-                       f"(remote tied to a non-EU country, or no remote signal)")
-    if ref is None:
+        return (f"location {posting.location_raw!r} maps to {city}, which is tracked but not active "
+                f"(active: {', '.join(ACTIVE_CITIES)})" if city else
+                f"location {posting.location_raw!r} is neither a tracked city nor EU-remote "
+                f"(remote tied to a non-EU country, or no remote signal)")
+    if stop == ingest.SKIPPED_COMPANY:
+        return (f"company {posting.company!r} is blank or not a usable name "
+                f"(a posting is never stored without a company)")
+    if stop == ingest.SKIPPED_AGENCY:
+        return (f"company {posting.company!r} reads as a recruitment agency or job portal "
+                f"({ingest.agency_name_word(posting.company)!r}), which the country-wide sources screen out")
+    if stop == ingest.SKIPPED_UNREADABLE:
+        return DROPPED_UNREADABLE
+    if stop == ingest.SKIPPED_BLOCKED:
+        return (f"it links to {ingest.blocked_site(posting.url, posting.description_text)}, "
+                f"a site known to publish fake postings")
+    # A check added to the collector since: reported under its own name until it gets a
+    # sentence here, never passed over in silence (HIR-427).
+    return f"the collector's check {stop!r} stops it"
+
+
+# What a check that found nothing in the database worked out, as data (HIR-428). Every
+# such check ends in exactly one of these; the reason it is filed under (`filed`) and the
+# sentence a person reads (`_sentence`) are both written from it, so neither is read back
+# out of the other.
+OFF_BOARD, EMBED, BOARD_NOT_COLLECTED, BOARD_DROPPED_IT, WOULD_BE_DROPPED, NOTHING_STOPS_IT = (
+    "off_board",             # not a page on a careers system we read: no feed can reach it
+    "embed",                 # a Greenhouse job embedded on a company page that names no board
+    "board_not_collected",   # the board is not one we collect
+    "board_dropped_it",      # the board is collected and no longer lists the job
+    "would_be_dropped",      # the board is collected and the collector would drop the job
+    "nothing_stops_it")      # the board is collected and nothing stops the job
+OUTCOMES = (OFF_BOARD, EMBED, BOARD_NOT_COLLECTED, BOARD_DROPPED_IT, WOULD_BE_DROPPED, NOTHING_STOPS_IT)
+
+
+@dataclass(frozen=True)
+class Stop:
+    name: str      # the collector's name for the check (ingest.SKIPPED_*); "" when unknown
+    clause: str    # the same check in words, for a person
+
+
+@dataclass(frozen=True)
+class Diagnosis:
+    outcome: str                     # one of OUTCOMES
+    board: str = ""                  # "source:token", when the link names its board
+    stops: tuple[Stop, ...] = ()     # the collector's checks that would drop the posting
+    sentence: str = ""               # for a person; nothing reads it back
+
+    @property
+    def clauses(self) -> list[str]:
+        return [s.clause for s in self.stops]
+
+
+def _sentence(outcome: str, ref: AtsRef | None, posting: Posting, clauses: list[str]) -> str:
+    """The one sentence a person reads for a miss, phrased as what to do about it. Pure.
+    Free to reword: the reason a miss is filed under does not depend on it."""
+    why = "; ".join(clauses)
+    if outcome == OFF_BOARD:
         base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
-        return base + ("; it would also be dropped: " + "; ".join(reasons) if reasons else "")
-    if ref.token is None:
+        return base + ("; it would also be dropped: " + why if clauses else "")
+    if outcome == EMBED:
         return (f"{ref.source} job {ref.job_id} via an embed URL — board token unknown "
                 f"(the page carries no Greenhouse embed script); re-run with the "
                 f"boards.greenhouse.io link to check the board")
-    if (ref.source, ref.token) not in polled_boards(feeds):
+    board = f"board {ref.source}:{ref.token}"
+    if outcome == BOARD_NOT_COLLECTED:
         hint = json.dumps({"type": ref.source, "enabled": True, "token": ref.token,
                            "company": posting.company or ""})
         # Say the drop here too (HIR-325): adding the board alone would not bring this
         # posting in, and a first check that only says "add the board" hides that.
-        dropped = (", and the posting would be dropped even with the board collected: " + "; ".join(reasons)
-                   if reasons else "")
-        return f"board {ref.source}:{ref.token} is not in config/feeds.json{dropped} — add {hint}"
-    if board_had_it is False:
-        return f"board {ref.source}:{ref.token} is polled but no longer lists job {ref.job_id} (closed or re-posted under a new id)"
-    if reasons:
-        return f"board {ref.source}:{ref.token} is polled; ingest would drop it: " + "; ".join(reasons)
-    return (f"board {ref.source}:{ref.token} is polled and the posting passes both filters — "
+        dropped = (", and the posting would be dropped even with the board collected: " + why
+                   if clauses else "")
+        return f"{board} is not in config/feeds.json{dropped} — add {hint}"
+    if outcome == BOARD_DROPPED_IT:
+        return f"{board} is polled but no longer lists job {ref.job_id} (closed or re-posted under a new id)"
+    if outcome == WOULD_BE_DROPPED:
+        return f"{board} is polled; ingest would drop it: " + why
+    return (f"{board} is polled and the posting passes both filters — "
             f"either posted since the last poll (run `poll`) or a feed bug; job id {ref.job_id}")
+
+
+def diagnose_miss(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
+                  dropped: bool = False) -> Diagnosis:
+    """Why no feed stored this posting, as data plus the sentence written from it. Pure.
+
+    Which checks would stop it is the collector's own answer (`ingest.stops`), never a copy
+    kept here. `dropped` is the one check that reads the database (`ingest.was_dropped`),
+    looked up by the caller."""
+    # A board need not name the company on each posting (Lever and Ashby never do): the
+    # collector gets the name from the board's entry in config/feeds.json. So for a link
+    # that names its board, a company the collector could not use is filled from the board
+    # token, as `check_url` does for a posting it read off the board.
+    asked = posting
+    if ref is not None and ref.token and not dedup.company_key(posting.company):
+        asked = replace(posting, company=ref.token)
+    names = list(ingest.stops(asked)) + ([ingest.SKIPPED_UNREADABLE] if dropped else [])
+    stops = tuple(Stop(name, _why_stopped(name, asked)) for name in names)
+    board = f"{ref.source}:{ref.token}" if ref is not None and ref.token is not None else ""
+    if ref is None:
+        outcome = OFF_BOARD
+    elif ref.token is None:
+        outcome, stops = EMBED, ()
+    elif (ref.source, ref.token) not in polled_boards(feeds):
+        outcome = BOARD_NOT_COLLECTED
+    elif board_had_it is False:
+        outcome, stops = BOARD_DROPPED_IT, ()
+    else:
+        outcome = WOULD_BE_DROPPED if stops else NOTHING_STOPS_IT
+    return Diagnosis(outcome, board, stops,
+                     _sentence(outcome, ref, posting, [s.clause for s in stops]))
+
+
+def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_it: bool | None,
+             dropped: bool = False) -> str:
+    """`diagnose_miss`'s sentence alone: why no feed stored this posting. Pure."""
+    return diagnose_miss(posting, ref, feeds, board_had_it, dropped).sentence
 
 
 def board_not_added(ref: AtsRef | None, feeds: list[dict]) -> tuple[str, str] | None:
@@ -604,6 +779,7 @@ class CheckResult:
     posting: Posting | None = None    # resolved posting, for --add
     notes: list[str] = field(default_factory=list)
     missing_board: tuple[str, str] | None = None   # (source, token) when the miss is "board not in feeds.json"
+    miss: Diagnosis | None = None     # what a not-found check worked out; `diagnosis` is its sentence
 
     def line(self) -> str:
         if self.verdict == "found":
@@ -629,7 +805,7 @@ def default_fetch_board(source: str, token: str) -> list[Posting]:
 
 def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: str | None = None,
               title: str | None = None, location: str | None = None,
-              fetch_page=fetch_text, fetch_board=default_fetch_board) -> CheckResult:
+              fetch_page=fetch_patiently, fetch_board=default_fetch_board) -> CheckResult:
     """The whole check. Reads the DB, never writes it."""
     ref = parse_ats_url(url)
     result = CheckResult(url=url, verdict="not_found", how="")
@@ -662,7 +838,19 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
             board_had_it = posting is not None
         except Exception as e:  # board unreachable → fall back to the page itself
             result.notes.append(f"board fetch failed: {type(e).__name__}: {str(e)[:120]}")
-    if posting is None:
+    # A Workday page answers the checker with 429; Workday's own API answers and names
+    # every location, so it is asked first and the page only if it fails (HIR-329).
+    workday_api = workday_api_url(url) if posting is None else None
+    if workday_api:
+        try:
+            posting = posting_from_workday(url, json.loads(fetch_page(workday_api)),
+                                           company, title, location)
+            result.notes.append("read posting from the Workday API")
+        except Exception as e:  # API unreachable or empty → read the page instead
+            result.notes.append(f"Workday API read failed: {type(e).__name__}: {str(e)[:120]}")
+    if posting is not None and ref is None:
+        pass                                    # read from the Workday API, nothing to add
+    elif posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
                                          company, title, location, notes=result.notes)
         # A Workable page is built in the browser, so the page gave the company (its title
@@ -695,7 +883,8 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if not dedup.company_key(posting.company):
         result.notes.append("company unknown — pass --company to enable the text match")
 
-    result.diagnosis = diagnose(posting, ref, feeds, board_had_it)
+    result.miss = diagnose_miss(posting, ref, feeds, board_had_it, _dropped(conn, ref))
+    result.diagnosis = result.miss.sentence
     result.missing_board = board_not_added(ref, feeds)
     return result
 
@@ -715,9 +904,16 @@ def check_posting(conn: sqlite3.Connection, url: str, posting: Posting, feeds: l
     m = best_text_match(conn, posting.company, posting.description_text)
     if m:
         return _found(conn, result, m.job_id, f"text {m.score:.2f}")
-    result.diagnosis = diagnose(posting, ref, feeds, None)
+    result.miss = diagnose_miss(posting, ref, feeds, None, _dropped(conn, ref))
+    result.diagnosis = result.miss.sentence
     result.missing_board = board_not_added(ref, feeds)
     return result
+
+
+def _dropped(conn: sqlite3.Connection, ref: AtsRef | None) -> bool:
+    """Was the job this link names dropped as unreadable? Asked only after the lookup by
+    the feed's own id found nothing, which is the order the collector asks in."""
+    return ref is not None and ingest.was_dropped(conn, ref.source, ref.job_id)
 
 
 def _found(conn, result: CheckResult, job_id: int, how: str) -> CheckResult:
@@ -796,18 +992,88 @@ def careers_system(url: str) -> str:
     return JOB_BOARD if _JOB_BOARD_HOST_RE.search(host) else OWN_SITE
 
 
-_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
-
-
-_ALSO_DROPPED = re.compile(r"would be dropped even with the board collected: (.*) — add \{")
-
-
-def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
-    """Pure: (reason, detail) for one check. `diagnosis` is `diagnose`'s sentence, so a
-    check logged before reasons were recorded gets the same answer as a new one.
+def filed(url: str, d: Diagnosis) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check that found nothing, from what it worked out.
+    The one copy of the rules: a new check comes here with `diagnose_miss`'s data, an old
+    log entry with what `_read_sentence` recovered from its sentence.
 
     The detail names what a fix ticket needs: the board for a missing source, the filter
     and the field it read for a dropped job, the system or host for one we cannot read."""
+    also = "; ".join(d.clauses)
+    if d.outcome == BOARD_NOT_COLLECTED:
+        return NOT_IN_SOURCES, f"board {d.board}" + (f"; would also be dropped: {also}" if also else "")
+    if d.outcome == BOARD_DROPPED_IT:
+        return OTHER, f"closed or re-posted under a new id on board {d.board}"
+    if d.outcome == WOULD_BE_DROPPED:
+        title = [s.clause for s in d.stops if s.name == ingest.SKIPPED_TITLE]
+        if title:
+            return TITLE_FILTER, "; ".join(title + [s.clause for s in d.stops if s.name != ingest.SKIPPED_TITLE])
+        if any(s.name == ingest.SKIPPED_CITY for s in d.stops):
+            return LOCATION_FILTER, also
+        # Stopped by a check that is neither the title nor the location (no usable company,
+        # an agency, dropped as unreadable). Before HIR-427 the link checker did not know
+        # these checks and such a miss read "passes both filters", which is filed as OTHER;
+        # it stays there, with what really stopped it.
+        return OTHER, f"board {d.board} is polled and the collector drops the job on purpose: {also}"
+    if d.outcome == NOTHING_STOPS_IT:
+        return OTHER, f"board {d.board} is polled and the job passes both filters: posted since the last poll, or a feed bug"
+    if d.outcome == EMBED:
+        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
+    system = careers_system(url)
+    host = urllib.parse.urlsplit(url.strip()).hostname or ""
+    if system == "linkedin":
+        return LINKEDIN_ONLY, ""
+    if system == JOB_BOARD:
+        return OTHER, f"posted on a job board or recruiter site ({host})"
+    if system in dict(_SUPPORTED_HOSTS):
+        # A link on a system we poll, in a form the checker could not read as one job
+        # (a company page, or a link format it did not know when it was checked).
+        return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
+    where = host if system == OWN_SITE else system
+    return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {also}" if also else "")
+
+
+# --- checks logged before reasons were stored: all they hold is their sentence -----------
+#
+# The only place a sentence is read back. It reads the wording the sentences had when those
+# checks were logged, which is frozen in the log: rewording `_sentence` today changes
+# nothing here, and must not be followed by an edit here.
+_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
+_ALSO_DROPPED = re.compile(r"would be dropped even with the board collected: (.*) — add \{")
+
+
+def _old_stops(clauses: str) -> tuple[Stop, ...]:
+    """The clauses of an old sentence, each under the check its first word names."""
+    names = {"title": ingest.SKIPPED_TITLE, "location": ingest.SKIPPED_CITY}
+    return tuple(Stop(names.get(c.split(" ", 1)[0], ""), c) for c in clauses.split("; "))
+
+
+def _read_sentence(d: str) -> Diagnosis | None:
+    """Pure: what an old check's sentence says it worked out, or None when it is not one
+    of the sentences the checker wrote."""
+    m = _BOARD_RE.match(d)
+    board = m["board"] if m else ""
+    if board and "is not in config/feeds.json" in d:
+        dropped = _ALSO_DROPPED.search(d)
+        return Diagnosis(BOARD_NOT_COLLECTED, board, _old_stops(dropped[1]) if dropped else ())
+    if board and "no longer lists job" in d:
+        return Diagnosis(BOARD_DROPPED_IT, board)
+    if board and "ingest would drop it: " in d:
+        return Diagnosis(WOULD_BE_DROPPED, board, _old_stops(d.split("ingest would drop it: ", 1)[1]))
+    if board and "passes both filters" in d:
+        return Diagnosis(NOTHING_STOPS_IT, board)
+    if "via an embed URL" in d:
+        return Diagnosis(EMBED)
+    if d.startswith("not a hosted ATS page"):
+        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
+        return Diagnosis(OFF_BOARD, "", _old_stops(dropped) if dropped else ())
+    return None
+
+
+def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check from what an old log entry holds: its verdict
+    and `diagnosis`, the sentence it printed. A check made today is filed from its data
+    (`miss_fields`), not through here, unless it found the job."""
     if verdict == "found":
         if had_it:
             return ALREADY_HAD, ""
@@ -816,47 +1082,43 @@ def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> 
         ref = parse_ats_url(url)
         if ref is not None and ref.token:
             return NOT_IN_SOURCES, f"board {ref.source}:{ref.token} (job was added by hand before this check)"
-        d = "not a hosted ATS page"
-    else:
-        d = diagnosis or ""
-    board = _BOARD_RE.match(d)
-    if board and "is not in config/feeds.json" in d:
-        dropped = _ALSO_DROPPED.search(d)
-        return NOT_IN_SOURCES, f"board {board['board']}" + (f"; would also be dropped: {dropped[1]}" if dropped else "")
-    if board and "no longer lists job" in d:
-        return OTHER, f"closed or re-posted under a new id on board {board['board']}"
-    if board and "ingest would drop it: " in d:
-        clauses = d.split("ingest would drop it: ", 1)[1].split("; ")
-        title = [c for c in clauses if c.startswith("title ")]
-        if title:
-            return TITLE_FILTER, "; ".join(title + [c for c in clauses if c not in title])
-        return LOCATION_FILTER, "; ".join(clauses)
-    if board and "passes both filters" in d:
-        return OTHER, f"board {board['board']} is polled and the job passes both filters: posted since the last poll, or a feed bug"
-    if "via an embed URL" in d:
-        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
-    if d.startswith("not a hosted ATS page"):
-        system = careers_system(url)
-        host = urllib.parse.urlsplit(url.strip()).hostname or ""
-        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
-        if system == "linkedin":
-            return LINKEDIN_ONLY, ""
-        if system == JOB_BOARD:
-            return OTHER, f"posted on a job board or recruiter site ({host})"
-        if system in dict(_SUPPORTED_HOSTS):
-            # A link on a system we poll, in a form the checker could not read as one job
-            # (a company page, or a link format it did not know when it was checked).
-            return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
-        where = host if system == OWN_SITE else system
-        return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {dropped}" if dropped else "")
-    return OTHER, f"unrecognised check result: {d[:120]}"
+        return filed(url, Diagnosis(OFF_BOARD))
+    read = _read_sentence(diagnosis or "")
+    if read is None:
+        return OTHER, f"unrecognised check result: {(diagnosis or '')[:120]}"
+    return filed(url, read)
 
 
-def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
+def assumed_city(result: CheckResult, run_for: str | None) -> str | None:
+    """Pure: `run_for`, the city the check was run for, when the check has no city of its
+    own to record, else None (HIR-322). It has none when no stored job was found and the
+    page gave no location at all (a company's own site, LinkedIn, a recruiter page) and
+    its title and text name no tracked place either. A location that was read and names no
+    tracked place ("Paris") is not that case: the posting says where it is, and it is
+    not the city the check was run for."""
+    if result.job_id is not None:
+        return None
+    p = result.posting
+    if p is None:
+        return run_for
+    if (p.location_raw or "").strip() or place_of(None, p.title, p.description_text):
+        return None
+    return run_for
+
+
+def miss_fields(conn: sqlite3.Connection, result: CheckResult, run_for: str | None = None) -> dict:
     """The miss record for one check: company, city, careers system, reason and its detail.
     The company and city come from the stored job when the check found one, else from the
-    posting the check read."""
-    reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
+    posting the check read. When neither gives one, the city is `run_for`, the city the check
+    was run for (`assumed_city`, HIR-322): such a link is almost always a miss, and stored with no city it was left out of its
+    city's share, which then read too high. `run_for` never reaches the posting, so it
+    changes neither the verdict nor the reason. The reason comes from what the check
+    worked out (`result.miss`), never from its sentence; only a result that carries no
+    such data is read by sentence."""
+    if result.verdict != "found" and result.miss is not None:
+        reason, detail = filed(result.url, result.miss)
+    else:
+        reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
     company = city = None
     if result.job_id is not None:
         row = conn.execute("SELECT company, city FROM job WHERE id=?", (result.job_id,)).fetchone()
@@ -866,12 +1128,14 @@ def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
         p = result.posting
         company = p.company
         city = place_of(p.location_raw, p.title, p.description_text)
+    city = city or assumed_city(result, run_for)
     return {"company": company, "city": city, "careers_system": careers_system(result.url),
             "reason": reason, "reason_detail": detail or None}
 
 
-def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str) -> None:
-    m = miss_fields(conn, result)
+def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str,
+              run_for: str | None = None) -> None:
+    m = miss_fields(conn, result, run_for)
     conn.execute(
         "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis,"
         " company, city, careers_system, reason, reason_detail)"

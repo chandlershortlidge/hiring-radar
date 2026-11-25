@@ -1,0 +1,15 @@
+{
+  "item": 170,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agent-harnesses",
+  "reason": "rule-change",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "50f7e442ec9a5553210d0d40822270c24ac45f0c817d0967593f5c0818cb66e3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet 'At least 6 months of practical experience with LLMs, agents, and harnesses' explicitly names the skill and supports the verbatim raw_text 'agents, and harnesses'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet 'At least 6 months of practical experience with LLMs, agents, and harnesses' explicitly names the skill and supports the verbatim raw_text 'agents, and harnesses'.",
+  "error": null
+}

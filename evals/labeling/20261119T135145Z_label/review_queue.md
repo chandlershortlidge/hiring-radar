@@ -1977,6 +1977,7 @@ DECISION: []
 > Senior Software Engineer, AI Agentic Platform
 
 - `agent-architecture` · required · raw_text: "architecting and deploying agentic AI systems"
+- `agent-harnesses` · nice_to_have · raw_text: "building customized agent harnesses"
 - `agents` · required · raw_text: "agentic AI systems"
 - `ai-deployment` · required · raw_text: "deploying agentic AI systems"
 - `ai-developer-tooling` · required · raw_text: "AI-powered development tools"
@@ -2016,9 +2017,9 @@ DECISION: []
 
 Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]]`, or `[]` when no skills are offered in place of each other
 
-PROPOSED: [["langgraph", "mcp", "google-adk", "autogen", "llamaindex"]] - The framework list 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' offers one ask with any one example meeting it, and none of these five appears elsewhere as a standalone requirement, while python/java/typescript, claude-code/github-copilot, mysql/postgresql and kafka are each also named unmarked in the stack or left with fewer than two group members, so they stay out.
+PROPOSED: [["langgraph", "google-adk", "autogen", "llamaindex"]] - The 'such as LangGraph, Anthropic MCP, Google ADK, AutoGen, A2A, or LlamaIndex' list is one ask with examples, so the labeled members form a group. MCP is left out because the responsibilities separately ask for 'MCP integrations', and the Python/Java/TypeScript and Claude Code/Copilot sets are dropped because their members also appear as unmarked stack entries, which the rule says leaves a group.
 
-DECISION: [["autogen", "google-adk", "langgraph", "llamaindex", "mcp"]]
+DECISION: [["autogen", "google-adk", "langgraph", "llamaindex"]]
 
 ## 171. golden_096 - groups `alternative_group` (groups)
 
@@ -2331,3 +2332,16 @@ Options: a JSON list of groups of the skill ids below, e.g. `[["bash", "python"]
 PROPOSED: [] - No part of the posting offers one skill in place of another: its requirements are skills asked for together ("fluent in Python", "experience building and deploying", "cloud computing environment"), and the JAX mention is a standalone bonus, so no alternative_group marker applies.
 
 DECISION: []
+
+## 184. golden_095 - skill `agent-harnesses` (disagreement)
+
+> ...Machine Learning, or related technical field - Experience building customized agent harnesses, fine-tuning models, or implementing RLHF/RLAIF...
+
+- A: (did not label this)
+- B: `agent-harnesses` · nice_to_have · raw_text: "building customized agent harnesses"
+
+Options: `A` / `B` / `both` / `drop`
+
+PROPOSED: B - Under rule 1, the nice-to-have qualification bullet names agent harnesses ('Experience building customized agent harnesses'), and the raw_text quotes that wording exactly, so labeler B's nice_to_have label stands.
+
+DECISION: B

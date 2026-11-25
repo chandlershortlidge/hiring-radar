@@ -45,7 +45,8 @@
     {
       "skill_id": "aiops",
       "requirement": "nice_to_have",
-      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps"
+      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps",
+      "alternative_group": 5
     },
     {
       "skill_id": "automl",
@@ -132,7 +133,8 @@
     {
       "skill_id": "mlops",
       "requirement": "nice_to_have",
-      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps"
+      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps",
+      "alternative_group": 5
     },
     {
       "skill_id": "model-development",

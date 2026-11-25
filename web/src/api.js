@@ -51,19 +51,6 @@ export const api = {
   flag: (id, view) => call(`/api/jobs/${id}/flag`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ view }) }),
   unflag: (id) => call(`/api/jobs/${id}/flag`, { method: "DELETE" }),
   flagNote: (flagId, note) => call(`/api/flags/${flagId}/note`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ note }) }),
-  proposed: () => call("/api/proposed"),
-  resolve: (ids, status, resolved_skill_id) =>
-    call("/api/proposed/resolve", {
-      method: "POST", headers: { "content-type": "application/json" },
-      body: JSON.stringify({ ids, status, resolved_skill_id }),
-    }),
-  addUrl: (body) => call("/api/add/url", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }),
-  addText: (body) => call("/api/add/text", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }),
-  addScreenshot: (file, fields) => {
-    const fd = new FormData();
-    fd.append("file", file);
-    return call(`/api/add/screenshot${qs(fields)}`, { method: "POST", body: fd });
-  },
 };
 
 // The chart's numbers for these filters, or the fact that they could not be fetched

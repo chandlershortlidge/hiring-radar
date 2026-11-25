@@ -135,7 +135,8 @@
     {
       "skill_id": "java",
       "requirement": "required",
-      "raw_text": "Java"
+      "raw_text": "Java",
+      "alternative_group": 1
     },
     {
       "skill_id": "jenkins",
@@ -145,7 +146,8 @@
     {
       "skill_id": "kotlin",
       "requirement": "required",
-      "raw_text": "Kotlin"
+      "raw_text": "Kotlin",
+      "alternative_group": 1
     },
     {
       "skill_id": "kubernetes",

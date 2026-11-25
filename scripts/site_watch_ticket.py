@@ -56,6 +56,7 @@ ERROR_CHARS = 3000
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
 REPEAT_FIXES = 2   # this many fixes of the same break...
 REPEAT_DAYS = 30   # ...inside this many days, and the next ticket is Chandler's, not an agent's
+MCP_PROJECT = "mcp"  # the robot visitor's MCP checks (web/playwright.watch.config.js), not a screen width
 
 WHAT_HAPPENED = {
     "deploy": "The robot visitor failed right after a deploy. **The deploy was rolled back** to the "
@@ -126,7 +127,13 @@ def robot_ticket(kind: str, f: dict, args, first: list[dict] | None = None) -> d
     """The ticket for one failing path. `first`, for "still-failing" only: what failed on the
     new version before the rollback, while `f` is from the rolled-back site."""
     widths = " and ".join(f["projects"])
-    lines = [WHAT_HAPPENED[kind], "", f"**Failing path:** {f['test']} — at {widths} width."]
+    if f["projects"] == [MCP_PROJECT]:
+        # Not a page: one of the tools a user's Claude calls (web/e2e/mcp-watch.spec.js, HIR-366).
+        lines = [WHAT_HAPPENED[kind], "", f"**Failing MCP tool:** {f['test']}. This is the "
+                 "connection people's Claude uses (/mcp), not a page of the dashboard; the error "
+                 "below says what the tool answered."]
+    else:
+        lines = [WHAT_HAPPENED[kind], "", f"**Failing path:** {f['test']} — at {widths} width."]
     if kind == "still-failing":
         # The error and the widths are the second run's, on the version that was put back.
         lines += [f"**Deploy that was rolled back:** {args.change or 'unknown'}.",

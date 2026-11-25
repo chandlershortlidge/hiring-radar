@@ -1,7 +1,9 @@
 import json
 from pathlib import Path
 
-from app.html_text import html_to_text
+import html
+
+from app.html_text import clean_posting_text, html_to_text, looks_like_markup
 from app.ingest import in_scope_title
 from app.sources import arbeitnow, ashby, greenhouse, lever, startup_jobs
 
@@ -21,6 +23,38 @@ def test_html_to_text_keeps_structure_and_drops_scripts():
 
 def test_html_to_text_passes_plain_text_through():
     assert html_to_text("a  b\n\n\n\nc &amp; d") == "a b\n\nc & d"
+
+
+# The shape job 1679 was stored in (HIR-420): a posting's markup, inline styles and all.
+MARKUP = ('<div><p><span style="font-size: 12pt; font-family: helvetica, arial, sans-serif;">'
+          'Build RAG &amp; agent systems&nbsp;in Berlin.</span></p><ul><li>Python</li>'
+          '<li>LLM evaluation</li></ul><script>alert(1)</script><style>p{color:red}</style></div>')
+AS_TEXT = "Build RAG & agent systems\xa0in Berlin.\n\n- Python\n\n- LLM evaluation"
+
+
+def test_markup_whose_tags_arrive_escaped_is_parsed_not_just_unescaped():
+    """`&lt;p&gt;` has no `<` in it, so it used to be unescaped once and stored with every
+    tag, `&amp;` and `&nbsp;` showing (HIR-420)."""
+    assert "<" not in html.escape(MARKUP)
+    assert html_to_text(html.escape(MARKUP)) == AS_TEXT
+
+
+def test_clean_posting_text_turns_markup_into_text_and_drops_script_and_style():
+    out = clean_posting_text(MARKUP)
+    assert out == AS_TEXT
+    assert "<" not in out and "alert" not in out and "color:red" not in out and "font-size" not in out
+    assert clean_posting_text(html.escape(MARKUP)) == AS_TEXT
+    assert clean_posting_text("<div>" + html.escape(MARKUP) + "</div>") == AS_TEXT   # escaped inside markup
+    assert clean_posting_text(out) == out                                      # and is done
+
+
+def test_clean_posting_text_leaves_plain_text_alone():
+    for plain in ("Experience < 3 years is fine, > 5 is senior.\n\n\n\nSpaces   stay.",
+                  "You know List<String> and Map<K, V>. Apply to <your recruiter>.",
+                  "We render one <br> per line in our editor.",
+                  "R&D &amp; more"):
+        assert not looks_like_markup(plain)
+        assert clean_posting_text(plain) == plain
 
 
 # --- adapters -------------------------------------------------------------------

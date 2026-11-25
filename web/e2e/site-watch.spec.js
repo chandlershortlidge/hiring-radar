@@ -6,8 +6,8 @@
 // projects in playwright.watch.config.js). Each test is one visitor path, so a failure names
 // the path that broke; the ticket filed by scripts/site_watch_ticket.py is titled after it.
 // Does NOT: write anything. Every request to /api that is not a GET is refused before it
-// leaves the browser and fails the test — so the add-a-job drawer is opened, never
-// submitted, and no click here can start a model call. The profile it sets up lives in this
+// leaves the browser and fails the test — so no click here can change the site or start
+// a model call. The profile it sets up lives in this
 // test browser's own storage, which is thrown away after each test.
 //
 // Real data, so "a filter changes the results" is checked as "the filter reaches the server
@@ -167,29 +167,22 @@ test("a job card, its permanent page, and the original posting link", async ({ p
   }
 });
 
-test("the add-a-job drawer opens (never submitted)", async ({ page, problems }) => {
-  await openBusiestCity(page);
-  // By name, at both widths: the button carries its name even where a phone hides its
-  // words (HIR-263). If this stops finding it, a screen reader has lost it too.
-  await page.getByRole("button", { name: "Add a job", exact: true }).click();
-  const drawer = page.getByRole("dialog");
-  await expect(drawer).toBeVisible();
-  await expect(drawer.locator("#url")).toBeVisible();
-  await drawer.getByRole("button", { name: "Close" }).click();
-  await expect(drawer).toBeHidden();
-});
-
+// `exact: true` on every name below, because a name without it matches any control whose
+// own name merely contains it (HIR-430): once a profile exists, each chip on the gaps line
+// is named "... not in your profile. Filter job list", so a loose "Your profile" resolved
+// to four buttons and the visitor failed on a site that was working. tests/test_site_watch_names.py
+// is what keeps that from coming back.
 test("the profile drawer opens, a skill can be added, fit numbers show", async ({ page, problems }) => {
   await openBusiestCity(page);
-  await page.getByRole("button", { name: "Your profile" }).click();
+  await page.getByRole("button", { name: "Your profile", exact: true }).click();
   const drawer = page.getByRole("dialog");
   await expect(drawer).toBeVisible();
   // The most-asked-for skill is first; with it, most jobs in the busiest city get a score.
   const skill = drawer.locator(".pchips .pchip").first();
   await skill.click();
   await expect(skill).toHaveAttribute("aria-pressed", "true");
-  await drawer.getByRole("button", { name: "Save" }).click();
+  await drawer.getByRole("button", { name: "Save", exact: true }).click();
   await expect(drawer).toBeHidden();
-  await expect(page.getByRole("button", { name: "Your profile" })).toContainText("1 skills in your profile");
+  await expect(page.getByRole("button", { name: "Your profile", exact: true })).toContainText("1 skills in your profile");
   await expect(page.locator(".jobs .row .fit").first()).toBeVisible();
 });

@@ -29,7 +29,8 @@
     {
       "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "modern cloud based AI platforms (GCP/AWS)"
+      "raw_text": "modern cloud based AI platforms (GCP/AWS)",
+      "alternative_group": 1
     },
     {
       "skill_id": "ci-cd",
@@ -44,7 +45,8 @@
     {
       "skill_id": "gcp",
       "requirement": "required",
-      "raw_text": "modern cloud based AI platforms (GCP/AWS)"
+      "raw_text": "modern cloud based AI platforms (GCP/AWS)",
+      "alternative_group": 1
     },
     {
       "skill_id": "git",

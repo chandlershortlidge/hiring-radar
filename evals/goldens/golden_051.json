@@ -80,17 +80,20 @@
     {
       "skill_id": "go",
       "requirement": "required",
-      "raw_text": "Go, or similar"
+      "raw_text": "Go, or similar",
+      "alternative_group": 1
     },
     {
       "skill_id": "java",
       "requirement": "required",
-      "raw_text": "Java, Go"
+      "raw_text": "Java, Go",
+      "alternative_group": 1
     },
     {
       "skill_id": "javascript",
       "requirement": "required",
-      "raw_text": "JavaScript"
+      "raw_text": "JavaScript",
+      "alternative_group": 1
     },
     {
       "skill_id": "llms",
@@ -110,7 +113,8 @@
     {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Python",
+      "alternative_group": 1
     },
     {
       "skill_id": "rag",
@@ -130,7 +134,8 @@
     {
       "skill_id": "typescript",
       "requirement": "required",
-      "raw_text": "TypeScript"
+      "raw_text": "TypeScript",
+      "alternative_group": 1
     }
   ]
 }

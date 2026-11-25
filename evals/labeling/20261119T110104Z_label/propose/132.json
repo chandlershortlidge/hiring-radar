@@ -6,8 +6,8 @@
   "reason": "groups",
   "provider": "anthropic",
   "model": "claude-haiku-5-5",
-  "key_sha256": "acb6335ac355a8c8bf571ddba0d5a62fa674215aaa27e5a2f3e115ab792af737",
-  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The preferred-qualifications line 'Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' offers examples for a single ask, so these five form one group, while the broad parents 'agents' and 'llm-orchestration' stay out and the model platforms listed with 'and' are asked together, not as alternatives.\"}",
+  "key_sha256": "d62b8639ae5e2deddeeb0ca1d212b08bcd11fb7d4238915b07a843b932ff1f6d",
+  "raw": "{\"decision\": [[\"pydanticai\", \"langgraph\", \"langchain\", \"crewai\", \"autogen\"]], \"why\": \"The Preferred Qualifications ask for hands-on experience with agentic AI and orchestration frameworks, with \\\"e.g.\\\" giving five examples for that single ask, so any one meets it; the broad parents `agents` and `llm-orchestration` stay out, and the model platforms (Anthropic, OpenAI, Vertex AI, Bedrock) are joined by \\\"including ... and\\\" rather than offered as alternatives, so they form no group.\"}",
   "decision": [
     [
       "pydanticai",
@@ -17,6 +17,6 @@
       "autogen"
     ]
   ],
-  "why": "The preferred-qualifications line 'Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen)' offers examples for a single ask, so these five form one group, while the broad parents 'agents' and 'llm-orchestration' stay out and the model platforms listed with 'and' are asked together, not as alternatives.",
+  "why": "The Preferred Qualifications ask for hands-on experience with agentic AI and orchestration frameworks, with \"e.g.\" giving five examples for that single ask, so any one meets it; the broad parents `agents` and `llm-orchestration` stay out, and the model platforms (Anthropic, OpenAI, Vertex AI, Bedrock) are joined by \"including ... and\" rather than offered as alternatives, so they form no group.",
   "error": null
 }

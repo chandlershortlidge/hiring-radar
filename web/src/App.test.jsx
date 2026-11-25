@@ -1,10 +1,11 @@
-// HIR-263: at phone width the header's "Add a job" button shows only a plus sign. Its
-// words are hidden with display:none, which removes them for screen readers too, and the
-// button had no other name — so it was announced as just "button", and the robot visitor
-// (e2e/site-watch.spec.js) had to find it by its place in the header.
+// The header's buttons. HIR-346 took "Add a job" and the proposed-skills counter off the
+// site for good (jobs are added from the command line, proposed skills are settled in
+// skill-list pull requests), so the one button left is the profile; "All markets" and
+// "Connect Claude" are not buttons.
 //
-// The words being hidden is CSS, so the thing to hold on to is a name that does not
-// depend on them: an aria-label on the button itself, as its two neighbours already have.
+// HIR-263 still holds for whatever is there: at phone width a header button's words are
+// hidden with display:none, which removes them for screen readers too, so every button
+// needs a name that does not depend on them: an aria-label on the button itself.
 //
 // Renders the page the way the browser's first paint does (no jsdom: the page only
 // touches the document from effects, which do not run here). The one thing it reads
@@ -15,25 +16,38 @@ import { readFileSync } from "node:fs";
 import App from "./App.jsx";
 
 let buttons;
+let header;
 
 beforeAll(() => {
-  vi.stubGlobal("window", { location: { pathname: "/", search: "", hash: "" } });
+  vi.stubGlobal("window", { location: { pathname: "/berlin", search: "", hash: "" } });
   const html = renderToStaticMarkup(<App />);
   const actions = html.match(/<div class="hdr-actions">(.*?)<\/div>/s);
-  buttons = actions ? actions[1].match(/<button\b[^>]*>/g) : null;
+  header = actions ? actions[1] : null;
+  buttons = header ? header.match(/<button\b[^>]*>/g) : null;
 });
 
 afterAll(() => vi.unstubAllGlobals());
 
 describe("the header's buttons", () => {
-  it("are the three the page has always had", () => {
-    expect(buttons).toHaveLength(3);
+  it("is the profile button and nothing else", () => {
+    expect(buttons).toHaveLength(1);
+    expect(buttons[0]).toContain('aria-label="Your profile"');
   });
 
-  it('names the add-a-job button "Add a job" without relying on its visible words', () => {
-    const add = buttons.filter((b) => b.includes('class="btn outline"'));
-    expect(add).toHaveLength(1);
-    expect(add[0]).toContain('aria-label="Add a job"');
+  it("offers All markets, the profile and Connect Claude on a city page, and no more", () => {
+    const words = header.replace(/<svg.*?<\/svg>/gs, "").replace(/<[^>]+>/g, "|").split("|").filter(Boolean);
+    expect(words.slice(0, 2)).toEqual(["All markets", "Set up your profile"]);
+    expect(words[2].trim()).toBe("Connect Claude");
+    // Three pills and no main button: whatever else Connect Claude says sits inside its own pill.
+    expect(header.match(/class="pill\b/g)).toHaveLength(3);
+    expect(header).not.toContain('class="btn');
+  });
+
+  it("has no add-a-job button and no proposed-skills counter (HIR-346)", () => {
+    const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+    for (const gone of ["Add a job", "proposed skills", "proposed_pending", "AddJobDrawer", "ReviewDrawer"]) {
+      expect(source).not.toContain(gone);
+    }
   });
 
   it("leaves no header button whose only name is words a phone hides", () => {
@@ -54,4 +68,22 @@ describe("the statistics line above the chart", () => {
     'is gone: the page no longer says "%s"', (words) => {
       expect(source).not.toContain(words);
     });
+});
+
+// HIR-412: on a city or compare page the bar with the job-family and city pickers said
+// "1289 open jobs · updated 18 h ago" on its right edge. That number was every open job on
+// the site, while the jobs card below says "78 open jobs · Berlin" for the search the
+// visitor is looking at: two "open jobs" numbers that disagree. The bar now says only how
+// fresh the data is. Like the block above, that text only renders once /api/stats has
+// answered, so this holds the line on the source.
+describe("the right edge of the pickers' bar", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  it("no longer counts open jobs: the jobs card is the only place that does", () => {
+    expect(source).not.toContain("open jobs");
+  });
+
+  it("still says how fresh the data is", () => {
+    expect(source).toContain(">updated {timeAgo(stats.last_updated)}</span>");
+  });
 });

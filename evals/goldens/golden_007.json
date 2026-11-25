@@ -43,17 +43,20 @@
     {
       "skill_id": "aws",
       "requirement": "nice_to_have",
-      "raw_text": "cloud (GCP/AWS/Azure)"
+      "raw_text": "cloud (GCP/AWS/Azure)",
+      "alternative_group": 2
     },
     {
       "skill_id": "azure",
       "requirement": "nice_to_have",
-      "raw_text": "cloud (GCP/AWS/Azure)"
+      "raw_text": "cloud (GCP/AWS/Azure)",
+      "alternative_group": 2
     },
     {
       "skill_id": "bigquery",
       "requirement": "nice_to_have",
-      "raw_text": "BigQuery/Snowflake"
+      "raw_text": "BigQuery/Snowflake",
+      "alternative_group": 1
     },
     {
       "skill_id": "cloud",
@@ -93,17 +96,20 @@
     {
       "skill_id": "gcp",
       "requirement": "nice_to_have",
-      "raw_text": "cloud (GCP/AWS/Azure)"
+      "raw_text": "cloud (GCP/AWS/Azure)",
+      "alternative_group": 2
     },
     {
       "skill_id": "langchain",
       "requirement": "nice_to_have",
-      "raw_text": "LangChain/LlamaIndex"
+      "raw_text": "LangChain/LlamaIndex",
+      "alternative_group": 3
     },
     {
       "skill_id": "llamaindex",
       "requirement": "nice_to_have",
-      "raw_text": "LangChain/LlamaIndex"
+      "raw_text": "LangChain/LlamaIndex",
+      "alternative_group": 3
     },
     {
       "skill_id": "llms",
@@ -113,12 +119,14 @@
     {
       "skill_id": "make",
       "requirement": "nice_to_have",
-      "raw_text": "n8n/Make/Zapier"
+      "raw_text": "n8n/Make/Zapier",
+      "alternative_group": 4
     },
     {
       "skill_id": "n8n",
       "requirement": "nice_to_have",
-      "raw_text": "n8n/Make/Zapier"
+      "raw_text": "n8n/Make/Zapier",
+      "alternative_group": 4
     },
     {
       "skill_id": "openai-api",
@@ -148,7 +156,8 @@
     {
       "skill_id": "snowflake",
       "requirement": "nice_to_have",
-      "raw_text": "BigQuery/Snowflake"
+      "raw_text": "BigQuery/Snowflake",
+      "alternative_group": 1
     },
     {
       "skill_id": "sql",
@@ -168,7 +177,8 @@
     {
       "skill_id": "zapier",
       "requirement": "nice_to_have",
-      "raw_text": "n8n/Make/Zapier"
+      "raw_text": "n8n/Make/Zapier",
+      "alternative_group": 4
     }
   ]
 }

@@ -2226,6 +2226,23 @@ def test_number_groups_drops_members_that_left_the_key_and_numbers_in_posting_or
     assert al.number_groups([["aws", "azure"]], skills, posting) == {}
 
 
+def test_a_slash_pair_of_two_skills_is_one_group():
+    # HIR-390, Chandler: "“Terraform/CloudFormation” is an either/or pair, so the two
+    # should share a group." The grouping models read the guide's section word for word.
+    rules = al.guide_section(al.GUIDE_FILE.read_text(), al.GROUPS_HEADING)
+    assert "A slash between two skills of the same kind" in rules
+    assert '"CI/CD" is one skill' in rules
+    item = dict(GROUPS_ITEM, skills=[
+        {"skill_id": "terraform", "requirement": "nice_to_have", "raw_text": "Terraform/CloudFormation"},
+        {"skill_id": "cloudformation", "requirement": "nice_to_have", "raw_text": "CloudFormation"},
+        {"skill_id": "git", "requirement": "nice_to_have", "raw_text": "Git, CI/CD"}])
+    groups = al.parse_groups(item, '[["terraform", "cloudformation"]]')
+    assert groups == [["cloudformation", "terraform"]]
+    skills = {s["skill_id"]: s for s in item["skills"]}
+    posting = "Preferred: Terraform/CloudFormation, Git, CI/CD, testing and Jira"
+    assert al.number_groups(groups, skills, posting) == {"cloudformation": 1, "terraform": 1}
+
+
 def groups_run(tmp_path, monkeypatch):
     run_dir, queue, docker = judge_run(tmp_path, monkeypatch, proposal=None, spot=0,
                                        posting=GROUP_POSTING)
@@ -2314,3 +2331,74 @@ def test_apply_marks_a_posting_with_nothing_to_group_as_reviewed(tmp_path, monke
     golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
     assert golden["groups_reviewed"] is True
     assert "alternative_group" not in golden["adjudicated_by_model"]
+
+
+# --- HIR-392: the agent-harnesses labels in the 19 Nov batches ---------------------------
+
+HARNESS = {"skill_id": "agent-harnesses", "requirement": "nice_to_have",
+           "raw_text": "agent harness development"}
+
+
+def test_hir392_a_queued_new_skill_label_is_read_by_apply():
+    # Both labelers flagged the phrase while the skill did not exist: an agreed draft, `ok`.
+    agreed = {"kind": "skill", "key": "agent-harnesses", "reason": "rule-change",
+              "a": dict(HARNESS), "b": dict(HARNESS)}
+    assert al.apply_decision(agreed, "ok") == ([HARNESS], None)
+    assert al.apply_decision(agreed, "drop") == ([], None)
+    # Only one labeler flagged it: B or drop.
+    one = {"kind": "skill", "key": "agent-harnesses", "reason": "disagreement",
+           "a": None, "b": dict(HARNESS)}
+    assert al.apply_decision(one, "B") == ([HARNESS], None)
+
+
+def test_hir392_an_override_moves_a_decided_label_to_the_new_skill():
+    # golden_103: the judge kept A's label under agent-architecture; the id moves, the
+    # requirement and the quote stay the judge's.
+    item = {"kind": "skill", "key": "agent-harnesses", "reason": "disagreement",
+            "a": {"skill_id": "agent-architecture", "requirement": "nice_to_have",
+                  "raw_text": "Building agent harnesses"}, "b": None}
+    assert al.apply_decision(item, '{"skill_id": "agent-harnesses"}') == ([
+        {"skill_id": "agent-harnesses", "requirement": "nice_to_have",
+         "raw_text": "Building agent harnesses"}], None)
+    groups = {"kind": "groups", "key": "alternative_group", "reason": "groups",
+              "skills": [{"skill_id": s} for s in
+                         ("agent-harnesses", "ai-infrastructure", "distributed-training")]}
+    answer = '[["agent-harnesses", "ai-infrastructure", "distributed-training"]]'
+    assert al.parse_groups(groups, answer) == [
+        ["agent-harnesses", "ai-infrastructure", "distributed-training"]]
+    with pytest.raises(ValueError, match="not labeled with"):
+        al.parse_groups(groups, '[["agent-architecture", "ai-infrastructure"]]')
+
+
+HIR392_RUNS = ("20261119T110104Z_label", "20261119T112034Z_label",
+               "20261119T114422Z_label", "20261119T135145Z_label")
+
+
+@pytest.mark.parametrize("run", HIR392_RUNS)
+def test_hir392_batch_queues_stay_whole_and_every_harness_item_is_recorded(run):
+    run_dir, items, picks, _, text = al.load_run(run)
+    decisions = al.parse_queue(text)
+    # One decision per item, numbered 1..N: a hand-appended item apply would miss or count twice.
+    assert [n for n, _ in decisions] == list(range(1, len(items) + 1))
+    decided = dict(decisions)
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    recorded = {n for r in adj.get("rule_change", []) if r["key"] == "agent-harnesses"
+                for n in r["items"]}
+    harness = [n for n, i in enumerate(items, 1) if i["key"] == "agent-harnesses"]
+    assert harness
+    for n in harness:
+        item = items[n - 1]
+        if run == "20261119T112034Z_label":
+            assert n == 33 and n not in recorded          # moved, not appended
+        else:
+            assert n in recorded
+        if decided[n] != "?":
+            added, _ = al.apply_decision(item, decided[n])
+            assert [s["skill_id"] for s in added] == ["agent-harnesses"]
+            posting = picks[item["golden_id"]]["job_description"]
+            assert al.norm_text(added[0]["raw_text"]) in al.norm_text(posting)
+        # The posting's "any one of" question offers the new skill, so an answer can name it.
+        offered = [s["skill_id"] for i in items
+                   if i["kind"] == "groups" and i["golden_id"] == item["golden_id"]
+                   for s in i["skills"]]
+        assert offered.count("agent-harnesses") == 1

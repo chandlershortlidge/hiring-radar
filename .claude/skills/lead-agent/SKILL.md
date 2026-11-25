@@ -52,6 +52,32 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   hit").
 - Message Chandler outside the log, except the three cases in "Telling Chandler now".
 - Replace a Linear description. Comments, labels and status only (AGENTS.md, HIR-124).
+- Change the `fixes_only` line in `config/lead_agent.json`, or add the label `Bug` to a
+  ticket so that it runs during fixes-only mode ("Fixes-only mode", below).
+
+## Fixes-only mode (HIR-341)
+
+Over the Christmas break (from 16 Dec 2026 until Chandler turns it off) agents repair
+what breaks and ship nothing new. The script's answer (step 4) has `fixes_only`: `null`,
+or one sentence saying the mode is on. While it is a sentence:
+
+- **Step 2.** A ticket you file for a red check gets the label `Bug`. When you sort a new
+  ticket that reports something broken on the live site or in the daily collection (a
+  bug, a failed check, a failed deploy or rollback, data that stopped updating), add
+  `Bug` beside its other label. A feature or an improvement never gets it.
+- **Step 3.** Start no reviewer on a pull request whose ticket has no `Bug` label, stuck
+  or not. It stays open as it is. List it once under "Held", not in every run.
+- **Step 4.** The script picks only tickets labelled `Bug`, and the repair for a red
+  check. Its "fixes-only mode is on" skips need no mention.
+- **Step 5.** A reviewer may reply `HELD`: the pull request passed review and is left
+  open because its ticket is not a fix. Result `held`. The script's `repairs` already
+  says `review` false for a collided pull request that is not a fix.
+- **Step 7.** Put the script's `fixes_only` sentence, unchanged, on the line under the
+  log's heading. Monday's `monday` text already opens with it, and the Monday summary
+  writes its own first line.
+
+When the mode ends, the pull requests left open have no review label and are stuck, so
+step 3 starts a fresh reviewer on each as usual.
 
 ## 0. Can this run work at all?
 
@@ -226,7 +252,14 @@ a ticket the script did not list. List each under "Decided for you" in the log, 
 For each open pull request, by its labels. "Stuck" means no commit, comment or label
 change for 12 hours; anything younger belongs to a run that may still be alive.
 
-- **`sent-back`, no `review-passed`, stuck** → nobody picked up the fixes. Comment on its
+- **`sent-back`, no `review-passed`** (HIR-358) → stuck or not, it goes into step 4's
+  `sent_back` list, and the script says whether its author has done something since the
+  send-back: a commit, or a comment starting `**Repair:`. If so it is in the script's
+  `rereviews` `start`, and step 5 starts a fresh reviewer on it in this run: a fixed pull
+  request is a reviewer's turn, not its author's, and nothing else hands it back. Do not
+  return its ticket to Todo.
+- **`sent-back`, no `review-passed`, stuck, and the script says "nothing new since it was
+  sent back"** → nobody picked up the fixes. Comment on its
   ticket "Lead agent: pull request #n was sent back and no run is live on it; returned to
   Todo" and set the ticket to Todo. If step 4's script picks it, its worker finds the
   sent-back pull request and fixes it on the same branch.
@@ -257,7 +290,8 @@ change for 12 hours; anything younger belongs to a run that may still be alive.
   collides is still listed under "Needs you" and its labels are still not yours to
   change, but it is repaired, because Chandler cannot merge a conflicted pull request
   and bringing main in decides nothing for him. A `sent-back` one that collides is
-  repaired first; step 5 then returns its ticket to Todo for the fixes still open.
+  repaired first; step 5 then starts a fresh reviewer on it, which says whether anything
+  it was sent back for is still open (HIR-358).
 - **A ticket In Progress with no open pull request and no change for 24 hours** → its run
   died. Comment on the ticket "Lead agent: no run is live on this; returned to Todo",
   set it to Todo. It is then picked or not like any other.
@@ -305,6 +339,22 @@ in the shape `scripts/lead_pick.py` documents. At the top level:
   AGENTS.md "The rules gate") and `live`: true when its last push is less than an hour
   old, or an earlier run's log still lists its ticket or its repair as `running`. In
   doubt, true: the next run looks again.
+- `sent_back`: every run, the open pull requests labelled `sent-back` and not
+  `review-passed` (step 3, HIR-358), `[]` when there are none; never left out, because a
+  run that did not look must not be read as "nothing was fixed". Each as `pr`, `ticket`,
+  `labels`, `pr_labels`, `rules` and `live`, exactly as for `collided`, plus three
+  times, each copied as GitHub gives it and never worked out by you:
+  - `sent_back_at`: when it was last sent back. Take the newer of two: when the
+    `sent-back` label was added (`gh api repos/:owner/:repo/issues/<n>/events`, the last
+    `labeled` event for that label, its `created_at`) and when its newest comment
+    starting `**Review: sent back**` was posted
+    (`gh api repos/:owner/:repo/issues/<n>/comments`). The label stays on after a fix,
+    so on a second send-back only the comment is new.
+  - `last_commit_at`: the committer date of the branch's last commit
+    (`gh api repos/:owner/:repo/pulls/<n>/commits`, the last entry's
+    `commit.committer.date`).
+  - `repair_at`: when its newest comment starting `**Repair:` was posted; `null` when it
+    has none.
 
 Per ticket:
 
@@ -353,6 +403,11 @@ uv run python scripts/lead_pick.py <file>
   with `review` (whether a reviewer follows) and its reason; copy the reason into the
   log. `skipped` with "failed twice" or "no ticket" → list each under "Needs you" in the
   log. The other reasons need no mention.
+- `rereviews` → `start` is the sent-back pull requests a fresh reviewer is started on in
+  step 5, each with its reason. `skipped` with "nothing new since it was sent back" →
+  step 3's stuck rule decides whether its ticket returns to Todo. `skipped` with "cannot
+  be read" or "no ticket" → list each under "Needs you" in the log. The other reasons
+  need no mention.
 
 **Then write the log comment at once, before starting anything** (step 7's shape), with
 `result: running` on every picked line and every repair line, and the script's `est_eur`
@@ -386,16 +441,15 @@ For each entry in the script's `repairs` `start`, before or alongside the batch 
    log or a list, and takes every other collision to the `senior` agent. You give it no
    advice on how to resolve anything and you answer none of its questions.
 2. Its reply starts with one word:
-   - **`REPAIRED`**, `review` is true, and the pull request is not labelled `sent-back`
-     (or is, and also `review-passed`) → wait for the checks on the new commit, then
+   - **`REPAIRED`** and `review` is true → wait for the checks on the new commit, then
      start a fresh `reviewer` subagent with the pull request number and nothing else,
      exactly as in step 3. The repair's result is the reviewer's: `merged` or `merging`;
-     `failed` when it sends the pull request back.
-   - **`REPAIRED`** on a pull request labelled `sent-back` with no `review-passed` → a
-     reviewer's fixes are still open, and a repair does none of them. Start no reviewer.
-     Comment on its ticket "Lead agent: pull request #n was sent back; its collision
-     with main is repaired; returned to Todo for the fixes" and set the ticket to Todo,
-     as step 3 does for a stuck one. Result: `repaired`.
+     `failed` when it sends the pull request back. This holds for a pull request
+     labelled `sent-back` too (HIR-358): the repair is a change made after the
+     send-back, and only a reviewer can say whether anything else it asked for is still
+     open. Do not return its ticket to Todo; if the reviewer sends it back again, step
+     3 of a later run does that. List it under "Unstuck", and leave it out of the
+     second reviews below so it gets one reviewer, not two.
    - **`REPAIRED`** and `review` is false → the pull request was waiting for Chandler
      before and still is. Start no reviewer and touch no label. Result: `repaired`.
    - **`WAITING`** → the senior agent could not settle a collision without deciding
@@ -408,6 +462,25 @@ For each entry in the script's `repairs` `start`, before or alongside the batch 
 
 A repair is its own line in the log (step 7) and is never counted as a try of the
 ticket.
+
+### A second review for a pull request fixed after it was sent back (HIR-358)
+
+For each entry in the script's `rereviews` `start`, except one a repair above has
+already handed to a reviewer in this run: wait for the checks on its last commit, then
+start a fresh `reviewer` subagent with the pull request number and nothing else, exactly
+as in step 3 for a pull request that has never been reviewed. You do not judge whether
+the fixes are complete, and you tell the reviewer nothing about them: it reads the
+earlier `**Review: sent back**` comment itself. Leave the `sent-back` label on.
+
+If the entry's ticket is also in this run's `picked` (an earlier run returned it to
+Todo), the reviewer goes first: leave the ticket out of the batch you hand the
+orchestrator and log its line as `not-started`. A worker and a reviewer never run on one
+pull request together.
+
+List each under "Unstuck" in the log, as "#n (HIR-n): fixed after it was sent back,
+fresh reviewer: <its verdict>". It gets no ticket line and is not a try of the ticket.
+If the reviewer sends it back again, that is a new send-back with nothing after it: a
+later run's step 3 returns the ticket to Todo once it is stuck.
 
 ### When the usage limit is hit
 
@@ -458,7 +531,7 @@ Held: <tickets held because 10 decisions are already waiting for Chandler to thi
 Decided for you: <each call the senior agent decided in this run, small calls and recommendations taken for him alike: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
 Sorted: <tickets labelled or moved in this run, with the label, or "nothing">
 Queue: <how many run-alone tickets are waiting in Todo after this run, and which were pulled in; or "nothing left to pull">
-Unstuck: <pull requests given a fresh worker or reviewer, or "nothing">
+Unstuck: <pull requests given a fresh worker or reviewer, among them each one fixed after it was sent back and reviewed again, or "nothing">
 Usage limit: <only when it was reached: "reached", and what was cut short>
 Design review: <Fridays only, the first run of the day>
 ```
@@ -470,6 +543,8 @@ Design review: <Fridays only, the first run of the day>
   went green, or review failed three times. Two of these and the ticket is never picked
   again; it is Monday's.
 - `waiting` — it stopped on a question for Chandler. Not a failure.
+- `held` — only in fixes-only mode: it passed review and stays open because its ticket
+  is not a fix. Not a failure.
 - `not-started` — picked, but held back (a file an open pull request already changes, or
   the usage limit). Also a ticket whose pull request is built but got no review because
   no reviewer could open the ticket (the orchestrator's "Not reviewed", HIR-306): that
@@ -483,7 +558,7 @@ repaired pull request, `failed` when the worker could not repair it or the revie
 it back, `waiting` when the repair itself ended on a question for Chandler, `not-started`
 when the usage limit cut it short. One more word is a repair's alone: `repaired`, when
 main was brought in and what comes next is not a review (it waits for Chandler as
-before, or its sent-back fixes are still to do). It must start with the word `repair`: that is how the script tells a failed repair from a
+before, or fixes-only mode leaves it open). It must start with the word `repair`: that is how the script tells a failed repair from a
 failed ticket.
 
 `spend` is what the ticket's pull request says it cost in model calls (its eval), in

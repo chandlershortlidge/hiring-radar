@@ -19,6 +19,13 @@ spec.loader.exec_module(mr)
 CODE = ["app/ingest.py", "tests/test_ingest.py"]
 
 
+@pytest.fixture(autouse=True)
+def not_the_christmas_break(monkeypatch):
+    """These tests are about every other condition, so fixes-only mode (HIR-341) is off
+    whatever today's date is. tests/test_fixes_only.py covers it being on."""
+    monkeypatch.setattr(mr, "_fixes_only_now", lambda: False)
+
+
 def pr(labels=("review-passed",), state="open", draft=False, mergeable_state="clean"):
     return {
         "number": 7,
