@@ -209,7 +209,7 @@ The tools today:
 To connect, once it is open to the public:
 
 ```bash
-claude mcp add --transport http hiring-radar https://34-159-223-190.sslip.io/mcp
+claude mcp add --transport http hiring-radar https://hiringradar.app/mcp
 ```
 
 or in claude.ai: Settings → Connectors → Add custom connector, with the same URL.

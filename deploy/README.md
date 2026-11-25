@@ -3,7 +3,7 @@
 Where hiring-radar runs: one GCP Compute Engine VM, project `hiring-radar-512318`, zone
 `europe-west3-a`, instance `hiring-radar` (e2-micro, Debian 12, 20 GB disk). Port 22 is
 reachable only from Google's IAP range, so SSH goes through IAP. The dashboard is behind
-Caddy (HTTPS + basic auth) on an `sslip.io` hostname. Merging to `main` deploys.
+Caddy (HTTPS + basic auth) at `hiringradar.app`. Merging to `main` deploys.
 
 Decided in HIR-29; design in [DECISIONS.md](../DECISIONS.md) (2026-10-21), final shape of
 the setup in the 2026-11-01 entry.
@@ -267,16 +267,16 @@ gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap --com
    sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz'
 ```
 
-## Caddy: open `/mcp` (once, after HIR-338 is deployed)
+## Caddy: apply `deploy/Caddyfile` by hand
 
-No deploy touches the web server's config, so the change that lets anyone's Claude reach
-the MCP server without the dashboard password is applied by hand, once. Run it after the
-deploy of the merge, so the app already answers at `/mcp`. It keeps the VM's current
-password hash and takes the rest from `deploy/Caddyfile`.
+No deploy touches the web server's config (the server's copy holds the password hash; the
+repo's does not), so a change to `deploy/Caddyfile` is applied by hand, after the deploy
+of the merge that needs it. This keeps the VM's current password hash and takes the rest
+from `deploy/Caddyfile`. Back up first, under a name that says what the change was.
 
 ```
 gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap
-sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-mcp
+sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-<change>
 HASH=$(sudo awk '$1 == "chandler" {print $2}' /etc/caddy/Caddyfile)
 sudo sed "s|REPLACE_WITH_BCRYPT_HASH|$HASH|" /opt/hiring-radar/app/deploy/Caddyfile > /tmp/Caddyfile
 sudo caddy validate --config /tmp/Caddyfile --adapter caddyfile \
@@ -288,16 +288,40 @@ rm /tmp/Caddyfile
 Check from the Mac: the dashboard still asks for the password, and `/mcp` answers without it.
 
 ```
-curl -s -o /dev/null -w '%{http_code}\n' https://34-159-223-190.sslip.io/          # 401
-curl -s -o /dev/null -w '%{http_code}\n' -X POST https://34-159-223-190.sslip.io/mcp \
+curl -s -o /dev/null -w '%{http_code}\n' https://hiringradar.app/          # 401
+curl -s -o /dev/null -w '%{http_code}\n' -X POST https://hiringradar.app/mcp \
   -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
   -H 'mcp-protocol-version: 2025-06-18' -d '{"jsonrpc":"2.0","id":1,"method":"ping","params":{}}'   # 200
 ```
 
-Undo: `sudo cp /etc/caddy/Caddyfile.before-mcp /etc/caddy/Caddyfile && sudo systemctl reload caddy`.
+Undo: `sudo cp /etc/caddy/Caddyfile.before-<change> /etc/caddy/Caddyfile && sudo systemctl reload caddy`.
 
-Then add it to Claude: `claude mcp add --transport http hiring-radar https://34-159-223-190.sslip.io/mcp`,
+Add it to Claude: `claude mcp add --transport http hiring-radar https://hiringradar.app/mcp`,
 or in claude.ai, Settings → Connectors → Add custom connector, with that URL.
+
+## The move to hiringradar.app (HIR-458): two stages around the merge
+
+The uptime check and the robot visitor read one address: the old one before the merge, the
+new one after it. So the server answers at both names across the merge.
+
+1. **Before the merge**, the new name is added next to the old one, nothing redirected:
+   ```
+   sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-domain
+   umask 077
+   { sudo sed '1s|^34-159-223-190\.sslip\.io {|hiringradar.app, 34-159-223-190.sslip.io {|' /etc/caddy/Caddyfile
+     printf '\nwww.hiringradar.app {\n\tredir https://hiringradar.app{uri} 301\n}\n'; } > /tmp/Caddyfile
+   grep -q '^hiringradar.app, 34-159-223-190.sslip.io {' /tmp/Caddyfile \
+     && sudo caddy validate --config /tmp/Caddyfile --adapter caddyfile \
+     && sudo install -m 644 -o root -g root /tmp/Caddyfile /etc/caddy/Caddyfile \
+     && sudo systemctl reload caddy
+   rm /tmp/Caddyfile
+   ```
+2. **After the merge's "Deploy and watch" run is green**, apply `deploy/Caddyfile` with the
+   recipe above (`<change>` = `redirect`). The old address then forwards everything to
+   `https://hiringradar.app` with the path kept, except `/mcp`, which it still serves so a
+   Claude connected there keeps working.
+
+The old address stays until 31 Jan 2027 (decisions/2026-11-25-hir-458-hiringradar-app.md).
 
 ## Get the database onto the Mac
 
@@ -398,11 +422,11 @@ gcloud compute firewall-rules create allow-ssh-iap \
   --allow tcp:22 --source-ranges 35.235.240.0/20
 ```
 
-Port 22 is open only to IAP's range; there is no `default-allow-ssh`. The hostname is the
-static IP with dots turned into dashes plus `.sslip.io` — `34.159.223.190` →
-`34-159-223-190.sslip.io`. sslip.io resolves it, which is enough for Caddy to get a Let's
-Encrypt certificate without owning a domain. **The hostname is baked into the Caddyfile: a
-new IP means a new hostname.**
+Port 22 is open only to IAP's range; there is no `default-allow-ssh`. The site's name is
+`hiringradar.app` (Cloudflare Registrar; HIR-458): an `A` record for `@` pointing at the
+static IP and a `CNAME` for `www`, both **DNS only** (grey cloud) so Caddy gets its own
+Let's Encrypt certificate. A new IP means changing the `A` record. Before HIR-458 the
+name was the IP with dots as dashes on sslip.io, which now only forwards.
 
 ### 2. The VM
 

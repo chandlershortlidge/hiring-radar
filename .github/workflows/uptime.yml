@@ -28,7 +28,7 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  SITE: https://34-159-223-190.sslip.io
+  SITE: https://hiringradar.app
 
 jobs:
   check:
