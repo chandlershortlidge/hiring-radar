@@ -29,7 +29,9 @@ Does:
     `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
   - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports;
   - file each check under one reason from a fixed list (HIR-290) and log it with the
-    company, city and careers system, so misses can be counted (app/misses.py). The reason
+    company, city and careers system, so misses can be counted (app/misses.py). A link
+    whose page gives no location is logged with the city the check was run for
+    (`assumed_city`, HIR-322). The reason
     comes from what the check worked out, as data (`diagnose_miss` → `filed`, HIR-428);
     the sentence a person reads is written from the same data and is never read back.
     `miss_reason` reads a sentence only for checks logged before reasons were stored.
@@ -39,7 +41,7 @@ to app.ingest), call a model, or fetch LinkedIn (its pages are not readable with
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose`, `diagnose_miss`, `filed`, `board_not_added`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
+`diagnose`, `diagnose_miss`, `filed`, `board_not_added`, `feed_had_it`, `careers_system`, `assumed_city` and `miss_reason` are pure; `check_url` and `check_posting` read the DB and never write it; `check_url` does network I/O
 only through the injected fetchers and `check_posting` does none, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -651,6 +653,9 @@ def _why_stopped(stop: str, posting: Posting) -> str:
                 f"({ingest.agency_name_word(posting.company)!r}), which the country-wide sources screen out")
     if stop == ingest.SKIPPED_UNREADABLE:
         return DROPPED_UNREADABLE
+    if stop == ingest.SKIPPED_BLOCKED:
+        return (f"it links to {ingest.blocked_site(posting.url, posting.description_text)}, "
+                f"a site known to publish fake postings")
     # A check added to the collector since: reported under its own name until it gets a
     # sentence here, never passed over in silence (HIR-427).
     return f"the collector's check {stop!r} stops it"
@@ -1084,11 +1089,32 @@ def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> 
     return filed(url, read)
 
 
-def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
+def assumed_city(result: CheckResult, run_for: str | None) -> str | None:
+    """Pure: `run_for`, the city the check was run for, when the check has no city of its
+    own to record, else None (HIR-322). It has none when no stored job was found and the
+    page gave no location at all (a company's own site, LinkedIn, a recruiter page) and
+    its title and text name no tracked place either. A location that was read and names no
+    tracked place ("Paris") is not that case: the posting says where it is, and it is
+    not the city the check was run for."""
+    if result.job_id is not None:
+        return None
+    p = result.posting
+    if p is None:
+        return run_for
+    if (p.location_raw or "").strip() or place_of(None, p.title, p.description_text):
+        return None
+    return run_for
+
+
+def miss_fields(conn: sqlite3.Connection, result: CheckResult, run_for: str | None = None) -> dict:
     """The miss record for one check: company, city, careers system, reason and its detail.
     The company and city come from the stored job when the check found one, else from the
-    posting the check read. The reason comes from what the check worked out (`result.miss`),
-    never from its sentence; only a result that carries no such data is read by sentence."""
+    posting the check read. When neither gives one, the city is `run_for`, the city the check
+    was run for (`assumed_city`, HIR-322): such a link is almost always a miss, and stored with no city it was left out of its
+    city's share, which then read too high. `run_for` never reaches the posting, so it
+    changes neither the verdict nor the reason. The reason comes from what the check
+    worked out (`result.miss`), never from its sentence; only a result that carries no
+    such data is read by sentence."""
     if result.verdict != "found" and result.miss is not None:
         reason, detail = filed(result.url, result.miss)
     else:
@@ -1102,12 +1128,14 @@ def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
         p = result.posting
         company = p.company
         city = place_of(p.location_raw, p.title, p.description_text)
+    city = city or assumed_city(result, run_for)
     return {"company": company, "city": city, "careers_system": careers_system(result.url),
             "reason": reason, "reason_detail": detail or None}
 
 
-def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str) -> None:
-    m = miss_fields(conn, result)
+def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str,
+              run_for: str | None = None) -> None:
+    m = miss_fields(conn, result, run_for)
     conn.execute(
         "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis,"
         " company, city, careers_system, reason, reason_detail)"

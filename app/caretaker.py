@@ -10,6 +10,10 @@ Does:
     only when it is the same company and has postings the poll would keep;
   - turn a decision into an edit of config/feeds.json — pause, unpause, switch token —
     through the one writer that is allowed to touch only that file;
+  - write the day's fixes as the text of one ticket and read them back from it
+    (`fix_ticket_text`, `fixes_from_text`, `apply_fixes`): the morning run files the
+    ticket, and the pull request that carries it out runs `caretaker apply-fixes`, so the
+    edit is made in a reviewed pull request and never on the server (HIR-261);
   - write the weekly summary and the short "cannot wait a week" alert.
 
 Does NOT: call a model, delete or rewrite stored jobs, add a board for a company we don't
@@ -18,7 +22,8 @@ and each one is a test in tests/test_caretaker.py. It does not read the database
 network itself either: callers hand it the poll's numbers and inject `search` and
 `fetch_board`, so every decision here is testable without I/O.
 
-Rules and thresholds: DECISIONS 2026-11-12 (HIR-257).
+Rules and thresholds: DECISIONS 2026-11-12 (HIR-257); acting through a ticket:
+decisions/2026-11-19-hir-261-caretaker-acts-through-a-ticket-no-server-credential.md.
 """
 
 import json
@@ -342,9 +347,98 @@ def write_feeds(doc: dict, path: Path = FEEDS_PATH, allowed: Path = FEEDS_PATH) 
     _write_one_per_line(path, doc, "feeds")
 
 
-# --- reporting ---------------------------------------------------------------------------
+# --- the day's fixes as a ticket, and back (HIR-261) --------------------------------------
 
 FIXES = ("switch", "pause", "unpause", "rerun_collection")
+# The fixes that edit the list of job sources, so they travel as a ticket and are made in
+# a pull request. Re-running the collection is the one fix made on the server itself.
+FEED_FIXES = ("switch", "pause", "unpause")
+FIXES_KEY = "caretaker_fixes"
+APPLY_COMMAND = "uv run python -m app caretaker apply-fixes"
+NO_SPEND_LINE = "Model-call spend: none. Changes only the list of job sources (config/feeds.json)."
+_JSON_BLOCK = re.compile(r"```json\s*\n(.*?)\n```", re.S)
+
+
+def fix_ticket_title(day: str) -> str:
+    return f"Caretaker: job-source fixes for {day}"
+
+
+def fix_ticket_text(rows: list[dict], day: str) -> tuple[str, str]:
+    """(title, body) of the ticket that carries `day`'s fixes to a pull request. `rows` are
+    logged findings (dicts with day + Finding fields). The body is one plain line per fix,
+    then a collapsed block for the agent that picks the ticket up: the exact fixes as JSON
+    and the one command that makes them. `fixes_from_text` reads that block back."""
+    fixes = [{k: r[k] for k in ("subject", "finding", "action", "detail", "data", "day")} for r in rows]
+    if bad := [f["action"] for f in fixes if f["action"] not in FEED_FIXES]:
+        raise Refused(f"a fix ticket carries only {', '.join(FEED_FIXES)}, not {bad[0]!r}")
+    n = len(fixes)
+    body = [f"The morning check of the job sources on {day} found "
+            f"{n} fix{'es' if n != 1 else ''} to make to the list of job sources:", ""]
+    body += [f"- {f['detail']}" for f in fixes]
+    body += ["", NO_SPEND_LINE, "",
+             "**Done when:** a pull request that changes only the list of job sources makes "
+             "exactly these fixes.", "",
+             "+++ Agent notes", "",
+             "Save this ticket's text to a file and run, from the repository root:", "",
+             f"    {APPLY_COMMAND} <that file>", "",
+             "It edits config/feeds.json and nothing else, or refuses and writes nothing "
+             "when a fix no longer fits the file (already made, or the entry changed). "
+             "Commit that one file and open the pull request.", "",
+             "```json", json.dumps({FIXES_KEY: fixes}, indent=2, ensure_ascii=False), "```", "",
+             "+++"]
+    return fix_ticket_title(day), "\n".join(body) + "\n"
+
+
+def _fix_rows(text: str) -> list[dict]:
+    """The fixes a ticket's text carries, checked: exactly one block, and nothing in it but
+    edits of the list of job sources."""
+    blocks = []
+    for raw in _JSON_BLOCK.findall(text):
+        try:
+            doc = json.loads(raw)
+        except ValueError:
+            continue
+        if isinstance(doc, dict) and FIXES_KEY in doc:
+            blocks.append(doc[FIXES_KEY])
+    if len(blocks) != 1:
+        raise Refused(f"expected one block of caretaker fixes in the text, found {len(blocks)}")
+    rows = blocks[0]
+    if not isinstance(rows, list) or not rows:
+        raise Refused("the block of caretaker fixes is empty")
+    for r in rows:
+        if not isinstance(r, dict) or r.get("action") not in FEED_FIXES:
+            raise Refused(f"a fix ticket carries only {', '.join(FEED_FIXES)}, not "
+                          f"{r.get('action') if isinstance(r, dict) else r!r}")
+        try:
+            date.fromisoformat(r["day"])
+            Finding(r["subject"], r["finding"], r["action"], r["detail"], r.get("data") or {})
+        except (KeyError, TypeError, ValueError) as e:
+            raise Refused(f"a caretaker fix is not readable: {type(e).__name__}: {e}") from e
+    return rows
+
+
+def _as_finding(r: dict) -> Finding:
+    return Finding(r["subject"], r["finding"], r["action"], r["detail"], r.get("data") or {})
+
+
+def fixes_from_text(text: str) -> list[Finding]:
+    """The findings a fix ticket carries, rebuilt from its text."""
+    return [_as_finding(r) for r in _fix_rows(text)]
+
+
+def apply_fixes(doc: dict, text: str) -> dict:
+    """The feeds.json document with every fix in a ticket's text applied, each with the day
+    it was found. All or nothing: one fix `apply` refuses and nothing is returned."""
+    for r in _fix_rows(text):
+        try:
+            doc = apply(doc, _as_finding(r), r["day"])
+        except (KeyError, TypeError, ValueError) as e:   # a switch with no readable target
+            raise Refused(f"the fix for {r['subject']} is not readable: {type(e).__name__}: {e}") from e
+    return doc
+
+
+# --- reporting ---------------------------------------------------------------------------
+
 # What reaches Chandler before Monday (HIR-257): the collection down two days running, the
 # spend cap hit.
 URGENT = ("spend_cap",)
@@ -373,14 +467,17 @@ def weekly_summary(rows: list[dict], start: str, end: str, acting: bool) -> str:
     for r in rows:
         if r["action"] != "none" or r["subject"] not in latest:
             latest[r["subject"]] = r
-    verb = "" if acting else "would have "
+    # Acting (HIR-261): a failed collection is re-run on the spot; an edit of the list of
+    # job sources is filed as a ticket and made by the pull request that follows.
+    fixed_title, paused_title = (("What it fixed or filed to fix", "What it filed to pause") if acting else
+                                 ("What it would have fixed", "What it would have paused"))
     broke = [r for r in latest.values() if r["action"] == "report"]
     fixed = [r for r in latest.values() if r["action"] in ("switch", "unpause", "rerun_collection")]
     paused = [r for r in latest.values() if r["action"] == "pause"]
     lines = [f"# Caretaker: {start} to {end}" + ("" if acting else " (report-only: nothing was changed)"), ""]
     if not (broke or fixed or paused):
         return "\n".join(lines + ["Every source worked all week."])
-    for title, group in ((f"What it {verb}fixed", fixed), (f"What it {verb}paused", paused),
+    for title, group in ((fixed_title, fixed), (paused_title, paused),
                          ("What broke and needs you", broke)):
         if group:
             lines += [f"## {title}", ""] + [f"- {r['day']}: {r['detail']}" for r in group] + [""]

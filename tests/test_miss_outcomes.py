@@ -190,7 +190,7 @@ def test_the_cases_above_reach_every_outcome_and_every_check_carries_one(conn):
 
 
 STOP_NAMES = (ingest.SKIPPED_TITLE, ingest.SKIPPED_CITY, ingest.SKIPPED_COMPANY, ingest.SKIPPED_AGENCY,
-              ingest.SKIPPED_UNREADABLE, "a_check_added_to_the_collector_later")
+              ingest.SKIPPED_UNREADABLE, ingest.SKIPPED_BLOCKED, "a_check_added_to_the_collector_later")
 
 
 @pytest.mark.parametrize("outcome", check.OUTCOMES)

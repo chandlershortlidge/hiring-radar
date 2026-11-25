@@ -22,13 +22,26 @@ Does:
     names yet (app/boards_to_add.py, HIR-324). The dashboard recorded those boards until
     "Add a job" left the site (HIR-346); this files whatever is still waiting.
 
-Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
-report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).
-Acting is a separate change (HIR-261), switched on after a week of report-only summaries.
-It never calls a model; the only paid call is the Brave search for a moved board, capped
-per day by app/caretaker.py.
+Acts (HIR-261, `MODE = "act"`), in the two ways it has:
+  - the day's fixes to the list of job sources (pause a dead board, switch a moved one,
+    switch a recovered one back on) are filed as one Linear ticket, "Caretaker:
+    job-source fixes for <day>", holding the exact edits and the command that makes them
+    (`python -m app caretaker apply-fixes`). The agents' ordinary path turns that ticket
+    into a reviewed pull request. A fix already filed is not filed again for
+    FIX_QUIET_DAYS days;
+  - a collection that did not run, or in which every source failed, is re-run once that
+    day, on the server, through the injected `rerun()`.
 
-Rules and thresholds: DECISIONS 2026-11-12 (HIR-257).
+Does NOT: change config/feeds.json on the server, open a pull request, or talk to GitHub
+with a credential; the server has none. The edit of the file happens in the pull request.
+The log is append-only, so "filed" and "re-run" are rows of their own (`fix_ticket`,
+`rerun_done`), as the Monday summary and the urgent note already are; `done` stays 0.
+It never calls a model; the only paid call is the Brave search for a moved board, capped
+per day by app/caretaker.py. The re-run is the day's ordinary collection made late.
+`MODE = "report"` puts it back to writing down what it would do and doing nothing.
+
+Rules and thresholds: DECISIONS 2026-11-12 (HIR-257); acting:
+decisions/2026-11-19-hir-261-caretaker-acts-through-a-ticket-no-server-credential.md.
 """
 
 import json
@@ -41,11 +54,16 @@ from app import boards_to_add, fixes_only, geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
-MODE = "report"
+# "act": fixes are filed as a ticket and a failed collection is re-run (HIR-261).
+# "report": nothing is filed or re-run; the summary says what it would have done.
+MODE = "act"
+# A fix filed in a ticket is not filed again for this many days: a dead board is found
+# again every morning until the pull request that pauses it is merged and deployed.
+FIX_QUIET_DAYS = 7
 # The Hiring-radar team on Linear; LINEAR_TEAM_ID overrides it.
 LINEAR_TEAM_ID = "536d7e60-8726-44aa-9e3a-b273910d72d5"
 # Log rows that are bookkeeping, not findings; the weekly summary leaves them out.
-BOOKKEEPING = ("spend", "weekly_summary", "urgent_sent", "miss_ticket")
+BOOKKEEPING = ("spend", "weekly_summary", "urgent_sent", "miss_ticket", "fix_ticket", "rerun_done")
 
 
 def _day(d: str, n: int) -> str:
@@ -190,7 +208,10 @@ def weekly_due(conn: sqlite3.Connection, day: str) -> tuple[str, str] | None:
 
 def weekly_text(conn: sqlite3.Connection, start: str, end: str) -> str:
     rows = [r for r in log_rows(conn, start, end) if r["finding"] not in BOOKKEEPING]
-    return ct.weekly_summary(rows, start, end, acting=MODE == "act")
+    # A week logged entirely before acting was switched on is still reported as
+    # "would have": nothing in it was filed or re-run.
+    acting = MODE == "act" and (not rows or any(r["mode"] == "act" for r in rows))
+    return ct.weekly_summary(rows, start, end, acting=acting)
 
 
 def jsearch_usage_text(conn: sqlite3.Connection, end: str) -> str:
@@ -222,8 +243,10 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
 
 
 def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None,
-           feeds: list[dict] | None = None, mode: dict | None | bool = False) -> None:
-    """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
+           feeds: list[dict] | None = None, mode: dict | None | bool = False, rerun=None) -> None:
+    """Send the urgent note and, on Mondays, the weekly summary; then file the day's
+    job-source fixes as one ticket and, last, re-run a failed collection once (`rerun()`,
+    injected; None re-runs nothing) (HIR-261). `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
     journal only. Each send is logged so a second run the same day does not repeat it.
     `changes(start, end)` returns the pull-request half of the Monday summary as Markdown
@@ -261,9 +284,62 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
         log(body + (f"\nposted as {posted}" if posted else "\n(not posted: no Linear key)"))
         write_log(conn, [Finding("caretaker", "weekly_summary", "none", "Weekly summary made.",
                                  {"posted": posted, "week_start": start})], day)
+    fix_ticket(conn, day, post, log)
     miss_tickets(conn, day, post, log)
     boards_to_add.file_ticket(conn, boards_to_add.load_config()[0], post,
                               datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), log)
+    rerun_once(conn, day, rerun, log)   # last: a collection takes minutes, the posts do not wait for it
+
+
+def _fix_key(r: dict) -> list:
+    """What makes two logged fixes the same fix: the board, what to do, and where to."""
+    return [r["subject"], r["action"], r["data"].get("to")]
+
+
+def fix_ticket(conn: sqlite3.Connection, day: str, post=None, log=print) -> str | None:
+    """File `day`'s fixes to the list of job sources as one Linear ticket (HIR-261); the
+    pull request that makes them is opened from that ticket, never from the server. Leaves
+    out a fix a ticket of the last FIX_QUIET_DAYS days already carries, and files nothing
+    when none is left, in report mode, or when today's ticket was already filed. Returns
+    the title filed. Without a Linear key the text goes to the journal only."""
+    if MODE != "act":
+        return None
+    today = log_rows(conn, day, day)
+    if any(r["finding"] == "fix_ticket" for r in today):
+        return None
+    # Only a ticket that reached Linear counts: a morning without the key filed nothing.
+    filed = [k for r in log_rows(conn, _day(day, FIX_QUIET_DAYS - 1), day)
+             if r["finding"] == "fix_ticket" and r["data"].get("posted")
+             for k in r["data"].get("fixes", [])]
+    fixes: dict[str, dict] = {}
+    for r in today:   # one fix per board: the latest, if the check ran twice today
+        if r["action"] in ct.FEED_FIXES and _fix_key(r) not in filed:
+            fixes[r["subject"]] = r
+    if not fixes:
+        return None
+    title, body = ct.fix_ticket_text(list(fixes.values()), day)
+    posted = post(title, body) if post else None
+    log(f"{title}\n{body}" + (f"posted as {posted}" if posted else "(not posted: no Linear key)"))
+    write_log(conn, [Finding("caretaker", "fix_ticket", "none", title,
+                             {"posted": posted, "fixes": [_fix_key(r) for r in fixes.values()]})], day)
+    return title
+
+
+def rerun_once(conn: sqlite3.Connection, day: str, rerun=None, log=print) -> bool:
+    """Re-run the collection when `day`'s did not run or failed everywhere, once per day
+    (HIR-261). `rerun()` starts it and is injected: the command line hands in the same
+    `poll --region europe` the 07:00 service runs; None (a test, a dry look, report mode)
+    re-runs nothing. Logged before it starts, so a re-run that dies is not tried again
+    the same day. True when it was started."""
+    if MODE != "act" or rerun is None:
+        return False
+    rows = log_rows(conn, day, day)
+    if not any(r["action"] == "rerun_collection" for r in rows) or any(r["finding"] == "rerun_done" for r in rows):
+        return False
+    write_log(conn, [Finding("caretaker", "rerun_done", "none", f"Re-ran the {day} collection once.")], day)
+    log(f"Re-running the {day} collection once.")
+    rerun()
+    return True
 
 
 def miss_tickets(conn: sqlite3.Connection, day: str, post=None, log=print) -> list[str]:

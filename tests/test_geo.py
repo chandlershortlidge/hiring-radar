@@ -298,3 +298,63 @@ def test_places_named_like_hir_302_cities_that_are_not_them(location):
 def test_san_jose_vs_san_francisco(location, places):
     assert geo.places_of(location) == places
     assert geo.city_of(location) == places[0]
+
+
+# --- HIR-455: a title that ties a remote job to a non-EU country outranks the location ---
+
+# Job 1826, as the German search of the web-wide job search most likely returned it:
+# JobLeads' German site files the posting under a German town and flags it remote, and
+# the adapter writes that as "Geldern; Remote (Germany)".
+FULLSTACK_TITLE = "Senior Forward Deployed AI Engineer - LLMs & RAG - Remote - USA"
+
+
+def test_job_1826_is_not_remote_eu_and_is_not_collected():
+    from app import ingest
+    from app.sources import jsearch
+    item = {"job_id": "abc", "job_title": FULLSTACK_TITLE, "employer_name": "FullStack",
+            "job_description": "Build LLM and RAG systems with our US clients.",
+            "job_city": "Geldern", "job_location": "Geldern, Germany", "job_country": "DE",
+            "job_is_remote": True}
+    posting = jsearch.parse({"data": [item]}, country="de")[0]
+    assert posting.location_raw == "Geldern; Remote (Germany)"
+    # The location alone still reads as remote from Germany: that is where the tag came from.
+    assert place_of(posting.location_raw) == REMOTE_EU
+    assert geo.places_of(posting.location_raw, posting.title, posting.description_text) == []
+    assert ingest.screen(posting) == ingest.SKIPPED_CITY
+    # A real Remote (EU) posting from the same search keeps its tag and is collected.
+    real = jsearch.parse({"data": [{**item, "job_title": "Senior AI Engineer (m/f/d) - Remote",
+                                    "employer_name": "Acme"}]}, country="de")[0]
+    assert geo.places_of(real.location_raw, real.title, real.description_text) == [REMOTE_EU]
+    assert ingest.screen(real) is None
+
+
+@pytest.mark.parametrize("title", [
+    FULLSTACK_TITLE,
+    "AI Engineer (US only)",
+    "AI Engineer - USA only",
+    "ML Engineer - Remote, Canada",
+    "Machine Learning Engineer (UK only)",
+    "Remote AI Engineer - U.S.",
+    "AI Engineer, Remote (United States)",
+    "LLM Engineer - Remote - India",
+])
+def test_a_title_restricted_to_a_non_eu_country_is_never_remote_eu(title):
+    for location in ("Geldern; Remote (Germany)", "Remote (Germany)", "Remote", "Remote - Europe", None):
+        assert not is_remote_eu(location, title, "jd") and place_of(location, title, "jd") is None
+
+
+@pytest.mark.parametrize("title", [
+    "AI Engineer",
+    "Senior AI Engineer (m/f/d) - Remote",
+    "AI Engineer - Remote (US or Europe)",        # names an EU-wide region too
+    "AI Engineer (Remote, Germany) - UK market",
+    "AI Engineer, US Market",                     # customers, not where you may live
+    "Join us as AI Engineer - Remote",            # "us" is not the US
+    "AI Engineer - Remote - Indiana Jones Team",  # "India" only as a whole word
+])
+def test_other_titles_leave_the_location_rule_alone(title):
+    assert place_of("Remote (Germany)", title, "jd") == REMOTE_EU
+
+
+def test_a_city_still_wins_over_a_restricted_title():
+    assert place_of("New York; Remote (US)", FULLSTACK_TITLE) == "New York"

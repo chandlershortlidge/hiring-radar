@@ -19,7 +19,8 @@ adds is assumed open for MANUAL_OPEN_DAYS after it was last seen.
 Public rule (HIR-395): every read here answers for the public, so it leaves out what is
 still incubating (app/scope.py): a job on an incubating career track, and a job posted
 only for incubating places. A job posted for a live place as well is shown, as a job in
-its live places only. `public_clause` is that rule; the reads that take
+its live places only. A job whose link goes to a site known to publish fake postings is
+left out as well (HIR-441, `ingest.BLOCKED_SITES`). `public_clause` is that rule; the reads that take
 `include_incubating` exist for the tools that work behind the site (labelling, the add
 paths, evals), and no public route or MCP tool passes it.
 
@@ -37,7 +38,7 @@ from app import scope
 from app.extract import SENIORITY_LEVELS
 from app.geo import CITIES, COLLECTING_SINCE, REMOTE_EU
 from app.html_text import clean_posting_text
-from app.ingest import SALES_TITLE_PHRASES
+from app.ingest import BLOCKED_SITES, SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
 from app.sources import registry
 
@@ -187,9 +188,13 @@ def _marks(values) -> str:
 def public_clause() -> tuple[str, list]:
     """SQL (over alias j) true for the jobs the public may see (HIR-395): not on an
     incubating track, and not posted only for incubating places. A job with no place at
-    all (some hand-added ones) is shown as before. "1=1" while nothing is incubating, so
-    the queries then run exactly as they did."""
-    parts, params = [], []
+    all (some hand-added ones) is shown as before. Nor a job any of whose links goes to a
+    site known to publish fake postings (HIR-441): ingest no longer stores those, and this
+    keeps the ones stored before out of every public read, with nothing deleted. Built
+    from ingest's own tuple, so the two cannot drift."""
+    parts = ["NOT EXISTS (SELECT 1 FROM job_source bs WHERE bs.job_id = j.id AND ("
+             + " OR ".join("instr(lower(bs.url), ?) > 0" for _ in BLOCKED_SITES) + "))"]
+    params = list(BLOCKED_SITES)
     tracks, places = list(scope.incubating_tracks()), list(scope.incubating_places())
     if tracks:
         parts.append(f"(j.family IS NULL OR j.family NOT IN ({_marks(tracks)}))")
@@ -200,7 +205,7 @@ def public_clause() -> tuple[str, list]:
                      f" OR EXISTS (SELECT 1 FROM job_place lpl WHERE lpl.job_id = j.id"
                      f" AND lpl.place NOT IN ({_marks(places)})))")
         params += places + places
-    return (" AND ".join(parts) or "1=1"), params
+    return " AND ".join(parts), params
 
 
 def _public_place(column: str) -> tuple[str, list]:
