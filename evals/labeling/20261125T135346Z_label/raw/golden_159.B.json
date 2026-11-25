@@ -1,0 +1,111 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise LLM-Produkte mit echten Nutzern\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Multi-Agent-Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Multi-Agent-Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-Evaluation\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Software deployment to production\",\n      \"raw_text\": \"Software in Produktion zu bringen\"\n    },\n    {\n      \"label\": \"Authentication concepts\",\n      \"raw_text\": \"Authentifizierungskonzepten\"\n    },\n    {\n      \"label\": \"Pipeline debugging\",\n      \"raw_text\": \"eine Pipeline zu debuggen\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrere Jahre Erfahrung\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutsch ist ein Plus\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein Studium in Informatik, Elektrotechnik, Wirtschaftsingenieurwesen oder Vergleichbarem, oder eine vergleichbare praktische Qualifikation\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"The candidate requirements are under “Was du mitbringst”; no technical requirements section is marked optional. Technologies appearing only under “Was du machst” are excluded.\\n“Multi-Agent-Orchestrierung” explicitly names both multi-agent systems and orchestration, so both taxonomy skills are included.\\n“TypeScript/React” joins a language and a framework, not two skills of the same kind, so it is not an alternative group. “LangGraph oder vergleichbare Frameworks” provides only one named alternative.\\nProduction software deployment, authentication concepts and debugging are read literally and left unmapped; they are not equated with AI deployment, access control or software testing.\\n“Mehrere Jahre Erfahrung” suggests mid-level experience but gives no numeric range; seniority is flagged for review.\\nThe unlevelled Studium is labeled bachelor, and the practical-qualification alternative makes degree_or_equivalent true.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise LLM-Produkte mit echten Nutzern"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "Multi-Agent-Orchestrierung"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Multi-Agent-Orchestrierung"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM-Evaluation"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Software deployment to production",
+        "raw_text": "Software in Produktion zu bringen"
+      },
+      {
+        "label": "Authentication concepts",
+        "raw_text": "Authentifizierungskonzepten"
+      },
+      {
+        "label": "Pipeline debugging",
+        "raw_text": "eine Pipeline zu debuggen"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrere Jahre Erfahrung",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Deutsch ist ein Plus",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein Studium in Informatik, Elektrotechnik, Wirtschaftsingenieurwesen oder Vergleichbarem, oder eine vergleichbare praktische Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The candidate requirements are under “Was du mitbringst”; no technical requirements section is marked optional. Technologies appearing only under “Was du machst” are excluded.\n“Multi-Agent-Orchestrierung” explicitly names both multi-agent systems and orchestration, so both taxonomy skills are included.\n“TypeScript/React” joins a language and a framework, not two skills of the same kind, so it is not an alternative group. “LangGraph oder vergleichbare Frameworks” provides only one named alternative.\nProduction software deployment, authentication concepts and debugging are read literally and left unmapped; they are not equated with AI deployment, access control or software testing.\n“Mehrere Jahre Erfahrung” suggests mid-level experience but gives no numeric range; seniority is flagged for review.\nThe unlevelled Studium is labeled bachelor, and the practical-qualification alternative makes degree_or_equivalent true."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "cba0046709a0e2beefeabb0588436426d25748db5ca01d67f4c8a05148d86295",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

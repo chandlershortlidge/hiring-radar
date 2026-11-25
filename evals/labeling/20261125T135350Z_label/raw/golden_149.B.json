@@ -1,0 +1,93 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Sehr gute Python-Kenntnisse\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deep Learning\"\n    },\n    {\n      \"skill_id\": \"speech-recognition\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Speech-to-Text\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Models\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deployment-Prozessen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise in Cloud-Umgebungen\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise in Cloud-Umgebungen (z. B. AWS)\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Speech AI\",\n      \"raw_text\": \"Speech AI\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior-Level-Rolle\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Anforderungsprofil sets required qualifications; idealerweise makes only the cloud environment and its AWS example optional.\\nDeployment-Prozessen is interpreted as AI deployment in the context of the AI-engineering qualifications.\\nSpeech AI is broader than speech recognition and has no exact taxonomy entry, so it remains unmapped.\\nAI Engineer and ML Engineer are role titles in the experience requirement, not separate technical-skill asks.\\nRAG and model training appear only under responsibilities and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Sehr gute Python-Kenntnisse"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "Deep Learning"
+      },
+      {
+        "skill_id": "speech-recognition",
+        "requirement": "required",
+        "raw_text": "Speech-to-Text"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment-Prozessen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen (z. B. AWS)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Speech AI",
+        "raw_text": "Speech AI"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior-Level-Rolle",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Anforderungsprofil sets required qualifications; idealerweise makes only the cloud environment and its AWS example optional.\nDeployment-Prozessen is interpreted as AI deployment in the context of the AI-engineering qualifications.\nSpeech AI is broader than speech recognition and has no exact taxonomy entry, so it remains unmapped.\nAI Engineer and ML Engineer are role titles in the experience requirement, not separate technical-skill asks.\nRAG and model training appear only under responsibilities and are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "02e2fd842c7e8ab755403f181e34344f8e0a49341124102b4d70bc65b23e05d6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

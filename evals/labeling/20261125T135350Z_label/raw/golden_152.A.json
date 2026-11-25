@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Have 8+ years of technical consulting (or equivalent) experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The only candidate-facing section is 'You'll thrive in this role if you:'. It names no language, framework, tool, platform or technique, only years of experience and soft skills, so no skills are labeled.\\nAWS, OpenAI and GenAI appear only in the title, the team/company description and the responsibilities ('leveraging OpenAI and AWS services', 'GenAI systems'). None of them is asked of the candidate, so none is labeled. Read literally, the title names the partner focus, not a candidate requirement.\\nI chose basis 'inferred' from '8+ years' over 'stated'. 'senior technical counterpart' and 'technical leader' appear in the responsibilities and role description, but 'senior technical counterpart' describes the role's relationship to AWS rather than a level title. Both readings give senior.\\nGerman is null: the posting never mentions German, Deutsch or any language requirement.\\nDegree is null: the posting mentions no degree, studies or university. '(or equivalent)' refers to consulting experience, not a degree.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Have 8+ years of technical consulting (or equivalent) experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The only candidate-facing section is 'You'll thrive in this role if you:'. It names no language, framework, tool, platform or technique, only years of experience and soft skills, so no skills are labeled.\nAWS, OpenAI and GenAI appear only in the title, the team/company description and the responsibilities ('leveraging OpenAI and AWS services', 'GenAI systems'). None of them is asked of the candidate, so none is labeled. Read literally, the title names the partner focus, not a candidate requirement.\nI chose basis 'inferred' from '8+ years' over 'stated'. 'senior technical counterpart' and 'technical leader' appear in the responsibilities and role description, but 'senior technical counterpart' describes the role's relationship to AWS rather than a level title. Both readings give senior.\nGerman is null: the posting never mentions German, Deutsch or any language requirement.\nDegree is null: the posting mentions no degree, studies or university. '(or equivalent)' refers to consulting experience, not a degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d607d5211ae2cb3f80bd16e1f87a5e454e4931e681523c729816079ac4e3861b",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

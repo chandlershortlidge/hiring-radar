@@ -8,6 +8,7 @@ which is all a real switch is.
 """
 
 import asyncio
+import dataclasses
 
 import pytest
 from fastapi.testclient import TestClient
@@ -390,7 +391,7 @@ def test_labelling_and_eval_tools_can_still_read_incubating_jobs(conn, monkeypat
 def test_with_nothing_incubating_the_public_rule_adds_nothing_to_a_query(monkeypatch):
     """Every place and track live: each query runs exactly as it did before this rule existed."""
     monkeypatch.setattr(scope, "PLACE_STATE", {p: scope.LIVE for p in scope.PLACE_STATE})
-    monkeypatch.setattr(scope, "TRACKS", {t: scope.Track(scope.LIVE, v.title_pattern) for t, v in scope.TRACKS.items()})
+    monkeypatch.setattr(scope, "TRACKS", {t: dataclasses.replace(v, state=scope.LIVE) for t, v in scope.TRACKS.items()})
     # What is left is the one rule that has nothing to do with incubating: no job whose
     # link goes to a site known for fake postings (HIR-441).
     rule, params = q.public_clause()

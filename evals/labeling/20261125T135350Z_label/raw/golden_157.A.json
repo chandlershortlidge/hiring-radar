@@ -1,0 +1,129 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professional software engineering experience\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-based systems\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic system\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool use\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation frameworks\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML systems\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval and context pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"context-engineering\", \"requirement\": \"required\", \"raw_text\": \"engineering retrieval and context pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"security guardrails\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with Observability\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud-native infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"opentelemetry\", \"requirement\": \"nice_to_have\", \"raw_text\": \"OpenTelemetry\", \"alternative_group\": 1},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\", \"alternative_group\": 1}\n  ],\n  \"unmapped\": [\n    {\"label\": \"time-series databases\", \"raw_text\": \"time-series databases\"},\n    {\"label\": \"multi-tenancy\", \"raw_text\": \"multi-tenancy\"},\n    {\"label\": \"latency optimization\", \"raw_text\": \"latency optimization\"},\n    {\"label\": \"SRE\", \"raw_text\": \"SRE\"},\n    {\"label\": \"incident management\", \"raw_text\": \"incident management\"},\n    {\"label\": \"alerting\", \"raw_text\": \"alerting workflows\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Section headings: 'Minimum Qualifications' sets required; 'Preferred Qualifications' sets nice_to_have.\\nSkill descriptions in other words: 'agentic system' is read as agents; 'retrieval and context pipelines' is read as rag and context-engineering. All three are flagged uncertain and may need aliases added.\\nagents: the preferred mention 'agent frameworks' is the exact alias, but the required mention wins, so agents is required.\\nai-ml: labeled from 'AI/ML systems'. It may be domain context for the evaluation frameworks rather than a separate ask, so it is flagged uncertain.\\nsoftware-engineering: taken from '12+ years of professional software engineering experience'. The years are ignored and the practice is labeled; flagged uncertain.\\nobservability: the preferred qualification collapses 'Observability' and 'distributed tracing' into one nice_to_have criterion.\\nAlternative group: OpenTelemetry and MCP are given as e.g. examples for a single ask, so they form group 1.\\n'Observability, SRE, or incident management' has only one taxonomy member, so no group is formed.\\ncloud: labeled from 'cloud-native infrastructure', read as the 'cloud infrastructure' alias; flagged uncertain.\\nSoft skills (communication, mentoring) and the customer-zero programs are not labeled.\\nSeniority: 'Principal' in the title gives senior. The 12+ years would infer the same level.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic system",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval and context pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "engineering retrieval and context pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "security guardrails"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with Observability"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud-native infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenTelemetry",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "time-series databases",
+        "raw_text": "time-series databases"
+      },
+      {
+        "label": "multi-tenancy",
+        "raw_text": "multi-tenancy"
+      },
+      {
+        "label": "latency optimization",
+        "raw_text": "latency optimization"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "incident management",
+        "raw_text": "incident management"
+      },
+      {
+        "label": "alerting",
+        "raw_text": "alerting workflows"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Section headings: 'Minimum Qualifications' sets required; 'Preferred Qualifications' sets nice_to_have.\nSkill descriptions in other words: 'agentic system' is read as agents; 'retrieval and context pipelines' is read as rag and context-engineering. All three are flagged uncertain and may need aliases added.\nagents: the preferred mention 'agent frameworks' is the exact alias, but the required mention wins, so agents is required.\nai-ml: labeled from 'AI/ML systems'. It may be domain context for the evaluation frameworks rather than a separate ask, so it is flagged uncertain.\nsoftware-engineering: taken from '12+ years of professional software engineering experience'. The years are ignored and the practice is labeled; flagged uncertain.\nobservability: the preferred qualification collapses 'Observability' and 'distributed tracing' into one nice_to_have criterion.\nAlternative group: OpenTelemetry and MCP are given as e.g. examples for a single ask, so they form group 1.\n'Observability, SRE, or incident management' has only one taxonomy member, so no group is formed.\ncloud: labeled from 'cloud-native infrastructure', read as the 'cloud infrastructure' alias; flagged uncertain.\nSoft skills (communication, mentoring) and the customer-zero programs are not labeled.\nSeniority: 'Principal' in the title gives senior. The 12+ years would infer the same level."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "a43fd05fac12a9b939c3f7542f6f3e356343976e7ea8b38fbe64f2b9f5b3e989",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

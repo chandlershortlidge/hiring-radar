@@ -93,8 +93,9 @@ describe("compare mode filters the job list to the compared cities (HIR-196)", (
 });
 
 describe("the job family filter (HIR-186)", () => {
-  it("offers the five families the server accepts, in button order", () => {
-    expect(FAMILIES).toEqual(["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"]);
+  it("offers the six families the server accepts, in button order", () => {
+    expect(FAMILIES).toEqual(["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research",
+      "forward-deployed-engineer"]);
   });
 
   it("has a readable label for every family", () => {

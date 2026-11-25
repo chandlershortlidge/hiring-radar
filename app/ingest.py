@@ -217,7 +217,7 @@ def blocked_site(url: str | None, text: str | None = None) -> str | None:
 SCREENED_SOURCES = registry.of_kind("feed", "search")
 
 
-# Which of five job families a posting belongs to, from the title alone (HIR-186). Every
+# Which job family a posting belongs to, from the title alone (HIR-186). Every
 # stored job already passed in_scope_title, so the title is enough to bucket the pool at no
 # model cost; a model-assigned family can replace this later without the column changing.
 # First match wins, in list order: `ml-platform` before `ml-engineer` so "ML Platform
@@ -237,6 +237,10 @@ SCREENED_SOURCES = registry.of_kind("feed", "search")
 # app/scope.py's (HIR-395). A track added there carries a title pattern of its own, and
 # takes only titles the built-in AI/ML rule does not pass: the five tracks below keep
 # exactly the titles they had, so an added track cannot widen or narrow what they show.
+# Except a track marked `outranks_built_in`, whose pattern is tried first (HIR-408:
+# Forward Deployed Engineer, decided by the FDE words before any of the rows below, so
+# "Forward Deployed Machine Learning Engineer" is FDE). Its stored jobs are re-labelled
+# by app/migrations/028_forward_deployed_engineer.sql, which holds the whole rule in SQL.
 FAMILIES = scope.tracks()
 
 # Punctuation becomes a space before the whole-word `mle` test, so "(MLE)" and "MLE, Berlin"
@@ -254,10 +258,9 @@ _FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
 
 
 def family_of(title: str) -> str:
-    if not _ai_ml_title(title or ""):
-        added = added_track(title)
-        if added:
-            return added
+    added = added_track(title)
+    if added and (scope.TRACKS[added].outranks_built_in or not _ai_ml_title(title or "")):
+        return added
     low = (title or "").lower()
     padded = low
     for ch in _FAMILY_PUNCT:
