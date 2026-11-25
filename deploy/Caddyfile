@@ -1,4 +1,4 @@
-34-159-223-190.sslip.io {
+hiringradar.app {
 	# The MCP server (HIR-338) is open: no password, rate limited inside the app.
 	@mcp path /mcp
 	handle @mcp {
@@ -10,5 +10,22 @@
 			chandler REPLACE_WITH_BCRYPT_HASH
 		}
 		reverse_proxy 127.0.0.1:8000
+	}
+}
+
+www.hiringradar.app {
+	redir https://hiringradar.app{uri} 301
+}
+
+# The old address, until 31 Jan 2027 (HIR-458). /mcp is still served here, not redirected,
+# so an already-connected Claude keeps working: a redirected POST comes back as a GET,
+# which /mcp refuses.
+34-159-223-190.sslip.io {
+	@mcp path /mcp
+	handle @mcp {
+		reverse_proxy 127.0.0.1:8000
+	}
+	handle {
+		redir https://hiringradar.app{uri} 301
 	}
 }
