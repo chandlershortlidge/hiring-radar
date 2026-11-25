@@ -1,6 +1,6 @@
 """The dashboard's option lists and the server's validated lists have to match (HIR-203).
 
-The dashboard keeps its own copy of the five job families and of the German / degree /
+The dashboard keeps its own copy of the job families and of the German / degree /
 production / seniority / time-window / required-or-nice-to-have filter choices, because each key needs the wording a
 person reads next to it. The server keeps the same keys to validate requests against. The
 two are not derivable from one another and nothing at runtime compares them: add a choice

@@ -1,0 +1,128 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte Erfahrung in der Backend-Entwicklung\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"spring-boot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spring Boot\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit RESTful APIs\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microservices-Architekturen\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL-\"\n    },\n    {\n      \"skill_id\": \"nosql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NoSQL-Datenbanken\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Praktische Erfahrung mit AI-gestützter Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Copilot\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-generierten Code eigenständig zu bewerten, zu testen und qualitativ abzusichern\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Idealerweise Erfahrung mit Cloud-Technologien\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Idealerweise Erfahrung mit Cloud-Technologien wie AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Idealerweise Erfahrung mit Cloud-Technologien wie AWS oder Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Verständnis für skalierbare und performante Softwarearchitekturen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI-assisted code generation\",\n      \"raw_text\": \"Sicherer Umgang mit AI bei Codegenerierung\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"Debugging\"\n    },\n    {\n      \"label\": \"Refactoring\",\n      \"raw_text\": \"Refactoring\"\n    },\n    {\n      \"label\": \"Development workflow optimization\",\n      \"raw_text\": \"Optimierung von Entwicklungsworkflows\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Die Anforderungen stehen unter „Das bringst du mit“; nur die Cloud-Anforderung ist durch „Idealerweise“ optional.\\nVert.x und Java 17 werden nur in den Aufgaben genannt und nicht zusätzlich gelabelt.\\nAI-gestützte Softwareentwicklung wird als AI-Entwicklungstooling verstanden, nicht als zusätzliche allgemeine Software-Engineering-Anforderung.\\nCodegenerierung, Debugging, Refactoring und Entwicklungsworkflow-Optimierung sind ausdrücklich gefragte technische Praktiken ohne passende eigenständige Taxonomieeinträge; sie stehen daher unter unmapped.\\n„Fundierte Erfahrung“ allein ist kein Senioritätssignal nach dem Leitfaden. Deutsch wird ausschließlich aus der Sprache der Anzeige abgeleitet.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung in der Backend-Entwicklung"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Spring Boot"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit RESTful APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices-Architekturen"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL-"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "required",
+        "raw_text": "NoSQL-Datenbanken"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung mit AI-gestützter Softwareentwicklung"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "AI-generierten Code eigenständig zu bewerten, zu testen und qualitativ abzusichern"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise Erfahrung mit Cloud-Technologien"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise Erfahrung mit Cloud-Technologien wie AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise Erfahrung mit Cloud-Technologien wie AWS oder Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Verständnis für skalierbare und performante Softwarearchitekturen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI-assisted code generation",
+        "raw_text": "Sicherer Umgang mit AI bei Codegenerierung"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "Debugging"
+      },
+      {
+        "label": "Refactoring",
+        "raw_text": "Refactoring"
+      },
+      {
+        "label": "Development workflow optimization",
+        "raw_text": "Optimierung von Entwicklungsworkflows"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Die Anforderungen stehen unter „Das bringst du mit“; nur die Cloud-Anforderung ist durch „Idealerweise“ optional.\nVert.x und Java 17 werden nur in den Aufgaben genannt und nicht zusätzlich gelabelt.\nAI-gestützte Softwareentwicklung wird als AI-Entwicklungstooling verstanden, nicht als zusätzliche allgemeine Software-Engineering-Anforderung.\nCodegenerierung, Debugging, Refactoring und Entwicklungsworkflow-Optimierung sind ausdrücklich gefragte technische Praktiken ohne passende eigenständige Taxonomieeinträge; sie stehen daher unter unmapped.\n„Fundierte Erfahrung“ allein ist kein Senioritätssignal nach dem Leitfaden. Deutsch wird ausschließlich aus der Sprache der Anzeige abgeleitet."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "54438cc3c7b4190e2c57227f66c57a3269e5ef0de86ef1c3a43ba2a634c7f3ed",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

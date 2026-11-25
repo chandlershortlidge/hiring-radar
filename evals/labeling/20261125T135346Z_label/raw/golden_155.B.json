@@ -1,0 +1,117 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI or machine learning product implementation\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"concepts and algorithms underlying machine learning and LLMs\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"back-end\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"front-end interfaces\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"advanced RAG\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building agentic use cases\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning LLMs\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"concepts and algorithms underlying machine learning and LLMs\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM orchestration\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evals\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience with security tooling or workflows\"\n    },\n    {\n      \"skill_id\": \"agent-harnesses\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic harnesses\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"multi-agent systems\",\n      \"alternative_group\": 2\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"Contributed to open-source projects\"\n    },\n    {\n      \"label\": \"Penetration testing\",\n      \"raw_text\": \"Pentesting knowledge\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"proven experience in AI or machine learning product implementation\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The About You section supplies required skills; Ideally, you have makes its items optional.\\nSecurity tooling or workflows is read literally as a cybersecurity technical practice, rather than merely industry knowledge.\\nThe first alternative set is RAG, agents, or fine-tuning. RAG and agents are also independently requested in the optional section, so they leave that group; no singleton group is retained. The harnesses/multi-agent alternative therefore retains group number 2.\\nMachine learning is independently required, so the AI-or-machine-learning wording produces no retained alternative group.\\nSeniority follows the explicit proven-experience signal; 2+ years does not impose an upper bound of two years.\\nProduction AI experience alone is not treated as a request for MLOps, deployment, or model serving. Role titles and regulated-industry experience are not labeled as skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI or machine learning product implementation"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning and LLMs"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "back-end"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "front-end interfaces"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "advanced RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "building agentic use cases"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning LLMs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning and LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM orchestration"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "context engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evals"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with security tooling or workflows"
+      },
+      {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic harnesses",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-agent systems",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Open-source contribution",
+        "raw_text": "Contributed to open-source projects"
+      },
+      {
+        "label": "Penetration testing",
+        "raw_text": "Pentesting knowledge"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "proven experience in AI or machine learning product implementation",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The About You section supplies required skills; Ideally, you have makes its items optional.\nSecurity tooling or workflows is read literally as a cybersecurity technical practice, rather than merely industry knowledge.\nThe first alternative set is RAG, agents, or fine-tuning. RAG and agents are also independently requested in the optional section, so they leave that group; no singleton group is retained. The harnesses/multi-agent alternative therefore retains group number 2.\nMachine learning is independently required, so the AI-or-machine-learning wording produces no retained alternative group.\nSeniority follows the explicit proven-experience signal; 2+ years does not impose an upper bound of two years.\nProduction AI experience alone is not treated as a request for MLOps, deployment, or model serving. Role titles and regulated-industry experience are not labeled as skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "82c53dfa36b7c8cba600c06b330b6eadd2e00e27689ce1544225d100606a6171",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -18,7 +18,7 @@ import CityPicker from "./CityPicker.jsx";
 // is a choice, not a move. Compare is a small link under the box. The dashboard keeps its
 // own band, where the bar is a control above a chart rather than the subject of the page.
 //
-// The family side is a plain <select>: a short, flat list of five needs no search box,
+// The family side is a plain <select>: a short, flat list of six needs no search box,
 // and the browser's own control is the most accessible thing available. The city side is
 // a custom listbox because it needs search, country groups and job counts.
 export default function QueryBar({

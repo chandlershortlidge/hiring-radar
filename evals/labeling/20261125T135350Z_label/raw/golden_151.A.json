@@ -1,0 +1,108 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in der Backend-Entwicklung\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Backend-Entwicklung mit Java\"},\n    {\"skill_id\": \"spring-boot\", \"requirement\": \"required\", \"raw_text\": \"Java und Spring Boot\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit RESTful APIs\"},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"Microservices-Architekturen\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in SQL\"},\n    {\"skill_id\": \"nosql\", \"requirement\": \"required\", \"raw_text\": \"NoSQL-Datenbanken\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Praktische Erfahrung mit AI-gestützter Softwareentwicklung\", \"uncertain\": true},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\", \"alternative_group\": 1},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\", \"alternative_group\": 1},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Idealerweise Erfahrung mit Cloud-Technologien\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Cloud-Technologien wie AWS\", \"alternative_group\": 2},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS oder Azure\", \"alternative_group\": 2},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"skalierbare und performante Softwarearchitekturen\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"uncertain\": [],\n  \"notes\": \"Requirements section 'Das bringst du mit' has no optional heading, so items default to required.\\nThe German 'Idealerweise' is read as the inline marker 'ideally'. It makes cloud, AWS and Azure nice_to_have.\\nGitHub Copilot, Cursor and Claude Code are examples for the single ask 'AI-gestützter Softwareentwicklung, beispielsweise mit...'. They share group 1. 'oder vergleichbaren Tools' adds nothing.\\nAWS and Azure are examples under 'Cloud-Technologien wie...' and share group 2. 'cloud' is named itself, is labeled separately and stays out of the group.\\n'AI-gestützter Softwareentwicklung' is mapped to ai-developer-tooling as a described-in-other-words phrase. This is close to the alias 'ai-assisted development tools', but the alias would need to be added. Flagged uncertain.\\n'AI-generierten Code ... zu testen' is not labeled as testing. It asks for evaluating AI output, which is only loosely testing. Unit/integration tests appear only in responsibilities.\\nVert.x, Java 17 and Twitch appear only in responsibilities or the company description, so they are not labeled.\\nSeniority is null. 'Fundierte Erfahrung' is an experience-depth word, not a level signal, and the posting gives no years or level title.\\nGerman is inferred as required: the posting is written in German and says nothing about language.\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Backend-Entwicklung"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung mit Java"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java und Spring Boot"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit RESTful APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices-Architekturen"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in SQL"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "required",
+        "raw_text": "NoSQL-Datenbanken"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung mit AI-gestützter Softwareentwicklung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise Erfahrung mit Cloud-Technologien"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud-Technologien wie AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS oder Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "skalierbare und performante Softwarearchitekturen"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "uncertain": [],
+    "notes": "Requirements section 'Das bringst du mit' has no optional heading, so items default to required.\nThe German 'Idealerweise' is read as the inline marker 'ideally'. It makes cloud, AWS and Azure nice_to_have.\nGitHub Copilot, Cursor and Claude Code are examples for the single ask 'AI-gestützter Softwareentwicklung, beispielsweise mit...'. They share group 1. 'oder vergleichbaren Tools' adds nothing.\nAWS and Azure are examples under 'Cloud-Technologien wie...' and share group 2. 'cloud' is named itself, is labeled separately and stays out of the group.\n'AI-gestützter Softwareentwicklung' is mapped to ai-developer-tooling as a described-in-other-words phrase. This is close to the alias 'ai-assisted development tools', but the alias would need to be added. Flagged uncertain.\n'AI-generierten Code ... zu testen' is not labeled as testing. It asks for evaluating AI output, which is only loosely testing. Unit/integration tests appear only in responsibilities.\nVert.x, Java 17 and Twitch appear only in responsibilities or the company description, so they are not labeled.\nSeniority is null. 'Fundierte Erfahrung' is an experience-depth word, not a level signal, and the posting gives no years or level title.\nGerman is inferred as required: the posting is written in German and says nothing about language.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "54438cc3c7b4190e2c57227f66c57a3269e5ef0de86ef1c3a43ba2a634c7f3ed",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

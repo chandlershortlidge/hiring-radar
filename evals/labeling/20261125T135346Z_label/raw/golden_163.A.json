@@ -1,0 +1,247 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Three or more years in software engineering\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure, DevOps\", \"alternative_group\": 1},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps, ML infrastructure\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"building with LLMs or agents\", \"alternative_group\": 2},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"LLMs or agents\", \"alternative_group\": 2},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"transformers\", \"alternative_group\": 3},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool calling\", \"alternative_group\": 3},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"how to evaluate their outputs\", \"uncertain\": true},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"identity and access management\", \"uncertain\": true},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"network isolation, security\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"security, monitoring\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux skills\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"experience with containers\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"containers and Kubernetes\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"configuration, networking, storage\"},\n    {\"skill_id\": \"ray\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Ray\", \"alternative_group\": 4},\n    {\"skill_id\": \"slurm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Slurm\", \"alternative_group\": 4},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Spark\", \"alternative_group\": 4},\n    {\"skill_id\": \"cuda\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CUDA\"},\n    {\"skill_id\": \"nccl\", \"requirement\": \"nice_to_have\", \"raw_text\": \"NCCL\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Model serving with vLLM\"},\n    {\"skill_id\": \"vllm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"with vLLM, SGLang\", \"alternative_group\": 5},\n    {\"skill_id\": \"sglang\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SGLang, TensorRT-LLM\", \"alternative_group\": 5},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorRT-LLM\", \"alternative_group\": 5},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ML infrastructure\", \"raw_text\": \"ML infrastructure\"},\n    {\"label\": \"KV caching\", \"raw_text\": \"KV caching\"},\n    {\"label\": \"Distributed compute\", \"raw_text\": \"Distributed compute\"},\n    {\"label\": \"multi-GPU jobs\", \"raw_text\": \"multi-GPU jobs\"},\n    {\"label\": \"TGI\", \"raw_text\": \"TGI\"},\n    {\"label\": \"Robotics\", \"raw_text\": \"Robotics\"},\n    {\"label\": \"Simulation\", \"raw_text\": \"Robotics, simulation\"},\n    {\"label\": \"Synthetic data\", \"raw_text\": \"synthetic data, reinforcement learning\"},\n    {\"label\": \"World models\", \"raw_text\": \"world models\"},\n    {\"label\": \"Isaac Sim\", \"raw_text\": \"Isaac Sim\"},\n    {\"label\": \"Isaac Lab\", \"raw_text\": \"Isaac Lab\"},\n    {\"label\": \"Omniverse\", \"raw_text\": \"Omniverse\"},\n    {\"label\": \"Cosmos\", \"raw_text\": \"Cosmos\"},\n    {\"label\": \"Infrastructure automation\", \"raw_text\": \"Infrastructure automation\"},\n    {\"label\": \"Identity federation\", \"raw_text\": \"identity federation\"},\n    {\"label\": \"Solutions architecture\", \"raw_text\": \"solutions architecture\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Three or more years\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'What we are looking for' is a requirements section, so its items are required. 'Helpful experience' is read as an optional heading, so its items are nice_to_have.\\nvLLM and SGLang also appear under responsibilities. Only their Helpful experience mention is labeled.\\nGroup 1: 'software engineering, cloud infrastructure, DevOps, ML infrastructure, or similar' is an either/or list. ML infrastructure is unmapped because it is not an alias of ai-infrastructure.\\nGroup 3: transformers and tool-calling are e.g. examples for one ask. The third example, KV caching, is unmapped.\\nThe 'Robotics, simulation, ... reinforcement learning ...' line has only one mapped member, so it gets no group.\\nevaluation: 'how to evaluate their outputs' would need to be added as an alias. Flagged uncertain.\\naccess-control: the full form 'identity and access management' would need to be added as an alias. Flagged uncertain.\\ncybersecurity: the bare word 'security' is only loosely tied to the cybersecurity entry. Flagged uncertain.\\n'network isolation' is not labeled separately. networking is already required from the Kubernetes bullet ('configuration, networking, storage').\\nmonitoring appears as required and again under Helpful experience. The two mentions collapse to one required criterion.\\nidentity federation and private connectivity are not labeled as access-control or networking. Both skills are already required.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Three or more years in software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure, DevOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps, ML infrastructure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "building with LLMs or agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLMs or agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformers",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool calling",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "how to evaluate their outputs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "identity and access management",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "network isolation, security",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "security, monitoring"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux skills"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "experience with containers"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "containers and Kubernetes"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "configuration, networking, storage"
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Ray",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "slurm",
+        "requirement": "nice_to_have",
+        "raw_text": "Slurm",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "nccl",
+        "requirement": "nice_to_have",
+        "raw_text": "NCCL"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "Model serving with vLLM"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "with vLLM, SGLang",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "nice_to_have",
+        "raw_text": "SGLang, TensorRT-LLM",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT-LLM",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML infrastructure",
+        "raw_text": "ML infrastructure"
+      },
+      {
+        "label": "KV caching",
+        "raw_text": "KV caching"
+      },
+      {
+        "label": "Distributed compute",
+        "raw_text": "Distributed compute"
+      },
+      {
+        "label": "multi-GPU jobs",
+        "raw_text": "multi-GPU jobs"
+      },
+      {
+        "label": "TGI",
+        "raw_text": "TGI"
+      },
+      {
+        "label": "Robotics",
+        "raw_text": "Robotics"
+      },
+      {
+        "label": "Simulation",
+        "raw_text": "Robotics, simulation"
+      },
+      {
+        "label": "Synthetic data",
+        "raw_text": "synthetic data, reinforcement learning"
+      },
+      {
+        "label": "World models",
+        "raw_text": "world models"
+      },
+      {
+        "label": "Isaac Sim",
+        "raw_text": "Isaac Sim"
+      },
+      {
+        "label": "Isaac Lab",
+        "raw_text": "Isaac Lab"
+      },
+      {
+        "label": "Omniverse",
+        "raw_text": "Omniverse"
+      },
+      {
+        "label": "Cosmos",
+        "raw_text": "Cosmos"
+      },
+      {
+        "label": "Infrastructure automation",
+        "raw_text": "Infrastructure automation"
+      },
+      {
+        "label": "Identity federation",
+        "raw_text": "identity federation"
+      },
+      {
+        "label": "Solutions architecture",
+        "raw_text": "solutions architecture"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Three or more years",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'What we are looking for' is a requirements section, so its items are required. 'Helpful experience' is read as an optional heading, so its items are nice_to_have.\nvLLM and SGLang also appear under responsibilities. Only their Helpful experience mention is labeled.\nGroup 1: 'software engineering, cloud infrastructure, DevOps, ML infrastructure, or similar' is an either/or list. ML infrastructure is unmapped because it is not an alias of ai-infrastructure.\nGroup 3: transformers and tool-calling are e.g. examples for one ask. The third example, KV caching, is unmapped.\nThe 'Robotics, simulation, ... reinforcement learning ...' line has only one mapped member, so it gets no group.\nevaluation: 'how to evaluate their outputs' would need to be added as an alias. Flagged uncertain.\naccess-control: the full form 'identity and access management' would need to be added as an alias. Flagged uncertain.\ncybersecurity: the bare word 'security' is only loosely tied to the cybersecurity entry. Flagged uncertain.\n'network isolation' is not labeled separately. networking is already required from the Kubernetes bullet ('configuration, networking, storage').\nmonitoring appears as required and again under Helpful experience. The two mentions collapse to one required criterion.\nidentity federation and private connectivity are not labeled as access-control or networking. Both skills are already required."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "00df90aea27773733485ed9fccb28678b74c9f5fe6d84e969ef279decddbd980",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

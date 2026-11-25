@@ -1,0 +1,184 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud Infrastructure\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMOps\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend Engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning Engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Model-Serving\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Quantisierung\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"helm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Helm\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability gehören für dich zum Arbeitsalltag\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformer-basierte Modelle\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Embeddings\"\n    },\n    {\n      \"skill_id\": \"access-control\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Identitäten, Berechtigungen\"\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Secrets\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"sglang\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SGLang\",\n      \"alternative_group\": 2\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Platform Engineering\",\n      \"raw_text\": \"Platform Engineering\"\n    },\n    {\n      \"label\": \"Inference Engineering\",\n      \"raw_text\": \"Inference Engineering\"\n    },\n    {\n      \"label\": \"Batching\",\n      \"raw_text\": \"Batching\"\n    },\n    {\n      \"label\": \"KV-cache management\",\n      \"raw_text\": \"KV-Cache-Management\"\n    },\n    {\n      \"label\": \"Logging\",\n      \"raw_text\": \"Logging\"\n    },\n    {\n      \"label\": \"Security auditing\",\n      \"raw_text\": \"Auditierung\"\n    },\n    {\n      \"label\": \"Compliance\",\n      \"raw_text\": \"Compliance\"\n    },\n    {\n      \"label\": \"GPU clusters\",\n      \"raw_text\": \"GPU-Clustern\"\n    },\n    {\n      \"label\": \"Sovereign cloud\",\n      \"raw_text\": \"souveränen Cloud- oder Private-Cloud-Umgebungen\"\n    },\n    {\n      \"label\": \"Private cloud\",\n      \"raw_text\": \"Private-Cloud-Umgebungen\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Du sprichst fließend Deutsch und Englisch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The opening and “Was erwartet dich” describe responsibilities, not a company tech-stack section; technologies mentioned only there are excluded.\\n“Pluspunkt” makes its experience list optional; “On the road” and “Let's talk” are subsequent headings and reset that default.\\nThe background disciplines are alternatives. Cloud leaves that group because cloud experience is also independently requested under “Pluspunkt”; its required background mention wins for requirement status.\\nPlatform Engineering is an additional member of the background alternatives but has no taxonomy entry.\\nSovereign-cloud and private-cloud experience are optional specializations without exact taxonomy entries; the broad cloud skill is already recorded.\\nLogging, auditing and compliance are treated literally as requested technical practices and retained as unmapped rather than silently broadened to cybersecurity.\\nGPU utilization, latency, throughput and costs are performance concepts rather than separately named tools or techniques, so they are not labeled as additional skills.\\nNo qualifying seniority signal or degree requirement is present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Infrastructure"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "Machine Learning Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "Model-Serving"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "Quantisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability gehören für dich zum Arbeitsalltag"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformer-basierte Modelle"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "Identitäten, Berechtigungen"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "Secrets"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "nice_to_have",
+        "raw_text": "SGLang",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "label": "Inference Engineering",
+        "raw_text": "Inference Engineering"
+      },
+      {
+        "label": "Batching",
+        "raw_text": "Batching"
+      },
+      {
+        "label": "KV-cache management",
+        "raw_text": "KV-Cache-Management"
+      },
+      {
+        "label": "Logging",
+        "raw_text": "Logging"
+      },
+      {
+        "label": "Security auditing",
+        "raw_text": "Auditierung"
+      },
+      {
+        "label": "Compliance",
+        "raw_text": "Compliance"
+      },
+      {
+        "label": "GPU clusters",
+        "raw_text": "GPU-Clustern"
+      },
+      {
+        "label": "Sovereign cloud",
+        "raw_text": "souveränen Cloud- oder Private-Cloud-Umgebungen"
+      },
+      {
+        "label": "Private cloud",
+        "raw_text": "Private-Cloud-Umgebungen"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Du sprichst fließend Deutsch und Englisch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The opening and “Was erwartet dich” describe responsibilities, not a company tech-stack section; technologies mentioned only there are excluded.\n“Pluspunkt” makes its experience list optional; “On the road” and “Let's talk” are subsequent headings and reset that default.\nThe background disciplines are alternatives. Cloud leaves that group because cloud experience is also independently requested under “Pluspunkt”; its required background mention wins for requirement status.\nPlatform Engineering is an additional member of the background alternatives but has no taxonomy entry.\nSovereign-cloud and private-cloud experience are optional specializations without exact taxonomy entries; the broad cloud skill is already recorded.\nLogging, auditing and compliance are treated literally as requested technical practices and retained as unmapped rather than silently broadened to cybersecurity.\nGPU utilization, latency, throughput and costs are performance concepts rather than separately named tools or techniques, so they are not labeled as additional skills.\nNo qualifying seniority signal or degree requirement is present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e13a5eb00e5cff7627044816352fa364ea8636890488c953ff1b0656f2b4bb12",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

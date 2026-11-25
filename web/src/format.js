@@ -76,16 +76,19 @@ export const SENIORITIES = ["junior", "mid", "senior"];
 // wording a person reads, so they are not generated; tests/test_frontend_lists.py fails
 // whenever a key here and one on the server stop matching (HIR-203).
 //
-// The five job families every posting is sorted into from its title (HIR-186). The order is
-// the order of the buttons; the server validates against the same five. FAMILY_LABELS is
+// The job families every posting is sorted into from its title (HIR-186; the sixth,
+// Forward Deployed Engineer, HIR-408). The order is the order of the buttons; the server
+// validates against the same list. FAMILY_LABELS is
 // what a person reads — the stored value is the hyphenated id.
-export const FAMILIES = ["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"];
+export const FAMILIES = ["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research",
+  "forward-deployed-engineer"];
 export const FAMILY_LABELS = {
   "ai-engineer": "AI Engineer",
   "ml-engineer": "ML Engineer",
   "data-scientist": "Data Scientist",
   "ml-platform": "ML Platform",
   research: "Research",
+  "forward-deployed-engineer": "Forward Deployed Engineer",
 };
 export const familyLabel = (f) => FAMILY_LABELS[f] || f;
 

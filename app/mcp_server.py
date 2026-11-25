@@ -151,8 +151,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         - city: any of these places; a job in several places matches each of them.
         - seniority: junior, mid or senior. Leaving it out includes jobs whose seniority
           is unknown; naming any level excludes them.
-        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
-          assigned from the job title.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform, research or
+          forward-deployed-engineer, assigned from the job title.
         - window: "open" (default) = still being advertised; "30d" / "90d" = seen in the
           last 30 / 90 days, open or closed; "all" = every job ever collected.
         - german / production: "any" (default); "none" = the posting does not mention it;
@@ -315,8 +315,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         - city: any of these places; a job in several places matches each of them.
         - seniority: junior, mid or senior. Leaving it out includes jobs whose seniority
           is unknown; naming any level excludes them.
-        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
-          assigned from the job title.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform, research or
+          forward-deployed-engineer, assigned from the job title.
         - requirement: "required" (default) counts a skill only where the posting requires
           it; "all" also counts it where it is only nice-to-have.
         - window: "open" (default) = still being advertised; "30d" / "90d" = seen in the
@@ -417,8 +417,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         A job counts in every period it was open during.
 
         - city: any of these places; leave it out for every place we collect.
-        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
-          assigned from the job title.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform, research or
+          forward-deployed-engineer, assigned from the job title.
         - requirement: "required" (default) counts a skill only where the posting requires
           it; "all" also counts it where it is only nice-to-have.
         Only these three filters apply, so both periods have as many jobs behind them as
@@ -485,7 +485,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         - only open jobs first seen in the last 30 days, as on the dashboard: an older
           posting is probably filled.
         - city: any of these places; family: ai-engineer, ml-engineer, data-scientist,
-          ml-platform or research, assigned from the job title. Both optional.
+          ml-platform, research or forward-deployed-engineer, assigned from the job title.
+          Both optional.
         - since: an ISO date, e.g. "2026-11-22": only jobs we first saw on or after that
           day (UTC). For a morning digest pass yesterday's date. A date more than 30 days
           back changes nothing.

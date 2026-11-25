@@ -1,0 +1,106 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"React\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Multi-Agent-Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"multi-agent-systems\", \"requirement\": \"required\", \"raw_text\": \"Multi-Agent-Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG und LLM-Evaluation\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"LLM-Evaluation\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise LLM-Produkte\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Cloud\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps und MLOps\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"DevOps und MLOps\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Authentication concepts\", \"raw_text\": \"Authentifizierungskonzepten\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrere Jahre Erfahrung\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutsch ist ein Plus\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein Studium in Informatik, Elektrotechnik, Wirtschaftsingenieurwesen oder Vergleichbarem, oder eine vergleichbare praktische Qualifikation\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'Multi-Agent-Orchestrierung' is labeled as both llm-orchestration (alias 'agent orchestration') and multi-agent-systems; it may warrant only one of them.\\n'LLM-Produkte' is under 'idealerweise', so llms is nice_to_have. 'LLM-Evaluation' maps to evaluation only.\\n'TypeScript/React' joins a language and a framework, so the slash is not an either/or pair and there is no group. 'LangGraph oder vergleichbare Frameworks' is a single example with 'or comparable', so there is no group.\\nCI/CD, Monitoring, System Prompts and RAG-Pipelines appear only in responsibilities. RAG is labeled from the requirements bullet; the others are not labeled.\\n'Software in Produktion zu bringen' is not labeled as software-engineering: it describes years of experience, not a named skill.\\n'Authentifizierungskonzepte' has no clear taxonomy fit (access-control is only loosely related), so it is unmapped.\\nThe ability to debug a pipeline is not labeled: it is generic, with no named skill.\\nSeniority: 'Mehrere Jahre' (several years) is read as roughly 3–5 years, giving mid. This is uncertain.\\nDegree: 'oder eine vergleichbare praktische Qualifikation' accepts practical qualification instead of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Multi-Agent-Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "Multi-Agent-Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG und LLM-Evaluation"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM-Evaluation"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise LLM-Produkte",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Cloud"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps und MLOps"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "DevOps und MLOps"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Authentication concepts",
+        "raw_text": "Authentifizierungskonzepten"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrere Jahre Erfahrung",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Deutsch ist ein Plus",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein Studium in Informatik, Elektrotechnik, Wirtschaftsingenieurwesen oder Vergleichbarem, oder eine vergleichbare praktische Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'Multi-Agent-Orchestrierung' is labeled as both llm-orchestration (alias 'agent orchestration') and multi-agent-systems; it may warrant only one of them.\n'LLM-Produkte' is under 'idealerweise', so llms is nice_to_have. 'LLM-Evaluation' maps to evaluation only.\n'TypeScript/React' joins a language and a framework, so the slash is not an either/or pair and there is no group. 'LangGraph oder vergleichbare Frameworks' is a single example with 'or comparable', so there is no group.\nCI/CD, Monitoring, System Prompts and RAG-Pipelines appear only in responsibilities. RAG is labeled from the requirements bullet; the others are not labeled.\n'Software in Produktion zu bringen' is not labeled as software-engineering: it describes years of experience, not a named skill.\n'Authentifizierungskonzepte' has no clear taxonomy fit (access-control is only loosely related), so it is unmapped.\nThe ability to debug a pipeline is not labeled: it is generic, with no named skill.\nSeniority: 'Mehrere Jahre' (several years) is read as roughly 3–5 years, giving mid. This is uncertain.\nDegree: 'oder eine vergleichbare praktische Qualifikation' accepts practical qualification instead of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "cba0046709a0e2beefeabb0588436426d25748db5ca01d67f4c8a05148d86295",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

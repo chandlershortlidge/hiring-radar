@@ -1,0 +1,100 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"Fine Tuning LLMs\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"algorithms underlying machine learning and LLMs\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"advanced RAG\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agents framework\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"concepts and algorithms underlying machine learning\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"NLP applications\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"product implementation with APIs\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"back-end\", \"uncertain\": true},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"front-end interfaces\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"strong technical coding skills in Python\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning with Pytorch\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Pytorch\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"such as Langchain\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector DBs\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"You have 2+ years as a technical individual contributor\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"You hold a PhD / master in AI / data science.\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Seniority: '2+ years' sits on the boundary between the guide's 0–2 (junior) and 3–5 (mid) bands. I labeled it junior and flagged it.\\nThe title has no level word, so seniority is inferred, not stated.\\nThe only language asked for is English, so german is null.\\nDegree: 'PhD / master' takes the lowest level named, which is master. It is a bare mention in the requirements list, so it is required.\\n'agentic use cases' is not mapped separately; agents is supported by 'agents framework such as Langchain'.\\n'LLMs or NLP applications' is not grouped. LLMs is asked for on its own elsewhere, so it leaves the group, and NLP would then stand alone.\\n'agents framework such as Langchain' offers a single example, so there is no group.\\n'back-end' and 'front-end interfaces' are mapped to backend-development and frontend-development, but they are hyphenated spellings not in the aliases. Both are flagged uncertain.\\nThe 'Ideally' item 'Contributed to open-source projects ... LLMs' asks for open-source contribution, not the open-source-llms skill, so it is not labeled. llms is already required.\\nThe 'Ideally' role titles (Forward Deployed Engineer, Solutions Architect, etc.) are job roles, not skills.\\nPrompting, evaluation, and inference appear only in the responsibilities, so they are not labeled.\\nNo alternative groups apply, so groups_reviewed can be set true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine Tuning LLMs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "algorithms underlying machine learning and LLMs"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "advanced RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents framework"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP applications"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "product implementation with APIs"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "back-end",
+        "uncertain": true
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "front-end interfaces",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "strong technical coding skills in Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning with Pytorch"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Pytorch"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "such as Langchain"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector DBs"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "You have 2+ years as a technical individual contributor",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "You hold a PhD / master in AI / data science.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority: '2+ years' sits on the boundary between the guide's 0–2 (junior) and 3–5 (mid) bands. I labeled it junior and flagged it.\nThe title has no level word, so seniority is inferred, not stated.\nThe only language asked for is English, so german is null.\nDegree: 'PhD / master' takes the lowest level named, which is master. It is a bare mention in the requirements list, so it is required.\n'agentic use cases' is not mapped separately; agents is supported by 'agents framework such as Langchain'.\n'LLMs or NLP applications' is not grouped. LLMs is asked for on its own elsewhere, so it leaves the group, and NLP would then stand alone.\n'agents framework such as Langchain' offers a single example, so there is no group.\n'back-end' and 'front-end interfaces' are mapped to backend-development and frontend-development, but they are hyphenated spellings not in the aliases. Both are flagged uncertain.\nThe 'Ideally' item 'Contributed to open-source projects ... LLMs' asks for open-source contribution, not the open-source-llms skill, so it is not labeled. llms is already required.\nThe 'Ideally' role titles (Forward Deployed Engineer, Solutions Architect, etc.) are job roles, not skills.\nPrompting, evaluation, and inference appear only in the responsibilities, so they are not labeled.\nNo alternative groups apply, so groups_reviewed can be set true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "1569437a378f02be450588dee3640a62b64c957d3946011d2698d99022b11cb0",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

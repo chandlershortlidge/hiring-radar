@@ -232,6 +232,21 @@ One label per posting, or none (`null`) when no degree is mentioned.
 - `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person.
 
 
+## Career track: not labeled
+
+A posting's career track (AI Engineer, ML Engineer, Data Scientist, ML Platform, Research,
+Forward Deployed Engineer) is decided from its title by a fixed rule, never by a labeler
+or the model, so a Golden carries none. Label a posting's skills the same way whatever its
+track.
+
+For the record of where the tracks end (HIR-408): a forward deployed engineer builds and
+deploys AI systems embedded with a customer, and the title says so ("forward deployed" or
+"forward deployment" with "engineer", or "FDE"). Solutions engineers, solutions
+architects, customer engineers and implementation engineers are **not** forward deployed
+engineers; they are the adjacent, often sales-leaning roles, and are collected only when
+their title names AI or ML work like any other title. A title with the FDE words that also
+names another track ("Forward Deployed AI Engineer") is Forward Deployed Engineer.
+
 ## Verifying a label: the human spot-check
 
 **This section changes no labeling rule.** It records how a label is *checked* and by whom,

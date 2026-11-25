@@ -1,0 +1,88 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience working on production AI systems.\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI agents\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"agent-harnesses\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent harnesses/loops\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM/agent tooling platforms\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"high-scale production infrastructure (e.g., traffic/inference systems, metering, anti-abuse and billing systems)\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommendation systems\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"networking\",\n      \"alternative_group\": 2\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"High-scale production infrastructure\",\n      \"raw_text\": \"high-scale production infrastructure\"\n    },\n    {\n      \"label\": \"Traffic systems\",\n      \"raw_text\": \"traffic/inference systems\"\n    },\n    {\n      \"label\": \"Metering systems\",\n      \"raw_text\": \"metering\"\n    },\n    {\n      \"label\": \"Anti-abuse systems\",\n      \"raw_text\": \"anti-abuse\"\n    },\n    {\n      \"label\": \"Billing systems\",\n      \"raw_text\": \"billing systems\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"8+ years of total engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualifications section is required; the section beginning “While it’s not required” is optional.\\nProduction AI experience maps to AI/ML, but does not explicitly establish model operations, deployment, or MLOps.\\nThe optional high-scale inference-systems example is provisionally mapped to AI Infrastructure; the broader infrastructure practice and other concrete system-building examples have no exact taxonomy entries.\\nAgent tooling is not explicitly coding tooling, so AI Coding Tools is not labeled. Agent loops are read as part of agent harnesses rather than a separate skill.\\nAlternative groups represent the agent-related alternatives and the recommendation-systems/networking examples, respectively.\\nSeniority is inferred from eight-plus years and leadership duties; the optional reference to a prior staff level is not treated as a stated level for this position.\\nManagement, mentoring, hiring, and organizational growth are excluded as soft skills; technologies mentioned only in team responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Experience working on production AI systems."
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI agents",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "agent harnesses/loops",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM/agent tooling platforms",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "high-scale production infrastructure (e.g., traffic/inference systems, metering, anti-abuse and billing systems)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation systems",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "High-scale production infrastructure",
+        "raw_text": "high-scale production infrastructure"
+      },
+      {
+        "label": "Traffic systems",
+        "raw_text": "traffic/inference systems"
+      },
+      {
+        "label": "Metering systems",
+        "raw_text": "metering"
+      },
+      {
+        "label": "Anti-abuse systems",
+        "raw_text": "anti-abuse"
+      },
+      {
+        "label": "Billing systems",
+        "raw_text": "billing systems"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "8+ years of total engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualifications section is required; the section beginning “While it’s not required” is optional.\nProduction AI experience maps to AI/ML, but does not explicitly establish model operations, deployment, or MLOps.\nThe optional high-scale inference-systems example is provisionally mapped to AI Infrastructure; the broader infrastructure practice and other concrete system-building examples have no exact taxonomy entries.\nAgent tooling is not explicitly coding tooling, so AI Coding Tools is not labeled. Agent loops are read as part of agent harnesses rather than a separate skill.\nAlternative groups represent the agent-related alternatives and the recommendation-systems/networking examples, respectively.\nSeniority is inferred from eight-plus years and leadership duties; the optional reference to a prior staff level is not treated as a stated level for this position.\nManagement, mentoring, hiring, and organizational growth are excluded as soft skills; technologies mentioned only in team responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "859e8888f65124c0757a78501e76bb1794a3b0fab367b8a2c47a72108df83a4f",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -1,0 +1,274 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud infrastructure\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML infrastructure\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformers\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool calling\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"how to evaluate their outputs\"\n    },\n    {\n      \"skill_id\": \"access-control\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"identity and access management\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"network isolation\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security, monitoring, and reliability\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containers\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Practical experience with containers and Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ray\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ray\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"slurm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Slurm\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"nccl\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"NCCL\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Model serving\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Model serving with vLLM\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"sglang\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SGLang, TensorRT-LLM, or TGI\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT-LLM\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"KV caching\",\n      \"raw_text\": \"KV caching\"\n    },\n    {\n      \"label\": \"Infrastructure reliability\",\n      \"raw_text\": \"reliability\"\n    },\n    {\n      \"label\": \"Infrastructure automation\",\n      \"raw_text\": \"automate a setup\"\n    },\n    {\n      \"label\": \"Infrastructure troubleshooting\",\n      \"raw_text\": \"debug from logs and metrics\"\n    },\n    {\n      \"label\": \"Container and Kubernetes configuration\",\n      \"raw_text\": \"configuration\"\n    },\n    {\n      \"label\": \"Container and Kubernetes storage\",\n      \"raw_text\": \"storage\"\n    },\n    {\n      \"label\": \"Container and Kubernetes scheduling\",\n      \"raw_text\": \"scheduling\"\n    },\n    {\n      \"label\": \"Solutions architecture\",\n      \"raw_text\": \"solutions architecture\"\n    },\n    {\n      \"label\": \"Distributed computing\",\n      \"raw_text\": \"Distributed compute\"\n    },\n    {\n      \"label\": \"Multi-GPU computing\",\n      \"raw_text\": \"multi-GPU jobs\"\n    },\n    {\n      \"label\": \"NVIDIA GPU computing\",\n      \"raw_text\": \"NVIDIA GPU workloads\"\n    },\n    {\n      \"label\": \"GPU memory management\",\n      \"raw_text\": \"memory management\"\n    },\n    {\n      \"label\": \"GPU drivers\",\n      \"raw_text\": \"drivers\"\n    },\n    {\n      \"label\": \"TGI\",\n      \"raw_text\": \"TGI\"\n    },\n    {\n      \"label\": \"Simulation\",\n      \"raw_text\": \"simulation\"\n    },\n    {\n      \"label\": \"Synthetic data\",\n      \"raw_text\": \"synthetic data\"\n    },\n    {\n      \"label\": \"World models\",\n      \"raw_text\": \"world models\"\n    },\n    {\n      \"label\": \"Isaac Sim\",\n      \"raw_text\": \"Isaac Sim\"\n    },\n    {\n      \"label\": \"Isaac Lab\",\n      \"raw_text\": \"Isaac Lab\"\n    },\n    {\n      \"label\": \"Omniverse\",\n      \"raw_text\": \"Omniverse\"\n    },\n    {\n      \"label\": \"Cosmos\",\n      \"raw_text\": \"Cosmos\"\n    },\n    {\n      \"label\": \"Enterprise integrations\",\n      \"raw_text\": \"enterprise integrations\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Three or more years\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"“What we are looking for” sets required skills; “Helpful experience” is interpreted as an optional-experience heading.\\nML infrastructure is mapped to AI Infrastructure as the same infrastructure skill expressed for ML.\\nCompany/product descriptions and responsibilities are not treated as a dedicated technology stack or independent candidate requirements.\\nAlternative groups also contain unmapped examples in the source: KV caching in group 3, multi-GPU jobs in group 4, and TGI in group 5. The requested unmapped schema has no grouping field.\\nReinforcement learning has no alternative_group because the other alternatives in its list have no taxonomy entries; a group needs at least two mapped skills.\\nPrivate connectivity maps to the already-required networking skill, and identity federation maps to the already-required access-control skill.\\nRobotics is read literally as domain knowledge and excluded. Customer-facing communication, consulting, ownership, and working with incomplete requirements are not technical skills here.\\nSolutions architecture, distributed computing, and infrastructure automation are left unmapped rather than equated with software architecture, distributed systems, or infrastructure as code.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformers",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool calling",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "how to evaluate their outputs"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "identity and access management"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "network isolation"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "security, monitoring, and reliability"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Practical experience with containers and Kubernetes"
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Ray",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "slurm",
+        "requirement": "nice_to_have",
+        "raw_text": "Slurm",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "nccl",
+        "requirement": "nice_to_have",
+        "raw_text": "NCCL"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "Model serving"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "Model serving with vLLM",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "nice_to_have",
+        "raw_text": "SGLang, TensorRT-LLM, or TGI",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT-LLM",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "KV caching",
+        "raw_text": "KV caching"
+      },
+      {
+        "label": "Infrastructure reliability",
+        "raw_text": "reliability"
+      },
+      {
+        "label": "Infrastructure automation",
+        "raw_text": "automate a setup"
+      },
+      {
+        "label": "Infrastructure troubleshooting",
+        "raw_text": "debug from logs and metrics"
+      },
+      {
+        "label": "Container and Kubernetes configuration",
+        "raw_text": "configuration"
+      },
+      {
+        "label": "Container and Kubernetes storage",
+        "raw_text": "storage"
+      },
+      {
+        "label": "Container and Kubernetes scheduling",
+        "raw_text": "scheduling"
+      },
+      {
+        "label": "Solutions architecture",
+        "raw_text": "solutions architecture"
+      },
+      {
+        "label": "Distributed computing",
+        "raw_text": "Distributed compute"
+      },
+      {
+        "label": "Multi-GPU computing",
+        "raw_text": "multi-GPU jobs"
+      },
+      {
+        "label": "NVIDIA GPU computing",
+        "raw_text": "NVIDIA GPU workloads"
+      },
+      {
+        "label": "GPU memory management",
+        "raw_text": "memory management"
+      },
+      {
+        "label": "GPU drivers",
+        "raw_text": "drivers"
+      },
+      {
+        "label": "TGI",
+        "raw_text": "TGI"
+      },
+      {
+        "label": "Simulation",
+        "raw_text": "simulation"
+      },
+      {
+        "label": "Synthetic data",
+        "raw_text": "synthetic data"
+      },
+      {
+        "label": "World models",
+        "raw_text": "world models"
+      },
+      {
+        "label": "Isaac Sim",
+        "raw_text": "Isaac Sim"
+      },
+      {
+        "label": "Isaac Lab",
+        "raw_text": "Isaac Lab"
+      },
+      {
+        "label": "Omniverse",
+        "raw_text": "Omniverse"
+      },
+      {
+        "label": "Cosmos",
+        "raw_text": "Cosmos"
+      },
+      {
+        "label": "Enterprise integrations",
+        "raw_text": "enterprise integrations"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Three or more years",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "“What we are looking for” sets required skills; “Helpful experience” is interpreted as an optional-experience heading.\nML infrastructure is mapped to AI Infrastructure as the same infrastructure skill expressed for ML.\nCompany/product descriptions and responsibilities are not treated as a dedicated technology stack or independent candidate requirements.\nAlternative groups also contain unmapped examples in the source: KV caching in group 3, multi-GPU jobs in group 4, and TGI in group 5. The requested unmapped schema has no grouping field.\nReinforcement learning has no alternative_group because the other alternatives in its list have no taxonomy entries; a group needs at least two mapped skills.\nPrivate connectivity maps to the already-required networking skill, and identity federation maps to the already-required access-control skill.\nRobotics is read literally as domain knowledge and excluded. Customer-facing communication, consulting, ownership, and working with incomplete requirements are not technical skills here.\nSolutions architecture, distributed computing, and infrastructure automation are left unmapped rather than equated with software architecture, distributed systems, or infrastructure as code."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "00df90aea27773733485ed9fccb28678b74c9f5fe6d84e969ef279decddbd980",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

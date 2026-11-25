@@ -1,0 +1,182 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps- oder Cloud-Platform-Umfeld\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps- oder Cloud-Platform-Umfeld\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Containerisierung\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes-Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Toolchains\"\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitLab CI\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ArgoCD\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitOps\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ansible\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux-Serveradministration\"\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Secrets-Management\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"bevorzugt Python\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"bevorzugt Python, Go\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"nosql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NoSQL\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vektordatenbanken\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Von Vorteil: Erfahrung mit der infrastrukturseitigen Anbindung von MLOps-Frameworks\"\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubeflow\",\n      \"alternative_group\": 7\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLflow\",\n      \"alternative_group\": 7\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Podman\",\n      \"raw_text\": \"Podman\"\n    },\n    {\n      \"label\": \"Nexus\",\n      \"raw_text\": \"Nexus\"\n    },\n    {\n      \"label\": \"Harbor\",\n      \"raw_text\": \"Harbor\"\n    },\n    {\n      \"label\": \"SonarQube\",\n      \"raw_text\": \"SonarQube\"\n    },\n    {\n      \"label\": \"Automation tools\",\n      \"raw_text\": \"Automatisierungstools\"\n    },\n    {\n      \"label\": \"Network security\",\n      \"raw_text\": \"Netzwerksicherheit\"\n    },\n    {\n      \"label\": \"HashiCorp Vault\",\n      \"raw_text\": \"HashiCorp Vault\"\n    },\n    {\n      \"label\": \"Shell scripting\",\n      \"raw_text\": \"Shell\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"fundierter Berufserfahrung (min. 5 Jahre)\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes fachbezogenes Hochschulstudium oder vergleichbare Qualifikation mit fundierter Berufserfahrung (min. 5 Jahre) im DevSecOps- oder Cloud-Platform-Umfeld\",\n  \"notes\": \"Dein Profil sets required defaults; Von Vorteil makes only its own bullet optional. Bevorzugt makes the named programming-language examples optional.\\nTechnologies appearing only in Deine Aufgaben or the organizational description are excluded; those sections are not dedicated technology-stack sections.\\nAlternative groups follow the order of alternative sets in the posting, including unmapped examples. Set 2 is Docker/Podman; Docker has no group because Podman is unmapped and a mapped group must contain at least two skills. Other unmapped members are Nexus/Harbor/SonarQube in set 3 and Shell in set 5.\\nThe parenthesized database list is read literally as examples satisfying one database-administration ask, hence an alternative group.\\nShell is not assumed to mean Bash. Network security is left unmapped rather than silently broadened to cybersecurity or reduced to networking.\\nThe unspecified university degree maps to bachelor; vergleichbare Qualifikation is accepted as an equivalent qualification.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps- oder Cloud-Platform-Umfeld",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "DevSecOps- oder Cloud-Platform-Umfeld",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes-Orchestrierung"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Toolchains"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitLab CI",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "ArgoCD",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux-Serveradministration"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "Secrets-Management"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "bevorzugt Python",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "bevorzugt Python, Go",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "required",
+        "raw_text": "NoSQL",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "Von Vorteil: Erfahrung mit der infrastrukturseitigen Anbindung von MLOps-Frameworks"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubeflow",
+        "alternative_group": 7
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow",
+        "alternative_group": 7
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "label": "Nexus",
+        "raw_text": "Nexus"
+      },
+      {
+        "label": "Harbor",
+        "raw_text": "Harbor"
+      },
+      {
+        "label": "SonarQube",
+        "raw_text": "SonarQube"
+      },
+      {
+        "label": "Automation tools",
+        "raw_text": "Automatisierungstools"
+      },
+      {
+        "label": "Network security",
+        "raw_text": "Netzwerksicherheit"
+      },
+      {
+        "label": "HashiCorp Vault",
+        "raw_text": "HashiCorp Vault"
+      },
+      {
+        "label": "Shell scripting",
+        "raw_text": "Shell"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "fundierter Berufserfahrung (min. 5 Jahre)",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes fachbezogenes Hochschulstudium oder vergleichbare Qualifikation mit fundierter Berufserfahrung (min. 5 Jahre) im DevSecOps- oder Cloud-Platform-Umfeld",
+    "notes": "Dein Profil sets required defaults; Von Vorteil makes only its own bullet optional. Bevorzugt makes the named programming-language examples optional.\nTechnologies appearing only in Deine Aufgaben or the organizational description are excluded; those sections are not dedicated technology-stack sections.\nAlternative groups follow the order of alternative sets in the posting, including unmapped examples. Set 2 is Docker/Podman; Docker has no group because Podman is unmapped and a mapped group must contain at least two skills. Other unmapped members are Nexus/Harbor/SonarQube in set 3 and Shell in set 5.\nThe parenthesized database list is read literally as examples satisfying one database-administration ask, hence an alternative group.\nShell is not assumed to mean Bash. Network security is left unmapped rather than silently broadened to cybersecurity or reduced to networking.\nThe unspecified university degree maps to bachelor; vergleichbare Qualifikation is accepted as an equivalent qualification."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bc4a2cd008c12bba94e7b566fd313eb43ef7204bc5ea5441a56c2bd5deec1c1c",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

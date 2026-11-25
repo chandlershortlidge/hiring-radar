@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Remote Senior AI Agentic Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The posting is truncated and contains role descriptions and responsibilities, but no candidate qualifications or dedicated tech-stack section. AI agents, LLM orchestration, and tool-use frameworks appear only in descriptions of the work, so no skills are labeled.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Remote Senior AI Agentic Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The posting is truncated and contains role descriptions and responsibilities, but no candidate qualifications or dedicated tech-stack section. AI agents, LLM orchestration, and tool-use frameworks appear only in descriptions of the work, so no skills are labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6f36646a6ec00c7ab352c4d302ff3b7ed1dae1734be6a3c2a2d63a948776c875",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

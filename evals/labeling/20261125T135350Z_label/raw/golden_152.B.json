@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Serve as the senior technical counterpart to AWS field leadership\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The candidate-qualification section asks for consulting experience, leadership, and soft skills, but no taxonomy-eligible technical skills.\\nAWS names the role's partnership focus rather than an explicit candidate skill requirement or company tech stack; technical capabilities mentioned only in responsibilities are excluded.\\nSeniority is explicitly stated and independently supported by the requirement for 8+ years of experience.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Serve as the senior technical counterpart to AWS field leadership",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The candidate-qualification section asks for consulting experience, leadership, and soft skills, but no taxonomy-eligible technical skills.\nAWS names the role's partnership focus rather than an explicit candidate skill requirement or company tech stack; technical capabilities mentioned only in responsibilities are excluded.\nSeniority is explicitly stated and independently supported by the requirement for 8+ years of experience."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d607d5211ae2cb3f80bd16e1f87a5e454e4931e681523c729816079ac4e3861b",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -1,0 +1,45 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"strong full-stack depth\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"preferably AWS\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"exposure to LLMs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Production systems experience\",\n      \"raw_text\": \"production systems experience\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior / Staff Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The final paragraph explicitly states requirements; only AWS is marked optional.\\nProduction systems experience has no exact taxonomy match; distributed systems, cloud, and MLOps are not inferred.\\nThe company’s AI platform and autonomous procurement workflows describe its work, not additional candidate skill requirements.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "strong full-stack depth"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably AWS"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "exposure to LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Production systems experience",
+        "raw_text": "production systems experience"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior / Staff Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The final paragraph explicitly states requirements; only AWS is marked optional.\nProduction systems experience has no exact taxonomy match; distributed systems, cloud, and MLOps are not inferred.\nThe company’s AI platform and autonomous procurement workflows describe its work, not additional candidate skill requirements."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "90cf38ee01f7ffe59b06800dc514e9a1885eaab8b8000f54dbe178e591b7d12c",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}
