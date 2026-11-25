@@ -1,0 +1,149 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professional software engineering experience\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI and/or ML projects\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML projects\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic orchestration\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Model Context Protocol (MCP)\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"securing AI systems\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"securing AI systems and the data they access\"\n    },\n    {\n      \"skill_id\": \"access-control\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"least-privilege access\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying and running AI at scale\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying and running AI at scale\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring AI systems\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"major cloud platform\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"graph-based knowledge systems\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"long-term agent memory\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GraphRAG\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"automated evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"regression testing for AI quality\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ideally paired with A/B or holdout experiments that measure business lift in the field\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Retrieval methods\",\n      \"raw_text\": \"retrieval methods\"\n    },\n    {\n      \"label\": \"Reusable AI skill development\",\n      \"raw_text\": \"reusable skill development\"\n    },\n    {\n      \"label\": \"Agent-to-agent frameworks\",\n      \"raw_text\": \"agent-to-agent (A2A) frameworks\"\n    },\n    {\n      \"label\": \"Prompt-injection defense\",\n      \"raw_text\": \"defending against risks such as prompt injection\"\n    },\n    {\n      \"label\": \"GTM systems integration\",\n      \"raw_text\": \"integrating across GTM systems of record\"\n    },\n    {\n      \"label\": \"LLM-as-judge\",\n      \"raw_text\": \"LLM-as-judge\"\n    },\n    {\n      \"label\": \"Holdout experiments\",\n      \"raw_text\": \"holdout experiments\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Sr. Staff Applied AI Engineer, GTM\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Minimum Qualifications supplies required skills; Preferred Qualifications supplies optional skills. Responsibilities alone do not establish requirements.\\nRetrieval methods is broader than RAG or vector search and is left unmapped; GraphRAG explicitly supports optional RAG.\\nAgent-to-agent frameworks is left unmapped rather than inferring a broader agents or multi-agent-systems requirement.\\nDeploying and running AI at scale is read literally as asking for both AI deployment and production AI operations.\\nSecurity requirements do not specify guardrail implementations, so LLM guardrails is not inferred.\\nAI and ML are not grouped as alternatives because the available AI/ML taxonomy entry is broad and ML is a specific skill.\\nLLM-as-judge and holdout experiments are retained as unmapped techniques rather than silently adding taxonomy aliases. Domain knowledge, strategy, soft skills, and years of experience are excluded from skill criteria.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI and/or ML projects"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML projects"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "securing AI systems"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "securing AI systems and the data they access"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "least-privilege access"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying and running AI at scale"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "deploying and running AI at scale"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring AI systems"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "major cloud platform"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "nice_to_have",
+        "raw_text": "graph-based knowledge systems"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "long-term agent memory"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphRAG"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "automated evaluation frameworks"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "regression testing for AI quality"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "ideally paired with A/B or holdout experiments that measure business lift in the field"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Retrieval methods",
+        "raw_text": "retrieval methods"
+      },
+      {
+        "label": "Reusable AI skill development",
+        "raw_text": "reusable skill development"
+      },
+      {
+        "label": "Agent-to-agent frameworks",
+        "raw_text": "agent-to-agent (A2A) frameworks"
+      },
+      {
+        "label": "Prompt-injection defense",
+        "raw_text": "defending against risks such as prompt injection"
+      },
+      {
+        "label": "GTM systems integration",
+        "raw_text": "integrating across GTM systems of record"
+      },
+      {
+        "label": "LLM-as-judge",
+        "raw_text": "LLM-as-judge"
+      },
+      {
+        "label": "Holdout experiments",
+        "raw_text": "holdout experiments"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Sr. Staff Applied AI Engineer, GTM",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Minimum Qualifications supplies required skills; Preferred Qualifications supplies optional skills. Responsibilities alone do not establish requirements.\nRetrieval methods is broader than RAG or vector search and is left unmapped; GraphRAG explicitly supports optional RAG.\nAgent-to-agent frameworks is left unmapped rather than inferring a broader agents or multi-agent-systems requirement.\nDeploying and running AI at scale is read literally as asking for both AI deployment and production AI operations.\nSecurity requirements do not specify guardrail implementations, so LLM guardrails is not inferred.\nAI and ML are not grouped as alternatives because the available AI/ML taxonomy entry is broad and ML is a specific skill.\nLLM-as-judge and holdout experiments are retained as unmapped techniques rather than silently adding taxonomy aliases. Domain knowledge, strategy, soft skills, and years of experience are excluded from skill criteria."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5e606bbb9f7995f95f9a7460b995919db11371dae5c34b16c38d06c864b66151",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -1,0 +1,93 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-based products\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"concepts and algorithms underlying machine learning\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"back-end\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"front-end interfaces\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fine Tuning LLMs\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"concepts and algorithms underlying machine learning and LLMs\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"advanced RAG\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic use cases\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Pytorch\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"Contributed to open-source projects\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"proven experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"“About you” sets required qualifications; “Ideally you have:” sets optional qualifications.\\n“Agentic use cases” is read literally as experience with agents; RAG and agentic use cases are alternatives.\\nAI and machine learning are independently requested elsewhere, so they do not form an alternative group.\\nSeniority is inferred as mid from “proven experience”; the additional “2+ years” minimum does not specify an upper bound.\\nOpen-source contribution is a requested technical practice without a matching taxonomy entry; it does not imply open-source LLM expertise.\\nPrior job titles in the optional section are role experience, not additional technical skills. Technologies mentioned only in responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI-based products"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "back-end"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "front-end interfaces"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine Tuning LLMs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning and LLMs"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "advanced RAG",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic use cases",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "Pytorch"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Open-source contribution",
+        "raw_text": "Contributed to open-source projects"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "proven experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "“About you” sets required qualifications; “Ideally you have:” sets optional qualifications.\n“Agentic use cases” is read literally as experience with agents; RAG and agentic use cases are alternatives.\nAI and machine learning are independently requested elsewhere, so they do not form an alternative group.\nSeniority is inferred as mid from “proven experience”; the additional “2+ years” minimum does not specify an upper bound.\nOpen-source contribution is a requested technical practice without a matching taxonomy entry; it does not imply open-source LLM expertise.\nPrior job titles in the optional section are role experience, not additional technical skills. Technologies mentioned only in responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "448641aa882b0cd3311a0532610318e9853e4185b38aeb0073a0d2d3164a8384",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

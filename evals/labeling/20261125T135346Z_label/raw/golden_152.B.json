@@ -1,0 +1,79 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ETL/ELT processes\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vectorization\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-related data flows\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"secure and compliant use of data, including sensitive data\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data readiness assessments\",\n      \"raw_text\": \"Experience running data readiness assessments\"\n    },\n    {\n      \"label\": \"Data integration\",\n      \"raw_text\": \"building data integrations\"\n    },\n    {\n      \"label\": \"Data transformation\",\n      \"raw_text\": \"transforming raw data into AI-ready formats\"\n    },\n    {\n      \"label\": \"Modern data platforms\",\n      \"raw_text\": \"Familiarity with modern data platforms\"\n    },\n    {\n      \"label\": \"Feature stores\",\n      \"raw_text\": \"feature stores\"\n    },\n    {\n      \"label\": \"Data governance and compliance controls\",\n      \"raw_text\": \"Experience configuring data governance and compliance controls\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7-10+ years in data engineering, analytics platforms or AI data roles within large or complex organizations.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Data/Information Management, Engineering, or a related field.\",\n  \"groups_reviewed\": true,\n  \"notes\": \"Essential Requirements is required; Desirable Requirements is optional.\\nVectorization is provisionally mapped to embeddings in the AI-data context; the posting does not explicitly identify embedding generation, so this mapping needs review.\\nFeature stores, vectorization, and RAG-related data flows are examples for one familiarity ask; the two mapped examples share alternative_group 1.\\nData preparation and production scaling are treated as aspects of the explicitly requested data-engineering and pipeline skills, not as model deployment or MLOps.\\nAI/ML use cases and AI/ML-related data patterns do not independently ask for general AI/ML expertise under a literal reading.\\nAccess control and monitoring occur only in responsibilities and are not labeled. Germany and travel requirements do not establish a German-language requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "data engineering"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL/ELT processes"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "vectorization",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-related data flows",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "secure and compliant use of data, including sensitive data"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data readiness assessments",
+        "raw_text": "Experience running data readiness assessments"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "building data integrations"
+      },
+      {
+        "label": "Data transformation",
+        "raw_text": "transforming raw data into AI-ready formats"
+      },
+      {
+        "label": "Modern data platforms",
+        "raw_text": "Familiarity with modern data platforms"
+      },
+      {
+        "label": "Feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "Data governance and compliance controls",
+        "raw_text": "Experience configuring data governance and compliance controls"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7-10+ years in data engineering, analytics platforms or AI data roles within large or complex organizations.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's degree in Computer Science, Data/Information Management, Engineering, or a related field.",
+    "groups_reviewed": true,
+    "notes": "Essential Requirements is required; Desirable Requirements is optional.\nVectorization is provisionally mapped to embeddings in the AI-data context; the posting does not explicitly identify embedding generation, so this mapping needs review.\nFeature stores, vectorization, and RAG-related data flows are examples for one familiarity ask; the two mapped examples share alternative_group 1.\nData preparation and production scaling are treated as aspects of the explicitly requested data-engineering and pipeline skills, not as model deployment or MLOps.\nAI/ML use cases and AI/ML-related data patterns do not independently ask for general AI/ML expertise under a literal reading.\nAccess control and monitoring occur only in responsibilities and are not labeled. Germany and travel requirements do not establish a German-language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "744ed6a2fa215f8e0b857f0f086b1ed001ef5ba4a46d198b40c7248f795a19f6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

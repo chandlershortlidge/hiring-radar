@@ -1,0 +1,140 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic system\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"active tool use\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML systems\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"retrieval and context pipelines\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"context pipelines\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security guardrails for AI\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed tracing\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud-native infrastructure\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"opentelemetry\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"OpenTelemetry\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MCP\",\n      \"alternative_group\": 1\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Evaluation dataset creation\",\n      \"raw_text\": \"dataset creation\"\n    },\n    {\n      \"label\": \"Offline and online evaluation scoring\",\n      \"raw_text\": \"offline/online scoring\"\n    },\n    {\n      \"label\": \"Release validation\",\n      \"raw_text\": \"release validation\"\n    },\n    {\n      \"label\": \"Latency optimization\",\n      \"raw_text\": \"latency optimization\"\n    },\n    {\n      \"label\": \"Cost management\",\n      \"raw_text\": \"cost management\"\n    },\n    {\n      \"label\": \"Multi-tenancy\",\n      \"raw_text\": \"multi-tenancy\"\n    },\n    {\n      \"label\": \"Alerting workflows\",\n      \"raw_text\": \"alerting workflows\"\n    },\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"active open-source contributions\"\n    },\n    {\n      \"label\": \"Design reviews\",\n      \"raw_text\": \"design reviews\"\n    },\n    {\n      \"label\": \"Technical documentation\",\n      \"raw_text\": \"technical documentation\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Minimum Qualifications sets required; Preferred Qualifications sets nice_to_have.\\nInterpreted retrieval pipelines as RAG; context pipelines may mean context engineering and is flagged for review.\\nOpenTelemetry and MCP are examples for a single open-source-contribution ask and are grouped as alternatives. Agents and observability are independently requested elsewhere and remain outside that group.\\nUnmapped entries are explicitly named technical practices without a clear taxonomy match; evaluation subpractices are retained literally rather than silently discarded.\\nSRE and incident management are presented as domain knowledge and are excluded. Telemetry, logs, and time-series databases describe input data rather than separately requested tools.\\nDesign reviews and technical documentation are treated literally as technical practices, not as the surrounding communication or mentoring soft skills.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic system"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "active tool use"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML systems"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval and context pipelines"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "context pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "security guardrails for AI"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed tracing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud-native infrastructure"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenTelemetry",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Evaluation dataset creation",
+        "raw_text": "dataset creation"
+      },
+      {
+        "label": "Offline and online evaluation scoring",
+        "raw_text": "offline/online scoring"
+      },
+      {
+        "label": "Release validation",
+        "raw_text": "release validation"
+      },
+      {
+        "label": "Latency optimization",
+        "raw_text": "latency optimization"
+      },
+      {
+        "label": "Cost management",
+        "raw_text": "cost management"
+      },
+      {
+        "label": "Multi-tenancy",
+        "raw_text": "multi-tenancy"
+      },
+      {
+        "label": "Alerting workflows",
+        "raw_text": "alerting workflows"
+      },
+      {
+        "label": "Open-source contribution",
+        "raw_text": "active open-source contributions"
+      },
+      {
+        "label": "Design reviews",
+        "raw_text": "design reviews"
+      },
+      {
+        "label": "Technical documentation",
+        "raw_text": "technical documentation"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Minimum Qualifications sets required; Preferred Qualifications sets nice_to_have.\nInterpreted retrieval pipelines as RAG; context pipelines may mean context engineering and is flagged for review.\nOpenTelemetry and MCP are examples for a single open-source-contribution ask and are grouped as alternatives. Agents and observability are independently requested elsewhere and remain outside that group.\nUnmapped entries are explicitly named technical practices without a clear taxonomy match; evaluation subpractices are retained literally rather than silently discarded.\nSRE and incident management are presented as domain knowledge and are excluded. Telemetry, logs, and time-series databases describe input data rather than separately requested tools.\nDesign reviews and technical documentation are treated literally as technical practices, not as the surrounding communication or mentoring soft skills.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "a43fd05fac12a9b939c3f7542f6f3e356343976e7ea8b38fbe64f2b9f5b3e989",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

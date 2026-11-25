@@ -1,0 +1,103 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI systems from ambiguous problem to production deployment\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic systems\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"retrieval architectures\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"made the architecture calls\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"write production code\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security reviews\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MCP server development\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Prompt and context engineering\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"guardrails\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM safety patterns in production\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Claude\",\n      \"raw_text\": \"deploy Claude at enterprise scale\"\n    },\n    {\n      \"label\": \"Claude Chat and Cowork\",\n      \"raw_text\": \"Claude licenses for Chat, Cowork and Claude Code\"\n    },\n    {\n      \"label\": \"Enterprise tool ecosystem integration\",\n      \"raw_text\": \"enterprise tool ecosystem integration\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Forward Deployed AI Engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualifications section remains required despite its introductory “some of these” wording; only “Also Interesting But Not Required” marks an optional section.\\nClaude Code is optional as an explicitly supplied company tool. Generic Claude, Chat and Cowork have no fitting taxonomy entries; enterprise deployment alone does not establish the specific Claude Enterprise product.\\n“Retrieval architectures” is read as RAG expertise in the posting’s explicit RAG context; “made the architecture calls” describes software architecture.\\nEnterprise tool ecosystem integration is not automatically equated with API integration or tool calling.\\nAnthropic, Databricks and AWS are named as partner organisations and ecosystems, not as technologies the candidate must use; the literal reading excludes these relationship-based mentions from technical skills.\\nSkills appearing only in the responsibilities, including multi-agent orchestration, embeddings and observability, are excluded unless separately requested in the qualifications.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "claude-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "AI systems from ambiguous problem to production deployment"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval architectures"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "made the architecture calls"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "write production code"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security reviews"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP server development"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt and context engineering"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "context engineering"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM safety patterns in production"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Claude",
+        "raw_text": "deploy Claude at enterprise scale"
+      },
+      {
+        "label": "Claude Chat and Cowork",
+        "raw_text": "Claude licenses for Chat, Cowork and Claude Code"
+      },
+      {
+        "label": "Enterprise tool ecosystem integration",
+        "raw_text": "enterprise tool ecosystem integration"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Forward Deployed AI Engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualifications section remains required despite its introductory “some of these” wording; only “Also Interesting But Not Required” marks an optional section.\nClaude Code is optional as an explicitly supplied company tool. Generic Claude, Chat and Cowork have no fitting taxonomy entries; enterprise deployment alone does not establish the specific Claude Enterprise product.\n“Retrieval architectures” is read as RAG expertise in the posting’s explicit RAG context; “made the architecture calls” describes software architecture.\nEnterprise tool ecosystem integration is not automatically equated with API integration or tool calling.\nAnthropic, Databricks and AWS are named as partner organisations and ecosystems, not as technologies the candidate must use; the literal reading excludes these relationship-based mentions from technical skills.\nSkills appearing only in the responsibilities, including multi-agent orchestration, embeddings and observability, are excluded unless separately requested in the qualifications."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "633b1b2b01134a0b2a56398568c321810502cb60420b385d3f34ee1420e937a6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -1,0 +1,110 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-based products\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fine Tuning LLMs\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep understanding of concepts and algorithms underlying machine learning and LLMs\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"advanced RAG\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience with agents framework\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep understanding of concepts and algorithms underlying machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying LLMs\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP applications\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"back-end\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"front-end interfaces\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Pytorch\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Langchain\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector DBs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"Contributed to open-source projects\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"proven experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"You hold a PhD / master in AI / data science.\",\n  \"notes\": \"“What We're Looking For” establishes required qualifications; “Ideally you have:” establishes optional qualifications, including the unmapped open-source contribution practice.\\nSeniority uses the explicit “proven experience” inference rule; the separate 2+ years threshold does not establish a higher level.\\nRAG and agentic use cases are alternatives, but agents are independently required through agent frameworks; likewise LLMs are independently required outside the LLMs-or-NLP alternative. No multi-member alternative groups remain.\\nBack-end and front-end interfaces are read literally as backend and frontend development experience in the product-implementation qualification.\\nDegree fields and previous job titles are not treated as additional skills. Prompting and evaluation appear only in responsibilities and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI-based products"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine Tuning LLMs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deep understanding of concepts and algorithms underlying machine learning and LLMs"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "advanced RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "experience with agents framework"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "deep understanding of concepts and algorithms underlying machine learning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying LLMs"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP applications"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "back-end"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "front-end interfaces"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Pytorch"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "Langchain"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector DBs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Open-source contribution",
+        "raw_text": "Contributed to open-source projects"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "proven experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "You hold a PhD / master in AI / data science.",
+    "notes": "“What We're Looking For” establishes required qualifications; “Ideally you have:” establishes optional qualifications, including the unmapped open-source contribution practice.\nSeniority uses the explicit “proven experience” inference rule; the separate 2+ years threshold does not establish a higher level.\nRAG and agentic use cases are alternatives, but agents are independently required through agent frameworks; likewise LLMs are independently required outside the LLMs-or-NLP alternative. No multi-member alternative groups remain.\nBack-end and front-end interfaces are read literally as backend and frontend development experience in the product-implementation qualification.\nDegree fields and previous job titles are not treated as additional skills. Prompting and evaluation appear only in responsibilities and are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "1569437a378f02be450588dee3640a62b64c957d3946011d2698d99022b11cb0",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

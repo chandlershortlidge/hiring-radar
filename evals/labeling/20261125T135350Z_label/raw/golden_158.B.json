@@ -1,0 +1,95 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IT-Architektur\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung von RAG-Lösungen\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Models (LLMs) und KI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API-Entwicklung\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine-Learning-Frameworks\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Netzwerkoptimierung\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Cloud- und Rechenzentrumsstrategien\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"IoT\",\n      \"raw_text\": \"IoT\"\n    },\n    {\n      \"label\": \"IT-/OT-Infrastruktur\",\n      \"raw_text\": \"IT-/OT-Infrastrukturumfeld\"\n    },\n    {\n      \"label\": \"SD-WAN\",\n      \"raw_text\": \"SD-WAN\"\n    },\n    {\n      \"label\": \"Zero Trust\",\n      \"raw_text\": \"Zero Trust\"\n    },\n    {\n      \"label\": \"Microsoft 365\",\n      \"raw_text\": \"Microsoft 365\"\n    },\n    {\n      \"label\": \"Rechenzentrumsstrategien\",\n      \"raw_text\": \"Cloud- und Rechenzentrumsstrategien\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI & RAG Engineer (m/w/d)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Kommunikationsfähigkeit auf Deutsch und Englisch (mind. C1-Niveau)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"erfolgreich abgeschlossenes Bachelor- oder Masterstudium, beispielsweise in Betriebswirtschaftslehre, Wirtschaftsinformatik, Wirtschaftsingenieurwesen oder einem vergleichbaren Studiengang\",\n  \"notes\": \"„Dein Skillset“ enthält die Anforderungen; „Nice to have:“ macht nur den letzten Aufzählungspunkt optional.\\nTechnologien und Verfahren, die ausschließlich unter „Dein Impact“ stehen, wurden entsprechend der Regel für Verantwortungsabschnitte nicht aufgenommen, auch im dortigen Expertise-Aufzählungspunkt.\\nIT-Architektur wurde als Software Architecture, KI-Anwendungen als AI/ML und Netzwerkoptimierung als Networking eingeordnet; Cloud-Strategien wurden wörtlich dem breiten Cloud-Skill zugeordnet.\\nOT-Infrastrukturen wiederholt den bereits unter IT-/OT-Infrastruktur erfassten, nicht zuordenbaren Skill.\\nEin vergleichbarer Studiengang erweitert nur das Studienfach und ersetzt den Abschluss nicht durch Berufserfahrung.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "IT-Architektur"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Entwicklung von RAG-Lösungen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models (LLMs) und KI-Anwendungen"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Anwendungen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Entwicklung"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Frameworks"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "Netzwerkoptimierung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud- und Rechenzentrumsstrategien"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "IoT",
+        "raw_text": "IoT"
+      },
+      {
+        "label": "IT-/OT-Infrastruktur",
+        "raw_text": "IT-/OT-Infrastrukturumfeld"
+      },
+      {
+        "label": "SD-WAN",
+        "raw_text": "SD-WAN"
+      },
+      {
+        "label": "Zero Trust",
+        "raw_text": "Zero Trust"
+      },
+      {
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "label": "Rechenzentrumsstrategien",
+        "raw_text": "Cloud- und Rechenzentrumsstrategien"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI & RAG Engineer (m/w/d)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Kommunikationsfähigkeit auf Deutsch und Englisch (mind. C1-Niveau)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "erfolgreich abgeschlossenes Bachelor- oder Masterstudium, beispielsweise in Betriebswirtschaftslehre, Wirtschaftsinformatik, Wirtschaftsingenieurwesen oder einem vergleichbaren Studiengang",
+    "notes": "„Dein Skillset“ enthält die Anforderungen; „Nice to have:“ macht nur den letzten Aufzählungspunkt optional.\nTechnologien und Verfahren, die ausschließlich unter „Dein Impact“ stehen, wurden entsprechend der Regel für Verantwortungsabschnitte nicht aufgenommen, auch im dortigen Expertise-Aufzählungspunkt.\nIT-Architektur wurde als Software Architecture, KI-Anwendungen als AI/ML und Netzwerkoptimierung als Networking eingeordnet; Cloud-Strategien wurden wörtlich dem breiten Cloud-Skill zugeordnet.\nOT-Infrastrukturen wiederholt den bereits unter IT-/OT-Infrastruktur erfassten, nicht zuordenbaren Skill.\nEin vergleichbarer Studiengang erweitert nur das Studienfach und ersetzt den Abschluss nicht durch Berufserfahrung."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "aa32df8244d025b85d9c31b50a7af2ce0943ef523111feab2061f7d1c6ccad95",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

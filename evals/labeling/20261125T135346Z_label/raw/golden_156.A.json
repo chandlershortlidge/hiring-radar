@@ -1,0 +1,89 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"concepts and algorithms underlying machine learning\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"machine learning product implementation with APIs\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"back-end\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"front-end interfaces\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"experience in Fine Tuning LLMs\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"advanced RAG\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic use cases\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"machine learning and LLMs\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"strong technical coding skills in Python\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"experience with deep learning\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"deep learning with Pytorch\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"proven experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Requirements are under 'About you', which defaults to required. Items under 'Ideally you have:' are nice_to_have.\\nSkills named only in 'What you will do' (GenAI applications, the inference/fine-tuning open-source work) are not labeled from there. fine-tuning is labeled from 'About you'.\\n'Fine Tuning LLMs, tackling advanced RAG or agentic use cases' reads as an X, Y or Z list, so fine-tuning, rag and agents are grouped as alternatives (group 1). It could instead be read as a conjunctive list, so these are flagged uncertain.\\nagents is mapped from 'agentic use cases', a loose fit to the taxonomy entry, so it is flagged uncertain.\\nllms is required. It is asked for in 'machine learning and LLMs', which is unmarked. The quote 'Fine Tuning LLMs' also names it but sits inside the alternative ask.\\nbackend-development is mapped from 'back-end'. The taxonomy alias is 'backend' without the hyphen, so it may need a spelling alias.\\n'Contributed to open-source projects in particular in the space of LLMs' asks for a contribution activity, not a skill. It is not labeled; llms is already required.\\nThe customer-engineer and solutions-architect experience under 'Ideally' is a role history, not a skill, so it is not labeled.\\nSeniority conflicts: '2+ years' points to junior (0–2) and 'proven experience' points to mid. I chose mid and flagged it for review.\\n'fluent in English' does not count; only German is recorded, so german is null.\\nNo degree is mentioned, so degree is null.\\nThe output schema has no alternative_group key; I added it per the guide's grouping rule.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "concepts and algorithms underlying machine learning"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "machine learning product implementation with APIs"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "back-end"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "front-end interfaces"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "experience in Fine Tuning LLMs",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "advanced RAG",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic use cases",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "machine learning and LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "strong technical coding skills in Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "experience with deep learning"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "deep learning with Pytorch"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "proven experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Requirements are under 'About you', which defaults to required. Items under 'Ideally you have:' are nice_to_have.\nSkills named only in 'What you will do' (GenAI applications, the inference/fine-tuning open-source work) are not labeled from there. fine-tuning is labeled from 'About you'.\n'Fine Tuning LLMs, tackling advanced RAG or agentic use cases' reads as an X, Y or Z list, so fine-tuning, rag and agents are grouped as alternatives (group 1). It could instead be read as a conjunctive list, so these are flagged uncertain.\nagents is mapped from 'agentic use cases', a loose fit to the taxonomy entry, so it is flagged uncertain.\nllms is required. It is asked for in 'machine learning and LLMs', which is unmarked. The quote 'Fine Tuning LLMs' also names it but sits inside the alternative ask.\nbackend-development is mapped from 'back-end'. The taxonomy alias is 'backend' without the hyphen, so it may need a spelling alias.\n'Contributed to open-source projects in particular in the space of LLMs' asks for a contribution activity, not a skill. It is not labeled; llms is already required.\nThe customer-engineer and solutions-architect experience under 'Ideally' is a role history, not a skill, so it is not labeled.\nSeniority conflicts: '2+ years' points to junior (0–2) and 'proven experience' points to mid. I chose mid and flagged it for review.\n'fluent in English' does not count; only German is recorded, so german is null.\nNo degree is mentioned, so degree is null.\nThe output schema has no alternative_group key; I added it per the guide's grouping rule."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "448641aa882b0cd3311a0532610318e9853e4185b38aeb0073a0d2d3164a8384",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

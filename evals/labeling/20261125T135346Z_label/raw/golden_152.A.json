@@ -1,0 +1,67 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"required\", \"raw_text\": \"7-10+ years in data engineering\", \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"Experience delivering data pipelines\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-related data flows\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"data readiness assessments\", \"raw_text\": \"Experience running data readiness assessments\"},\n    {\"label\": \"data integration\", \"raw_text\": \"building data integrations\"},\n    {\"label\": \"modern data platforms\", \"raw_text\": \"modern data platforms\"},\n    {\"label\": \"feature stores\", \"raw_text\": \"feature stores\"},\n    {\"label\": \"vectorization\", \"raw_text\": \"vectorization\"},\n    {\"label\": \"data governance\", \"raw_text\": \"configuring data governance and compliance controls\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7-10+ years in data engineering, analytics platforms or AI data roles\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Data/Information Management, Engineering, or a related field.\",\n  \"uncertain\": [],\n  \"notes\": \"data-engineering is flagged uncertain. It is named only inside a years-of-experience phrase, but that phrase still names the skill, so I labeled it required.\\nETL/ELT (an alias of data-pipelines) collapses into the data-pipelines criterion, which is required either way.\\n'AI/ML use cases' and 'AI/ML-related data patterns' read as context for the use cases, not as an ask for an AI/ML skill. I did not label ai-ml.\\nAccess control and monitoring appear only in the responsibilities, so neither is labeled.\\nRAG is a required 'e.g.' example under 'Familiarity with' in Essential Requirements.\\n'Vectorization' is left unmapped rather than mapped to embeddings, because the link is loose.\\nThe degree is nice_to_have because it sits under the optional heading 'Desirable Requirements'.\\nThe posting never mentions German. 'across Germany' refers to location, not language, so german is null.\\nThe title word 'Advisory' is not a level word in the guide, so seniority is inferred from 7-10+ years.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "7-10+ years in data engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "Experience delivering data pipelines"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-related data flows"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "data readiness assessments",
+        "raw_text": "Experience running data readiness assessments"
+      },
+      {
+        "label": "data integration",
+        "raw_text": "building data integrations"
+      },
+      {
+        "label": "modern data platforms",
+        "raw_text": "modern data platforms"
+      },
+      {
+        "label": "feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "vectorization",
+        "raw_text": "vectorization"
+      },
+      {
+        "label": "data governance",
+        "raw_text": "configuring data governance and compliance controls"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7-10+ years in data engineering, analytics platforms or AI data roles",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's degree in Computer Science, Data/Information Management, Engineering, or a related field.",
+    "uncertain": [],
+    "notes": "data-engineering is flagged uncertain. It is named only inside a years-of-experience phrase, but that phrase still names the skill, so I labeled it required.\nETL/ELT (an alias of data-pipelines) collapses into the data-pipelines criterion, which is required either way.\n'AI/ML use cases' and 'AI/ML-related data patterns' read as context for the use cases, not as an ask for an AI/ML skill. I did not label ai-ml.\nAccess control and monitoring appear only in the responsibilities, so neither is labeled.\nRAG is a required 'e.g.' example under 'Familiarity with' in Essential Requirements.\n'Vectorization' is left unmapped rather than mapped to embeddings, because the link is loose.\nThe degree is nice_to_have because it sits under the optional heading 'Desirable Requirements'.\nThe posting never mentions German. 'across Germany' refers to location, not language, so german is null.\nThe title word 'Advisory' is not a level word in the guide, so seniority is inferred from 7-10+ years."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "744ed6a2fa215f8e0b857f0f086b1ed001ef5ba4a46d198b40c7248f795a19f6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

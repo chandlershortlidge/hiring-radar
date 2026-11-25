@@ -1,0 +1,94 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erste praktische Erfahrung in der Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit der Entwicklung und Integration von APIs\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI Agents\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tool Calling\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an modernen Cloud- und AI-Technologien\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an modernen Cloud- und AI-Technologien\"\n    }\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Erfolgreich abgeschlossenes Studium in Informatik, Software Engineering, Data Science, AI oder einer vergleichbaren technischen Fachrichtung\",\n  \"notes\": \"Qualifikationen is the requirements section; no optional qualifications heading appears.\\nRead the language list joined by und/oder and the slash as one alternatives group.\\nIdealerweise qualifies the source of practical experience, not the requirement for experience with LLMs, RAG, AI Agents or Tool Calling.\\nMapped the broad AI-Technologien phrase to ai-ml; interest alone makes it and cloud nice_to_have.\\nDegree subject names are not separate skill requirements. Vergleichbaren technischen Fachrichtung broadens the field, not the accepted qualification.\\nExcluded technologies mentioned only in responsibilities, benefits or the company description.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erste praktische Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit der Entwicklung und Integration von APIs"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an modernen Cloud- und AI-Technologien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an modernen Cloud- und AI-Technologien"
+      }
+    ],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Erfolgreich abgeschlossenes Studium in Informatik, Software Engineering, Data Science, AI oder einer vergleichbaren technischen Fachrichtung",
+    "notes": "Qualifikationen is the requirements section; no optional qualifications heading appears.\nRead the language list joined by und/oder and the slash as one alternatives group.\nIdealerweise qualifies the source of practical experience, not the requirement for experience with LLMs, RAG, AI Agents or Tool Calling.\nMapped the broad AI-Technologien phrase to ai-ml; interest alone makes it and cloud nice_to_have.\nDegree subject names are not separate skill requirements. Vergleichbaren technischen Fachrichtung broadens the field, not the accepted qualification.\nExcluded technologies mentioned only in responsibilities, benefits or the company description."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "295a680747080bb78a0354847238e9c61d7d8ea7ad08e24c0e3bc5e5fbcbb62d",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

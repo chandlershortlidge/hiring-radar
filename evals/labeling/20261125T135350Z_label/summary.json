@@ -1,0 +1,608 @@
+{
+  "run_id": "20261125T135350Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-haiku-5-5",
+  "spot_n": 80,
+  "spot_pool": 158,
+  "taxonomy_version": 14,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 161,
+      "fp": 12,
+      "fn": 6,
+      "precision": 0.930635838150289,
+      "recall": 0.9640718562874252,
+      "f1": 0.9470588235294118
+    },
+    "requirement_agreement": 0.9751552795031055,
+    "attributes": {
+      "seniority": {
+        "agreed": 14,
+        "n": 15,
+        "rate": 0.9333333333333333
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      }
+    }
+  },
+  "accepted_skills": 116,
+  "accepted_attributes": 42,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 21,
+    "uncertain": 43,
+    "mapping": 1,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 158,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_149",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_149",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_149",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_149",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_149",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_149",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_149",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_150",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "kubeflow"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "secrets-management"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_151",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "backend-development"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "claude-code"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_152",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_152",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "agent-harnesses"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "networking"
+      ],
+      [
+        "golden_155",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_155",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_155",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "airflow"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "apache-spark"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "cursor"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "data-modeling"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "dbt"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_156",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_156",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_156",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_157",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_157",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "opentelemetry"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_159",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_159",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_159",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_160",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_160",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "a-b-testing"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "access-control"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_161",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_161",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_161",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "distributed-training"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "model-serving"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "tensorrt"
+      ],
+      [
+        "golden_162",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_162",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_162",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_163",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_163",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "backend-development"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "devops"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "helm"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "sglang"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "transformers"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_150 degree: A 'Abgeschlossenes fachbezogenes Hochschulstudium oder vergleichbare Qualifikation' vs B 'Abgeschlossenes fachbezogenes Hochschulstudium oder vergleichbare Qualifikation mit fundierter Berufserfahrung (min. 5 Jahre) im DevSecOps- oder Cloud-Platform-Umfeld'",
+    "golden_156 seniority: A 'Senior Full-Stack AI Engineer' vs B 'Senior / Staff Software Engineer'",
+    "golden_158 seniority: A 'Senior AI & RAG Engineer' vs B 'Senior AI & RAG Engineer (m/w/d)'",
+    "golden_158 degree: A 'erfolgreich abgeschlossenes Bachelor- oder Masterstudium' vs B 'erfolgreich abgeschlossenes Bachelor- oder Masterstudium, beispielsweise in Betriebswirtschaftslehre, Wirtschaftsinformatik, Wirtschaftsingenieurwesen oder einem vergleichbaren Studiengang'",
+    "golden_159 seniority: A 'Lead Software Engineer' vs B 'Lead Software Engineer AI Engineering'",
+    "golden_160 seniority: A 'Sr. Staff Applied AI Engineer' vs B 'Sr. Staff Applied AI Engineer, GTM'",
+    "golden_161 seniority: A 'Evidence of staff-level impact' vs B 'staff-level impact'"
+  ],
+  "unmapped": [
+    "3D perception",
+    "AI-assisted code generation",
+    "AI-driven data interfaces",
+    "Aerospike",
+    "Agent skills (reusable skill development)",
+    "Agent-to-agent (A2A) protocol/frameworks",
+    "Agent-to-agent frameworks",
+    "Agile development",
+    "Alerting workflows",
+    "Analytical databases",
+    "Analytical engine implementation and scaling",
+    "Analytical infrastructure",
+    "Anti-abuse systems",
+    "Automation tools",
+    "Batching",
+    "Billing systems",
+    "ClickHouse",
+    "Cloud-native concepts",
+    "Code review",
+    "Code-RAG",
+    "Compliance",
+    "Cost management",
+    "DETR",
+    "Data governance frameworks",
+    "Data platforms",
+    "Data quality frameworks",
+    "Debugging",
+    "Design reviews",
+    "Development workflow optimization",
+    "Edge / embedded deployment",
+    "Edge and embedded deployment",
+    "Embedded systems",
+    "Embodied and robot-learning models",
+    "Evaluation dataset creation",
+    "Failure analysis",
+    "GPU clusters",
+    "GPU computing",
+    "GPU profiling",
+    "GTM systems integration",
+    "Grounding",
+    "Harbor",
+    "HashiCorp Vault",
+    "High-scale production infrastructure",
+    "Holdout experiments",
+    "Hybrid search",
+    "IT-/OT-Infrastruktur",
+    "Imitation learning",
+    "Inference Engineering",
+    "Internet of Things",
+    "IoT",
+    "Juniper Networks M-Series",
+    "KV-cache management",
+    "LLM-as-judge",
+    "LLaVA",
+    "Large-scale data systems",
+    "Latency optimization",
+    "Logging",
+    "Logging / auditing / compliance",
+    "Memory hardware",
+    "Metadata filtering",
+    "Metering systems",
+    "Microsoft 365",
+    "Mixed precision training",
+    "Mixed-precision training",
+    "Model optimization",
+    "Model review",
+    "Multi-sensor fusion",
+    "Multi-tenancy",
+    "Multimodal learning",
+    "Multimodal modeling",
+    "Network security",
+    "Nexus",
+    "OT infrastructure",
+    "Object detection",
+    "Offline and online evaluation scoring",
+    "Open-source contribution",
+    "OpenVLA",
+    "PaliGemma",
+    "Performance optimization",
+    "Platform Engineering",
+    "Podman",
+    "Private cloud",
+    "Production systems experience",
+    "Programmable logic controllers",
+    "Prompt-injection defense",
+    "Prototyping",
+    "Query execution",
+    "Qwen-VL",
+    "RIP routing protocol",
+    "RLHF",
+    "RT-2",
+    "Rechenzentrumsstrategien",
+    "Refactoring",
+    "Release validation",
+    "Reporting dashboards",
+    "Reranking",
+    "Retrieval methods",
+    "Reusable AI skill development",
+    "Robot learning / embodied AI",
+    "SD-WAN",
+    "SRE",
+    "Scalable system development",
+    "Security auditing",
+    "Segmentation",
+    "Shell scripting",
+    "Sim-to-real transfer",
+    "Simulation",
+    "Simulation / sim-to-real",
+    "SonarQube",
+    "Source-code retrieval",
+    "Sovereign cloud",
+    "Speech AI",
+    "StarRocks",
+    "System integration",
+    "Technical documentation",
+    "Text-to-SQL",
+    "Traffic systems",
+    "Video understanding",
+    "Vision-language models",
+    "Vision-language models (VLMs)",
+    "Vision-language-action models",
+    "Vision-language-action models (VLAs)",
+    "Web analytics",
+    "YOLO",
+    "Zero Trust",
+    "agile development",
+    "alerting",
+    "data quality / governance frameworks",
+    "incident management",
+    "inference systems / high-scale production infrastructure",
+    "latency optimization",
+    "metering / anti-abuse / billing systems",
+    "multi-tenancy",
+    "pi0",
+    "query execution / performance optimization",
+    "text-to-SQL",
+    "time-series databases"
+  ]
+}

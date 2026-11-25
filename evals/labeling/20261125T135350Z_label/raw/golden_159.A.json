@@ -1,0 +1,54 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Mehrjährige Erfahrung in der Softwareentwicklung\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"gutes Verständnis für moderne Softwarearchitekturen\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"praktische Erfahrung mit AI-Coding-Tools, Coding Agents\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java und Spring Boot sind dabei weiterhin wichtige Bestandteile unserer Systemlandschaft\", \"uncertain\": true},\n    {\"skill_id\": \"spring-boot\", \"requirement\": \"required\", \"raw_text\": \"Java und Spring Boot sind dabei weiterhin wichtige Bestandteile unserer Systemlandschaft\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Software Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Requirements section is 'Was dich auszeichnet:'. It has no optional heading, so every item there defaults to required.\\nJava/Spring Boot: the requirements bullet says they 'sind ... wichtige Bestandteile unserer Systemlandschaft'. This is a stack statement sitting inside a requirements list. I treated it as required under the 'stack line inside a requirements list' rule. It reads more like a description of the company's systems than an ask, so both are flagged uncertain.\\nsoftware-architecture: the posting says 'Softwarearchitekturen'. That is the plural, and the taxonomy alias is 'softwarearchitektur'. I mapped it as a close fit and flagged it uncertain.\\nai-developer-tooling: 'AI-Coding-Tools' and 'Coding Agents' map to the same id, so they form one criterion with no alternative_group. 'Begeisterung für' is not in the appetite list, and practical experience is explicitly asked for, so it is required.\\n'Integrationen' in requirements was not mapped to apis. It is too loose for the 'api integrations' alias.\\n'AI-Driven Development' was not labeled. It is described as Begeisterung, and the concrete ask is covered by ai-developer-tooling.\\nTesting, Vibe Coding and refactoring appear only under 'Deine Aufgabe' (responsibilities), so they are not labeled.\\n'moderner Tech Stack' in the benefits section names no tools.\\nGerman: the posting is written in German and makes no language statement, so German is labeled required, inferred.\\nDegree: no degree is mentioned.\\nSeniority: 'Lead' in the title gives senior, stated. Disciplinary leadership is explicitly excluded, but the title still governs.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Mehrjährige Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "gutes Verständnis für moderne Softwarearchitekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI-Coding-Tools, Coding Agents"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java und Spring Boot sind dabei weiterhin wichtige Bestandteile unserer Systemlandschaft",
+        "uncertain": true
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java und Spring Boot sind dabei weiterhin wichtige Bestandteile unserer Systemlandschaft",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Software Engineer",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Requirements section is 'Was dich auszeichnet:'. It has no optional heading, so every item there defaults to required.\nJava/Spring Boot: the requirements bullet says they 'sind ... wichtige Bestandteile unserer Systemlandschaft'. This is a stack statement sitting inside a requirements list. I treated it as required under the 'stack line inside a requirements list' rule. It reads more like a description of the company's systems than an ask, so both are flagged uncertain.\nsoftware-architecture: the posting says 'Softwarearchitekturen'. That is the plural, and the taxonomy alias is 'softwarearchitektur'. I mapped it as a close fit and flagged it uncertain.\nai-developer-tooling: 'AI-Coding-Tools' and 'Coding Agents' map to the same id, so they form one criterion with no alternative_group. 'Begeisterung für' is not in the appetite list, and practical experience is explicitly asked for, so it is required.\n'Integrationen' in requirements was not mapped to apis. It is too loose for the 'api integrations' alias.\n'AI-Driven Development' was not labeled. It is described as Begeisterung, and the concrete ask is covered by ai-developer-tooling.\nTesting, Vibe Coding and refactoring appear only under 'Deine Aufgabe' (responsibilities), so they are not labeled.\n'moderner Tech Stack' in the benefits section names no tools.\nGerman: the posting is written in German and makes no language statement, so German is labeled required, inferred.\nDegree: no degree is mentioned.\nSeniority: 'Lead' in the title gives senior, stated. Disciplinary leadership is explicitly excluded, but the title still governs."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "084330556bacf2c214ed786457c57d1fda2642e08c1b17b281a7d1474521f9bf",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}
