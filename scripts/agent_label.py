@@ -811,9 +811,12 @@ def proposer_system(judge_system: str) -> str:
 PROPOSE_SYSTEM = proposer_system(JUDGE_SYSTEM)
 
 # The proposer must not be the extractor, either labeler, or the judge (the judge refuses the
-# recorded proposer). Haiku: no stake, and about €0.20 for eight batches where Fable measured
-# about €17 (HIR-379); the cross-family judge still has to agree before an item settles.
-DEFAULT_PROPOSER = "claude-haiku-5-5"
+# recorded proposer); the cross-family judge still has to agree before an item settles.
+# HIR-379 chose Haiku (about €0.20 for eight batches, where Fable measured about €17). HIR-409
+# made Haiku the extractor, so it now has a stake: Sonnet replaces it, at 20x Haiku's
+# per-token price, about €0.50 a batch. If HIRING_RADAR_MODEL puts the extractor back on
+# Sonnet, pass --model claude-haiku-5-5.
+DEFAULT_PROPOSER = "claude-sonnet-5-5"
 
 
 # --- degree items: the guide's own Degree rule, not the skill rules (HIR-381) ------------

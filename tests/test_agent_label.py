@@ -1300,6 +1300,21 @@ def test_propose_refuses_a_model_with_a_stake(tmp_path, monkeypatch, model):
         al.main(["propose", "--run", run_dir.name, "--model", model])
 
 
+def test_default_proposer_has_no_stake():
+    """HIR-409: Haiku became the extractor, so the default proposer had to move off it."""
+    assert al.DEFAULT_PROPOSER not in {al.EXTRACTOR_MODEL, al.DEFAULT_MODEL_A,
+                                       al.DEFAULT_MODEL_B, al.DEFAULT_MODEL_C}
+
+
+def test_propose_runs_with_its_default_model(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch, proposal=None)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["propose", "--run", run_dir.name])
+    assert len(al.parse_proposals(queue.read_text())) >= 1
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["proposer"]["model"] == al.DEFAULT_PROPOSER
+
+
 def test_judge_refuses_the_model_that_wrote_the_proposals(tmp_path, monkeypatch):
     run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None)
     judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
