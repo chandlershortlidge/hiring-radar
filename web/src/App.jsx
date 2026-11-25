@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { api, fetchSkills } from "./api.js";
 import { COMPARE_DEFAULT, DEGREE_FILTERS, EXTRA_FILTER_NAMES, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
@@ -7,7 +7,7 @@ import { useProfile } from "./profile.js";
 import { Person, Radar } from "./icons.jsx";
 import QueryBar from "./QueryBar.jsx";
 import HomeGrid from "./HomeGrid.jsx";
-import { Eyebrow, Headline, HeroChart, heroFacts, heroPlace } from "./HomeHero.jsx";
+import { HeroChart, Tagline, heroFacts, heroPlace } from "./HomeHero.jsx";
 import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
 import FilterPills from "./FilterPills.jsx";
 import SkillChart, { ChartStatus } from "./SkillChart.jsx";
@@ -102,11 +102,35 @@ export default function App() {
   // Open jobs per city, for the picker's counts and the market cards. From /api/stats, so
   // it stays the whole picture even while the page is filtered down to one city.
   const cityCounts = stats?.open_by_city || {};
-  // The home page leads with one market: its headline, its chart, and the city its
-  // pickers start on (HomeHero.jsx). Fixed while the page is open, so visiting a city and
-  // coming back does not change the headline under the reader.
+  // The home page leads with one market: its chart and the city its pickers start on
+  // (HomeHero.jsx). Fixed while the page is open, so visiting a city and coming back does
+  // not change the chart under the reader.
   const [lead] = useState(() => heroPlace(recent));
   const hero = useMemo(() => heroFacts(skills, cityCounts, lead), [skills, cityCounts, lead]);
+  // The city picked in the home page's search box (HIR-474): a choice, not a move, until
+  // "View jobs" is pressed. Until then the box shows the market the page leads with.
+  const [heroPick, setHeroPick] = useState(null);
+  const heroSlug = heroPick || lead.slug;
+  // Set by "View jobs", read once the city page has drawn: the visitor asked for the jobs,
+  // so the page opens on the job list rather than at its top. Where the columns stack (a
+  // phone) the chart above the list is still loading and pushes it down, so the list is
+  // held in place while the page settles, until the visitor scrolls or touches it.
+  const toJobs = useRef(false);
+  useEffect(() => {
+    if (!toJobs.current || market.view !== "city") return;
+    toJobs.current = false;
+    const jobs = document.querySelector(".card.jobs");
+    const main = document.querySelector("main.main");
+    if (!jobs || !main) return;
+    const pin = () => jobs.scrollIntoView({ block: "start" });
+    pin();
+    const ro = typeof ResizeObserver === "function" ? new ResizeObserver(pin) : null;
+    ro?.observe(main);
+    const stop = () => { ro?.disconnect(); clearTimeout(t); for (const e of ["wheel", "touchstart", "keydown"]) window.removeEventListener(e, stop); };
+    const t = setTimeout(stop, 4000);
+    for (const e of ["wheel", "touchstart", "keydown"]) window.addEventListener(e, stop, { passive: true });
+    return stop;
+  }, [market]);
   // The filters "More filters" holds, and how many of them are set to something.
   const extraOn = [filters.production, filters.degree].filter((v) => v !== "any").length + (filters.window !== "open" ? 1 : 0);
 
@@ -151,6 +175,7 @@ export default function App() {
 
   // Everything the query bar can do, as moves between addresses.
   const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
+  const viewJobs = () => { toJobs.current = true; goPlace(heroSlug); };
   // On the home view a family pick is not a move: the address stays "/", nothing is pushed
   // to the history, and only the market cards follow it (HIR-197).
   const goFamily = (f) => {
@@ -163,8 +188,8 @@ export default function App() {
   // which today is the only one — so if the pick lands back on the city we are already
   // comparing, fall back to the busiest other market rather than comparing it with itself.
   const startCompare = (slug) => {
-    // On the home page no city is chosen yet; the one the page leads with stands in.
-    const here = placeCities(market.place || lead.slug)[0];
+    // On the home page no city is opened yet; the one picked in the search box stands in.
+    const here = placeCities(market.place || heroSlug)[0];
     const picked = placeCities(slug)[0];
     const other = picked && picked !== here
       ? picked
@@ -209,18 +234,18 @@ export default function App() {
     + (filters.production !== "any" ? ` · production experience: ${PRODUCTION_FILTERS[filters.production].toLowerCase()}` : "")
     + (filters.degree !== "any" ? ` · degree: ${DEGREE_FILTERS[filters.degree].toLowerCase()}` : "");
 
-  // The "[job family] in [city]" pickers. On the home page they sit under the headline and
-  // start on the market the page leads with; picking any city, that one included, opens it.
+  // The "[job family] in [city]" pickers. On the home page they sit under the headline in a
+  // search box, start on the market the page leads with, and open nothing until "View jobs".
   const queryBar = (
     <QueryBar
-      place={market.view === "city" ? market.place : market.view === "home" ? lead.slug : null}
+      place={market.view === "city" ? market.place : market.view === "home" ? heroSlug : null}
       family={market.family}
       counts={cityCounts}
       recent={recent}
       compare={market.view === "compare"}
       compareCities={market.view === "compare" ? market.cities : []}
       landing={market.view === "home"}
-      onPlace={goPlace} onFamily={goFamily}
+      onPlace={market.view === "home" ? setHeroPick : goPlace} onFamily={goFamily} onViewJobs={viewJobs}
       onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
       onRequestCity={requestCity}
       right={stats && market.view !== "home"
@@ -244,15 +269,13 @@ export default function App() {
 
       {pageJob ? <Panel label="This job's page"><JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /></Panel> : <>
 
-      {/* Home (HIR-285): the headline and the pickers on the left, the lead market's chart
-          on the right. On a city page the same pickers are a band of their own. */}
+      {/* Home (HIR-285, HIR-474): the tagline and the search box on the left, the lead
+          market's chart on the right. On a city page the same pickers are a band of their own. */}
       {market.view === "home" ? (
         <>
           <section className="hero"><div className="hero-in">
             <div className="hero-l">
-              <Eyebrow place={lead.name} open={hero.open} roles={hero.roles} updated={stats?.last_updated} />
-              <Headline top={hero.top} place={lead.name} roles={hero.roles} />
-              <p className="lede">Live skill demand from every open AI &amp; data job we can find, per city.</p>
+              <Tagline />
               {queryBar}
             </div>
             <Panel label="The top-skills chart">

@@ -82,27 +82,36 @@ async function expectChartAndJobs(page) {
 
 test("home loads; pick a city and a job type; chart and job list have data", async ({ page, problems }) => {
   await page.goto("/");
-  // The headline is built from live numbers (HIR-285), so it is found by where it is, and
-  // the chart beside it has to have drawn its bars.
-  await expect(page.locator(".hero h1")).toBeVisible();
+  // The tagline (HIR-474), and the chart beside it has to have drawn its bars.
+  await expect(page.locator(".hero h1")).toHaveText("See what skills employers actually want.");
   await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
   const cards = page.locator("a.market-row");
   await expect(cards.first()).toBeVisible();
   await expect(cards.first().locator(".mk-skill").first()).toBeVisible(); // its top skills drew
 
-  // The city picker under the headline: it starts on the market the page leads with.
+  // The search box (HIR-474): a job family and a city other than the one it starts on are
+  // choices, not moves; "View jobs" opens that city and family, on its job list. The city
+  // is the second-busiest market, so it is never the one the box already shows.
+  const shown = (await page.locator(".hero .picker .qb-btn").first().innerText()).replace("▾", "").trim();
+  const other = cards.filter({ hasNotText: shown }).first();
+  const name = (await other.locator(".mk-city h3").innerText()).trim();
+  const slug = new URL(await other.getAttribute("href"), page.url()).pathname.split("/")[1];
+  const fam = await page.locator("#qb-family option").nth(1).getAttribute("value");
+  await page.locator("#qb-family").selectOption(fam);
   await page.locator(".hero .picker").first().getByRole("button").first().click();
-  await page.getByRole("listbox", { name: "Cities" }).getByRole("option").first().click();
-  await expect(page).not.toHaveURL(/\/$/);
-  await expectChartAndJobs(page);
+  await page.getByRole("listbox", { name: "Cities" }).getByRole("option", { name: new RegExp(`^${name}\\b`) }).first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await page.getByRole("button", { name: "View jobs →" }).click();
+  await expect(page).toHaveURL(new RegExp(`/${slug}/${fam}$`));
+  await expect(page.locator(".card.jobs")).toBeInViewport();
 
-  const family = page.locator("#qb-family");
-  const first = await family.locator("option").nth(1).getAttribute("value");
-  const wait = page.waitForResponse((r) => r.url().includes("/api/skills") && r.url().includes(`family=${first}`));
-  await family.selectOption(first);
+  // On the city page the family picker is a move: back to every role, the address and the
+  // chart follow, and the chart and job list have data.
+  const wait = page.waitForResponse((r) => r.url().includes("/api/skills") && !r.url().includes("family="));
+  await page.locator("#qb-family").selectOption("");
   expect((await wait).status()).toBe(200);
-  await expect(page).toHaveURL(new RegExp(`/${first}$`));
-  await expect(page.locator(".chart .bars")).toBeVisible();
+  await expect(page).toHaveURL(new RegExp(`/${slug}$`));
+  await expectChartAndJobs(page);
 });
 
 test("each filter reaches the server and the page redraws", async ({ page, problems }) => {
@@ -134,6 +143,30 @@ test("each filter reaches the server and the page redraws", async ({ page, probl
       await expect(page.locator(".chart .bars, .chart .empty").first()).toBeVisible();
     });
   }
+});
+
+// HIR-474 review: at a medium desktop width the search box once ran under the chart beside
+// it. The box has to end before the chart starts, with View jobs wholly inside the box.
+test.describe("desktop width only", () => {
+  test.skip(({ isMobile }) => isMobile, "a desktop width");
+  test("the home search box fits beside the chart at 1024px", async ({ page, problems }) => {
+    await page.setViewportSize({ width: 1024, height: 800 });
+    await page.goto("/");
+    await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
+    const box = await page.locator(".qbar.landing .qb").boundingBox();
+    const go = await page.locator(".qb-go").boundingBox();
+    const chart = await page.locator(".hero-chart").boundingBox();
+    if (chart.y < box.y + box.height && chart.y + chart.height > box.y) expect(box.x + box.width).toBeLessThanOrEqual(chart.x);
+    expect(go.x + go.width).toBeLessThanOrEqual(box.x + box.width);
+  });
+});
+
+test("the home page's compare link opens a comparison", async ({ page, problems }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "or compare with another city" }).click();
+  await expect(page).toHaveURL(/\/compare\/[^/]+\+[^/]+/);
+  await expect(page.locator(".qbar .token")).toHaveCount(2);
+  await expect(page.locator(".chart .bars").first()).toBeVisible();
 });
 
 test("compare mode with a second city", async ({ page, problems }) => {
