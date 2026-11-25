@@ -252,4 +252,7 @@ app = None  # created lazily by `python -m app serve` or uvicorn factory
 
 
 def factory() -> FastAPI:
+    # The live server only: tests build the app with create_app and never start Sentry.
+    from app import error_reports
+    error_reports.start()
     return create_app()
