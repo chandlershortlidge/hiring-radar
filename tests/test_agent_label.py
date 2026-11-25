@@ -1871,6 +1871,18 @@ def test_narrowing_the_pool_to_one_city_keeps_only_that_city(tmp_path):
     assert {al.describe(r)["place"] for r in picks} == {"Remote (EU)"}
 
 
+def test_narrowing_the_pool_to_one_track_keeps_only_that_track():
+    """A track launch samples that track alone (HIR-408), read off the stored family."""
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    conn.executescript("CREATE TABLE job (id INTEGER PRIMARY KEY, family TEXT);"
+                       "INSERT INTO job VALUES (1, 'ai-engineer'), (2, 'forward-deployed-engineer'),"
+                       " (3, 'forward-deployed-engineer'), (4, NULL);")
+    rows = [{"id": i, "title": f"t{i}"} for i in (1, 2, 3, 4)]
+    assert [r["id"] for r in al.only_track(conn, rows, "forward-deployed-engineer")] == [2, 3]
+    assert al.only_track(conn, rows, "research") == []
+
+
 # --- which split a batch joins (HIR-164) ------------------------------------------
 #
 # New Goldens went to held-out unconditionally, which is why dev never grew past 20 while

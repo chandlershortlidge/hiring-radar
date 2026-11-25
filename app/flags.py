@@ -148,7 +148,8 @@ CAUSES = {
 }
 
 FAMILY_LABELS = {"ai-engineer": "AI Engineer", "ml-engineer": "ML Engineer", "data-scientist": "Data Scientist",
-                 "ml-platform": "ML Platform", "research": "Research"}
+                 "ml-platform": "ML Platform", "research": "Research",
+                 "forward-deployed-engineer": "Forward Deployed Engineer"}
 
 # The title's own level word. The same two lists the dashboard's fit badge reads
 # (web/src/profile.js SENIOR_TITLE / JUNIOR_TITLE, HIR-113): short on purpose.

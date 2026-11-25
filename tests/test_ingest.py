@@ -1,3 +1,5 @@
+import sqlite3
+
 import pytest
 
 from app import db, geo
@@ -319,21 +321,47 @@ FAMILY_CASES = [
     ("Senior Data Scientist / Machine Learning Scientist", "data-scientist"),  # earlier row wins
 ]
 
+# Forward Deployed Engineer (HIR-408): its words decide before every row above, and the
+# titles next to it that it must not take. Most are stored titles from 25 Nov.
+FDE = "forward-deployed-engineer"
+FDE_CASES = [
+    ("Forward Deployed Engineer", FDE),                     # no AI word at all
+    ("Forward-Deployed Engineer (m/w/d)", FDE),
+    ("Forward Deployed Software Engineer", FDE),
+    ("Forward Deployed AI Engineer", FDE),                  # was ai-engineer
+    ("Applied AI, Forward Deployed Machine Learning Engineer", FDE),   # was ml-engineer
+    ("AI Builder, Forward Deployed Engineering, Research and Product", FDE),  # was research
+    ("NTT DATA Deutschland SE: Forward Deployment Engineer (w/m/x) - AI & Enterprise Solutions", FDE),
+    ("Software Engineer, Forward Deployed AI Solutions", FDE),   # engineer before the FDE words
+    ("Forward Deployed / Python AI Engineer, OpenAI/Claude SDK", FDE),
+    ("Senior Software Engineer - AI, FDE [updated]", FDE),
+    ("Lead AI Engineer | FDE | Insurance", FDE),
+    ("Forward Deployed AI Architect - FDE IRC308975", FDE),
+    ("Deployed Engineer", FDE),
+    ("Forward Deployed Data Scientist", "data-scientist"),  # no engineer word: not FDE
+    ("Deployed AI Engineer", "ai-engineer"),                # not "deployed engineer"
+    ("AI Edge Deployment Engineer", "ai-engineer"),
+    ("FDEX AI Engineer", "ai-engineer"),                    # `fde` inside a word does not count
+    ("AI Engineer [FDE]", "ai-engineer"),                   # a known limit: `[` is not a boundary
+    ("AI Solutions Engineer", "ai-engineer"),               # the boundary: stays where it was
+]
 
-@pytest.mark.parametrize("title,family", FAMILY_CASES)
+
+@pytest.mark.parametrize("title,family", FAMILY_CASES + FDE_CASES)
 def test_family_of_buckets_the_title(title, family):
     assert family_of(title) == family
 
 
 def test_family_of_only_returns_known_families():
-    assert all(f in FAMILIES for _, f in FAMILY_CASES)
+    assert all(f in FAMILIES for _, f in FAMILY_CASES + FDE_CASES)
     assert family_of("") == "ai-engineer"
 
 
 def test_migration_backfill_agrees_with_family_of(tmp_path):
     """The SQL CASE that labels stored rows and family_of must label the same titles the
     same way. 017 first gave every row a family; 027 re-labels every row once the scientist
-    titles are sorted (HIR-452), so a database is checked at the end of all migrations."""
+    titles are sorted (HIR-452), and 028 once more for Forward Deployed Engineer (HIR-408),
+    so a database is checked at the end of all migrations."""
     import shutil
     old = tmp_path / "old"
     old.mkdir()
@@ -342,26 +370,30 @@ def test_migration_backfill_agrees_with_family_of(tmp_path):
             shutil.copy(m, old / m.name)
     c = db.connect(tmp_path / "t.db")
     db.migrate(c, old)
-    for title, _ in FAMILY_CASES:
+    cases = FAMILY_CASES + FDE_CASES
+    for title, _ in cases:
         c.execute("INSERT INTO job (title, description_text, first_seen, last_seen)"
                   " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')", (title,))
     c.commit()
     ran = db.migrate(c)
-    assert 17 in ran and 27 in ran
+    assert 17 in ran and 27 in ran and 28 in ran
     rows = c.execute("SELECT title, family FROM job ORDER BY id").fetchall()
-    assert len(rows) == len(FAMILY_CASES)
-    assert [(r["title"], r["family"]) for r in rows] == [(t, family_of(t)) for t, _ in FAMILY_CASES]
+    assert len(rows) == len(cases)
+    assert [(r["title"], r["family"]) for r in rows] == [(t, family_of(t)) for t, _ in cases]
 
 
 def test_027_moves_only_the_scientist_titles(tmp_path):
     """027 re-labels every stored row, so it must leave a row alone unless its title is a
     scientist title the old rule dropped into ai-engineer (HIR-452)."""
     import shutil
-    old = tmp_path / "old"
+    old, upto27 = tmp_path / "old", tmp_path / "upto27"
     old.mkdir()
+    upto27.mkdir()
     for m in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
         if int(m.name[:3]) < 27:
             shutil.copy(m, old / m.name)
+        if int(m.name[:3]) <= 27:
+            shutil.copy(m, upto27 / m.name)
     c = db.connect(tmp_path / "t.db")
     db.migrate(c, old)
     for title, _ in FAMILY_CASES:
@@ -376,9 +408,63 @@ def test_027_moves_only_the_scientist_titles(tmp_path):
               " AND lower(title) NOT LIKE '%applied scientist%'")
     c.commit()
     assert c.execute("SELECT family FROM job WHERE title = 'AI Scientist'").fetchone()[0] == "ai-engineer"
-    assert db.migrate(c) == [27]
+    assert db.migrate(c, upto27) == [27]
     after = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
     assert after == before
+
+
+def test_028_moves_only_the_fde_titles_and_accepts_the_new_family(tmp_path):
+    """028 rebuilds the family column and re-labels every stored row, so a row keeps the
+    family 027 gave it unless its title has the FDE words (HIR-408)."""
+    import shutil
+    upto27 = tmp_path / "upto27"
+    upto27.mkdir()
+    for m in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if int(m.name[:3]) <= 27:
+            shutil.copy(m, upto27 / m.name)
+    c = db.connect(tmp_path / "t.db")
+    db.migrate(c, upto27)
+    cases = FAMILY_CASES + FDE_CASES
+    for title, _ in cases:
+        c.execute("INSERT INTO job (title, description_text, first_seen, last_seen)"
+                  " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')", (title,))
+    # Label them the way they were stored before 028: 027's rule.
+    c.executescript((db.MIGRATIONS_DIR / "027_job_family_scientist.sql").read_text())
+    c.commit()
+    before = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
+    assert set(before.values()) <= {"ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"}
+    assert db.migrate(c) == [28]
+    after = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
+    moved = {t for t in before if before[t] != after[t]}
+    assert moved == {t for t, f in FDE_CASES if f == FDE}
+    assert all(after[t] == FDE for t in moved)
+    # The index the dashboard's family filter uses is back.
+    assert c.execute("SELECT 1 FROM sqlite_master WHERE type = 'index' AND name = 'job_family'").fetchone()
+    with pytest.raises(sqlite3.IntegrityError):
+        c.execute("UPDATE job SET family = 'not-a-family' WHERE id = 1")
+
+
+@pytest.mark.parametrize("title", [
+    "Forward Deployed Engineer", "Forward-Deployed Software Engineer (m/w/d)", "FDE, Berlin",
+    "Deployed Engineer",
+])
+def test_an_fde_title_is_collected_without_an_ai_word(conn, title):
+    assert in_scope_title(title) is True
+    assert ingest_one(conn, posting(title=title)).is_new
+    assert conn.execute("SELECT family FROM job").fetchone()["family"] == FDE
+
+
+@pytest.mark.parametrize("title", [
+    "Forward Deployed Sales Engineer",       # selling (HIR-246) stays out
+    "Pre-Sales Forward Deployed Engineer",
+    "Solutions Engineer",                    # the adjacent roles are not FDE (HIR-408)
+    "Solutions Architect",
+    "Customer Engineer",
+    "Implementation Engineer",
+    "Forward Deployed Strategist",           # no engineer word, no AI word
+])
+def test_the_roles_next_to_fde_are_not_collected(title):
+    assert in_scope_title(title) is False
 
 
 def test_new_job_gets_a_family_on_insert(conn):
