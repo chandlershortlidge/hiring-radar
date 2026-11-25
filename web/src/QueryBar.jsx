@@ -26,17 +26,42 @@ export default function QueryBar({
   onPlace, onFamily, onViewJobs, onStartCompare, onAddCity, onRemoveCity, onExitCompare, onRequestCity, right,
 }) {
   const left = PLACES.filter((p) => !compareCities.includes(p.name));
+  const familyPick = (
+    <>
+      <label className="sr" htmlFor="qb-family">Job family</label>
+      <select id="qb-family" className="qb-btn qb-sel" value={family || ""} onChange={(e) => onFamily(e.target.value || null)}>
+        <option value="">All AI &amp; data roles</option>
+        {FAMILIES.map((f) => <option key={f} value={f}>{familyLabel(f)}</option>)}
+      </select>
+      <span className="qb-in">in</span>
+    </>
+  );
+
+  // The home page's search box (HIR-474): the pickers as one group, View jobs beside them.
+  // Where the column is too narrow for both, View jobs drops to its own row, full width,
+  // rather than running under the chart beside the box.
+  if (landing && !compare) {
+    return (
+      <div className="qbar landing">
+        <div className="qbar-in">
+          <div className="qb">
+            <div className="qb-picks">
+              {familyPick}
+              <CityPicker value={place} counts={counts} recent={recent} onPick={onPlace} onRequestCity={onRequestCity} />
+            </div>
+            <button type="button" className="qb-go" onClick={onViewJobs}>View jobs →</button>
+          </div>
+          <button type="button" className="qb-compare" onClick={() => onStartCompare(null)}>or compare with another city</button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`qbar${landing ? " landing" : ""}`}>
       <div className="qbar-in">
         <div className="qb">
-          <label className="sr" htmlFor="qb-family">Job family</label>
-          <select id="qb-family" className="qb-btn qb-sel" value={family || ""} onChange={(e) => onFamily(e.target.value || null)}>
-            <option value="">All AI &amp; data roles</option>
-            {FAMILIES.map((f) => <option key={f} value={f}>{familyLabel(f)}</option>)}
-          </select>
-          <span className="qb-in">in</span>
+          {familyPick}
 
           {compare ? (
             <>
@@ -56,18 +81,13 @@ export default function QueryBar({
           ) : (
             <>
               <CityPicker value={place} counts={counts} recent={recent} onPick={onPlace} onRequestCity={onRequestCity} />
-              {landing
-                ? <button type="button" className="qb-go" onClick={onViewJobs}>View jobs →</button>
-                : <CityPicker value={null} counts={counts} recent={recent} exclude={[place]}
-                    placeholder="+ Compare with…" variant="add" disabled={!place}
-                    onPick={onStartCompare} onRequestCity={onRequestCity} />}
+              <CityPicker value={null} counts={counts} recent={recent} exclude={[place]}
+                placeholder="+ Compare with…" variant="add" disabled={!place}
+                onPick={onStartCompare} onRequestCity={onRequestCity} />
             </>
           )}
         </div>
         {right && <div className="qb-right">{right}</div>}
-        {landing && !compare && (
-          <button type="button" className="qb-compare" onClick={() => onStartCompare(null)}>or compare with another city</button>
-        )}
       </div>
     </div>
   );

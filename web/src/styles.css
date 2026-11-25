@@ -449,12 +449,18 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
 .qbar.landing { background: none; border: 0; }
 /* HIR-474: one search box, "View jobs" its main button at the right, compare a link under it */
 .qbar.landing .qbar-in { max-width: none; margin: 0; padding: 0; flex-direction: column; align-items: stretch; gap: 10px; }
-.qbar.landing .qb { flex-wrap: nowrap; padding: 8px; border: 2px solid var(--warm-grey); border-radius: 12px; background: var(--ground); }
+.qbar.landing .qb { flex-wrap: wrap; padding: 8px; border: 2px solid var(--warm-grey); border-radius: 12px; background: var(--ground); }
 .qbar.landing .qb-btn { height: 56px; padding: 0 16px; font-size: 17px; }
 .qbar.landing .qb-in { font-size: 16px; }
 /* the caret is drawn with background gradients, so its offset is the button's height */
 .qbar.landing select.qb-sel { padding-right: 34px; background-position: calc(100% - 17px) 25px, calc(100% - 12px) 25px; }
-.qb-go { flex: none; display: inline-flex; align-items: center; height: 56px; margin-left: auto; padding: 0 22px; border: 0; border-radius: 8px; background: var(--plum); color: #fff; font-size: 17px; font-weight: 600; white-space: nowrap; }
+/* the role picker as wide as the role it shows, not its longest option, so View jobs fits
+   beside the pickers; a browser without field-sizing puts View jobs on a row of its own */
+.qbar.landing .qb-picks select.qb-sel { field-sizing: content; }
+/* the pickers' group takes the spare room on a shared row, so View jobs keeps its own width
+   at the right; alone on its row (a narrow column) View jobs fills it */
+.qb-picks { flex: 9999 1 auto; min-width: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.qb-go { flex: 1 0 auto; display: inline-flex; align-items: center; justify-content: center; height: 56px; padding: 0 22px; border: 0; border-radius: 8px; background: var(--plum); color: #fff; font-size: 17px; font-weight: 600; white-space: nowrap; }
 .qb-go:hover { background: var(--ink); }
 .qb-compare { align-self: flex-start; min-height: 44px; padding: 0 2px; border: 0; background: none; color: var(--plum); font-size: 14px; text-decoration: underline; }
 .qb-compare:hover { color: var(--ink); }
@@ -545,8 +551,9 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
   .qb-in { display: none; }
   .qb > .picker, .qb .qb-btn, .qb .qb-add, .qb .token { width: 100%; }
   .qb-sel, .qb .picker .qb-btn { width: 100%; justify-content: space-between; }
-  .qbar.landing .qb { flex-direction: column; align-items: stretch; }
-  .qb-go { width: 100%; margin-left: 0; justify-content: center; }
+  .qbar.landing .qb, .qb-picks { flex-direction: column; align-items: stretch; }
+  .qb-picks { gap: 8px; } .qb-picks > .picker { width: 100%; }
+  .qb-go { width: 100%; }
   .hero-in { padding: 28px 16px; gap: 24px; } .hero-l { gap: 16px; } .hero h1 { font-size: 30px; }
   .hero-chart { padding: 16px; } .hero-row { grid-template-columns: 110px minmax(0, 1fr) 40px; }
   .mcp-wrap { padding: 16px 16px 0; } .mcp { padding: 12px 16px; }
