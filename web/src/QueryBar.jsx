@@ -13,16 +13,17 @@ import CityPicker from "./CityPicker.jsx";
 // with…" and compare mode's "+ add" are a CityPicker with nothing chosen, so entering a
 // comparison is one click and one pick, not a mode switch followed by a pick.
 //
-// `landing` is the first screen, before any city is chosen: the bar centres itself and grows
-// a size. The dashboard keeps its own alignment, where the bar is a control above a chart
-// rather than the subject of the page.
+// `landing` is the first screen, before any city is chosen (HIR-474): the pickers sit in one
+// search box with a "View jobs" button, which is the page's main action; a city pick there
+// is a choice, not a move. Compare is a small link under the box. The dashboard keeps its
+// own band, where the bar is a control above a chart rather than the subject of the page.
 //
 // The family side is a plain <select>: a short, flat list of five needs no search box,
 // and the browser's own control is the most accessible thing available. The city side is
 // a custom listbox because it needs search, country groups and job counts.
 export default function QueryBar({
   place, family, counts, recent, compare, compareCities, landing,
-  onPlace, onFamily, onStartCompare, onAddCity, onRemoveCity, onExitCompare, onRequestCity, right,
+  onPlace, onFamily, onViewJobs, onStartCompare, onAddCity, onRemoveCity, onExitCompare, onRequestCity, right,
 }) {
   const left = PLACES.filter((p) => !compareCities.includes(p.name));
 
@@ -55,13 +56,18 @@ export default function QueryBar({
           ) : (
             <>
               <CityPicker value={place} counts={counts} recent={recent} onPick={onPlace} onRequestCity={onRequestCity} />
-              <CityPicker value={null} counts={counts} recent={recent} exclude={[place]}
-                placeholder="+ Compare with…" variant="add" disabled={!place}
-                onPick={onStartCompare} onRequestCity={onRequestCity} />
+              {landing
+                ? <button type="button" className="qb-go" onClick={onViewJobs}>View jobs →</button>
+                : <CityPicker value={null} counts={counts} recent={recent} exclude={[place]}
+                    placeholder="+ Compare with…" variant="add" disabled={!place}
+                    onPick={onStartCompare} onRequestCity={onRequestCity} />}
             </>
           )}
         </div>
         {right && <div className="qb-right">{right}</div>}
+        {landing && !compare && (
+          <button type="button" className="qb-compare" onClick={() => onStartCompare(null)}>or compare with another city</button>
+        )}
       </div>
     </div>
   );

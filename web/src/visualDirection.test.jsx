@@ -11,7 +11,7 @@ import App from "./App.jsx";
 import FitLine, { cityFit } from "./FitLine.jsx";
 import SkillChart from "./SkillChart.jsx";
 import FilterPills, { germanLabel, seniorityLabel } from "./FilterPills.jsx";
-import { Headline, HeroChart, heroFacts, heroPlace, heroRoles } from "./HomeHero.jsx";
+import { HeroChart, Tagline, heroFacts, heroPlace, heroRoles } from "./HomeHero.jsx";
 import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
 import { isBestFit } from "./JobList.jsx";
 import { placeBySlug } from "./format.js";
@@ -69,12 +69,11 @@ describe("the home page's headline and chart", () => {
     expect(heroPlace(["atlantis"]).name).toBe("Berlin");
   });
 
-  it("names the two most-asked-for skills, in order, with that market's own shares", () => {
+  it("ranks the chart's skills, most asked for first, with that market's own shares", () => {
     const { top, open, roles } = heroFacts(data, { Berlin: 120 }, placeBySlug("berlin"));
     expect(open).toBe(120);
+    expect(roles).toBe("AI & data jobs");
     expect(top.map((s) => [s.name, s.pct])).toEqual([["PYTHON", 67], ["LLMS", 41], ["AGENTS", 29]]);
-    const html = renderToStaticMarkup(<Headline top={top} place="Berlin" roles={roles} />);
-    expect(html).toBe("<h1><mark>67%</mark> of AI &amp; data jobs in Berlin ask for PYTHON. <mark>41%</mark> ask for LLMS.</h1>");
   });
 
   it("says which roles the numbers are for once a job family is chosen", () => {
@@ -84,12 +83,16 @@ describe("the home page's headline and chart", () => {
     expect(facts.open).toBe(100); // the family's own count, not every role's
   });
 
-  it("falls back to saying what the page is for when there are not two skills to name", () => {
-    for (const top of [undefined, [], [{ name: "Python", pct: 50 }]]) {
-      expect(renderToStaticMarkup(<Headline top={top} place="Hamburg" roles="AI & data jobs" />))
-        .toBe("<h1>What are employers actually asking for?</h1>");
-    }
-    expect(firstPaint("/")).toContain("What are employers actually asking for?"); // before any numbers
+  // HIR-474: the headline is the site's tagline, with "actually" marked; the numbers
+  // headline, the line above it and the grey line under it are gone.
+  it("leads with the tagline, as the page's one h1, and none of the removed lines", () => {
+    expect(renderToStaticMarkup(<Tagline />)).toBe("<h1>See what skills employers <mark>actually</mark> want.</h1>");
+    const html = firstPaint("/");
+    expect(html).toContain("See what skills employers <mark>actually</mark> want.");
+    expect(html.match(/<h1/g)).toHaveLength(1);
+    expect(html).not.toContain('class="eyebrow"');
+    expect(html).not.toContain("Live skill demand from every open");
+    expect(html).not.toContain("What are employers actually asking for?"); // the old headline before numbers
   });
 
   it("links the chart to that market's full page, keeping the job family", () => {
@@ -106,10 +109,30 @@ describe("the home page's headline and chart", () => {
     expect(at(false)).toContain("No jobs here yet");
   });
 
-  it("starts the pickers on the lead market, so compare is one pick away", () => {
+  it("starts the pickers on the lead market, so View jobs is one press away", () => {
     const html = firstPaint("/");
     expect(html).toMatch(/<button[^>]*class="qb-btn"[^>]*>Berlin</);
     expect(html).not.toContain("Pick a city");
+  });
+
+  it("puts View jobs inside the search box and compare as a link under it, not a dashed picker", () => {
+    const html = firstPaint("/");
+    expect(html).toMatch(/<div class="qb">.*<button type="button" class="qb-go">View jobs →<\/button><\/div>/s);
+    expect(html).toContain('<button type="button" class="qb-compare">or compare with another city</button>');
+    expect(html).not.toContain("+ Compare with…");
+  });
+
+  it("keeps the dashed compare picker, and no View jobs, on a city page", () => {
+    const html = firstPaint("/berlin");
+    expect(html).toContain("+ Compare with…");
+    expect(html).not.toContain("View jobs");
+    expect(html).not.toContain("or compare with another city");
+  });
+
+  it("styles View jobs plum with white text, the box in the palette's ground and warm grey", () => {
+    expect(css).toMatch(/\.qb-go \{[^}]*height: 56px;[^}]*background: var\(--plum\); color: #fff;/);
+    expect(css).toMatch(/\.qbar\.landing \.qb \{[^}]*border: 2px solid var\(--warm-grey\); border-radius: 12px; background: var\(--ground\);/);
+    expect(css).toMatch(/\.qbar\.landing \.qb-btn \{ height: 56px;/);
   });
 });
 

@@ -82,17 +82,19 @@ async function expectChartAndJobs(page) {
 
 test("home loads; pick a city and a job type; chart and job list have data", async ({ page, problems }) => {
   await page.goto("/");
-  // The headline is built from live numbers (HIR-285), so it is found by where it is, and
-  // the chart beside it has to have drawn its bars.
-  await expect(page.locator(".hero h1")).toBeVisible();
+  // The tagline (HIR-474), and the chart beside it has to have drawn its bars.
+  await expect(page.locator(".hero h1")).toHaveText("See what skills employers actually want.");
   await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
   const cards = page.locator("a.market-row");
   await expect(cards.first()).toBeVisible();
   await expect(cards.first().locator(".mk-skill").first()).toBeVisible(); // its top skills drew
 
-  // The city picker under the headline: it starts on the market the page leads with.
+  // The city picker in the search box: it starts on the market the page leads with, and a
+  // pick there is a choice; "View jobs" is what opens the city (HIR-474).
   await page.locator(".hero .picker").first().getByRole("button").first().click();
   await page.getByRole("listbox", { name: "Cities" }).getByRole("option").first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await page.getByRole("button", { name: "View jobs →" }).click();
   await expect(page).not.toHaveURL(/\/$/);
   await expectChartAndJobs(page);
 
@@ -134,6 +136,14 @@ test("each filter reaches the server and the page redraws", async ({ page, probl
       await expect(page.locator(".chart .bars, .chart .empty").first()).toBeVisible();
     });
   }
+});
+
+test("the home page's compare link opens a comparison", async ({ page, problems }) => {
+  await page.goto("/");
+  await page.getByRole("button", { name: "or compare with another city" }).click();
+  await expect(page).toHaveURL(/\/compare\/[^/]+\+[^/]+/);
+  await expect(page.locator(".qbar .token")).toHaveCount(2);
+  await expect(page.locator(".chart .bars").first()).toBeVisible();
 });
 
 test("compare mode with a second city", async ({ page, problems }) => {
