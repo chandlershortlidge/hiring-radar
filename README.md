@@ -69,7 +69,10 @@ labelling rules and the spot-check protocol are in [evals/LABELING.md](evals/LAB
 **A held-out split.** 71 of the labelled postings are used to tune the extractor. The
 other 60 are sealed: nobody tunes against them, and they are read only at release points.
 A score on postings you tuned on can turn into a score of how well you memorised them;
-the sealed set checks for that.
+the sealed set checks for that. The last sealed run, on 22 November, scored **F1 0.928**
+(precision 0.957, recall 0.901) on the extractor as it stood that day; the tuning set
+scored F1 0.906 on the same version (`evals/results/20261122T152055Z_heldout_x2-209e1f3c7d`,
+`evals/results/20261121T063540Z_dev_x2-209e1f3c7d`).
 
 **A regression gate.** Any change to the extractor's instructions or to the skill list
 must run the evaluation on the tuning set before it can merge. The result is committed
