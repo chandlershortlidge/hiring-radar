@@ -36,8 +36,9 @@ for anyone. "Compare with" puts two or three cities side by side. More screens a
 [docs/screens/](docs/screens/).
 
 Each job also gets its seniority, whether it requires German, what degree it asks for,
-and whether it asks for production experience. Jobs are sorted into five families by
-title: AI Engineer, ML Engineer, Data Scientist, ML Platform and Research.
+and whether it asks for production experience. Jobs are sorted into six families by
+title: AI Engineer, ML Engineer, Data Scientist, ML Platform, Research and Forward Deployed
+Engineer.
 
 You can describe yourself once (role, seniority, German, degree, the skills you have).
 The dashboard then shows how much of each job's ask you cover and which in-demand skills

@@ -1,0 +1,633 @@
+{
+  "run_id": "20261125T135346Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-haiku-5-5",
+  "spot_n": 80,
+  "spot_pool": 245,
+  "taxonomy_version": 14,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 257,
+      "fp": 21,
+      "fn": 4,
+      "precision": 0.9244604316546763,
+      "recall": 0.9846743295019157,
+      "f1": 0.953617810760668
+    },
+    "requirement_agreement": 0.980544747081712,
+    "attributes": {
+      "seniority": {
+        "agreed": 12,
+        "n": 15,
+        "rate": 0.8
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      }
+    }
+  },
+  "accepted_skills": 208,
+  "accepted_attributes": 37,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 32,
+    "uncertain": 49,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 245,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_149",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_150",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_150",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_151",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "cuda"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "kserve"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "llamaindex"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "semantic-kernel"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_151",
+        "skill",
+        "vllm"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "claude-code"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "javascript"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "langgraph"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "llm-orchestration"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "tool-calling"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "vector-search"
+      ],
+      [
+        "golden_153",
+        "skill",
+        "workflow-automation"
+      ],
+      [
+        "golden_154",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_154",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_154",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_154",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_154",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "agent-harnesses"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "llm-orchestration"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_155",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_156",
+        "skill",
+        "backend-development"
+      ],
+      [
+        "golden_156",
+        "skill",
+        "frontend-development"
+      ],
+      [
+        "golden_156",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_157",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_158",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "gemini"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "jenkins"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "pandas"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "statistics"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_158",
+        "skill",
+        "vertex-ai"
+      ],
+      [
+        "golden_159",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_159",
+        "skill",
+        "devops"
+      ],
+      [
+        "golden_159",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "multi-agent-systems"
+      ],
+      [
+        "golden_160",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_161",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "computer-vision"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_161",
+        "skill",
+        "tensorrt"
+      ],
+      [
+        "golden_162",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_162",
+        "skill",
+        "javascript"
+      ],
+      [
+        "golden_162",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "cuda"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "nccl"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "sglang"
+      ],
+      [
+        "golden_163",
+        "skill",
+        "slurm"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_149 seniority: A 'Applications Development Senior Programmer Analyst' vs B 'Senior Programmer Analyst'",
+    "golden_151 seniority: A 'Als Private AI Architect (w/m/x)' vs B 'Private AI Architect'",
+    "golden_152 seniority: A '7-10+ years in data engineering, analytics platforms or AI data roles' vs B '7-10+ years in data engineering, analytics platforms or AI data roles within large or complex organizations.'",
+    "golden_154 seniority: A '(Junior) Forward Deployed Engineer' vs B '(Junior)'",
+    "golden_158 degree: A 'Master’s or Bachelor’s degree in Computer Science' vs B 'Master’s or Bachelor’s degree in Computer Science, Statistics, Machine Learning, or a related quantitative field.'"
+  ],
+  "unmapped": [
+    "AI cost optimization",
+    "AI for robotics",
+    "AI safety",
+    "AI workload performance, scalability and availability optimization",
+    "Anthropic Console",
+    "Anthropic implementation guidance",
+    "Authentication concepts",
+    "CLIP",
+    "CMDB",
+    "Camera calibration",
+    "Chunking",
+    "CircleCI",
+    "Claude",
+    "Claude Chat and Cowork",
+    "Claude models",
+    "Cloud-native application development",
+    "Cloud-native applications",
+    "Container and Kubernetes configuration",
+    "Container and Kubernetes scheduling",
+    "Container and Kubernetes storage",
+    "Continuous evaluation pipelines",
+    "Continuous training pipelines",
+    "Coordinate transformations",
+    "Cosmos",
+    "DINOv2",
+    "DSPy",
+    "DVC",
+    "Data curation",
+    "Data exchange patterns",
+    "Data governance and compliance controls",
+    "Data integration",
+    "Data platforms",
+    "Data readiness assessments",
+    "Data transformation",
+    "Dataset versioning",
+    "DeepSeek",
+    "Demonstration data collection",
+    "Deployment on NVIDIA embedded platforms",
+    "Developer tooling",
+    "Dex-Net",
+    "Diffusion models",
+    "Diffusion policies",
+    "Distributed Inference",
+    "Distributed compute",
+    "Distributed computing",
+    "Distributed inference",
+    "Document analysis",
+    "Drift Detection",
+    "Drift detection",
+    "End-to-end learned models for robotics",
+    "Enterprise integrations",
+    "Enterprise knowledge workflows",
+    "Enterprise tool ecosystem integration",
+    "EtherCAT",
+    "Feature stores",
+    "Flow Designer",
+    "GPT",
+    "GPU drivers",
+    "GPU infrastructure",
+    "GPU memory management",
+    "Gazebo",
+    "GenAI application optimisation",
+    "Grasp generation",
+    "GraspNet",
+    "Hallucination mitigation",
+    "Hand-eye calibration",
+    "Hands-on operation of real robotic hardware",
+    "Haystack",
+    "Human oversight",
+    "Hybrid environments",
+    "Identity federation",
+    "Imitation learning",
+    "Infrastructure automation",
+    "Infrastructure reliability",
+    "Infrastructure troubleshooting",
+    "IntegrationHub",
+    "Isaac Lab",
+    "Isaac Sim",
+    "KV caching",
+    "Knowledge management",
+    "Large-scale demonstration data collection",
+    "Learned grasp generation",
+    "Llama",
+    "MIG (Multi-Instance GPU)",
+    "ML infrastructure",
+    "Mistral",
+    "Modern data platforms",
+    "MuJoCo",
+    "Multi-GPU computing",
+    "NVIDIA AGX",
+    "NVIDIA GPU computing",
+    "NVIDIA Isaac Lab",
+    "NVIDIA Isaac Sim",
+    "NVIDIA Isaac Sim/Lab",
+    "NVIDIA Jetson / embedded platforms",
+    "NVIDIA Jetson Orin",
+    "NVIDIA MIG",
+    "NVIDIA Stack",
+    "NVIDIA Xavier",
+    "NVIDIA stack",
+    "Now Assist",
+    "OPC UA",
+    "Object-oriented programming",
+    "Ollama",
+    "Omniverse",
+    "On-premises environments",
+    "Open-source contribution",
+    "PCL",
+    "PCL (Point Cloud Library)",
+    "PLCs",
+    "Penetration testing",
+    "Pipeline debugging",
+    "Point cloud processing",
+    "Private AI",
+    "Problem decomposition",
+    "Product engineering",
+    "Production support",
+    "Prompt and version management",
+    "Qwen",
+    "Real robot hardware experience",
+    "Responsible AI",
+    "Robot forward and inverse kinematics",
+    "Robot kinematics",
+    "Robot learning simulation frameworks",
+    "Robotics",
+    "SAM",
+    "SAM (Segment Anything)",
+    "SciPy",
+    "Scripting",
+    "Secure cloud deployment practices",
+    "Security tooling",
+    "Self-supervised learning",
+    "Self-supervised vision backbones",
+    "ServiceNow",
+    "ServiceNow AI Agents",
+    "ServiceNow development and configuration",
+    "ServiceNow scripting",
+    "ServiceNow workflow and task tables",
+    "Sim-to-real transfer",
+    "Simulation",
+    "Software deployment to production",
+    "Solutions architecture",
+    "Sovereign AI",
+    "Storage",
+    "Structured outputs",
+    "Synthetic data",
+    "Systems and enterprise integration",
+    "TGI",
+    "Technical consulting involving AI system development or deployment",
+    "Teleoperation",
+    "Teleoperation setups",
+    "Text2SQL",
+    "Token usage",
+    "Virtual Agent",
+    "Vision-Language-Action models",
+    "World models",
+    "YOLO",
+    "data governance",
+    "data integration",
+    "data readiness assessments",
+    "enterprise tool ecosystem integration",
+    "feature stores",
+    "modern data platforms",
+    "multi-GPU jobs",
+    "vectorization"
+  ]
+}

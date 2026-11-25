@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Programmer Analyst\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The posting contains a role introduction and responsibilities, but no candidate qualifications or tech-stack section. Evaluation harnesses, CI/CD, testing, AI agents, architecture, integration, and observability appear only in responsibilities and are therefore not labeled.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Programmer Analyst",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The posting contains a role introduction and responsibilities, but no candidate qualifications or tech-stack section. Evaluation harnesses, CI/CD, testing, AI agents, architecture, integration, and observability appear only in responsibilities and are therefore not labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6b3865e5b1f4cc939603dc4fef03186afe3607da5643743ce97eafb068c99759",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

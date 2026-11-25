@@ -1,0 +1,127 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Entwicklung von RAG-Lösungen\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Large Language Models (LLMs) und KI-Anwendungen\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"KI-Anwendungen\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"IT-Architektur\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API-Entwicklung\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine-Learning-Frameworks\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Netzwerkoptimierung\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Cloud- und Rechenzentrumsstrategien\"},\n    {\"skill_id\": \"context-engineering\", \"requirement\": \"required\", \"raw_text\": \"fundierte Kenntnisse in Context Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Integration moderner Embedding-\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"IoT\", \"raw_text\": \"IoT\"},\n    {\"label\": \"SD-WAN\", \"raw_text\": \"SD-WAN\"},\n    {\"label\": \"Zero Trust\", \"raw_text\": \"Zero Trust\"},\n    {\"label\": \"OT infrastructure\", \"raw_text\": \"OT-Infrastrukturen\"},\n    {\"label\": \"Microsoft 365\", \"raw_text\": \"Microsoft 365\"},\n    {\"label\": \"Code-RAG\", \"raw_text\": \"Code-RAG\"},\n    {\"label\": \"Source-code retrieval\", \"raw_text\": \"Source-Code-Retrieval\"},\n    {\"label\": \"Hybrid search\", \"raw_text\": \"Hybrid Search\"},\n    {\"label\": \"Metadata filtering\", \"raw_text\": \"Metadata Filtering\"},\n    {\"label\": \"Reranking\", \"raw_text\": \"Reranking\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI & RAG Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Kommunikationsfähigkeit auf Deutsch und Englisch (mind. C1-Niveau)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"erfolgreich abgeschlossenes Bachelor- oder Masterstudium\",\n  \"uncertain\": [],\n  \"notes\": \"Context Engineering and Embedding come from the 'Expertise' bullet under the responsibilities heading 'Dein Impact'. That bullet states what the candidate brings ('verfügst du über fundierte Kenntnisse'), so I read it as an ask and labeled both required. They are flagged uncertain because the section is responsibilities.\\nThe same Expertise bullet repeats RAG and LLMs. Both are already required from 'Dein Skillset', so they collapse into those criteria.\\nThe Analyse bullet (Evaluierungsansätze, Testing) and the Innovation bullet (Generative AI) are pure responsibilities, so they are not labeled.\\n'IT-Architektur' is mapped to software-architecture via the 'enterprise architecture' alias. This is a loose fit, so it is flagged.\\n'KI-Anwendungen' (AI applications) is mapped to ai-ml ('applied ai'). This is also a loose fit and flagged.\\nThe 'Nice to have:' inline marker makes that whole bullet nice_to_have.\\n'Netzwerkoptimierung' is mapped to networking and flagged.\\n'Cloud- und Rechenzentrumsstrategien' is mapped to cloud.\\nAPI-Entwicklung is mapped to apis via the 'api development' alias. The German spelling is not yet an alias in the taxonomy.\\nOn degree: 'oder einem vergleichbaren Studiengang' widens the field of study, not the requirement, so degree_or_equivalent is false.\\nSeniority is stated through 'Senior' in the job title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Entwicklung von RAG-Lösungen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models (LLMs) und KI-Anwendungen"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Anwendungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "IT-Architektur",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Entwicklung"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Frameworks"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "Netzwerkoptimierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud- und Rechenzentrumsstrategien"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "fundierte Kenntnisse in Context Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Integration moderner Embedding-",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "IoT",
+        "raw_text": "IoT"
+      },
+      {
+        "label": "SD-WAN",
+        "raw_text": "SD-WAN"
+      },
+      {
+        "label": "Zero Trust",
+        "raw_text": "Zero Trust"
+      },
+      {
+        "label": "OT infrastructure",
+        "raw_text": "OT-Infrastrukturen"
+      },
+      {
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "label": "Code-RAG",
+        "raw_text": "Code-RAG"
+      },
+      {
+        "label": "Source-code retrieval",
+        "raw_text": "Source-Code-Retrieval"
+      },
+      {
+        "label": "Hybrid search",
+        "raw_text": "Hybrid Search"
+      },
+      {
+        "label": "Metadata filtering",
+        "raw_text": "Metadata Filtering"
+      },
+      {
+        "label": "Reranking",
+        "raw_text": "Reranking"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI & RAG Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Kommunikationsfähigkeit auf Deutsch und Englisch (mind. C1-Niveau)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "erfolgreich abgeschlossenes Bachelor- oder Masterstudium",
+    "uncertain": [],
+    "notes": "Context Engineering and Embedding come from the 'Expertise' bullet under the responsibilities heading 'Dein Impact'. That bullet states what the candidate brings ('verfügst du über fundierte Kenntnisse'), so I read it as an ask and labeled both required. They are flagged uncertain because the section is responsibilities.\nThe same Expertise bullet repeats RAG and LLMs. Both are already required from 'Dein Skillset', so they collapse into those criteria.\nThe Analyse bullet (Evaluierungsansätze, Testing) and the Innovation bullet (Generative AI) are pure responsibilities, so they are not labeled.\n'IT-Architektur' is mapped to software-architecture via the 'enterprise architecture' alias. This is a loose fit, so it is flagged.\n'KI-Anwendungen' (AI applications) is mapped to ai-ml ('applied ai'). This is also a loose fit and flagged.\nThe 'Nice to have:' inline marker makes that whole bullet nice_to_have.\n'Netzwerkoptimierung' is mapped to networking and flagged.\n'Cloud- und Rechenzentrumsstrategien' is mapped to cloud.\nAPI-Entwicklung is mapped to apis via the 'api development' alias. The German spelling is not yet an alias in the taxonomy.\nOn degree: 'oder einem vergleichbaren Studiengang' widens the field of study, not the requirement, so degree_or_equivalent is false.\nSeniority is stated through 'Senior' in the job title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "aa32df8244d025b85d9c31b50a7af2ce0943ef523111feab2061f7d1c6ccad95",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

@@ -78,7 +78,10 @@ class Track:
 
     A track with a pattern only ever takes titles the built-in rule does not: a title the
     five tracks already hold stays where it is, so adding a track, in either state, never
-    changes what the existing tracks collect or show.
+    changes what the existing tracks collect or show. The one exception is a track with
+    `outranks_built_in` set: its pattern is tried before the built-in rule, so a title it
+    matches is its own even when it also names one of the five (HIR-408: "Forward
+    Deployed AI Engineer" is Forward Deployed Engineer, not AI Engineer).
 
     `read` is READ_LATER while the track's postings are stored without being read by the
     model (HIR-396)."""
@@ -86,6 +89,28 @@ class Track:
     state: str
     title_pattern: str | None = None
     read: str = READ_NOW
+    outranks_built_in: bool = False
+
+
+# Forward Deployed Engineer (HIR-408, decisions/2026-11-25-hir-408-forward-deployed-engineer-
+# track.md). Written to be matched case-insensitively and to mean exactly what the SQL in
+# app/migrations/028_forward_deployed_engineer.sql means, where SQLite has LIKE but no
+# regex: there the title is lowercased, each of `- / ( ) , .` becomes a space, and it is
+# padded with a space at each end. So a "word" here is bounded by the start or end of the
+# title or one of those six characters or a space, and by nothing else: `_NB` is "a
+# character that is not such a boundary", so `(?<!_NB)` and `(?!_NB)` say "a word starts
+# / ends here". Three ways in:
+#   * "forward deployed" / "forward deployment" as words, and "engineer" anywhere;
+#   * "fde" as a word;
+#   * "deployed engineer", the second word not necessarily ending there ("engineering").
+# tests/test_ingest.py checks the two agree, title by title.
+_W = r"[ /(),.-]"
+_NB = r"[^ /(),.-]"
+FDE_PATTERN = (
+    rf"(?=.*(?<!{_NB})forward{_W}deploy(?:ed|ment)(?!{_NB}))(?=.*engineer)"
+    rf"|(?<!{_NB})fde(?!{_NB})"
+    rf"|(?<!{_NB})deployed{_W}engineer"
+)
 
 
 TRACKS: dict[str, Track] = {
@@ -94,6 +119,7 @@ TRACKS: dict[str, Track] = {
     "data-scientist": Track(LIVE),
     "ml-platform": Track(LIVE),
     "research": Track(LIVE),
+    "forward-deployed-engineer": Track(LIVE, FDE_PATTERN, outranks_built_in=True),
 }
 
 

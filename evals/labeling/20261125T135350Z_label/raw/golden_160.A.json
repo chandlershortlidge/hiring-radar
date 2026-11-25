@@ -1,0 +1,123 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professional software engineering experience\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI and/or ML projects\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval methods\", \"uncertain\": true},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"agentic orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"Model Context Protocol (MCP)\"},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"least-privilege access\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"defending against risks such as prompt injection, data leakage, and unsafe or non-compliant outputs\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying and running AI at scale\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"proficiency in Python\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring AI systems\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"a major cloud platform\"},\n    {\"skill_id\": \"knowledge-graphs\", \"requirement\": \"nice_to_have\", \"raw_text\": \"graph-based knowledge systems\", \"uncertain\": true},\n    {\"skill_id\": \"agent-state-management\", \"requirement\": \"nice_to_have\", \"raw_text\": \"long-term agent memory\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"automated evaluation frameworks\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"regression testing for AI quality\", \"uncertain\": true},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ideally paired with A/B or holdout experiments\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agent skills (reusable skill development)\", \"raw_text\": \"reusable skill development\"},\n    {\"label\": \"Agent-to-agent (A2A) protocol/frameworks\", \"raw_text\": \"agent-to-agent (A2A) frameworks\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Sr. Staff Applied AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Responsibilities mention retrieval-augmented generation, retrieval pipelines, agentic workflows and evaluation frameworks. These are not labeled from there, because responsibilities do not count.\\n'retrieval methods' in the min quals is mapped to rag and kept required. GraphRAG in the preferred section collapses into the same criterion. Flagged because the phrase may need adding as an alias.\\n'agentic orchestration' is mapped to llm-orchestration. The taxonomy has the alias 'agent orchestration', but not this exact phrase.\\nSecuring AI systems against prompt injection, data leakage and unsafe outputs is mapped to llm-guardrails as a skill described in other words. Flagged.\\n'AI and/or ML projects' is mapped to ai-ml. It may be domain/experience rather than a skill. Flagged.\\n'deploying and running AI at scale' is mapped to ai-deployment. 'monitoring AI systems' is mapped to observability. Both flagged as alias-dependent.\\nLLM-as-judge is treated as an example of the evaluation ask, so it adds no separate criterion.\\n'regression testing for AI quality' is mapped to testing. Flagged.\\nNo alternative groups. 'A/B or holdout' and 'LLM-as-judge or regression testing' do not pair two distinct taxonomy skills offered for one ask.\\nPreferred section heading makes all items there nice_to_have. A/B also carries the inline marker 'ideally'.\\nSeniority is stated in the title as 'Sr. Staff'.\\nNo German requirement. No degree mentioned; 'relevant education or training' appears only in the salary boilerplate.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI and/or ML projects",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval methods",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "least-privilege access"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "defending against risks such as prompt injection, data leakage, and unsafe or non-compliant outputs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying and running AI at scale",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "proficiency in Python"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring AI systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "a major cloud platform"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "nice_to_have",
+        "raw_text": "graph-based knowledge systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "long-term agent memory"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "automated evaluation frameworks"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "regression testing for AI quality",
+        "uncertain": true
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "ideally paired with A/B or holdout experiments"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent skills (reusable skill development)",
+        "raw_text": "reusable skill development"
+      },
+      {
+        "label": "Agent-to-agent (A2A) protocol/frameworks",
+        "raw_text": "agent-to-agent (A2A) frameworks"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Sr. Staff Applied AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Responsibilities mention retrieval-augmented generation, retrieval pipelines, agentic workflows and evaluation frameworks. These are not labeled from there, because responsibilities do not count.\n'retrieval methods' in the min quals is mapped to rag and kept required. GraphRAG in the preferred section collapses into the same criterion. Flagged because the phrase may need adding as an alias.\n'agentic orchestration' is mapped to llm-orchestration. The taxonomy has the alias 'agent orchestration', but not this exact phrase.\nSecuring AI systems against prompt injection, data leakage and unsafe outputs is mapped to llm-guardrails as a skill described in other words. Flagged.\n'AI and/or ML projects' is mapped to ai-ml. It may be domain/experience rather than a skill. Flagged.\n'deploying and running AI at scale' is mapped to ai-deployment. 'monitoring AI systems' is mapped to observability. Both flagged as alias-dependent.\nLLM-as-judge is treated as an example of the evaluation ask, so it adds no separate criterion.\n'regression testing for AI quality' is mapped to testing. Flagged.\nNo alternative groups. 'A/B or holdout' and 'LLM-as-judge or regression testing' do not pair two distinct taxonomy skills offered for one ask.\nPreferred section heading makes all items there nice_to_have. A/B also carries the inline marker 'ideally'.\nSeniority is stated in the title as 'Sr. Staff'.\nNo German requirement. No degree mentioned; 'relevant education or training' appears only in the salary boilerplate."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5e606bbb9f7995f95f9a7460b995919db11371dae5c34b16c38d06c864b66151",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

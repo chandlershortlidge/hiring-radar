@@ -1,0 +1,244 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"four years of professional experience in machine learning\", \"uncertain\": true},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"Experience with modern computer vision models\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"reinforcement learning policies\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"training, fine-tuning, and deployment\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong programming skills in both Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"data curation, training, evaluation, and deployment\", \"uncertain\": true},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"vision transformers\", \"uncertain\": true},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Experience working in Linux environments\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience optimizing inference\"},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorRT\", \"alternative_group\": 2},\n    {\"skill_id\": \"onnx\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ONNX\", \"alternative_group\": 2},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"quantization\", \"alternative_group\": 2},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with MLOps tooling\"},\n    {\"skill_id\": \"experiment-tracking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"experiment tracking\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI for robotics\", \"raw_text\": \"AI for robotics\"},\n    {\"label\": \"Real robot hardware experience\", \"raw_text\": \"Hands-on experience working with real robots\"},\n    {\"label\": \"Vision-Language-Action models\", \"raw_text\": \"VLAs\"},\n    {\"label\": \"Diffusion policies\", \"raw_text\": \"diffusion policies\"},\n    {\"label\": \"Imitation learning\", \"raw_text\": \"imitation or reinforcement learning policies\"},\n    {\"label\": \"YOLO\", \"raw_text\": \"YOLO\"},\n    {\"label\": \"SAM (Segment Anything)\", \"raw_text\": \"SAM\"},\n    {\"label\": \"DINOv2\", \"raw_text\": \"DINOv2\"},\n    {\"label\": \"CLIP\", \"raw_text\": \"CLIP\"},\n    {\"label\": \"Self-supervised learning\", \"raw_text\": \"self-supervised backbones\"},\n    {\"label\": \"Grasp generation\", \"raw_text\": \"Experience with learned grasp generation for manipulation\"},\n    {\"label\": \"GraspNet\", \"raw_text\": \"GraspNet\"},\n    {\"label\": \"Dex-Net\", \"raw_text\": \"Dex-Net\"},\n    {\"label\": \"Robot kinematics\", \"raw_text\": \"robot (inverse) kinematics\"},\n    {\"label\": \"Coordinate transformations\", \"raw_text\": \"coordinate transformations\"},\n    {\"label\": \"Hand-eye calibration\", \"raw_text\": \"hand-eye calibration\"},\n    {\"label\": \"Demonstration data collection\", \"raw_text\": \"large-scale demonstration data collection\"},\n    {\"label\": \"Teleoperation\", \"raw_text\": \"teleoperation setups\"},\n    {\"label\": \"Sim-to-real transfer\", \"raw_text\": \"sim-to-real transfer\"},\n    {\"label\": \"NVIDIA Isaac Sim/Lab\", \"raw_text\": \"NVIDIA Isaac Sim/Lab\"},\n    {\"label\": \"MuJoCo\", \"raw_text\": \"MuJoCo\"},\n    {\"label\": \"Gazebo\", \"raw_text\": \"Gazebo\"},\n    {\"label\": \"PCL (Point Cloud Library)\", \"raw_text\": \"PCL\"},\n    {\"label\": \"Camera calibration\", \"raw_text\": \"camera calibration\"},\n    {\"label\": \"Point cloud processing\", \"raw_text\": \"point cloud processing\"},\n    {\"label\": \"NVIDIA Jetson / embedded platforms\", \"raw_text\": \"NVIDIA embedded platforms (e.g., Jetson Orin, AGX, Xavier)\"},\n    {\"label\": \"Dataset versioning\", \"raw_text\": \"dataset versioning\"},\n    {\"label\": \"Continuous training pipelines\", \"raw_text\": \"continuous training or evaluation pipelines\"},\n    {\"label\": \"PLCs\", \"raw_text\": \"PLCs\"},\n    {\"label\": \"EtherCAT\", \"raw_text\": \"EtherCAT\"},\n    {\"label\": \"OPC UA\", \"raw_text\": \"OPC UA\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Minimum of four years of professional experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree in Robotics, Computer Science, Artificial Intelligence, Machine Learning, or a related field — or equivalent practical experience\",\n  \"uncertain\": [],\n  \"notes\": \"Headings: 'Essential Skills' is required by default and 'Beneficial Skills' is optional, so items under it are nice_to_have. Responsibilities-only items (data pipelines, deployment work) are not labeled.\\nThe years bullet names 'machine learning, AI for robotics, or computer vision' as alternatives. computer-vision is asked on its own elsewhere, so it leaves that set. That leaves machine-learning with only an unmapped partner, so no group is formed; it is labeled from the years bullet and flagged uncertain.\\nOpenCV is an alias of computer-vision. That nice_to_have mention collapses into the required computer-vision criterion.\\nPyTorch and TensorFlow are e.g. examples for one ask (ML frameworks), so they form group 1.\\nTensorRT, ONNX and quantization are e.g. examples for one ask (optimizing inference), so they form group 2. inference-optimization is the broad skill and stays out of the group.\\nreinforcement-learning sits in an e.g. list whose other members are unmapped, so it has no group.\\nEvaluation is mapped from the bare 'evaluation' in the model-lifecycle phrase; flagged uncertain.\\nTransformers is mapped from 'vision transformers'; flagged uncertain.\\nBare 'training' and 'deployment' are not mapped to model-development or ai-deployment, since those aliases need fuller phrases.\\n'Willingness to learn new technologies' names no specific skill, so nothing is labeled from it.\\nNo German requirement: only 'Fluency in English' is asked, and the Munich location is not a basis for inference.\\nSeniority is inferred mid from four years of experience; the title states no level.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "four years of professional experience in machine learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Experience with modern computer vision models"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning policies"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "training, fine-tuning, and deployment"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong programming skills in both Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "data curation, training, evaluation, and deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "vision transformers",
+        "uncertain": true
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Experience working in Linux environments"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience optimizing inference"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "nice_to_have",
+        "raw_text": "ONNX",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with MLOps tooling"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tracking"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI for robotics",
+        "raw_text": "AI for robotics"
+      },
+      {
+        "label": "Real robot hardware experience",
+        "raw_text": "Hands-on experience working with real robots"
+      },
+      {
+        "label": "Vision-Language-Action models",
+        "raw_text": "VLAs"
+      },
+      {
+        "label": "Diffusion policies",
+        "raw_text": "diffusion policies"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation or reinforcement learning policies"
+      },
+      {
+        "label": "YOLO",
+        "raw_text": "YOLO"
+      },
+      {
+        "label": "SAM (Segment Anything)",
+        "raw_text": "SAM"
+      },
+      {
+        "label": "DINOv2",
+        "raw_text": "DINOv2"
+      },
+      {
+        "label": "CLIP",
+        "raw_text": "CLIP"
+      },
+      {
+        "label": "Self-supervised learning",
+        "raw_text": "self-supervised backbones"
+      },
+      {
+        "label": "Grasp generation",
+        "raw_text": "Experience with learned grasp generation for manipulation"
+      },
+      {
+        "label": "GraspNet",
+        "raw_text": "GraspNet"
+      },
+      {
+        "label": "Dex-Net",
+        "raw_text": "Dex-Net"
+      },
+      {
+        "label": "Robot kinematics",
+        "raw_text": "robot (inverse) kinematics"
+      },
+      {
+        "label": "Coordinate transformations",
+        "raw_text": "coordinate transformations"
+      },
+      {
+        "label": "Hand-eye calibration",
+        "raw_text": "hand-eye calibration"
+      },
+      {
+        "label": "Demonstration data collection",
+        "raw_text": "large-scale demonstration data collection"
+      },
+      {
+        "label": "Teleoperation",
+        "raw_text": "teleoperation setups"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "NVIDIA Isaac Sim/Lab",
+        "raw_text": "NVIDIA Isaac Sim/Lab"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Gazebo",
+        "raw_text": "Gazebo"
+      },
+      {
+        "label": "PCL (Point Cloud Library)",
+        "raw_text": "PCL"
+      },
+      {
+        "label": "Camera calibration",
+        "raw_text": "camera calibration"
+      },
+      {
+        "label": "Point cloud processing",
+        "raw_text": "point cloud processing"
+      },
+      {
+        "label": "NVIDIA Jetson / embedded platforms",
+        "raw_text": "NVIDIA embedded platforms (e.g., Jetson Orin, AGX, Xavier)"
+      },
+      {
+        "label": "Dataset versioning",
+        "raw_text": "dataset versioning"
+      },
+      {
+        "label": "Continuous training pipelines",
+        "raw_text": "continuous training or evaluation pipelines"
+      },
+      {
+        "label": "PLCs",
+        "raw_text": "PLCs"
+      },
+      {
+        "label": "EtherCAT",
+        "raw_text": "EtherCAT"
+      },
+      {
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Minimum of four years of professional experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree in Robotics, Computer Science, Artificial Intelligence, Machine Learning, or a related field — or equivalent practical experience",
+    "uncertain": [],
+    "notes": "Headings: 'Essential Skills' is required by default and 'Beneficial Skills' is optional, so items under it are nice_to_have. Responsibilities-only items (data pipelines, deployment work) are not labeled.\nThe years bullet names 'machine learning, AI for robotics, or computer vision' as alternatives. computer-vision is asked on its own elsewhere, so it leaves that set. That leaves machine-learning with only an unmapped partner, so no group is formed; it is labeled from the years bullet and flagged uncertain.\nOpenCV is an alias of computer-vision. That nice_to_have mention collapses into the required computer-vision criterion.\nPyTorch and TensorFlow are e.g. examples for one ask (ML frameworks), so they form group 1.\nTensorRT, ONNX and quantization are e.g. examples for one ask (optimizing inference), so they form group 2. inference-optimization is the broad skill and stays out of the group.\nreinforcement-learning sits in an e.g. list whose other members are unmapped, so it has no group.\nEvaluation is mapped from the bare 'evaluation' in the model-lifecycle phrase; flagged uncertain.\nTransformers is mapped from 'vision transformers'; flagged uncertain.\nBare 'training' and 'deployment' are not mapped to model-development or ai-deployment, since those aliases need fuller phrases.\n'Willingness to learn new technologies' names no specific skill, so nothing is labeled from it.\nNo German requirement: only 'Fluency in English' is asked, and the Munich location is not a basis for inference.\nSeniority is inferred mid from four years of experience; the title states no level."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "1b97e096d4752c7369cea86fb574696a13f0f1acc663c185cda4131583f5da08",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

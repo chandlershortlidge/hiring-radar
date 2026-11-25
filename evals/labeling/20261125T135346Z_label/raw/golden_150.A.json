@@ -1,0 +1,123 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic systems\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval architectures\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation frameworks\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"taken AI systems from ambiguous problem to production deployment\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"You write production code\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"made the architecture calls\", \"uncertain\": true},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"security reviews\", \"uncertain\": true},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP server development\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prompt and context engineering\"},\n    {\"skill_id\": \"context-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"context engineering\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"nice_to_have\", \"raw_text\": \"guardrails\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM safety patterns\"},\n    {\"skill_id\": \"anthropic-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"partner ecosystems such as Anthropic\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Databricks, or AWS\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"or AWS\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Claude Code\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"enterprise tool ecosystem integration\", \"raw_text\": \"enterprise tool ecosystem integration\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Forward Deployed AI Engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'We'd Like To Speak To You If…' section is preceded by 'Read this as \\\"some of these\\\", not \\\"all of these.\\\"'. Following golden_038, that indicative framing does not flip the section, so its items stay required.\\n'Also Interesting But Not Required' is an optional heading, so every item under it is nice_to_have.\\nThe 'What you will do' items are responsibilities and are not labeled. This covers embeddings, observability, multi-agent orchestration, tool-use and reranking, which are asked for nowhere else.\\nI read 'agentic systems' as agents and 'retrieval architectures' as rag. Each would need an alias added to the taxonomy, so both are flagged uncertain.\\nI read 'made the architecture calls' as software-architecture, which is close to the alias 'make architecture decisions'. It would need an alias, so it is flagged uncertain.\\nI read 'taken AI systems … to production deployment' as ai-deployment. It would need an alias, so it is flagged uncertain.\\n'security reviews' matches a cybersecurity alias exactly. It is flagged uncertain because the bullet is about navigating organisational reality, not building security.\\n'You write production code' maps to software-engineering, whose alias is 'writing production code'.\\n'partner ecosystems such as Anthropic, Databricks, or AWS' is an example list for a single ask, so I made it alternative group 1. These are partner companies rather than clearly tools, so the whole group is flagged uncertain.\\nAnthropic maps to anthropic-api through its alias 'anthropic'.\\nThe company description also names AWS and Databricks, but as partnerships, not as tools the company runs. I did not treat that as a stack entry that would pull them out of the group.\\nClaude Code appears only where the company describes its staff's tools, so it is nice_to_have under rule 4's opening-paragraph clause. It is flagged uncertain.\\n'LLM safety patterns' names LLM, so llms is labeled nice_to_have.\\nI left 'enterprise tool ecosystem integration' unmapped. It is only loosely related to tool-calling or apis.\\nNo German or degree is mentioned. The posting explicitly declines years of experience. Seniority is stated by the title 'Principal'.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval architectures",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "taken AI systems from ambiguous problem to production deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "You write production code"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "made the architecture calls",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security reviews",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP server development"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt and context engineering"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "context engineering"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM safety patterns"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "partner ecosystems such as Anthropic",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks, or AWS",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "or AWS",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Claude Code",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "enterprise tool ecosystem integration",
+        "raw_text": "enterprise tool ecosystem integration"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Forward Deployed AI Engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'We'd Like To Speak To You If…' section is preceded by 'Read this as \"some of these\", not \"all of these.\"'. Following golden_038, that indicative framing does not flip the section, so its items stay required.\n'Also Interesting But Not Required' is an optional heading, so every item under it is nice_to_have.\nThe 'What you will do' items are responsibilities and are not labeled. This covers embeddings, observability, multi-agent orchestration, tool-use and reranking, which are asked for nowhere else.\nI read 'agentic systems' as agents and 'retrieval architectures' as rag. Each would need an alias added to the taxonomy, so both are flagged uncertain.\nI read 'made the architecture calls' as software-architecture, which is close to the alias 'make architecture decisions'. It would need an alias, so it is flagged uncertain.\nI read 'taken AI systems … to production deployment' as ai-deployment. It would need an alias, so it is flagged uncertain.\n'security reviews' matches a cybersecurity alias exactly. It is flagged uncertain because the bullet is about navigating organisational reality, not building security.\n'You write production code' maps to software-engineering, whose alias is 'writing production code'.\n'partner ecosystems such as Anthropic, Databricks, or AWS' is an example list for a single ask, so I made it alternative group 1. These are partner companies rather than clearly tools, so the whole group is flagged uncertain.\nAnthropic maps to anthropic-api through its alias 'anthropic'.\nThe company description also names AWS and Databricks, but as partnerships, not as tools the company runs. I did not treat that as a stack entry that would pull them out of the group.\nClaude Code appears only where the company describes its staff's tools, so it is nice_to_have under rule 4's opening-paragraph clause. It is flagged uncertain.\n'LLM safety patterns' names LLM, so llms is labeled nice_to_have.\nI left 'enterprise tool ecosystem integration' unmapped. It is only loosely related to tool-calling or apis.\nNo German or degree is mentioned. The posting explicitly declines years of experience. Seniority is stated by the title 'Principal'."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "633b1b2b01134a0b2a56398568c321810502cb60420b385d3f34ee1420e937a6",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}

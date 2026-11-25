@@ -1,0 +1,1781 @@
+{
+  "golden_149": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen (z. B. AWS)"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise in Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "Deep Learning"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Machine Learning"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "sowie MLOps"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Sehr gute Python-Kenntnisse"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "oder PyTorch"
+      },
+      {
+        "skill_id": "speech-recognition",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung mit Speech-to-Text"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in TensorFlow"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior-Level-Rolle"
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Sehr gute Deutsch- und Englischkenntnisse"
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Speech AI",
+        "raw_text": "Speech AI"
+      },
+      {
+        "labeler": "B",
+        "label": "Speech AI",
+        "raw_text": "Speech AI"
+      }
+    ]
+  },
+  "golden_150": {
+    "accepted_skills": [
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "ArgoCD"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Toolchains"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitLab CI"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code, GitOps"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubeflow"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes-Orchestrierung"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux-Serveradministration"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "Von Vorteil: Erfahrung mit der infrastrukturseitigen Anbindung von MLOps-Frameworks"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "required",
+        "raw_text": "NoSQL"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "Secrets-Management"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Datenbanken (SQL"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "Abgeschlossenes fachbezogenes Hochschulstudium oder vergleichbare Qualifikation"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "labeler": "A",
+        "label": "Nexus",
+        "raw_text": "Nexus"
+      },
+      {
+        "labeler": "A",
+        "label": "Harbor",
+        "raw_text": "Harbor"
+      },
+      {
+        "labeler": "A",
+        "label": "SonarQube",
+        "raw_text": "SonarQube"
+      },
+      {
+        "labeler": "A",
+        "label": "Cloud-native concepts",
+        "raw_text": "cloud-nativer Konzepte"
+      },
+      {
+        "labeler": "A",
+        "label": "Network security",
+        "raw_text": "Netzwerksicherheit"
+      },
+      {
+        "labeler": "A",
+        "label": "HashiCorp Vault",
+        "raw_text": "HashiCorp Vault"
+      },
+      {
+        "labeler": "B",
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "labeler": "B",
+        "label": "Nexus",
+        "raw_text": "Nexus"
+      },
+      {
+        "labeler": "B",
+        "label": "Harbor",
+        "raw_text": "Harbor"
+      },
+      {
+        "labeler": "B",
+        "label": "SonarQube",
+        "raw_text": "SonarQube"
+      },
+      {
+        "labeler": "B",
+        "label": "Automation tools",
+        "raw_text": "Automatisierungstools"
+      },
+      {
+        "labeler": "B",
+        "label": "Network security",
+        "raw_text": "Netzwerksicherheit"
+      },
+      {
+        "labeler": "B",
+        "label": "HashiCorp Vault",
+        "raw_text": "HashiCorp Vault"
+      },
+      {
+        "labeler": "B",
+        "label": "Shell scripting",
+        "raw_text": "Shell"
+      }
+    ]
+  },
+  "golden_151": {
+    "accepted_skills": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit RESTful APIs"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud-Technologien wie AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS oder Azure"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Backend-Entwicklung"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise Erfahrung mit Cloud-Technologien"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung mit Java"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices-Architekturen"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "required",
+        "raw_text": "NoSQL-Datenbanken"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "skalierbare und performante Softwarearchitekturen"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java und Spring Boot"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in SQL"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "B",
+        "label": "AI-assisted code generation",
+        "raw_text": "Sicherer Umgang mit AI bei Codegenerierung"
+      },
+      {
+        "labeler": "B",
+        "label": "Debugging",
+        "raw_text": "Debugging"
+      },
+      {
+        "labeler": "B",
+        "label": "Refactoring",
+        "raw_text": "Refactoring"
+      },
+      {
+        "labeler": "B",
+        "label": "Development workflow optimization",
+        "raw_text": "Optimierung von Entwicklungsworkflows"
+      }
+    ]
+  },
+  "golden_152": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_153": {
+    "accepted_skills": [
+      {
+        "skill_id": "agent-harnesses",
+        "requirement": "nice_to_have",
+        "raw_text": "agent harnesses"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI agents"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation systems"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "inference systems / high-scale production infrastructure",
+        "raw_text": "traffic/inference systems"
+      },
+      {
+        "labeler": "A",
+        "label": "metering / anti-abuse / billing systems",
+        "raw_text": "metering, anti-abuse and billing systems"
+      },
+      {
+        "labeler": "B",
+        "label": "High-scale production infrastructure",
+        "raw_text": "high-scale production infrastructure"
+      },
+      {
+        "labeler": "B",
+        "label": "Traffic systems",
+        "raw_text": "traffic/inference systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Metering systems",
+        "raw_text": "metering"
+      },
+      {
+        "labeler": "B",
+        "label": "Anti-abuse systems",
+        "raw_text": "anti-abuse"
+      },
+      {
+        "labeler": "B",
+        "label": "Billing systems",
+        "raw_text": "billing systems"
+      }
+    ]
+  },
+  "golden_154": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Lead AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_155": {
+    "accepted_skills": [
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend development"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "cursor"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "data-warehousing",
+        "requirement": "required",
+        "raw_text": "data warehouses"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "AI/LLM-based applications"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL and large-scale data systems"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Software Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Aerospike",
+        "raw_text": "Aerospike"
+      },
+      {
+        "labeler": "A",
+        "label": "StarRocks",
+        "raw_text": "StarRocks"
+      },
+      {
+        "labeler": "A",
+        "label": "ClickHouse",
+        "raw_text": "ClickHouse"
+      },
+      {
+        "labeler": "A",
+        "label": "text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "labeler": "A",
+        "label": "agile development",
+        "raw_text": "agile development practices"
+      },
+      {
+        "labeler": "A",
+        "label": "query execution / performance optimization",
+        "raw_text": "query execution, and performance optimization"
+      },
+      {
+        "labeler": "A",
+        "label": "data quality / governance frameworks",
+        "raw_text": "quality, or governance frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Aerospike",
+        "raw_text": "Aerospike"
+      },
+      {
+        "labeler": "B",
+        "label": "Agile development",
+        "raw_text": "agile development practices"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale data systems",
+        "raw_text": "large-scale data systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Analytical databases",
+        "raw_text": "Modern analytical databases"
+      },
+      {
+        "labeler": "B",
+        "label": "StarRocks",
+        "raw_text": "StarRocks"
+      },
+      {
+        "labeler": "B",
+        "label": "ClickHouse",
+        "raw_text": "ClickHouse"
+      },
+      {
+        "labeler": "B",
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "labeler": "B",
+        "label": "Data platforms",
+        "raw_text": "Data platforms"
+      },
+      {
+        "labeler": "B",
+        "label": "Analytical infrastructure",
+        "raw_text": "analytical infrastructure at scale"
+      },
+      {
+        "labeler": "B",
+        "label": "Query execution",
+        "raw_text": "query execution"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance optimization",
+        "raw_text": "performance optimization"
+      },
+      {
+        "labeler": "B",
+        "label": "AI-driven data interfaces",
+        "raw_text": "AI-driven data interfaces"
+      },
+      {
+        "labeler": "B",
+        "label": "Analytical engine implementation and scaling",
+        "raw_text": "implementing or scaling analytical engines"
+      },
+      {
+        "labeler": "B",
+        "label": "Data quality frameworks",
+        "raw_text": "data observability, quality, or governance frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Data governance frameworks",
+        "raw_text": "data observability, quality, or governance frameworks"
+      }
+    ]
+  },
+  "golden_156": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably AWS"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "strong full-stack depth"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "exposure to LLMs"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Full-Stack AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "B",
+        "label": "Production systems experience",
+        "raw_text": "production systems experience"
+      }
+    ]
+  },
+  "golden_157": {
+    "accepted_skills": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "security guardrails"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based systems"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with Observability"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenTelemetry"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Software Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "time-series databases",
+        "raw_text": "time-series databases"
+      },
+      {
+        "labeler": "A",
+        "label": "multi-tenancy",
+        "raw_text": "multi-tenancy"
+      },
+      {
+        "labeler": "A",
+        "label": "latency optimization",
+        "raw_text": "latency optimization"
+      },
+      {
+        "labeler": "A",
+        "label": "SRE",
+        "raw_text": "SRE"
+      },
+      {
+        "labeler": "A",
+        "label": "incident management",
+        "raw_text": "incident management"
+      },
+      {
+        "labeler": "A",
+        "label": "alerting",
+        "raw_text": "alerting workflows"
+      },
+      {
+        "labeler": "B",
+        "label": "Evaluation dataset creation",
+        "raw_text": "dataset creation"
+      },
+      {
+        "labeler": "B",
+        "label": "Offline and online evaluation scoring",
+        "raw_text": "offline/online scoring"
+      },
+      {
+        "labeler": "B",
+        "label": "Release validation",
+        "raw_text": "release validation"
+      },
+      {
+        "labeler": "B",
+        "label": "Latency optimization",
+        "raw_text": "latency optimization"
+      },
+      {
+        "labeler": "B",
+        "label": "Cost management",
+        "raw_text": "cost management"
+      },
+      {
+        "labeler": "B",
+        "label": "Multi-tenancy",
+        "raw_text": "multi-tenancy"
+      },
+      {
+        "labeler": "B",
+        "label": "Alerting workflows",
+        "raw_text": "alerting workflows"
+      },
+      {
+        "labeler": "B",
+        "label": "Open-source contribution",
+        "raw_text": "active open-source contributions"
+      },
+      {
+        "labeler": "B",
+        "label": "Design reviews",
+        "raw_text": "design reviews"
+      },
+      {
+        "labeler": "B",
+        "label": "Technical documentation",
+        "raw_text": "technical documentation"
+      }
+    ]
+  },
+  "golden_158": {
+    "accepted_skills": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Entwicklung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud- und Rechenzentrumsstrategien"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models (LLMs) und KI-Anwendungen"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Entwicklung von RAG-Lösungen"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior AI & RAG Engineer"
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Kommunikationsfähigkeit auf Deutsch und Englisch (mind. C1-Niveau)"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "erfolgreich abgeschlossenes Bachelor- oder Masterstudium"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "IoT",
+        "raw_text": "IoT"
+      },
+      {
+        "labeler": "A",
+        "label": "SD-WAN",
+        "raw_text": "SD-WAN"
+      },
+      {
+        "labeler": "A",
+        "label": "Zero Trust",
+        "raw_text": "Zero Trust"
+      },
+      {
+        "labeler": "A",
+        "label": "OT infrastructure",
+        "raw_text": "OT-Infrastrukturen"
+      },
+      {
+        "labeler": "A",
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "labeler": "A",
+        "label": "Code-RAG",
+        "raw_text": "Code-RAG"
+      },
+      {
+        "labeler": "A",
+        "label": "Source-code retrieval",
+        "raw_text": "Source-Code-Retrieval"
+      },
+      {
+        "labeler": "A",
+        "label": "Hybrid search",
+        "raw_text": "Hybrid Search"
+      },
+      {
+        "labeler": "A",
+        "label": "Metadata filtering",
+        "raw_text": "Metadata Filtering"
+      },
+      {
+        "labeler": "A",
+        "label": "Reranking",
+        "raw_text": "Reranking"
+      },
+      {
+        "labeler": "B",
+        "label": "IoT",
+        "raw_text": "IoT"
+      },
+      {
+        "labeler": "B",
+        "label": "IT-/OT-Infrastruktur",
+        "raw_text": "IT-/OT-Infrastrukturumfeld"
+      },
+      {
+        "labeler": "B",
+        "label": "SD-WAN",
+        "raw_text": "SD-WAN"
+      },
+      {
+        "labeler": "B",
+        "label": "Zero Trust",
+        "raw_text": "Zero Trust"
+      },
+      {
+        "labeler": "B",
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "labeler": "B",
+        "label": "Rechenzentrumsstrategien",
+        "raw_text": "Cloud- und Rechenzentrumsstrategien"
+      }
+    ]
+  },
+  "golden_159": {
+    "accepted_skills": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI-Coding-Tools, Coding Agents"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Mehrjährige Erfahrung in der Softwareentwicklung"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Lead Software Engineer"
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "B",
+        "label": "System integration",
+        "raw_text": "ein gutes Verständnis für moderne Softwarearchitekturen, Integrationen und gewachsene Systemlandschaften"
+      }
+    ]
+  },
+  "golden_160": {
+    "accepted_skills": [
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "ideally paired with A/B or holdout experiments"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "least-privilege access"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "long-term agent memory"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "a major cloud platform"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "automated evaluation frameworks"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "proficiency in Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Sr. Staff Applied AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Agent skills (reusable skill development)",
+        "raw_text": "reusable skill development"
+      },
+      {
+        "labeler": "A",
+        "label": "Agent-to-agent (A2A) protocol/frameworks",
+        "raw_text": "agent-to-agent (A2A) frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Retrieval methods",
+        "raw_text": "retrieval methods"
+      },
+      {
+        "labeler": "B",
+        "label": "Reusable AI skill development",
+        "raw_text": "reusable skill development"
+      },
+      {
+        "labeler": "B",
+        "label": "Agent-to-agent frameworks",
+        "raw_text": "agent-to-agent (A2A) frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Prompt-injection defense",
+        "raw_text": "defending against risks such as prompt injection"
+      },
+      {
+        "labeler": "B",
+        "label": "GTM systems integration",
+        "raw_text": "integrating across GTM systems of record"
+      },
+      {
+        "labeler": "B",
+        "label": "LLM-as-judge",
+        "raw_text": "LLM-as-judge"
+      },
+      {
+        "labeler": "B",
+        "label": "Holdout experiments",
+        "raw_text": "holdout experiments"
+      }
+    ]
+  },
+  "golden_161": {
+    "accepted_skills": [
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "with focus on computer vision"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "grounding, and evaluation"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning, prompting"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "inference serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Strong PyTorch skills"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization-aware training"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement and imitation learning"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT, CUDA, quantization-aware training"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "such as vLLM"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Evidence of staff-level impact"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "labeler": "A",
+        "label": "Segmentation",
+        "raw_text": "segmentation"
+      },
+      {
+        "labeler": "A",
+        "label": "YOLO",
+        "raw_text": "YOLO family"
+      },
+      {
+        "labeler": "A",
+        "label": "DETR",
+        "raw_text": "DETR-style models"
+      },
+      {
+        "labeler": "A",
+        "label": "Vision-language models (VLMs)",
+        "raw_text": "Hands-on experience with VLMs"
+      },
+      {
+        "labeler": "A",
+        "label": "LLaVA",
+        "raw_text": "LLaVA-"
+      },
+      {
+        "labeler": "A",
+        "label": "Qwen-VL",
+        "raw_text": "Qwen-VL-"
+      },
+      {
+        "labeler": "A",
+        "label": "PaliGemma",
+        "raw_text": "PaliGemma-style models"
+      },
+      {
+        "labeler": "A",
+        "label": "Grounding",
+        "raw_text": "grounding"
+      },
+      {
+        "labeler": "A",
+        "label": "Vision-language-action models (VLAs)",
+        "raw_text": "Experience with VLAs"
+      },
+      {
+        "labeler": "A",
+        "label": "Robot learning / embodied AI",
+        "raw_text": "embodied and robot-learning models"
+      },
+      {
+        "labeler": "A",
+        "label": "OpenVLA",
+        "raw_text": "OpenVLA-"
+      },
+      {
+        "labeler": "A",
+        "label": "RT-2",
+        "raw_text": "RT-2-"
+      },
+      {
+        "labeler": "A",
+        "label": "pi0",
+        "raw_text": "pi0-style policies"
+      },
+      {
+        "labeler": "A",
+        "label": "Multimodal learning",
+        "raw_text": "adjacent multimodal work"
+      },
+      {
+        "labeler": "A",
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision"
+      },
+      {
+        "labeler": "A",
+        "label": "GPU profiling",
+        "raw_text": "GPU profiling"
+      },
+      {
+        "labeler": "A",
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "labeler": "A",
+        "label": "Video understanding",
+        "raw_text": "video understanding"
+      },
+      {
+        "labeler": "A",
+        "label": "3D perception",
+        "raw_text": "3D perception"
+      },
+      {
+        "labeler": "A",
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "labeler": "A",
+        "label": "Simulation / sim-to-real",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "labeler": "A",
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Edge / embedded deployment",
+        "raw_text": "Edge and embedded deployment experience"
+      },
+      {
+        "labeler": "A",
+        "label": "RLHF",
+        "raw_text": "RLHF-style post-training"
+      },
+      {
+        "labeler": "B",
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "labeler": "B",
+        "label": "Segmentation",
+        "raw_text": "segmentation"
+      },
+      {
+        "labeler": "B",
+        "label": "YOLO",
+        "raw_text": "YOLO family"
+      },
+      {
+        "labeler": "B",
+        "label": "DETR",
+        "raw_text": "DETR-style models"
+      },
+      {
+        "labeler": "B",
+        "label": "Vision-language models",
+        "raw_text": "VLMs"
+      },
+      {
+        "labeler": "B",
+        "label": "LLaVA",
+        "raw_text": "LLaVA-"
+      },
+      {
+        "labeler": "B",
+        "label": "Qwen-VL",
+        "raw_text": "Qwen-VL-"
+      },
+      {
+        "labeler": "B",
+        "label": "PaliGemma",
+        "raw_text": "PaliGemma-style models"
+      },
+      {
+        "labeler": "B",
+        "label": "Grounding",
+        "raw_text": "grounding"
+      },
+      {
+        "labeler": "B",
+        "label": "Vision-language-action models",
+        "raw_text": "VLAs"
+      },
+      {
+        "labeler": "B",
+        "label": "Embodied and robot-learning models",
+        "raw_text": "embodied and robot-learning models"
+      },
+      {
+        "labeler": "B",
+        "label": "OpenVLA",
+        "raw_text": "OpenVLA-"
+      },
+      {
+        "labeler": "B",
+        "label": "RT-2",
+        "raw_text": "RT-2-"
+      },
+      {
+        "labeler": "B",
+        "label": "pi0",
+        "raw_text": "pi0-style policies"
+      },
+      {
+        "labeler": "B",
+        "label": "Multimodal modeling",
+        "raw_text": "adjacent multimodal work"
+      },
+      {
+        "labeler": "B",
+        "label": "Mixed-precision training",
+        "raw_text": "mixed precision"
+      },
+      {
+        "labeler": "B",
+        "label": "GPU profiling",
+        "raw_text": "GPU profiling"
+      },
+      {
+        "labeler": "B",
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "labeler": "B",
+        "label": "Video understanding",
+        "raw_text": "video understanding"
+      },
+      {
+        "labeler": "B",
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "labeler": "B",
+        "label": "Simulation",
+        "raw_text": "simulation"
+      },
+      {
+        "labeler": "B",
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "labeler": "B",
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Edge and embedded deployment",
+        "raw_text": "Edge and embedded deployment"
+      },
+      {
+        "labeler": "B",
+        "label": "RLHF",
+        "raw_text": "RLHF-style post-training"
+      },
+      {
+        "labeler": "B",
+        "label": "Code review",
+        "raw_text": "Code Reviews"
+      },
+      {
+        "labeler": "B",
+        "label": "Embedded systems",
+        "raw_text": "Embedded Systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Failure analysis",
+        "raw_text": "Failure Analysis"
+      },
+      {
+        "labeler": "B",
+        "label": "GPU computing",
+        "raw_text": "GPU (Graphics Processing Unit)"
+      },
+      {
+        "labeler": "B",
+        "label": "Internet of Things",
+        "raw_text": "Internet of Things"
+      },
+      {
+        "labeler": "B",
+        "label": "Juniper Networks M-Series",
+        "raw_text": "Juniper Networks M-Series"
+      },
+      {
+        "labeler": "B",
+        "label": "Memory hardware",
+        "raw_text": "Memory Hardware"
+      },
+      {
+        "labeler": "B",
+        "label": "Model review",
+        "raw_text": "Model Review"
+      },
+      {
+        "labeler": "B",
+        "label": "Programmable logic controllers",
+        "raw_text": "Programmable Logic Controller (PLC)"
+      },
+      {
+        "labeler": "B",
+        "label": "Prototyping",
+        "raw_text": "Prototyping"
+      },
+      {
+        "labeler": "B",
+        "label": "RIP routing protocol",
+        "raw_text": "RIP (Routing Information Protocol)"
+      },
+      {
+        "labeler": "B",
+        "label": "Reporting dashboards",
+        "raw_text": "Reporting Dashboards"
+      },
+      {
+        "labeler": "B",
+        "label": "Scalable system development",
+        "raw_text": "Scalable System Development"
+      },
+      {
+        "labeler": "B",
+        "label": "Web analytics",
+        "raw_text": "Web Analytics"
+      }
+    ]
+  },
+  "golden_162": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Remote Senior AI Agentic Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_163": {
+    "accepted_skills": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend Engineering"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Docker, Kubernetes"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "Machine Learning Engineering"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "Model-Serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "sowie Observability"
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "nice_to_have",
+        "raw_text": "SGLang"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformer-basierte Modelle"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Du sprichst fließend Deutsch und Englisch"
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "Batching",
+        "raw_text": "Batching"
+      },
+      {
+        "labeler": "A",
+        "label": "KV-cache management",
+        "raw_text": "KV-Cache-Management"
+      },
+      {
+        "labeler": "A",
+        "label": "GPU clusters",
+        "raw_text": "GPU-Clustern"
+      },
+      {
+        "labeler": "A",
+        "label": "Logging / auditing / compliance",
+        "raw_text": "Logging, Auditierung und Compliance"
+      },
+      {
+        "labeler": "B",
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Inference Engineering",
+        "raw_text": "Inference Engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Batching",
+        "raw_text": "Batching"
+      },
+      {
+        "labeler": "B",
+        "label": "KV-cache management",
+        "raw_text": "KV-Cache-Management"
+      },
+      {
+        "labeler": "B",
+        "label": "Logging",
+        "raw_text": "Logging"
+      },
+      {
+        "labeler": "B",
+        "label": "Security auditing",
+        "raw_text": "Auditierung"
+      },
+      {
+        "labeler": "B",
+        "label": "Compliance",
+        "raw_text": "Compliance"
+      },
+      {
+        "labeler": "B",
+        "label": "GPU clusters",
+        "raw_text": "GPU-Clustern"
+      },
+      {
+        "labeler": "B",
+        "label": "Sovereign cloud",
+        "raw_text": "souveränen Cloud- oder Private-Cloud-Umgebungen"
+      },
+      {
+        "labeler": "B",
+        "label": "Private cloud",
+        "raw_text": "Private-Cloud-Umgebungen"
+      }
+    ]
+  }
+}

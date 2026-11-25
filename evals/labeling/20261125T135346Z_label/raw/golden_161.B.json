@@ -1,0 +1,284 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Solid command of machine learning frameworks\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI for robotics\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience with modern computer vision models\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning policies\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"covering training, fine-tuning, and deployment\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"covering training, fine-tuning, and deployment\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vision transformers\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimizing inference\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ONNX\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantization\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLOps tooling\"\n    },\n    {\n      \"skill_id\": \"experiment-tracking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"experiment tracking\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Hands-on operation of real robotic hardware\",\n      \"raw_text\": \"Hands-on experience working with real robots — robot arms, mobile manipulators, grippers, cameras, and sensors — not only in simulation\"\n    },\n    {\n      \"label\": \"End-to-end learned models for robotics\",\n      \"raw_text\": \"end-to-end learned models for robotics\"\n    },\n    {\n      \"label\": \"Vision-Language-Action models\",\n      \"raw_text\": \"VLAs\"\n    },\n    {\n      \"label\": \"Diffusion policies\",\n      \"raw_text\": \"diffusion policies\"\n    },\n    {\n      \"label\": \"Imitation learning\",\n      \"raw_text\": \"imitation or reinforcement learning policies\"\n    },\n    {\n      \"label\": \"Data curation\",\n      \"raw_text\": \"data curation\"\n    },\n    {\n      \"label\": \"YOLO\",\n      \"raw_text\": \"YOLO\"\n    },\n    {\n      \"label\": \"SAM\",\n      \"raw_text\": \"SAM\"\n    },\n    {\n      \"label\": \"Self-supervised vision backbones\",\n      \"raw_text\": \"self-supervised backbones\"\n    },\n    {\n      \"label\": \"DINOv2\",\n      \"raw_text\": \"DINOv2\"\n    },\n    {\n      \"label\": \"CLIP\",\n      \"raw_text\": \"CLIP\"\n    },\n    {\n      \"label\": \"Learned grasp generation\",\n      \"raw_text\": \"learned grasp generation\"\n    },\n    {\n      \"label\": \"GraspNet\",\n      \"raw_text\": \"GraspNet\"\n    },\n    {\n      \"label\": \"Dex-Net\",\n      \"raw_text\": \"Dex-Net\"\n    },\n    {\n      \"label\": \"Robot forward and inverse kinematics\",\n      \"raw_text\": \"robot (inverse) kinematics\"\n    },\n    {\n      \"label\": \"Coordinate transformations\",\n      \"raw_text\": \"coordinate transformations\"\n    },\n    {\n      \"label\": \"Hand-eye calibration\",\n      \"raw_text\": \"hand-eye calibration\"\n    },\n    {\n      \"label\": \"Large-scale demonstration data collection\",\n      \"raw_text\": \"large-scale demonstration data collection\"\n    },\n    {\n      \"label\": \"Teleoperation setups\",\n      \"raw_text\": \"teleoperation setups\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer\"\n    },\n    {\n      \"label\": \"Robot learning simulation frameworks\",\n      \"raw_text\": \"robot learning simulation frameworks\"\n    },\n    {\n      \"label\": \"NVIDIA Isaac Sim\",\n      \"raw_text\": \"NVIDIA Isaac Sim/Lab\"\n    },\n    {\n      \"label\": \"NVIDIA Isaac Lab\",\n      \"raw_text\": \"NVIDIA Isaac Sim/Lab\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Gazebo\",\n      \"raw_text\": \"Gazebo\"\n    },\n    {\n      \"label\": \"PCL\",\n      \"raw_text\": \"PCL\"\n    },\n    {\n      \"label\": \"Camera calibration\",\n      \"raw_text\": \"camera calibration\"\n    },\n    {\n      \"label\": \"Point cloud processing\",\n      \"raw_text\": \"point cloud processing\"\n    },\n    {\n      \"label\": \"Deployment on NVIDIA embedded platforms\",\n      \"raw_text\": \"deploying on NVIDIA embedded platforms\"\n    },\n    {\n      \"label\": \"NVIDIA Jetson Orin\",\n      \"raw_text\": \"Jetson Orin\"\n    },\n    {\n      \"label\": \"NVIDIA AGX\",\n      \"raw_text\": \"AGX\"\n    },\n    {\n      \"label\": \"NVIDIA Xavier\",\n      \"raw_text\": \"Xavier\"\n    },\n    {\n      \"label\": \"Dataset versioning\",\n      \"raw_text\": \"dataset versioning\"\n    },\n    {\n      \"label\": \"Continuous training pipelines\",\n      \"raw_text\": \"continuous training or evaluation pipelines\"\n    },\n    {\n      \"label\": \"Continuous evaluation pipelines\",\n      \"raw_text\": \"continuous training or evaluation pipelines\"\n    },\n    {\n      \"label\": \"PLCs\",\n      \"raw_text\": \"PLCs\"\n    },\n    {\n      \"label\": \"EtherCAT\",\n      \"raw_text\": \"EtherCAT\"\n    },\n    {\n      \"label\": \"OPC UA\",\n      \"raw_text\": \"OPC UA\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Minimum of four years of professional experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree in Robotics, Computer Science, Artificial Intelligence, Machine Learning, or a related field — or equivalent practical experience\",\n  \"notes\": \"Essential Skills is required; Beneficial Skills is optional. Responsibilities and company descriptions do not supply additional labels.\\nUnmapped entries through hand-eye calibration are required; subsequent unmapped entries are nice-to-have.\\nOpenCV collapses into computer-vision under the supplied taxonomy; the required computer-vision mention wins.\\nDataset versioning is not treated as model versioning, and continuous training/evaluation pipelines are not assumed to mean CI/CD or data-ingestion pipelines.\\nAlternative groups contain only mapped skills and require at least two members. Machine learning and computer vision are also asked for independently, so the initial experience alternatives do not produce a retained group.\\nRobotics and industrial automation as general domains, publication history, English fluency, and adaptability are excluded. Concrete robotics techniques, tools, and platforms are retained.\\nNVIDIA Isaac Sim/Lab is read literally as naming Isaac Sim and Isaac Lab. AGX and Xavier are retained as written without inferring more specific product variants.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Solid command of machine learning frameworks"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI for robotics"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Experience with modern computer vision models"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning policies"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "covering training, fine-tuning, and deployment"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "covering training, fine-tuning, and deployment"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "vision transformers"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing inference"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "nice_to_have",
+        "raw_text": "ONNX",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps tooling"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tracking"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Hands-on operation of real robotic hardware",
+        "raw_text": "Hands-on experience working with real robots — robot arms, mobile manipulators, grippers, cameras, and sensors — not only in simulation"
+      },
+      {
+        "label": "End-to-end learned models for robotics",
+        "raw_text": "end-to-end learned models for robotics"
+      },
+      {
+        "label": "Vision-Language-Action models",
+        "raw_text": "VLAs"
+      },
+      {
+        "label": "Diffusion policies",
+        "raw_text": "diffusion policies"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation or reinforcement learning policies"
+      },
+      {
+        "label": "Data curation",
+        "raw_text": "data curation"
+      },
+      {
+        "label": "YOLO",
+        "raw_text": "YOLO"
+      },
+      {
+        "label": "SAM",
+        "raw_text": "SAM"
+      },
+      {
+        "label": "Self-supervised vision backbones",
+        "raw_text": "self-supervised backbones"
+      },
+      {
+        "label": "DINOv2",
+        "raw_text": "DINOv2"
+      },
+      {
+        "label": "CLIP",
+        "raw_text": "CLIP"
+      },
+      {
+        "label": "Learned grasp generation",
+        "raw_text": "learned grasp generation"
+      },
+      {
+        "label": "GraspNet",
+        "raw_text": "GraspNet"
+      },
+      {
+        "label": "Dex-Net",
+        "raw_text": "Dex-Net"
+      },
+      {
+        "label": "Robot forward and inverse kinematics",
+        "raw_text": "robot (inverse) kinematics"
+      },
+      {
+        "label": "Coordinate transformations",
+        "raw_text": "coordinate transformations"
+      },
+      {
+        "label": "Hand-eye calibration",
+        "raw_text": "hand-eye calibration"
+      },
+      {
+        "label": "Large-scale demonstration data collection",
+        "raw_text": "large-scale demonstration data collection"
+      },
+      {
+        "label": "Teleoperation setups",
+        "raw_text": "teleoperation setups"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "Robot learning simulation frameworks",
+        "raw_text": "robot learning simulation frameworks"
+      },
+      {
+        "label": "NVIDIA Isaac Sim",
+        "raw_text": "NVIDIA Isaac Sim/Lab"
+      },
+      {
+        "label": "NVIDIA Isaac Lab",
+        "raw_text": "NVIDIA Isaac Sim/Lab"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Gazebo",
+        "raw_text": "Gazebo"
+      },
+      {
+        "label": "PCL",
+        "raw_text": "PCL"
+      },
+      {
+        "label": "Camera calibration",
+        "raw_text": "camera calibration"
+      },
+      {
+        "label": "Point cloud processing",
+        "raw_text": "point cloud processing"
+      },
+      {
+        "label": "Deployment on NVIDIA embedded platforms",
+        "raw_text": "deploying on NVIDIA embedded platforms"
+      },
+      {
+        "label": "NVIDIA Jetson Orin",
+        "raw_text": "Jetson Orin"
+      },
+      {
+        "label": "NVIDIA AGX",
+        "raw_text": "AGX"
+      },
+      {
+        "label": "NVIDIA Xavier",
+        "raw_text": "Xavier"
+      },
+      {
+        "label": "Dataset versioning",
+        "raw_text": "dataset versioning"
+      },
+      {
+        "label": "Continuous training pipelines",
+        "raw_text": "continuous training or evaluation pipelines"
+      },
+      {
+        "label": "Continuous evaluation pipelines",
+        "raw_text": "continuous training or evaluation pipelines"
+      },
+      {
+        "label": "PLCs",
+        "raw_text": "PLCs"
+      },
+      {
+        "label": "EtherCAT",
+        "raw_text": "EtherCAT"
+      },
+      {
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Minimum of four years of professional experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree in Robotics, Computer Science, Artificial Intelligence, Machine Learning, or a related field — or equivalent practical experience",
+    "notes": "Essential Skills is required; Beneficial Skills is optional. Responsibilities and company descriptions do not supply additional labels.\nUnmapped entries through hand-eye calibration are required; subsequent unmapped entries are nice-to-have.\nOpenCV collapses into computer-vision under the supplied taxonomy; the required computer-vision mention wins.\nDataset versioning is not treated as model versioning, and continuous training/evaluation pipelines are not assumed to mean CI/CD or data-ingestion pipelines.\nAlternative groups contain only mapped skills and require at least two members. Machine learning and computer vision are also asked for independently, so the initial experience alternatives do not produce a retained group.\nRobotics and industrial automation as general domains, publication history, English fluency, and adaptability are excluded. Concrete robotics techniques, tools, and platforms are retained.\nNVIDIA Isaac Sim/Lab is read literally as naming Isaac Sim and Isaac Lab. AGX and Xavier are retained as written without inferring more specific product variants."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "1b97e096d4752c7369cea86fb574696a13f0f1acc663c185cda4131583f5da08",
+  "prompt_sha256": "0c8af5c7a602821fe22c9e801d77a523b172b30f4520bbeb0d9292a199531eca"
+}
