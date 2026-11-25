@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { Warn } from "./icons.jsx";
+import { reportError } from "./errorReports.js";
 
 // A safety net around one part of the page (HIR-227). React unmounts the entire tree when
 // a render throws and nothing catches it: that is how one wrong value in the add-a-job
@@ -19,7 +20,8 @@ export default class Panel extends Component {
   }
 
   componentDidCatch(error, info) {
-    // Nothing collects browser errors yet, so the console is where this is read from.
+    // A caught error never reaches the page-wide handler, so it is reported here (HIR-259).
+    reportError(error, { panel: this.props.label || "a panel", componentStack: info?.componentStack });
     console.error(`[hiring-radar] ${this.props.label || "a panel"} failed to render`, error, info);
   }
 

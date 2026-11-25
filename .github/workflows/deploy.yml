@@ -53,8 +53,12 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: web/package-lock.json
+      # The browser's Sentry key (HIR-259). Public by nature, so a repository variable, not a
+      # secret; unset, the page reports nothing. Only this build gets it: CI and PR demos don't.
       - name: Build frontend
         working-directory: web
+        env:
+          VITE_SENTRY_DSN: ${{ vars.VITE_SENTRY_DSN }}
         run: npm ci && npm run build && tar -czf ../web-dist.tgz dist
       - uses: google-github-actions/auth@v2
         with:

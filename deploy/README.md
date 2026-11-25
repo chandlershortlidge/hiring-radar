@@ -87,6 +87,20 @@ line and an `extracted=` line; a feed line with `FAILED` or `WARNING seen=0` nee
 the board changed its page format, as JOIN did in October 2026). A `grounding:` line means
 the model quoted evidence that is not in the posting — see [Tracing the poll](#tracing-the-poll).
 
+## Error reports (Sentry)
+
+Errors from the dashboard server and from visitors' browsers go to Sentry, one entry per
+distinct bug, with no visitor details (HIR-259, `decisions/2026-11-25-hir-259-errors-go-to-sentry.md`).
+Each side has its own key, and each is off until its key is set:
+
+| Side | Key | Where it is set |
+|---|---|---|
+| Server | `SENTRY_DSN` | `/etc/hiring-radar.env`, then `sudo systemctl restart hiring-radar` |
+| Browser | `VITE_SENTRY_DSN` | GitHub → repository settings → Actions → **Variables** (not secrets: the key ships in the page). Read by the deploy's frontend build, so it takes effect on the next deploy |
+
+Only the dashboard server reports; the polls and the caretaker do not. A new error group
+reaches Chandler as Sentry's own email alert. To switch either side off, remove its key.
+
 ## Tracing the poll
 
 With `LANGSMITH_API_KEY` set in `/etc/hiring-radar.env`, every extraction run is one trace
