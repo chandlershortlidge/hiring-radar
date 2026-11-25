@@ -8,7 +8,8 @@
 // browser and must never leave it.
 import * as Sentry from "@sentry/react";
 
-const DROPPED_BREADCRUMBS = new Set(["console", "ui.click", "ui.input", "ui.keypress"]);
+const DROPPED_INTEGRATIONS = new Set(["BrowserSession", "CultureContext"]);
+const DROPPED_BREADCRUMBS =new Set(["console", "ui.click", "ui.input", "ui.keypress"]);
 
 const stripQuery = (url) => (typeof url === "string" ? url.split(/[?#]/)[0] : url);
 
@@ -50,8 +51,9 @@ export function options(dsn) {
       httpBodies: [],
       urlQueryParams: false,
     },
-    // Session pings are one per page load: a visitor count, which is out of scope.
-    integrations: (defaults) => defaults.filter((i) => i.name !== "BrowserSession"),
+    // Session pings are one per page load: a visitor count, which is out of scope. The
+    // visitor's language and time zone are no help with a bug, so they stay home too.
+    integrations: (defaults) => defaults.filter((i) => !DROPPED_INTEGRATIONS.has(i.name)),
     beforeSend: scrub,
     beforeBreadcrumb: keepBreadcrumb,
   };

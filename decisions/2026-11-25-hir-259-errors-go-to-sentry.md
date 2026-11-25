@@ -26,6 +26,7 @@ The limits that came with the yes, and how each is kept:
   the browser SDK's session tracking (one ping per page load, which is a visitor count) is
   removed, so out-of-scope visitor statistics never start by accident. Breadcrumbs from the
   console and from clicks and typing are dropped; page changes and our own API calls stay.
+  The browser's language and time zone, which the SDK adds by default, are dropped too.
 - **One bug is one entry.** Grouping is Sentry's own (by stack trace). Errors a page's
   safety box catches (the "couldn't load" notes) are reported too, or a broken panel would
   never reach Sentry.

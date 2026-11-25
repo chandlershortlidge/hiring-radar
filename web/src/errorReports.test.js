@@ -24,7 +24,7 @@ describe("browser error reports", () => {
     expect(o.dataCollection).toEqual({ userInfo: false, cookies: false, httpHeaders: false, httpBodies: [], urlQueryParams: false });
     expect(o.tracesSampleRate).toBeUndefined();
     expect(o.replaysSessionSampleRate).toBeUndefined();
-    const kept = o.integrations([{ name: "GlobalHandlers" }, { name: "BrowserSession" }, { name: "Breadcrumbs" }]);
+    const kept = o.integrations([{ name: "GlobalHandlers" }, { name: "BrowserSession" }, { name: "CultureContext" }, { name: "Breadcrumbs" }]);
     expect(kept.map((i) => i.name)).toEqual(["GlobalHandlers", "Breadcrumbs"]);
   });
 
