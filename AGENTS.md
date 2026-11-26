@@ -359,7 +359,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   tickets, the lead agent's log, the count of decisions waiting for Chandler and which
   checks are red, answers which tickets may start in this run and why the rest may not
   (labels, a third try, the daily cap in `config/lead_agent.json`, one ticket per area at
-  a time, 10 decisions waiting, one re-read a day, a red check, a usage limit hit today).
+  a time, 10 decisions waiting, one re-read a day, a red check).
   No count of tickets per day. Also answers how many tickets to pull into Todo and, on
   Mondays, the week's three numbers. Pure; talks to nothing and starts nothing.
   Also says which pull requests that collide with main may be given a repair worker
@@ -1068,8 +1068,8 @@ decisions that I need to make"). What slows it down, and nothing else:
 **Its hard limits are code**, not instructions: `scripts/lead_pick.py` decides which
 tickets may start, and the lead agent starts nothing else. Besides the six above: never a
 ticket labelled `attended`, `hands-on` or `parked`; never a ticket whose model-call cost
-it cannot know; nothing more on a day when a run hit the Claude plan's usage limit (every
-run uses Chandler's plan; it reports the limit in the log and does not retry).
+it cannot know. A run refused by the Claude plan's usage limit starts nothing more and
+reports it in the log; the next scheduled run tries again (Chandler, 26 Nov).
 
 **Monday.** The lead agent adds the week's pace to the Monday summary: how many tickets
 ran, how many are left that can run without him, how many decisions are waiting to think

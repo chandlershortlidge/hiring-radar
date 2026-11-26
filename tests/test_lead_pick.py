@@ -231,11 +231,11 @@ def test_while_a_check_is_red_only_its_repair_is_started():
     assert "the main branch's checks and the robot visitor must be green" in both["skipped"][0]["why"]
 
 
-def test_a_usage_limit_hit_today_stops_the_rest_of_the_day():
+def test_a_usage_limit_hit_earlier_today_does_not_stop_the_next_run():
+    # The limit resets within hours; the next run tries again (Chandler, 26 Nov).
     body = line("HIR-9", "not-started") + "\nUsage limit: reached, 14:30 run.\n"
     out = run([ticket(1)], [{"date": TODAY, "body": body}])
-    assert out["picked"] == [] and "usage limit" in out["stop"]
-    assert ids(run([ticket(1)], [{"date": "2026-11-11", "body": body}])["picked"]) == ["HIR-1"]
+    assert out["stop"] is None and ids(out["picked"]) == ["HIR-1"]
 
 
 def test_the_days_spend_is_added_up_over_every_run_of_the_day():
@@ -815,10 +815,8 @@ def test_a_pull_request_with_no_ticket_is_not_repaired():
 
 
 def test_nothing_is_repaired_when_the_run_is_stopped():
-    assert repairs([collided()], cap=0)["start"] == []
-    limit = [{"date": TODAY, "body": "Usage limit: reached"}]
-    out = repairs([collided()], limit)
-    assert out["start"] == [] and "usage limit" in out["skipped"][0]["why"]
+    out = repairs([collided()], cap=0)
+    assert out["start"] == [] and out["skipped"]
 
 
 def test_a_red_check_does_not_hold_a_repair_back():
