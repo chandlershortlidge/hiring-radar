@@ -2,7 +2,7 @@
 
 `pick` is pure. Each "never" in the tickets is a test here: the three labels, the third
 try, the spending cap, one ticket per area at a time, the pile of decisions waiting for
-Chandler, one re-read a day, a red check, the usage limit, and the launch order's
+Chandler, one re-read a day, a red check, and the launch order's
 ordering. There is no count of tickets per day (HIR-280).
 """
 
