@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
-import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
+import { NOT_READ, cap, dateShort, degreeLine, familyLabel, germanLine, notRead, productionLine, sourceCode, timeAgo } from "./format.js";
 import { FIT_DAYS, fails, fit, gates, jobSeniority, metSkills, rankJobs, recentJobs, skillSides } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import { clearChips, filterChips, requirementChip } from "./filterChips.js";
@@ -74,10 +74,11 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   // order is one pass over the set. Ties keep the server's newest-first order. The age
   // check comes before the ranking: an old job is dropped without being scored, and the
   // ranking is handed a shorter list and otherwise left alone.
-  const ordered = useMemo(() => (byFit ? rankJobs(profile, recentJobs(page.jobs), demand) : page.jobs), [byFit, profile, page.jobs, demand]);
+  const fitSet = useMemo(() => (byFit ? bestFitList(profile, page.jobs, demand) : null), [byFit, profile, page.jobs, demand]);
+  const ordered = fitSet ? fitSet.ranked : page.jobs;
   // True when the server had more jobs than one request can carry and every one it sent
   // is recent: there may be more recent jobs it did not send, so the foot names the cap.
-  const fitCapped = byFit && page.total > FIT_MAX && ordered.length === page.jobs.length;
+  const fitCapped = byFit && page.total > FIT_MAX && fitSet.recent === page.jobs.length;
   // The Saved view sorts locally (saved.js mirrors the server's sorts) because the ids
   // never leave the browser; the whole set is in hand, so there is nothing to page.
   const savedRows = useMemo(
@@ -174,13 +175,28 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         <span>{savedOn ? `Showing all ${rows.length} saved` : `Showing ${rows.length} of ${page.total}`}</span>
         {!savedOn && byFit && <span className="dim">{fitCapped
           ? `Best fit ranks the ${FIT_MAX} newest jobs first seen in the last ${FIT_DAYS} days.`
-          : `Best fit ranks jobs first seen in the last ${FIT_DAYS} days.`}</span>}
+          : `Best fit ranks jobs first seen in the last ${FIT_DAYS} days.`}{waitingLine(fitSet.waiting)}</span>}
       </div>
     </section>
   );
 }
 
-function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, saved, onSave, getView }) {
+// What the list shows under Best fit: the recent jobs (HIR-391), less the ones the model
+// has not read yet, ranked (HIR-486). An unread posting has no skills or hard asks to
+// score, so ranked it would sit among the jobs nothing rules out; it is left out, as the
+// assistant connection leaves it out (HIR-484), and the foot says how many wait. The
+// shared ranking in profile.js is untouched. `recent` and `waiting` are counts.
+export function bestFitList(profile, jobs, demand = null, now = Date.now()) {
+  const recent = recentJobs(jobs, now);
+  const read = recent.filter((j) => !notRead(j));
+  return { ranked: rankJobs(profile, read, demand), recent: recent.length, waiting: recent.length - read.length };
+}
+
+export const waitingLine = (n) => (!n ? ""
+  : n === 1 ? ` 1 new job is ${NOT_READ} and left out until it is.`
+    : ` ${n} new jobs are ${NOT_READ} and left out until they are.`);
+
+export function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, saved, onSave, getView }) {
   const [detail, setDetail] = useState(null);
   const flag = useFlag(j.id, j.flagged, getView);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
@@ -201,6 +217,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
           {j.repost_count > 0 && <span className="repost" title={`Reposted ${j.repost_count}×`}><Repost />×{j.repost_count}</span>}
           {j.legacy && <span className="src" title="Imported from the old project with its skills; not in the chart">legacy</span>}
           {j.too_short && <span className="src" title="Only a fragment of the posting was stored; not in the chart">short</span>}
+          {notRead(j) && <span className="src unread" title={UNREAD_TITLE}>{NOT_READ}</span>}
         </span>
         <span className="badges">
           {flag.on && <span className="fit flagged" title="You flagged this job as not belonging here. It stays listed until the cause is fixed.">flagged</span>}
@@ -323,6 +340,14 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
       </button>
     );
   };
+  if (notRead(d)) {
+    return (
+      <div className="detail">
+        <div className="cover unread"><b>Not read yet.</b> {UNREAD_TITLE}</div>
+        <DetailMeta d={d} url={url} onOpenPage={onOpenPage} />
+      </div>
+    );
+  }
   return (
     <div className="detail">
       <div className="cols">
@@ -357,17 +382,26 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
       {d.proposed.filter((p) => p.status === "pending").length > 0 && (
         <div className="cover">Also mentions {d.proposed.filter((p) => p.status === "pending").map((p) => p.label).join(", ")} — not in the taxonomy yet, waiting for review.</div>
       )}
-      <div className="meta">
-        <div className="m">
-          <span>First seen {dateShort(d.first_seen)}</span><span>·</span><span>Last seen {timeAgo(d.last_seen)}</span><span>·</span><span>Reposts {d.repost_count}</span>
-          {d.seniority && <><span>·</span><span>Seniority {d.seniority} ({d.seniority_basis}{d.seniority_signal ? `: “${d.seniority_signal}”` : ""})</span></>}
-          <span>·</span><span>Sources: {d.sources.map((s) => `${sourceCode(s.source)[1]} (${dateShort(s.first_seen)})`).join(", ")}</span>
-        </div>
-        <span className="links">
-          {onOpenPage && <a href={`/jobs/${d.id}`} target="_blank" rel="noopener" title="Our stored copy of the posting; keeps working after the original is taken down">Permanent page<Ext /></a>}
-          {url && onOpenPage && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
-        </span>
+      <DetailMeta d={d} url={url} onOpenPage={onOpenPage} />
+    </div>
+  );
+}
+
+// Said wherever a posting is not read yet (HIR-486): what the mark means, in one sentence.
+const UNREAD_TITLE = "The model has not read this posting yet, so its skills and its German, degree and production asks are unknown, not missing. New postings are read a little after they are stored.";
+
+function DetailMeta({ d, url, onOpenPage }) {
+  return (
+    <div className="meta">
+      <div className="m">
+        <span>First seen {dateShort(d.first_seen)}</span><span>·</span><span>Last seen {timeAgo(d.last_seen)}</span><span>·</span><span>Reposts {d.repost_count}</span>
+        {d.seniority && <><span>·</span><span>Seniority {d.seniority} ({d.seniority_basis}{d.seniority_signal ? `: “${d.seniority_signal}”` : ""})</span></>}
+        <span>·</span><span>Sources: {d.sources.map((s) => `${sourceCode(s.source)[1]} (${dateShort(s.first_seen)})`).join(", ")}</span>
       </div>
+      <span className="links">
+        {onOpenPage && <a href={`/jobs/${d.id}`} target="_blank" rel="noopener" title="Our stored copy of the posting; keeps working after the original is taken down">Permanent page<Ext /></a>}
+        {url && onOpenPage && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
+      </span>
     </div>
   );
 }
