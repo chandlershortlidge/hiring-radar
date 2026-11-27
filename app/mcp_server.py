@@ -113,13 +113,26 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         finally:
             c.close()
 
+    # Every way a skill may be written, lowercased, to the id it means: the id, the display
+    # name and each alias (HIR-442). A model usually sends the full name, so a typo in it
+    # must find the skill as surely as a typo in the id.
+    labels: dict[str, str] = {}
+    for s in tax.skills.values():
+        for label in (s.id, s.display, *s.aliases):
+            labels.setdefault(label.strip().lower(), s.id)
+
+    def suggestions(name: str) -> list[str]:
+        """Up to three skill ids whose id, display name or alias is close to `name`."""
+        close = difflib.get_close_matches(name.strip().lower(), list(labels), n=10, cutoff=0.6)
+        return list(dict.fromkeys(labels[label] for label in close))[:3]
+
     def skill_ids(names: list[str]) -> list[str]:
         """Skill ids from ids or names ("RAG", "rag", "Retrieval Augmented Generation")."""
         out = []
         for n in names:
             sid = n if n in tax.skills else tax.resolve(n)
             if sid is None:
-                close = difflib.get_close_matches(n.lower(), list(tax.skills), n=3, cutoff=0.6)
+                close = suggestions(n)
                 hint = f"; did you mean {', '.join(close)}?" if close else ""
                 raise ToolError(f"unknown skill {n!r}{hint}")
             out.append(sid)

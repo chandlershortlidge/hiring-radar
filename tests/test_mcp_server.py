@@ -7,6 +7,7 @@ import asyncio
 import json
 import types
 import typing
+from pathlib import Path
 
 import httpx2
 import pytest
@@ -22,6 +23,7 @@ from app.extract import Extraction, Mention, Seniority
 from app.ingest import ingest_one
 from app.pipeline import store_extraction
 from app.sources import Posting
+from app.taxonomy import Taxonomy
 from tests.test_api import TAX
 from tests.test_queries import NOW, add, ts
 
@@ -421,6 +423,24 @@ def test_related_skills_accepts_skill_names_and_aliases(server, every_row):
 def test_related_skills_suggests_ids_for_an_unknown_skill(server):
     with pytest.raises(ToolError, match=r"unknown skill 'pythn'; did you mean python"):
         call(server, "related_skills", skills=["pythn"])
+
+
+def test_a_misspelled_full_name_is_matched_against_display_names_and_aliases(server):
+    """HIR-442: models send the full name, so a typo in it must still find the skill."""
+    with pytest.raises(ToolError, match=r"unknown skill 'retrieval augmented generaton'; did you mean rag\b"):
+        call(server, "related_skills", skills=["retrieval augmented generaton"])
+    with pytest.raises(ToolError, match=r"did you mean rag\b"):
+        call(server, "search_jobs", skills=["Retreival-Augmented Generation"])
+
+
+def test_suggestions_are_ids_and_name_a_skill_once():
+    """A skill whose id, name and alias all come close is suggested once, by its id."""
+    tax = Taxonomy({"version": 1, "skills": [
+        {"id": "rag", "display": "RAG", "aliases": ["retrieval augmented generation", "retrieval-augmented generation"]},
+        {"id": "python", "display": "Python"}]})
+    with pytest.raises(ToolError) as e:
+        call(mcp_server.build_server(Path("unused.db"), tax, lambda: NOW), "related_skills", skills=["retrieval augmented generatio"])
+    assert str(e.value).endswith("did you mean rag?")
 
 
 def test_related_skills_needs_at_least_one_skill(server):
