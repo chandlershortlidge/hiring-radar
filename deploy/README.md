@@ -19,7 +19,8 @@ the setup in the 2026-11-01 entry.
 | `hiring-radar-backup.service` / `.timer` | The 03:30 Europe/Berlin backup. |
 | `hiring-radar-caretaker.service` / `.timer` | The 10:00 Europe/Berlin caretaker. |
 | `install-units.sh` | Makes the unit files in `/etc/systemd/system` match the ones here. Run by every deploy and by `provision.sh`. |
-| `Caddyfile` | HTTPS + basic auth in front of the API, except `/mcp`, which is open. The bcrypt hash is a placeholder. |
+| `Caddyfile` | HTTPS + basic auth in front of the API, except `/mcp` and the pages that tell an agent where it is (`/llms.txt`, the Server Card, the AI Catalog), which are open. The bcrypt hash is a placeholder. |
+| `mcp-registry/server.json` | The MCP server's entry in the public MCP Registry, published by hand ("List the MCP server in the MCP Registry", below). |
 | `backup.sh` | What the backup unit runs: snapshot → integrity check → gzip → bucket. |
 | `remote-deploy.sh` | What the GitHub deploy job runs on the VM. |
 | `gcs-lifecycle.json` | Bucket rule: delete backups older than 30 days. |
@@ -312,6 +313,45 @@ Undo: `sudo cp /etc/caddy/Caddyfile.before-<change> /etc/caddy/Caddyfile && sudo
 
 Add it to Claude: `claude mcp add --transport http hiring-radar https://hiringradar.app/mcp`,
 or in claude.ai, Settings → Connectors → Add custom connector, with that URL.
+
+After HIR-480's change, the pages that tell an agent where the MCP server is answer
+without the password too, and every answer carries a `Link` header pointing to them:
+
+```
+for p in /llms.txt /mcp/server-card /.well-known/ai-catalog.json /.well-known/mcp.json; do
+  curl -s -o /dev/null -w "%{http_code} $p\n" https://hiringradar.app$p; done     # 200 each
+curl -sI https://hiringradar.app/ | grep -i '^link:'                              # the Link header, on the 401
+```
+
+## List the MCP server in the MCP Registry (HIR-480): once, at launch
+
+The public MCP Registry (registry.modelcontextprotocol.io) is the directory MCP clients
+search. The entry is `deploy/mcp-registry/server.json`; tests/test_discovery.py keeps it
+equal to what the live Server Card says. Publish it once the site is public (HIR-82): the
+Registry lists only servers anyone can reach, and the listing is public at once.
+
+The name `app.hiringradar/hiring-radar` is proved by a DNS record on hiringradar.app, so
+the login needs a key pair and one TXT record at the domain's apex (in Cloudflare's DNS
+panel). On a Mac, `openssl` must be OpenSSL 3 (`brew install openssl@3`, then use
+`/opt/homebrew/opt/openssl@3/bin/openssl`).
+
+```
+brew install mcp-publisher
+openssl genpkey -algorithm Ed25519 -out mcp-registry-key.pem       # keep it out of the repo
+PUBLIC_KEY="$(openssl pkey -in mcp-registry-key.pem -pubout -outform DER | tail -c 32 | base64)"
+echo "hiringradar.app. IN TXT \"v=MCPv1; k=ed25519; p=${PUBLIC_KEY}\""
+# add that TXT record at hiringradar.app (apex, not a subdomain), wait for it to show:
+dig +short TXT hiringradar.app
+MCP_PRIVATE_KEY="$(openssl pkey -in mcp-registry-key.pem -noout -text | sed -n '/priv:/,/pub:/p' | sed '1d;$d' | tr -d ' :\n')" \
+  mcp-publisher login dns --domain hiringradar.app
+mcp-publisher validate deploy/mcp-registry/server.json
+mcp-publisher publish deploy/mcp-registry/server.json
+curl -s "https://registry.modelcontextprotocol.io/v0.1/servers?search=app.hiringradar/hiring-radar"
+```
+
+A later change to the tools raises `VERSION` in app/mcp_server.py and the `version` here
+together (the test checks they match), and is published again with the last two commands;
+the Registry refuses a version it already has.
 
 ## The move to hiringradar.app (HIR-458): two stages around the merge
 

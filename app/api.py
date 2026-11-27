@@ -1,7 +1,8 @@
 """HTTP API for the dashboard, plus static serving of the built frontend.
 
 Does: expose read endpoints over app/queries.py, the MCP server at /mcp (app/mcp_server.py),
-and the "doesn't belong here" flag on a job (app/flags.py: flag, note, un-flag), which is
+the pages that tell an agent where that server is (app/discovery.py: /llms.txt, the Server
+Card and the AI Catalog), and the "doesn't belong here" flag on a job (app/flags.py: flag, note, un-flag), which is
 the only thing a visitor can write. Serves web/dist/ at / when it exists.
 
 Does NOT: add a job or settle a proposed skill (HIR-346 removed both from the site: jobs
@@ -27,11 +28,11 @@ from pathlib import Path
 from typing import Literal
 
 from fastapi import Depends, FastAPI, HTTPException, Query
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
-from app import admin, db, flags, mcp_server, queries as q
+from app import admin, db, discovery, flags, mcp_server, queries as q
 from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, extractor_version
 from app.ingest import now_iso
 from app.skill_tree import skill_tree
@@ -232,6 +233,25 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
         rows = admin.overview(conn, now, extractor_version(tax, EXTRACT_MODEL))
         return HTMLResponse(admin.page(rows, admin.spend(conn, now[:7]), now),
                             headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"})
+
+    # --- how an agent finds the MCP server (HIR-480, app/discovery.py) ----------------
+    # Open without the password, like /mcp itself (deploy/Caddyfile, tests/test_discovery.py).
+
+    async def get_server_card():
+        return JSONResponse(await discovery.server_card(mcp), media_type=discovery.CARD_TYPE,
+                            headers=discovery.CARD_HEADERS)
+
+    for card_path in discovery.CARD_PATHS:
+        app.add_api_route(card_path, get_server_card, methods=["GET"], include_in_schema=False)
+
+    @app.get(discovery.CATALOG_PATH, include_in_schema=False)
+    def get_ai_catalog():
+        return JSONResponse(discovery.catalog(), media_type=discovery.CATALOG_TYPE,
+                            headers=discovery.CARD_HEADERS)
+
+    @app.get(discovery.LLMS_PATH, include_in_schema=False)
+    async def get_llms_txt():
+        return PlainTextResponse(await discovery.llms_txt(mcp), headers={"Cache-Control": "public, max-age=3600"})
 
     # --- frontend -------------------------------------------------------------------
 
