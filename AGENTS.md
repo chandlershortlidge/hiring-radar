@@ -463,10 +463,12 @@ Then, before the PR is reviewable:
 (DECISIONS 2026-11-04, HIR-164). `eval_table.py` applies both and exits non-zero on either,
 so this is not a judgment call:
 
-- **The four per-Golden attribute scores** — seniority, German, degree, production — are
+- **The five per-Golden attribute scores** — seniority, German, degree, production, and the
+  production quote (`production_signal_agreement`, HIR-169) — are
   gated on **Goldens that flipped from right to wrong: more than 2 stops the merge.** Each
   is one yes/no answer per Golden, so on a 20-Golden set one posting is 0.05 of the score
-  and a fractional threshold cannot tell one unlucky posting from a regression. The table's
+  and a fractional threshold cannot tell one unlucky posting from a regression; the quote
+  score is counted on only the 8–9 Goldens whose production class agrees. The table's
   "Goldens worse / better" column is the number that decides; the Δ beside it is context,
   not a stop line. Don't read a 0.05 drop here as a regression — it is one posting.
 - **The skill scores** — precision, recall, f1, requirement accuracy, grounding, rank — pool
