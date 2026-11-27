@@ -18,7 +18,9 @@ from mcp.server.mcpserver.exceptions import ToolError
 from app import db, mcp_server, queries as q
 from app.api import create_app
 from app.geo import CITIES, REMOTE_EU
+from app.extract import Extraction, Mention, Seniority
 from app.ingest import ingest_one
+from app.pipeline import store_extraction
 from app.sources import Posting
 from tests.test_api import TAX
 from tests.test_queries import NOW, add, ts
@@ -223,6 +225,58 @@ def test_get_job_matches_the_dashboard_job_page(db_path, server):
 def test_get_job_rejects_an_id_that_does_not_exist(server):
     with pytest.raises(ToolError, match="no job with id 99999"):
         call(server, "get_job", job_id=99999)
+
+
+# Groups of alternatives (HIR-485). Babel asks for Python, and AWS or Docker (the posting's
+# "AWS or Azure", with ids the test skill list has). Lyceum's whole ask is one group, as
+# job 2063's "vLLM, SGLang, ... or GPU, cloud and Linux" was read.
+GROUPED = {
+    "Babel": [("python", None), ("aws", 1), ("docker", 1)],
+    "Lyceum": [("rag", 1), ("llms", 1), ("aws", 1)],
+}
+
+
+@pytest.fixture
+def grouped_server(db_path):
+    c = db.connect(db_path)
+    for company, mentions in GROUPED.items():
+        job_id = add(c, company, "AI Engineer", "Berlin", "greenhouse", ts(1), [], "mid")
+        store_extraction(c, job_id, Extraction(
+            seniority=Seniority("mid", "stated", "mid"),
+            mentions=[Mention(sid, "required", sid, group) for sid, group in mentions]
+                     + [Mention("llms", "nice_to_have", "llms")] * (company == "Babel"),
+            proposed=[], extractor_version="t", taxonomy_version=3))
+    c.close()
+    return mcp_server.build_server(db_path, TAX, lambda: NOW)
+
+
+def job_of(server, company: str) -> dict:
+    job_id = search(server, company_or_title=company)["jobs"][0]["id"]
+    return call(server, "get_job", job_id=job_id).structured_content | {"id": job_id}
+
+
+def test_get_job_writes_a_group_of_alternatives_as_one_requirement(grouped_server):
+    babel, lyceum = job_of(grouped_server, "Babel"), job_of(grouped_server, "Lyceum")
+    assert babel["required_skills"] == ["python", ["aws", "docker"]]
+    assert lyceum["required_skills"] == [["aws", "llms", "rag"]]
+    assert babel["nice_to_have_skills"] == ["llms"]
+    # A job with no group is still a plain list of ids.
+    assert job_of(grouped_server, "Acme")["required_skills"] == ["python", "rag"]
+    # search_jobs writes the same job the same way.
+    listed = {j["company"]: j for j in search(grouped_server, window="all")["jobs"]}
+    for company in ("Babel", "Lyceum", "Acme"):
+        assert listed[company]["required_skills"] == job_of(grouped_server, company)["required_skills"]
+
+
+@pytest.mark.parametrize("company", ["Babel", "Lyceum", "Acme"])
+def test_get_job_counts_requirements_as_match_profile_does(grouped_server, company):
+    """The requirements get_job lists are match_profile's total for the job, with or
+    without a group."""
+    job = job_of(grouped_server, company)
+    ranked = call(grouped_server, "match_profile", skills=["python"], limit=50).structured_content["jobs"]
+    total = next(j["total"] for j in ranked if j["id"] == job["id"])
+    assert len(job["required_skills"]) == total
+    assert total == {"Babel": 2, "Lyceum": 1, "Acme": 2}[company]
 
 # --- skill_demand ------------------------------------------------------------------------
 
