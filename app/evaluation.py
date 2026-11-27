@@ -191,9 +191,9 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
     prod_acc = sum(1 for e, p in prod if e == p) / len(prod) if prod else None
     # A right class off the wrong clause is not a win: count signal agreement separately,
     # over the Goldens where both sides set a class (HIR-69).
-    sig = [s.production_signal for s in scores
-           if s.production is not None and s.production[0] == s.production[1] and s.production[0] is not None]
-    sig_ok = sum(1 for e, p in sig if e and p and (e in p or p in e)) if sig else 0
+    sig = [h for s in scores
+           if (h := signal_hit(s.production, s.production_signal)) is not None]
+    sig_ok = sum(sig)
 
     reviewed = [s.group_pairs for s in scores if s.group_pairs is not None]
     g_tp = sum(len(e & p) for e, p in reviewed)
@@ -242,12 +242,27 @@ class RunResult:
     predictions: dict[str, dict] = field(default_factory=dict)
 
 
-# The four per-Golden attributes the eval gate counts flips on (HIR-164). Each is one
-# yes/no answer per Golden, so on a small dev set one Golden is a large slice of the score
-# and a fractional threshold cannot separate noise from a regression. The skill scores pool
+# The per-Golden attributes the eval gate counts flips on (HIR-164). Each is one yes/no
+# answer per Golden, so on a small dev set one Golden is a large slice of the score and a
+# fractional threshold cannot separate noise from a regression. The skill scores pool
 # hundreds of mentions and keep the 0.02 rule. See DECISIONS 2026-11-04 (HIR-164).
+# production_signal_agreement joined them in HIR-169: it is counted on only the 8-9 Goldens
+# where the production class agrees, so one posting is ~12% of it.
 ATTRIBUTE_METRICS = ("seniority_accuracy", "german_accuracy", "degree_accuracy",
-                     "production_accuracy")
+                     "production_accuracy", "production_signal_agreement")
+
+
+def signal_hit(production: tuple | None, signal: tuple | None) -> bool | None:
+    """Did the model quote the right production clause? None when not scored.
+
+    Scored only where both sides set the same production class (HIR-69): a wrong class is
+    already a miss on production_accuracy, and a right class off the wrong clause is not a
+    win. The quote matches when either side contains the other.
+    """
+    if production is None or production[0] is None or production[0] != production[1]:
+        return None
+    e, p = signal or (None, None)
+    return bool(e and p and (e in p or p in e))
 
 # metric name -> the GoldenScore/attribute_pairs key holding its (expected, predicted) pair
 _PAIR_OF = {"german_accuracy": "german", "degree_accuracy": "degree",
@@ -295,6 +310,7 @@ def attribute_hits(g: dict, prediction: dict) -> dict[str, bool | None]:
     for metric, key in _PAIR_OF.items():
         pair = p[key]
         hits[metric] = None if pair is None else pair[0] == pair[1]
+    hits["production_signal_agreement"] = signal_hit(p["production"], p["production_signal"])
     return hits
 
 

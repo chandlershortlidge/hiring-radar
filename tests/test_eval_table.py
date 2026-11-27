@@ -405,3 +405,52 @@ def test_table_says_when_flips_could_not_be_counted():
     cur, base = summary(f1=0.90), summary(f1=0.91)
     out = eval_table.render(eval_table.compare(cur, base), cur, base)
     assert "could not be counted" in out and "relabelled" in out
+
+
+# ------------------------------------- the production quote on flips (HIR-169)
+#
+# The quote score is scored only in repeats where the production class was right, so a
+# Golden can be scored in repeat 1 and not repeat 2. The per-repeat lists must keep that gap
+# or the next repeat's hit lands on the wrong index and rescoring stops reproducing the run.
+
+
+def test_a_repeat_that_did_not_score_a_golden_keeps_its_place(tmp_path):
+    goldens = {
+        "g1": {"id": "g1", "production": "required", "production_signal": "in production"},
+        "g2": {"id": "g2", "production": "required", "production_signal": "in production"},
+    }
+    right = {"requirement": "required", "signal": "run it in production"}
+    wrong_quote = {"requirement": "required", "signal": "ship fast"}
+    wrong_class = {"requirement": None, "signal": None}
+    rows = [
+        {"run": 1, "golden_id": "g1", "production": wrong_class},
+        {"run": 1, "golden_id": "g2", "production": right},
+        {"run": 2, "golden_id": "g1", "production": right},
+        {"run": 2, "golden_id": "g2", "production": wrong_quote},
+    ]
+    (tmp_path / "predictions.jsonl").write_text("\n".join(json.dumps(r) for r in rows))
+    hits = eval_table.per_golden_hits(tmp_path, goldens)
+    assert hits["production_signal_agreement"] == {"g1": [None, True], "g2": [True, False]}
+    # repeat 1 scored g2 only (1 of 1 right), repeat 2 scored both (1 of 2)
+    stored = {"runs": [
+        {"production_accuracy": 0.5, "production_signal_agreement": 1.0},
+        {"production_accuracy": 1.0, "production_signal_agreement": 0.5},
+    ]}
+    assert eval_table.reproduces_stored(stored, hits) is True
+
+
+def test_unscored_repeats_are_skipped_by_the_majority():
+    assert eval_table._majority([None, True]) is True
+    assert eval_table._majority([None, None]) is None
+    assert eval_table._majority([True, None, False]) is None
+
+
+def test_the_production_quote_is_judged_on_flips_not_on_the_drop():
+    """One quote lost is a 0.11 drop on ~9 postings: under the limit, so it passes."""
+    from app.evaluation import ATTRIBUTE_METRICS
+    assert "production_signal_agreement" in ATTRIBUTE_METRICS
+    rows = eval_table.annotate_flips(
+        [{"metric": "production_signal_agreement", "current": 0.889, "baseline": 1.0,
+          "delta": -0.111}],
+        {"production_signal_agreement": {"worse": 1, "better": 0, "n": 9}})
+    assert eval_table.regressions(rows) == []

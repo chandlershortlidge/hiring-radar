@@ -9,10 +9,10 @@ aggregate metric.
 Two stop lines, because the metrics carry very different amounts of evidence (HIR-164,
 DECISIONS 2026-11-04):
 
-- the four per-Golden attribute scores (seniority, German, degree, production) are gated on
-  **Goldens that flipped right -> wrong**, more than 2 stopping the merge. One Golden is
-  0.05 of a yes/no score on a 20-Golden set, so a fractional threshold could not tell one
-  unlucky posting from a real regression.
+- the per-Golden attribute scores (seniority, German, degree, production, and since HIR-169
+  the production quote) are gated on **Goldens that flipped right -> wrong**, more than 2
+  stopping the merge. One Golden is 0.05 of a yes/no score on a 20-Golden set, so a
+  fractional threshold could not tell one unlucky posting from a real regression.
 - the skill scores pool hundreds of mentions a run and keep the **0.02** drop rule.
 
 Flips are recomputed from each run's `predictions.jsonl` through the same
@@ -51,7 +51,7 @@ ROOT = Path(__file__).resolve().parent.parent
 # threshold means something on them.
 STOP_DROP = 0.02
 
-# AGENTS.md "The eval gate" (HIR-164): the four per-Golden attribute scores are gated on
+# AGENTS.md "The eval gate" (HIR-164, HIR-169): the per-Golden attribute scores are gated on
 # Goldens that flipped right -> wrong instead, and more than this many stops the merge. On a
 # 20-Golden dev set one Golden is 0.05 of a yes/no score, so STOP_DROP was smaller than the
 # smallest move the measurement can make and every single flip fired it. A count says what
@@ -96,19 +96,25 @@ def compare(current: dict, baseline: dict | None) -> list[dict]:
 # ---------------------------------------------------------------- flipped Goldens
 
 
-def _majority(hits: list[bool]) -> bool | None:
-    """Right in most of a run's repeats. None when the repeats tie, or there are none.
+def _majority(hits: list[bool | None]) -> bool | None:
+    """Right in most of a run's scored repeats. None when they tie, or there are none.
 
     A tie is not evidence either way, so such a Golden is left out of both flip counts
-    rather than guessed at.
+    rather than guessed at. A None is a repeat that did not score this Golden (the
+    production quote is scored only when the class was right, HIR-169) and is skipped.
     """
-    yes = sum(1 for h in hits if h)
-    no = len(hits) - yes
+    yes = sum(1 for h in hits if h is True)
+    no = sum(1 for h in hits if h is False)
     return None if yes == no else yes > no
 
 
 def per_golden_hits(run_dir: Path, goldens: dict[str, dict]) -> dict[str, dict[str, list[bool]]]:
     """{metric: {golden_id: [hit per repeat]}} for one run's stored predictions.
+
+    The list holds one entry per repeat, None where that repeat did not score the Golden,
+    so position i is always repeat i — the production quote is scored in some repeats and
+    not others, and dropping the gaps would shift later repeats onto the wrong index.
+    A Golden no repeat scored on a metric is left out of that metric.
 
     Reads `predictions.jsonl` and scores it through `app.evaluation.attribute_hits`, the same
     function the run itself scored with, so the gate cannot grade attributes by its own rules.
@@ -129,9 +135,9 @@ def per_golden_hits(run_dir: Path, goldens: dict[str, dict]) -> dict[str, dict[s
         if g is None:
             continue
         for metric, hit in attribute_hits(g, row).items():
-            if hit is not None:
-                out[metric].setdefault(row["golden_id"], []).append(hit)
-    return out
+            out[metric].setdefault(row["golden_id"], []).append(hit)
+    return {m: {gid: v for gid, v in by_golden.items() if any(h is not None for h in v)}
+            for m, by_golden in out.items()}
 
 
 def reproduces_stored(summary: dict, hits: dict[str, dict[str, list[bool]]]) -> bool:
@@ -150,7 +156,7 @@ def reproduces_stored(summary: dict, hits: dict[str, dict[str, list[bool]]]) -> 
         return False
     for i, stored in enumerate(runs):
         for metric, by_golden in hits.items():
-            scored = [v[i] for v in by_golden.values() if len(v) > i]
+            scored = [v[i] for v in by_golden.values() if len(v) > i and v[i] is not None]
             mine = (sum(1 for x in scored if x) / len(scored)) if scored else None
             theirs = stored.get(metric)
             if mine is None or theirs is None:
