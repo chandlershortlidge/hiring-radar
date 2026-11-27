@@ -13,8 +13,9 @@
 // saved.test.js; or the line under the list in a browser, which the PR screenshots show.
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import JobList from "./JobList.jsx";
-import { EMPTY, FIT_DAYS, rankJobs, recentJobs } from "./profile.js";
+import JobList, { Detail, Row, bestFitList, waitingLine } from "./JobList.jsx";
+import { sortJobs } from "./saved.js";
+import { EMPTY, FIT_DAYS, fit, rankJobs, recentJobs } from "./profile.js";
 
 const NOW = Date.parse("2026-11-20T12:00:00+00:00");
 const me = { ...EMPTY, seniority: "mid", skills: ["python", "rag"] };
@@ -113,5 +114,55 @@ describe("the job list's starting sort", () => {
   it("no profile: the list is handed back as it came, never ranked or trimmed", () => {
     const old = [job(1, "2026-09-01T00:00:00+00:00")];
     expect(rankJobs(null, old)).toBe(old);
+  });
+});
+
+// HIR-486: a posting stored but not read by the model yet (`read: false` from the API).
+// Its skills and hard asks are unknown, not absent: the row and the job page say "not read
+// yet" instead of an empty skill list, and Best fit leaves it out rather than ranking it
+// among the jobs nothing rules out.
+describe("a posting the model has not read yet", () => {
+  const unread = job(7, "2026-11-20T08:00:00+00:00", { company: "Acme", status: "open", repost_count: 0, read: false,
+    last_seen: "2026-11-20T08:00:00+00:00", sources: [{ source: "greenhouse", url: "https://example.com/7", first_seen: "2026-11-20T08:00:00+00:00" }],
+    skills: [], proposed: [] });
+  const readGood = job(8, "2026-11-19T08:00:00+00:00", { required_skills: ["python", "rag", "sql", "docker"], read: true });
+  const readWeak = job(9, "2026-11-18T08:00:00+00:00", { required_skills: ["rust", "go", "java", "scala"], read: true });
+  const row = (j) => renderToStaticMarkup(<Row job={j} open={false} onToggle={() => {}} profile={me} taxonomy={{}}
+    saved={false} onSave={() => {}} getView={() => ({})} />);
+
+  it("is marked in the job list; a read job is not", () => {
+    expect(row(unread)).toContain(">not read yet</span>");
+    expect(row({ ...unread, read: true })).not.toContain("not read yet");
+    expect(row({ ...unread, read: undefined })).not.toContain("not read yet");   // older response: read
+  });
+
+  it("the job page and the opened row say it is not read, not that it asks for nothing", () => {
+    const page = renderToStaticMarkup(<Detail job={unread} d={unread} profile={me} taxonomy={{}} cov={fit(me, unread)} />);
+    expect(page).toContain("<b>Not read yet.</b>");
+    expect(page).toContain("unknown, not missing");
+    expect(page).not.toContain("none extracted");
+    expect(page).not.toContain("Required · 0");
+  });
+
+  it("Best fit leaves it out of the ranking, and the foot says how many wait", () => {
+    const out = bestFitList(me, [unread, readGood, readWeak], null, NOW);
+    expect(ids(out.ranked)).toEqual([8, 9]);
+    expect(out.waiting).toBe(1);
+    expect(out.recent).toBe(3);
+    // Same order the ranking gives the read jobs alone: the shared ranking is unchanged.
+    expect(ids(out.ranked)).toEqual(ids(rankJobs(me, [readGood, readWeak])));
+    expect(waitingLine(out.waiting)).toBe(" 1 new job is not read yet and left out until it is.");
+    expect(waitingLine(3)).toBe(" 3 new jobs are not read yet and left out until they are.");
+    expect(waitingLine(0)).toBe("");
+  });
+
+  it("without the rule it would sit above a read job that asks for German", () => {
+    const german = job(10, "2026-11-19T08:00:00+00:00", { required_skills: ["python"], german: "required", read: true });
+    expect(ids(rankJobs(me, [german, unread]))).toEqual([7, 10]);   // the bug
+    expect(ids(bestFitList(me, [german, unread], null, NOW).ranked)).toEqual([10]);
+  });
+
+  it("in the Saved view it stays, below every read job", () => {
+    expect(sortJobs([unread, readWeak, readGood], "fit", me).map((j) => j.id)).toEqual([8, 9, 7]);
   });
 });

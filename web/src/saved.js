@@ -12,6 +12,7 @@
 // HIR-11/HIR-15), notes, or server-side saving (HIR-19 part C).
 import { useCallback, useEffect, useState } from "react";
 import { rankJobs } from "./profile.js";
+import { notRead } from "./format.js";
 
 const KEY = "hiring-radar.saved.v1";
 
@@ -62,7 +63,13 @@ const COMPARE = {
 
 export function sortJobs(jobs, sort, profile = null, demand = null) {
   const newest = [...jobs].sort(COMPARE.newest);
-  if (sort === "fit") return profile ? rankJobs(profile, newest, demand) : newest;
+  if (sort === "fit") {
+    if (!profile) return newest;
+    // A saved posting the model has not read yet has nothing to score (HIR-486). The main
+    // list leaves it out of Best fit; here it was saved on purpose, so it stays, below
+    // every read job, newest first, with its "not read yet" mark.
+    return [...rankJobs(profile, newest.filter((j) => !notRead(j)), demand), ...newest.filter(notRead)];
+  }
   return COMPARE[sort] ? [...jobs].sort(COMPARE[sort]) : newest;
 }
 
