@@ -48,6 +48,10 @@ from app.geo import CITIES, REMOTE_EU
 from app.taxonomy import Taxonomy, load_added
 
 PATH = "/mcp"
+# The version the server reports when a client connects, and the one its Server Card and its
+# MCP Registry entry state (app/discovery.py, HIR-480). Raise it with a change to the tools,
+# then publish the registry entry again (deploy/README.md).
+VERSION = "1.0.0"
 
 # Every tool is read-only and only reads our own database.
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
@@ -98,7 +102,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
     """The MCP server with every tool registered. `now` is injected so tests can fix the
     clock, exactly as the API's routes do; `skill_added` (the day each skill joined the
     list, read only by rising_skills) likewise, defaulting to the recorded dates."""
-    server = MCPServer("hiring-radar", instructions=INSTRUCTIONS)
+    server = MCPServer("hiring-radar", instructions=INSTRUCTIONS, version=VERSION)
     added = load_added() if skill_added is None else skill_added
 
     @contextmanager
