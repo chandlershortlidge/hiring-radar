@@ -14,7 +14,20 @@ Every choice behind it, and what was rejected, is written down in
 [DECISIONS.md](DECISIONS.md) (choices up to 16 Nov 2026) and [decisions/](decisions/) (one
 file per choice after that).
 
-**As of 22 Nov 2026:**
+<!-- On the day the password comes off: update this status block and the snapshot below. -->
+
+**Status, as of 27 Nov 2026:**
+
+- **Live and open to anyone:** the MCP server at `https://hiringradar.app/mcp`, so any
+  Claude can query the data ([below](#connect-your-claude-mcp)).
+- **Live, behind a password:** the dashboard at [hiringradar.app](https://hiringradar.app),
+  while it is finished. Collection, extraction and evaluation run every day. The
+  extractor has run on Claude Haiku 5.5 since 25 Nov.
+- **Planned by 16 Dec:** the dashboard open without a password, legal pages, usage
+  numbers, and rate limits with a daily spend cap on anything that calls a model
+  ([roadmap](#status-and-roadmap)).
+
+**Snapshot, 22 Nov 2026:**
 
 | | |
 |---|---|
@@ -22,7 +35,7 @@ file per choice after that).
 | Feeds polled | 128 switched on (131 configured) |
 | Open jobs | 1,434, from 747 companies |
 | Labelled postings | 131: 71 for tuning, 60 held out |
-| Held-out F1 | 0.945, measured 20 Nov 2026, for the planned cheaper extractor (see below). The extractor running today last scored 0.919 on the held-out set, 30 Oct 2026 |
+| Held-out F1 | 0.945, measured 20 Nov 2026 for Claude Haiku 5.5, the extractor's model since 25 Nov ([why it won](#2-a-cheaper-model-that-could-have-looked-better-than-it-is)) |
 
 What that looks like: Python is required by 70% of open AI and data jobs in Berlin, 56% in
 San Francisco and 65% in London. RAG (building answers from retrieved documents) is
@@ -57,34 +70,45 @@ A chart built by a language model is only as good as the reading behind it. So t
 reading is measured, not assumed.
 
 **A labelled set.** 131 real postings have an answer key: the skills each one asks for,
-whether each is required or nice-to-have, and the exact words that say so. Two models
-from two companies (Claude Opus 5.5 and GPT-6.1) label each posting without seeing each
-other's answer. Where they agree, the label stands. Where they disagree, a third model
-(Gemini 4) judges the item, and I settle what is still split by hand: 453 labels across
-101 of the 131 postings. I also ran a blind spot-check of 30 labels the models agreed on,
-drawn at random from the sealed held-out set and shown without the models' answers: 0
-errors (95% interval 0–11%, so it bounds the error rate rather than proving it zero). The
+whether each is required or nice-to-have, and the exact words that say so. Models draft
+the answer keys and a person settles them. Two models from two companies (Claude Opus 5.5
+and GPT-6.1) label each posting without seeing each other's answer; 107 of the 131 keys
+record that pair (the first 24 predate this process and do not record who drafted them).
+Where the two agree, the label stands. Where they disagree, a third model (Gemini 4)
+judges the item, and I settle what is still split by hand: 453 labels across 101 of the
+131 postings, 228 on the tuning set and 225 on the held-out set. A person also reviewed
+seniority on 69 postings and the other job attributes (German, degree, production
+experience) on 89. I also ran a blind spot-check of 30 labels the models agreed on, drawn
+at random from the sealed held-out set and shown without the models' answers: 0 errors
+(95% interval 0–11%, so it bounds the error rate rather than proving it zero). The
 labelling rules and the spot-check protocol are in [evals/LABELING.md](evals/LABELING.md).
+
+**Where both models were wrong together.** Two models agreeing is not proof when both
+lean the same way, so the review looked for that. The biggest case: both read "experience
+with one of X, Y or Z" as all three being required, which inflated the count of required
+skills. A person caught it, not the models. The labelling guide got an "any one of" rule on
+11 Nov, the extractor learned the same rule, and the 30 answer keys with that wording
+were re-checked (19 tuning, 11 held-out). Smaller cases: both made Python required in
+"Python experience is useful" (caught because a model flagged the label as uncertain, which
+is why every uncertain label goes to review even when both models agree); the degree rule
+changed to the lowest level a posting names (story 1 below); and "these are meant to be
+indicative, not hard requirements" above a list was checked by hand and kept as is: it does
+not on its own make the list nice-to-have.
 
 **A held-out split.** 71 of the labelled postings are used to tune the extractor. The
 other 60 are sealed: nobody tunes against them, and they are read only at release points.
 A score on postings you tuned on can turn into a score of how well you memorised them;
-the sealed set checks for that. The last sealed run, on 22 November, scored **F1 0.928**
-(precision 0.957, recall 0.901) on the extractor as it stood that day; the tuning set
-scored F1 0.906 on the same version (`evals/results/20261122T152055Z_heldout_x2-209e1f3c7d`,
-`evals/results/20261121T063540Z_dev_x2-209e1f3c7d`).
+the sealed set checks for that. The last sealed run of the model live today, Claude Haiku
+5.5, scored **F1 0.945** (precision 0.974, recall 0.917) on 20 Nov; that run decided the
+switch (story 2 below). The extractor as it runs today, with one more extraction rule, scored
+F1 0.928 on the tuning set on 25 Nov (`evals/results/20261125T091600Z_dev_x2-600d0bfc50`).
 
 **A regression gate.** Any change to the extractor's instructions or to the skill list
 must run the evaluation on the tuning set before it can merge. The result is committed
 with the change, and the next change is measured against it. A CI check stops a pull
 request that skips this.
 
-What it caught: on 17 Nov an evaluation run showed six degree misses with the same
-shape. The posting said "a bachelor's or master's degree" and the model recorded a
-master's. On the dashboard, that hid the job from anyone filtering by a bachelor's. The
-fix told the model to record the lowest level named, as the answer keys do. Degree
-accuracy on the tuning set went from 0.887 to 0.972: 7 postings went from wrong to right,
-none from right to wrong. ([PR #224](https://github.com/chandlershortlidge/hiring-radar/pull/224))
+What it caught: the degree problem in [story 1 below](#1-a-degree-filter-that-hid-jobs-from-bachelors-holders).
 
 The gate has also paused three changes because one score fell past its stop line. Each
 time a person looked, and the drop was within that score's normal swing between runs, so
@@ -97,29 +121,82 @@ chart can be traced back to the posting's own words.
 ![One job opened: required and nice-to-have skills, and the quote behind one of them](docs/screens/05-job-quotes.jpg)
 
 **A review queue for unknown skills.** The skill list is a versioned file
-([taxonomy/skills.json](taxonomy/skills.json), 254 skills), not part of the prompt. When
+([taxonomy/skills.json](taxonomy/skills.json), 255 skills), not part of the prompt. When
 the model finds a skill that is not on the list, it never reaches the chart. It goes to a
-review queue instead (804 waiting today). A skill joins the list only after review.
+review queue instead (804 waiting on 22 Nov). A skill joins the list only after review.
 
-### The switch to a cheaper model
+---
 
-The extractor runs on Claude Sonnet 5.5 today. It is moving to Claude Haiku 5.5, which
-costs about an eighth as much per posting ($0.0021 against $0.0167 on the sealed set).
+## Notable failures and fixes
 
-How it was decided: both models ran on the tuning set, and Haiku's instructions were
-improved over three rounds. Because that tuning could have fitted the tuning set, the
-deciding test was one run on the 60 sealed postings, with nothing changed afterwards.
-Haiku kept its lead there: F1 0.945 against Sonnet's 0.922 (about 0.009 once one posting
-where Sonnet ran out of output room is set aside).
+Three things that went wrong, how each was found, and what changed. Each links the pull
+request and the decision record.
 
-What it costs: Haiku misses broad skills more often. On the sealed set it missed "cloud"
-in 10 of 180 readings, against Sonnet's 2. It is also slightly worse at seniority, about
-one posting in 60. These are recorded and not fixed, because fixing them from the sealed
-postings would stop the sealed set being an honest test.
+### 1. A degree filter that hid jobs from bachelor's holders
 
-The decision and the full table:
-[decisions/2026-11-20-hir-383-sealed-check-for-cheaper-model.md](decisions/2026-11-20-hir-383-sealed-check-for-cheaper-model.md).
-The switch itself, with one full re-read of every stored job, is still to be done.
+Postings that asked for "a bachelor's or master's degree" were recorded as wanting a
+master's, so anyone filtering the dashboard by a bachelor's never saw them. The turning
+point was a human ruling, not a score: on 10 Nov, on one such posting, I ruled that a
+bachelor's is what the job requires and a master's is only welcome. The answer keys were
+written to that ruling, but the model was still told to record the highest level named.
+On 17 Nov an evaluation run showed six degree misses of exactly that shape. The labelling
+guide made the ruling its rule on 19 Nov, and the model's instructions now carry that rule
+in the same words, so the model and the answer keys are judged by one standard. Degree
+accuracy on the tuning set went from 0.887 to 0.972: 7 postings went from wrong to right,
+none from right to wrong.
+([PR #224](https://github.com/chandlershortlidge/hiring-radar/pull/224),
+[the labelling rule](decisions/2026-11-19-hir-245-degree-lowest-level.md),
+[the model's rule](decisions/2026-11-19-hir-335-extractor-degree-lowest-level.md))
+
+### 2. A cheaper model that could have looked better than it is
+
+Claude Haiku 5.5 costs about an eighth as much per posting as Claude Sonnet 5.5 ($0.0021
+against $0.0167 on the sealed set), and after three rounds of instruction changes it beat
+Sonnet on the tuning set. The flaw was in the method: all three rounds were measured on
+the same 71 postings, so some of that lead could have been fitted to them. The deciding
+test was therefore one run on the 60 sealed postings, with nothing changed afterwards.
+Haiku kept its lead there: F1 0.945 against 0.922. I decided to switch on 21 Nov and to
+ship it on 25 Nov; it has been the live model since. Its weaknesses are recorded and left
+alone, because fixing them from the sealed postings would stop the sealed set being an
+honest test: it missed the broad skill "cloud" in 10 of 180 readings against Sonnet's 2,
+and gets seniority wrong on about one more posting in 60.
+([PR #247](https://github.com/chandlershortlidge/hiring-radar/pull/247),
+[PR #287](https://github.com/chandlershortlidge/hiring-radar/pull/287),
+[the sealed check](decisions/2026-11-20-hir-383-sealed-check-for-cheaper-model.md),
+[the switch](decisions/2026-11-25-hir-409-haiku-is-the-live-reader.md))
+
+**Why the cheaper model scored higher.** Tight instructions, a fixed skill list and a
+fixed output format make this a narrow task, with little room for a larger model's extra
+judgment to pay off. Part of the gap was also a failure on Sonnet's side: on one sealed
+posting its answer was cut off at its output limit and returned nothing. Set that posting
+aside and Sonnet scores 0.936, so the like-for-like lead is about 0.009. Haiku still loses
+where the call is broader and more open to reading: "cloud", seniority, and production
+experience marked as nice-to-have.
+
+### 3. A rollback that could not log in
+
+Every deploy is checked by a robot visitor that walks the live site, and a failed check
+rolls the site back. On Sunday 15 Nov the robot failed a deploy, the rollback started, and
+the server refused its login. The site stayed on the failing version, and agents started
+no other work for a day. The ticket it filed made it worse: it said the site had been
+rolled back and was still broken, when nothing had been rolled back. The job log showed
+the login refused ten seconds after the job created a fresh login key, while the deploy
+four minutes earlier had got in with the same steps. The likely cause, not proven, is that
+the new key had not yet reached the server. Now a refused login is tried again, up to three
+times, 15 seconds apart. Only a refused login is retried: a deploy that started and failed
+is never run again. A rollback that never ran files a ticket that says exactly that.
+Because this changed the deploy workflows, the repo's rules held it until I approved it
+in writing; it merged on 16 Nov.
+([PR #192](https://github.com/chandlershortlidge/hiring-radar/pull/192), the
+16 Nov entry in [DECISIONS.md](DECISIONS.md))
+
+The same caution shaped the caretaker, the program that checks every job source each
+morning. It is plain code, not an AI agent, so each thing it must never do is a test
+rather than an instruction a model might skip. It only reported for its first week. When
+it started fixing things, it got no credential to change the code: it files a ticket, and
+the fix goes through the same pull request, review and revert as any other change.
+([PR #280](https://github.com/chandlershortlidge/hiring-radar/pull/280),
+[the decision](decisions/2026-11-19-hir-261-caretaker-acts-through-a-ticket-no-server-credential.md))
 
 ---
 
@@ -209,8 +286,12 @@ The tools today:
 | `get_job` | one job in full: its text, required and nice-to-have skills, and attributes |
 | `skill_demand` | the chart: share of open jobs asking for each skill |
 | `related_skills` | the related-skills panel: what else the jobs asking for given skills ask for, with how much more common each is there than overall |
+| `rising_skills` | which skills a larger or smaller share of open jobs asks for: the last 28 days against the 28 before |
+| `match_profile` | open jobs ranked by how much of their ask a given profile covers, as the dashboard's "Best fit" sort |
 
-To connect, once it is open to the public:
+It also offers the skill list itself, so a client can map its own words to skill names.
+
+To connect:
 
 ```bash
 claude mcp add --transport http hiring-radar https://hiringradar.app/mcp
@@ -218,29 +299,23 @@ claude mcp add --transport http hiring-radar https://hiringradar.app/mcp
 
 or in claude.ai: Settings → Connectors → Add custom connector, with the same URL.
 
-Today the server runs on the live site but sits behind the dashboard's password, so
-outside connections are refused. Opening it is a one-time server change (steps in
-[deploy/README.md](deploy/README.md), "Caddy: open `/mcp`").
-
-**Coming:** tools for related skills (what else jobs asking for X ask for) and the skill
-tree, a list of skill names a client can map its own words to, and a "match my profile"
-tool that ranks jobs by how much of their ask you cover.
+It is open now, without the dashboard's password; the web server's setup for it is in
+[deploy/Caddyfile](deploy/Caddyfile).
 
 ---
 
 ## Status and roadmap
 
-**Now:** collection, extraction, evaluation and the dashboard run every day on the VM.
-The site is behind a password while it is finished.
+**Now:** collection, extraction, evaluation and the dashboard run every day on the VM,
+at [hiringradar.app](https://hiringradar.app). The dashboard is behind a password while it
+is finished; the MCP server is open to anyone's Claude. The extractor moved to the cheaper
+model on 25 Nov.
 
 **By 16 December 2026, finished and live:**
 
 - the dashboard open without a password, with rate limits and a daily spend cap on
   anything that calls a model;
-- a real domain, legal pages (Impressum and privacy policy) and privacy-friendly usage
-  numbers;
-- the switch to the cheaper model, with one full re-read;
-- the MCP server open to anyone's Claude;
+- legal pages (Impressum and privacy policy) and privacy-friendly usage numbers;
 - "What's rising" per city, which needs two four-week periods of data and fills in from
   about 13 December.
 
@@ -357,7 +432,7 @@ mode is on. To end it on a set day, put that day in `until` as the last day in t
 | `app/api.py` | FastAPI routes: the reads and the job flag |
 | `app/mcp_server.py` | the MCP server and its rate limit |
 | `app/caretaker.py` | the daily job-source check |
-| `taxonomy/skills.json` | the skill list, source of truth (v13, 254 skills) |
+| `taxonomy/skills.json` | the skill list, source of truth (v14, 255 skills) |
 | `evals/goldens/` | the labelled postings, split into tuning (`dev`) and held-out |
 | `config/feeds.json` | which boards and feeds get polled |
 | `config/lead_agent.json` | the lead agent's limits, and fixes-only mode |
