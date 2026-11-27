@@ -153,12 +153,15 @@ select.sel { padding-right: 28px; }
 .axis span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
 .axis span:first-child { transform: none; }
 .axis span:last-child { transform: translateX(-100%); }
-.bar-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: center; height: 32px; padding: 0; border: 0; background: transparent; color: var(--ink); text-align: left; font-size: 13.5px; border-radius: 4px; }
+/* A long skill name wraps to a second line rather than being cut (HIR-479): the row grows
+   to fit and the bar stays centred in it. Two lines at most, as a backstop. */
+.bar-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; align-items: stretch; min-height: 32px; padding: 0; border: 0; background: transparent; color: var(--ink); text-align: left; font-size: 13.5px; border-radius: 4px; }
 .bar-row:hover { background: var(--ground); }
 .bar-row[aria-pressed="true"] { background: var(--stone); font-weight: 600; }
 .bar-row.dimmed { color: var(--ink-3); }
-.bar-row .name { display: flex; align-items: center; gap: 8px; padding-left: 4px; min-width: 0; }
-.bar-row .name span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.bar-row .name { display: flex; align-items: center; gap: 8px; padding: 3px 0 3px 4px; min-width: 0; }
+.bar-row .name .label { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; line-height: 1.2; overflow-wrap: anywhere; }
+.bar-row .track { height: auto; }
 .rank { width: 18px; flex: none; font: 11px var(--mono); color: var(--ink-3); }
 .track { position: relative; display: flex; align-items: center; height: 100%; background: repeating-linear-gradient(to right, var(--grid) 0, var(--grid) 1px, transparent 1px, transparent var(--tick, 25%)); }
 .fill { display: block; height: 22px; background: var(--bar); border-radius: 0 3px 3px 0; transition: width .25s ease; }
@@ -168,7 +171,9 @@ select.sel { padding-right: 28px; }
 .fill.gap { background: var(--plum-tint); }
 .n { margin-left: 8px; font: 500 12px var(--mono); white-space: nowrap; }
 .n .pct { color: var(--ink-3); font-weight: 400; }
-.tip { position: absolute; top: -12px; left: var(--x); display: flex; flex-direction: column; gap: 3px; padding: 8px 10px; background: var(--ink); color: #fff; border-radius: 6px; font-size: 12px; line-height: 1.35; white-space: nowrap; box-shadow: 0 4px 12px rgba(31,26,28,.18); z-index: 2; pointer-events: none; }
+/* The chart's hover box hangs on the page, not in the chart (HIR-479): SkillChart.jsx
+   places it in window coordinates and keeps it inside the window. */
+.tip { position: fixed; display: flex; flex-direction: column; gap: 3px; width: max-content; max-width: min(320px, calc(100vw - 16px)); padding: 8px 10px; background: var(--ink); color: #fff; border-radius: 6px; font-size: 12px; line-height: 1.35; box-shadow: 0 4px 12px rgba(31,26,28,.18); z-index: 50; pointer-events: none; }
 .tip b { font-weight: 600; } .tip .c { color: var(--warm-grey); }
 .chart-find { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-bottom: 10px; }
 .chart-find .muted { font-size: 12.5px; }

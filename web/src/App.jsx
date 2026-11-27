@@ -342,7 +342,8 @@ export default function App() {
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
-                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases}
+                jobsLabel={filters.window === "open" ? `open ${roleLabel}` : winLabel ? `${roleLabel} ${winLabel}` : roleLabel}
+                aliases={taxAliases}
                 gaps={market.view === "city" && !!placeName} />}
         </section></Panel>
 
