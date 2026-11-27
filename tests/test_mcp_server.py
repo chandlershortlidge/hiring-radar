@@ -18,6 +18,8 @@ from mcp.server.mcpserver.exceptions import ToolError
 from app import db, mcp_server, queries as q
 from app.api import create_app
 from app.geo import CITIES, REMOTE_EU
+from app.ingest import ingest_one
+from app.sources import Posting
 from tests.test_api import TAX
 from tests.test_queries import NOW, add, ts
 
@@ -667,7 +669,60 @@ def test_match_profile_offers_the_dashboard_profile_values(match_server):
     assert f"fewer than {fit.SKILLS_FLOOR} required skills" in tool.description
 
 
-# --- the skill list (a resource) -----------------------------------------------------
+# --- a posting not read yet (HIR-484) ---------------------------------------------------
+# Ingest stores a posting first and the model reads it later; in between it has no skills
+# and no requirements, which must never look like a read posting that asks for nothing.
+
+def add_unread(path, company="Fresh", city="Berlin", when=None) -> int:
+    """A posting ingest stored and the model has not read: a job with no reading at all."""
+    c = db.connect(path)
+    p = Posting("greenhouse", f"greenhouse-{company}", "", company, "AI Engineer", city,
+                f"{company} AI Engineer. Fließend Deutsch, production experience, python, rag." * 20)
+    job_id = ingest_one(c, p, when or ts(0), require_city=False, trust_title=True).job_id
+    c.commit()
+    c.close()
+    return job_id
+
+
+def test_search_jobs_and_search_postings_mark_a_posting_not_read_yet(db_path, server):
+    fresh = add_unread(db_path)
+    jobs = {j["id"]: j for j in search(server, city=["Berlin"])["jobs"]}
+    assert jobs[fresh]["read"] is False and jobs[fresh]["required_skills"] == []
+    assert all(j["read"] is True for i, j in jobs.items() if i != fresh)
+    # The same mark where a German filter keeps it: unknown, not "German not mentioned".
+    assert {j["id"]: j["read"] for j in search(server, german="none")["jobs"]}[fresh] is False
+    found = {j["id"]: j for j in postings(server, text="Fresh")["jobs"]}
+    assert found[fresh]["read"] is False
+
+
+def test_get_job_marks_a_posting_not_read_yet(db_path, server):
+    fresh = add_unread(db_path)
+    job = call(server, "get_job", job_id=fresh).structured_content
+    assert job["read"] is False and job["required_skills"] == [] and job["german"] is None
+    assert call(server, "get_job", job_id=acme_id(server)).structured_content["read"] is True
+
+
+def test_match_profile_leaves_out_a_posting_not_read_yet_and_counts_it(match_db, match_server):
+    before = match(match_server, **MID)
+    fresh = add_unread(match_db)
+    r = match(match_server, **MID)
+    # Never ranked, so never among the jobs nothing gates; counted instead.
+    assert fresh not in [j["id"] for j in r["jobs"]]
+    assert (r["ranked"], r["not_read_yet"]) == (before["ranked"], 1) and before["not_read_yet"] == 0
+    assert r["jobs"] == before["jobs"]
+    # Counted only when the filters keep it.
+    assert match(match_server, **MID, city=["Munich"])["not_read_yet"] == 0
+    assert match(match_server, **MID, since=ts(0)[:10])["not_read_yet"] == 1
+
+
+def test_every_tool_that_returns_jobs_says_what_happens_to_a_posting_not_read_yet(server):
+    tools = {t.name: t.description for t in asyncio.run(server.list_tools())}
+    for name in ("search_jobs", "search_postings", "get_job"):
+        assert "read is false" in tools[name] and "has not read yet" in tools[name], name
+    assert "not_read_yet" in tools["match_profile"] and "left" in tools["match_profile"]
+
+
+# --- the skill list (a resource)-----------------------------------------------------
 
 def test_the_skill_list_is_a_resource_with_every_skill(server):
     """One resource, read without arguments: every skill with its id, name, spellings and

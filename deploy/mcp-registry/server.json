@@ -3,7 +3,7 @@
   "name": "app.hiringradar/hiring-radar",
   "title": "Hiring Radar",
   "description": "Read-only AI/ML job-market data: which skills job postings ask for, by city, seniority and role.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "websiteUrl": "https://hiringradar.app",
   "remotes": [
     {

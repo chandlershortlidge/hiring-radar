@@ -51,7 +51,7 @@ PATH = "/mcp"
 # The version the server reports when a client connects, and the one its Server Card and its
 # MCP Registry entry state (app/discovery.py, HIR-480). Raise it with a change to the tools,
 # then publish the registry entry again (deploy/README.md).
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 # Every tool is read-only and only reads our own database.
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
@@ -175,7 +175,12 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         Returns total (all matching jobs), and per job: id, company, title, places, family,
         seniority, first_seen / last_seen (dates we saw it), status (open or closed),
         url (the posting), required_skills and nice_to_have_skills (skill ids),
-        and german, degree and production requirements (null = not mentioned).
+        german, degree and production requirements (null = not mentioned), and read.
+        read is false for a posting we stored but the model has not read yet, usually one
+        first seen today: its skills, seniority, german, degree and production are then
+        unknown, not absent, so never take it for a job that asks for nothing. Such a
+        posting can match german, degree or production "none" / "not_required" / "open";
+        ask again later for its reading.
 
         Example: open Berlin AI engineer jobs that require RAG:
         search_jobs(skills=["rag"], city=["Berlin"], family=["ai-engineer"])
@@ -239,8 +244,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           in total only. Places and tracks with no match are left out.
         - offset, and jobs: the matching jobs, in the same shape as search_jobs (id,
           company, title, places, family, seniority, first_seen, last_seen, status, url,
-          required_skills, nice_to_have_skills, german, degree, production). Use get_job
-          for a job's full text.
+          required_skills, nice_to_have_skills, german, degree, production, read).
+          read is false for a posting the model has not read yet: its skills and
+          requirements are unknown, not absent. Use get_job for a job's full text.
 
         Example: how many open jobs mention Claude, per city and career track:
         search_postings(text="Claude", limit=0)
@@ -275,8 +281,10 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         Returns company, title, places, family, seniority, first_seen / last_seen (dates
         we saw it), status (open or closed), url (the posting), required_skills and
         nice_to_have_skills (skill ids), german, degree and production requirements
-        (null = not mentioned), and description_text (the full posting text, which
-        search_jobs leaves out).
+        (null = not mentioned), description_text (the full posting text, which
+        search_jobs leaves out), and read. read is false for a posting we stored but the
+        model has not read yet, usually one first seen today: its skills, seniority,
+        german, degree and production are then unknown, not absent; ask again later.
 
         Example: the details of job 42:
         get_job(job_id=42)
@@ -294,7 +302,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             "first_seen": detail["first_seen"][:10], "last_seen": detail["last_seen"][:10], "status": detail["status"],
             "url": next((s["url"] for s in detail["sources"] if s["url"]), None),
             "required_skills": required_skills, "nice_to_have_skills": nice_to_have_skills,
-            "german": detail["german"], "production": detail["production"],
+            "german": detail["german"], "production": detail["production"], "read": detail["read"],
             "degree": None if detail["degree"] is None else {
                 "level": detail["degree"], "requirement": detail["degree_requirement"],
                 "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
@@ -488,6 +496,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         Which jobs are ranked:
         - only open jobs first seen in the last 30 days, as on the dashboard: an older
           posting is probably filled.
+        - only postings the model has read. A posting we stored but have not read yet
+          (usually one first seen today) has no known skills or hard asks, so it is left
+          out rather than shown as a fit with nothing to fail; not_read_yet counts them.
         - city: any of these places; family: ai-engineer, ml-engineer, data-scientist,
           ml-platform, research or forward-deployed-engineer, assigned from the job title.
           Both optional.
@@ -515,8 +526,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           change the score, but every gated job ranks below every job that is not.
         Ties keep newest first; a covered nice-to-have skill only breaks ties.
 
-        Returns ranked (how many jobs were ranked, before limit) and per job, best fit
-        first: id, company, title, places, url (the posting), first_seen, score,
+        Returns ranked (how many jobs were ranked, before limit), not_read_yet (how many
+        jobs the filters kept that were left out because the model has not read them yet;
+        call again later to rank them) and per job, best fit first: id, company, title, places, url (the posting), first_seen, score,
         rank_score, covered, total, few_skills_listed, missing_required and gated_by.
         Use get_job for a job's full text.
 
@@ -555,8 +567,11 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
                 offset += FIT_PAGE
         if day is not None:
             jobs = [j for j in jobs if j["first_seen"][:10] >= day]
-        ranked = fit.rank_jobs(profile, jobs, demand)
-        return {"ranked": len(ranked), "jobs": [_match(j, fit.fit(profile, j, demand), profile) for j in ranked[:limit]]}
+        # A posting not read yet has no skills or hard asks to score: ranked, it would look
+        # like a fit with nothing to fail (HIR-484). Left out, and counted.
+        not_read = sum(not j["read"] for j in jobs)
+        ranked = fit.rank_jobs(profile, [j for j in jobs if j["read"]], demand)
+        return {"ranked": len(ranked), "not_read_yet": not_read, "jobs": [_match(j, fit.fit(profile, j, demand), profile) for j in ranked[:limit]]}
 
     # --- resources ------------------------------------------------------------------
 
@@ -594,6 +609,7 @@ def _job(j: dict) -> dict:
         "degree": None if j["degree"] is None else {
             "level": j["degree"], "requirement": j["degree_requirement"],
             "or_equivalent_experience": j["degree_or_equivalent"]},
+        "read": j["read"],
     }
 
 
