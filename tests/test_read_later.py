@@ -101,7 +101,9 @@ def unread(conn) -> list[str]:
 
 # --- the setting ----------------------------------------------------------------------------
 
-def test_with_everything_reading_now_nothing_is_held(conn):
+def test_today_everything_reads_now_so_nothing_is_held(conn):
+    """"Today" in this file is the list with nothing read later (the fixture above); the
+    real list has software engineer reading later since HIR-397 (tests/test_software_engineer.py)."""
     assert scope.read_later_places() == () and scope.read_later_tracks() == ()
     assert pipeline.held_clause() == ("0", [])
     batch = FakeBatch()
