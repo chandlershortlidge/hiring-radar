@@ -633,7 +633,8 @@ class Buckets:
 
 
 class RateLimit:
-    """The rate limit in front of the MCP's ASGI app; 429 when an allowance is empty.
+    """The rate limit in front of the MCP's ASGI app; 429 when an allowance is empty, with
+    a message saying which allowance, its numbers and how long to wait (`_refuse`).
 
     Counts per connection, not per address: every user of one web assistant (claude.ai,
     ChatGPT, Gemini) arrives from that vendor's servers, so a per-address limit made them
@@ -666,18 +667,26 @@ class RateLimit:
         self.new_sessions = Buckets(new_burst, new_rate, clock)
         self.addresses = Buckets(ip_burst, ip_rate, clock)
 
-    def allow(self, address: str, session: str, version: str) -> tuple[float, str | None]:
+    def allow(self, address: str, session: str, version: str) -> tuple[float, str | None, str | None]:
         """(0 if the request may go ahead, else the seconds until it may; the session id to
-        hand the client, if this request began a connection and brought no usable id)."""
+        hand the client, if this request began a connection and brought no usable id; which
+        allowance refused it, a key of `_REFUSED`, or None)."""
+        def first(*checks: tuple[str, Buckets, str]) -> tuple[float, str | None]:
+            for name, buckets, who in checks:
+                if wait := buckets.take(who):
+                    return wait, name
+            return 0.0, None
+
         if version and version not in HANDSHAKE_PROTOCOL_VERSIONS:
-            return self.addresses.take(address), None
+            wait, which = first(("address", self.addresses, address))
+            return wait, None, which
         if session in self.sessions:
-            return self.sessions.take(session) or self.addresses.take(address), None
+            wait, which = first(("connection", self.sessions, session), ("address", self.addresses, address))
+            return wait, None, which
         issued = None if _SESSION_ID.fullmatch(session) else uuid4().hex
-        wait = self.new_sessions.take(address) or self.addresses.take(address)
-        if wait:
-            return wait, None
-        return self.sessions.take(issued or session), issued
+        wait, which = first(("new_connections", self.new_sessions, address), ("address", self.addresses, address),
+                            ("connection", self.sessions, issued or session))
+        return wait, None if wait else issued, which
 
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
@@ -686,11 +695,10 @@ class RateLimit:
             return await _plain(send, 405, b"This server offers no listening stream: POST only.\n",
                                 (b"allow", b"POST"))
         headers = {k: v.decode("latin-1") for k, v in scope.get("headers") or []}
-        wait, issued = self.allow((scope.get("client") or ("unknown",))[0],
-                                  headers.get(b"mcp-session-id", ""), headers.get(b"mcp-protocol-version", ""))
+        wait, issued, which = self.allow((scope.get("client") or ("unknown",))[0],
+                                         headers.get(b"mcp-session-id", ""), headers.get(b"mcp-protocol-version", ""))
         if wait:
-            return await _plain(send, 429, b"Too many requests: slow down.\n",
-                                (b"retry-after", str(math.ceil(wait)).encode()))
+            return await self._refuse(send, wait, which, await _request_id(receive))
 
         async def send_with_id(message):
             if issued and message["type"] == "http.response.start":
@@ -698,6 +706,60 @@ class RateLimit:
             await send(message)
 
         await self.app(scope, receive, send_with_id)
+
+    async def _refuse(self, send, wait: float, which: str, request_id: str | int | None) -> None:
+        """429 with Retry-After, and a JSON-RPC error a client hands to its model (HIR-218).
+
+        The MCP library's client passes a JSON-RPC error body at a non-2xx status on to the
+        caller as that error; a plain-text body reaches the model as "Server returned an
+        error response", which tells the person nothing."""
+        seconds = max(1, math.ceil(wait))
+        buckets = {"connection": self.sessions, "new_connections": self.new_sessions,
+                   "address": self.addresses}[which]
+        message = _REFUSED[which].format(burst=round(buckets.burst), per_minute=round(buckets.rate * 60),
+                                         wait=f"{seconds} second{'s' if seconds != 1 else ''}")
+        body = json.dumps({"jsonrpc": "2.0", "id": request_id, "error": {
+            "code": RATE_LIMITED, "message": message, "data": {"retry_after": seconds, "limit": which}}})
+        await send({"type": "http.response.start", "status": 429,
+                    "headers": [(b"retry-after", str(seconds).encode()), (b"content-type", b"application/json")]})
+        await send({"type": "http.response.body", "body": body.encode()})
+
+
+# What a refused request is told, per allowance (HIR-218). Written for the person reading
+# their assistant's answer: which limit, its numbers, how long to wait.
+RATE_LIMITED = -32000  # JSON-RPC's range for errors a server defines
+_REFUSED = {
+    "connection": "hiring-radar's request limit for this connection is used up: up to {burst} requests "
+                  "at once, then about {per_minute} a minute. Try again in {wait}.",
+    "new_connections": "Too many new connections to hiring-radar from this network address: up to {burst} "
+                       "at once, then about {per_minute} a minute. Keep using the connection already open "
+                       "(send back its Mcp-Session-Id), or try again in {wait}.",
+    "address": "hiring-radar's request limit for this network address is used up: up to {burst} requests "
+               "at once, then about {per_minute} a minute, shared by everyone connecting from it (an "
+               "assistant's servers count as one address). Try again in {wait}.",
+}
+_MAX_BODY_READ = 65_536  # a refused request's body is read only to find its id
+
+
+async def _request_id(receive) -> str | int | None:
+    """The JSON-RPC id of the refused request, so the client can match the error to it; None
+    (sent as null, which JSON-RPC allows when the id cannot be read) for a batch, a body that
+    is not JSON, or one too large to bother with."""
+    body = b""
+    while True:
+        message = await receive()
+        if message["type"] != "http.request":
+            return None
+        body += message.get("body", b"")
+        if len(body) > _MAX_BODY_READ:
+            return None
+        if not message.get("more_body"):
+            break
+    try:
+        rid = json.loads(body).get("id")
+    except (ValueError, AttributeError):
+        return None
+    return rid if isinstance(rid, (str, int)) and not isinstance(rid, bool) else None
 
 
 async def _plain(send, status: int, body: bytes, header: tuple[bytes, bytes]) -> None:
