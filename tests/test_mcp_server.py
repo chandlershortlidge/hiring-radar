@@ -16,7 +16,7 @@ from mcp import Client
 from mcp.client.streamable_http import streamable_http_client
 from mcp.server.mcpserver.exceptions import ToolError
 
-from app import db, mcp_server, queries as q
+from app import db, geo, mcp_server, queries as q
 from app.api import create_app
 from app.geo import CITIES, REMOTE_EU
 from app.extract import Extraction, Mention, Seniority
@@ -531,6 +531,18 @@ def test_rising_skills_matches_the_dashboard_rising_panel(rising_db, rising_serv
     for row in api["risers"] + api["fallers"]:
         row.pop("display")
     assert rising(rising_server, **args) == api
+
+
+def test_rising_skills_with_no_city_leaves_out_a_new_place_as_the_dashboard_does(rising_db, rising_server, monkeypatch):
+    """HIR-442: one place launched too recently is left out and named; the rest still answer."""
+    monkeypatch.setitem(geo.COLLECTING_SINCE, "San Jose", q._days_ago(rs.NOW, 10)[:10])
+    r = rising(rising_server)
+    assert r["status"] == "ok" and "Berlin" in r["places"]["included"]
+    assert [w["place"] for w in r["places"]["excluded"]] == ["San Jose"]
+    api = TestClient(create_app(rising_db, rs.TAX, skill_added=rs.ADDED)).get("/api/skills/rising").json()
+    for row in api["risers"] + api["fallers"]:
+        row.pop("display")
+    assert r == api
 
 
 def test_rising_skills_says_when_there_is_not_enough_data_yet(db_path, server):

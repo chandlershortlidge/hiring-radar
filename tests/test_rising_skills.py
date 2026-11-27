@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
-from app import db, geo, queries as q
+from app import db, geo, queries as q, scope
 from app.api import create_app
 from app.taxonomy import Taxonomy, load_added
 from scripts.record_skill_ids import with_dates
@@ -199,13 +199,47 @@ def test_a_city_with_no_start_date_is_hidden(conn):
     assert (r["reason"], r["ready_from"]) == ("new_city", None)
 
 
-def test_no_city_means_every_active_place():
-    # With no city chosen the answer waits for the newest active place.
-    newest = max(geo.COLLECTING_SINCE[c] for c in geo.ACTIVE_CITIES)
-    c = db.connect(":memory:")
-    db.migrate(c)
-    r = q.rising_skills(c, q.Filters(), f"{newest}T12:00:00Z", ADDED)
-    assert r["reason"] == "new_city" and r["ready_from"] > newest
+def test_no_city_compares_the_places_that_are_ready_and_names_the_rest(conn):
+    """HIR-442: with no city chosen, a newly launched place is left out rather than holding
+    the answer back for every other place; the answer says which places were counted."""
+    market(conn)
+    for _ in range(5):
+        job(conn, 10, 0, ["agents"], city="San Francisco")         # would move the shares if counted
+    f = q.Filters(families=("ai-engineer",))
+    r = rising(conn, f, since={"Berlin": ago(100)[:10], "San Francisco": ago(20)[:10]})
+    assert (r["status"], r["reason"], r["ready_from"]) == ("ok", None, None)
+    assert r["places"]["included"] == ["Berlin"]
+    excluded = {w["place"]: w["ready_from"] for w in r["places"]["excluded"]}
+    assert excluded["San Francisco"] == q._days_ago(NOW, 20 - 56)[:10]
+    assert excluded["Munich"] is None                              # no start date: not collected
+    berlin_only = rising(conn, BERLIN_AI, since={"Berlin": ago(100)[:10]})
+    assert {k: r[k] for k in ("current", "previous", "risers", "fallers")} == \
+        {k: berlin_only[k] for k in ("current", "previous", "risers", "fallers")}
+
+
+def test_no_city_with_every_place_ready_counts_every_job(conn):
+    market(conn)
+    every = {place: "2020-01-01" for place in scope.live_places()}
+    r = rising(conn, q.Filters(families=("ai-engineer",)), since=every)
+    assert r["status"] == "ok" and r["places"]["excluded"] == []
+    assert r["places"]["included"] == list(scope.live_places())
+    assert r["current"]["open_jobs"] == 30
+
+
+def test_no_city_with_no_place_ready_waits_for_the_first_one(conn):
+    market(conn)
+    r = rising(conn, q.Filters(), since={"Berlin": ago(20)[:10], "San Francisco": ago(10)[:10]})
+    assert (r["status"], r["reason"]) == ("not_enough_data", "new_city")
+    assert r["ready_from"] == q._days_ago(NOW, 20 - 56)[:10]        # Berlin's day, the earliest
+    assert r["places"]["included"] == [] and r["current"]["open_jobs"] is None
+
+
+def test_a_named_city_still_holds_the_answer_back(conn):
+    market(conn)
+    r = rising(conn, q.Filters(cities=("Berlin", "San Francisco")),
+               since={"Berlin": ago(100)[:10], "San Francisco": ago(20)[:10]})
+    assert r["reason"] == "new_city" and r["places"]["included"] == []
+    assert r["places"]["excluded"] == [{"place": "San Francisco", "ready_from": q._days_ago(NOW, 20 - 56)[:10]}]
 
 
 def test_every_active_place_has_the_day_its_collection_began():

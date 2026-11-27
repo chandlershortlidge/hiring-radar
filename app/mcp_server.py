@@ -456,7 +456,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         The two periods: "current" is the last 28 days, "previous" the 28 days before that.
         A job counts in every period it was open during.
 
-        - city: any of these places; leave it out for every place we collect.
+        - city: any of these places; leave it out for every place we have collected long
+          enough to compare (see places below).
         - family: ai-engineer, ml-engineer, data-scientist, ml-platform, research or
           forward-deployed-engineer, assigned from the job title.
         - requirement: "required" (default) counts a skill only where the posting requires
@@ -471,7 +472,12 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           it rose); "few_jobs" = no skill had enough jobs behind it in both periods.
         - ready_from: with reason "new_city", the first day both periods are covered
           (null if that place is not collected at all). Say "not enough data yet, ready
-          from <date>", not "nothing is rising".
+          from <date>", not "nothing is rising". With no city chosen, a place too new to
+          compare is left out instead of holding the answer back, and reason is "new_city"
+          only when no place is ready yet (ready_from is then the day the first one is).
+        - places: included (the places counted; empty when nothing was) and excluded
+          (place and ready_from for each place left out, ready_from null if we do not
+          collect it). With no city chosen, say which places the answer covers.
         - window_days (28); current and previous: start, end and open_jobs (jobs open in
           that period; null when not compared).
         - risers and fallers: up to 5 skills each, largest move first, and only moves

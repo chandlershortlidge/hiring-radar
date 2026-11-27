@@ -162,8 +162,11 @@ def test_whats_rising_never_reads_an_incubating_city(api, conn, monkeypatch):
     assert everywhere["reason"] != "new_city"
     assert everywhere["current"]["open_jobs"] == 3                       # Windy is not counted
     monkeypatch.setitem(scope.PLACE_STATE, "Chicago", scope.LIVE)
-    held_back = q.rising_skills(conn, q.Filters(), NOW, {}, collecting_since={**old, "Chicago": NOW[:10]})
-    assert held_back["reason"] == "new_city"                             # a live new city still does
+    left_out = q.rising_skills(conn, q.Filters(), NOW, {}, collecting_since={**old, "Chicago": NOW[:10]})
+    assert left_out["reason"] != "new_city"                              # a live new city is left out (HIR-442)
+    assert [w["place"] for w in left_out["places"]["excluded"]] == ["Chicago"]
+    held_back = q.rising_skills(conn, q.Filters(cities=("Chicago",)), NOW, {}, collecting_since={**old, "Chicago": NOW[:10]})
+    assert held_back["reason"] == "new_city"                             # and named, it still holds the answer back
 
 
 def test_switching_a_city_to_live_shows_its_jobs_with_their_original_first_seen(api, conn, monkeypatch):

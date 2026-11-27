@@ -503,8 +503,14 @@ def rising_skills(conn: sqlite3.Connection, filters: Filters, now: str, skill_ad
     Two things are held back, because their early numbers would be an artefact:
     - a place whose collection began after the earlier period started (`collecting_since`,
       or a place with no date there): everything open on its first day was "first seen"
-      that day, so every skill would look as if it rose. Then status is 'not_enough_data',
-      reason 'new_city', and `ready_from` is the first day both periods are covered.
+      that day, so every skill would look as if it rose. A place named in the filters holds
+      the whole answer back: status 'not_enough_data', reason 'new_city', and `ready_from`
+      the first day both periods are covered for all of them. With no place named, the
+      comparison runs over the live places that are ready and leaves the others out
+      (HIR-442), so one newly launched city does not hide the answer for every other;
+      only when none is ready is it 'new_city', `ready_from` the day the first one is.
+      `places` says which: `included` (the places counted; empty when nothing was) and
+      `excluded` ({place, ready_from}, ready_from null for a place we do not collect).
     - a skill added to the list after the earlier period started (`skill_added`, or a skill
       with no date there): postings that closed before it existed were never read with it.
 
@@ -517,14 +523,29 @@ def rising_skills(conn: sqlite3.Connection, filters: Filters, now: str, skill_ad
     result = {"status": "not_enough_data", "reason": "new_city", "ready_from": None, "window_days": RISING_DAYS,
            "current": {"start": current_start, "end": now, "open_jobs": None},
            "previous": {"start": previous_start, "end": current_start, "open_jobs": None},
-           "risers": [], "fallers": []}
+           "places": {"included": [], "excluded": []}, "risers": [], "fallers": []}
     hidden = scope.incubating_places()
-    since = [None if place in hidden else collecting_since.get(place) for place in (filters.cities or scope.live_places())]
-    if None in since:
-        return result
-    if max(since) > previous_start[:10]:
-        newest = datetime.strptime(max(since), "%Y-%m-%d") + timedelta(days=2 * RISING_DAYS)
-        return {**result, "ready_from": newest.strftime("%Y-%m-%d")}
+    ready, waiting = [], []
+    for place in filters.cities or scope.live_places():
+        since = None if place in hidden else collecting_since.get(place)
+        if since is not None and since <= previous_start[:10]:
+            ready.append(place)
+        else:
+            ready_from = None if since is None else (datetime.strptime(since, "%Y-%m-%d")
+                                                     + timedelta(days=2 * RISING_DAYS)).strftime("%Y-%m-%d")
+            waiting.append({"place": place, "ready_from": ready_from})
+    result["places"]["excluded"] = waiting
+    if waiting and (filters.cities or not ready):
+        # Named places wait for the last of them; with none named, for the first to be ready.
+        dates = [w["ready_from"] for w in waiting]
+        if filters.cities:
+            ready_from = None if None in dates else max(dates)
+        else:
+            ready_from = min((d for d in dates if d), default=None)
+        return {**result, "ready_from": ready_from}
+    result["places"]["included"] = ready
+    if waiting:
+        filters = replace(filters, cities=tuple(ready))
 
     current_total, current_counts = _open_during(conn, filters, current_start, now)
     previous_total, previous_counts = _open_during(conn, filters, previous_start, current_start)
