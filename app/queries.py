@@ -676,7 +676,8 @@ def list_jobs(conn: sqlite3.Connection, filters: Filters, now: str, sort: str = 
                 title, places, family, seniority, first_seen, last_seen, status
                 (open or closed), sources (where it was posted, with links),
                 required_skills and nice_skills (skill ids), skill_counts, and its
-                german, degree and production requirements.
+                german, degree and production requirements, and read (False while
+                the model has not read the posting yet: then those are unknown).
             limit, offset: as passed in.
         When nothing matches, total is 0 and jobs is an empty list.
     """
@@ -714,6 +715,9 @@ def list_jobs(conn: sqlite3.Connection, filters: Filters, now: str, sort: str = 
         job = dict(row)
         job["places"] = places[row["id"]]
         job["city"] = _shown_city(job["city"], job["places"], include_incubating)
+        # A job ingest stored that the model has not read yet: its skills and requirements
+        # are unknown, not absent (HIR-484). A re-read at a newer version keeps the old reading.
+        job["read"] = job["extracted_version"] is not None
         job["legacy"] = job.pop("extracted_version") == LEGACY_VERSION
         job["too_short"] = not job["legacy"] and job.pop("text_len") < MIN_TEXT_CHARS
         job["degree_or_equivalent"] = bool(job["degree_or_equivalent"])
@@ -756,6 +760,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str, include_incubati
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
     job["status"] = _status(row, now, job["sources"])
+    job["read"] = job["extracted_version"] is not None   # as in list_jobs (HIR-484)
     job["legacy"] = job["extracted_version"] == LEGACY_VERSION
     job["too_short"] = not job["legacy"] and (job.pop("text_len") or 0) < MIN_TEXT_CHARS
     job["degree_or_equivalent"] = bool(job["degree_or_equivalent"])

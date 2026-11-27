@@ -295,6 +295,20 @@ def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     assert q.stats(conn, NOW, 1)["legacy"] == 1
 
 
+def test_a_job_the_model_has_not_read_yet_says_so_in_the_list_and_the_detail(conn):
+    """HIR-484: a stored posting with no reading has no skills because nobody looked yet,
+    not because it asks for none. `read` is what tells the two apart."""
+    p = Posting("greenhouse", "greenhouse-fresh", "", "Fresh", "AI Engineer", "Berlin", "Fresh posting body. " * 40)
+    fresh = ingest_one(conn, p, ts(0), require_city=False, trust_title=True).job_id
+    jobs = {j["company"]: j for j in q.list_jobs(conn, q.Filters(window="all"), NOW)["jobs"]}
+    assert jobs["Fresh"]["read"] is False and jobs["Fresh"]["required_skills"] == []
+    assert all(j["read"] for c, j in jobs.items() if c != "Fresh")
+    assert q.job_detail(conn, fresh, NOW)["read"] is False
+    # A legacy import is read (by the old extractor): it keeps its skills, and says so.
+    conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=?", (fresh,))
+    assert q.job_detail(conn, fresh, NOW)["read"] is True
+
+
 def test_stored_sales_jobs_stay_out_of_the_charts_but_in_the_list(conn):
     """HIR-246: a sales posting stored before the title filter refused it is not deleted,
     and does not count in the chart, the city totals, the related panel or the skill tree."""
