@@ -174,8 +174,13 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
 
         Returns total (all matching jobs), and per job: id, company, title, places, family,
         seniority, first_seen / last_seen (dates we saw it), status (open or closed),
-        url (the posting), required_skills and nice_to_have_skills (skill ids),
-        german, degree and production requirements (null = not mentioned), and read.
+        url (the posting), required_skills and nice_to_have_skills, german, degree and
+        production requirements (null = not mentioned), and read.
+        required_skills lists the job's requirements, one item each: a skill id, or a
+        group of alternatives the posting accepts any one of ("AWS or Azure"), written as
+        a list of ids, e.g. ["python", ["aws", "azure"]]. A job with no such group is a
+        plain list of ids. Its length is match_profile's total for the job.
+        nice_to_have_skills is a plain list of skill ids.
         read is false for a posting we stored but the model has not read yet, usually one
         first seen today: its skills, seniority, german, degree and production are then
         unknown, not absent, so never take it for a job that asks for nothing. Such a
@@ -244,7 +249,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           in total only. Places and tracks with no match are left out.
         - offset, and jobs: the matching jobs, in the same shape as search_jobs (id,
           company, title, places, family, seniority, first_seen, last_seen, status, url,
-          required_skills, nice_to_have_skills, german, degree, production, read).
+          required_skills, nice_to_have_skills, german, degree, production, read);
+          required_skills writes a group of alternatives as a list of ids.
           read is false for a posting the model has not read yet: its skills and
           requirements are unknown, not absent. Use get_job for a job's full text.
 
@@ -279,12 +285,19 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           exist is an error.
 
         Returns company, title, places, family, seniority, first_seen / last_seen (dates
-        we saw it), status (open or closed), url (the posting), required_skills and
-        nice_to_have_skills (skill ids), german, degree and production requirements
+        we saw it), status (open or closed), url (the posting), required_skills,
+        nice_to_have_skills, german, degree and production requirements
         (null = not mentioned), description_text (the full posting text, which
         search_jobs leaves out), and read. read is false for a posting we stored but the
         model has not read yet, usually one first seen today: its skills, seniority,
         german, degree and production are then unknown, not absent; ask again later.
+
+        required_skills lists the job's requirements, one item each, counted as
+        match_profile counts them. An item is a skill id, or a group of alternatives
+        written as a list of ids: the posting accepts any one of them ("AWS or Azure"),
+        so the group is one requirement, met by any member. ["python", ["aws", "azure"]]
+        is two requirements: Python, and AWS or Azure. A job with no group is a plain list
+        of ids. nice_to_have_skills is a plain list of skill ids.
 
         Example: the details of job 42:
         get_job(job_id=42)
@@ -293,8 +306,10 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             detail = q.job_detail(conn, job_id, now())
             if detail is None:
                 raise ToolError(f"no job with id {job_id}")
-        # The details hold one list of skill mentions; split it into the two lists the tool returns.
-        required_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "required"]
+        # The details hold one list of skill mentions; split it into the two lists the tool
+        # returns. Required skills are counted as the match counts them: a group of
+        # alternatives is one item (HIR-485).
+        required_skills = fit.requirement_units(detail)
         nice_to_have_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "nice_to_have"]
         return {
             "company": detail["company"], "title": detail["title"], "places": detail["places"],
@@ -604,7 +619,7 @@ def _job(j: dict) -> dict:
         "family": j["family"], "seniority": j["seniority"],
         "first_seen": j["first_seen"][:10], "last_seen": j["last_seen"][:10], "status": j["status"],
         "url": next((s["url"] for s in j["sources"] if s["url"]), None),
-        "required_skills": j["required_skills"], "nice_to_have_skills": j["nice_skills"],
+        "required_skills": fit.requirement_units(j), "nice_to_have_skills": j["nice_skills"],
         "german": j["german"], "production": j["production"],
         "degree": None if j["degree"] is None else {
             "level": j["degree"], "requirement": j["degree_requirement"],
