@@ -159,7 +159,7 @@ def test_an_empty_database_says_nothing_would_be_read(tmp_path):
 # --- the count is the queue's own, so it cannot drift ---------------------------------
 
 def test_closed_jobs_are_not_counted_because_they_are_not_re_read(conn):
-    """HIR-195: a bump re-reads only open jobs, so only those may be charged for."""
+    """HIR-195: a bump re-reads no job closed for years, so none may be charged for."""
     conn.execute("UPDATE job SET extracted_version='x2-old'")
     close_job(conn, 1)
     assert pipeline.reread_queue_size(conn) == 2
@@ -201,6 +201,24 @@ def test_the_report_leads_with_the_figure_for_the_pull_request(conn):
     lines = reread_cost.report_lines(reread_cost.reread_cost(conn, model=MODEL))
     assert "would re-read 3 jobs: about €16.74." in lines[0]   # half of €33.48, HIR-222
     assert any("Measured from the last 20 readings" in l for l in lines)
+
+
+def test_the_report_gives_the_cost_of_re_reading_every_stored_posting(conn):
+    """HIR-303: Chandler's long-term question. Closed jobs count, legacy imports do not;
+    priced per reading exactly as the figure above it."""
+    log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
+                 {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
+    ingest_one(conn=conn, p=Posting("arbeitnow", "a3", "", "Co3", "AI Engineer", "Berlin", "Python job 3"))
+    conn.execute("UPDATE job SET extracted_version='x2-old'")
+    conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=4")
+    conn.commit()
+    close_job(conn, 1)
+    cost = reread_cost.reread_cost(conn, model=MODEL)
+    assert (cost.jobs, cost.stored_jobs) == (2, 3)
+    lines = reread_cost.report_lines(cost)
+    assert "would re-read 2 jobs: about €11.16." in lines[0]
+    assert any("re-reading every stored posting, open and closed (3 jobs), would cost about €16.74"
+               in l for l in lines)
 
 
 def test_one_job_is_not_called_jobs(conn):

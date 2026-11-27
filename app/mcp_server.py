@@ -48,6 +48,10 @@ from app.geo import CITIES, REMOTE_EU
 from app.taxonomy import Taxonomy, load_added
 
 PATH = "/mcp"
+# The version the server reports when a client connects, and the one its Server Card and its
+# MCP Registry entry state (app/discovery.py, HIR-480). Raise it with a change to the tools,
+# then publish the registry entry again (deploy/README.md).
+VERSION = "1.1.0"
 
 # Every tool is read-only and only reads our own database.
 READ_ONLY = ToolAnnotations(readOnlyHint=True, destructiveHint=False, idempotentHint=True, openWorldHint=False)
@@ -98,7 +102,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
     """The MCP server with every tool registered. `now` is injected so tests can fix the
     clock, exactly as the API's routes do; `skill_added` (the day each skill joined the
     list, read only by rising_skills) likewise, defaulting to the recorded dates."""
-    server = MCPServer("hiring-radar", instructions=INSTRUCTIONS)
+    server = MCPServer("hiring-radar", instructions=INSTRUCTIONS, version=VERSION)
     added = load_added() if skill_added is None else skill_added
 
     @contextmanager
@@ -170,8 +174,18 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
 
         Returns total (all matching jobs), and per job: id, company, title, places, family,
         seniority, first_seen / last_seen (dates we saw it), status (open or closed),
-        url (the posting), required_skills and nice_to_have_skills (skill ids),
-        and german, degree and production requirements (null = not mentioned).
+        url (the posting), required_skills and nice_to_have_skills, german, degree and
+        production requirements (null = not mentioned), and read.
+        required_skills lists the job's requirements, one item each: a skill id, or a
+        group of alternatives the posting accepts any one of ("AWS or Azure"), written as
+        a list of ids, e.g. ["python", ["aws", "azure"]]. A job with no such group is a
+        plain list of ids. Its length is match_profile's total for the job.
+        nice_to_have_skills is a plain list of skill ids.
+        read is false for a posting we stored but the model has not read yet, usually one
+        first seen today: its skills, seniority, german, degree and production are then
+        unknown, not absent, so never take it for a job that asks for nothing. Such a
+        posting can match german, degree or production "none" / "not_required" / "open";
+        ask again later for its reading.
 
         Example: open Berlin AI engineer jobs that require RAG:
         search_jobs(skills=["rag"], city=["Berlin"], family=["ai-engineer"])
@@ -235,8 +249,10 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           in total only. Places and tracks with no match are left out.
         - offset, and jobs: the matching jobs, in the same shape as search_jobs (id,
           company, title, places, family, seniority, first_seen, last_seen, status, url,
-          required_skills, nice_to_have_skills, german, degree, production). Use get_job
-          for a job's full text.
+          required_skills, nice_to_have_skills, german, degree, production, read);
+          required_skills writes a group of alternatives as a list of ids.
+          read is false for a posting the model has not read yet: its skills and
+          requirements are unknown, not absent. Use get_job for a job's full text.
 
         Example: how many open jobs mention Claude, per city and career track:
         search_postings(text="Claude", limit=0)
@@ -269,10 +285,19 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           exist is an error.
 
         Returns company, title, places, family, seniority, first_seen / last_seen (dates
-        we saw it), status (open or closed), url (the posting), required_skills and
-        nice_to_have_skills (skill ids), german, degree and production requirements
-        (null = not mentioned), and description_text (the full posting text, which
-        search_jobs leaves out).
+        we saw it), status (open or closed), url (the posting), required_skills,
+        nice_to_have_skills, german, degree and production requirements
+        (null = not mentioned), description_text (the full posting text, which
+        search_jobs leaves out), and read. read is false for a posting we stored but the
+        model has not read yet, usually one first seen today: its skills, seniority,
+        german, degree and production are then unknown, not absent; ask again later.
+
+        required_skills lists the job's requirements, one item each, counted as
+        match_profile counts them. An item is a skill id, or a group of alternatives
+        written as a list of ids: the posting accepts any one of them ("AWS or Azure"),
+        so the group is one requirement, met by any member. ["python", ["aws", "azure"]]
+        is two requirements: Python, and AWS or Azure. A job with no group is a plain list
+        of ids. nice_to_have_skills is a plain list of skill ids.
 
         Example: the details of job 42:
         get_job(job_id=42)
@@ -281,8 +306,10 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             detail = q.job_detail(conn, job_id, now())
             if detail is None:
                 raise ToolError(f"no job with id {job_id}")
-        # The details hold one list of skill mentions; split it into the two lists the tool returns.
-        required_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "required"]
+        # The details hold one list of skill mentions; split it into the two lists the tool
+        # returns. Required skills are counted as the match counts them: a group of
+        # alternatives is one item (HIR-485).
+        required_skills = fit.requirement_units(detail)
         nice_to_have_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "nice_to_have"]
         return {
             "company": detail["company"], "title": detail["title"], "places": detail["places"],
@@ -290,7 +317,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
             "first_seen": detail["first_seen"][:10], "last_seen": detail["last_seen"][:10], "status": detail["status"],
             "url": next((s["url"] for s in detail["sources"] if s["url"]), None),
             "required_skills": required_skills, "nice_to_have_skills": nice_to_have_skills,
-            "german": detail["german"], "production": detail["production"],
+            "german": detail["german"], "production": detail["production"], "read": detail["read"],
             "degree": None if detail["degree"] is None else {
                 "level": detail["degree"], "requirement": detail["degree_requirement"],
                 "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
@@ -484,6 +511,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         Which jobs are ranked:
         - only open jobs first seen in the last 30 days, as on the dashboard: an older
           posting is probably filled.
+        - only postings the model has read. A posting we stored but have not read yet
+          (usually one first seen today) has no known skills or hard asks, so it is left
+          out rather than shown as a fit with nothing to fail; not_read_yet counts them.
         - city: any of these places; family: ai-engineer, ml-engineer, data-scientist,
           ml-platform, research or forward-deployed-engineer, assigned from the job title.
           Both optional.
@@ -511,8 +541,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           change the score, but every gated job ranks below every job that is not.
         Ties keep newest first; a covered nice-to-have skill only breaks ties.
 
-        Returns ranked (how many jobs were ranked, before limit) and per job, best fit
-        first: id, company, title, places, url (the posting), first_seen, score,
+        Returns ranked (how many jobs were ranked, before limit), not_read_yet (how many
+        jobs the filters kept that were left out because the model has not read them yet;
+        call again later to rank them) and per job, best fit first: id, company, title, places, url (the posting), first_seen, score,
         rank_score, covered, total, few_skills_listed, missing_required and gated_by.
         Use get_job for a job's full text.
 
@@ -551,8 +582,11 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
                 offset += FIT_PAGE
         if day is not None:
             jobs = [j for j in jobs if j["first_seen"][:10] >= day]
-        ranked = fit.rank_jobs(profile, jobs, demand)
-        return {"ranked": len(ranked), "jobs": [_match(j, fit.fit(profile, j, demand), profile) for j in ranked[:limit]]}
+        # A posting not read yet has no skills or hard asks to score: ranked, it would look
+        # like a fit with nothing to fail (HIR-484). Left out, and counted.
+        not_read = sum(not j["read"] for j in jobs)
+        ranked = fit.rank_jobs(profile, [j for j in jobs if j["read"]], demand)
+        return {"ranked": len(ranked), "not_read_yet": not_read, "jobs": [_match(j, fit.fit(profile, j, demand), profile) for j in ranked[:limit]]}
 
     # --- resources ------------------------------------------------------------------
 
@@ -585,11 +619,12 @@ def _job(j: dict) -> dict:
         "family": j["family"], "seniority": j["seniority"],
         "first_seen": j["first_seen"][:10], "last_seen": j["last_seen"][:10], "status": j["status"],
         "url": next((s["url"] for s in j["sources"] if s["url"]), None),
-        "required_skills": j["required_skills"], "nice_to_have_skills": j["nice_skills"],
+        "required_skills": fit.requirement_units(j), "nice_to_have_skills": j["nice_skills"],
         "german": j["german"], "production": j["production"],
         "degree": None if j["degree"] is None else {
             "level": j["degree"], "requirement": j["degree_requirement"],
             "or_equivalent_experience": j["degree_or_equivalent"]},
+        "read": j["read"],
     }
 
 
@@ -633,7 +668,8 @@ class Buckets:
 
 
 class RateLimit:
-    """The rate limit in front of the MCP's ASGI app; 429 when an allowance is empty.
+    """The rate limit in front of the MCP's ASGI app; 429 when an allowance is empty, with
+    a message saying which allowance, its numbers and how long to wait (`_refuse`).
 
     Counts per connection, not per address: every user of one web assistant (claude.ai,
     ChatGPT, Gemini) arrives from that vendor's servers, so a per-address limit made them
@@ -666,18 +702,26 @@ class RateLimit:
         self.new_sessions = Buckets(new_burst, new_rate, clock)
         self.addresses = Buckets(ip_burst, ip_rate, clock)
 
-    def allow(self, address: str, session: str, version: str) -> tuple[float, str | None]:
+    def allow(self, address: str, session: str, version: str) -> tuple[float, str | None, str | None]:
         """(0 if the request may go ahead, else the seconds until it may; the session id to
-        hand the client, if this request began a connection and brought no usable id)."""
+        hand the client, if this request began a connection and brought no usable id; which
+        allowance refused it, a key of `_REFUSED`, or None)."""
+        def first(*checks: tuple[str, Buckets, str]) -> tuple[float, str | None]:
+            for name, buckets, who in checks:
+                if wait := buckets.take(who):
+                    return wait, name
+            return 0.0, None
+
         if version and version not in HANDSHAKE_PROTOCOL_VERSIONS:
-            return self.addresses.take(address), None
+            wait, which = first(("address", self.addresses, address))
+            return wait, None, which
         if session in self.sessions:
-            return self.sessions.take(session) or self.addresses.take(address), None
+            wait, which = first(("connection", self.sessions, session), ("address", self.addresses, address))
+            return wait, None, which
         issued = None if _SESSION_ID.fullmatch(session) else uuid4().hex
-        wait = self.new_sessions.take(address) or self.addresses.take(address)
-        if wait:
-            return wait, None
-        return self.sessions.take(issued or session), issued
+        wait, which = first(("new_connections", self.new_sessions, address), ("address", self.addresses, address),
+                            ("connection", self.sessions, issued or session))
+        return wait, None if wait else issued, which
 
     async def __call__(self, scope, receive, send):
         if scope["type"] != "http":
@@ -686,11 +730,10 @@ class RateLimit:
             return await _plain(send, 405, b"This server offers no listening stream: POST only.\n",
                                 (b"allow", b"POST"))
         headers = {k: v.decode("latin-1") for k, v in scope.get("headers") or []}
-        wait, issued = self.allow((scope.get("client") or ("unknown",))[0],
-                                  headers.get(b"mcp-session-id", ""), headers.get(b"mcp-protocol-version", ""))
+        wait, issued, which = self.allow((scope.get("client") or ("unknown",))[0],
+                                         headers.get(b"mcp-session-id", ""), headers.get(b"mcp-protocol-version", ""))
         if wait:
-            return await _plain(send, 429, b"Too many requests: slow down.\n",
-                                (b"retry-after", str(math.ceil(wait)).encode()))
+            return await self._refuse(send, wait, which, await _request_id(receive))
 
         async def send_with_id(message):
             if issued and message["type"] == "http.response.start":
@@ -698,6 +741,60 @@ class RateLimit:
             await send(message)
 
         await self.app(scope, receive, send_with_id)
+
+    async def _refuse(self, send, wait: float, which: str, request_id: str | int | None) -> None:
+        """429 with Retry-After, and a JSON-RPC error a client hands to its model (HIR-218).
+
+        The MCP library's client passes a JSON-RPC error body at a non-2xx status on to the
+        caller as that error; a plain-text body reaches the model as "Server returned an
+        error response", which tells the person nothing."""
+        seconds = max(1, math.ceil(wait))
+        buckets = {"connection": self.sessions, "new_connections": self.new_sessions,
+                   "address": self.addresses}[which]
+        message = _REFUSED[which].format(burst=round(buckets.burst), per_minute=round(buckets.rate * 60),
+                                         wait=f"{seconds} second{'s' if seconds != 1 else ''}")
+        body = json.dumps({"jsonrpc": "2.0", "id": request_id, "error": {
+            "code": RATE_LIMITED, "message": message, "data": {"retry_after": seconds, "limit": which}}})
+        await send({"type": "http.response.start", "status": 429,
+                    "headers": [(b"retry-after", str(seconds).encode()), (b"content-type", b"application/json")]})
+        await send({"type": "http.response.body", "body": body.encode()})
+
+
+# What a refused request is told, per allowance (HIR-218). Written for the person reading
+# their assistant's answer: which limit, its numbers, how long to wait.
+RATE_LIMITED = -32000  # JSON-RPC's range for errors a server defines
+_REFUSED = {
+    "connection": "hiring-radar's request limit for this connection is used up: up to {burst} requests "
+                  "at once, then about {per_minute} a minute. Try again in {wait}.",
+    "new_connections": "Too many new connections to hiring-radar from this network address: up to {burst} "
+                       "at once, then about {per_minute} a minute. Keep using the connection already open "
+                       "(send back its Mcp-Session-Id), or try again in {wait}.",
+    "address": "hiring-radar's request limit for this network address is used up: up to {burst} requests "
+               "at once, then about {per_minute} a minute, shared by everyone connecting from it (an "
+               "assistant's servers count as one address). Try again in {wait}.",
+}
+_MAX_BODY_READ = 65_536  # a refused request's body is read only to find its id
+
+
+async def _request_id(receive) -> str | int | None:
+    """The JSON-RPC id of the refused request, so the client can match the error to it; None
+    (sent as null, which JSON-RPC allows when the id cannot be read) for a batch, a body that
+    is not JSON, or one too large to bother with."""
+    body = b""
+    while True:
+        message = await receive()
+        if message["type"] != "http.request":
+            return None
+        body += message.get("body", b"")
+        if len(body) > _MAX_BODY_READ:
+            return None
+        if not message.get("more_body"):
+            break
+    try:
+        rid = json.loads(body).get("id")
+    except (ValueError, AttributeError):
+        return None
+    return rid if isinstance(rid, (str, int)) and not isinstance(rid, bool) else None
 
 
 async def _plain(send, status: int, body: bytes, header: tuple[bytes, bytes]) -> None:

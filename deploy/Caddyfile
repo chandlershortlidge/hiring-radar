@@ -1,6 +1,10 @@
 hiringradar.app {
-	# The MCP server (HIR-338) is open: no password, rate limited inside the app.
-	@mcp path /mcp
+	# Every answer, the password prompt included, says where an agent finds the MCP
+	# server (HIR-480): its Server Card and the plain-text llms.txt.
+	header Link "<https://hiringradar.app/mcp/server-card>; rel=\"alternate\"; type=\"application/mcp-server-card+json\", <https://hiringradar.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\""
+	# The MCP server (HIR-338) is open: no password, rate limited inside the app. So are
+	# the pages that tell an agent where it is (HIR-480, app/discovery.py).
+	@mcp path /mcp /mcp/server-card /llms.txt /.well-known/ai-catalog.json /.well-known/mcp.json /.well-known/mcp/server-card.json
 	handle @mcp {
 		reverse_proxy 127.0.0.1:8000
 	}

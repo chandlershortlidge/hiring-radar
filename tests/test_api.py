@@ -177,7 +177,7 @@ def test_skill_validation_over_a_list(api):
 # rows (derived from each row's title), leaving every other field as captured; HIR-251 added
 # `required_groups` (always [] here: no fixture job has alternatives) the same way, and HIR-289
 # added `places` (here always the job's one city), and HIR-226 added `flagged` (always false: no
-# fixture job carries a flag).
+# fixture job carries a flag), and HIR-484 added `read` (always true: every fixture job was read).
 SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_snapshot.json").read_text())
 
 
