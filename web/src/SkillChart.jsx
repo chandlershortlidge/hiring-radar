@@ -79,7 +79,7 @@ function Tip({ anchor, children }) {
 //
 // `gaps` (HIR-411) puts the line naming the visitor's biggest gaps between the find box and
 // the bars. App turns it on for a single city's page; FitLine.jsx says when it draws.
-export default function SkillChart({ data, selected, onSelect, profile, jobsLabel = "jobs", aliases = {}, gaps = false }) {
+export default function SkillChart({ data, selected, onSelect, profile, note, jobsLabel = "jobs", aliases = {}, gaps = false }) {
   const [shown, setShown] = useState(PAGE);
   // { id, x, top }: which bar, and the screen point the box hangs from
   const [hover, setHover] = useState(null);
@@ -169,9 +169,9 @@ export default function SkillChart({ data, selected, onSelect, profile, jobsLabe
               <span className="legend"><i className="fill gap" /> not yet</span>
             </>
           )}
-          {/* How to select stays visible with a profile set too: the legend used to take the
-              whole footer, which hid the one place that says a second skill can be added. */}
-          <span>Click a bar to filter the jobs · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for the numbers"}</span>
+          {/* What the percentages are (HIR-477): it was the line above the chart. It replaces
+              the click/hover hint; each bar's hover box still says "Click to filter the jobs". */}
+          {note && <span className="chart-note">{note}</span>}
         </div>
       </div>
     </div>

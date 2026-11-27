@@ -1,7 +1,7 @@
 // The header's buttons. HIR-346 took "Add a job" and the proposed-skills counter off the
 // site for good (jobs are added from the command line, proposed skills are settled in
-// skill-list pull requests), so the one button left is the profile; "All markets" and
-// "Connect Claude" are not buttons.
+// skill-list pull requests), so the one button left is the profile; "Connect Claude" is
+// not a button.
 //
 // HIR-263 still holds for whatever is there: at phone width a header button's words are
 // hidden with display:none, which removes them for screen readers too, so every button
@@ -34,12 +34,13 @@ describe("the header's buttons", () => {
     expect(buttons[0]).toContain('aria-label="Your profile"');
   });
 
-  it("offers All markets, the profile and Connect Claude on a city page, and no more", () => {
+  // HIR-477 took the "All markets" pill out: the logo already goes home.
+  it("offers the profile and Connect Claude on a city page, and no more", () => {
     const words = header.replace(/<svg.*?<\/svg>/gs, "").replace(/<[^>]+>/g, "|").split("|").filter(Boolean);
-    expect(words.slice(0, 2)).toEqual(["All markets", "Set up your profile"]);
-    expect(words[2].trim()).toBe("Connect Claude");
-    // Three pills and no main button: whatever else Connect Claude says sits inside its own pill.
-    expect(header.match(/class="pill\b/g)).toHaveLength(3);
+    expect(words[0]).toBe("Set up your profile");
+    expect(words[1].trim()).toBe("Connect Claude");
+    // Two pills and no main button: whatever else Connect Claude says sits inside its own pill.
+    expect(header.match(/class="pill\b/g)).toHaveLength(2);
     expect(header).not.toContain('class="btn');
   });
 
@@ -85,5 +86,44 @@ describe("the right edge of the pickers' bar", () => {
 
   it("still says how fresh the data is", () => {
     expect(source).toContain(">updated {timeAgo(stats.last_updated)}</span>");
+  });
+});
+
+// HIR-477, Chandler 25 Nov with screenshots: "we need to remove these." The header's
+// tagline, the "All markets" pill, and the chart's heading with its explanation line went.
+// What the percentages are moved under the chart, in place of the click/hover hint.
+describe("the text Chandler had removed", () => {
+  const page = (pathname) => {
+    vi.stubGlobal("window", { location: { pathname, search: "", hash: "" } });
+    try { return renderToStaticMarkup(<App />); } finally { vi.unstubAllGlobals(); }
+  };
+
+  it.each(["/", "/berlin", "/compare/berlin+munich"])("is gone from %s", (path) => {
+    const html = page(path);
+    expect(html).not.toContain("Skills employers ask for");
+    expect(html).not.toContain("All markets");
+    expect(html).not.toContain("asking for?");
+    expect(html).not.toContain('class="lede"');
+    expect(html).not.toContain("Click a bar to filter");
+    expect(html).not.toContain("Click a city header");
+  });
+
+  it.each(["/", "/berlin", "/compare/berlin+munich"])("leaves the logo going home on %s", (path) => {
+    expect(page(path)).toMatch(/<a href="\/"[^>]*aria-label="hiring-radar home"/);
+  });
+
+  it("names the city chart for screen readers, and keeps one <h1> on the page", () => {
+    const html = page("/berlin");
+    expect(html).toContain('<section class="card chart" aria-label="Skills asked for in Berlin">');
+    expect(html.match(/<h1\b/g)).toHaveLength(1);
+    expect(html).toMatch(/<h1 id="chart-title" class="sr">Skills asked for in Berlin<\/h1>/);
+  });
+
+  // The cities only reach the compare chart's filters after first paint (an effect), as they
+  // did for the old heading, so this checks the section has a name, not which one.
+  it("names the compare chart for screen readers, and keeps one <h1> on the page", () => {
+    const html = page("/compare/berlin+munich");
+    expect(html).toMatch(/<section class="card chart" aria-label="Skills asked for in [^"]+">/);
+    expect(html.match(/<h1\b/g)).toHaveLength(1);
   });
 });

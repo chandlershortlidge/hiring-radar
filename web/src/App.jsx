@@ -233,6 +233,15 @@ export default function App() {
     + (filters.german !== "any" ? ` · German: ${GERMAN_FILTERS[filters.german].toLowerCase()}` : "")
     + (filters.production !== "any" ? ` · production experience: ${PRODUCTION_FILTERS[filters.production].toLowerCase()}` : "")
     + (filters.degree !== "any" ? ` · degree: ${DEGREE_FILTERS[filters.degree].toLowerCase()}` : "");
+  // What the chart is, for screen readers, and what its percentages are, in the line under
+  // it (HIR-477: these were the heading and the line above the chart).
+  const chartName = filters.compare
+    ? `Skills asked for in ${compareCities.join(" vs ")}, ${market.family ? familyLabel(market.family) : "AI & data roles"}`
+    : `Skills asked for in ${placeName || "every market"}${market.family ? `, ${familyLabel(market.family)}` : ""}`;
+  const chartNote = (filters.compare
+    ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}`
+    : ["Share of the", skills?.total ?? "…", winLabel, `jobs in ${cityLabel} that list each skill ${reqLabel}`].filter(Boolean).join(" "))
+    + `${famLabel}${senLabel}.`;
 
   // The "[job family] in [city]" pickers. On the home page they sit under the headline in a
   // search box, start on the market the page leads with, and open nothing until "View jobs".
@@ -256,9 +265,8 @@ export default function App() {
   return (
     <>
       <header className="hdr"><div className="hdr-in">
-        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub" title={PLACE_NAMES.join(" · ")}>Skills employers ask for, across {PLACE_NAMES.length} markets</span></div>
+        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a></div>
         <div className="hdr-actions">
-          {market.view !== "home" && <a className="pill" href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }}>All markets</a>}
           <button type="button" className={`pill${profile ? " on" : ""}`} onClick={() => setDrawer("profile")} aria-label="Your profile">
             <Person /><span className="lbl">{profile ? `${profile.skills.length} skills in your profile` : "Set up your profile"}</span>
           </button>
@@ -304,17 +312,11 @@ export default function App() {
             columns stack, below 1100px. A comparison keeps one column: its chart needs
             the width for a column per city. */}
         <div className="stack lead">
-        <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
-          <div>
-            <h1 id="chart-title">{filters.compare
-              ? `${compareCities.join(" vs ")} · ${market.family ? familyLabel(market.family) : "AI & data roles"}`
-              : `What skills are ${roleLabel}${placeName ? ` in ${placeName}` : ""} asking for?`}</h1>
-            <p className="lede">
-              {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}. Rows sorted by the column you pick`
-                : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{famLabel}{senLabel}.
-              {profile && " Dark bars are skills in your profile."}
-            </p>
-          </div>
+        {/* No heading or explanation above the chart (HIR-477): it starts with its filters,
+            and what the bars measure is said once, under them. The page's one <h1> is
+            hidden, for screen readers, and says the same as the section's name. */}
+        <Panel label="The chart"><section className="card chart" aria-label={chartName}>
+          <h1 id="chart-title" className="sr">{chartName}</h1>
           <FilterPills filters={filters} set={set} toggleSeniority={toggleSen} requiredLabel={REQUIREMENTS.required} extraOn={extraOn}>
             <div className="ctl"><label htmlFor="prod">{EXTRA_FILTER_NAMES.production}</label>
               <select id="prod" className="sel" value={filters.production} onChange={(e) => set({ production: e.target.value })}>
@@ -339,9 +341,9 @@ export default function App() {
           {filters.compare && <CityFit profile={profile} filters={filters} cities={compareCities} refreshKey={refresh} />}
           {!skills ? <ChartStatus failed={skillsFailed} onRetry={reload} />
             : filters.compare
-            ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
+            ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities} note={chartNote}
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
-            : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
+            : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile} note={chartNote}
                 jobsLabel={filters.window === "open" ? `open ${roleLabel}` : winLabel ? `${roleLabel} ${winLabel}` : roleLabel}
                 aliases={taxAliases}
                 gaps={market.view === "city" && !!placeName} />}
