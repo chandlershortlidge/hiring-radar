@@ -224,16 +224,20 @@ def jsearch_usage_text(conn: sqlite3.Connection, end: str) -> str:
     return line + "\n"
 
 
-def incubating_text(conn: sqlite3.Connection, now: str | None = None) -> str:
+def incubating_text(conn: sqlite3.Connection, now: str | None = None,
+                    week: tuple[str, str] | None = None) -> str:
     """The Monday lines for the places and career tracks collected in the background and
     not shown yet (HIR-398): one each, from the rows the admin page shows (app/admin.py),
-    so the two print the same numbers. "" when nothing is incubating."""
-    from app import admin
+    so the two print the same numbers. "" when nothing is incubating. With `week` (its
+    first and last day), each incubating track also gets that week's volume (HIR-397)."""
+    from app import admin, scope
     from app.extract import DEFAULT_MODEL, extractor_version
     from app.ingest import now_iso
     from app.taxonomy import Taxonomy
     rows = admin.overview(conn, now or now_iso(), extractor_version(Taxonomy.load(), DEFAULT_MODEL))
-    return admin.incubating_section(rows)
+    weeks = {r.name: admin.week_volume(conn, r.name, *week) for r in rows
+             if week and r.kind == admin.TRACK and r.state == scope.INCUBATING}
+    return admin.incubating_section(rows, weeks)
 
 
 def post_json(url: str, payload: dict, headers: dict) -> dict:
@@ -276,7 +280,7 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
                 + "\n" + jsearch_usage_text(conn, end)
-                + (("\n" + background) if (background := incubating_text(conn)) else "")
+                + (("\n" + background) if (background := incubating_text(conn, week=(start, end))) else "")
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
                 + "\n" + misses.trend_section(misses.records(conn), end,
                                                poll.load_feeds() if feeds is None else feeds))

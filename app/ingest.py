@@ -14,7 +14,8 @@ counts under both (HIR-289); `job.city` stays the first place.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
 a title needs both an AI/ML domain term and a technical role term, or to match the title
 pattern of a career track added in app/scope.py (HIR-395), and must not name a
-sales role (sales_title, HIR-246). Live and incubating places and tracks are stored
+sales role (sales_title, HIR-246). A track limited to some places takes only a posting
+that names one of them (outside_track_places, HIR-397). Live and incubating places and tracks are stored
 alike: what the public may see is decided when it is read (app/queries.py). A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
 row can never be recognised as a duplicate and every repost of it from another source
@@ -285,6 +286,7 @@ SKIPPED_COMPANY = "skipped_company"
 SKIPPED_AGENCY = "skipped_agency"    # a country-wide source published an agency's posting
 SKIPPED_UNREADABLE = "skipped_unreadable"   # a feed re-listed a posting dropped for reading blank twice
 SKIPPED_BLOCKED = "skipped_blocked"  # the posting links to a site known for fake postings (HIR-441)
+SKIPPED_TRACK_PLACE = "skipped_track_place"  # its track is limited to places it does not name (HIR-397)
 
 
 @dataclass(frozen=True)
@@ -300,8 +302,8 @@ class Screenshot:
 class Stored:
     """What storing one posting did, so no caller has to read it out of a string.
 
-    `kind` is one of the ten constants above. `job_id` is the job the posting ended up
-    on, and is None only for the six skipped kinds, where no job was touched.
+    `kind` is one of the eleven constants above. `job_id` is the job the posting ended up
+    on, and is None only for the seven skipped kinds, where no job was touched.
     """
 
     kind: str
@@ -329,13 +331,15 @@ class Report:
     skipped_agency: int = 0
     skipped_unreadable: int = 0
     skipped_blocked: int = 0
+    skipped_track_place: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
                 f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
                 f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency} "
-                f"skipped_unreadable={self.skipped_unreadable} skipped_blocked={self.skipped_blocked}")
+                f"skipped_unreadable={self.skipped_unreadable} skipped_blocked={self.skipped_blocked} "
+                f"skipped_track_place={self.skipped_track_place}")
 
 
 def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
@@ -372,6 +376,17 @@ def stops(p: Posting, *, require_city: bool = True, trust_title: bool = False):
     # Every source, and no hand-added escape: see BLOCKED_SITES. HIR-441.
     if blocked_site(p.url, p.description_text):
         yield SKIPPED_BLOCKED
+    # A track limited to some places takes a posting only when it names one of them
+    # (HIR-397). Not for a hand-added posting stored without a city, which was chosen.
+    if require_city and outside_track_places(p):
+        yield SKIPPED_TRACK_PLACE
+
+
+def outside_track_places(p: Posting) -> bool:
+    """True when the posting's title is a track limited to some places (app/scope.py) and
+    the posting names none of them. Pure."""
+    allowed = scope.track_places(family_of(p.title))
+    return allowed is not None and not set(places_of(p.location_raw, p.title, p.description_text)) & set(allowed)
 
 
 def screen(p: Posting, *, require_city: bool = True, trust_title: bool = False) -> str | None:

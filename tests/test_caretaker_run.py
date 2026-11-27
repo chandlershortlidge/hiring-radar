@@ -295,6 +295,7 @@ def test_the_command_line_reruns_with_the_morning_collections_own_command_and_on
 
     import app.__main__ as cli
     seen, ran = {}, []
+    db.migrate(db.connect(tmp_path / "t.db"))   # the command reads the job table (HIR-397: a track reads later)
     monkeypatch.setattr(cli, "open_db", lambda: db.connect(tmp_path / "t.db"))
     monkeypatch.setattr(run, "morning", lambda *a, **k: [])
     monkeypatch.setattr(run, "report", lambda conn, day, post, **kw: seen.update(kw))

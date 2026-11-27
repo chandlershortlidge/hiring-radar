@@ -43,7 +43,7 @@ import json
 from dataclasses import dataclass, field, replace
 from pathlib import Path
 
-from app import reread_cost
+from app import reread_cost, scope
 from app.check import default_fetch_board, parse_ats_url
 from app.extract import DEFAULT_MODEL
 from app import ingest
@@ -106,11 +106,16 @@ def relevant_roles(postings, city: str | None = None, company: str | None = None
     full of Berlin roles is not evidence that it hires in New York. `company` is the name
     the board's feeds.json entry carries or would carry, which is the name its postings
     are collected under (see NAMED_BY_ITS_ENTRY).
+
+    A role on a track set not to find boards (app/scope.py `finds_boards`) is collected
+    from the boards we poll but never counted here, so no board is added for it (HIR-397).
     """
     out = []
     for p in postings:
         asked = replace(p, company=company or NAMED_BY_ITS_ENTRY)
         place = active_place(p.location_raw, p.title, p.description_text)
+        if not scope.TRACKS[ingest.family_of(p.title)].finds_boards:
+            continue
         if ingest.screen(asked) is None and place and (city is None or place == city):
             out.append(f"{p.title} ({place})")
     return out

@@ -121,8 +121,6 @@ LEAKED_TITLES = [
 @pytest.mark.parametrize("title", LEAKED_TITLES + [
     "Account Executive",
     "Sales",
-    "Software Engineer",      # role, no domain
-    "Backend Developer",
     "Senior KI Consultant (m/w/d)",   # German domain word, but no technical role
     "Kirchenmusiker (m/w/d)",         # "ki" only as a whole word
 ])
@@ -433,7 +431,7 @@ def test_028_moves_only_the_fde_titles_and_accepts_the_new_family(tmp_path):
     c.commit()
     before = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
     assert set(before.values()) <= {"ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"}
-    assert db.migrate(c) == [28]
+    assert db.migrate(c)[0] == 28
     after = {r["title"]: r["family"] for r in c.execute("SELECT title, family FROM job")}
     moved = {t for t in before if before[t] != after[t]}
     assert moved == {t for t, f in FDE_CASES if f == FDE}

@@ -42,7 +42,7 @@ def test_a_state_is_read_when_asked_not_when_imported(monkeypatch):
     monkeypatch.setitem(scope.PLACE_STATE, "Chicago", scope.INCUBATING)
     monkeypatch.setitem(scope.TRACKS, "research", scope.Track(scope.INCUBATING))
     assert scope.incubating_places() == ("Chicago",) and "Chicago" not in scope.live_places()
-    assert scope.incubating_tracks() == ("research",) and "research" not in scope.live_tracks()
+    assert "research" in scope.incubating_tracks() and "research" not in scope.live_tracks()
     assert "Chicago" in scope.places() and "research" in scope.tracks()
     with pytest.raises(ValueError, match="bad family 'research'"):
         queries.make_filters({}, families=["research"])

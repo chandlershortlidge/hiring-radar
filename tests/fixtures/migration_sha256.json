@@ -23,5 +23,6 @@
   "025_job_flag.sql": "93a09d7c3cd6635f4d658367e36d6979ab6354d69536de0bed016e5a34b4e8d0",
   "026_board_to_add.sql": "b7a4b1b810b55a090aa37945855eb6905c752838321378a8cb55f9c4f685c99d",
   "027_job_family_scientist.sql": "c2d00bb75a520563236b6bedfbea9b9d10ff3e48e1dcddb41cfe941a7020c3c7",
-  "028_forward_deployed_engineer.sql": "d784ba8359c64f0ecb0404545615bb1d30d1fe4b1d2991035d11b08287243dae"
+  "028_forward_deployed_engineer.sql": "d784ba8359c64f0ecb0404545615bb1d30d1fe4b1d2991035d11b08287243dae",
+  "029_software_engineer.sql": "b81f05f7d5688522b67dd0e9dc09c8c9272beba16b7c6cc5b1b01a325307a623"
 }
