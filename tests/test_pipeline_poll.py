@@ -241,6 +241,47 @@ def test_a_closed_job_never_read_still_gets_its_first_read(conn):
     assert [r["id"] for r in pipeline.jobs_needing_extraction(conn, "v1")] == [3, 2, 1]
 
 
+NOW = "2026-11-27T12:00:00Z"
+
+
+def _last_seen_days_ago(conn, job_id, days):
+    """Make a job last sighted `days` before NOW (first sighted long before)."""
+    from app.queries import _days_ago
+    seen = _days_ago(NOW, days)
+    conn.execute("UPDATE job SET first_seen='2020-01-01T00:00:00Z', last_seen=? WHERE id=?", (seen, job_id))
+    conn.execute("UPDATE job_source SET first_seen='2020-01-01T00:00:00Z', last_seen=? WHERE job_id=?",
+                 (seen, job_id))
+
+
+def test_a_version_bump_also_re_reads_jobs_closed_inside_the_rising_panels_periods(conn):
+    # HIR-303: job 1 closed three weeks ago, inside the panel's last 8 weeks, so it is read
+    # again with the open jobs; job 2 closed ten weeks ago and keeps its old reading.
+    conn.execute("UPDATE job SET extracted_version='x-old'")
+    _last_seen_days_ago(conn, 1, 21)
+    _last_seen_days_ago(conn, 2, 70)
+    assert [r["id"] for r in pipeline.jobs_needing_extraction(conn, "x-new", now=NOW)] == [3, 1]
+    assert pipeline.closed_reread_skips(conn, "x-new", now=NOW) == 1
+    assert pipeline.reread_queue_size(conn, NOW) == 2
+
+
+@pytest.mark.parametrize("days", [0, 2, 10, 27, 30, 55, 58, 59, 60, 61, 90, 400])
+def test_the_re_read_takes_exactly_the_jobs_the_rising_panel_compares(conn, days):
+    # The queue's window and the panel's two periods are one rule, so a job is re-read
+    # after a version bump if and only if the panel counts it in either period (HIR-303).
+    from app import queries
+    conn.execute("DELETE FROM job WHERE id IN (2, 3)")
+    # Long enough to be a posting the panel counts, not a fragment it leaves out.
+    conn.execute("UPDATE job SET extracted_version='x-old', description_text=?",
+                 ("Python and RAG job. " * (queries.MIN_TEXT_CHARS // 10 + 1),))
+    _last_seen_days_ago(conn, 1, days)
+    current_start = queries._days_ago(NOW, queries.RISING_DAYS)
+    previous_start = queries._days_ago(NOW, 2 * queries.RISING_DAYS)
+    counted = (queries._open_during(conn, queries.Filters(), previous_start, current_start)[0]
+               + queries._open_during(conn, queries.Filters(), current_start, NOW)[0])
+    requeued = [r["id"] for r in pipeline.jobs_needing_extraction(conn, "x-new", now=NOW)]
+    assert (requeued == [1]) == (counted > 0)
+
+
 def test_a_reopened_repost_with_a_stale_stamp_is_requeued(conn):
     fn = fake_extract([Mention("python", "required", "Python")])
     pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
@@ -258,7 +299,8 @@ def test_the_log_states_reread_and_closed_skip_counts(conn):
     lines = []
     tax2 = Taxonomy({"version": 3, "skills": [{"id": "python", "display": "Python"}]})
     pipeline.extract_pending(conn, tax2, fn, "m", log=lines.append)
-    assert any("2 open jobs queued" in l and "1 closed jobs skipped" in l for l in lines)
+    assert any("2 jobs queued (open in the last 56 days)" in l and "1 older closed jobs skipped" in l
+               for l in lines)
 
 
 def test_extract_pending_processes_the_queue_in_that_order(conn):
