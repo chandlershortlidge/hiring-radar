@@ -94,6 +94,9 @@ class RereadCost:
     unchanged: bool = False   # the branch's extractor is the one the jobs were read with
     by_suggestion: int = 0    # re-read because the model had suggested an added skill there
     offers: tuple[tuple[str, tuple[str, ...]], ...] = ()  # (skill id, spellings to offer)
+    # HIR-303: every stored posting the model could read again, open or closed, for the
+    # all-time rising and falling Chandler wants measured one day. A figure, never a queue.
+    stored_jobs: int | None = None
 
     @property
     def measured(self) -> bool:
@@ -158,7 +161,8 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
                 model: str = DEFAULT_MODEL, tax=None, git_ref: str | None = "origin/main") -> RereadCost:
     """Measure the cost of the re-read an extractor change merged now would trigger.
 
-    Without `tax`: every open job, as any extractor change used to re-read (HIR-221).
+    Without `tax`: every job open in the last 8 weeks, as any extractor change re-reads
+    (HIR-221, HIR-303).
     With `tax` (the branch's skill list): the jobs that change would really re-read. A
     branch that only adds skills re-reads only the open jobs naming one (HIR-224); the old
     skill list comes from the database's recorded snapshots or, failing those, from
@@ -167,7 +171,7 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
     # a module-level import would drag the whole extraction pipeline into the board search.
     from app.pipeline import reread_queue_size
     full = jobs = reread_queue_size(conn, now)
-    targeted: dict = {}
+    targeted: dict = {"stored_jobs": stored_postings(conn)}
     if tax is not None:
         from app import targeted_reread as tr
         snaps = tr.load_snapshots(conn)
@@ -177,12 +181,21 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
         p = tr.plan(conn, tax, model, snaps, now)
         if p.stale:
             jobs = full - p.stale + len(p.reread)   # never-read jobs are read either way
-            targeted = dict(full_jobs=full, carried=len(p.carry), added_ids=tuple(p.added_ids),
+            targeted |= dict(full_jobs=full, carried=len(p.carry), added_ids=tuple(p.added_ids),
                             by_suggestion=len(p.by_suggestion),
                             offers=tuple((sid, tuple(ws)) for sid, ws in p.offers.items()))
         else:
-            targeted = dict(full_jobs=full, unchanged=True)
+            targeted |= dict(full_jobs=full, unchanged=True)
     return cost_of_reading(conn, jobs, model, **targeted)
+
+
+def stored_postings(conn: sqlite3.Connection) -> int:
+    """Every stored job a re-read of everything would read, open or closed (HIR-303).
+
+    Legacy imports are left out: they hold an old summary, not the posting, so there is
+    nothing to read again. A job held back by a read-later setting is counted: reading
+    everything means it too."""
+    return conn.execute("SELECT count(*) FROM job WHERE extracted_version IS NOT 'legacy'").fetchone()[0]
 
 
 def cost_of_reading(conn: sqlite3.Connection, jobs: int, model: str = DEFAULT_MODEL,
@@ -240,6 +253,12 @@ def report_lines(cost: RereadCost) -> list[str]:
         for sid, words in cost.offers:
             lines.append(f"  {sid}: {', '.join(words)}")
     lines.append("")
-    lines.append("Closed jobs are not re-read, so they are not counted (HIR-195). "
-                 "Paste the figure above into the pull request body.")
+    lines.append("Jobs that closed more than 8 weeks ago, before the two periods the \"What's "
+                 "rising\" panel compares, are not re-read, so they are not counted "
+                 "(HIR-195, HIR-303). Paste the figure above into the pull request body.")
+    if cost.stored_jobs is not None:
+        lines.append("")
+        lines.append(f"For comparison, not what a merge spends: re-reading every stored posting, "
+                     f"open and closed ({cost.stored_jobs} job{'' if cost.stored_jobs == 1 else 's'}), "
+                     f"would cost about €{cost.eur_per_reading * cost.stored_jobs:.2f} (HIR-303).")
     return lines
