@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { axisMax, pct, pctInt } from "./format.js";
 import FitLine from "./FitLine.jsx";
 import { Search } from "./icons.jsx";
@@ -22,6 +23,41 @@ export function ChartStatus({ failed, onRetry }) {
   return <div className="empty" role="status">Loading the chart…</div>;
 }
 
+// The hover box (HIR-479). It is drawn on the page itself, not inside the chart: beside the
+// jobs the chart's column scrolls on its own, and anything drawn inside a scrolling box is
+// cut off at its edge — the box ran past the card and gave it a sideways scrollbar. It
+// hangs from the pointer (from the keyboard, from the bar's count), opens to the right,
+// flips to the left when it would leave the window, and is kept inside the window.
+const EDGE = 8;
+const GAP = 12;
+export function placeTip({ x, top }, { width, height }, { vw, vh }) {
+  let left = x + GAP;
+  if (left + width > vw - EDGE) left = x - GAP - width;
+  left = Math.max(EDGE, Math.min(left, vw - EDGE - width));
+  const y = Math.max(EDGE, Math.min(top - GAP, vh - EDGE - height));
+  return { left, top: y };
+}
+
+function Tip({ anchor, children }) {
+  const ref = useRef(null);
+  const [pos, setPos] = useState(null);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const root = document.documentElement;
+    setPos(placeTip(anchor, { width: el.offsetWidth, height: el.offsetHeight },
+      { vw: root.clientWidth || window.innerWidth, vh: root.clientHeight || window.innerHeight }));
+  }, [anchor.x, anchor.top]);
+  // hidden until measured, so it never flashes at the wrong place
+  return createPortal(
+    <div ref={ref} className="tip" role="tooltip"
+      style={pos ? { left: pos.left, top: pos.top } : { left: 0, top: 0, visibility: "hidden" }}>
+      {children}
+    </div>,
+    document.body,
+  );
+}
+
 // One bar per skill: share of the filtered job set listing it. With a profile, the bar
 // is plum for skills the person has and plum tint for the ones they don't (docs/style.md).
 //
@@ -36,11 +72,27 @@ export function ChartStatus({ failed, onRetry }) {
 // server for anything. Ranks and the axis keep the values they have in the whole chart, so
 // a filtered row still says where it sits overall and bar widths do not jump while typing.
 //
+// The hover box names the skill, its count and share of the filtered jobs (`jobsLabel` says
+// which jobs, e.g. "open AI Engineer jobs"), and that a click filters. It used to list the
+// other cities too; on one city's page that was noise (HIR-479). A comparison of cities
+// has its own chart, where each city is a column.
+//
 // `gaps` (HIR-411) puts the line naming the visitor's biggest gaps between the find box and
 // the bars. App turns it on for a single city's page; FitLine.jsx says when it draws.
-export default function SkillChart({ data, selected, onSelect, profile, cityLabel, aliases = {}, gaps = false }) {
+export default function SkillChart({ data, selected, onSelect, profile, jobsLabel = "jobs", aliases = {}, gaps = false }) {
   const [shown, setShown] = useState(PAGE);
+  // { id, x, top }: which bar, and the screen point the box hangs from
   const [hover, setHover] = useState(null);
+  // The box is fixed to the window, so it would stay put while the bars scroll away under
+  // it: any scroll (the page, or the chart's own column) or resize hides it.
+  const hovering = !!hover;
+  useEffect(() => {
+    if (!hovering) return undefined;
+    const hide = () => setHover(null);
+    window.addEventListener("scroll", hide, true);
+    window.addEventListener("resize", hide);
+    return () => { window.removeEventListener("scroll", hide, true); window.removeEventListener("resize", hide); };
+  }, [hovering]);
   const [find, setFind] = useState("");
   const total = data?.total || 0;
   const skills = data?.skills || [];
@@ -74,26 +126,33 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
         const w = `${Math.min(100, (p / max) * 100)}%`;
         const sel = selected.includes(s.skill_id);
         const dim = selected.length > 0 && !sel;
-        const cities = Object.entries(s.by_city || {});
         const cls = profile ? (have.has(s.skill_id) ? "have" : "gap") : "";
+        const rowTop = (e) => e.currentTarget.getBoundingClientRect().top;
+        const atPointer = (e) => setHover({ id: s.skill_id, x: e.clientX, top: rowTop(e) });
+        // from the keyboard there is no pointer: hang the box off the bar's count
+        const atBar = (e) => {
+          const n = e.currentTarget.querySelector(".n");
+          const x = (n || e.currentTarget).getBoundingClientRect().right;
+          setHover({ id: s.skill_id, x, top: rowTop(e) });
+        };
         return (
           <button key={s.skill_id} type="button" className={`bar-row${dim ? " dimmed" : ""}`} aria-pressed={sel}
             aria-label={`${s.display}, ${s.count} jobs, ${pctInt(s.count, total)}%. ${sel ? "Remove from" : "Filter"} job list`}
             onClick={(e) => onSelect(s.skill_id, e.shiftKey || e.metaKey)}
-            onMouseEnter={() => setHover(s.skill_id)} onMouseLeave={() => setHover(null)}
-            onFocus={() => setHover(s.skill_id)} onBlur={() => setHover(null)}>
-            <span className="name"><span className="rank">{rank[s.skill_id]}</span><span>{s.display}</span></span>
+            onMouseEnter={atPointer} onMouseMove={atPointer} onMouseLeave={() => setHover(null)}
+            onFocus={atBar} onBlur={() => setHover(null)}>
+            <span className="name"><span className="rank">{rank[s.skill_id]}</span><span className="label">{s.display}</span></span>
             <span className="track">
               <span className={`fill ${dim && !profile ? "dimmed" : cls}`} style={{ width: w }} />
               <span className="n">{s.count} <span className="pct">{pctInt(s.count, total)}%</span></span>
-              {hover === s.skill_id && (
-                <span className="tip" style={{ "--x": `calc(${w} + 72px)` }}>
-                  <b>{s.display}{profile && (have.has(s.skill_id) ? " · you have this" : " · not in your profile")}</b>
-                  <span>{s.count} jobs · {p}% of {total} {cityLabel}</span>
-                  {cities.length > 1 && <span className="c">{cities.map(([c, n]) => `${c} ${n}`).join(" · ")}</span>}
-                </span>
-              )}
             </span>
+            {hover?.id === s.skill_id && (
+              <Tip anchor={hover}>
+                <b>{s.display}{profile && (have.has(s.skill_id) ? " · you have this" : " · not in your profile")}</b>
+                <span>{s.count} jobs · {pctInt(s.count, total)}% of {total} {jobsLabel}</span>
+                <span className="c">{sel ? "Click to remove this filter" : "Click to filter the jobs"}</span>
+              </Tip>
+            )}
           </button>
         );
       })}
@@ -112,7 +171,7 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
           )}
           {/* How to select stays visible with a profile set too: the legend used to take the
               whole footer, which hid the one place that says a second skill can be added. */}
-          <span>Click a bar to filter the jobs · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for % and cities"}</span>
+          <span>Click a bar to filter the jobs · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for the numbers"}</span>
         </div>
       </div>
     </div>

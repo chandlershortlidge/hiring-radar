@@ -4,12 +4,22 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>hiring-radar</title>
+    <!-- Where an AI agent finds our MCP server (HIR-480, app/discovery.py). -->
+    <meta name="mcp-server" content="https://hiringradar.app/mcp" />
+    <link rel="alternate" type="application/mcp-server-card+json" href="https://hiringradar.app/mcp/server-card" title="MCP Server Card" />
+    <link rel="alternate" type="text/plain" href="https://hiringradar.app/llms.txt" title="llms.txt" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23603C5F' stroke-width='1.8'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Ccircle cx='12' cy='12' r='5'/%3E%3Ccircle cx='12' cy='12' r='1.3' fill='%23F38155' stroke='%23F38155'/%3E%3C/svg%3E" />
   </head>
   <body>
     <div id="root"></div>
+    <!-- Plain HTML, outside the app, so a crawler that runs no JavaScript reads it too. -->
+    <footer class="for-agents" style="max-width: 1200px; margin: 0 auto; padding: 24px; font-size: 12.5px; color: var(--ink-2);">
+      For AI agents: Hiring Radar's data is open through an MCP server at
+      <code>https://hiringradar.app/mcp</code> (Streamable HTTP, no sign-in, rate limited).
+      Details: <a href="/llms.txt">llms.txt</a>.
+    </footer>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

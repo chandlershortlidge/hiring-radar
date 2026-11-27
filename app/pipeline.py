@@ -37,10 +37,12 @@ another version, so a changed prompt, model or skill list gives the posting two 
 Every other failure is retried for ever,
 since it says nothing about the posting. Only one extraction runs per database at a time: a second
 run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
-twice, and its jobs stay pending for the next run. A version bump re-reads only jobs that are
-still open (the dashboard's open rule, queries.open_clause): closed jobs keep the skills and
-version stamp of their day, and a repost seen again counts as open and re-enters the queue
-(HIR-195). A job never read at all is read whatever its status — a first read is not a re-read.
+twice, and its jobs stay pending for the next run. A version bump re-reads only jobs that were
+open at some moment in the "What's rising" panel's two periods, the last 2 × RISING_DAYS
+days (`reread_window_clause`, HIR-303): that is every open job and the recently closed
+ones the panel still compares, so both periods carry the same reading. Jobs closed before
+that keep the skills and version stamp of their day, and a repost seen again counts as open
+and re-enters the queue (HIR-195). A job never read at all is read whatever its status — a first read is not a re-read.
 A job whose place or track is set to read later (app/scope.py, HIR-396) is in no queue this
 module builds on its own: not a poll's, not a re-read's, not the count a re-read is priced
 from. It is read only when a caller names it (`job_ids`): `read-pending`'s one bulk read,
@@ -61,7 +63,7 @@ from app.extract import (
     extraction_from_message, extraction_input, extractor_version, make_client)
 from app.grounding import grounding
 from app.ingest import now_iso
-from app.queries import open_clause
+from app.queries import RISING_DAYS, _days_ago, open_clause
 from app.sources import registry
 from app.reread_cost import MODEL_PRICES_USD_PER_MTOK, BATCH_DISCOUNT, Tokens, USAGE_KEYS, price_eur
 from app.taxonomy import Taxonomy
@@ -81,9 +83,9 @@ class ExtractReport:
     skipped_busy: bool = False
     dropped: list[tuple[int, str]] = field(default_factory=list)
     logged: int = 0
-    reread_queued: int = 0     # stale-stamped jobs in this run's queue (still open)
+    reread_queued: int = 0     # stale-stamped jobs in this run's queue (open in the re-read window)
     carried_over: int = 0      # stale-stamped open jobs moved to the new stamp unread (HIR-224)
-    skipped_closed: int = 0    # stale-stamped jobs left out because they are closed (HIR-195)
+    skipped_closed: int = 0    # stale-stamped jobs left out: closed before the re-read window (HIR-195, HIR-303)
     # What this run actually spent, in euros, on its successful readings — priced at the
     # Batch API's half rate for a batch run, the standard rate otherwise (HIR-222).
     cost_eur: float = 0.0
@@ -185,13 +187,26 @@ def held_clause() -> tuple[str, list]:
     return "(" + " OR ".join(parts) + ")", params
 
 
+def reread_window_clause(now: str) -> tuple[str, list]:
+    """WHERE fragment (over alias j) true for the jobs a version bump re-reads: open at any
+    moment in the last 2 × RISING_DAYS days (HIR-303, Chandler 16 Nov).
+
+    The "What's rising" panel compares the last RISING_DAYS days with the RISING_DAYS
+    before, counting a job in a period when it was open at any moment in it
+    (queries._open_during: the open rule asked as of the period's start). Asked as of the
+    earlier period's start, the same rule gives every job either period counts, so after a
+    change to how postings are read both periods hold the new reading and a rise on the
+    panel is the market's, not ours. A superset of the jobs open now (HIR-195's set)."""
+    return open_clause(_days_ago(now, 2 * RISING_DAYS))
+
+
 def _pending_clause(version: str, now: str | None = None, include_held: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs that need an extraction at `version`.
 
     The one definition of the queue's membership, so a count of it and the queue itself can
     never disagree (HIR-221). Jobs held back by a read-later setting (`held_clause`) are
     left out unless `include_held`, which only a caller naming its jobs passes (HIR-396)."""
-    open_sql, open_params = open_clause(now or now_iso())
+    open_sql, open_params = reread_window_clause(now or now_iso())
     sql = (f"(j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
            " AND j.extracted_version IS NOT 'legacy'")
     params = [version, *open_params]
@@ -232,8 +247,9 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     the posting, so a fresh extraction would be worse than the labels they have.
 
     A job never read at all is always in the queue, but a re-read (a job stamped with an
-    older version) only while the job is still open: closed jobs keep the skills of their
-    day, and nobody browses them, so a version bump must not pay to re-read them (HIR-195).
+    older version) only while the job is open or was open in the last 2 × RISING_DAYS
+    days (`reread_window_clause`, HIR-303): older closed jobs keep the skills of their day,
+    and nothing reads them any more, so a version bump must not pay to re-read them (HIR-195).
     A repost the poll sees again gets its last_seen bumped by ingest, counts as open, and
     re-enters the queue on its own.
 
@@ -265,8 +281,9 @@ def reread_queue_size(conn: sqlite3.Connection, now: str | None = None) -> int:
 
 def closed_reread_skips(conn: sqlite3.Connection, version: str,
                         job_ids: list[int] | None = None, now: str | None = None) -> int:
-    """How many stale-stamped jobs the queue left out because they are closed (HIR-195)."""
-    open_sql, open_params = open_clause(now or now_iso())
+    """How many stale-stamped jobs the queue left out because they closed before the
+    re-read window (HIR-195, HIR-303)."""
+    open_sql, open_params = reread_window_clause(now or now_iso())
     sql = ("SELECT count(*) FROM job j"
            " WHERE j.extracted_version IS NOT NULL AND j.extracted_version != ?"
            f" AND j.extracted_version != 'legacy' AND NOT {open_sql}")
@@ -611,8 +628,8 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=No
     if report.reread_queued:
         trace.tag("reread")
     if report.reread_queued or report.skipped_closed:
-        log(f"  re-reads: {report.reread_queued} open jobs queued;"
-            f" {report.skipped_closed} closed jobs skipped (keep their old skills)")
+        log(f"  re-reads: {report.reread_queued} jobs queued (open in the last {2 * RISING_DAYS} days);"
+            f" {report.skipped_closed} older closed jobs skipped (keep their old skills)")
     for row in rows:
         report.attempted += 1
         sent = extraction_input(row["title"], row["description_text"])
@@ -661,8 +678,8 @@ def _extract_pending_batch(conn, tax, batch_fn, model, limit, log, job_ids, trac
     if report.reread_queued:
         trace.tag("reread")
     if report.reread_queued or report.skipped_closed:
-        log(f"  re-reads: {report.reread_queued} open jobs queued;"
-            f" {report.skipped_closed} closed jobs skipped (keep their old skills)")
+        log(f"  re-reads: {report.reread_queued} jobs queued (open in the last {2 * RISING_DAYS} days);"
+            f" {report.skipped_closed} older closed jobs skipped (keep their old skills)")
     if not rows:
         return report
     sent_by_id = {row["id"]: extraction_input(row["title"], row["description_text"]) for row in rows}

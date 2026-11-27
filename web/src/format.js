@@ -1,3 +1,10 @@
+// A posting stored but not read by the model yet (HIR-486). The API marks it `read: false`
+// (HIR-484): its skills and its German, degree and production asks are unknown, not absent.
+// So the list and the job page say so instead of showing an empty skill list, and Best fit
+// does not score it. A row with no `read` field (an older response) counts as read.
+export const notRead = (job) => job?.read === false;
+export const NOT_READ = "not read yet";
+
 export const SOURCE_CODES = {
   arbeitnow: ["AB", "arbeitnow"],
   startup_jobs: ["SJ", "startup.jobs"],

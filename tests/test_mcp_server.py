@@ -18,6 +18,10 @@ from mcp.server.mcpserver.exceptions import ToolError
 from app import db, mcp_server, queries as q
 from app.api import create_app
 from app.geo import CITIES, REMOTE_EU
+from app.extract import Extraction, Mention, Seniority
+from app.ingest import ingest_one
+from app.pipeline import store_extraction
+from app.sources import Posting
 from tests.test_api import TAX
 from tests.test_queries import NOW, add, ts
 
@@ -221,6 +225,58 @@ def test_get_job_matches_the_dashboard_job_page(db_path, server):
 def test_get_job_rejects_an_id_that_does_not_exist(server):
     with pytest.raises(ToolError, match="no job with id 99999"):
         call(server, "get_job", job_id=99999)
+
+
+# Groups of alternatives (HIR-485). Babel asks for Python, and AWS or Docker (the posting's
+# "AWS or Azure", with ids the test skill list has). Lyceum's whole ask is one group, as
+# job 2063's "vLLM, SGLang, ... or GPU, cloud and Linux" was read.
+GROUPED = {
+    "Babel": [("python", None), ("aws", 1), ("docker", 1)],
+    "Lyceum": [("rag", 1), ("llms", 1), ("aws", 1)],
+}
+
+
+@pytest.fixture
+def grouped_server(db_path):
+    c = db.connect(db_path)
+    for company, mentions in GROUPED.items():
+        job_id = add(c, company, "AI Engineer", "Berlin", "greenhouse", ts(1), [], "mid")
+        store_extraction(c, job_id, Extraction(
+            seniority=Seniority("mid", "stated", "mid"),
+            mentions=[Mention(sid, "required", sid, group) for sid, group in mentions]
+                     + [Mention("llms", "nice_to_have", "llms")] * (company == "Babel"),
+            proposed=[], extractor_version="t", taxonomy_version=3))
+    c.close()
+    return mcp_server.build_server(db_path, TAX, lambda: NOW)
+
+
+def job_of(server, company: str) -> dict:
+    job_id = search(server, company_or_title=company)["jobs"][0]["id"]
+    return call(server, "get_job", job_id=job_id).structured_content | {"id": job_id}
+
+
+def test_get_job_writes_a_group_of_alternatives_as_one_requirement(grouped_server):
+    babel, lyceum = job_of(grouped_server, "Babel"), job_of(grouped_server, "Lyceum")
+    assert babel["required_skills"] == ["python", ["aws", "docker"]]
+    assert lyceum["required_skills"] == [["aws", "llms", "rag"]]
+    assert babel["nice_to_have_skills"] == ["llms"]
+    # A job with no group is still a plain list of ids.
+    assert job_of(grouped_server, "Acme")["required_skills"] == ["python", "rag"]
+    # search_jobs writes the same job the same way.
+    listed = {j["company"]: j for j in search(grouped_server, window="all")["jobs"]}
+    for company in ("Babel", "Lyceum", "Acme"):
+        assert listed[company]["required_skills"] == job_of(grouped_server, company)["required_skills"]
+
+
+@pytest.mark.parametrize("company", ["Babel", "Lyceum", "Acme"])
+def test_get_job_counts_requirements_as_match_profile_does(grouped_server, company):
+    """The requirements get_job lists are match_profile's total for the job, with or
+    without a group."""
+    job = job_of(grouped_server, company)
+    ranked = call(grouped_server, "match_profile", skills=["python"], limit=50).structured_content["jobs"]
+    total = next(j["total"] for j in ranked if j["id"] == job["id"])
+    assert len(job["required_skills"]) == total
+    assert total == {"Babel": 2, "Lyceum": 1, "Acme": 2}[company]
 
 # --- skill_demand ------------------------------------------------------------------------
 
@@ -667,7 +723,60 @@ def test_match_profile_offers_the_dashboard_profile_values(match_server):
     assert f"fewer than {fit.SKILLS_FLOOR} required skills" in tool.description
 
 
-# --- the skill list (a resource) -----------------------------------------------------
+# --- a posting not read yet (HIR-484) ---------------------------------------------------
+# Ingest stores a posting first and the model reads it later; in between it has no skills
+# and no requirements, which must never look like a read posting that asks for nothing.
+
+def add_unread(path, company="Fresh", city="Berlin", when=None) -> int:
+    """A posting ingest stored and the model has not read: a job with no reading at all."""
+    c = db.connect(path)
+    p = Posting("greenhouse", f"greenhouse-{company}", "", company, "AI Engineer", city,
+                f"{company} AI Engineer. Fließend Deutsch, production experience, python, rag." * 20)
+    job_id = ingest_one(c, p, when or ts(0), require_city=False, trust_title=True).job_id
+    c.commit()
+    c.close()
+    return job_id
+
+
+def test_search_jobs_and_search_postings_mark_a_posting_not_read_yet(db_path, server):
+    fresh = add_unread(db_path)
+    jobs = {j["id"]: j for j in search(server, city=["Berlin"])["jobs"]}
+    assert jobs[fresh]["read"] is False and jobs[fresh]["required_skills"] == []
+    assert all(j["read"] is True for i, j in jobs.items() if i != fresh)
+    # The same mark where a German filter keeps it: unknown, not "German not mentioned".
+    assert {j["id"]: j["read"] for j in search(server, german="none")["jobs"]}[fresh] is False
+    found = {j["id"]: j for j in postings(server, text="Fresh")["jobs"]}
+    assert found[fresh]["read"] is False
+
+
+def test_get_job_marks_a_posting_not_read_yet(db_path, server):
+    fresh = add_unread(db_path)
+    job = call(server, "get_job", job_id=fresh).structured_content
+    assert job["read"] is False and job["required_skills"] == [] and job["german"] is None
+    assert call(server, "get_job", job_id=acme_id(server)).structured_content["read"] is True
+
+
+def test_match_profile_leaves_out_a_posting_not_read_yet_and_counts_it(match_db, match_server):
+    before = match(match_server, **MID)
+    fresh = add_unread(match_db)
+    r = match(match_server, **MID)
+    # Never ranked, so never among the jobs nothing gates; counted instead.
+    assert fresh not in [j["id"] for j in r["jobs"]]
+    assert (r["ranked"], r["not_read_yet"]) == (before["ranked"], 1) and before["not_read_yet"] == 0
+    assert r["jobs"] == before["jobs"]
+    # Counted only when the filters keep it.
+    assert match(match_server, **MID, city=["Munich"])["not_read_yet"] == 0
+    assert match(match_server, **MID, since=ts(0)[:10])["not_read_yet"] == 1
+
+
+def test_every_tool_that_returns_jobs_says_what_happens_to_a_posting_not_read_yet(server):
+    tools = {t.name: t.description for t in asyncio.run(server.list_tools())}
+    for name in ("search_jobs", "search_postings", "get_job"):
+        assert "read is false" in tools[name] and "has not read yet" in tools[name], name
+    assert "not_read_yet" in tools["match_profile"] and "left" in tools["match_profile"]
+
+
+# --- the skill list (a resource)-----------------------------------------------------
 
 def test_the_skill_list_is_a_resource_with_every_skill(server):
     """One resource, read without arguments: every skill with its id, name, spellings and
@@ -763,15 +872,19 @@ def limiter(**numbers):
 
     limit = mcp_server.RateLimit(app, clock=lambda: t[0], **numbers)
 
-    def hit(ip, session=None, version=None, method="POST"):
+    def hit(ip, session=None, version=None, method="POST", body=b'{"jsonrpc": "2.0", "id": 7, "method": "ping"}'):
         sent = []
 
         async def send(m):
             sent.append(m)
 
+        async def receive():
+            return {"type": "http.request", "body": body}
+
         headers = [(b"mcp-session-id", session.encode())] if session else []
         headers += [(b"mcp-protocol-version", version.encode())] if version else []
-        asyncio.run(limit({"type": "http", "method": method, "client": (ip, 1), "headers": headers}, None, send))
+        asyncio.run(limit({"type": "http", "method": method, "client": (ip, 1), "headers": headers}, receive, send))
+        hit.body = b"".join(m.get("body", b"") for m in sent[1:])
         return sent[0]["status"], {k.decode(): v.decode() for k, v in sent[0]["headers"]}
 
     return limit, t, hit
@@ -874,6 +987,89 @@ def test_rate_limit_answers_405_to_a_listening_stream():
     _, _, hit = limiter()
     status, headers = hit("1.1.1.1", connect(hit), method="GET")
     assert status == 405 and headers["allow"] == "POST"
+
+
+# The refusal (HIR-218): a JSON-RPC error the client hands its model, saying which limit,
+# its numbers and how long to wait.
+
+def refusal(hit, *args, **kwargs):
+    status, headers = hit(*args, **kwargs)
+    assert status == 429 and headers["content-type"] == "application/json"
+    return headers, json.loads(hit.body)
+
+
+def test_refusal_over_a_connections_allowance_says_which_limit_and_how_long_to_wait():
+    _, t, hit = limiter(burst=2, rate=0.5)
+    a = connect(hit)
+    hit("1.1.1.1", a)
+    t[0] += 0.5                                          # a quarter of a request back: 1.5 s to wait
+    headers, msg = refusal(hit, "1.1.1.1", a)
+    assert headers["retry-after"] == "2"
+    assert msg["jsonrpc"] == "2.0" and msg["id"] == 7    # the refused request's own id
+    assert msg["error"]["code"] == mcp_server.RATE_LIMITED
+    assert msg["error"]["data"] == {"retry_after": 2, "limit": "connection"}
+    assert msg["error"]["message"] == ("hiring-radar's request limit for this connection is used up: up to 2 "
+                                       "requests at once, then about 30 a minute. Try again in 2 seconds.")
+
+
+def test_refusal_names_the_address_ceiling_and_says_it_is_shared():
+    _, _, hit = limiter(ip_burst=2, ip_rate=1.0)
+    a = connect(hit)
+    hit("1.1.1.1", a)
+    headers, msg = refusal(hit, "1.1.1.1", a)
+    assert headers["retry-after"] == "1" and msg["error"]["data"] == {"retry_after": 1, "limit": "address"}
+    assert "network address is used up: up to 2 requests at once, then about 60 a minute, shared by everyone" \
+        in msg["error"]["message"]
+    assert msg["error"]["message"].endswith("Try again in 1 second.")
+    _, msg = refusal(hit, "1.1.1.1", version="2026-07-28")   # the protocol with no connections meets it too
+    assert msg["error"]["data"]["limit"] == "address"
+
+
+def test_refusal_of_a_new_connection_says_to_keep_the_open_one():
+    _, _, hit = limiter(new_burst=1, new_rate=1.0)
+    connect(hit)
+    headers, msg = refusal(hit, "1.1.1.1")
+    assert "mcp-session-id" not in headers
+    assert msg["error"]["data"]["limit"] == "new_connections"
+    assert "Keep using the connection already open" in msg["error"]["message"]
+
+
+@pytest.mark.parametrize("body", [b"not json", b'[{"jsonrpc": "2.0", "id": 1, "method": "ping"}]',
+                                  b'{"jsonrpc": "2.0", "id": true}', b'{"jsonrpc": "2.0", "method": "x"}',
+                                  b'{"id": 1, "pad": "' + b"x" * 70_000 + b'"}'],
+                         ids=["not-json", "batch", "bool-id", "notification", "too-large"])
+def test_refusal_answers_a_null_id_when_the_request_has_no_usable_one(body):
+    """A batch, a body that is not JSON, a notification or a body too large to read: id null,
+    which JSON-RPC allows when the id cannot be read."""
+    _, _, hit = limiter(burst=1)
+    a = connect(hit)
+    _, msg = refusal(hit, "1.1.1.1", a, body=body)
+    assert msg["id"] is None and msg["error"]["data"]["limit"] == "connection"
+
+
+def test_a_real_mcp_client_over_its_limit_gets_the_message_not_a_server_error(db_path):
+    """End to end, the MCP library's own client through the whole app: the tool call over
+    the limit fails with our sentence, which is what the person's assistant reads."""
+    app = create_app(db_path, TAX)
+    (route,) = [r for r in app.router.routes if getattr(r, "path", None) == "/mcp"]
+    route.app.sessions.burst = 4                         # initialize, initialized, tools/list, one tool call
+
+    async def run():
+        async with app.router.lifespan_context(app):
+            http = httpx2.AsyncClient(transport=httpx2.ASGITransport(app=app), base_url="http://hiring-radar.test")
+            url = "http://hiring-radar.test/mcp"
+            async with http, Client(streamable_http_client(url, http_client=http), mode="legacy") as client:
+                first = await client.call_tool("search_jobs", {"city": ["Berlin"]})
+                try:
+                    await client.call_tool("search_jobs", {"city": ["Berlin"]})
+                except Exception as e:                   # noqa: BLE001 - whatever the library raises
+                    return first, e
+                return first, None
+
+    first, refused = asyncio.run(run())
+    assert not first.is_error
+    assert refused is not None and "request limit for this connection is used up" in str(refused)
+    assert "Try again in" in str(refused)
 
 
 def test_the_app_serves_mcp_behind_the_rate_limit(db_path):

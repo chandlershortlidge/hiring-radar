@@ -101,8 +101,9 @@ def test_an_incubating_citys_row_counts_what_is_stored_open_and_waiting(conn):
     assert chicago.stored == 4                       # Windy, Both, Gone, Fresh
     assert chicago.open_now == 3                     # Gone was last seen 30 days ago
     # Fresh was never read; Windy and Both are open and were read by an older extractor.
-    # Gone was read and has closed, so nothing will read it again.
-    assert chicago.waiting == 3
+    # Gone was read and closed 30 days ago: still inside the "What's rising" panel's two
+    # 4-week periods, so a version bump reads it again too (HIR-303).
+    assert chicago.waiting == 4
     assert (chicago.first_day, chicago.last_day) == (ts(40)[:10], ts(0)[:10])
     assert chicago.days == 41                        # both ends counted
     assert chicago.sources == 2                      # greenhouse and lever
@@ -236,7 +237,7 @@ def test_the_page_shows_the_incubating_city_and_track_and_the_public_site_and_mc
     r = api.get("/admin")
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
     rows = page_rows(r.text)
-    assert rows["Chicago"][1:6] == ["incubating", "now", "4", "3", "3"]
+    assert rows["Chicago"][1:6] == ["incubating", "now", "4", "3", "4"]
     assert rows["research"][1:4] == ["incubating", "now", "1"]
     assert rows["Berlin"][1] == "live" and rows["Berlin"][-1] == ""
     assert rows["Chicago"][-1].startswith("skill list: the shared one; Goldens: ")
@@ -387,7 +388,7 @@ def test_the_monday_summary_has_one_line_per_incubating_place_or_track_with_the_
                          r"([\d,]+) days? collected \((\S+) to (\S+)\)\. Ready\? (.*)\.$", line)
         assert said, line
         assert said.groups() == (stored, open_now, waiting, days, first, last, page[name][-1])
-    assert "- Chicago (city): 4 postings stored, 3 open now, 3 waiting to be read, 41 days collected" in section
+    assert "- Chicago (city): 4 postings stored, 3 open now, 4 waiting to be read, 41 days collected" in section
     assert "- research (career track): 1 posting stored, 1 open now, 1 waiting to be read, 41 days collected" in section
 
 
