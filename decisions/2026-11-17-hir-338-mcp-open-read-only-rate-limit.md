@@ -2,6 +2,10 @@
 
 > **Partly replaced, 23 Nov (HIR-444):** the limit now counts per connection, with new
 > numbers: `2026-11-23-hir-444-mcp-rate-limit-per-connection.md`. The rest stands.
+>
+> **And 27 Nov (HIR-218):** no sign-in is planned; the per-connection limit is the per-user
+> cap, and a refused request is told which limit and how long to wait:
+> `2026-11-27-hir-218-mcp-public-no-sign-in.md`.
 
 **What was decided.** Chandler, 17 Nov, in the ticket: the MCP server (anyone's Claude
 connects to it at `/mcp` on the live site) is **open and read-only** in its first version.

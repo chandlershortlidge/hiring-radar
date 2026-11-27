@@ -763,15 +763,19 @@ def limiter(**numbers):
 
     limit = mcp_server.RateLimit(app, clock=lambda: t[0], **numbers)
 
-    def hit(ip, session=None, version=None, method="POST"):
+    def hit(ip, session=None, version=None, method="POST", body=b'{"jsonrpc": "2.0", "id": 7, "method": "ping"}'):
         sent = []
 
         async def send(m):
             sent.append(m)
 
+        async def receive():
+            return {"type": "http.request", "body": body}
+
         headers = [(b"mcp-session-id", session.encode())] if session else []
         headers += [(b"mcp-protocol-version", version.encode())] if version else []
-        asyncio.run(limit({"type": "http", "method": method, "client": (ip, 1), "headers": headers}, None, send))
+        asyncio.run(limit({"type": "http", "method": method, "client": (ip, 1), "headers": headers}, receive, send))
+        hit.body = b"".join(m.get("body", b"") for m in sent[1:])
         return sent[0]["status"], {k.decode(): v.decode() for k, v in sent[0]["headers"]}
 
     return limit, t, hit
@@ -874,6 +878,89 @@ def test_rate_limit_answers_405_to_a_listening_stream():
     _, _, hit = limiter()
     status, headers = hit("1.1.1.1", connect(hit), method="GET")
     assert status == 405 and headers["allow"] == "POST"
+
+
+# The refusal (HIR-218): a JSON-RPC error the client hands its model, saying which limit,
+# its numbers and how long to wait.
+
+def refusal(hit, *args, **kwargs):
+    status, headers = hit(*args, **kwargs)
+    assert status == 429 and headers["content-type"] == "application/json"
+    return headers, json.loads(hit.body)
+
+
+def test_refusal_over_a_connections_allowance_says_which_limit_and_how_long_to_wait():
+    _, t, hit = limiter(burst=2, rate=0.5)
+    a = connect(hit)
+    hit("1.1.1.1", a)
+    t[0] += 0.5                                          # a quarter of a request back: 1.5 s to wait
+    headers, msg = refusal(hit, "1.1.1.1", a)
+    assert headers["retry-after"] == "2"
+    assert msg["jsonrpc"] == "2.0" and msg["id"] == 7    # the refused request's own id
+    assert msg["error"]["code"] == mcp_server.RATE_LIMITED
+    assert msg["error"]["data"] == {"retry_after": 2, "limit": "connection"}
+    assert msg["error"]["message"] == ("hiring-radar's request limit for this connection is used up: up to 2 "
+                                       "requests at once, then about 30 a minute. Try again in 2 seconds.")
+
+
+def test_refusal_names_the_address_ceiling_and_says_it_is_shared():
+    _, _, hit = limiter(ip_burst=2, ip_rate=1.0)
+    a = connect(hit)
+    hit("1.1.1.1", a)
+    headers, msg = refusal(hit, "1.1.1.1", a)
+    assert headers["retry-after"] == "1" and msg["error"]["data"] == {"retry_after": 1, "limit": "address"}
+    assert "network address is used up: up to 2 requests at once, then about 60 a minute, shared by everyone" \
+        in msg["error"]["message"]
+    assert msg["error"]["message"].endswith("Try again in 1 second.")
+    _, msg = refusal(hit, "1.1.1.1", version="2026-07-28")   # the protocol with no connections meets it too
+    assert msg["error"]["data"]["limit"] == "address"
+
+
+def test_refusal_of_a_new_connection_says_to_keep_the_open_one():
+    _, _, hit = limiter(new_burst=1, new_rate=1.0)
+    connect(hit)
+    headers, msg = refusal(hit, "1.1.1.1")
+    assert "mcp-session-id" not in headers
+    assert msg["error"]["data"]["limit"] == "new_connections"
+    assert "Keep using the connection already open" in msg["error"]["message"]
+
+
+@pytest.mark.parametrize("body", [b"not json", b'[{"jsonrpc": "2.0", "id": 1, "method": "ping"}]',
+                                  b'{"jsonrpc": "2.0", "id": true}', b'{"jsonrpc": "2.0", "method": "x"}',
+                                  b'{"id": 1, "pad": "' + b"x" * 70_000 + b'"}'],
+                         ids=["not-json", "batch", "bool-id", "notification", "too-large"])
+def test_refusal_answers_a_null_id_when_the_request_has_no_usable_one(body):
+    """A batch, a body that is not JSON, a notification or a body too large to read: id null,
+    which JSON-RPC allows when the id cannot be read."""
+    _, _, hit = limiter(burst=1)
+    a = connect(hit)
+    _, msg = refusal(hit, "1.1.1.1", a, body=body)
+    assert msg["id"] is None and msg["error"]["data"]["limit"] == "connection"
+
+
+def test_a_real_mcp_client_over_its_limit_gets_the_message_not_a_server_error(db_path):
+    """End to end, the MCP library's own client through the whole app: the tool call over
+    the limit fails with our sentence, which is what the person's assistant reads."""
+    app = create_app(db_path, TAX)
+    (route,) = [r for r in app.router.routes if getattr(r, "path", None) == "/mcp"]
+    route.app.sessions.burst = 4                         # initialize, initialized, tools/list, one tool call
+
+    async def run():
+        async with app.router.lifespan_context(app):
+            http = httpx2.AsyncClient(transport=httpx2.ASGITransport(app=app), base_url="http://hiring-radar.test")
+            url = "http://hiring-radar.test/mcp"
+            async with http, Client(streamable_http_client(url, http_client=http), mode="legacy") as client:
+                first = await client.call_tool("search_jobs", {"city": ["Berlin"]})
+                try:
+                    await client.call_tool("search_jobs", {"city": ["Berlin"]})
+                except Exception as e:                   # noqa: BLE001 - whatever the library raises
+                    return first, e
+                return first, None
+
+    first, refused = asyncio.run(run())
+    assert not first.is_error
+    assert refused is not None and "request limit for this connection is used up" in str(refused)
+    assert "Try again in" in str(refused)
 
 
 def test_the_app_serves_mcp_behind_the_rate_limit(db_path):
