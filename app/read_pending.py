@@ -16,7 +16,7 @@ Reading those postings as they arrive, with a skill list that does not cover the
 for twice. They are stored unread instead, and read once, here, when the list is ready.
 
 Invariants: the jobs are a subset of the queue with held jobs included
-(`pipeline._pending_clause(include_held=True)`), so nothing already read at this version
+(`pipeline.pending_jobs(include_held=True)`), so nothing already read at this version
 is read again. Asked by city alone, jobs on a read-later track are left out and counted:
 their skill list is what is still missing, and naming the track reads them. A plan with no
 cap is never over it; the command refuses a real run without one.
@@ -26,7 +26,7 @@ import sqlite3
 from dataclasses import dataclass
 
 from app import scope
-from app.pipeline import _pending_clause
+from app.pipeline import pending_jobs
 from app.reread_cost import RereadCost, cost_of_reading
 
 
@@ -67,14 +67,7 @@ def plan(conn: sqlite3.Connection, version: str, city: str | None = None, family
         raise ValueError(f"{city!r} is not a collected place; one of: {', '.join(scope.places())}")
     if family and family not in scope.tracks():
         raise ValueError(f"{family!r} is not a career track; one of: {', '.join(scope.tracks())}")
-    where, params = _pending_clause(version, now, include_held=True)
-    if city:
-        where += " AND EXISTS (SELECT 1 FROM job_place rp WHERE rp.job_id = j.id AND rp.place = ?)"
-        params.append(city)
-    if family:
-        where += " AND j.family = ?"
-        params.append(family)
-    rows = conn.execute(f"SELECT j.id, j.family FROM job j WHERE {where} ORDER BY j.id", params).fetchall()
+    rows = pending_jobs(conn, version, place=city or None, family=family or None, include_held=True, now=now)
     skip = set() if family else set(scope.read_later_tracks())
     to_read = [r["id"] for r in rows if r["family"] not in skip]
     what = f"{family} in {city}" if city and family else (family or city)

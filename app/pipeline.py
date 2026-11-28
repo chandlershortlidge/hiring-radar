@@ -240,9 +240,67 @@ def held_line(conn: sqlite3.Connection, version: str, now: str | None = None) ->
             f" `python -m app read-pending` reads them")
 
 
+def _pending_where(version: str, *, job_ids: list[int] | None, place: str | None, family: str | None,
+                   include_held: bool, stale_only: bool, now: str | None) -> tuple[str, list]:
+    """`_pending_clause` narrowed by the filters `pending_jobs` and `pending_count` take."""
+    where, params = _pending_clause(version, now, include_held)
+    if stale_only:
+        where += " AND j.extracted_version IS NOT NULL"
+    if place is not None:
+        where += " AND EXISTS (SELECT 1 FROM job_place pp WHERE pp.job_id = j.id AND pp.place = ?)"
+        params.append(place)
+    if family is not None:
+        where += " AND j.family = ?"
+        params.append(family)
+    if job_ids is not None:
+        where += f" AND j.id IN ({','.join('?' * len(job_ids))})"
+        params += list(job_ids)
+    return where, params
+
+
+def pending_jobs(conn: sqlite3.Connection, version: str, *, job_ids: list[int] | None = None,
+                 place: str | None = None, family: str | None = None, include_held: bool = False,
+                 stale_only: bool = False, now: str | None = None, limit: int | None = None,
+                 queue_order: bool = False) -> list[sqlite3.Row]:
+    """The jobs waiting for a reading at `version`: the one public way to ask (HIR-426).
+
+    Every filter narrows the queue (`_pending_clause`, HIR-221): `job_ids` to those jobs,
+    `place` to jobs placed there, `family` to one career track, `stale_only` to jobs read
+    before (a re-read, not a first read). `job_ids=None` means no narrowing; an empty list
+    means no jobs, and returns [] without asking the database: a planner that priced zero
+    jobs must never be handed the whole queue to read.
+
+    Held jobs (a read-later setting, HIR-396) are left out unless `include_held`. Rows carry
+    id, extracted_version, title, description_text and family, oldest first; `queue_order`
+    gives the extraction order instead (never-read first, newest first, HIR-193)."""
+    if job_ids is not None and not job_ids:
+        return []
+    where, params = _pending_where(version, job_ids=job_ids, place=place, family=family,
+                                   include_held=include_held, stale_only=stale_only, now=now)
+    sql = (f"SELECT j.id, j.extracted_version, j.title, j.description_text, j.family"
+           f" FROM job j WHERE {where}")
+    sql += " ORDER BY (j.extracted_version IS NOT NULL), j.id DESC" if queue_order else " ORDER BY j.id"
+    if limit:
+        sql += f" LIMIT {int(limit)}"
+    return conn.execute(sql, params).fetchall()
+
+
+def pending_count(conn: sqlite3.Connection, version: str, *, job_ids: list[int] | None = None,
+                  place: str | None = None, family: str | None = None, include_held: bool = False,
+                  stale_only: bool = False, now: str | None = None) -> int:
+    """How many jobs `pending_jobs` would return with the same filters, without reading
+    their text. Same definition, so a count and the read after it cannot disagree."""
+    if job_ids is not None and not job_ids:
+        return 0
+    where, params = _pending_where(version, job_ids=job_ids, place=place, family=family,
+                                   include_held=include_held, stale_only=stale_only, now=now)
+    return conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
+
+
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
                             job_ids: list[int] | None = None, now: str | None = None) -> list[sqlite3.Row]:
-    """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints).
+    """The extraction queue, in the order it is read; `job_ids` narrows to those jobs (the
+    add endpoints, a launch's first read, read-pending), and an empty list reads none (HIR-426).
 
     Jobs stamped 'legacy' are never re-extracted: they carry the old summary as text, not
     the posting, so a fresh extraction would be worse than the labels they have.
@@ -255,19 +313,13 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     re-enters the queue on its own.
 
     A job held back by a read-later setting is left out of the queue, unless `job_ids`
-    names it: the bulk read and a posting added by hand are both asked for (HIR-396)."""
-    where, params = _pending_clause(version, now, include_held=bool(job_ids))
-    sql = f"SELECT id, extracted_version, title, description_text FROM job j WHERE {where}"
-    if job_ids:
-        sql += f" AND id IN ({','.join('?' * len(job_ids))})"
-        params += list(job_ids)
-    # Jobs never read at all come before re-reads, newest first in both: after a version
-    # bump the queue holds the whole database, and this morning's postings must not sit
-    # blank on the dashboard for hours behind thousands of re-reads (HIR-193).
-    sql += " ORDER BY (extracted_version IS NOT NULL), id DESC"
-    if limit:
-        sql += f" LIMIT {int(limit)}"
-    return conn.execute(sql, params).fetchall()
+    names it: the bulk read and a posting added by hand are both asked for (HIR-396).
+
+    Jobs never read at all come before re-reads, newest first in both: after a version
+    bump the queue holds the whole database, and this morning's postings must not sit
+    blank on the dashboard for hours behind thousands of re-reads (HIR-193)."""
+    return pending_jobs(conn, version, job_ids=job_ids, include_held=job_ids is not None,
+                        now=now, limit=limit, queue_order=True)
 
 
 def reread_queue_size(conn: sqlite3.Connection, now: str | None = None) -> int:
@@ -276,20 +328,21 @@ def reread_queue_size(conn: sqlite3.Connection, now: str | None = None) -> int:
     Counted against a version stamp no job can be carrying, which is what a bump does to
     every stamp at once: the answer is the never-read jobs plus the stale-stamped open ones,
     exactly the queue `jobs_needing_extraction` would build (HIR-221)."""
-    where, params = _pending_clause("(no version: every stamp is stale)", now)
-    return conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
+    return pending_count(conn, "(no version: every stamp is stale)", now=now)
 
 
 def closed_reread_skips(conn: sqlite3.Connection, version: str,
                         job_ids: list[int] | None = None, now: str | None = None) -> int:
     """How many stale-stamped jobs the queue left out because they closed before the
-    re-read window (HIR-195, HIR-303)."""
+    re-read window (HIR-195, HIR-303). An empty `job_ids` names no jobs: 0."""
+    if job_ids is not None and not job_ids:
+        return 0
     open_sql, open_params = reread_window_clause(now or now_iso())
     sql = ("SELECT count(*) FROM job j"
            " WHERE j.extracted_version IS NOT NULL AND j.extracted_version != ?"
            f" AND j.extracted_version != 'legacy' AND NOT {open_sql}")
     params: list = [version, *open_params]
-    if job_ids:
+    if job_ids is not None:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
         params += list(job_ids)
     return conn.execute(sql, params).fetchone()[0]
@@ -565,7 +618,7 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
                 log(f"  {forgotten} posting{'' if forgotten == 1 else 's'} dropped as unreadable by an"
                     f" earlier extractor version will be stored and tried again on the next poll")
             carried = 0
-            if not job_ids:
+            if job_ids is None:   # a named list, even an empty one, is read as named (HIR-426)
                 carried = _carry_over(conn, tax, model, log, trace)
             if batch:
                 batch_fn = batch_fn or default_batch_fn(client)

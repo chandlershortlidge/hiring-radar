@@ -17,14 +17,14 @@ nothing (Hamburg/Frankfurt/Munich, about €10.50 against €3; San Jose, €6.9
 €1.73), and the launch cap never saw it coming.
 
 Invariants: the jobs read are a subset of the poll's own new jobs, never the whole queue —
-an empty list of new jobs reads nothing (the pipeline reads everything when given none).
+an empty list of new jobs reads nothing.
 The three counts are disjoint and together make up the whole queue.
 """
 
 import sqlite3
 from dataclasses import dataclass
 
-from app.pipeline import _pending_clause
+from app.pipeline import pending_count, pending_jobs
 from app.reread_cost import RereadCost, cost_of_reading
 
 # The launch's spending cap, the board policy's own (HIR-132); not this module's to change.
@@ -62,18 +62,9 @@ class LaunchRead:
 def plan(conn: sqlite3.Connection, new_job_ids: list[int], city: str, version: str,
          now: str | None = None) -> LaunchRead:
     """Which of `new_job_ids` to read for `city`, and what is left alone. Reads only."""
-    where, params = _pending_clause(version, now)
-    queue = conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
-    pending_new: list[int] = []
-    in_city: set[int] = set()
-    if new_job_ids:
-        marks = ",".join("?" * len(new_job_ids))
-        pending_new = [r[0] for r in conn.execute(
-            f"SELECT j.id FROM job j WHERE {where} AND j.id IN ({marks}) ORDER BY j.id",
-            [*params, *new_job_ids])]
-        in_city = {r[0] for r in conn.execute(
-            f"SELECT job_id FROM job_place WHERE place = ? AND job_id IN ({marks})",
-            [city, *new_job_ids])}
+    queue = pending_count(conn, version, now=now)
+    pending_new = [r["id"] for r in pending_jobs(conn, version, job_ids=new_job_ids, now=now)]
+    in_city = {r["id"] for r in pending_jobs(conn, version, job_ids=new_job_ids, place=city, now=now)}
     to_read = [i for i in pending_new if i in in_city]
     return LaunchRead(city=city, to_read=to_read, other_new=len(pending_new) - len(to_read),
                       stale_left=queue - len(pending_new),
