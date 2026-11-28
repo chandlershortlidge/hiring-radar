@@ -74,7 +74,7 @@ async function openBusiestCity(page) {
 }
 
 async function expectChartAndJobs(page) {
-  await expect(page.locator("#chart-title")).toBeVisible();
+  await expect(page.locator("section.chart")).toBeVisible(); // its visible heading went in HIR-477
   await expect(page.locator(".chart .bars")).toBeVisible();
   await expect(page.locator(".chart .bars-head")).toBeVisible(); // drawn only when there are jobs
   await expect(page.locator(".jobs .row").first()).toBeVisible();

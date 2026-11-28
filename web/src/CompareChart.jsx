@@ -12,7 +12,7 @@ const PAGE = 15;
 // column header — or by the widest spread between the places, or by name. The spread is
 // also what the "largest gap" note marks. `selected` is the set of selected skill ids; a
 // name click reports whether it was additive (shift or meta), exactly as SkillChart does.
-export default function CompareChart({ data, selected, onSelect, onSelectCity, cities }) {
+export default function CompareChart({ data, selected, onSelect, onSelectCity, cities, note }) {
   const [shown, setShown] = useState(PAGE);
   // Sort key: a place name, "gap" or "alpha". Falls back to the first place whenever the
   // place it names has just been removed from the comparison.
@@ -81,7 +81,7 @@ export default function CompareChart({ data, selected, onSelect, onSelectCity, c
       </div>
       {rows.slice(0, shown).map((r) => (
         <div key={r.id} className={`cmp-row${selected.includes(r.id) ? " sel" : ""}`} style={cols}>
-          <button type="button" className="name" onClick={(e) => onSelect(r.id, e.shiftKey || e.metaKey)}
+          <button type="button" className="name" title="Click to filter the jobs" onClick={(e) => onSelect(r.id, e.shiftKey || e.metaKey)}
             aria-label={`${r.name}: ${r.per.map((p) => `${p.city} ${p.pct}%`).join(", ")}. Filter job list`}>
             {r.name}{widest > 0 && r.gap === widest && <small className="dim"> · largest gap</small>}
           </button>
@@ -98,7 +98,8 @@ export default function CompareChart({ data, selected, onSelect, onSelectCity, c
           {shown < rows.length && <button type="button" className="btn" onClick={() => setShown(shown + PAGE)}>Show {Math.min(PAGE, rows.length - shown)} more</button>}
           <span>{Math.min(shown, rows.length)} of {rows.length} skills</span>
         </div>
-        <div><span>Click a city header to make it the sort column · click a skill to filter jobs · ⇧- or ⌘-click to add a skill</span></div>
+        {/* What the percentages are (HIR-477), in place of the old click hint. */}
+        {note && <div><span className="chart-note">{note}</span></div>}
       </div>
     </div>
   );

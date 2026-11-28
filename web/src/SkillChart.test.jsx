@@ -129,3 +129,28 @@ describe("the chart box before its numbers are in", () => {
     expect(html).toContain(NO_JOBS);
   });
 });
+
+// HIR-477: the line that says what the bars measure sits under the chart now, in the place
+// of the old "Click a bar to filter the jobs · ⇧- or ⌘-click …" hint, which is gone. Each
+// bar's hover box still says "Click to filter the jobs".
+describe("the line under the chart", () => {
+  const data = { total: 191, skills: [{ skill_id: "python", display: "Python", count: 120 }] };
+  const note = "Share of the 191 currently open jobs in Berlin that list each skill as required.";
+
+  it("says what the percentages are, and not how to click", () => {
+    for (const profile of [null, { skills: ["python"] }]) {
+      const html = renderToStaticMarkup(<SkillChart data={data} selected={[]} onSelect={() => {}} profile={profile} note={note} />);
+      expect(html).toContain(`<span class="chart-note">${note}</span>`);
+      expect(html).not.toContain("Click a bar");
+      expect(html).not.toContain("click to add a skill");
+      expect(html).not.toContain("hover for the numbers");
+    }
+  });
+
+  it("is built from the page's filters, as the old line above the chart was", () => {
+    const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+    expect(source).toContain('["Share of the", skills?.total ?? "…", winLabel, `jobs in ${cityLabel} that list each skill ${reqLabel}`]');
+    expect(source).toContain("+ `${famLabel}${senLabel}.`");
+    expect(source).toContain("note={chartNote}");
+  });
+});
