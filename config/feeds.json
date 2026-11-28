@@ -23,6 +23,8 @@
     {"type": "jsearch", "enabled": true, "search": "Softwareentwickler in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "software engineer in New York", "country": "us", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "software developer in New York", "country": "us", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "AI engineer in San Francisco", "country": "us", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "machine learning engineer in San Francisco", "country": "us", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "AI engineer in Austin", "country": "us", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "machine learning engineer in Austin", "country": "us", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "AI engineer in Boston", "country": "us", "date_posted": "week", "num_pages": 1},
