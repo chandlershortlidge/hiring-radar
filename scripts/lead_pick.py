@@ -31,8 +31,10 @@ It answers no to:
 - every ticket that is not a fix, while fixes-only mode is on (HIR-341): the Christmas
   break, one line in config/lead_agent.json, read through app/fixes_only.py. A fix is a
   ticket labelled `Bug`, or the repair for a red check;
-- everything, when the daily cap is zero or already spent, or when a run earlier today
-  hit the Claude plan's usage limit.
+- everything, when the daily cap is zero or already spent.
+
+A run that hit the Claude plan's usage limit does not stop later runs: the limit resets
+within hours, so the next run simply tries again (Chandler, 26 Nov).
 
 Order among the rest is the launch order's rule: milestone, then bugs a visitor would
 notice, then priority, then oldest.
@@ -113,7 +115,7 @@ Chandler, so no reviewer follows the repair), and `skipped`, each with why. It s
   own rules): he is working in the first kind, and cannot merge the second while it
   collides;
 - a pull request with no ticket, or one a run may still be working on;
-- everything, when `stop` is set (the cap, the usage limit).
+- everything, when `stop` is set (the cap).
 
 A red check does not hold a repair back: it is not new work, and it spends nothing.
 Fixes-only mode does not hold one back either, but then no reviewer follows the repair of
@@ -143,7 +145,7 @@ after the send-back, and `skipped`, each with why. It says no to:
   still be working on: that run starts its own reviewer, and two on one pull request is
   worse than none;
 - one whose ticket is not a fix, while fixes-only mode is on;
-- everything, when `stop` is set (the cap, the usage limit).
+- everything, when `stop` is set (the cap).
 
 A red check does not hold a second review back: it is not new work.
 
@@ -154,8 +156,6 @@ The log lines it reads, one per ticket, written by the lead agent:
 one per repair of a collided pull request, which is counted apart from its ticket:
 
     - repair #186 (HIR-232) | collided with main | result: merging | spend: €0.00
-
-and, anywhere in a log comment, a line starting `Usage limit: reached`.
 
 Output: JSON with `stop` (null, or why nothing may start), `picked` and `skipped`, each
 entry with the ticket id and a plain-words reason, plus `spent_eur`, `cap_eur`,
@@ -220,8 +220,6 @@ REPAIR_LINE = re.compile(
     r"^\s*[-*]\s*repair\s+#(\d+)\b[^|\n]*\|.*?\|\s*result:\s*([a-z-]+)", re.MULTILINE)
 # A pull request with one of these is waiting for Chandler, not for an agent.
 NEEDS_CHANDLER = "needs-chandler"
-# Written by the lead agent when the run, or one of its workers, was refused for usage.
-USAGE_LINE = re.compile(r"^\s*Usage limit:\s*reached", re.MULTILINE | re.IGNORECASE)
 PRIORITY_NAME = {1: "Urgent", 2: "High", 3: "Medium", 4: "Low"}
 
 
@@ -353,12 +351,6 @@ def reread_started_on(log, today):
     """Did a run today already start a ticket that re-reads the stored jobs?"""
     return any(date == today and REREAD in why and result != NOT_STARTED
                for date, _, why, result, _ in _lines(log))
-
-
-def usage_limit_hit_on(log, today):
-    """Did a run today say the Claude plan's usage limit was reached?"""
-    return any(entry.get("date") == today and USAGE_LINE.search(entry.get("body") or "")
-               for entry in log)
 
 
 def ran_between(log, start, end):
@@ -587,10 +579,6 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
         return done()
     if spent >= cap_eur:
         result["stop"] = f"today's spending cap of €{cap_eur:.2f} is reached (€{spent:.2f} spent)"
-        return done()
-    if usage_limit_hit_on(log, today):
-        result["stop"] = ("a run earlier today hit the Claude plan's usage limit, so nothing more "
-                          "is started today")
         return done()
 
     red = [str(name) for name in red or []]

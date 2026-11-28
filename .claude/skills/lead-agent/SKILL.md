@@ -485,10 +485,11 @@ later run's step 3 returns the ticket to Todo once it is stuck.
 ### When the usage limit is hit
 
 Every run uses Chandler's Claude plan. If a worker, a reviewer or this run is refused
-because the plan's usage limit is reached: start nothing more, do not retry, and write the
-line `Usage limit: reached` in this run's log comment with one sentence saying what was
-cut short. The script then stops every later run today, and tomorrow starts fresh. Tickets
-that were picked and never began are `not-started`.
+because the plan's usage limit is reached: start nothing more in this run, do not retry,
+and write the line `Usage limit: reached` in this run's log comment with one sentence
+saying what was cut short. Tickets that were picked and never began are `not-started`.
+The next scheduled run tries again as normal: the limit resets within hours, and a whole
+day lost to one refusal is too much (Chandler, 26 Nov).
 
 ## 6. Keep the queue fed, and Chandler's lanes stocked
 
