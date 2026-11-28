@@ -237,6 +237,11 @@ def _golden_set():
          "seniority": "senior", "german": "required", "degree": "master",
          "degree_or_equivalent": True, "production": "required"},
         {"id": "g3", "job_description": "c", "expected": [e("c")]},  # unlabeled throughout
+        # g4/g5: production class right, so the quote is scored — right on g4, wrong on g5
+        {"id": "g4", "job_description": "d", "expected": [e("d")],
+         "production": "required", "production_signal": "systems in production"},
+        {"id": "g5", "job_description": "f", "expected": [e("f")],
+         "production": "required", "production_signal": "systems in production"},
     ]
     pred = {
         "a": (Seniority("junior", "stated", "Junior"), German(None, None, None),
@@ -247,6 +252,12 @@ def _golden_set():
         "c": (Seniority("senior", "stated", "Senior"), German("required", "stated", "German"),
               Degree("phd", "required", False, "PhD"),
               Production("required", "stated", "production")),
+        "d": (Seniority("senior", "stated", "Senior"), German(None, None, None),
+              Degree(None, None, False, None),
+              Production("required", "stated", "run systems in production")),
+        "f": (Seniority("senior", "stated", "Senior"), German(None, None, None),
+              Degree(None, None, False, None),
+              Production("required", "stated", "you like shipping")),
     }
 
     def fake(text):
@@ -286,12 +297,14 @@ def test_a_right_answer_is_a_hit_and_a_wrong_one_is_a_miss():
     g2 = next(g for g in goldens if g["id"] == "g2")
     assert ev.attribute_hits(g1, predictions["g1"]) == {
         "seniority_accuracy": True, "german_accuracy": True,
-        "degree_accuracy": True, "production_accuracy": True}
+        "degree_accuracy": True, "production_accuracy": True,
+        "production_signal_agreement": None}
     # g2: seniority mid vs senior, german nice_to_have vs required, degree or_equivalent
     # mismatch, production nice_to_have vs required — every one wrong
     assert ev.attribute_hits(g2, predictions["g2"]) == {
         "seniority_accuracy": False, "german_accuracy": False,
-        "degree_accuracy": False, "production_accuracy": False}
+        "degree_accuracy": False, "production_accuracy": False,
+        "production_signal_agreement": None}
 
 
 def test_a_golden_whose_extraction_failed_scores_as_said_nothing():
@@ -307,7 +320,21 @@ def test_a_golden_whose_extraction_failed_scores_as_said_nothing():
     result = ev.run_once(goldens, boom)
     assert ev.attribute_hits(goldens[0], result.predictions["g1"]) == {
         "seniority_accuracy": False, "german_accuracy": False,
-        "degree_accuracy": False, "production_accuracy": False}
+        "degree_accuracy": False, "production_accuracy": False,
+        "production_signal_agreement": None}
+
+
+def test_the_production_quote_is_a_per_golden_hit_only_where_the_class_agrees():
+    """HIR-169: the quote score is gated on flips like the other attributes, so each Golden
+    needs its own hit, scored only when the production class is right."""
+    goldens, fake = _golden_set()
+    result = ev.run_once(goldens, fake)
+    by_id = {g["id"]: g for g in goldens}
+    hit = {gid: ev.attribute_hits(by_id[gid], result.predictions[gid])
+           ["production_signal_agreement"] for gid in by_id}
+    assert hit == {"g1": None, "g2": None, "g3": None, "g4": True, "g5": False}
+    assert result.summary["production_signal_agreement"] == pytest.approx(0.5)
+    assert result.summary["production_signal_n"] == 2
 
 
 def test_a_label_of_none_is_a_label_and_a_none_prediction_matches_it():
