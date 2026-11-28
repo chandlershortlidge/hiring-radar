@@ -124,3 +124,28 @@ def test_poll_launch_rejects_a_city_that_is_not_collected(monkeypatch):
     monkeypatch.setattr(cli, "load_feeds", lambda: [])
     with pytest.raises(SystemExit, match="not collected"):
         cli.main(["poll", "--launch", "Atlantis"])
+
+
+def test_a_launch_read_with_no_skills_at_all_stops_with_the_outage_error(conn, monkeypatch):
+    """A broken model during a city's first read trips the same alarm as the daily
+    collection, though the launch names its jobs (HIR-425)."""
+    import app.__main__ as cli
+
+    def three_in_san_jose(feed):
+        return [Posting("greenhouse", f"sj{i}", "", "Wayve", f"AI Engineer {i}", "San Jose, CA", f"Python {i}")
+                for i in range(3)]
+
+    def blank(text, tax, model):
+        return Extraction(mentions=[], extractor_version=extractor_version(tax, model), taxonomy_version=tax.version)
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "test")
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "load_feeds", lambda: [{"type": "greenhouse", "token": "wayve", "enabled": True}])
+    monkeypatch.setattr(cli, "poll_feeds", lambda c, feeds: poll.poll_feeds(c, feeds, fetch=three_in_san_jose,
+                                                                              log=lambda *_: None))
+    monkeypatch.setattr(cli.Taxonomy, "load", classmethod(lambda cls: TAX))
+    monkeypatch.setattr("app.extract.DEFAULT_MODEL", MODEL)
+    monkeypatch.setattr(cli, "extract_pending", lambda c, tax, batch=False, **kw: pipeline.extract_pending(
+        c, tax, blank, MODEL, log=lambda *_: None, **kw))
+    with pytest.raises(SystemExit, match="extraction produced zero skills across all 3 jobs"):
+        cli.main(["poll", "--launch", "San Jose", "--only", "greenhouse:wayve"])

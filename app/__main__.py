@@ -132,7 +132,10 @@ def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREA
         print(line)
     if (line := report.grounding_line()):
         print(line)
-    if job_ids is None and report.all_blank:
+    # The size of the run decides, not whether its jobs were named: a launch's first read
+    # and read-pending name hundreds of jobs, and a hand-add's one job can never reach the
+    # all-blank threshold (HIR-425).
+    if report.all_blank:
         sys.exit(f"ERROR: extraction produced zero skills across all {report.attempted} jobs"
                  " — the extractor is broken (prompt, schema, key or model), not the postings."
                  " Nothing was dropped; the stored answers carry the current version and WILL NOT"

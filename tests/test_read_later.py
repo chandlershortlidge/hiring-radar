@@ -379,3 +379,33 @@ def test_the_sample_command_writes_the_postings_and_calls_no_model(conn, monkeyp
     assert "sample: 4 of 11 unread postings" in capsys.readouterr().out
     with pytest.raises(SystemExit, match="'plumber' is not a career track"):
         cli.main(["sample", "--family", "plumber"])
+
+
+# --- a broken model during the catch-up read (HIR-425) ---------------------------------------
+
+class BlankBatch(FakeBatch):
+    """A broken model: every posting comes back read, with not one skill."""
+
+    def __call__(self, requests):
+        self.asked += [int(r["custom_id"]) for r in requests]
+        block = SimpleNamespace(type="tool_use", name="record_skills", input={"skills": []})
+        message = SimpleNamespace(stop_reason="tool_use", content=[block], usage=SimpleNamespace(**USAGE))
+        return {r["custom_id"]: SimpleNamespace(type="succeeded", message=message) for r in requests}
+
+
+def test_a_catch_up_read_with_no_skills_at_all_stops_with_the_outage_error(conn, monkeypatch):
+    """The alarm the daily collection has fires on the catch-up read too, though its jobs
+    are named rather than taken from the whole queue."""
+    later_track(monkeypatch)
+    poll.poll_feeds(conn, [{"type": "greenhouse", "token": "board", "enabled": True}],
+                    fetch=board, log=lambda *_: None)
+    ingest.ingest_one(conn, Posting("greenhouse", "r3", "", "Third", "Research Scientist, NLP", "Berlin",
+                                    "Third is hiring a Research Scientist." + BODY), DAY_ONE)
+    batch = BlankBatch()
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "extract_pending", lambda c, tax, **kw: pipeline.extract_pending(
+        c, tax, log=lambda *_: None, batch_fn=batch, **kw))
+    with pytest.raises(SystemExit, match="extraction produced zero skills across all 3 jobs"):
+        cli.main(["read-pending", "--family", "research", "--cap", "5"])
+    assert len(batch.asked) == 3

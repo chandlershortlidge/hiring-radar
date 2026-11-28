@@ -276,3 +276,25 @@ def test_check_records_the_city_it_is_run_for_and_says_so_when_the_page_gives_no
                       "https://acme.example/jobs/3": "New York"}
     assert out.count("city recorded as Berlin") == 1          # only the link with no location
     assert out.count("city recorded as New York") == 1
+
+
+def test_adding_one_posting_with_no_skills_succeeds_quietly(tmp_path, monkeypatch, capsys):
+    """One job can never trip the all-blank alarm, now that the alarm no longer asks
+    whether the jobs were named (HIR-425)."""
+    import io
+
+    from app import pipeline
+    from app.extract import Extraction
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+
+    def blank(text, tax, model):
+        return Extraction(mentions=[], extractor_version="v", taxonomy_version=tax.version)
+
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(cli.sys, "stdin", io.StringIO("Python and RAG. " * 40))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "extract_pending", lambda c, tax, **kw: pipeline.extract_pending(
+        c, tax, blank, log=lambda *_: None, **kw))
+    cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])   # no SystemExit: exit code 0
+    assert "extracted=1/1 mentions=0" in capsys.readouterr().out
