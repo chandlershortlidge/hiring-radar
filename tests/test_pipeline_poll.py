@@ -644,3 +644,44 @@ def test_the_cap_is_well_under_the_plan():
     from app.sources import jsearch
     assert jsearch.MONTHLY_CAP == 5000          # the plan allows 10,000, then bills each request
     assert jsearch.MIN_INTERVAL_S >= 0.2        # the plan allows 5 requests a second
+
+
+def _counting_extract():
+    calls = []
+    inner = fake_extract([Mention("python", "required", "Python")])
+
+    def fn(text, tax, model):
+        calls.append(text)
+        return inner(text, tax, model)
+    return fn, calls
+
+
+def test_an_empty_list_of_jobs_reads_nothing(conn):
+    """HIR-426: an empty list names no jobs; it must not fall back to the whole queue."""
+    fn, calls = _counting_extract()
+    r = pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None, job_ids=[])
+    assert (r.attempted, calls) == (0, [])
+    assert conn.execute("SELECT count(*) FROM job WHERE extracted_version IS NULL").fetchone()[0] == 3
+
+
+def test_an_empty_list_of_jobs_reads_nothing_as_a_batch(conn):
+    batches = []
+    r = pipeline.extract_pending(conn, TAX, model="m", log=lambda *_: None, job_ids=[],
+                                 batch=True, batch_fn=lambda reqs: batches.append(reqs) or {})
+    assert (r.attempted, batches) == (0, [])
+
+
+def test_no_list_still_reads_the_whole_queue(conn):
+    fn, calls = _counting_extract()
+    assert pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None).attempted == 3
+    assert len(calls) == 3
+
+
+def test_pending_jobs_and_count_treat_an_empty_list_as_none(conn):
+    assert pipeline.pending_jobs(conn, "v1", job_ids=[]) == []
+    assert pipeline.pending_count(conn, "v1", job_ids=[]) == 0
+    assert pipeline.jobs_needing_extraction(conn, "v1", job_ids=[]) == []
+    assert pipeline.closed_reread_skips(conn, "v1", job_ids=[]) == 0
+    assert [r["id"] for r in pipeline.pending_jobs(conn, "v1")] == [1, 2, 3]
+    assert pipeline.pending_count(conn, "v1") == 3
+    assert [r["id"] for r in pipeline.pending_jobs(conn, "v1", job_ids=[2])] == [2]
