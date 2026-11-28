@@ -161,13 +161,10 @@ def plan(conn: sqlite3.Connection, tax: Taxonomy, model: str,
     A job under a stamp the current list only adds to is re-read when its text names an
     added skill, or when the model had already suggested one of them for it (a pending
     row in the suggestion queue), whatever words the posting used."""
-    from app.pipeline import _pending_clause  # the queue's one definition (HIR-221)
+    from app.pipeline import pending_jobs  # the queue's one definition (HIR-221, HIR-426)
     current = snapshot(tax, model)
     out = Plan(current.version)
-    where, params = _pending_clause(current.version, now)
-    rows = conn.execute(
-        f"SELECT id, extracted_version, title, description_text FROM job j"
-        f" WHERE {where} AND j.extracted_version IS NOT NULL ORDER BY id", params).fetchall()
+    rows = pending_jobs(conn, current.version, stale_only=True, now=now)
     suggestions = _suggestions_by_job(conn)
     # Per stamp: None = no targeted path (full re-read); else {added id: its pattern}.
     per_stamp: dict[str, dict[str, re.Pattern] | None] = {}

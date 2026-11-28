@@ -225,7 +225,7 @@ def cmd_read_pending(args):
         return
     if plan.over_cap:
         sys.exit(2)
-    if not plan.to_read:   # never an empty list to the pipeline: it reads the whole queue when given none
+    if not plan.to_read:   # nothing to read: no run, no trace (an empty list would read nothing, HIR-426)
         return
     run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.BACKFILL, batch=True)
     print("While this place or track is still set to read later in app/scope.py, postings "

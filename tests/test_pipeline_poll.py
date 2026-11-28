@@ -685,3 +685,12 @@ def test_pending_jobs_and_count_treat_an_empty_list_as_none(conn):
     assert [r["id"] for r in pipeline.pending_jobs(conn, "v1")] == [1, 2, 3]
     assert pipeline.pending_count(conn, "v1") == 3
     assert [r["id"] for r in pipeline.pending_jobs(conn, "v1", job_ids=[2])] == [2]
+
+
+def test_the_queue_definition_is_asked_only_through_its_public_functions():
+    """HIR-426: the planners ask `pending_jobs` / `pending_count`; the raw clause stays private."""
+    from pathlib import Path
+    app_dir = Path(pipeline.__file__).parent
+    users = sorted(p.name for p in app_dir.rglob("*.py")
+                   if "_pending_clause" in p.read_text() and p.name != "pipeline.py")
+    assert users == []

@@ -32,7 +32,7 @@ from pathlib import Path
 from app import caretaker, poll, scope
 from app.ingest import family_of
 from app.launch_read import MAX_LAUNCH_COST_EUR
-from app.pipeline import _pending_clause
+from app.pipeline import pending_count
 from app.queries import open_clause
 from app.reread_cost import USAGE_KEYS, Tokens, price_eur
 from app.sources import jsearch
@@ -140,9 +140,8 @@ def _row(conn: sqlite3.Connection, kind: str, name: str, state: str, read: str, 
     open_sql, open_params = open_clause(now)
     open_now = conn.execute(f"SELECT count(*) FROM job j WHERE {member} AND {open_sql}",
                             [name, *open_params]).fetchone()[0]
-    waiting_sql, waiting_params = _pending_clause(version, now, include_held=True)
-    waiting = conn.execute(f"SELECT count(*) FROM job j WHERE {member} AND {waiting_sql}",
-                           [name, *waiting_params]).fetchone()[0]
+    where = {"place": name} if kind == PLACE else {"family": name}
+    waiting = pending_count(conn, version, include_held=True, now=now, **where)
     sources = conn.execute(f"SELECT count(DISTINCT s.source) FROM job_source s JOIN job j ON j.id = s.job_id"
                            f" WHERE {member}", [name]).fetchone()[0]
     first_day, last_day = (first[:10], last[:10]) if stored else (None, None)
