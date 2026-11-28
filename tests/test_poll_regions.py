@@ -97,3 +97,17 @@ def test_hamburg_and_frankfurt_each_have_their_two_google_for_jobs_searches():
         assert all(poll.feed_regions(f) == (geo.EUROPE,) for f in feeds if geo.city_of(f["search"]) == city)
     assert all(f.get("num_pages", 1) == 1 for f in feeds)   # one request per search per day
     assert len(feeds) * 31 <= jsearch.MONTHLY_CAP * 0.8       # at least the 20% headroom HIR-352 asks
+
+
+def test_every_us_city_has_its_two_google_for_jobs_searches():
+    """HIR-467: San Francisco launched when the searches were capped at 200 a month and never
+    got its pair, so it drew only from company boards. Every US city now has the pair, in the
+    US run only, and the month's searches stay well under our own cap."""
+    from app.sources import jsearch
+    feeds = [f for f in poll.load_feeds() if f["type"] == jsearch.SOURCE and f.get("enabled", True)]
+    for city in geo.region_places(geo.US):
+        mine = [f for f in feeds if geo.city_of(f["search"]) == city]
+        searches = {f["search"] for f in mine}
+        assert {f"AI engineer in {city}", f"machine learning engineer in {city}"} <= searches, city
+        assert all(poll.feed_regions(f) == (geo.US,) for f in mine), city
+    assert len(feeds) * 31 <= jsearch.MONTHLY_CAP * 0.8       # at least the 20% headroom HIR-352 asks
