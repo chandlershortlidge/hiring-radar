@@ -105,7 +105,8 @@ class ExtractReport:
     def all_blank(self) -> bool:
         """True when a real run of ALL_BLANK_MIN+ jobs produced not one skill mention —
         the shape of a broken prompt, schema or model, never of real postings (HIR-193).
-        Callers running the whole queue should fail loudly on it."""
+        Every caller should fail loudly on it, however its jobs were chosen: a hand-add of
+        one job is below the threshold by construction (HIR-425)."""
         return not self.skipped_busy and self.attempted >= ALL_BLANK_MIN and self.mentions == 0
 
     def line(self) -> str:
