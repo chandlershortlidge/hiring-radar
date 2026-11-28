@@ -6,7 +6,8 @@ Does: answer three questions from what is already stored, and draw them as one p
 state, read mode, postings stored, open now, waiting to be read, first and last collection
 day, days collected, kinds of source, and for an incubating row how ready it is to go live.
 `spend` gives the month's model reading, JSearch requests and board searches, each next to
-its limit. `page` turns both into HTML; `incubating_section` turns the same rows into the
+its limit. `costs` gives what each model run actually cost, by day and kind of run, per
+posting by model, and per eval run (app/run_cost.py, HIR-449). `page` turns them into HTML; `incubating_section` turns the same rows into the
 Monday summary's lines, so the page and the summary cannot print different numbers.
 
 Does NOT: change anything. There is no button and no write: switching a place or track to
@@ -29,7 +30,7 @@ from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
 
-from app import caretaker, poll, scope
+from app import caretaker, poll, run_cost, scope
 from app.ingest import family_of
 from app.launch_read import MAX_LAUNCH_COST_EUR
 from app.pipeline import pending_count
@@ -282,6 +283,71 @@ def spend(conn: sqlite3.Connection, month: str) -> list[Spend]:
     ]
 
 
+# --- what each model run cost (HIR-449) ---------------------------------------------------
+
+COST_DAYS = 30           # how far back the per-day table goes
+MODEL_HISTORY_DAYS = 60  # how far back cost per posting by model looks: long enough to span a switch
+EVAL_RUNS_SHOWN = 10
+
+
+@dataclass(frozen=True)
+class Costs:
+    days: list            # run_cost.DayKind, newest day first, eval runs included
+    models: list          # run_cost.ModelCost, oldest model first
+    evals: list           # run_cost.Run for the latest eval runs, newest first
+
+
+def costs(conn: sqlite3.Connection, now: str, results: Path = EVALS / "results") -> Costs:
+    """The model-cost section's numbers: every run of the last COST_DAYS days by day and
+    kind, cost per posting by model, and the latest eval runs."""
+    since = run_cost.days_before(now[:10], COST_DAYS - 1)
+    evals = run_cost.eval_runs(results)
+    recent = run_cost.runs(conn, since, now[:10]) + [r for r in evals if r.day >= since]
+    return Costs(run_cost.by_day_and_kind(recent),
+                 run_cost.per_model(conn, run_cost.days_before(now[:10], MODEL_HISTORY_DAYS)),
+                 sorted(evals, key=lambda r: r.started_at, reverse=True)[:EVAL_RUNS_SHOWN])
+
+
+def _eur(x: float | None, places: int = 2) -> str:
+    return "" if x is None else f"€{x:.{places}f}"
+
+
+def _table(head, body: str) -> str:
+    cols = "".join(f"<th{' class=n' if n else ''}>{html.escape(h)}</th>" for h, n in head)
+    return f"<div class=scroll><table><thead><tr>{cols}</tr></thead><tbody>{body}</tbody></table></div>"
+
+
+def _costs_html(c: Costs) -> str:
+    alert = run_cost.RUN_ALERT_EUR
+    days = "".join(
+        f"<tr{' class=incubating' if d.over else ''}>" + _cell(d.day)
+        + _cell(run_cost.KIND_WORDS.get(d.kind, d.kind)) + _cell(d.runs, "n") + _cell(d.readings, "n")
+        + _cell(_eur(d.cost_eur), "n") + _cell(_eur(d.per_posting, 4), "n") + "</tr>" for d in c.days)
+    models = "".join(
+        "<tr>" + _cell(m.model) + _cell(m.first_day) + _cell(m.last_day) + _cell(m.readings, "n")
+        + _cell(_eur(m.eur_per_reading, 4), "n") + "</tr>" for m in c.models)
+    evals = "".join(
+        f"<tr{' class=incubating' if e.cost_eur > alert else ''}>" + _cell(e.label)
+        + _cell(e.model) + _cell(e.readings, "n") + _cell(_eur(e.cost_eur), "n") + "</tr>" for e in c.evals)
+    none = "<p>None recorded yet.</p>"
+    day_head = (("Day", 0), ("Kind of run", 0), ("Runs", 1), ("Postings read", 1), ("Cost", 1), ("Per posting", 1))
+    model_head = (("Model", 0), ("First reading", 0), ("Last reading", 0), ("Postings read", 1), ("Per posting", 1))
+    eval_head = (("Run", 0), ("Model", 0), ("Readings", 1), ("Cost", 1))
+    return f"""<h2>Model cost</h2>
+<p>What each run of the model actually cost, from the token counts the provider sent back. A highlighted row
+holds a run above €{alert:.0f}, the alert for one run; the morning check puts those in its "needs you now" note.</p>
+<h3>By day and kind of run, last {COST_DAYS} days</h3>
+{_table(day_head, days) if c.days else none}
+<h3>Per posting read, by model</h3>
+<p>Every reading on record in the last {MODEL_HISTORY_DAYS} days, priced at the half rate the daily collection
+and re-reads pay as a batch; a posting added by hand costs twice this. A change of model shows as a new row.</p>
+{_table(model_head, models) if c.models else none}
+<h3>Eval runs</h3>
+<p>Measuring runs on the answer keys, costed from their saved results at the standard rate. Only runs whose
+results were committed are here.</p>
+{_table(eval_head, evals) if c.evals else none}"""
+
+
 # --- the page -----------------------------------------------------------------------------
 
 _CSS = """
@@ -290,6 +356,7 @@ _CSS = """
 body { font: 14px/1.45 system-ui, sans-serif; color: var(--fg); background: var(--bg); margin: 0; padding: 24px 16px; }
 main { max-width: 1200px; margin: 0 auto; }
 h1 { font-size: 20px; margin: 0 0 4px; } h2 { font-size: 16px; margin: 28px 0 8px; }
+h3 { font-size: 14px; margin: 20px 0 6px; }
 p { color: var(--muted); margin: 0 0 12px; max-width: 80ch; }
 .scroll { overflow-x: auto; }
 table { border-collapse: collapse; width: 100%; }
@@ -318,8 +385,9 @@ def _rows_table(rows: list[Row], first_column: str) -> str:
     return f"<div class=scroll><table><thead><tr>{head}</tr></thead><tbody>{body}</tbody></table></div>"
 
 
-def page(rows: list[Row], spending: list[Spend], now: str) -> str:
-    """The whole page as HTML. Pure; every value is escaped."""
+def page(rows: list[Row], spending: list[Spend], now: str, model_costs: Costs | None = None) -> str:
+    """The whole page as HTML. Pure; every value is escaped. `model_costs` left out leaves
+    the model-cost section off."""
     spend_rows = "".join("<tr>" + _cell(s.what) + _cell(s.used) + _cell(s.limit) + _cell(s.note, "wrap") + "</tr>"
                          for s in spending)
     return f"""<!doctype html>
@@ -341,5 +409,6 @@ posting was last seen.</p>
 <h2>Spending in {html.escape(now[:7])}</h2>
 <div class=scroll><table><thead><tr><th>What</th><th>Used this month</th><th>Limit</th><th>Note</th></tr></thead>
 <tbody>{spend_rows}</tbody></table></div>
+{_costs_html(model_costs) if model_costs else ""}
 </main></body></html>
 """

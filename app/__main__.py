@@ -84,7 +84,7 @@ load_dotenv(ROOT / ".env")
 if (_shared_env := main_checkout_env(ROOT)):
     load_dotenv(_shared_env)
 
-from app import add, db, geo, langsmith_live, send_checks  # noqa: E402
+from app import add, db, geo, langsmith_live, run_cost, send_checks  # noqa: E402
 from app.check import (assumed_city, check_url, checked_coverage, job_coverage, log_check,  # noqa: E402
                        reach_breakdown)
 from app.extract import make_client  # noqa: E402
@@ -116,16 +116,21 @@ def require_anthropic_key():
         sys.exit("ANTHROPIC_API_KEY is not set: add it to .env (see .env.example)")
 
 
-def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD, batch=False):
+def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD, batch=False,
+                   cost_kind=run_cost.REREAD):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
     they added, so adding a posting never triggers a full re-extract after a version bump.
 
     `run_kind` only names the run in LangSmith (HIR-160). `batch=True` submits the queue
     as one Anthropic Message Batch instead of one call per job (HIR-222) — the poll and a
-    full re-read pass it; the add commands never do, since a person is waiting for that job."""
+    full re-read pass it; the add commands never do, since a person is waiting for that job.
+    `cost_kind` is what the run is recorded as, with its cost, for the admin page, the
+    over-cost alert and the Monday summary (app/run_cost.py, HIR-449)."""
     require_anthropic_key()
     tax = Taxonomy.load()
+    started = now_iso()
     report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind, batch=batch)
+    run_cost.record(conn, cost_kind, report, started, batch)
     print(report.line())
     print(report.log_line(unlogged_extractions(conn)))
     if (line := report.cost_line()):
@@ -181,7 +186,7 @@ def cmd_poll(args):
     if args.launch:   # a launch's first collection reads only the city's new jobs (HIR-380)
         launch_first_reading(conn, r.new_job_ids, args.launch)
         return
-    run_extraction(conn, run_kind=langsmith_live.POLL, batch=True)
+    run_extraction(conn, run_kind=langsmith_live.POLL, batch=True, cost_kind=run_cost.POLL)
 
 
 def launch_first_reading(conn, new_job_ids, city):
@@ -194,13 +199,14 @@ def launch_first_reading(conn, new_job_ids, city):
     if plan.over_cap:
         sys.exit(2)
     if plan.to_read:
-        run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.POLL, batch=True)
+        run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.POLL, batch=True,
+                       cost_kind=run_cost.LAUNCH)
 
 
 def cmd_extract(args):
     conn = open_db()
     print_held(conn)
-    run_extraction(conn, args.limit, run_kind=langsmith_live.REREAD, batch=True)
+    run_extraction(conn, args.limit, run_kind=langsmith_live.REREAD, batch=True, cost_kind=run_cost.REREAD)
 
 
 def cmd_read_pending(args):
@@ -227,7 +233,8 @@ def cmd_read_pending(args):
         sys.exit(2)
     if not plan.to_read:   # nothing to read: no run, no trace (an empty list would read nothing, HIR-426)
         return
-    run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.BACKFILL, batch=True)
+    run_extraction(conn, job_ids=plan.to_read, run_kind=langsmith_live.BACKFILL, batch=True,
+                   cost_kind=run_cost.BULK_READ)
     print("While this place or track is still set to read later in app/scope.py, postings "
           "collected from now on wait again; set it to read now so the daily collection reads them.")
 
@@ -263,7 +270,7 @@ def cmd_add_text(args):
     res = add.add_by_hand(conn, p, args.found_via)
     print(res.line())
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD, cost_kind=run_cost.ADD)
 
 
 def cmd_add_screenshot(args):
@@ -283,7 +290,7 @@ def cmd_add_screenshot(args):
     res = add.add_by_hand(conn, p, args.found_via, screenshot=Screenshot(data, t.sha256, t.media_type))
     print(res.line())
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD, cost_kind=run_cost.ADD)
 
 
 def check_urls_from(args) -> list[str]:
@@ -348,7 +355,7 @@ def check_one(conn, url, feeds, args):
     res = add.add_by_hand(conn, r.posting, args.found_via, require_city=d.require_city)
     print(f"add: {res.line()}")
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD, cost_kind=run_cost.ADD)
 
 
 def cmd_stats(args):

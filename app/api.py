@@ -231,7 +231,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None,
     def get_admin(conn=Depends(conn_dep)):
         now = now_iso()
         rows = admin.overview(conn, now, extractor_version(tax, EXTRACT_MODEL))
-        return HTMLResponse(admin.page(rows, admin.spend(conn, now[:7]), now),
+        return HTMLResponse(admin.page(rows, admin.spend(conn, now[:7]), now, admin.costs(conn, now)),
                             headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex, nofollow"})
 
     # --- how an agent finds the MCP server (HIR-480, app/discovery.py) ----------------
