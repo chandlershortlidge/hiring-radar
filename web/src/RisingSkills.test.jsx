@@ -3,7 +3,7 @@
 // counts behind them, and "not enough data yet" with the reason and the date it fills in.
 import { describe, it, expect } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
-import { RisingView, dayMonth, waiting } from "./RisingSkills.jsx";
+import { RisingView, dayMonth, leftOut, waiting } from "./RisingSkills.jsx";
 
 const periods = { current: { open_jobs: 80 }, previous: { open_jobs: 82 } };
 const agents = { skill_id: "agents", display: "Agents", current_count: 33, previous_count: 24, current_share: 41.3, previous_share: 29.3, change: 12 };
@@ -39,6 +39,20 @@ describe("what's rising", () => {
 
   it("gives no date it does not have", () => {
     expect(waiting({ reason: "new_city", ready_from: null }, "Paris", "jobs")).toBe("");
+  });
+
+  it("names the places too new to count, grouped by the day they join", () => {
+    const places = { included: ["Berlin", "Munich"], excluded: [
+      { place: "Seattle", ready_from: "2027-01-14" }, { place: "Austin", ready_from: "2027-01-14" },
+      { place: "Hamburg", ready_from: "2027-01-03" }] };
+    const text = html({ status: "ok", ...periods, risers: [agents], fallers: [], places });
+    expect(text).toContain("Not yet counted, collected too recently to compare: Hamburg (from 3 January); Seattle, Austin (from 14 January).");
+  });
+
+  it("says nothing about left-out places when every place is counted", () => {
+    expect(leftOut({ places: { included: ["Berlin"], excluded: [] } })).toBe("");
+    expect(leftOut({ places: { included: [], excluded: [{ place: "Paris", ready_from: null }] } })).toBe("");
+    expect(leftOut({})).toBe("");
   });
 
   it("draws nothing until the answer arrives", () => {

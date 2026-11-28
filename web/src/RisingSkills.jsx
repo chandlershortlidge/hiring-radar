@@ -29,6 +29,18 @@ export function waiting(data, place, role) {
   return "";
 }
 
+// With no city chosen the server leaves out places collected too recently to compare
+// (HIR-442) and names them; this says which, grouped by the day they join.
+export function leftOut(data) {
+  const excluded = (data.places?.excluded ?? []).filter((w) => w.ready_from);
+  if (!data.places?.included?.length || !excluded.length) return "";
+  const byDay = new Map();
+  for (const w of excluded) byDay.set(w.ready_from, [...(byDay.get(w.ready_from) ?? []), w.place]);
+  const parts = [...byDay].sort(([a], [b]) => a.localeCompare(b))
+    .map(([day, places]) => `${places.join(", ")} (from ${dayMonth(day)})`);
+  return `Not yet counted, collected too recently to compare: ${parts.join("; ")}.`;
+}
+
 function Rows({ title, rows, word, total, before }) {
   return (
     <div>
@@ -62,6 +74,7 @@ export function RisingView({ data, place, role }) {
           <p>
             Share of open {role} requiring each skill, last 4 weeks against the 4 weeks before.
             Skills in too few jobs to trust are left out.
+            {leftOut(data) && <span className="dim"> {leftOut(data)}</span>}
           </p>
         ) : <p><b>Not enough data yet.</b> {waiting(data, place, role)}</p>}
       </div>

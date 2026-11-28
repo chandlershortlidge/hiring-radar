@@ -113,13 +113,26 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         finally:
             c.close()
 
+    # Every way a skill may be written, lowercased, to the id it means: the id, the display
+    # name and each alias (HIR-442). A model usually sends the full name, so a typo in it
+    # must find the skill as surely as a typo in the id.
+    labels: dict[str, str] = {}
+    for s in tax.skills.values():
+        for label in (s.id, s.display, *s.aliases):
+            labels.setdefault(label.strip().lower(), s.id)
+
+    def suggestions(name: str) -> list[str]:
+        """Up to three skill ids whose id, display name or alias is close to `name`."""
+        close = difflib.get_close_matches(name.strip().lower(), list(labels), n=10, cutoff=0.6)
+        return list(dict.fromkeys(labels[label] for label in close))[:3]
+
     def skill_ids(names: list[str]) -> list[str]:
         """Skill ids from ids or names ("RAG", "rag", "Retrieval Augmented Generation")."""
         out = []
         for n in names:
             sid = n if n in tax.skills else tax.resolve(n)
             if sid is None:
-                close = difflib.get_close_matches(n.lower(), list(tax.skills), n=3, cutoff=0.6)
+                close = suggestions(n)
                 hint = f"; did you mean {', '.join(close)}?" if close else ""
                 raise ToolError(f"unknown skill {n!r}{hint}")
             out.append(sid)
@@ -443,7 +456,8 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
         The two periods: "current" is the last 28 days, "previous" the 28 days before that.
         A job counts in every period it was open during.
 
-        - city: any of these places; leave it out for every place we collect.
+        - city: any of these places; leave it out for every place we have collected long
+          enough to compare (see places below).
         - family: ai-engineer, ml-engineer, data-scientist, ml-platform, research or
           forward-deployed-engineer, assigned from the job title.
         - requirement: "required" (default) counts a skill only where the posting requires
@@ -458,7 +472,12 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str],
           it rose); "few_jobs" = no skill had enough jobs behind it in both periods.
         - ready_from: with reason "new_city", the first day both periods are covered
           (null if that place is not collected at all). Say "not enough data yet, ready
-          from <date>", not "nothing is rising".
+          from <date>", not "nothing is rising". With no city chosen, a place too new to
+          compare is left out instead of holding the answer back, and reason is "new_city"
+          only when no place is ready yet (ready_from is then the day the first one is).
+        - places: included (the places counted; empty when nothing was) and excluded
+          (place and ready_from for each place left out, ready_from null if we do not
+          collect it). With no city chosen, say which places the answer covers.
         - window_days (28); current and previous: start, end and open_jobs (jobs open in
           that period; null when not compared).
         - risers and fallers: up to 5 skills each, largest move first, and only moves
