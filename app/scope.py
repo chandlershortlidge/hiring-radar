@@ -84,12 +84,21 @@ class Track:
     Deployed AI Engineer" is Forward Deployed Engineer, not AI Engineer).
 
     `read` is READ_LATER while the track's postings are stored without being read by the
-    model (HIR-396)."""
+    model (HIR-396).
+
+    `places` limits the track to those places (names from PLACE_STATE): a posting whose
+    title is the track's is stored only when it names one of them (HIR-397: software
+    engineer in Berlin and New York only). None, the default, is every collected place.
+
+    `finds_boards` False keeps the track's roles out of the count the search for new
+    company boards makes (app/discover.py), so no board is added for them (HIR-397)."""
 
     state: str
     title_pattern: str | None = None
     read: str = READ_NOW
     outranks_built_in: bool = False
+    places: tuple[str, ...] | None = None
+    finds_boards: bool = True
 
 
 # Forward Deployed Engineer (HIR-408, decisions/2026-11-25-hir-408-forward-deployed-engineer-
@@ -113,6 +122,22 @@ FDE_PATTERN = (
 )
 
 
+# Software engineer (HIR-397, decisions/2026-11-27-hir-397-software-engineer-incubating.md).
+# Matched case-insensitively, and only on a title the built-in AI/ML rule and FDE have
+# passed over, so it never takes a title they hold. Python only: no stored job's track
+# changes, so it has no SQL copy. The first group is what the title may not contain; the
+# rest are the ways in, one per row of the decisions file's table.
+SWE_PATTERN = (
+    r"^(?!.*\b(?:business\s+develop\w*|developer\s+(?:advocate|relations)"
+    r"|(?:produkt|projekt|personal|geschäfts|organisations)entwickler\w*))"
+    r"(?:.*\bsoftware[\s-]?(?:engineer|developer|entwickler|ingenieur)"
+    r"|(?=.*\b(?:back|front)[\s-]?end\b|.*\bfull[\s-]?stack\b)(?=.*(?:engineer|developer|entwickler))"
+    r"|.*\bplatform\s+engineer"
+    r"|.*\bdeveloper\b"
+    r"|.*entwickler(?:in)?\b)"
+)
+
+
 TRACKS: dict[str, Track] = {
     "ai-engineer": Track(LIVE),
     "ml-engineer": Track(LIVE),
@@ -120,6 +145,8 @@ TRACKS: dict[str, Track] = {
     "ml-platform": Track(LIVE),
     "research": Track(LIVE),
     "forward-deployed-engineer": Track(LIVE, FDE_PATTERN, outranks_built_in=True),
+    "software-engineer": Track(INCUBATING, SWE_PATTERN, read=READ_LATER,
+                               places=("Berlin", "New York"), finds_boards=False),
 }
 
 
@@ -152,6 +179,11 @@ def incubating_tracks() -> tuple[str, ...]:
 def read_later_places() -> tuple[str, ...]:
     """The places whose postings are stored unread until `read-pending` is run (HIR-396)."""
     return tuple(p for p in PLACE_STATE if PLACE_READ.get(p, READ_NOW) == READ_LATER)
+
+
+def track_places(name: str) -> tuple[str, ...] | None:
+    """The places a track is limited to, or None when it is collected in every place."""
+    return TRACKS[name].places
 
 
 def read_later_tracks() -> tuple[str, ...]:

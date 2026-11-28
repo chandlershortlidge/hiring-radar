@@ -26,7 +26,7 @@ import html
 import json
 import sqlite3
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 from app import caretaker, poll, scope
@@ -180,13 +180,47 @@ def incubating_line(row: Row) -> str:
             f"({row.first_day} to {row.last_day}). Ready? {row.ready.text()}.")
 
 
-def incubating_section(rows: list[Row]) -> str:
+def incubating_section(rows: list[Row], weeks: dict[str, str] | None = None) -> str:
     """The Monday summary's part: one line per incubating place or track, or "" when
-    nothing is incubating, so the summary is then exactly what it was."""
-    lines = [incubating_line(r) for r in rows if r.state == scope.INCUBATING]
+    nothing is incubating, so the summary is then exactly what it was. `weeks` gives a
+    row's week line (`week_volume`), printed under it."""
+    lines = [incubating_line(r) + (f"\n  - {weeks[r.name]}" if r.name in (weeks or {}) else "")
+             for r in rows if r.state == scope.INCUBATING]
     if not lines:
         return ""
     return "# Collected in the background, not shown yet\n\n" + "\n".join(lines) + "\n"
+
+
+def week_volume(conn: sqlite3.Connection, track: str, start: str, end: str) -> str:
+    """One Monday line for a track (HIR-397): the postings first stored from `start` to
+    `end` (days, both included), a day in each of its places, where the week's listings
+    came from, and how many of them were a copy of a posting already stored, which dedup
+    joined to it instead of storing twice. A job posted for two places counts in both."""
+    since = f"{start}T00:00:00Z"
+    until = (date.fromisoformat(end) + timedelta(days=1)).isoformat() + "T00:00:00Z"
+    days = (date.fromisoformat(end) - date.fromisoformat(start)).days + 1
+    new = conn.execute("SELECT count(*) FROM job WHERE family = ? AND first_seen >= ? AND first_seen < ?",
+                       (track, since, until)).fetchone()[0]
+    places = scope.track_places(track) or scope.places()
+    per_place = {p: conn.execute(
+        "SELECT count(*) FROM job j JOIN job_place jp ON jp.job_id = j.id WHERE j.family = ?"
+        " AND jp.place = ? AND j.first_seen >= ? AND j.first_seen < ?", (track, p, since, until)).fetchone()[0]
+        for p in places}
+    sightings = conn.execute(
+        "SELECT s.source, count(*) AS n,"
+        " sum(s.id != (SELECT min(f.id) FROM job_source f WHERE f.job_id = s.job_id)) AS copies"
+        " FROM job_source s JOIN job j ON j.id = s.job_id WHERE j.family = ?"
+        " AND s.first_seen >= ? AND s.first_seen < ? GROUP BY s.source ORDER BY n DESC, s.source",
+        (track, since, until)).fetchall()
+    head = f"Last week ({start} to {end}): "
+    if not new and not sightings:
+        return head + "nothing new stored."
+    listed = sum(r["n"] for r in sightings)
+    a_day = ", ".join(f"{p} {per_place[p] / days:.1f}" for p in places if per_place[p] or scope.track_places(track))
+    shares = ", ".join(f"{r['source']} {round(100 * r['n'] / listed)}%" for r in sightings)
+    copies = sum(r["copies"] or 0 for r in sightings)
+    return (head + f"{_n(new, 'new posting')}; a day: {a_day or 'none in any place'}; "
+            f"from: {shares}; {_n(copies, 'duplicate')} caught (a listing of a posting already stored).")
 
 
 # --- the month's spending -----------------------------------------------------------------

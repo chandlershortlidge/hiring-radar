@@ -136,7 +136,8 @@ def _fixture_postings() -> list[Posting]:
 def test_on_the_fixture_feeds_the_skip_counts_are_what_they_were_and_screen_agrees(conn):
     """The counts are the ones the collector gave on these 51 postings before its checks
     moved into `stops` (HIR-427, measured against that version); a change to them is a
-    change to which jobs are collected."""
+    change to which jobs are collected. One did change on purpose: "Backend Engineer ...",
+    a Berlin posting, is the software engineer track since HIR-397, so it is kept."""
     postings = _fixture_postings()
     assert len(postings) == 51
     counts = dict.fromkeys((ingest.SKIPPED_TITLE, ingest.SKIPPED_CITY, ingest.SKIPPED_COMPANY,
@@ -146,7 +147,7 @@ def test_on_the_fixture_feeds_the_skip_counts_are_what_they_were_and_screen_agre
         assert (kind if kind in counts else None) == ingest.screen(p), p
         if kind in counts:
             counts[kind] += 1
-    assert counts == {ingest.SKIPPED_TITLE: 10, ingest.SKIPPED_CITY: 9, ingest.SKIPPED_COMPANY: 1,
+    assert counts == {ingest.SKIPPED_TITLE: 9, ingest.SKIPPED_CITY: 9, ingest.SKIPPED_COMPANY: 1,
                       ingest.SKIPPED_AGENCY: 1}
 
 

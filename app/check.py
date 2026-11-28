@@ -59,7 +59,7 @@ import urllib.parse
 from dataclasses import dataclass, field, replace
 from html.parser import HTMLParser
 
-from app import dedup, ingest
+from app import dedup, ingest, scope
 from app.geo import ACTIVE_CITIES, city_of, place_of
 from app.html_text import html_to_text
 from app.sources import Posting, fetch_text, registry
@@ -656,6 +656,10 @@ def _why_stopped(stop: str, posting: Posting) -> str:
     if stop == ingest.SKIPPED_BLOCKED:
         return (f"it links to {ingest.blocked_site(posting.url, posting.description_text)}, "
                 f"a site known to publish fake postings")
+    if stop == ingest.SKIPPED_TRACK_PLACE:
+        track = ingest.family_of(posting.title)
+        return (f"title {posting.title!r} is the {track} track, which is collected only in "
+                f"{', '.join(scope.track_places(track) or ())}")
     # A check added to the collector since: reported under its own name until it gets a
     # sentence here, never passed over in silence (HIR-427).
     return f"the collector's check {stop!r} stops it"

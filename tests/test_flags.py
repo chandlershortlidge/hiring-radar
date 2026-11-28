@@ -78,11 +78,13 @@ def section(text: str, heading: str) -> str:
 # --- the diagnosis: the ticket's two examples -------------------------------------------
 
 def test_the_platform_job_seen_under_ai_engineer_in_berlin_is_a_wrong_family_reading(conn):
-    job_id = job(conn, "Senior Staff Software Engineer", PLATFORM_TEXT)
+    # The ticket's title was "Senior Staff Software Engineer"; since HIR-397 that title is
+    # the software engineer track, so the remainder case is shown with a title naming none.
+    job_id = job(conn, "Senior Staff Engineer", PLATFORM_TEXT)
     assert q.job_detail(conn, job_id, NOW)["family"] == "ai-engineer"   # the title rule's remainder
     flags.add_flag(conn, job_id, view(families=["ai-engineer"], cities=["Berlin"]), "it's a platform role", NOW)
     out = section(report(conn), "job family reading is wrong (1)")
-    assert "Acme — Senior Staff Software Engineer · arbeitnow" in out and "note: “it's a platform role”" in out
+    assert "Acme — Senior Staff Engineer · arbeitnow" in out and "note: “it's a platform role”" in out
     assert "View: AI Engineer. Stored job family: AI Engineer." in out
     assert "names no AI or ML work" in out
     assert "Title and text describe platform/infrastructure engineering" in out and "AI or ML mentioned 1 time → job family reading is wrong." in out
@@ -147,13 +149,13 @@ def test_a_quote_that_is_not_in_the_posting_is_a_wrong_reading(conn):
 
 
 def test_an_out_of_scope_title_and_a_recruiter_are_causes_with_no_filter_on(conn):
-    a = job(conn, "Senior Staff Software Engineer", PLATFORM_TEXT)
+    a = job(conn, "Senior Staff Engineer", PLATFORM_TEXT)
     b = job(conn, "AI Engineer", JUNIOR_TEXT, company="Hays Recruiting GmbH", source="greenhouse")
     by_hand = job(conn, "Office Manager", JUNIOR_TEXT, company="Beta", source="paste")
     for j in (a, b, by_hand):
         flags.add_flag(conn, j, view(url="/berlin"), None, NOW)
     out = report(conn)
-    assert "Senior Staff Software Engineer" in section(out, "feed relevance (the job should not have been collected) (1)")
+    assert "Senior Staff Engineer" in section(out, "feed relevance (the job should not have been collected) (1)")
     assert "The company name contains “recruit”" in section(out, "agency (posted by a recruiter or a job board) (1)")
     # A job a person added by hand was chosen, not collected: the title rule does not apply.
     assert "Office Manager" in section(out, "not explained by any rule (read the evidence) (1)")

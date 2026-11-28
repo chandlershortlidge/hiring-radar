@@ -379,7 +379,7 @@ def test_the_monday_summary_has_one_line_per_incubating_place_or_track_with_the_
     [body] = posted
     section = body[body.index("# Collected in the background, not shown yet"):].split("\n#")[0]
     lines = [line for line in section.splitlines() if line.startswith("- ")]
-    assert [line.split(" (")[0] for line in lines] == ["- Chicago", "- research"]
+    assert [line.split(" (")[0] for line in lines] == ["- Chicago", "- research", "- software-engineer"]
 
     page = page_rows(api.get("/admin").text)
     for line, name in zip(lines, ("Chicago", "research")):
@@ -395,6 +395,7 @@ def test_the_monday_summary_has_one_line_per_incubating_place_or_track_with_the_
 def test_with_nothing_incubating_the_monday_summary_says_nothing_about_it(conn, monkeypatch):
     monkeypatch.setitem(scope.PLACE_STATE, "Chicago", scope.LIVE)
     monkeypatch.setitem(scope.TRACKS, "research", scope.Track(scope.LIVE))
+    monkeypatch.setitem(scope.TRACKS, "software-engineer", scope.Track(scope.LIVE, scope.SWE_PATTERN))
     assert run.incubating_text(conn, NOW) == ""
     posted = []
     run.report(conn, MONDAY, lambda title, body: posted.append(body) or "HIR-900", log=lambda *_: None, mode=None)

@@ -233,13 +233,15 @@ def test_monday_posts_one_message_with_the_three_parts_and_the_source_report(tmp
     body = posted[0][1]
     heads = [line for line in body.splitlines() if line.startswith("# ")]
     assert [h.split(":")[0].split(",")[0] for h in heads] == [
-        "# Needs you", "# Decided for you", "# What merged", "# Sent back and fixed", "# Caretaker"]
+        "# Needs you", "# Decided for you", "# What merged", "# Sent back and fixed", "# Caretaker",
+        "# Collected in the background"]                  # software engineer, incubating (HIR-397)
     assert "Every source worked all week." in body
 
 
 def test_the_cli_hands_the_pull_request_half_to_the_monday_post(tmp_path, monkeypatch):
     from app import __main__ as cli
     seen = {}
+    db.migrate(db.connect(tmp_path / "t.db"))   # the command reads the job table (HIR-397: a track reads later)
     monkeypatch.setattr(cli, "open_db", lambda: db.connect(tmp_path / "t.db"))
     monkeypatch.setattr(run, "morning", lambda *a, **k: [])
     monkeypatch.setattr(run, "report", lambda conn, day, post, **kw: seen.update(kw))

@@ -65,6 +65,15 @@ class FakeBatch:
         return {r["custom_id"]: SimpleNamespace(type="succeeded", message=message) for r in requests}
 
 
+@pytest.fixture(autouse=True)
+def nothing_reads_later(monkeypatch):
+    """Each test starts from a list where everything reads now and switches one line. The
+    real list has software engineer reading later since HIR-397; it reads now here."""
+    monkeypatch.setitem(scope.TRACKS, "software-engineer",
+                        scope.Track(scope.INCUBATING, scope.SWE_PATTERN,
+                                    places=scope.TRACKS["software-engineer"].places, finds_boards=False))
+
+
 @pytest.fixture
 def conn(tmp_path, monkeypatch):
     monkeypatch.setattr(poll, "ingest", lambda c, postings: ingest.ingest(c, postings, DAY_ONE))
@@ -93,6 +102,8 @@ def unread(conn) -> list[str]:
 # --- the setting ----------------------------------------------------------------------------
 
 def test_today_everything_reads_now_so_nothing_is_held(conn):
+    """"Today" in this file is the list with nothing read later (the fixture above); the
+    real list has software engineer reading later since HIR-397 (tests/test_software_engineer.py)."""
     assert scope.read_later_places() == () and scope.read_later_tracks() == ()
     assert pipeline.held_clause() == ("0", [])
     batch = FakeBatch()

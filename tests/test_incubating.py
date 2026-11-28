@@ -230,6 +230,8 @@ def allow_track_in_database(conn, name: str) -> None:
 def test_a_new_tracks_pattern_widens_collection_without_touching_the_live_tracks(monkeypatch):
     live_titles = ["Senior AI Engineer", "Machine Learning Engineer", "Software Engineer, AI Platform",
                    "Data Scientist", "MLOps Engineer", "Research Engineer, LLMs"]
+    # The list as it was before software engineer was added for real (HIR-397).
+    monkeypatch.delitem(scope.TRACKS, "software-engineer")
     before = [(ingest.in_scope_title(t), ingest.family_of(t)) for t in live_titles]
     assert not ingest.in_scope_title("Senior Software Engineer")
 
@@ -246,6 +248,7 @@ def test_a_new_tracks_pattern_widens_collection_without_touching_the_live_tracks
 
 def test_a_new_incubating_track_is_collected_hidden_and_then_switched_live(api, conn, monkeypatch):
     plain = Posting("greenhouse", "s1", "", "Stack", "Senior Software Engineer", "Berlin", "Stack hires." + BODY)
+    monkeypatch.delitem(scope.TRACKS, "software-engineer")   # as before HIR-397 added it for real
     assert ingest.ingest_one(conn, plain, FIRST_SEEN).kind == ingest.SKIPPED_TITLE   # today: not collected
 
     monkeypatch.setitem(scope.TRACKS, "software-engineer", SOFTWARE)
