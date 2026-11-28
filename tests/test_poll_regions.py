@@ -84,3 +84,16 @@ def test_europe_and_us_each_have_a_timer_and_a_service():
     assert "OnCalendar=*-*-* 07:00:00 America/New_York" in us_timer
     assert "python -m app poll --region europe" in (DEPLOY / "hiring-radar-poll.service").read_text()
     assert "python -m app poll --region us" in (DEPLOY / "hiring-radar-poll-us.service").read_text()
+
+
+def test_hamburg_and_frankfurt_each_have_their_two_google_for_jobs_searches():
+    """HIR-466: both cities rested on one German feed; each gets the pair every city has,
+    in the Europe run only, and the month's searches stay well under our own cap."""
+    from app.sources import jsearch
+    feeds = [f for f in poll.load_feeds() if f["type"] == jsearch.SOURCE and f.get("enabled", True)]
+    for city in ("Hamburg", "Frankfurt"):
+        searches = sorted(f["search"] for f in feeds if geo.city_of(f["search"]) == city)
+        assert searches == [f"AI engineer in {city}", f"machine learning engineer in {city}"]
+        assert all(poll.feed_regions(f) == (geo.EUROPE,) for f in feeds if geo.city_of(f["search"]) == city)
+    assert all(f.get("num_pages", 1) == 1 for f in feeds)   # one request per search per day
+    assert len(feeds) * 31 <= jsearch.MONTHLY_CAP * 0.8       # at least the 20% headroom HIR-352 asks
