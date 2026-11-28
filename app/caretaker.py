@@ -440,8 +440,8 @@ def apply_fixes(doc: dict, text: str) -> dict:
 # --- reporting ---------------------------------------------------------------------------
 
 # What reaches Chandler before Monday (HIR-257): the collection down two days running, the
-# spend cap hit.
-URGENT = ("spend_cap",)
+# spend cap hit, and one model run that cost more than app/run_cost.py's alert (HIR-449).
+URGENT = ("spend_cap", "run_over_cost")
 
 
 def spend_findings(budget: Budget) -> list[Finding]:

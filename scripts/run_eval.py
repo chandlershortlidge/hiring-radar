@@ -47,7 +47,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
-from app import evaluation, extras_judge, langsmith_eval  # noqa: E402
+from app import evaluation, extras_judge, langsmith_eval, run_cost  # noqa: E402
 from app.extract import (  # noqa: E402
     DEFAULT_MODEL, INPUT_FORMAT, MAX_TOKENS, PRINCIPLES, TOOL, build_request, extraction_from_message,
     extractor_version, make_client, system_prompt,
@@ -264,6 +264,13 @@ def main(argv=None):
         {"meta": meta, "aggregate": agg, "runs": [r.summary for r in runs]}, indent=2) + "\n")
     (out / "summary.md").write_text(render_md(meta, agg, runs))
     print(f"\nwrote {out.relative_to(ROOT)}/summary.md")
+    # What this run cost, from its own token counts (HIR-449); the admin page and the
+    # Monday summary read the same files once they are committed.
+    for r in run_cost.eval_runs(out.parent):
+        if r.label == run_id:
+            print(f"cost: €{r.cost_eur:.2f} ({r.readings} readings, standard rate)")
+            if r.cost_eur > run_cost.RUN_ALERT_EUR:
+                print(f"WARNING: above the €{run_cost.RUN_ALERT_EUR:.0f} alert for one run")
 
 
 if __name__ == "__main__":

@@ -89,6 +89,10 @@ class ExtractReport:
     # What this run actually spent, in euros, on its successful readings — priced at the
     # Batch API's half rate for a batch run, the standard rate otherwise (HIR-222).
     cost_eur: float = 0.0
+    # The provider's own token counts summed over the same readings, by how each kind is
+    # billed, and the model they were read with: what app/run_cost.py records (HIR-449).
+    tokens: Tokens = field(default_factory=Tokens)
+    model: str = ""
     # Grounding over this run's quotes: how many snippets the model offered as evidence,
     # and how many were really in the posting (app/grounding.py). Counted, never acted on
     # — a quote the extractor kept is stored whatever this says (HIR-160).
@@ -585,6 +589,7 @@ def _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, bat
         if ex.usage:
             tokens = Tokens(*(float(ex.usage.get(k) or 0) for k in USAGE_KEYS))
             report.cost_eur += price_eur(tokens, model, batch=batch)
+            report.tokens = report.tokens + tokens
 
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, model: str = DEFAULT_MODEL,
@@ -627,6 +632,7 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
                 extract_fn = extract_fn or default_extract_fn(client)
                 report = _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace)
             report.carried_over = carried
+            report.model = model
             trace.finish({
                 "carried_over": report.carried_over,
                 "attempted": report.attempted, "succeeded": report.succeeded,

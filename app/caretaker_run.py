@@ -12,7 +12,9 @@ Does:
     a break that came back after two fixes, which goes above everything;
   - on Mondays, add one line per place or career track that is collected in the background
     and not shown yet, from the admin page's own rows (app/admin.py, HIR-398);
-  - post at once only what cannot wait a week (collection down two days running, spend cap);
+  - post at once only what cannot wait a week (collection down two days running, spend cap,
+    one model run that cost more than app/run_cost.py's RUN_ALERT_EUR, HIR-449);
+  - on Mondays, add the week's model spend by kind of run (app/run_cost.py, HIR-449);
   - count the job links checked by hand that we had missed, by reason (app/misses.py,
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
     misses.WEEKLY_TICKET_THRESHOLD in 7 days gets a Linear ticket of its own, at most once
@@ -50,7 +52,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import boards_to_add, fixes_only, geo, misses, poll
+from app import boards_to_add, fixes_only, geo, misses, poll, run_cost
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
@@ -62,6 +64,8 @@ MODE = "act"
 FIX_QUIET_DAYS = 7
 # The Hiring-radar team on Linear; LINEAR_TEAM_ID overrides it.
 LINEAR_TEAM_ID = "536d7e60-8726-44aa-9e3a-b273910d72d5"
+# The committed eval results, costed into the Monday summary's model spend (HIR-449).
+EVAL_RESULTS = ct.ROOT / "evals" / "results"
 # Log rows that are bookkeeping, not findings; the weekly summary leaves them out.
 BOOKKEEPING = ("spend", "weekly_summary", "urgent_sent", "miss_ticket", "fix_ticket", "rerun_done")
 
@@ -126,6 +130,18 @@ def write_log(conn: sqlite3.Connection, findings: list[Finding], day: str) -> No
     conn.commit()
 
 
+def cost_findings(conn: sqlite3.Connection, day: str) -> list[Finding]:
+    """One finding per model run of `day` or the day before that cost more than the alert
+    (HIR-449), unless an earlier morning already reported it. Two days, because the nightly
+    collection can finish either side of midnight; the run id keeps it from being reported
+    twice."""
+    seen = {r["data"].get("run_id") for r in log_rows(conn, _day(day, ct.FEED_HISTORY_DAYS), day)
+            if r["finding"] == "run_over_cost"}
+    return [Finding(f"model_run:{r.id}", "run_over_cost", "report", r.words(),
+                    {"run_id": r.id, "kind": r.kind, "eur": round(r.cost_eur, 4)})
+            for r in run_cost.over_alert(run_cost.runs(conn, _day(day, 1), day)) if r.id not in seen]
+
+
 # --- the morning judgement ---------------------------------------------------------------
 
 def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, search=None,
@@ -173,6 +189,7 @@ def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, 
     stamp = lambda t: t.strftime("%Y-%m-%dT%H:%M:%SZ")  # noqa: E731
     found += ct.judge_cities(city_counts(conn, stamp(now)), city_counts(conn, stamp(now - timedelta(days=1))))
     found += ct.spend_findings(budget)
+    found += cost_findings(conn, day)
     if budget.spent > start_spent:
         found.append(Finding("caretaker", "spend", "none",
                              f"Spent €{budget.spent - start_spent:.3f} on board searches.",
@@ -280,6 +297,7 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
                 + "\n" + jsearch_usage_text(conn, end)
+                + "\n" + run_cost.week_text(run_cost.week_rows(conn, start, end, EVAL_RESULTS), start, end)
                 + (("\n" + background) if (background := incubating_text(conn, week=(start, end))) else "")
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
                 + "\n" + misses.trend_section(misses.records(conn), end,

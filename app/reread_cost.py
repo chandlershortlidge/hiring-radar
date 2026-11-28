@@ -75,6 +75,10 @@ class Tokens:
     def total(self) -> float:
         return self.input + self.output + self.cache_read + self.cache_write
 
+    def __add__(self, other: "Tokens") -> "Tokens":
+        return Tokens(self.input + other.input, self.output + other.output,
+                      self.cache_read + other.cache_read, self.cache_write + other.cache_write)
+
 
 @dataclass(frozen=True)
 class RereadCost:
